@@ -1,0 +1,263 @@
+attributetype ( 1.1.1.1
+                NAME 'norMinistere' 
+                DESC 'reference NOR ministere'
+                EQUALITY caseIgnoreMatch 
+                SUBSTR caseIgnoreSubstringsMatch 
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+
+attributetype ( 1.1.1.1.1
+                NAME 'norDirectionMember' 
+                DESC 'Reference JSON contenant ID du parent et NOR'
+                EQUALITY caseIgnoreMatch 
+                SUBSTR caseIgnoreSubstringsMatch  
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+ 
+attributetype ( 1.1.1.2 
+                NAME 'dateDebut' 
+                DESC 'date de début de validité' 
+                EQUALITY generalizedTimeMatch 
+                ORDERING generalizedTimeOrderingMatch 
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.24 
+ )
+
+attributetype ( 1.1.1.3 
+                NAME 'dateFin' 
+                DESC 'date de fin de validité' 
+                EQUALITY generalizedTimeMatch 
+                ORDERING generalizedTimeOrderingMatch 
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.24 
+ )
+
+attributetype ( 1.1.1.4
+                NAME 'temporary' 
+                DESC 'temporary user : TRUE, FALSE' 
+                EQUALITY booleanMatch 
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.7
+ )
+ 
+attributetype ( 1.1.1.5
+                NAME 'occasional' 
+                DESC 'occasional user : TRUE, FALSE' 
+                EQUALITY booleanMatch 
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.7
+ )
+
+attributetype ( 1.1.1.6
+                NAME 'label'
+                DESC 'label'
+                SUP name
+ )
+ 
+attributetype ( 1.1.1.7
+                NAME 'type'
+                DESC 'type unite structurelle'
+                EQUALITY caseIgnoreMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+ 
+attributetype ( 1.1.1.8
+                NAME 'edition'
+                DESC 'edition'
+                EQUALITY caseIgnoreMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+ 
+attributetype ( 1.1.1.9
+                NAME 'ordre'
+                DESC 'ordre protocolaire'
+                EQUALITY integerMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+ )
+ 
+attributetype ( 1.1.1.10
+                NAME 'formule'
+                DESC 'Formule entêtes'
+                EQUALITY caseIgnoreMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+ 
+attributetype ( 1.1.1.11
+                NAME 'membreGouvernement'
+                DESC 'Membre du gouvernement'
+                EQUALITY caseIgnoreMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+ 
+attributetype ( 1.1.1.11.1
+                NAME 'membreGouvernementCivilite'
+                DESC 'Membre du gouvernement (Civilité)'
+                EQUALITY caseIgnoreMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+ 
+attributetype ( 1.1.1.11.2
+                NAME 'membreGouvernementPrenom'
+                DESC 'Membre du gouvernement (Prénom)'
+                EQUALITY caseIgnoreMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+ 
+attributetype ( 1.1.1.11.3
+                NAME 'membreGouvernementNom'
+                DESC 'Membre du gouvernement (Nom)'
+                EQUALITY caseIgnoreMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+ 
+attributetype ( 1.1.1.12
+                NAME 'chargeMissionSGG' 
+                DESC 'charger de mission SGG : TRUE, FALSE' 
+                EQUALITY booleanMatch 
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.7
+ )
+ 
+attributetype ( 1.1.1.13
+                NAME 'conseillerPM' 
+                DESC 'conseiller Premier Ministre : TRUE, FALSE' 
+                EQUALITY booleanMatch 
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.7
+ )
+ 
+attributetype ( 1.1.1.14
+                NAME 'idRegroupement'
+                DESC 'id regroupement entité'
+                EQUALITY caseIgnoreMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+ 
+attributetype ( 1.1.1.15
+                NAME 'deleted'
+                DESC 'Suppression logique'
+                EQUALITY booleanMatch 
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.7
+ )
+
+attributetype ( 1.1.1.17
+                NAME 'posteBdc' 
+                DESC 'poste bureau des cabinets : TRUE, FALSE' 
+                EQUALITY booleanMatch 
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.7
+ )
+ 
+attributetype   ( 1.1.1.18
+                NAME 'passwordReset'
+                DESC 'The indication that the password has been reset'
+                EQUALITY booleanMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.7
+                SINGLE-VALUE
+ )
+ 
+attributetype   ( 1.1.1.19
+                NAME 'wsUrl'
+                DESC 'URL vers le webservice à notifier'
+                EQUALITY caseIgnoreMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+ 
+attributetype   ( 1.1.1.20
+                NAME 'wsUser'
+                DESC 'Utilisateur du webservice à notifier'
+                EQUALITY caseIgnoreMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+ 
+attributetype   ( 1.1.1.21
+                NAME 'wsPassword'
+                DESC 'Mot de passe du webservice à notifier'
+                EQUALITY caseIgnoreMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+ 
+attributetype   ( 1.1.1.22 
+                NAME 'lockDate' 
+                DESC 'Date de verrouillage' 
+                EQUALITY generalizedTimeMatch 
+                ORDERING generalizedTimeOrderingMatch 
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.24 
+ )
+
+attributetype   ( 1.1.1.23
+                NAME 'lockUserName'
+                DESC 'Utilisateur ayant fait le verrouillage'
+                EQUALITY caseIgnoreMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+
+attributetype   ( 1.1.1.24
+                NAME 'functionRead'
+                DESC 'Fonction droit en lecture'
+                EQUALITY caseIgnoreMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+ 
+attributetype   ( 1.1.1.25
+                NAME 'superviseurSGG' 
+                DESC 'superviseur SGG : TRUE, FALSE' 
+                EQUALITY booleanMatch 
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.7
+ )
+
+attributetype   ( 1.1.1.26
+                NAME 'wsKeyAlias'
+                DESC 'clé dans le keystore a utiliser'
+                EQUALITY caseIgnoreMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+ )
+ 
+attributetype   ( 1.1.1.27
+                NAME 'posteWs'
+                DESC 'poste web service : TRUE, FALSE'
+                EQUALITY booleanMatch
+                SYNTAX 1.3.6.1.4.1.1466.115.121.1.7
+ )
+ 
+objectclass     ( 1.1 
+                NAME 'gouvernement' 
+                SUP groupOfUniqueNames 
+                STRUCTURAL 
+                MUST ( dateDebut $ label $ deleted )
+                MAY ( dateFin $ lockDate $ lockUserName $ functionRead ) 
+ ) 
+
+objectclass     ( 1.2 
+                NAME 'uniteStructurelle' 
+                SUP groupOfUniqueNames 
+                STRUCTURAL 
+                MUST ( dateDebut $ type $ label $ deleted )
+                MAY ( dateFin $ norDirectionMember $ lockDate $ lockUserName $ functionRead ) 
+ )
+
+objectclass     ( 1.2.1 
+                NAME 'entite' 
+                SUP groupOfUniqueNames 
+                STRUCTURAL 
+                MUST ( dateDebut $ label $ edition $ formule $ deleted )
+                MAY ( dateFin $ norMinistere $ membreGouvernement $ membreGouvernementCivilite $ membreGouvernementPrenom $ membreGouvernementNom $ lockDate $ lockUserName $ ordre $ functionRead ) 
+ )
+ 
+objectclass     ( 1.3 
+                NAME 'poste' 
+                SUP groupOfUniqueNames 
+                STRUCTURAL 
+                MUST ( dateDebut $ label $ deleted )
+                MAY ( dateFin $ uniqueMember $ superviseurSGG $ chargeMissionSGG $ conseillerPM $ posteBdc $ wsUrl $ wsUser $ wsPassword $ wsKeyAlias $ lockDate $ lockUserName $ functionRead $ posteWs ) 
+ )
+
+objectclass     ( 1.4
+                NAME 'personne' 
+                SUP inetOrgPerson 
+                STRUCTURAL 
+                MUST ( dateDebut $ temporary $ occasional $ deleted )
+                MAY ( dateFin $ passwordReset )
+ )
+
+objectclass     ( 1.5 
+                NAME 'institution' 
+                SUP groupOfUniqueNames 
+                STRUCTURAL 
+                MUST ( label )
+                MAY ( lockDate $ lockUserName )
+ )
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherTableDeReferenceRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp"
+	xmlns:eppcommons="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:p4="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp WSepp.xsd ">
+	<p:type_objet>TYPE_LOI</p:type_objet>
+	<p:actifs_uniquement>true</p:actifs_uniquement>
+</p:chercherTableDeReferenceRequest>

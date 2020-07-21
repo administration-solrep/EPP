@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<component name="default-repository-config">
+	<extension target="org.nuxeo.ecm.core.repository.RepositoryService"
+		point="repository">
+		<repository name="default"
+			factory="org.nuxeo.ecm.core.storage.sql.ra.PoolingRepositoryFactory">
+			<repository name="default">
+				<aclOptimizations enabled="true" />
+				<pathOptimizations enabled="false" />
+				<noDDL>${nuxeo.db.noDDL}</noDDL>
+				<clustering enabled="true" delay="1000" />
+				<binaryStore path="${nuxeo.binarystore.path}" />
+				<schema>
+					<field type="largetext">note</field>
+					<field type="largetext">webp:content</field>
+					<field type="largetext">webc:welcomeText</field>
+					<field type="largetext">comment:comment</field>
+					<field type="largetext">post</field>
+					<field type="largetext">mail:mail</field>
+				</schema>
+				<indexing>
+					<excludedTypes>
+						<type>AdministrativeStatus</type>
+						<type>AdministrativeStatusContainer</type>
+						<type>FeuilleRouteModelFolder</type>
+						<type>CaseRoot</type>
+						<type>AdminWorkspace</type>
+						<type>Domain</type>
+						<type>DossierLink</type>
+						<type>Folder</type>
+						<type>TableReferenceRoot</type>
+						<type>ModeleFondDeDossier</type>
+						<type>ManagementRoot</type>
+						<type>WorkspaceRoot</type>
+						<type>HiddenFolder</type>
+						<type>UserWorkspace</type>
+						<type>UserWorkspacesRoot</type>
+						<type>Comment</type>
+						<type>MailboxRoot</type>
+						<type>Mailbox</type>
+						<type>SolonEppMailbox</type>
+						<type>Root</type>
+						<type>TableReferenceRoot</type>
+						<type>ActeurRoot</type>
+						<type>Acteur</type>
+						<type>CirconscriptionRoot</type>
+						<type>Circonscription</type>
+						<type>GouvernementRoot</type>
+						<type>Gouvernement</type>
+						<type>IdentiteRoot</type>
+						<type>Identite</type>
+						<type>MandatRoot</type>
+						<type>Mandat</type>
+						<type>MembreGroupeRoot</type>
+						<type>MembreGroupe</type>
+						<type>MinistereRoot</type>
+						<type>Ministere</type>
+						<type>OrganismeRoot</type>
+						<type>Organisme</type>
+						<type>PeriodeRoot</type>
+						<type>Periode</type>
+						<type>DossierRoot</type>
+						<type>Dossier</type>
+						<type>Evenement</type>
+						<type>Version</type>
+						<type>PieceJointe</type>
+						<type>PieceJointeFichierRoot</type>
+						<type>Message</type>
+						<type>JetonMaitreFolder</type>
+						<type>JetonDocFolder</type>
+						<type>JetonMaitre</type>
+						<type>JetonDoc</type>
+						<type>ParametreFolder</type>
+						<type>Parametre</type>
+					</excludedTypes>
+
+					<fulltext>
+						<index name="default">
+							<!-- all props implied -->
+						</index>
+						<index name="title">
+							<field>dc:title</field>
+						</index>
+						<index name="description">
+							<field>dc:description</field>
+						</index>
+					</fulltext>
+				</indexing>
+				<xa-datasource>oracle.jdbc.xa.client.OracleXADataSource</xa-datasource>
+				<property name="URL">${nuxeo.db.url}
+				</property>
+				<property name="User">${nuxeo.db.user}</property>
+				<property name="Password">${nuxeo.db.password}</property>
+			</repository>
+		</repository>
+	</extension>
+</component>

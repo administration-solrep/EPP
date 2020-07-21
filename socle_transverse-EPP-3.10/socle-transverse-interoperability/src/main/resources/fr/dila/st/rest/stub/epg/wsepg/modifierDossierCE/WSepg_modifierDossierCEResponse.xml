@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:modifierDossierCEResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSepg"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:p4="http://www.dila.premier-ministre.gouv.fr/solon/epg/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSepg ../../../../../../../../xsd/solon/epg/WSepg.xsd ">
+
+	<p:statut>KO</p:statut>
+	<p:code_erreur>DROIT_ACCESS_INSUFFISANT</p:code_erreur>
+
+	<p:message_erreur>Lorem Ipsum Dolor Sit Amet</p:message_erreur>
+
+</p:modifierDossierCEResponse>

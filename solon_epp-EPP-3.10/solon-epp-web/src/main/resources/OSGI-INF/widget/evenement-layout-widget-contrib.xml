@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.solonepp.web.widget.evenement">
+	<require>fr.dila.solonepp.web.layout.widgetType</require>
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="widgets">
+
+
+		<!-- widget objet mail -->
+		<widget name="objet_mail" type="text">
+			<labels>
+				<label mode="any">label.epp.evenement.mail.objet</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>objetMail</field>
+			</fields>
+			<properties mode="any">
+				<property name="required">true</property>
+			</properties>
+		</widget>
+
+		<!-- widget destinataire mail -->
+		<widget name="destinataire_mail" type="text">
+			<labels>
+				<label mode="any">label.epp.evenement.mail.destinataires</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>destinataireMail</field>
+			</fields>
+			<properties mode="any">
+				<property name="required">true</property>
+				<property name="validator">#{userManagerActions.validateMail}</property>
+			</properties>
+		</widget>
+
+		<!-- widget message mail -->
+		<widget name="message_mail" type="textarea">
+			<labels>
+				<label mode="any">label.epp.evenement.mail.message</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>messageMail</field>
+			</fields>
+			<properties mode="any">
+				<property name="required">true</property>
+			</properties>
+		</widget>
+
+	</extension>
+</component>

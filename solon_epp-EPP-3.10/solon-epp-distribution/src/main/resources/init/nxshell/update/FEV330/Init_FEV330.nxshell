@@ -1,0 +1,84 @@
+# Pour lancer ce script :
+# 1 - copier ce fichier dans /tmp/
+# 2 - Aller dans le répertoire contenant nxshell.sh
+# 3 - Taper la commande sh nxshell.sh -f /tmp/Init_FEV330.nxshell
+
+# connect to http://localhost:8180/solon-epp (obligatoire sinon Unknown command...) 
+connect -u Administrator -p Administrator http://localhost:8180/solon-epp/site/automation
+
+cd /case-management/table-reference-root/mandat-root/Mandat350
+setp -xpath nor -value PRM
+cd /case-management/table-reference-root/mandat-root/Mandat351
+setp -xpath nor -value MAE
+cd /case-management/table-reference-root/mandat-root/Mandat352
+setp -xpath nor -value MEN
+cd /case-management/table-reference-root/mandat-root/Mandat353
+setp -xpath nor -value JUS
+cd /case-management/table-reference-root/mandat-root/Mandat354
+setp -xpath nor -value EFI
+cd /case-management/table-reference-root/mandat-root/Mandat355
+setp -xpath nor -value AFS
+cd /case-management/table-reference-root/mandat-root/Mandat356
+setp -xpath nor -value ETL
+cd /case-management/table-reference-root/mandat-root/Mandat357
+setp -xpath nor -value INT
+cd /case-management/table-reference-root/mandat-root/Mandat370
+setp -xpath nor -value EXT
+cd /case-management/table-reference-root/mandat-root/Mandat359
+setp -xpath nor -value PRO
+cd /case-management/table-reference-root/mandat-root/Mandat1046
+setp -xpath nor -value DEV
+cd /case-management/table-reference-root/mandat-root/Mandat360
+setp -xpath nor -value ETS
+cd /case-management/table-reference-root/mandat-root/Mandat361
+setp -xpath nor -value DEF
+cd /case-management/table-reference-root/mandat-root/Mandat362
+setp -xpath nor -value MCC
+cd /case-management/table-reference-root/mandat-root/Mandat363
+setp -xpath nor -value ESR
+cd /case-management/table-reference-root/mandat-root/Mandat364
+setp -xpath nor -value DFE
+cd /case-management/table-reference-root/mandat-root/Mandat365
+setp -xpath nor -value AGR
+cd /case-management/table-reference-root/mandat-root/Mandat366
+setp -xpath nor -value RDF
+cd /case-management/table-reference-root/mandat-root/Mandat367
+setp -xpath nor -value OME
+cd /case-management/table-reference-root/mandat-root/Mandat369
+setp -xpath nor -value ACT
+cd /case-management/table-reference-root/mandat-root/Mandat368
+setp -xpath nor -value SPO
+cd /case-management/table-reference-root/mandat-root/Mandat375
+setp -xpath nor -value BUD
+cd /case-management/table-reference-root/mandat-root/Mandat372
+setp -xpath nor -value RED
+cd /case-management/table-reference-root/mandat-root/Mandat373
+setp -xpath nor -value PRL
+cd /case-management/table-reference-root/mandat-root/Mandat374
+setp -xpath nor -value VIL
+cd /case-management/table-reference-root/mandat-root/Mandat385
+setp -xpath nor -value EUR
+cd /case-management/table-reference-root/mandat-root/Mandat376
+setp -xpath nor -value PAD
+cd /case-management/table-reference-root/mandat-root/Mandat377
+setp -xpath nor -value ESS
+cd /case-management/table-reference-root/mandat-root/Mandat378
+setp -xpath nor -value FAM
+cd /case-management/table-reference-root/mandat-root/Mandat379
+setp -xpath nor -value HAN
+cd /case-management/table-reference-root/mandat-root/Mandat380
+setp -xpath nor -value DVT
+cd /case-management/table-reference-root/mandat-root/Mandat386
+setp -xpath nor -value FRA
+cd /case-management/table-reference-root/mandat-root/Mandat382
+setp -xpath nor -value TRA
+cd /case-management/table-reference-root/mandat-root/Mandat383
+setp -xpath nor -value PME
+cd /case-management/table-reference-root/mandat-root/Mandat384
+setp -xpath nor -value ANC
+cd /case-management/table-reference-root/mandat-root/Mandat387
+setp -xpath nor -value DCT
+cd /case-management/table-reference-root/mandat-root/Mandat388
+setp -xpath nor -value AGL
+cd /case-management/table-reference-root/mandat-root/Mandat381
+setp -xpath nor -value FEF

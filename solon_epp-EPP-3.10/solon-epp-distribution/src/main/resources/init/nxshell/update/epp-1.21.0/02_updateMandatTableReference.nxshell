@@ -1,0 +1,29 @@
+# Pour lancer ce script :
+# 1 - copier ce fichier dans /tmp/
+# 2 - Aller dans le répertoire contenant nxshell.sh
+# 3 - Taper la commande sh nxshell.sh -f /tmp/02_updateMandatTableReference.nxshell
+
+# connect to http://localhost:8080/solon-epp (obligatoire sinon Unknown command...) 
+connect -u Administrator -p 4ju7Ix662Eo1d77u http://localhost:8180/solon-epp/site/automation
+
+
+cd /case-management/table-reference-root/mandat-root/Mandat572
+setp -xpath man:dateFin  -value "2012-06-17T22:00:00Z"
+
+cd /case-management/table-reference-root/mandat-root/Mandat548
+setp -xpath man:dateFin  -value "2012-06-17T22:00:00Z"
+
+cd /case-management/table-reference-root/mandat-root/Mandat490
+setp -xpath man:dateFin  -value "2012-06-17T22:00:00Z"
+
+cd /case-management/table-reference-root/mandat-root/Mandat1016
+setp -xpath man:dateDebut  -value "1997-06-01T22:00:00Z"
+setp -xpath man:dateFin  -value "2002-06-18T22:00:00Z"
+
+cd /case-management/table-reference-root/mandat-root/Mandat1018
+setp -xpath man:dateDebut  -value "2007-07-16T22:00:00Z"
+setp -xpath man:dateFin  -value "2012-06-16T22:00:00Z"
+
+cd /case-management/table-reference-root/mandat-root/Mandat1017
+setp -xpath man:dateDebut  -value "1997-06-01T22:00:00Z"
+setp -xpath man:dateFin  -value "2002-06-18T22:00:00Z"

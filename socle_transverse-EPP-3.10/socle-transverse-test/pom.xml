@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>fr.dila.st</groupId>
+		<artifactId>socle-transverse-parent</artifactId>
+		<version>EPP-3.10.2</version>
+	</parent>
+
+	<artifactId>socle-transverse-test</artifactId>
+	<name>Socle transverse test</name>
+
+	<properties>
+		<naiad.nuxeo.webtest.version>3.2.0</naiad.nuxeo.webtest.version>
+		<selenium.version>2.46.0</selenium.version>
+	</properties>
+
+	<dependencies>
+		<!-- Dépendances au socle transverse -->
+		<dependency>
+			<groupId>fr.dila.st</groupId>
+			<artifactId>socle-transverse-core</artifactId>
+		</dependency>
+
+
+		<!-- Dependences de test -->
+		<dependency>
+			<groupId>fr.dila.cm</groupId>
+			<artifactId>solrep-case-management-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.nuxeo.ecm.core</groupId>
+			<artifactId>nuxeo-core-storage-sql-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.nuxeo.runtime</groupId>
+			<artifactId>nuxeo-runtime-test</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>selenium-iphone-driver</artifactId>
+					<groupId>org.seleniumhq.selenium</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.nuxeo.ecm.core</groupId>
+			<artifactId>nuxeo-core-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jmock</groupId>
+			<artifactId>jmock</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.nuxeo.runtime</groupId>
+			<artifactId>nuxeo-runtime-osgi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.nuxeo.ecm.platform</groupId>
+			<artifactId>nuxeo-platform-mail-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.nuxeo.ecm.platform</groupId>
+			<artifactId>nuxeo-platform-mail-types</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.nuxeo.ecm.platform</groupId>
+			<artifactId>nuxeo-platform-webapp-base</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.nuxeo.ecm.platform</groupId>
+			<artifactId>nuxeo-classification-core</artifactId>
+		</dependency>
+		<!-- <dependency> <groupId>org.apache.directory.server</groupId> <artifactId>apacheds-core</artifactId> 
+			</dependency> <dependency> <groupId>org.apache.directory.server</groupId> 
+			<artifactId>apacheds-core-shared</artifactId> </dependency> <dependency> 
+			<groupId>org.apache.directory.shared</groupId> <artifactId>shared-ldap</artifactId> 
+			</dependency> <dependency> <groupId>commons-collections</groupId> <artifactId>commons-collections</artifactId> 
+			</dependency> <dependency> <groupId>antlr</groupId> <artifactId>antlr</artifactId> 
+			</dependency> <dependency> <groupId>org.apache.directory.server</groupId> 
+			<artifactId>apacheds-protocol-shared</artifactId> </dependency> <dependency> 
+			<groupId>org.apache.directory.shared</groupId> <artifactId>shared-ldap-constants</artifactId> 
+			</dependency> <dependency> <groupId>org.apache.directory.server</groupId> 
+			<artifactId>apacheds-bootstrap-partition</artifactId> </dependency> <dependency> 
+			<groupId>org.apache.directory.shared</groupId> <artifactId>shared-asn1</artifactId> 
+			</dependency> <dependency> <groupId>hsqldb</groupId> <artifactId>hsqldb</artifactId> 
+			</dependency> <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-core</artifactId> 
+			</dependency> <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-entitymanager</artifactId> 
+			</dependency> -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-support</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.sword.idl.naiad.nuxeo.tools</groupId>
+			<artifactId>naiad-nuxeo-webtest</artifactId>
+			<version>${naiad.nuxeo.webtest.version}</version>
+		</dependency>
+
+	</dependencies>
+
+</project>

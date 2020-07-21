@@ -1,0 +1,24 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<nxu:set var="dossier"
+		value="#{dossierActions.getDossierFromDossierLink(field_0)}"
+		cache="true">
+		<nxu:set var="isRead"
+			value="#{field_0.getProperty('cslk:isRead').getValue()}" cache="true">
+
+			<div class="popupTarget" docRef="#{dossier.ref}">
+				<nxh:commandLink
+					action="#{corbeilleActions.readDossierLink(field_0, dossier, isRead, contentViewName)}"
+					styleClass="#{nxu:test(isRead, '', 'boldLabel')}">
+					<h:outputText value="#{nxd:titleOrId(dossier)}" />
+				</nxh:commandLink>
+			</div>
+
+		</nxu:set>
+	</nxu:set>
+</f:subview>

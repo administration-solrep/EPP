@@ -1,0 +1,104 @@
+<div xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:nxh="http://nuxeo.org/nxweb/html">
+	<a4j:region id="profilUtilisateurPopupViewRegion">
+		<style>
+.button {
+	background: #CECFD1
+		url(#{facesContext.externalContext.requestContextPath}/img/theme_galaxy/buttons.png)
+		repeat-x scroll left top;
+}
+
+.requiredField {
+	
+}
+</style>
+		<script>
+		var j = jQuery.noConflict();
+		var required;
+		function checkRequired(){
+			required = false;
+			j(".requiredField").each(function(i){if(this.value.trim()==""){required=true;return false;}});
+			if(j("input:radio:checked").val()==null){required=true;}
+			if(required){
+				j("#errorTxt").show();
+			}
+			return required;
+		}
+	</script>
+		<a4j:outputPanel id="profilUtilisateurPopup">
+			<f:subview id="displayedProfilUtilisateurPopup"
+				rendered="#{profilUtilisateurAdministrationActions.isDisplayAdministrationProfil()}">
+				<rich:modalPanel id="profilUtilisateurPanel" autosized="true">
+					<div>
+						<f:facet name="header">
+							<h:outputText value="Profil Utilisateur" />
+						</f:facet>
+					</div>
+					<h:form id="profilUtilisateurForm" enctype="multipart/form-data">
+						<span id="errorTxt" style="color: red; display: none">Veuillez
+							compléter les champs obligatoires</span>
+						<div class="profilUtilisateur">
+
+							<nxl:layout name="profil_user" mode="edit"
+								value="#{profilUtilisateurAdministrationActions.selectedUser}" />
+
+							<h:outputText value="#{messages['label.user.notificationMail']}" />
+							<h:selectBooleanCheckbox
+								value="#{profilUtilisateurAdministrationActions.notification}" />
+							<div class="popupDiv">
+								<a4j:commandLink
+									action="#{profilUtilisateurAdministrationActions.displayResetPassword()}"
+									oncomplete="Richfaces.showModalPanel('resetPasswordPanel');"
+									reRender="resetPasswordPopup">
+									<h:outputText value="#{messages['command.user.resetPassword']}" />
+								</a4j:commandLink>
+							</div>
+							<!--  boutons d'actions -->
+							<div style="margin-left: 100px;">
+								<!-- bouton d'action permettant  d'enregistrer les modifications apportées dans le profil utilisateur -->
+								<a4j:commandButton value="Valider"
+									onclick="if(checkRequired())return false;"
+									action="#{profilUtilisateurAdministrationActions.valider}"
+									oncomplete="Richfaces.hideModalPanel('profilUtilisateurPanel')"
+									id="validerProfilUtilisateur"
+									reRender="profilUtilisateurPanel,messageBox"
+									styleClass="button">
+								</a4j:commandButton>
+								<!-- bouton d'action permettant d’annuler les modifications apportées dans le profil utilisateur -->
+								<a4j:commandButton value="Annuler"
+									action="#{profilUtilisateurAdministrationActions.annuler()}"
+									oncomplete="Richfaces.hideModalPanel('profilUtilisateurPanel')"
+									id="annulerProfilUtilisateur" reRender="profilUtilisateurPanel"
+									styleClass="button">
+								</a4j:commandButton>
+							</div>
+
+							<!-- error message -->
+							<div class="popupDiv">
+								<h:outputText class="msgError" id="profilErrorName"
+									value="#{profilUtilisateurAdministrationActions.errorName}" />
+							</div>
+						</div>
+					</h:form>
+					<a4j:region id="resetPasswordPopupViewRegion">
+						<a4j:outputPanel id="resetPasswordPopup">
+							<f:subview
+								rendered="#{profilUtilisateurAdministrationActions.isDisplayResetPassword()}">
+								<ui:include
+									src="/admin/profilutilisateur/reset_password_popup.xhtml" />
+							</f:subview>
+						</a4j:outputPanel>
+					</a4j:region>
+				</rich:modalPanel>
+			</f:subview>
+		</a4j:outputPanel>
+	</a4j:region>
+</div>

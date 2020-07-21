@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<component name="fr.dila.st.web.layout.etatApplication">
+
+	<require>com.nuxeo.cm.table.widget</require>
+	<require>com.nuxeo.document.routing.table.layout</require>
+	<require>fr.dila.st.web.widget</require>
+
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="layouts">
+
+
+		<!-- Administration de état application -->
+		<layout name="etatApplicationLayout">
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>restrictionAccess</widget>
+				</row>
+				<row>
+					<widget>restrictionDescription</widget>
+				</row>
+			</rows>
+
+			<widget name="restrictionAccess" type="selectOneRadio">
+				<labels>
+					<label mode="any">label.etat.application.restriction</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="etat_application">restriction_acces</field>
+				</fields>
+				<properties widgetMode="edit">
+					<property name="directoryName">boolean_voc</property>
+					<property name="required">true</property>
+					<property name="styleClass">dataInputText</property>
+				</properties>
+			</widget>
+
+			<widget name="restrictionDescription" type="textarea">
+				<labels>
+					<label mode="any">label.etat.application.description</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="etat_application">description_restriction</field>
+				</fields>
+				<properties widgetMode="edit">
+					<property name="required">false</property>
+					<property name="styleClass">dataInputText</property>
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+
+		</layout>
+	</extension>
+</component>
+
+
+
+
+

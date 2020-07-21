@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>fr.dila.solonepp</groupId>
+		<artifactId>solon-epp-parent</artifactId>
+		<version>EPP-3.10.2</version>
+	</parent>
+
+	<artifactId>solon-epp-api</artifactId>
+	<name>SOLON EPP API</name>
+
+	<dependencies>
+		<!-- Dépendances au socle transverse -->
+		<dependency>
+			<groupId>fr.dila.st</groupId>
+			<artifactId>socle-transverse-api</artifactId>
+		</dependency>
+
+		<!-- Dépendances à Nuxeo -->
+		<dependency>
+			<groupId>org.nuxeo.ecm.platform</groupId>
+			<artifactId>nuxeo-platform</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.cm</groupId>
+			<artifactId>solrep-case-management-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.st</groupId>
+			<artifactId>socle-transverse-interoperability</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>

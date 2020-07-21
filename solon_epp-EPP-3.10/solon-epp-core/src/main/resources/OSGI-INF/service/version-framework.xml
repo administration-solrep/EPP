@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue le service de gestion des versions des événements. -->
+<component name="fr.dila.solonepp.core.service.VersionService">
+	<implementation class="fr.dila.solonepp.core.service.VersionServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.solonepp.api.service.VersionService" />
+	</service>
+
+</component>

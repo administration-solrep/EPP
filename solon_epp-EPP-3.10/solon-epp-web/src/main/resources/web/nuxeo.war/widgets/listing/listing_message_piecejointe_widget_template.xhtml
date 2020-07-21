@@ -1,0 +1,13 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<c:if test="#{field_0 eq 'true'}">
+		<h:graphicImage value="/img/icons/paperclip.png" alt="Pièce jointe"
+			title="Pièce jointe" />
+	</c:if>
+	<c:if test="#{field_1 eq 'true'}">
+		<h:graphicImage value="/icons/warning.gif" alt="Alerte" title="Alerte" />
+	</c:if>
+
+</f:subview>

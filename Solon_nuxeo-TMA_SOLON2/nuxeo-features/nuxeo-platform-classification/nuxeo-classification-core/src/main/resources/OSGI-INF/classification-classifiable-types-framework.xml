@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="org.nuxeo.ecm.classification.core.ClassificationService">
+
+  <implementation
+    class="org.nuxeo.ecm.classification.core.ClassificationServiceImpl" />
+
+  <service>
+    <provide interface="org.nuxeo.ecm.classification.api.ClassificationService" />
+  </service>
+
+  <extension-point name="types">
+    <documentation>
+      Types extension point for the Classification service.
+
+      Enables registration of type that will be classifiable.
+
+      Example of a classification registration:
+
+      <code>
+        <extension
+          target="org.nuxeo.ecm.classification.core.ClassificationService"
+          point="types">
+          <classifiable type="File" />
+          <classifiable enabled="false" type="Note" />
+        </extension>
+      </code>
+
+      <ul>
+        <li>type: The Document Type to be classifiable</li>
+        <li>enable: default to true, use it to override other contributions</li>
+      </ul>
+
+
+    </documentation>
+    <object class="org.nuxeo.ecm.classification.core.ClassificationDescriptor" />
+  </extension-point>
+
+</component>

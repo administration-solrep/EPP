@@ -1,0 +1,19 @@
+<f:subview xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxh="http://nuxeo.org/nxweb/html">
+	<c:if test="#{widget.mode == 'edit'}">
+		<nxu:set var="values"
+			value="#{selectOneMenuActions.getValues(widget.properties.type)}"
+			cache="true">
+			<nxh:selectManyListbox id="#{widget.id}_selectManyListbox"
+				value="#{field_0}">
+				<c:forEach var="mode" items="#{values}" varStatus="status">
+					<f:selectItem
+						itemLabel="#{selectOneMenuActions.getItemLabel(widget.properties.type, mode)}"
+						itemValue="#{selectOneMenuActions.getItemValue(widget.properties.type, mode)}" />
+				</c:forEach>
+			</nxh:selectManyListbox>
+		</nxu:set>
+	</c:if>
+</f:subview>

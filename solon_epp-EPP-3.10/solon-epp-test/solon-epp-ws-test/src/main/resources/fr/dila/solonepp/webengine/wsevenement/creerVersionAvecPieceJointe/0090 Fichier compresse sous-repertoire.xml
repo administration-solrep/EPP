@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsevt:creerVersionRequest
+	xmlns:wsevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:eppcommons="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:eppevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:epptdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd "
+	modeCreation="CREER_BROUILLON">
+
+	<wsevt:evenement type="EVT01">
+		<eppevt:evt01 etat="" has_contenu_pj="false"> <!-- état evt non pris en compte -->
+			<eppevt:id_evenement></eppevt:id_evenement>
+			<eppevt:id_evenement_precedent></eppevt:id_evenement_precedent>
+			<eppevt:id_dossier>EFIM1100003V</eppevt:id_dossier>
+			<eppevt:emetteur>GOUVERNEMENT</eppevt:emetteur>
+			<eppevt:destinataire>ASSEMBLEE_NATIONALE</eppevt:destinataire>
+			<eppevt:copie>SENAT</eppevt:copie>
+			<eppevt:id_senat></eppevt:id_senat>
+			<eppevt:niveau_lecture niveau="1" code="AN" />
+			<eppevt:objet>Objet</eppevt:objet>
+			<eppevt:nor>EFIM1100003V</eppevt:nor>
+			<eppevt:type_loi>LOI</eppevt:type_loi>
+			<eppevt:nature_loi>PROJET</eppevt:nature_loi>
+			<eppevt:auteur>
+				<epptdref:id>MandatTest0</epptdref:id>
+				<epptdref:type>DEPUTE</epptdref:type>
+				<epptdref:proprietaire>ASSEMBLEE_NATIONALE</epptdref:proprietaire>
+				<epptdref:identifiant>6</epptdref:identifiant>
+				<epptdref:date_debut>2010-09-04</epptdref:date_debut>
+				<epptdref:id_identite>4</epptdref:id_identite>
+				<epptdref:id_circonscription>65</epptdref:id_circonscription>
+			</eppevt:auteur>
+			<eppevt:co_auteur>
+				<epptdref:id>MandatTest0</epptdref:id>
+				<epptdref:type>DEPUTE</epptdref:type>
+				<epptdref:proprietaire>ASSEMBLEE_NATIONALE</epptdref:proprietaire>
+				<epptdref:identifiant>6</epptdref:identifiant>
+				<epptdref:date_debut>2010-09-04</epptdref:date_debut>
+				<epptdref:id_identite>4</epptdref:id_identite>
+				<epptdref:id_circonscription>65</epptdref:id_circonscription>
+			</eppevt:co_auteur>
+			<eppevt:intitule>Projet de loi relatif à l'action extérieure de l'État</eppevt:intitule>
+			<eppevt:commentaire><![CDATA[Commentaire]]></eppevt:commentaire>
+
+			<eppevt:texte>
+				<eppcommons:id_interne_epp></eppcommons:id_interne_epp>
+				<eppcommons:type>TEXTE</eppcommons:type>
+				<eppcommons:url>http://www.url1.fr</eppcommons:url>
+				<eppcommons:libelle>Texte</eppcommons:libelle>
+				<eppcommons:fichier a_du_contenu="false">
+					<eppcommons:nom_fichier>test1.gif</eppcommons:nom_fichier>
+					<eppcommons:sha512>1f844f2bf5dc2e9806c090e61de2e0f8e784d1524dce623a51d095d13c232936f9fc97dc0241c83ef880640f2e5389f8958974c2a38705927033326cabedef11</eppcommons:sha512>
+					<eppcommons:mime_type>image/gif</eppcommons:mime_type>
+				</eppcommons:fichier>
+			</eppevt:texte>
+			<eppevt:expose_des_motifs>
+				<eppcommons:id_interne_epp></eppcommons:id_interne_epp>
+				<eppcommons:type>EXPOSE_DES_MOTIFS</eppcommons:type>
+				<eppcommons:url>http://www.url1.fr</eppcommons:url>
+				<eppcommons:libelle>Exposé des motifs</eppcommons:libelle>
+				<eppcommons:fichier a_du_contenu="false">
+					<eppcommons:nom_fichier>test1.gif</eppcommons:nom_fichier>
+					<eppcommons:sha512>1f844f2bf5dc2e9806c090e61de2e0f8e784d1524dce623a51d095d13c232936f9fc97dc0241c83ef880640f2e5389f8958974c2a38705927033326cabedef11</eppcommons:sha512>
+					<eppcommons:mime_type>image/gif</eppcommons:mime_type>
+				</eppcommons:fichier>
+			</eppevt:expose_des_motifs>
+			<eppevt:decret_presentation>
+				<eppcommons:id_interne_epp></eppcommons:id_interne_epp>
+				<eppcommons:type>DECRET_PRESENTATION</eppcommons:type>
+				<eppcommons:url>http://www.url1.fr</eppcommons:url>
+				<eppcommons:libelle>Décret présentation</eppcommons:libelle>
+				<eppcommons:fichier a_du_contenu="false">
+					<eppcommons:nom_fichier>test1.gif</eppcommons:nom_fichier>
+					<eppcommons:sha512>1f844f2bf5dc2e9806c090e61de2e0f8e784d1524dce623a51d095d13c232936f9fc97dc0241c83ef880640f2e5389f8958974c2a38705927033326cabedef11</eppcommons:sha512>
+					<eppcommons:mime_type>image/gif</eppcommons:mime_type>
+				</eppcommons:fichier>
+			</eppevt:decret_presentation>
+			<eppevt:lettre_pm>
+				<eppcommons:id_interne_epp></eppcommons:id_interne_epp>
+				<eppcommons:type>LETTRE_PM</eppcommons:type>
+				<eppcommons:url>http://www.url1.fr</eppcommons:url>
+				<eppcommons:libelle>Lettre PM</eppcommons:libelle>
+				<eppcommons:fichier a_du_contenu="false">
+					<eppcommons:nom_fichier>test1.gif</eppcommons:nom_fichier>
+					<eppcommons:sha512>1f844f2bf5dc2e9806c090e61de2e0f8e784d1524dce623a51d095d13c232936f9fc97dc0241c83ef880640f2e5389f8958974c2a38705927033326cabedef11</eppcommons:sha512>
+					<eppcommons:mime_type>image/gif</eppcommons:mime_type>
+				</eppcommons:fichier>
+			</eppevt:lettre_pm>
+			<eppevt:autres>
+				<eppcommons:id_interne_epp></eppcommons:id_interne_epp>
+				<eppcommons:type>AUTRE</eppcommons:type>
+				<eppcommons:url>http://www.url3.fr</eppcommons:url>
+				<eppcommons:libelle>Libellé AUTRE1 modif</eppcommons:libelle>
+				<eppcommons:fichier a_du_contenu="true">
+					<eppcommons:nom_fichier>test4.zip</eppcommons:nom_fichier>
+					<eppcommons:sha512>a49b1c5647aa44575f02d0afa3c4281192f66822bf0694ec3b24cad1cc5d2102caf6b51e77e7bf6513d263dade2360236850c04cbc97ac70303f365df764ffdd</eppcommons:sha512>
+					<eppcommons:mime_type>image/png</eppcommons:mime_type>
+					<eppcommons:compression>ZIP</eppcommons:compression>
+					<eppcommons:contenu>UEsDBAoAAAAAAGhFrEpf18cv7AQAAOwEAAAPAAAAY2hlY2tfZ3Jpc2UucG5niVBORw0KGgoAAAAN
+SUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsSAAALEgHS3X78AAAAIGNIUk0AAHolAACA
+gwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAARySURBVHjatJVPTBtHFMa/mV07NkkgoAjC
+LYAiAgIaggPUNlKq9OT24vZaqT1waa/cQEV1IpAq0d5oJZRTb8k5aukhKUKWk6BECSQh3IIdk4Bt
+mT/Ba+/uzLxe2OnShKaXjPS0o13t93vvzZv3GBHhQy4TABhjR31n0Wg0LoRIMMYGQqHQGaUUq9Vq
+JSJ6DGCec357aWlJvOtnIgIjoncCLl++/DnnfLq7u7unvb2dNTQ0QEoJ27Zh2zYKhQKy2Syy2ewL
+znkqk8n8BoDeC4hGoyHO+S8XLlz4JhaLMcMwYNs2tra2UC6Xsbe3h2q1CiEEOOcAgNevX6NcLv/O
+Of/q3r1720cCotFoiIhuJZPJK21tbSAivHz5EoVCAa7rwnVdCCH03jOlFCqVCgqFwgpj7JOHDx+W
+PQA/lHDGfk0mk1c6OjrgOA5WVlZQKpXAOQfn/Miz8qJpamrqU0rdjMfjWpf7c97X1/e1J/7s2TMo
+pcAYAxFBKQWv4ohIW6VSQW9vL+rr62EYBurq6q5YlvXdvwFMKTUdj8cZEWFtbU2LSSkhhIBSCkop
+SCk1cGdnB+Pj40ilUpibm0NPTw8MwwARfd/f3x/WgGg0Gj9//nwPYwz5fB6VSkWLeeLe0xPf3t7G
+5OQkhoaGYFkWjh8/jkQigXA4jEAg0CyE+FIDXNdNnD17lkkpkcvlQERaXAgBx3F0BEIIlEolLS6l
+RCgUguM4WFhYgGVZME0TAD7TFw3AwKlTp1Aul2HbNjY3N1EsFtHS0oLW1tZDME88EolACIFgMAgh
+BKanp5FOp+HrDBd1BIZhnPHCXl1dRSwWw/z8PDo7O5HL5d4Sv3TpEogIgUAAADA1NYVMJgMp5T/1
+z1irBhARc10XxWIRXV1dGB0dxe7uLiYmJjA4OIhXr16hWCxqz4kInHMQEVKpFDKZjD4fn3GdIiFE
+qVqtwrZt7QUA7O/vY2xsDCMjI2hubsa5c+cgpYRhGACAq1ev4u7du5BSQikFAH7Qlr9MHxcKBTDG
+sLm5iVQqhZMnT4Ixhkqlgkgkgra2NiiltLjnuRBCA7wKOwCt+AHz6+vrAIC6ujqsra1hZmYGJ06c
+AOdcCxzU+CFx/93wonddF0T0hwaYpnk7n8+/UErBdV0YhoGlpSXMzs5qiGmakFLi2rVrSKfT2nMh
+hE6NB3IcZw/ATQ24f/++ME3zh3w+r2udiHDnzh1cv34dAFCtVjE1NYXFxUXd9PwH6/cewE/Pnz/f
+AXCom7KBgYFbjY2NCa+pKaUQDAZx+vRpAMDGxoaG+83fPizLemRZ1sfr6+v2W+16eHi4sVar/VVf
+X/+Rl2//wfnHq/fe8/xAPBcIBEaWl5dzRw6cSCTS5DjOjXA4/GkwGDwk6Ad6ey8ttVrtkWmaySdP
+nmTfOzLj8Th/8+bNt0Q0eezYsWbDMHTb9rds13XhOM4uY+znUCj044MHD+z/PZMBoL+/P+y67hdE
+lABwkXPeQkRcKVU8qPM/TdO88fTp093/HPofcv09AC17ajLr3NUFAAAAAElFTkSuQmCCUEsBAj8A
+CgAAAAAAaEWsSl/Xxy/sBAAA7AQAAA8AJAAAAAAAAAAgAAAAAAAAAGNoZWNrX2dyaXNlLnBuZwoA
+IAAAAAAAAQAYANbrAmrzytIBvlWmazBd0wG+VaZrMF3TAVBLBQYAAAAAAQABAGEAAAAZBQAAAAA=
+					</eppcommons:contenu>
+				</eppcommons:fichier>
+			</eppevt:autres>
+			<eppevt:version_courante majeur="0" mineur="1"
+				etat="CREER_BROUILLON" />
+		</eppevt:evt01>
+	</wsevt:evenement>
+
+</wsevt:creerVersionRequest>

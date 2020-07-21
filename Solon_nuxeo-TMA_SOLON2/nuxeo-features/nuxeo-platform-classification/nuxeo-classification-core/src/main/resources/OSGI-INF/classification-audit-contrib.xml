@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="org.nuxeo.ecm.classification.audit">
+
+  <require>org.nuxeo.ecm.platform.audit.service.NXAuditEventsService</require>
+
+  <extension target="org.nuxeo.ecm.platform.audit.service.NXAuditEventsService"
+    point="event">
+
+    <event name="ClassificationDone" />
+    <event name="UnclassificationDone" />
+
+  </extension>
+
+</component>

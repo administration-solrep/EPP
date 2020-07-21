@@ -1,0 +1,120 @@
+<div xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:fmt="http://java.sun.com/jstl/fmt"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout">
+
+	<c:if test="#{documents != null}">
+		<h:form id="#{documents.name}">
+
+			<ui:insert name="empty_folder_label">
+				<h:outputText value="#{messages['label.content.emptyFolder']}"
+					rendered="#{documents.rowCount == 0}" />
+			</ui:insert>
+
+			<ui:insert name="error_message" />
+
+			<ui:insert name="top_button" />
+
+			<c:choose>
+
+				<c:when test="#{!fn:endsWith(layoutName, '_2_columns')}">
+					<div name="containerTabDiv"
+						style="overflow-x: auto; overflow-y: hidden;">
+						<table class="dataOutput" style="margin-bottom: 10px !important;">
+							<c:forEach var="row" items="#{documents.rows}"
+								varStatus="layoutListingStatus">
+								<c:set var="showListingHeader"
+									value="#{layoutListingStatus.index == 0}" />
+								<nxl:layout name="#{layoutName}" value="#{row}" mode="view"
+									selectedColumns="#{selectedResultLayoutColumns}" />
+							</c:forEach>
+						</table>
+					</div>
+				</c:when>
+
+				<c:otherwise>
+					<table class="dataOutput2Columns">
+						<tr>
+							<td>
+								<table>
+									<c:forEach var="row" items="#{documents.rows}"
+										varStatus="layoutListingStatus" end="#{(documents.size-1)/2}">
+										<c:set var="showListingHeader"
+											value="#{layoutListingStatus.index == 0}" />
+										<nxl:layout name="#{layoutName}" value="#{row}" mode="view"
+											selectedColumns="#{selectedResultLayoutColumns}" />
+									</c:forEach>
+								</table>
+							</td>
+							<td>
+								<table>
+									<c:forEach var="row" items="#{documents.rows}"
+										varStatus="layoutListingStatus"
+										begin="#{(documents.size-1)/2 + 1}">
+										<c:set var="showListingHeader"
+											value="#{layoutListingStatus.index == documents.size/2+1}" />
+										<nxl:layout name="#{layoutName}" value="#{row}" mode="view"
+											selectedColumns="#{selectedResultLayoutColumns}" />
+									</c:forEach>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</c:otherwise>
+
+			</c:choose>
+			<table width="100%">
+				<tr>
+					<td width="25%">
+						<div style="float: left;">
+							<ui:include src="/incl/pageResults.xhtml" />
+						</div>
+					</td>
+					<td width="50%">
+						<style>
+.pageNavigationControls {
+	float: none !important;
+	margin: 0px !important;
+	padding: 0px !important;
+}
+</style>
+						<div>
+							<ui:include src="/pagination/pageNavigationControls.xhtml" />
+						</div>
+					</td>
+					<td width="25%">
+						<div class="pageNavigationControls">
+							<ui:insert name="content_view_selector">
+								<ui:include
+									src="/incl/content_view_result_layout_selector.xhtml" />
+								<div style="clear: both;" />
+							</ui:insert>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<ui:insert name="buttons" />
+		</h:form>
+
+	</c:if>
+
+	<!-- the nuxeo defaut popup is not used => so we hide it -->
+	<!--<ui:include src="/incl/popupMenu.xhtml" />
+<script>
+setupContextMenu("table td div div.popupTarget");
+</script>
+-->
+	<script>
+  var j = jQuery.noConflict();
+  j(document).ready(function() {
+    window.onresize = resize;
+    resize();
+  });  
+</script>
+</div>

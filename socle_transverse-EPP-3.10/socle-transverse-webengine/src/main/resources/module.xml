@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<module name="SpellCheckerWebEngine" root-type="SpellCheckerWebEngine"
+	path="/spellchecker" extends="base">
+	<!-- <resources> <resource /> </resources> -->
+</module>

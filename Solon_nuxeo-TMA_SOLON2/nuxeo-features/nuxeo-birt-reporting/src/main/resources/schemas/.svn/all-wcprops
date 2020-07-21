@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/resources/schemas
+END
+birtreport.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/resources/schemas/birtreport.xsd
+END
+birtreportmodel.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/resources/schemas/birtreportmodel.xsd
+END
+birtreportparameters.xsd
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/resources/schemas/birtreportparameters.xsd
+END

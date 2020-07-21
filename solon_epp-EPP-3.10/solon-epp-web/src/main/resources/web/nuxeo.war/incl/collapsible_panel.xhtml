@@ -1,0 +1,155 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib" style="height: 100%;">
+
+	<style>
+.panelGridCollapsible {
+	vertical-align: top;
+	height: 100%;
+}
+
+.openedPanelGrid {
+	min-width: 200px;
+}
+
+.x-tool {
+	background: transparent url(img/icons/tool-sprites.gif) no-repeat;
+	cursor: pointer;
+	float: right;
+	height: 15px;
+	width: 15px;
+	margin-top: 4px;
+	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+.x-tool-collapse-west {
+	background-position: 0px -180px;
+}
+
+.x-tool-collapse-west:hover {
+	background-position: -15px -180px;
+}
+
+.x-tool-collapse-east {
+	background-position: 0px -165px;
+}
+
+.x-tool-collapse-east:hover {
+	background-position: -15px -165px;
+}
+
+* html .minwidth {
+	padding-left: 250px;
+}
+
+* html .container {
+	margin-left: -250px;
+}
+
+* html .minwidth,* html .container,* html .layout {
+	height: 1px;
+}
+
+* html .container {
+	margin-left: -300px;
+	position: relative; /* ADDED */
+}
+</style>
+	<!--[if IE]>
+    <style>
+    .openedPanelGrid {
+        width:250px;
+    }
+    </style>
+<![endif]-->
+	<c:if test="#{navigationWebActions.leftPanelIsOpened}">
+		<style>
+#collapsiblePanelIdclosed {
+	display: none;
+}
+
+#collapsiblePanelIdOpened {
+	display: block;
+}
+</style>
+	</c:if>
+	<c:if test="#{!navigationWebActions.leftPanelIsOpened}">
+		<style>
+#collapsiblePanelIdclosed {
+	display: block;
+}
+
+#collapsiblePanelIdOpened {
+	display: none;
+}
+</style>
+	</c:if>
+
+	<script>
+
+function closePanel()
+{
+  document.getElementById('collapsiblePanelIdOpened').style.display='none';
+  document.getElementById('collapsiblePanelIdclosed').style.display='block';
+}
+
+function openPanel()
+{
+  document.getElementById('collapsiblePanelIdOpened').style.display='block';
+  document.getElementById('collapsiblePanelIdclosed').style.display='none';
+}
+
+</script>
+	<div id="idCollapsiblePanel" style="height: 100%">
+		<div style="height: 100%; width: 100%;" id="collapsiblePanelIdclosed">
+			<div>
+				<h:form id="collapsiblePanelIdclosed_form" style="padding:2px;">
+					<a4j:commandLink id="collapsiblePanelIdclosed_cmd"
+						styleClass="x-tool x-tool-toggle x-tool-collapse-east"
+						onclick="openPanel()">
+						<a4j:actionparam name="leftPanelIsOpened" value="true"
+							assignTo="#{navigationWebActions.leftPanelIsOpened}" />
+					</a4j:commandLink>
+				</h:form>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+
+		<div class="openedPanelGrid" id="collapsiblePanelIdOpened">
+			<div class="minwidth">
+				<div class="layout">
+					<div class="container">
+						<div style="width: 100%; height: 0px;">
+							<h:form id="collapsiblePanelIdOpened_form" style="padding:2px;">
+								<a4j:commandLink id="collapsiblePanelIdOpened_cmd"
+									styleClass="x-tool x-tool-toggle x-tool-collapse-west"
+									onclick="closePanel()">
+									<a4j:actionparam name="leftPanelIsOpened" value="false"
+										assignTo="#{navigationWebActions.leftPanelIsOpened}" />
+								</a4j:commandLink>
+							</h:form>
+						</div>
+
+						<ui:insert name="collapsible_panel_body">
+							<c:if
+								test="#{navigationWebActions.currentLeftMenuAction != null}">
+								<ui:include
+									src="#{navigationWebActions.currentLeftMenuAction.link}" />
+							</c:if>
+						</ui:insert>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

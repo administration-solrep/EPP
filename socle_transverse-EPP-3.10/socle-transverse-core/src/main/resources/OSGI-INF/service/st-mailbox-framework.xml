@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue le service de gestion des Mailbox du socle transverse. -->
+<component name="fr.dila.st.core.service.MailboxService">
+	<require>fr.dila.cm.service.mailboxManagement</require>
+
+	<implementation class="fr.dila.st.core.service.MailboxServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.cm.service.MailboxManagementService" />
+		<provide interface="fr.dila.st.api.service.MailboxService" />
+	</service>
+
+</component>

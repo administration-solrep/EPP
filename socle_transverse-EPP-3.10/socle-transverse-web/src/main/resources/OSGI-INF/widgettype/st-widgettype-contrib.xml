@@ -1,0 +1,374 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue les types de widgets et les widgets du socle 
+	transverse. -->
+<component name="fr.dila.st.web.widgettype">
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="widgettypes">
+
+		<!-- Type de widget qui permet de sélectionner une valeur dans un répertoire. 
+			Les valeurs du répertoire peuvent être filtrée par un filtre passé en paramètre. -->
+		<widgetType name="filtered_select_one_directory">
+			<documentation>
+				The selectOneDirectory widget displays a selection of directory entries
+				in create or edit mode, with additional message tag for errors, and
+				the
+				directory entry label in other modes.
+
+				Widgets using this type can provide properties accepted on a
+				&lt;nxd:selectOneListbox /&gt; tag in create or edit mode, and
+				properties accepted on a &lt;nxd:directoryEntryOutput /&gt; tag in
+				other
+				modes.
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">/widgets/filtered_select_one_directory.xhtml</property>
+		</widgetType>
+
+		<!-- Widget permettant de saisir un nombre -->
+		<widgetType name="input_number_spinner">
+			<documentation>
+				Widget used to select a number using controls near a text field.
+				The widget use the richfaces component rich:inputNumberSpinner.
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">/widgets/input_number_spinner_widget_template.xhtml</property>
+		</widgetType>
+
+		<!-- Widget permettant d'afficher une icône de verrou dans les listing -->
+		<widgetType name="listing_lock_detail">
+			<documentation>
+				Ce widget affiche une icone si le document est verrouillé, avec en
+				survol les détails du verrou.
+				<br />
+				Les paramètres suivants doivent être passés en paramètre :
+				<ul>
+					<li>Modèle de document</li>
+				</ul>
+			</documentation>
+
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">/widgets/listing/listing_lock_detail_widget_template.xhtml</property>
+		</widgetType>
+
+		<!-- Widget permettant de cocher une ligne dans les listings et de rafraichir 
+			une région en Ajax -->
+		<widgetType name="listing_ajax_checkbox">
+			<configuration>
+				<fields>
+					<list>false</list>
+					<complex>false</complex>
+					<defaultConfiguration>
+						<field>selected</field>
+						<field>data.ref</field>
+					</defaultConfiguration>
+				</fields>
+				<categories>
+					<category>hidden_listing</category>
+				</categories>
+			</configuration>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/listing_ajax_checkbox_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="listing_ajax_checkbox_dto">
+			<configuration>
+				<fields>
+					<list>false</list>
+					<complex>false</complex>
+					<defaultConfiguration>
+						<field>selected</field>
+						<field>data.keyNameForSelection</field>
+						<field>data.ref</field>
+					</defaultConfiguration>
+				</fields>
+				<categories>
+					<category>hidden_listing</category>
+				</categories>
+			</configuration>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/listing_ajax_checkbox_widget_template_dto.xhtml
+			</property>
+		</widgetType>
+		
+		<!-- Widget permettant d'afficher un menu déroulant pour un vocabulaire spécifique -->
+		<widgetType name="selectOneMenuDirectory">
+			<documentation>
+				Ce widget permet d'afficher un menu déroulant pour un vocabulaire. 
+				Les propriétés suivantes permettent de gérer les données :
+					- valuesGetter : la méthode du bean qui retourne les données
+					- labelResolver : la méthode du bean qui converti le field_0 en label
+					- defaultLabel : le label de l'option par défaut ("Sélectionner une valeur" par exemple) (facultatif)
+					- defaultValue : la value de l'option par défaut (facultatif)
+			</documentation>
+
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">/widgets/selectOneMenu_universal_widget_template.xhtml</property>
+		</widgetType>
+
+		<!-- Widget permettant d'afficher des radio boutons en prenant les valeurs 
+			dans un directory -->
+		<widgetType name="selectOneRadio">
+			<documentation>
+				Widget providing radio button for vocabulary with "id" and "label".
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">/widgets/directory_radio_widget_template.xhtml</property>
+		</widgetType>
+		
+		<widgetType name="richtext_with_mimetype_banniere">
+			<configuration>
+				<sinceVersion>5.3.1</sinceVersion>
+				<title>Richtext</title>
+				<description>
+					<p>
+						This widget displays an html text editor or a textarea in create or
+						edit mode, depending on the mimetype defined.
+					</p>
+					<p>
+						It accepts two fields bindings:
+						<ul>
+							<li>first field holds the text content</li>
+							<li>second field holds the text mimetype (text/plain,
+								text/html...)
+							</li>
+						</ul>
+					</p>
+				</description>
+				<categories>
+					<!-- do not export with documents -->
+					<category>configuration_not_ready</category>
+					<!-- <category>document</category> -->
+				</categories>
+				<supportedModes>
+					<mode>edit</mode>
+					<mode>view</mode>
+				</supportedModes>
+				<fields>
+					<list>false</list>
+					<complex>false</complex>
+					<supportedTypes>
+						<type>string</type>
+					</supportedTypes>
+				</fields>
+				<properties>
+
+					<layouts mode="edit">
+						<layout name="richtext_widget_type_properties_edit">
+							<rows>
+								<row>
+									<widget>height</widget>
+								</row>
+								<row>
+									<widget>width</widget>
+								</row>
+								<row>
+									<widget>cols</widget>
+								</row>
+								<row>
+									<widget>rows</widget>
+								</row>
+								<row>
+									<widget>editorSelector</widget>
+								</row>
+							</rows>
+							<widget name="width" type="int">
+								<labels>
+									<label mode="any">Width</label>
+								</labels>
+								<helpLabels>
+									<label mode="any">
+										The textarea width. Defaults to "700".
+									</label>
+								</helpLabels>
+								<fields>
+									<field>width</field>
+								</fields>
+							</widget>
+							<widget name="height" type="int">
+								<labels>
+									<label mode="any">Height</label>
+								</labels>
+								<helpLabels>
+									<label mode="any">
+										The textarea height. Defaults to "400".
+									</label>
+								</helpLabels>
+								<fields>
+									<field>height</field>
+								</fields>
+							</widget>
+							<widget name="cols" type="int">
+								<labels>
+									<label mode="any">Number of columns</label>
+								</labels>
+								<helpLabels>
+									<label mode="any">
+										The cols attribute sets the number of
+										columns to display.
+										Available since 5.3.1.
+									</label>
+								</helpLabels>
+								<fields>
+									<field>cols</field>
+								</fields>
+							</widget>
+							<widget name="rows" type="int">
+								<labels>
+									<label mode="any">Number of rows</label>
+								</labels>
+								<helpLabels>
+									<label mode="any">
+										The rows attribute sets the number of rows
+										to display.
+										Available since 5.3.1.
+									</label>
+								</helpLabels>
+								<fields>
+									<field>rows</field>
+								</fields>
+							</widget>
+							<widget name="editorSelector" type="text">
+								<labels>
+									<label mode="any">Editor selector</label>
+								</labels>
+								<helpLabels>
+									<label mode="any">
+										The class to use to identify text areas to
+										turn into html
+										editors. Defaults to "mceEditor". See the
+										editor_selector
+										option in tiny_mce
+										(http://wiki.moxiecode.com/index.php/TinyMCE:Configuration/editor_selector).
+									</label>
+								</helpLabels>
+								<fields>
+									<field>editorSelector</field>
+								</fields>
+							</widget>
+						</layout>
+					</layouts>
+				</properties>
+			</configuration>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/text_tinymce_widget_template.xhtml
+			</property>
+		</widgetType>
+		
+		<widgetType name="textarea">
+	      <configuration>
+	        <title>Textarea</title>
+	        <description>
+	          <p>
+	            The textarea widget displays a textarea in create or edit mode,
+	            with
+	            additional message tag for errors, and a regular text output in
+	            any
+	            other mode.
+	          </p>
+	          <p>
+	            Widgets using this type can provide properties accepted on a
+	            &lt;h:inputTextarea /&gt; tag in create or edit mode, and properties
+	            accepted on a &lt;h:outputText /&gt; tag in other modes.
+	          </p>
+	        </description>
+	        <demo id="textareaWidget" previewEnabled="true" />
+	        <categories>
+	          <category>document</category>
+	        </categories>
+	        <supportedModes>
+	          <mode>edit</mode>
+	          <mode>view</mode>
+	        </supportedModes>
+	        <fields>
+	          <list>false</list>
+	          <complex>false</complex>
+	          <supportedTypes>
+	            <type>string</type>
+	          </supportedTypes>
+	        </fields>
+	        <properties>
+	          <layouts mode="view">
+	            <layout name="textarea_widget_type_properties_view">
+	              <rows>
+	                <row>
+	                  <widget category="widgetTypeConf">style</widget>
+	                </row>
+	                <row>
+	                  <widget category="widgetTypeConf">styleClass</widget>
+	                </row>
+	                <row>
+	                  <widget category="widgetTypeConf">title</widget>
+	                </row>
+	                <row>
+	                  <widget category="widgetTypeConf">escape</widget>
+	                </row>
+	              </rows>
+	            </layout>
+	          </layouts>
+	          <layouts mode="edit">
+	            <layout name="textarea_widget_type_properties_edit">
+	              <rows>
+	                <row>
+	                  <widget category="widgetTypeConf">required</widget>
+	                </row>
+	                <row>
+	                  <widget category="widgetTypeConf">textarea_cols</widget>
+	                </row>
+	                <row>
+	                  <widget category="widgetTypeConf">textarea_rows</widget>
+	                </row>
+	                <row>
+	                  <widget category="widgetTypeConf">accesskey</widget>
+	                </row>
+	                <row>
+	                  <widget category="widgetTypeConf">dir</widget>
+	                </row>
+	                <row>
+	                  <widget category="widgetTypeConf">disabled</widget>
+	                </row>
+	                <row>
+	                  <widget category="widgetTypeConf">immediate</widget>
+	                </row>
+	                <row>
+	                  <widget category="widgetTypeConf">lang</widget>
+	                </row>
+	                <row>
+	                  <widget category="widgetTypeConf">validator</widget>
+	                </row>
+	                <row>
+	                  <widget category="widgetTypeConf">valueChangeListener</widget>
+	                </row>
+	              </rows>
+	            </layout>
+	          </layouts>
+	        </properties>
+	      </configuration>
+	      <handler-class>
+	        fr.dila.st.web.widget.InputTextAreaWidgetTypeHandler
+	      </handler-class>
+	</widgetType>
+		
+
+	</extension>
+</component>

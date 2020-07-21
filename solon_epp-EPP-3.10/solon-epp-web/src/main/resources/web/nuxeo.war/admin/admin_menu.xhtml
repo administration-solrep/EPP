@@ -1,0 +1,30 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core" class="menu"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<h:form rendered="#{!currentUser.anonymous}" id="adminMenuForm">
+		<div class="leftMenuActions">
+			<nxu:set var="actions"
+				value="#{webActions.getActionsList('ADMIN_MENU')}" cache="true">
+				<nxu:dataList layout="simple" var="action" value="#{actions}"
+					rowIndexVar="row" rowCountVar="rowCount"
+					id="adminMenuBottomActionsTable">
+
+					<h:outputText rendered="#{!fn:startsWith(action.link,'#')}"
+						class="subMenu" value="#{messages[action.label]}" />
+
+					<nxh:commandLink id="adminMenuActionCommandLink"
+						action="#{action.getLink()}"
+						rendered="#{fn:startsWith(action.link,'#')}">
+						<h:outputText value="#{messages[action.label]}" />
+					</nxh:commandLink>
+				</nxu:dataList>
+			</nxu:set>
+		</div>
+	</h:form>
+</div>

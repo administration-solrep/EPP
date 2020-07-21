@@ -1,0 +1,10 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util">
+	<h:graphicImage value="/img/icons/lock_16.png"
+		alt="#{stLockActions.getLockMessageWithUserInfo(field_0,'c p n')}"
+		title="#{stLockActions.getLockMessageWithUserInfo(field_0,'c p n')}"
+		rendered="#{field_0.isLocked()}" />
+</f:subview>

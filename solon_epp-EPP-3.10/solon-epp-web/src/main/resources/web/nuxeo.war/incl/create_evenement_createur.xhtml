@@ -1,0 +1,16 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+	<h:form>
+		<h:selectOneMenu id="selectEvenementTypeId"
+			value="#{evenementActions.currentTypeEvenement}" style="width:100%">
+			<f:selectItem itemLabel="Sélectionnez une valeur." itemValue="" />
+			<f:selectItems value="#{evenementTypeActions.evenementCreateurList}" />
+		</h:selectOneMenu>
+		<h:commandButton class="button"
+			value="#{messages['label.create.evenement.createur']}"
+			action="#{evenementActions.navigateToCreationCommunication()}" />
+	</h:form>
+</div>

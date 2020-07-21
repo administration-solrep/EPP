@@ -1,0 +1,15 @@
+<component name="fr.dila.ecm.platform.routing.adapter" version="1.0">
+
+  <extension target="org.nuxeo.ecm.core.api.DocumentAdapterService"
+    point="adapters">
+    <adapter class="fr.dila.ecm.platform.routing.api.DocumentRoute"
+      factory="fr.dila.ecm.platform.routing.core.adapter.DocumentRouteAdapterFactory" />
+    <adapter class="fr.dila.ecm.platform.routing.api.DocumentRouteStep"
+      factory="fr.dila.ecm.platform.routing.core.adapter.DocumentRouteAdapterFactory" />
+    <adapter class="fr.dila.ecm.platform.routing.api.DocumentRouteElement"
+      factory="fr.dila.ecm.platform.routing.core.adapter.DocumentRouteAdapterFactory" />
+    <adapter class="fr.dila.ecm.platform.routing.api.LockableDocumentRoute"
+      factory="fr.dila.ecm.platform.routing.core.adapter.LockableDocumentAdapterFactory" />
+  </extension>
+
+</component>

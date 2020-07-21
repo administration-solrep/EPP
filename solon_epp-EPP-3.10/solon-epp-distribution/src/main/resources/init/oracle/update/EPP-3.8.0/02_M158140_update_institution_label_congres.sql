@@ -1,0 +1,7 @@
+-- Mise à jour du label de l'institution CONGRES_PARLEMENT
+
+UPDATE INSTITUTION
+SET LABEL = 'Congrès'
+WHERE ID_ORGANIGRAMME = 'CONGRES_PARLEMENT';
+
+commit;

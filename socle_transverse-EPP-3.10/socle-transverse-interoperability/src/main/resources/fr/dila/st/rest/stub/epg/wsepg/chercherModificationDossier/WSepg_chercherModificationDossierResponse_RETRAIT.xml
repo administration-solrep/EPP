@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherModificationDossierResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSepg"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solon/epg/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSepg ../../../../../../../../xsd/solon/epg/WSepg.xsd ">
+
+	<p:statut>OK</p:statut>
+	<p:jeton>2</p:jeton>
+	<p:dernier_envoi>true</p:dernier_envoi>
+	<p:dossier_modification>
+		<p2:type_modification>RETRAIT_DOSSIER</p2:type_modification>
+		<p2:numero_isa>123</p2:numero_isa>
+	</p:dossier_modification>
+	
+</p:chercherModificationDossierResponse>
+
+

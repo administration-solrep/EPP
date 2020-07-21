@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>fr.dila.solonepp</groupId>
+	<artifactId>solon-epp-web-test</artifactId>
+	<version>EPP-3.10.2</version>
+	<packaging>jar</packaging>
+
+	<name>solon-epp-web-test</name>
+
+	<!-- ================================================== -->
+	<!-- Properties -->
+	<!-- ================================================== -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<st.version>${project.version}</st.version>
+		<javac.source>1.6</javac.source>
+		<javac.target>1.6</javac.target>
+		<naiad.nuxeo.webtest.version>3.2.0</naiad.nuxeo.webtest.version>
+		<nuxeoclient.version>5.6</nuxeoclient.version>
+		<selenium.version>2.46.0</selenium.version>
+		<httpcomponents.version>4.4.1</httpcomponents.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>fr.sword.idl.naiad.nuxeo.tools</groupId>
+			<artifactId>naiad-nuxeo-webtest</artifactId>
+			<version>${naiad.nuxeo.webtest.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.st</groupId>
+			<artifactId>socle-transverse-interoperability</artifactId>
+			<version>${st.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpclient</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>fr.dila.st</groupId>
+			<artifactId>socle-transverse-test</artifactId>
+			<version>EPP-3.10.2</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>google-collections</artifactId>
+					<groupId>com.google.collections</groupId>
+				</exclusion>			
+				<exclusion>
+					<artifactId>selenium-iphone-driver</artifactId>
+					<groupId>org.seleniumhq.selenium</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpcomponents.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore-nio</artifactId>
+			<version>${httpcomponents.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore-osgi</artifactId>
+			<version>${httpcomponents.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient-cache</artifactId>
+			<version>${httpcomponents.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient-osgi</artifactId>
+			<version>${httpcomponents.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-firefox-driver</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-remote-driver</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-api</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-support</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.nuxeo.ecm.automation</groupId>
+			<artifactId>nuxeo-automation-client</artifactId>
+			<version>${nuxeoclient.version}</version>
+		</dependency>
+	</dependencies>
+
+	<!-- ================================================== -->
+	<!-- Build specifications -->
+	<!-- ================================================== -->
+	<build>
+		<plugins>
+			<!-- Set java compiler -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>${javac.source}</source>
+					<target>${javac.target}</target>
+				</configuration>
+			</plugin>
+			<!-- pour être sûr que les tests se déroulent dans le bon ordre -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<runOrder>alphabetical</runOrder>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+
+</project>

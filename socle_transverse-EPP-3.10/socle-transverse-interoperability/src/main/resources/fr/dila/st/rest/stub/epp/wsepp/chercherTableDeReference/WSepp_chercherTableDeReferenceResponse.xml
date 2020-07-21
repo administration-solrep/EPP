@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherTableDeReferenceResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:tdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp ../../../../../../../../xsd/solon/epp/WSepp.xsd ">
+	<p:statut>OK</p:statut>
+	<p:objet_container type="ACTEUR">
+		<tdref:acteur>
+			<tdref:id>ACT001</tdref:id>
+		</tdref:acteur>
+		<tdref:acteur>
+			<tdref:id>ACT001</tdref:id>
+		</tdref:acteur>
+		<tdref:acteur>
+			<tdref:id>ACT001</tdref:id>
+		</tdref:acteur>
+		<tdref:acteur>
+			<tdref:id>ACT001</tdref:id>
+		</tdref:acteur>
+		<tdref:acteur>
+			<tdref:id>ACT001</tdref:id>
+		</tdref:acteur>
+	</p:objet_container>
+</p:chercherTableDeReferenceResponse>

@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="page title">
+		<h:outputText value="Corbeille" />
+	</ui:define>
+
+	<ui:define name="body">
+
+		<script type="text/javascript">
+  function confirmCancel(event) {
+      return displayConfirm(event, "#{messages['label.evenement.confim.cancel']}");
+  }
+  </script>
+
+		<ui:include src="/incl/message_banner.xhtml" />
+		<div xmlns:h="http://java.sun.com/jsf/html"
+			xmlns:c="http://java.sun.com/jstl/core"
+			xmlns:ui="http://java.sun.com/jsf/facelets"
+			xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+			xmlns:nxl="http://nuxeo.org/nxforms/layout"
+			xmlns:f="http://java.sun.com/jsf/core"
+			xmlns:nxh="http://nuxeo.org/nxweb/html"
+			xmlns:nxdir="http://nuxeo.org/nxdirectory"
+			xmlns:nxu="http://nuxeo.org/nxweb/util"
+			xmlns:rich="http://richfaces.org/rich">
+
+			<h:form id="evenement_metadonnees" enctype="multipart/form-data">
+				<a4j:region id="documentViewRegion">
+
+					<a4j:outputPanel id="documentViewPanel">
+						<div style="clear: both;"></div>
+
+						<div class="foldableBox">
+							<h3 class="folded">
+								<a href="#nologo" onclick="return toggleBox(this)"> <h:outputText
+										value="Compléter communication : #{evenementActions.getCurrentTypeLibelle()}" />
+								</a>
+							</h3>
+							<div class="boxBody">
+								<table width="100%" style="border-collapse: collapse;">
+									<tr>
+										<td style="width: 80%;">
+											<!-- layout de metadonnées --> <nxu:set var="curEvenement"
+												value="#{evenementActions.getCurrentEvenementForCreation()}"
+												cache="true">
+												<nxu:set var="curVersion"
+													value="#{evenementActions.getCurrentVersionForCreation()}"
+													cache="true">
+													<nxl:layout value="#{curEvenement}" mode="edit"
+														name="metadonnees_evenement" />
+													<nxl:layout value="#{curVersion}" mode="edit"
+														name="metadonnees_version" />
+												</nxu:set>
+												<a4j:outputPanel id="pieceJointePanel" ajaxRendered="false">
+													<!-- Pieces jointe -->
+													<table class="dataInput">
+														<tbody>
+															<nxu:set var="map"
+																value="#{corbeilleActions.getMapTypePieceJointe(evenementActions.getCurrentEvenementForCreation())}"
+																cache="true">
+																<c:forEach var="pieceJointeType" items="#{map.keySet()}">
+																	<nxu:set var="descriptor"
+																		value="#{map.get(pieceJointeType)}" cache="true">
+																		<tr>
+																			<td class="labelColumn"><h:outputText
+																					value="#{metadonneesActions.getPieceJointeType(pieceJointeType)}"
+																					styleClass="#{nxu:test(descriptor.isObligatoire(), 'required', '')}" />
+																			</td>
+																			<td><ui:include
+																					src="/widgets/listing/metadonnees/create_piece_jointe_widget_template.xhtml" >
+																					<ui:param name="displayUrl" value="#{descriptor.displayUrl()}" />
+																					<ui:param name="displayTitle" value="#{descriptor.displayTitle()}" />
+																				</ui:include>
+																			</td>
+																		</tr>
+																	</nxu:set>
+																</c:forEach>
+															</nxu:set>
+														</tbody>
+													</table>
+												</a4j:outputPanel>
+											</nxu:set>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<h:outputText value=" " />
+							<h:commandButton class="button"
+								value="#{messages['label.completer.evenement.enregistrer']}"
+								action="#{evenementActions.saveCompleterEvenement(false)}" />
+							<h:outputText value=" " />
+							<h:commandButton class="button"
+								value="#{messages['label.completer.evenement.publier']}"
+								action="#{evenementActions.saveCompleterEvenement(true)}" />
+							<h:outputText value=" " />
+							<h:commandButton class="button"
+								value="#{messages['label.completer.evenement.annuler']}"
+								action="#{evenementActions.cancelCompleterEvenement()}"
+								onclick="return confirmCancel(event);" bypassUpdates="true"
+								immediate="true" />
+							<c:if test="#{evenementActions.showRemoveLockPopup == true}">
+								<ui:include src="/incl/remove_lock_popup.xhtml" />
+							</c:if>
+						</div>
+
+					</a4j:outputPanel>
+				</a4j:region>
+			</h:form>
+			<ui:include src="/metadonnees/edit_piece_jointe_fichier.xhtml" />
+		</div>
+	</ui:define>
+</nxthemes:composition>

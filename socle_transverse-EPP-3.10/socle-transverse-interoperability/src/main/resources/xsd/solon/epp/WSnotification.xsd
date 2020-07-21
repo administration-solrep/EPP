@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSnotification"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSnotification"
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:evt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:tdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	elementFormDefault="qualified">
+
+	<xs:import schemaLocation="../../commons/commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons" />
+	<xs:import schemaLocation="epp-evt.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt" />
+	<xs:import schemaLocation="epp-tableReference.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref" />
+
+	<xs:element name="notifierEvenementRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="notifications" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="type_notification" type="NotificationEvenementType"
+								minOccurs="1" maxOccurs="1" />
+							<xs:element name="message" type="evt:Message"
+								minOccurs="1" maxOccurs="1" />
+							<xs:element name="id_corbeille" type="xs:string"
+								minOccurs="0" maxOccurs="unbounded" />
+							<xs:element name="version" type="evt:Version"
+								minOccurs="1" maxOccurs="1" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="notifierEvenementResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="message_erreur" type="xs:string"
+					minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name="NotificationEvenementType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PUBLIER_INITIALE" />
+			<xs:enumeration value="PUBLIER_COMPLEMENT" />
+			<xs:enumeration value="PUBLIER_RECTIFICATION" />
+			<xs:enumeration value="PUBLIER_ANNULATION" />
+			<xs:enumeration value="DEMANDER_VALIDATION" />
+			<xs:enumeration value="ACCEPTER" />
+			<xs:enumeration value="REJETER" />
+			<xs:enumeration value="ABANDONNER" />
+			<xs:enumeration value="ACCUSER_RECEPTION" />
+			<xs:enumeration value="EVENEMENT_EN_INSTANCE" />
+			<xs:enumeration value="MAJ_VISA_INTERNE" />
+			<xs:enumeration value="BROUILLON_INITIALE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="notifierTableDeReferenceRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="type" type="tdref:ObjetType" minOccurs="1"
+					maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="notifierTableDeReferenceResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="message_erreur" type="xs:string"
+					minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

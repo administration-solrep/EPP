@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant permet de contribuer le thème de l'application SOLON EPP. -->
+<component name="fr.dila.solonepp.web.theme">
+	<require>org.nuxeo.theme.core</require>
+	<require>org.nuxeo.case-management.themes</require>
+	<require>fr.dila.st.web.theme.fragments</require>
+
+	<extension target="org.nuxeo.theme.services.ThemeService"
+		point="themes">
+		<theme>
+			<src>themes/theme-solonepp.xml</src>
+		</theme>
+	</extension>
+
+	<extension target="org.nuxeo.theme.services.ThemeService"
+		point="applications">
+		<application root="/solon-epp" template-engine="jsf-facelets">
+			<negotiation>
+				<strategy>nuxeo5</strategy>
+				<default-engine>default</default-engine>
+				<default-theme>solonepp/default</default-theme>
+				<default-perspective>default</default-perspective>
+			</negotiation>
+		</application>
+	</extension>
+
+	<!-- add new view for epp -->
+	<extension target="org.nuxeo.theme.services.ThemeService"
+		point="views">
+
+		<!-- add in the collapsible panel of the left hand side -->
+		<view name="Collapsible Panel" template-engine="jsf-facelets">
+			<format-type>widget</format-type>
+			<model-type>DilaItem</model-type>
+			<template>incl/collapsible_panel.xhtml</template>
+			<resource>screen.css</resource>
+			<resource>jquery.alerts.js</resource>
+			<resource>splitPanel.js</resource>
+			<resource>confirmPanel.css</resource>
+			<resource>dragdrop.js</resource>
+		</view>
+
+		<!-- add in the header panel -->
+		<view name="User services" template-engine="jsf-facelets">
+			<format-type>widget</format-type>
+			<model-type>DilaItem</model-type>
+			<template>incl/solonepp_user_services.xhtml</template>
+		</view>
+
+		<view name="User meta services" template-engine="jsf-facelets">
+			<format-type>widget</format-type>
+			<model-type>DilaItem</model-type>
+			<template>incl/solonepp_user_meta_services.xhtml</template>
+		</view>
+
+		<!-- add in the footer panel -->
+		<view name="SolonEppFooter" template-engine="jsf-facelets">
+			<format-type>widget</format-type>
+			<model-type>DilaItem</model-type>
+			<template>incl/footer.xhtml</template>
+		</view>
+
+	</extension>
+
+	<!-- Styles presets -->
+	<extension target="org.nuxeo.theme.services.ThemeService"
+		point="presets">
+
+		<palette name="Reponses borders" src="themes/palettes/theme-borders.properties"
+			category="border" />
+		<palette name="Reponses backgrounds" src="themes/palettes/theme-backgrounds.properties"
+			category="background" />
+		<palette name="Reponses fonts" src="themes/palettes/theme-fonts.properties"
+			category="font" />
+		<palette name="Reponses colors" src="themes/palettes/theme-colors.properties"
+			category="color" />
+
+	</extension>
+
+	<!-- resources -->
+	<extension target="org.nuxeo.theme.services.ThemeService"
+		point="resources">
+
+		<resource name="screen.css">
+			<path>css/screen.css</path>
+		</resource>
+
+		<resource name="foldable-box.js">
+			<path>scripts/foldable-box.js</path>
+			<require>effects.js</require>
+		</resource>
+
+		<!-- calendar resources -->
+		<resource name="calendar.js">
+			<path>jscalendar/js/jscal2.js</path>
+		</resource>
+		<resource name="calendar-en.js">
+			<path>jscalendar/js/lang/en.js</path>
+		</resource>
+		<resource name="calendar-ca.js">
+			<path>jscalendar/js/lang/ca.js</path>
+		</resource>
+		<resource name="calendar-cn.js">
+			<path>jscalendar/js/lang/cn.js</path>
+		</resource>
+		<resource name="calendar-cz.js">
+			<path>jscalendar/js/lang/cz.js</path>
+		</resource>
+		<resource name="calendar-es.js">
+			<path>jscalendar/js/lang/es.js</path>
+		</resource>
+		<resource name="calendar-fr.js">
+			<path>jscalendar/js/lang/fr.js</path>
+		</resource>
+		<resource name="calendar-it.js">
+			<path>jscalendar/js/lang/it.js</path>
+		</resource>
+		<resource name="calendar-jp.js">
+			<path>jscalendar/js/lang/jp.js</path>
+		</resource>
+		<resource name="calendar-nl.js">
+			<path>jscalendar/js/lang/nl.js</path>
+		</resource>
+		<resource name="calendar-pl.js">
+			<path>jscalendar/js/lang/pl.js</path>
+		</resource>
+		<resource name="calendar-pt.js">
+			<path>jscalendar/js/lang/pt.js</path>
+		</resource>
+		<resource name="calendar-ro.js">
+			<path>jscalendar/js/lang/ro.js</path>
+		</resource>
+		<resource name="calendar-ru.js">
+			<path>jscalendar/js/lang/ru.js</path>
+		</resource>
+		<resource name="calendar-sv.js">
+			<path>jscalendar/js/lang/sv.js</path>
+		</resource>
+		<resource name="calendar.css">
+			<path>jscalendar/css/jscal2.css</path>
+		</resource>
+		<resource name="calendar-border-radius.css">
+			<path>jscalendar/css/border-radius.css</path>
+		</resource>
+		<resource name="calendar-galaxy.css">
+			<path>jscalendar/css/galaxy/galaxy.css</path>
+		</resource>
+		<resource name="confirmPanel.css">
+			<path>css/confirmPanel.css</path>
+		</resource>
+		<resource name="splitPanel.js">
+			<path>scripts/splitPanel.js</path>
+		</resource>
+		<resource name="window.js">
+			<path>scripts/window.js</path>
+		</resource>
+		<resource name="window_effects.js">
+			<path>scripts/window_effects.js</path>
+		</resource>
+		<resource name="waitdlg.js">
+			<path>waitdialog/waitdlg.js</path>
+		</resource>
+		<resource name="utils.js">
+			<path>scripts/utils.js</path>
+		</resource>
+		<resource name="tableSelections.js">
+			<path>scripts/tableSelections.js</path>
+		</resource>
+		<resource name="contextmenu.js">
+			<path>scripts/contextmenu.js</path>
+		</resource>
+		<resource name="DragAndDrop.js">
+			<path>scripts/DragAndDrop.js</path>
+		</resource>
+		<resource name="jquery.alerts.js">
+			<path>scripts/jquery.alerts.js</path>
+		</resource>
+	</extension>
+</component>

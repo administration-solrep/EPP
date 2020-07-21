@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<component name="fr.dila.cm.core.service.synchronization.MailboxSynchronizationService">
+
+  <documentation>
+  The Case Management Synchronization Service allows to synchronize
+  directory entries with Mailbox. 
+  @author <a href="mailto:ldoguin@nuxeo.com">Laurent Doguin</a>
+  </documentation>
+  
+  <implementation class="fr.dila.cm.core.service.synchronization.MailboxSynchronizationServiceImpl" />
+
+  <service>
+    <provide interface="fr.dila.cm.service.synchronization.MailboxSynchronizationService" />
+  </service>
+
+  <extension-point name="directoryToMailbox">
+
+    <documentation>
+    Used to synchronize a directory with Mailboxes.
+    Contributions for this extension point are of the 
+    form:
+    <code>
+    <userToMailbox directoryName="userDirectory" enabled="true" >
+      <directoryEntryIdField>fieldName</directoryEntryIdField>
+      <mailboxIdField>fieldName</mailboxIdField>
+      <titleGenerator>fr.dila.cm.core.service.synchronization.DefaultPersonalMailboxTitleGenerator</titleGenerator>
+    </userToMailbox>
+    <groupToMailbox directoryName="groupDirectory">
+      <directoryEntryIdField>fieldName</directoryEntryIdField>
+      <mailboxIdField>fieldName</mailboxIdField>
+      <titleGenerator>fr.dila.cm.core.service.synchronization.DefaultGroupMailboxTitleGenerator</titleGenerator>
+    </groupToMailbox>
+    <directoryToMailbox directoryName="directoryName" enabled="true" >
+      <directoryEntryIdField>fieldName</directoryEntryIdField>
+      <mailboxIdField>fieldName</mailboxIdField>
+      <titleGenerator>fr.dila.cm.core.service.synchronization.MailboxTitleGenerator</titleGenerator>
+    </directoryToMailbox>
+    </code>
+    </documentation>
+
+
+    <object class="fr.dila.cm.service.synchronization.MailboxUserSynchronizationDescriptor" />
+    <object class="fr.dila.cm.service.synchronization.MailboxGroupSynchronizationDescriptor" />
+    <object class="fr.dila.cm.service.synchronization.MailboxDirectorySynchronizationDescriptor" />
+  </extension-point>
+
+</component>

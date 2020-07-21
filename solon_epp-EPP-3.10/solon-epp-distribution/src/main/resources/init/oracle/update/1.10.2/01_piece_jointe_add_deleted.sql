@@ -1,0 +1,4 @@
+-- Liste des fichiers supprimés
+ALTER TABLE PIECE_JOINTE ADD DELETEDFILELIST NVARCHAR2(2000);
+
+commit;

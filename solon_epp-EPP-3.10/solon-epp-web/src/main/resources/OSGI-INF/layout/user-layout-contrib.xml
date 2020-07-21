@@ -1,0 +1,629 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue les layouts + widgets nécessaires à la gestion 
+	des utilisateurs. -->
+
+<component name="fr.dila.solonepp.web.layout.user">
+	<require>org.nuxeo.ecm.platform.forms.layouts.webapp.base</require>
+
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="layouts">
+		<!-- Administration des utilisateurs -->
+		<layout name="user">
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>username</widget>
+				</row>
+				<row>
+					<widget>firstname</widget>
+				</row>
+				<row>
+					<widget>lastname</widget>
+				</row>
+				<row>
+					<widget>title</widget>
+					<widget>temporary</widget>
+				</row>
+				<row>
+					<widget>startDate</widget>
+				</row>
+				<row>
+					<widget>endDate</widget>
+				</row>
+				<row>
+					<widget>postalAddress</widget>
+				</row>
+				<row>
+					<widget>postalCode</widget>
+				</row>
+				<row>
+					<widget>locality</widget>
+				</row>
+				<row>
+					<widget>telephoneNumber</widget>
+				</row>
+				<row>
+					<widget>email</widget>
+				</row>
+				<row>
+					<widget>firstPassword</widget>
+				</row>
+				<row>
+					<widget>secondPassword</widget>
+				</row>
+				<row>
+					<widget>passwordMatcher</widget>
+				</row>
+				<row>
+					<widget>groups</widget>
+				</row>
+				<row>
+					<widget>vgroups</widget>
+				</row>
+			</rows>
+			<widget name="username" type="text">
+				<labels>
+					<label mode="any">username</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">username</field>
+				</fields>
+				<widgetModes>
+					<mode value="create">edit</mode>
+					<mode value="createOccasional">edit</mode>
+					<mode value="editPassword">hidden</mode>
+					<mode value="any">view</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="required">true</property>
+					<property name="styleClass">dataInputText</property>
+					<property name="validator">
+						#{userManagerActions.validateUserName}
+					</property>
+				</properties>
+			</widget>
+			<widget name="firstname" type="text">
+				<labels>
+					<label mode="any">firstName</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">firstName</field>
+				</fields>
+				<widgetModes>
+					<mode value="editPassword">hidden</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="required">true</property>
+					<property name="styleClass">dataInputText</property>
+				</properties>
+			</widget>
+			<widget name="lastname" type="text">
+				<labels>
+					<label mode="any">lastName</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">lastName</field>
+				</fields>
+				<widgetModes>
+					<mode value="editPassword">hidden</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="required">true</property>
+					<property name="styleClass">dataInputText</property>
+				</properties>
+			</widget>
+			<widget name="title" type="selectOneRadio">
+				<labels>
+					<label mode="any">user.title</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">title</field>
+				</fields>
+				<widgetModes>
+					<mode value="editPassword">hidden</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="required">true</property>
+				</properties>
+				<properties widgetMode="any">
+					<property name="directoryName">title</property>
+				</properties>
+			</widget>
+			<widget name="temporary" type="selectOneRadio">
+				<labels>
+					<label mode="any">user.temporary</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">temporary</field>
+				</fields>
+				<widgetModes>
+					<mode value="editPassword">hidden</mode>
+					<mode value="edit">
+						#{nxu:test(userManagerActions.getAllowEditUserTechnicalData(),
+						'edit', 'view')}
+					</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="required">true</property>
+				</properties>
+				<properties widgetMode="any">
+					<property name="directoryName">boolean_voc</property>
+				</properties>
+			</widget>
+			<widget name="startDate" type="datetime">
+				<labels>
+					<label mode="any">user.startDate</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">dateDebut</field>
+				</fields>
+				<widgetModes>
+					<mode value="editPassword">hidden</mode>
+					<mode value="any">view</mode>
+				</widgetModes>
+				<properties widgetMode="any">
+					<property name="pattern">dd/MM/yyyy</property>
+					<property name="format">dd/MM/yyyy</property>
+					<property name="showWeeksBar">false</property>
+				</properties>
+			</widget>
+			<widget name="endDate" type="datetime">
+				<labels>
+					<label mode="any">user.endDate</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">dateFin</field>
+				</fields>
+				<widgetModes>
+					<mode value="editPassword">hidden</mode>
+					<mode value="edit">#{nxu:test(userManagerActions.getAllowEditUserTechnicalData(),
+						'edit', 'view')}</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="validator">#{userManagerActions.validateDateFin}</property>
+				</properties>
+				<properties widgetMode="any">
+					<property name="pattern">dd/MM/yyyy</property>
+					<property name="format">dd/MM/yyyy</property>
+					<property name="showWeeksBar">false</property>
+				</properties>
+			</widget>
+			<widget name="postalAddress" type="text">
+				<labels>
+					<label mode="any">user.postalAddress</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">postalAddress</field>
+				</fields>
+				<widgetModes>
+					<mode value="editPassword">hidden</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="styleClass">dataInputText</property>
+				</properties>
+			</widget>
+			<widget name="postalCode" type="text">
+				<labels>
+					<label mode="any">user.postalCode</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">postalCode</field>
+				</fields>
+				<widgetModes>
+					<mode value="editPassword">hidden</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="styleClass">dataInputText</property>
+				</properties>
+			</widget>
+			<widget name="locality" type="text">
+				<labels>
+					<label mode="any">user.locality</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">locality</field>
+				</fields>
+				<widgetModes>
+					<mode value="editPassword">hidden</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="styleClass">dataInputText</property>
+				</properties>
+			</widget>
+			<widget name="telephoneNumber" type="text">
+				<labels>
+					<label mode="any">user.telephoneNumber</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">telephoneNumber</field>
+				</fields>
+				<widgetModes>
+					<mode value="editPassword">hidden</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="required">true</property>
+					<property name="styleClass">dataInputText</property>
+				</properties>
+			</widget>
+			<widget name="email" type="text">
+				<labels>
+					<label mode="any">email</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">email</field>
+				</fields>
+				<widgetModes>
+					<mode value="editPassword">hidden</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="required">true</property>
+					<property name="styleClass">dataInputText</property>
+					<property name="validator">#{userManagerActions.validateMail}</property>
+				</properties>
+			</widget>
+			<widget name="firstPassword" type="secret">
+				<labels>
+					<label mode="any">password</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">password</field>
+				</fields>
+				<widgetModes>
+					<mode value="create">hidden</mode>
+					<mode value="editPassword">edit</mode>
+					<mode value="any">hidden</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="required">true</property>
+					<property name="styleClass">dataInputText</property>
+				</properties>
+			</widget>
+			<widget name="secondPassword" type="secret">
+				<labels>
+					<label mode="any">password.verify</label>
+				</labels>
+				<translated>true</translated>
+				<widgetModes>
+					<mode value="create">hidden</mode>
+					<mode value="editPassword">edit</mode>
+					<mode value="any">hidden</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="required">true</property>
+					<property name="styleClass">dataInputText</property>
+				</properties>
+			</widget>
+			<widget name="passwordMatcher" type="template">
+				<labels>
+					<label mode="any"></label>
+				</labels>
+				<translated>true</translated>
+				<widgetModes>
+					<mode value="create">hidden</mode>
+					<mode value="editPassword">edit</mode>
+					<mode value="any">hidden</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<!-- XXX: depends on firstPassword and secondPassword widget names -->
+					<property name="template">
+						/widgets/user_password_validation_widget_template.xhtml
+					</property>
+				</properties>
+			</widget>
+
+			<!-- Liste des profils -->
+			<widget name="groups" type="template">
+				<labels>
+					<label mode="any">user.profils</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">groups</field>
+				</fields>
+				<widgetModes>
+					<mode value="editPassword">hidden</mode>
+					<mode value="edit">
+						#{nxu:test(userManagerActions.getAllowEditUserTechnicalData(),
+						'edit', 'view')}
+					</mode>
+				</widgetModes>
+				<properties widgetMode="any">
+					<property name="required">true</property>
+					<property name="template">
+						/widgets/admin/user/user_profil_suggestion_widget_template.xhtml
+					</property>
+					<property name="hideVirtualGroups">true</property>
+					<property name="userSuggestionSearchType">GROUP_TYPE</property>
+				</properties>
+			</widget>
+
+			<!-- Liste des groupes virtuels (Administrateur technique seulement) -->
+			<widget name="vgroups" type="template">
+				<labels>
+					<label mode="any">label.userManager.userVirtualGroups</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="user">username</field>
+				</fields>
+				<widgetModes>
+					<mode value="edit">
+						#{nxu:test(currentUser.administrator, 'edit', 'hidden')}
+					</mode>
+					<mode value="view">
+						#{nxu:test(currentUser.administrator, 'view', 'hidden')}
+					</mode>
+					<mode value="create">hidden</mode>
+					<mode value="editPassword">hidden</mode>
+				</widgetModes>
+				<properties widgetMode="any">
+					<property name="template">
+						/widgets/user_vgoups_widget_template.xhtml
+					</property>
+				</properties>
+			</widget>
+		</layout>
+		
+		<layout name="userPostes">
+	    	<templates>
+	        	<template mode="any">/layouts/layout_default_template.xhtml</template>
+	      	</templates>
+	        <rows>
+	        	<row>
+	          		<widget>postes</widget>
+	        	</row>
+	        </rows>		
+		<!-- Liste des postes -->
+			<widget name="postes" type="template">
+				<labels>
+					<label mode="any">user.postes</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>userPostes</field>
+				</fields>
+				<widgetModes>
+					<mode value="editPassword">hidden</mode>
+					<mode value="edit">
+						#{nxu:test(userManagerActions.getAllowEditUserTechnicalData(),
+						'edit', 'view')}
+					</mode>
+				</widgetModes>
+				<properties widgetMode="any">
+					<property name="required">true</property>
+					<property name="template">/widgets/organigramme_select_node_widget.xhtml</property>
+					<property name="organigrammeAddPosteFilter">true</property>
+					<property name="organigrammeSelectionType">POSTE_TYPE</property>
+					<property name="organigrammeSelectionMode">LIST</property>
+				</properties>
+			</widget>
+		</layout>
+		
+
+		<!-- Administration des profils -->
+		<layout name="profile">
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>profilename</widget>
+				</row>
+				<row>
+					<widget>basefunctions</widget>
+				</row>
+			</rows>
+
+			<!-- Nom du profil -->
+			<widget name="profilename" type="text">
+				<labels>
+					<label mode="any">label.profileManager.profileName</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="group">groupname</field>
+				</fields>
+				<widgetModes>
+					<mode value="create">edit</mode>
+					<mode value="any">hidden</mode>
+				</widgetModes>
+				<properties widgetMode="any">
+					<property name="required">true</property>
+					<property name="styleClass">dataInputText</property>
+				</properties>
+			</widget>
+
+			<!-- Liste des fonctions unitaires associées au profil -->
+			<widget name="basefunctions" type="template">
+				<labels>
+					<label mode="any">label.profileManager.baseFunctions</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="group">subGroups</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="template">
+						/widgets/admin/profile/select_base_function_many_widget_template.xhtml
+					</property>
+				</properties>
+			</widget>
+		</layout>
+
+		<!-- Envoi de mails -->
+		<layout name="mail_dossier">
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>destinataires</widget>
+				</row>
+			</rows>
+			<widget name="destinataires" type="template">
+				<labels>
+					<label mode="any">Destinataires</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field schema="group">subGroups</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="template">
+						/widgets/mail_suggestion_widget_template.xhtml
+					</property>
+				</properties>
+			</widget>
+		</layout>
+
+		<!-- recherche d'utilisateur -->
+		<layout name="recherche_utilisateur">
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>username</widget>
+				</row>
+				<row>
+					<widget>firstname</widget>
+				</row>
+				<row>
+					<widget>lastname</widget>
+				</row>
+				<row>
+					<widget>ministere</widget>
+				</row>
+				<row>
+					<widget>direction</widget>
+				</row>
+				<row>
+					<widget>startDate</widget>
+				</row>
+			</rows>
+
+			<widget name="username" type="text">
+				<labels>
+					<label mode="any">username</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>username</field>
+				</fields>
+				<widgetModes>
+					<mode value="any">edit</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="styleClass">dataInputText</property>
+				</properties>
+			</widget>
+			<widget name="firstname" type="text">
+				<labels>
+					<label mode="any">firstName</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>firstName</field>
+				</fields>
+				<widgetModes>
+					<mode value="any">edit</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="styleClass">dataInputText</property>
+				</properties>
+			</widget>
+			<widget name="lastname" type="text">
+				<labels>
+					<label mode="any">lastName</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>lastName</field>
+				</fields>
+				<widgetModes>
+					<mode value="any">edit</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+					<property name="styleClass">dataInputText</property>
+				</properties>
+			</widget>
+			<widget name="startDate" type="datetime">
+				<labels>
+					<label mode="any">user.startDate</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>dateDebut</field>
+				</fields>
+				<widgetModes>
+					<mode value="any">edit</mode>
+				</widgetModes>
+				<properties widgetMode="edit">
+				</properties>
+				<properties widgetMode="any">
+					<property name="pattern">dd/MM/yyyy</property>
+					<property name="format">dd/MM/yyyy</property>
+					<property name="showWeeksBar">false</property>
+				</properties>
+			</widget>
+
+			<widget name="ministere" type="template">
+				<labels>
+					<label mode="any">user.ministere</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>ministere</field>
+				</fields>
+				<widgetModes>
+					<mode value="any">edit</mode>
+				</widgetModes>
+				<properties widgetMode="any">
+					<property name="template">
+						/widgets/organigramme_select_node_widget.xhtml
+					</property>
+					<property name="organigrammeSelectionType">MIN_TYPE</property>
+					<property name="organigrammeSelectionMode">SINGLE</property>
+				</properties>
+			</widget>
+
+			<widget name="direction" type="template">
+				<labels>
+					<label mode="any">user.direction</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>direction</field>
+				</fields>
+				<widgetModes>
+					<mode value="any">edit</mode>
+				</widgetModes>
+				<properties widgetMode="any">
+					<property name="template">
+						/widgets/organigramme_select_node_widget.xhtml
+					</property>
+					<property name="organigrammeSelectionType">DIR_TYPE</property>
+					<property name="organigrammeSelectionMode">SINGLE</property>
+				</properties>
+			</widget>
+
+		</layout>
+
+	</extension>
+</component>

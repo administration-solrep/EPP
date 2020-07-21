@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.solonepp.test.ldap.directoryType">
+
+	<extension target="org.nuxeo.ecm.core.schema.TypeService"
+		point="schema">
+		<!-- <schema name="base" src="ldapdirectoryschema/base.xsd" /> <schema 
+			name="user" src="ldapdirectoryschema/user.xsd" /> -->
+		<schema name="group" src="ldapdirectoryschema/group.xsd"
+			override="true" />
+	</extension>
+
+</component>

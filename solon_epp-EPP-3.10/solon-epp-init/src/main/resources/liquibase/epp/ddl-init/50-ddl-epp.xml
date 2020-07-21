@@ -1,0 +1,17 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd"
+	logicalFilePath="ddl-epp">
+
+	<changeSet id="all" author="system" context="qa">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="HIERARCHY" />
+			</not>
+		</preConditions>
+		<sqlFile stripComments="false" endDelimiter=" *\n\n\n+ *" path="liquibase/epp/sql/00-epp-ddl.sql" />
+	</changeSet>
+
+</databaseChangeLog>
+

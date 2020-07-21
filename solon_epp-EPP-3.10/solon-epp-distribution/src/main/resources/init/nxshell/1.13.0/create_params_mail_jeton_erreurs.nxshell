@@ -1,0 +1,43 @@
+# Pour lancer ce script :
+# 1 - copier ce fichier dans /tmp/
+# 2 - Aller dans le répertoire contenant nxshell.sh
+# 3 - Taper la commande sh nxshell.sh -f /tmp/create_params_mail_jeton_erreurs.nxshell
+
+# connect to http://localhost:8080/solon-epp (obligatoire sinon Unknown command...) 
+connect -u Administrator -p Administrator http://localhost:8180/solon-epp/site/automation
+
+#creation dossier LockJetonMaitreFolder
+mkdir LockJetonMaitreFolder /case-management/lock-jeton-maitre-root
+
+# go to parametre folder
+cd /case-management/parametre-root/
+
+# create 
+mkdir Parametre objet-mel-notification-erreur-jeton
+cd objet-mel-notification-erreur-jeton
+setp -xpath parametre:value -value "Erreur dans la création d'un jeton"
+setp -xpath parametre:unit -value Objet
+setp -xpath dc:description -value "« Objet » (par défaut) de la notification par mél suite à l'erreur de création d’un jeton"
+setp -xpath dc:title -value "Objet mél notification erreur création jeton"
+
+# go to parametre folder
+cd /case-management/parametre-root/
+
+# create 
+mkdir Parametre texte-mel-notification-erreur-jeton
+cd texte-mel-notification-erreur-jeton
+setp -xpath parametre:value -value "Une erreur est intervenue lors de la création d'un jeton pour le dossier ${numero_dossier}"
+setp -xpath parametre:unit -value texte
+setp -xpath dc:description -value "« Texte du message » (par défaut) de la notification par mél suite à une erreur lors de la création d’un jeton pour un dossier"
+setp -xpath dc:title -value "Texte du mél notification erreur création jeton"
+
+# go to parametre folder
+cd /case-management/parametre-root/
+
+# create 
+mkdir Parametre adresse-mail-administrateur-application
+cd adresse-mail-administrateur-application
+setp -xpath parametre:value -value "ne-pas-repondre-a-ce-mel@dila.gouv.fr"
+setp -xpath parametre:unit -value "adresse mèl"
+setp -xpath dc:description -value "Adresse mél. de l'administrateur de l'application"
+setp -xpath dc:title -value "Adresse mél. de l'administrateur de l'application"

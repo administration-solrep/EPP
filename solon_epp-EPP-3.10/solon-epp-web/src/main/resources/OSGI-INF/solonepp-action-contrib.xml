@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Ce composant contribue : - Les actions de l'application SOLON EPP (y 
+	compris les actions de CM qui sont désactivées / surchargées) ; - Les filtres 
+	utilisés dans les actions. -->
+<component name="fr.dila.solonepp.web.action">
+	<require>org.nuxeo.ecm.platform.actions</require>
+	r
+	<require>org.nuxeo.ecm.platform.userworkspace.actions</require>
+	<require>org.nuxeo.connect.client.actions</require>
+	<!-- <require>fr.dila.cm.actions</require> -->
+
+	<extension target="org.nuxeo.ecm.platform.actions.ActionService"
+		point="actions">
+
+		<!-- *********************************************************************** 
+			Actions de CMF surchargées *********************************************************************** -->
+		<action id="user_dashboard" enabled="false" />
+
+		<action id="user_manager" enabled="false" />
+
+		<action id="AdminMain" enabled="false" />
+
+		<!-- Désactivation de l'espace personnel de l'utilisateur -->
+		<action id="SHOW_PERSONAL_WORKSPACE" enabled="false" />
+
+		<!-- profil utilisateur : on charge la popup uniquement quand l'utilisateur 
+			clique sur le lien -->
+		<action id="profilUtilisateur"
+			link="#{profilUtilisateurActions.displayAdministrationProfil()}"
+			confirm="javascript:Richfaces.showModalPanel('profilUtilisateurPanel');"
+			enabled="true" label="command.user.profilUtilisateur" icon="/img/icons/user_16.png"
+			order="90">
+			<category>USER_SERVICES_BOTTOM_LEFT</category>
+			<filter-id>not_anonymous</filter-id>
+		</action>
+
+		<action id="profilUtilisateurTest"
+			link="#{profilUtilisateurActions.displayAdministrationProfil()}"
+			confirm="#{rich:component('profilUtilisateurPanel')}.show()" enabled="true"
+			label="command.user.profilUtilisateur" icon="/img/icons/user_16.png"
+			order="90">
+			<category>USER_SERVICES_BOTTOM_LEFT</category>
+			<filter-id>not_anonymous</filter-id>
+		</action>
+		<action id="addCaseItem">
+			<filter-id>isNotDossier</filter-id>
+		</action>
+
+		<action id="TAB_CASE_MANAGEMENT_VIEW">
+			<filter-id>isNotDossier</filter-id>
+		</action>
+
+		<action id="distribute_cm_case">
+			<filter-id>isNotDossier</filter-id>
+		</action>
+
+		<action id="TAB_CASE_MANAGEMENT_RELATIONS">
+			<filter-id>isNotDossier</filter-id>
+		</action>
+
+		<action id="CM_TAB_FILES_EDIT">
+			<filter-id>isNotDossier</filter-id>
+		</action>
+
+		<action id="TAB_CASE_MANAGEMENT_HISTORY">
+			<filter-id>isNotDossier</filter-id>
+		</action>
+
+		<action id="CLASSIFICATION_REQUEST">
+			<filter-id>isNotDossier</filter-id>
+		</action>
+
+		<action id="TAB_CASE_MANAGEMENT_COMMENTS">
+			<filter-id>isNotDossier</filter-id>
+		</action>
+
+		<action id="TAB_CONTENT">
+			<filter-id>isNotDossier</filter-id>
+			<filter-id>isNotEvenement</filter-id>
+		</action>
+
+		<action id="TAB_EDIT">
+			<filter-id>isNotDossier</filter-id>
+			<filter-id>isNotEvenement</filter-id>
+		</action>
+
+		<action id="TAB_MANAGE">
+			<filter-id>isInsidePersonalWorkspace</filter-id>
+		</action>
+
+		<action id="TAB_MY_SUBSCRIPTIONS">
+			<filter-id>disabled</filter-id>
+		</action>
+
+		<action id="TAB_CONTENT_HISTORY">
+			<filter-id>isDossier</filter-id>
+		</action>
+
+		<!-- Création de nouveaux documents -->
+		<action id="newDocument">
+			<filter-id>isNotCmCase</filter-id>
+			<filter-id>isNotCaseItem</filter-id>
+			<filter-id>isNotXX</filter-id>
+		</action>
+
+		<!-- *********************************************************************** 
+			Actions du menu de gauche *********************************************************************** -->
+		<!-- Panneau de gauche de l'espace de traitement -->
+		<action id="LEFT_MENU_ESPACE_CORBEILLE" link="/corbeille/corbeille_menu.xhtml" />
+
+		<!-- Panneau de gauche de l'espace de recherche -->
+		<action id="LEFT_MENU_ESPACE_RECHERCHE" link="/recherche/recherche_menu.xhtml" />
+
+		<!-- Panneau de gauche de l'espace d'administration -->
+		<action id="LEFT_MENU_ESPACE_ADMIN" link="/admin/admin_menu.xhtml" />
+
+		<!-- *********************************************************************** 
+			Dossier SOLON EPP : action de création de Dossier *********************************************************************** -->
+
+		<!-- new tab to create dossier via parapheur TODO delete ? -->
+		<action id="TAB_DOSSIER_CREATE"
+			link="/casemanagement/mailbox/tabs/mailbox_draft_content.xhtml"
+			label="Dossier" enabled="true">
+			<category>VIEW_MAILBOX_ACTION_LIST</category>
+		</action>
+
+		<!-- new tab feuille de route -->
+		<action id="TAB_MODEL" link="/route/route_edit.xhtml" enabled="true"
+			label="Feuilles de route">
+			<category>VIEW_MAILBOX_ACTION_LIST</category>
+			<filter-id>isGenericMailbox</filter-id>
+		</action>
+
+		<!-- new action button to create a dossier -->
+		<action id="DOSSIER_CREATE_BTN"
+			link="javascript:Richfaces.showModalPanel('selectDocTypePanel');"
+			label="Ajouter un dossier" enabled="true">
+			<category>DRAFT_ACTION_UPPER_LIST_HREF</category>
+			<filter id="dossier_create_grid">
+				<rule grant="true">
+					<group>DossierCreator</group>
+				</rule>
+			</filter>
+		</action>
+
+		<!-- *********************************************************************** 
+			Dossier SOLON EPP : action du formulaire pour creer une question et le dossier 
+			associe désactivation de l'action par défaut de nuxeo et ajout d'une action 
+			specifique *********************************************************************** -->
+		<action id="EMPTY_CASE_CREATE" enabled="false" />
+
+		<action id="CREATE_DOSSIER_ACTION" link="#{dossierDistributionActions.createDossier()}"
+			label="command.create" enabled="true">
+			<category>EMPTY_CASE_CREATE_BOTTOM_LIST</category>
+		</action>
+
+		<!-- *********************************************************************** 
+			Dossier SOLON EPP : Liste des onglets *********************************************************************** -->
+		<!-- Dossier : onglet détail évènement -->
+		<action id="TAB_CORBEILLE_DETAIL_EVT" link="/metadonnees/metadonnee_evenement.xhtml"
+			order="10" label="Détail communication">
+			<category>VIEW_ACTION_LIST</category>
+		</action>
+
+		<!-- Dossier : onglet détail dossier -->
+		<action id="TAB_CORBEILLE_DETAIL_DOSSIER" link="/metadonnees/metadonnee_dossier.xhtml"
+			order="20" label="Détail dossier">
+			<category>VIEW_ACTION_LIST</category>
+		</action>
+
+		<!-- Dossier : onglet historique -->
+		<action id="TAB_CORBEILLE_HISTORIQUE_DOSSIER" link="/dossier/historique_dossier.xhtml"
+			order="30" label="Historique dossier">
+			<category>VIEW_ACTION_LIST</category>
+		</action>
+
+		<!-- Infobar -->
+		<action id="SIGNALEMENT_DOSSIER" enabled="false" order="20"
+			label="Dossier signalé" icon="/img/icons/folder_warning.png">
+			<category>DOSSIER_TOPBAR_INFOS</category>
+			<filter-id>isDossier</filter-id>
+			<filter-id>hasSignalement</filter-id>
+		</action>
+
+		<action id="PRIORITE_HAUTE_DOSSIER" enabled="false" order="30"
+			label="Dossier de haute priorité" icon="/img/icons/folder_red.png">
+			<category>DOSSIER_TOPBAR_INFOS</category>
+			<filter-id>isDossier</filter-id>
+			<filter-id>isUrgent</filter-id>
+		</action>
+
+		<action id="RAPPEL_DOSSIER" enabled="false" order="40"
+			label="Dossier rappelé" icon="/img/icons/folder_time.png">
+			<category>DOSSIER_TOPBAR_INFOS</category>
+			<filter-id>isDossier</filter-id>
+		</action>
+
+		<!-- *********************************************************************** 
+			Dossier SOLON EPP : boutons en haut à gauche (verrous, ..., tous les onglets) 
+			*********************************************************************** -->
+		<!-- Fermeture du dossier -->
+		<action id="DOSSIER_CLOSE" link="#{navigationWebActions.closeDocument()}"
+			order="10" label="Fermer le dossier" icon="/img/icons/document_close.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_LOCKS</category>
+			<filter-id>isDossier</filter-id>
+		</action>
+
+		<!-- Remettre le tag non-lu -->
+		<action id="UNREAD_DOSSIER" link="#{corbeilleActions.unreadDossierLink()}"
+			order="15" label="Non-lu" icon="/img/icons/book_open.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_LOCKS</category>
+			<filter-id>isDossier</filter-id>
+			<filter-id>isDossierLinkLoaded</filter-id>
+		</action>
+
+		<!-- Suppression de la corbeille pour indexation -->
+		<action id="DOSSIER_REMOVE_CORBEILLE_INDEXATION"
+			link="#{espaceTraitementActions.removeFromCorbeilleIndexation(currentDocument)}"
+			order="16" label="Enlever ce dossier de la corbeille d'indexation"
+			icon="/img/icons/book_blue_delete.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_LOCKS</category>
+			<filter-id>isDossier</filter-id>
+			<filter-id>isInCorbeilleIndexation</filter-id>
+		</action>
+
+		<!-- Dossiers similaires -->
+		<action id="DOSSIERS_SIMILAIRES"
+			link="#{dossiersSimilairesActions.navigateToDossiersSimilaires(currentDocument)}"
+			order="17" label="Dossiers similaires" icon="/img/icons/book_blue_view.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_LOCKS</category>
+			<filter-id>isDossier</filter-id>
+			<filter-id>isInBordereau</filter-id>
+			<filter-id>dossierIsLocked</filter-id>
+			<filter-id>isCurrentDocIsLockActionnableByCurrentUser</filter-id>
+		</action>
+
+		<!-- Verrouillage d'un dossier -->
+		<action id="VERROUILLER_DOSSIER" link="#{dossierLockActions.lockCurrentDossier()}"
+			order="20" label="epp.dossier.lock.action.lock" icon="/img/icons/lock_add_24.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_LOCKS</category>
+			<filter-id>isDossier</filter-id>
+			<filter-id>isDossierLockable</filter-id>
+			<filter-id>isDossierNotNorAttribue</filter-id>
+			<filter-id>isDossierLoadedOrUpdater</filter-id>
+			<filter-id>isCurrentDocIsLockActionnableByCurrentUser</filter-id>
+		</action>
+
+		<!-- Déverrouillage d'un dossier -->
+		<action id="DEVERROUILLER_DOSSIER" link="#{dossierLockActions.unlockCurrentDossier()}"
+			order="20" label="epp.dossier.lock.action.unlock" icon="/img/icons/lock_error_24.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_LOCKS</category>
+			<filter-id>isDossier</filter-id>
+			<filter-id>isDossierUnlockable</filter-id>
+			<filter-id>isDossierLoadedOrUpdater</filter-id>
+			<filter-id>isCurrentDocIsLockActionnableByCurrentUser</filter-id>
+		</action>
+
+		<!-- Levée du verrou d'un dossier par l'administrateur -->
+		<action id="LEVER_VERROU_DOSSIER" link="#{dossierLockActions.unlockCurrentDossier()}"
+			order="20" label="epp.dossier.lock.action.unlockAdmin"
+			confirm="return confirm('Etes-vous sûr de vouloir lever le verrou ?');"
+			icon="/img/icons/lock_error_24.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_LOCKS</category>
+			<filter-id>isDossier</filter-id>
+			<filter-id>isCurrentDocumentLocked</filter-id>
+			<filter-id>isDossierLoadedOrUpdater</filter-id>
+			<filter-id>isCurrentDocIsNotLockActionnableByCurrentUser</filter-id>
+			<filter-id>isDossierAdminUnlockable</filter-id>
+		</action>
+
+		<!-- *********************************************************************** 
+			Dossier SOLON EPP : boutons en haut à droit (actions sur l'étape en cours 
+			ou la feuille de route) *********************************************************************** -->
+		<!-- Action permettant de donner un avis "favorable" à une étape de feuille 
+			de route <action id="ETAPE_VALIDER" link="#{dossierDistributionActions.validerEtape()}" 
+			confirm="return confirmBeforeValidation();" order="10" label="label.epp.feuilleRoute.etape.command.valider" 
+			icon="/img/icons/check.png"> <category>DOSSIER_TOPBAR_ACTIONS_FDR</category> 
+			<filter-id>isDossier</filter-id> <filter-id>isDossierLinkLoaded</filter-id> 
+			<filter-id>isCurrentDocumentLockedByCurrentUser</filter-id> <filter-id>isNotDossierPourInitialisation</filter-id> 
+			<filter-id>isNotDone</filter-id> <filter-id>isRoutingTaskTypeValiderShown</filter-id> 
+			</action> -->
+
+		<!-- Right hand side -->
+		<!-- EDIT & SAVE OPERATIONS -->
+		<action id="ANNULER_EDITION_DOSSIER"
+			link="if(typeof jsfcljs == 'function'){jsfcljs(document.getElementById('actionToolbarForm'),{'actionToolbarForm:IdCancelReponseButton':'actionToolbarForm:IdCancelReponseButton'},'');}return false"
+			order="30" label="Annuler l'édition du dossier" icon="/img/icons/disk_blue_error.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_EDIT</category>
+			<filter-id>isDossier</filter-id>
+			<filter-id>isDossierUnlockable</filter-id>
+			<filter-id>isInParapheur</filter-id>
+			<filter-id>isCurrentDocIsLockActionnableByCurrentUser</filter-id>
+			<filter-id>isDossierLinkLoaded</filter-id>
+		</action>
+
+		<action id="SAUVEGARDER_DOSSIER"
+			link="if(typeof jsfcljs == 'function'){jsfcljs(document.getElementById('actionToolbarForm'),{'actionToolbarForm:IdSaveReponseButton':'actionToolbarForm:IdSaveReponseButton'},'');}return false"
+			order="20" label="Sauvegarder" icon="/img/icons/disk_blue.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_EDIT</category>
+			<filter-id>isDossier</filter-id>
+			<filter-id>isDossierUnlockable</filter-id>
+			<filter-id>isInParapheur</filter-id>
+			<filter-id>isCurrentDocIsLockActionnableByCurrentUser</filter-id>
+			<filter-id>isDossierLinkLoaded</filter-id>
+		</action>
+
+		<!-- Impression & Envoi -->
+		<action id="NICE_PRINT_DOSSIER" link="/casemanagement/caseitem/parapheur.xhtml"
+			enabled="false" order="10" label="Imprimer le document avec mise en forme"
+			icon="/img/icons/document_plain.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_PRINT</category>
+			<filter-id>isDossier</filter-id>
+			<filter-id>isNotJournal</filter-id>
+		</action>
+
+		<action id="COMPRESS_DOSSIER" link="#{importExportAction.doExportDocument()}"
+			enabled="false" order="20" label="Compresser le fond de dossier au format ZIP"
+			icon="/img/icons/compress.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_PRINT</category>
+			<filter-id>isDossier</filter-id>
+			<filter-id>isZippable</filter-id>
+		</action>
+
+		<action id="CSV_PRINT_DOSSIER" link="/casemanagement/caseitem/parapheur.xhtml"
+			enabled="false" order="30" label="Imprimer le fond de dossier au format CSV"
+			icon="/img/icons/document_plain.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_PRINT</category>
+			<filter-id>isDossier</filter-id>
+			<filter-id>isCSVExportable</filter-id>
+		</action>
+
+		<action id="REFRESH_DOSSIER" link="null" order="30"
+			label="Réactualiser le contenu du dossier" icon="/img/icons/refresh.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_PRINT</category>
+			<filter-id>isDossier</filter-id>
+			<filter-id>isJournal</filter-id>
+		</action>
+
+		<action id="PRINT_DOSSIER" link="javascript:openPrintView('solonepp/default')"
+			order="40" label="Imprimer le dossier" icon="/img/icons/printer.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_PRINT</category>
+			<filter-id>isDossier</filter-id>
+		</action>
+
+		<action id="EMAIL_FORWARD_DOSSIER" link="send_email" enabled="false"
+			order="50" label="Envoyer ce dossier par e-mail" icon="/img/icons/mail.png">
+			<category>DOSSIER_TOPBAR_ACTIONS_PRINT</category>
+			<filter-id>isDossier</filter-id>
+		</action>
+
+		<!-- *********************************************************************** 
+			Version Actions *********************************************************************** -->
+
+		<action id="MODIFIER" link="#{evenementActions.modifierEvenement()}"
+			enabled="true" order="10" label="Modifier">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+		<action id="PUBLIER" link="#{evenementActions.publierEvenement()}"
+			enabled="true" order="20" label="Publier">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+		<action id="SUPPRIMER" link="#{evenementActions.supprimerEvenement()}"
+			confirm="return confirmBeforeSupprimer(event);" enabled="true" order="30"
+			label="Supprimer">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+		<action id="TRANSMETTRE_MEL" link="#{evenementActions.transmettreParMail()}"
+			enabled="true" order="40" label="Transmettre par mél.">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+		<action id="CREER_ALERTE" link="#{evenementActions.creerAlerte()}"
+			enabled="true" order="50" label="Créer alerte">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+		<action id="RECTIFIER" link="#{evenementActions.rectifierEvenement()}"
+			enabled="true" order="70" label="Rectifier">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+		<action id="COMPLETER" link="#{evenementActions.completerEvenement()}"
+			enabled="true" order="80" label="Compléter">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+		<action id="ANNULER" link="#{evenementActions.annulerEvenement()}"
+			confirm="return confirmBeforeAnnuler(event);" enabled="true" order="100"
+			label="Annuler la communication">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+		<action id="LEVER_ALERTE" link="#{evenementActions.leverAlerte()}"
+			enabled="true" order="110" label="Lever alerte">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+		<action id="ABANDONNER" link="#{evenementActions.abandonnerVersion()}"
+			confirm="return confirmBeforeAbandonner(event);" enabled="true"
+			order="120" label="Abandonner">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+		<action id="ACCEPTER" link="#{evenementActions.validerVersion(true)}"
+			confirm="return confirmBeforeAccepter(event);" enabled="true" order="130"
+			label="Accepter">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+		<action id="REJETER" link="#{evenementActions.validerVersion(false)}"
+			confirm="return confirmBeforeRejeter(event);" enabled="true" order="140"
+			label="Rejeter">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+		<action id="ACCUSER_RECEPTION" link="#{evenementActions.accuserReceptionVersion()}"
+			confirm="return confirmBeforeAccuserReception(event);" enabled="true"
+			order="150" label="Accuser reception">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+		<action id="PASSER_MESSAGE_EN_COURS_DE_TRAITEMENT"
+			link="#{evenementActions.suivreTransitionEnCoursTraitement()}"
+			enabled="true" order="160" label="En cours de traitement">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+		<action id="PASSER_MESSAGE_TRAITE" link="#{evenementActions.suivreTransitionTraite()}"
+			enabled="true" order="170" label="Traité">
+			<category>VERSION_ACTIONS</category>
+		</action>
+
+
+		<!-- *********************************************************************** 
+			Espace corbeille *********************************************************************** -->
+		<action id="SHOW_REPOSITORY" link="#{corbeilleActions.navigateTo}"
+			icon="/img/icons/espace_traitement.png" label="command.espaceCorbeille">
+			<category>USER_SERVICES</category>
+			<filter id="espace_corbeille_reader_grid">
+				<rule grant="true">
+					<group>EspaceCorbeilleReader</group>
+					<group>administrators</group>
+				</rule>
+			</filter>
+		</action>
+
+		<!-- *********************************************************************** 
+			Espace de recherche *********************************************************************** -->
+		<action id="espace_recherche"
+			link="#{rechercheDocumentaireActions.navigateToRecherche}" label="command.espaceRecherche"
+			icon="/img/icons/espace_recherche.png" order="70">
+			<category>USER_SERVICES</category>
+			<filter id="espace_recherche_reader_grid">
+				<rule grant="true">
+					<group>EspaceRechercheReader</group>
+					<group>administrators</group>
+				</rule>
+			</filter>
+		</action>
+
+		<!-- Requeteur -->
+		<action id="create_requeteur" link="/requeteur/requeteur_form.xhtml"
+			label="Requeteur Form" order="98" />
+
+		<action id="generer_alerte" link="#{requeteurActions.generateAlert()}"
+			label="requeteur.command.generer_alerte" order="10">
+			<category>REQUETEUR_ACTIONS</category>
+		</action>
+
+		<action id="recherche_requeteur" link="#{requeteurActions.goToResults()}"
+			label="requeteur.command.rechercher" order="20">
+			<category>REQUETEUR_ACTIONS</category>
+		</action>
+
+		<action id="recherche_favoris" link="#{favorisRechercheActions.navigateToAddFavoris}"
+			label="requeteur.command.ajouter_favoris" order="11">
+			<category>REQUETEUR_ACTIONS</category>
+		</action>
+
+		<!-- Recherche par NOR -->
+		<action id="view_recherche_bandeau_service" link="/recherche_nor/view_recherche_nor.xhtml" />
+
+		<!-- *********************************************************************** 
+			Espace d'administration *********************************************************************** -->
+		<action id="espace_administration"
+			link="#{administrationActions.navigateToEspaceAdministration}" label="command.espaceAdministration"
+			icon="/img/icons/espace_administration.png" order="90">
+			<category>USER_SERVICES</category>
+			<filter id="espace_administration_reader_grid">
+				<rule grant="true">
+					<group>EspaceAdministrationReader</group>
+					<group>administrators</group>
+				</rule>
+			</filter>
+		</action>
+
+		<!-- *********************************************************************** 
+			Espace d'administration / Batchs *********************************************************************** -->
+		<action id="admin_batch_suivi" label="command.admin.batch.suivi"
+			order="20">
+			<category>ADMIN_MENU</category>
+		</action>
+
+		<action id="admin_batch_viewSuivi" link="#{administrationActions.navigateToViewBatchSuivi}"
+			label="command.admin.batch.viewsuivi" order="30">
+			<category>ADMIN_MENU</category>
+			<filter id="admin_batch_grid">
+				<rule grant="true">
+					<group>BatchSuiviReader</group>
+					<group>administrators</group>
+				</rule>
+			</filter>
+		</action>
+
+		<action id="admin_batch_viewSuiviPlanification"
+			link="#{administrationActions.navigateToViewBatchSuiviPlanification}"
+			label="command.admin.batch.viewsuivi.planification" order="31">
+			<category>ADMIN_MENU</category>
+			<filter id="admin_batch_grid">
+				<rule grant="true">
+					<group>BatchSuiviReader</group>
+					<group>administrators</group>
+				</rule>
+			</filter>
+		</action>
+
+		<action id="admin_batch_viewSuiviNotification"
+			link="#{administrationActions.navigateToViewBatchSuiviNotification}"
+			label="command.admin.batch.viewsuivi.notification" order="32">
+			<category>ADMIN_MENU</category>
+			<filter id="admin_batch_grid">
+				<rule grant="true">
+					<group>BatchSuiviReader</group>
+					<group>administrators</group>
+				</rule>
+			</filter>
+		</action>
+
+		<!-- *********************************************************************** 
+			Espace d'administration / Utilisateurs *********************************************************************** -->
+		<action id="admin_utilisateur" label="command.admin.utilisateur"
+			order="60">
+			<category>ADMIN_MENU</category>
+			<filter id="admin_utilisateur_grid">
+				<rule grant="true">
+					<group>OrganigrammeReader</group>
+					<group>UtilisateurReader</group>
+					<group>ProfilReader</group>
+					<group>administrators</group>
+				</rule>
+			</filter>
+		</action>
+
+		<action id="admin_utilisateur_organigramme" link="#{administrationActions.navigateToOrganigramme}"
+			label="command.admin.utilisateur.organigramme" order="70">
+			<category>ADMIN_MENU</category>
+			<filter id="admin_utilisateur_organigramme_grid">
+				<rule grant="true">
+					<group>OrganigrammeReader</group>
+					<group>administrators</group>
+				</rule>
+			</filter>
+		</action>
+
+		<action id="admin_evtlist" link="#{administrationActions.navigateToViewMetadonnee}"
+			label="Metadonnes" order="71">
+			<category>ADMIN_MENU</category>
+			<filter id="admin_event_descriptor_grid">
+				<rule grant="true">
+					<group>administrators</group>
+				</rule>
+			</filter>
+		</action>
+
+		<action id="admin_utilisateur_utilisateur" link="#{administrationActions.navigateToUtilisateur}"
+			label="command.admin.utilisateur.utilisateur" order="80">
+			<category>ADMIN_MENU</category>
+			<filter id="admin_utilisateur_utilisateur_grid">
+				<rule grant="true">
+					<group>UtilisateurReader</group>
+					<group>administrators</group>
+				</rule>
+			</filter>
+		</action>
+
+		<action id="admin_param_etat_app" link="#{etatApplicationActions.editEtatApplication}"
+			label="command.admin.param.etat.application" order="145">
+			<category>ADMIN_MENU</category>
+<!-- 			<filter id="admin_param_etat"> -->
+<!-- 				<rule grant="true"> -->
+<!-- 					<group>UtilisateurReader</group> -->
+<!-- 				</rule> -->
+<!-- 			</filter> -->
+		</action>
+		
+		<!-- *********************************************************************** 
+			Espace d'administration / paramétrage *********************************************************************** -->
+		<action id="admin_creer_dossier_epg"
+			link="#{administrationActions.navigateToAdminCreerDossierEpg}"
+			label="command.admin.parametrage.ws.epg" order="200">
+			<category>ADMIN_MENU</category>
+			<filter id="isUserDILA">
+				<rule grant="true">
+					<condition>#{administrationActions.isCurrentUserInDila()}</condition>
+				</rule>
+			</filter>
+		</action>
+
+		<!-- *********************************************************************** 
+			Recherche avancée (administrateur technique uniquement) *********************************************************************** -->
+		<action id="advanced_search" order="100">
+			<filter-id>isAdministrator</filter-id>
+		</action>
+
+		<!-- *********************************************************************** 
+			Déconnexion *********************************************************************** -->
+		<action id="non_anonymous_logout" link="logout" icon="/img/icons/logout.png"
+			confirm="return confirmBeforeLogout(event);" label="command.logout"
+			order="200">
+			<category>USER_SERVICES_BOTTOM</category>
+		</action>
+
+		<!-- *********************************************************************** 
+			Outil de sélection *********************************************************************** -->
+
+		<!-- validation en masse des dossiers de l'espace de traitement -->
+		<action id="MASSE_DONNER_AVIS_FAVORABLE_DOSSIER"
+			link="#{dossierDistributionActions.masseFdrAction('donnerAvisFavorable')}"
+			confirm="Etes-vous sûr de vouloir valider ces dossiers ?" order="10"
+			label="label.responses.dossier.toolbar.favorable" icon="/img/icons/check_16.png">
+			<category>DOSSIER_LINK_ACTION_LIST</category>
+		</action>
+
+		<!-- *********************************************************************** 
+			Outil de sélection : actions sur les documents sélectionnés *********************************************************************** -->
+		<!-- *********************************************************************** 
+			Action sur un ensembles de documents cochés dans une liste *********************************************************************** -->
+		<action id="CURRENT_SELECTION_ADDTOLIST" enabled="false" />
+		<action id="CLIPBOARD_PASTE" enabled="false" />
+		<action id="CURRENT_SELECTION_COPY" enabled="false" />
+		<action id="CURRENT_SELECTION_TRASH" enabled="false" />
+		<action id="WORKLIST_EXPORT" enabled="false" />
+		<action id="WORKLIST_MOVE" enabled="false" />
+		<action id="WORKLIST_XMLEXPORT" enabled="false" />
+		<action id="WORKLIST_PASTE" enabled="false" />
+
+		<!-- *********************************************************************** 
+			Vocabulaire *********************************************************************** -->
+		<action id="directories_manager" icon="/img/icons/book_blue.png" />
+	</extension>
+
+	<extension target="org.nuxeo.ecm.platform.actions.ActionService"
+		point="filters">
+		<filter id="disabled">
+			<rule grant="false" />
+		</filter>
+
+		<!-- *********************************************************************** 
+			Surcharge des filtres de nuxeo *********************************************************************** -->
+		<!-- Permet d'accéder à l'espace de travail quel que soit l'écran en cours -->
+		<filter id="isInsidePersonalWorkspace">
+			<rule grant="true" />
+		</filter>
+
+		<!-- Permet d'accéder à l'écran de réglages quel que soit l'écran en cours -->
+		<filter id="canAccessPersonalWorkspace">
+			<rule grant="true" />
+		</filter>
+
+		<!-- *********************************************************************** 
+			Filtres sur les documents *********************************************************************** -->
+		<!-- Filtre qui conserve uniquement les dossiers à l'état "done" -->
+		<filter id="isDone">
+			<rule grant="true">
+				<condition>document.getCurrentLifeCycleState().equals("done")
+				</condition>
+			</rule>
+		</filter>
+
+		<!-- Filtre qui conserve uniquement les dossiers à l'état "abandonne" -->
+		<filter id="isDossierAbandon">
+			<rule grant="true">
+				<condition>document.getProperty("dossier_solon_epp",
+					"statut").equals("3")
+				</condition>
+			</rule>
+		</filter>
+
+		<!-- Filtre qui consere uniquement les documents qui ne sont pas à l'état 
+			"done" -->
+		<filter id="isNotDone">
+			<rule grant="false">
+				<condition>document.getCurrentLifeCycleState().equals("done")
+				</condition>
+			</rule>
+		</filter>
+
+		<!-- Vrai uniquement si le dossier n'est pas verrouillé (par n'importe 
+			quel utilisateur) -->
+		<filter id="isDossierUnlocked">
+			<rule grant="false">
+				<condition>#{stLockActions.isDocumentLocked(document)}</condition>
+			</rule>
+		</filter>
+
+		<!-- Vrai si le document n'est pas verrouillé ou que le verrou est actionnable 
+			par l'utilisateur -->
+		<filter id="isCurrentDocIsLockActionnableByCurrentUser">
+			<rule grant="true">
+				<condition>#{stLockActions.currentDocIsLockActionnableByCurrentUser()}
+				</condition>
+			</rule>
+		</filter>
+
+		<!-- Vrai si le document est verrouillé et que le verrou est actionnable 
+			par l'utilisateur -->
+		<filter id="isCurrentDocIsLockActionnableByCurrentUser">
+			<rule grant="true">
+				<condition>#{stLockActions.currentDocIsLockActionnableByCurrentUser()}
+				</condition>
+			</rule>
+		</filter>
+
+		<!-- Vrai si le document est verrouillé et que le verrou n'est pas actionnable 
+			par l'utilisateur -->
+		<filter id="isCurrentDocIsNotLockActionnableByCurrentUser">
+			<rule grant="false">
+				<condition>#{stLockActions.currentDocIsLockActionnableByCurrentUser()}
+				</condition>
+			</rule>
+		</filter>
+
+		<!-- Vrai si le document courant est verrouillé -->
+		<filter id="isCurrentDocumentLocked">
+			<rule grant="true">
+				<condition>#{stLockActions.isCurrentDocumentLocked()}</condition>
+			</rule>
+		</filter>
+
+		<!-- Vrai si le document courant est verrouillé par l'utilisateur en cours -->
+		<filter id="isCurrentDocumentLockedByCurrentUser">
+			<rule grant="true">
+				<condition>#{stLockActions.isCurrentDocumentLockedByCurrentUser()}
+				</condition>
+			</rule>
+		</filter>
+
+		<!-- *********************************************************************** 
+			Filtres sur l'outil de sélection *********************************************************************** -->
+
+		<!-- *********************************************************************** 
+			Filtres sur les utilisateurs / groupes *********************************************************************** -->
+		<filter id="isAdministrator">
+			<rule grant="true">
+				<group>administrators</group>
+			</rule>
+		</filter>
+
+		<!-- *********************************************************************** 
+			Filtres sur les dossiers *********************************************************************** -->
+		<filter id="isDossier">
+			<rule grant="true">
+				<type>Dossier</type>
+			</rule>
+		</filter>
+
+		<filter id="isNotDossier">
+			<rule grant="false">
+				<type>Dossier</type>
+			</rule>
+		</filter>
+
+		<filter id="isNotEvenement">
+			<rule grant="false">
+				<type>Evenement</type>
+			</rule>
+		</filter>
+
+		<!-- Filtre qui interdit les actions si le dossier est à l'état "init" 
+			(avant d'être lancé) -->
+		<filter id="isNotDossierPourInitialisation">
+			<rule grant="true">
+				<condition>#{dossierDistributionActions.isCurrentDossierPourInitialisation()
+					ne true}
+				</condition>
+			</rule>
+		</filter>
+
+		<!-- Vrai si l'utilisateur peut verrouiller le dossier courant -->
+		<filter id="isDossierLockable">
+			<rule grant="true">
+				<condition>#{dossierLockActions.getCanLockCurrentDossier()}
+				</condition>
+			</rule>
+		</filter>
+
+		<!-- Vrai si l'utilisateur peut déverrouiller le dossier courant -->
+		<filter id="isDossierUnlockable">
+			<rule grant="true">
+				<condition>#{dossierLockActions.getCanUnlockCurrentDossier()}
+				</condition>
+			</rule>
+		</filter>
+
+		<!-- Vrai si l'utilisateur peut lever le verrou sur le dossier -->
+		<filter id="isDossierAdminUnlockable">
+			<rule grant="true">
+				<group>DossierAdminUnlocker</group>
+			</rule>
+		</filter>
+
+		<filter id="isNotParapheur">
+			<rule grant="true">
+				<condition>#{webActions.currentTabAction != 'TAB_DOSSIER_PARAPHEUR'}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isInParapheur">
+			<rule grant="true">
+				<condition>#{webActions.currentTabAction == 'TAB_DOSSIER_PARAPHEUR'}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isInBordereau">
+			<rule grant="true">
+				<condition>#{webActions.currentTabAction == 'TAB_DOSSIER_BORDEREAU'}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isInCorbeilleIndexation">
+			<rule grant="true">
+				<condition>#{espaceTraitementActions.isInCorbeilleIndexation()}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isInEspaceTraitementDossierContent">
+			<rule grant="true">
+				<condition>#{espaceTraitementActions.isInEspaceTraitementDossierContent()}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="hasSignalement">
+			<rule grant="true">
+				<condition>#{dossierDistributionActions.hasSignalement()}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isUrgent">
+			<rule grant="true">
+				<condition>#{espaceTraitementActions.isDossierUrgent()}</condition>
+				-->
+			</rule>
+		</filter>
+
+		<filter id="isNotUrgent">
+			<rule grant="false">
+				<condition>#{espaceTraitementActions.isDossierUrgent()}</condition>
+				-->
+			</rule>
+		</filter>
+
+		<!-- Vrai si le dossier est une mesure nominative -->
+		<filter id="isDossierMesureNominative">
+			<rule grant="true">
+				<condition>document.getProperty("dossier_solon_epp",
+					"mesureNominative")
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isZippable">
+			<rule grant="true">
+				<condition>#{webActions.currentTabAction == 'TAB_DOSSIER_FDD'}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isJournal">
+			<rule grant="true">
+				<condition>#{webActions.currentTabAction == 'TAB_DOSSIER_JOURNAL'}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isCSVExportable">
+			<rule grant="true">
+				<condition>#{webActions.currentTabAction == 'TAB_DOSSIER_FDD'}
+				</condition>
+			</rule>
+			<rule grant="true">
+				<condition>#{webActions.currentTabAction == 'TAB_DOSSIER_JOURNAL'}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isNotJournal">
+			<rule grant="true">
+				<condition>#{webActions.currentTabAction != 'TAB_DOSSIER_JOURNAL'}
+				</condition>
+			</rule>
+		</filter>
+
+		<!-- Vrai uniquement si l'utilisateur a chargé un DossierLink (en tant 
+			que destinataire de l'étape ou administrateur) -->
+		<filter id="isDossierLinkLoaded">
+			<rule grant="true">
+				<condition>#{corbeilleActions.isDossierLoadedInCorbeille()}
+				</condition>
+			</rule>
+		</filter>
+
+		<!-- Retourne vrai si l'utilisateur peut agir sur le dossier -->
+		<filter id="isDossierLoadedOrUpdater">
+			<!-- Possibilité de modifier un dossier dont le DossierLink est chargé -->
+			<rule grant="true">
+				<condition>#{corbeilleActions.isDossierLoadedInCorbeille()}
+				</condition>
+			</rule>
+
+			<!-- Possibilité de modifier un dossier en cours pour l'administrateur 
+				fonctionnel -->
+			<rule grant="true">
+				<condition>document.getCurrentLifeCycleState().equals("running")
+				</condition>
+				<group>DossierAdminUpdater</group>
+			</rule>
+
+			<!-- Possibilité de modifier un dossier en cours pour le contributeur 
+				activité normative -->
+			<rule grant="true">
+				<group>DossierActiviteNormativeUpdater</group>
+			</rule>
+
+			<!-- Possibilité de modifier un dossier terminé et de relancer sa feuille 
+				de route -->
+			<rule grant="true">
+				<condition>document.getCurrentLifeCycleState().equals("done")
+				</condition>
+				<group>FDRInstanceRestarter</group>
+			</rule>
+			<rule grant="true">
+				<condition>#{espaceTraitementActions.isInCorbeilleIndexation()}
+				</condition>
+			</rule>
+		</filter>
+
+		<!-- Retourne vrai uniquement si le dossier n'est pas NOR attribué -->
+		<filter id="isDossierNotNorAttribue">
+			<rule grant="false">
+				<condition>document.getProperty("dossier_solon_epp",
+					"statut").equals("5")
+				</condition>
+			</rule>
+		</filter>
+
+		<!-- *********************************************************************** 
+			Filtres sur les actions du dossiers signalés (contentview) *********************************************************************** -->
+
+		<filter id="isDossierSignale">
+			<rule grant="true">
+				<condition>#{dossierMassActions.isDossierSignale()}</condition>
+			</rule>
+		</filter>
+	</extension>
+
+</component>

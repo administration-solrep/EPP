@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: SOLON EPP DISTRIBUTION
+Bundle-SymbolicName: fr.dila.solonepp.distribution;singleton:=true
+Bundle-Version: 1.0.0

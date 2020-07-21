@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+            "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="page title">
+		<h:outputText
+			value="#{nuxeoApplicationName} - #{messages['label.profileManager.profiles']}" />
+	</ui:define>
+
+	<ui:define name="body">
+
+		<div class="tabsContent">
+			<h:form
+				rendered="#{profileManagerActions.allowCreateProfile and notReadOnly}"
+				id="createProfileActionsForm">
+				<div class="action_bar">
+					<ul>
+						<li class="selected"><h:commandLink action="create_profile"
+								immediate="true" id="createProfileButton">
+								<h:graphicImage value="/icons/action_add_group.gif" />
+								<h:outputText
+									value="#{messages['label.profileManager.createProfile']}" />
+							</h:commandLink></li>
+					</ul>
+				</div>
+			</h:form>
+
+			<ui:include src="/incl/message_banner.xhtml" />
+
+			<div style="clear: both" />
+
+			<h:form id="searchForm">
+				<h:inputText id="searchText"
+					value="#{profileManagerActions.searchString}"
+					onkeydown="trapEnter(event, 'searchForm:searchButton');"
+					class="directoryFilter" />
+        &nbsp;
+        <h:commandButton id="searchButton"
+					value="#{messages['command.search']}"
+					action="#{profileManagerActions.searchProfiles}"
+					styleClass="button" />
+				<h:commandButton id="clearButton"
+					value="#{messages['command.clearSearch']}"
+					action="#{profileManagerActions.clearSearch}" styleClass="button" />
+			</h:form>
+
+			<div>
+				<h:outputText
+					value="#{messages['label.profileManager.emptyProfileList']}"
+					rendered="#{profileList.rowCount == 0 and profileManagerActions.searchOverflow == false and !empty profileManagerActions.searchString}" />
+
+				<h:outputText value="#{messages['label.security.searchOverFlow']}"
+					class="infoFeedback"
+					rendered="#{profileManagerActions.searchOverflow}" />
+				<h:form rendered="#{profileList.rowCount > 0}">
+
+					<h:dataTable var="profile" value="#{profileList}"
+						styleClass="dataOutput">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText
+									value="#{messages['label.profileManager.profileName']}" />
+							</f:facet>
+							<h:commandLink value="#{profile.id}"
+								action="#{profileManagerActions.viewProfile}" />
+						</h:column>
+					</h:dataTable>
+				</h:form>
+			</div>
+
+		</div>
+	</ui:define>
+
+	<ui:define name="collapsible_panel_body">
+		<ui:include src="/admin/admin_menu.xhtml" />
+	</ui:define>
+</nxthemes:composition>
+

@@ -1,0 +1,8 @@
+# Example for Windows
+#jboss.dir=C:/Program Files/JBoss
+# Example for Unix
+jboss.dir=/opt/jboss
+
+# Which JBoss server config to use
+jboss.config=default
+

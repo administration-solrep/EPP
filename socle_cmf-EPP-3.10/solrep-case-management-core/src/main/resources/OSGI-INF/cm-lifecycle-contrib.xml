@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.cm.lifecycle">
+
+  <extension target="org.nuxeo.ecm.core.lifecycle.LifeCycleService"
+    point="lifecycle">
+
+    <lifecycle name="case" defaultInitial="draft">
+      <transitions>
+        <transition name="send" destinationState="sent">
+          <description>Send the envelope</description>
+        </transition>
+      </transitions>
+      <transition name="delete" destinationState="deleted">
+        <description>Move document to trash (temporary delete)</description>
+      </transition>
+      <transition name="undelete" destinationState="draft">
+        <description>Recover the document from trash</description>
+      </transition>
+      <states>
+        <state name="draft" description="Default state" initial="true">
+          <transitions>
+            <transition>send</transition>
+            <transition>delete</transition>
+          </transitions>
+        </state>
+        <state name="sent" description="Content has been sent" initial="true">
+          <transitions></transitions>
+        </state>
+        <state name="deleted" description="Document is deleted">
+          <transitions>
+            <transition>undelete</transition>
+          </transitions>
+        </state>
+      </states>
+    </lifecycle>
+    
+     <lifecycle name="caselink" defaultInitial="draft">
+      <transitions>
+        <transition name="toProject" destinationState="project">
+          <description>the model is project</description>
+        </transition>
+        <transition name="toToDo" destinationState="todo">
+          <description>the element is on Todo state</description>
+        </transition>
+        <transition name="toDone" destinationState="done">
+          <description>the element finishes</description>
+        </transition>
+        <transition name="toDelete" destinationState="deleted">
+          <description>the element is deleted</description>
+        </transition>
+        <transition name="toDelete" destinationState="deleted">
+          <description>the element is deleted</description>
+        </transition>
+        <transition name="backToProject" destinationState="project">
+          <description>Recover the document from trash</description>
+        </transition>
+      </transitions>
+      <states>
+        <state name="draft" description="Default state" initial="true">
+          <transitions>
+            <transition>toProject</transition>
+            <transition>toToDo</transition>
+          </transitions>
+        </state>
+        <state name="project" description="Default projet state">
+          <transitions>
+            <transition>toDelete</transition>
+          </transitions>
+        </state>
+        <state name="todo" description="ToDo state" initial="true">
+          <transitions>
+            <transition>toDone</transition>
+          </transitions>
+        </state>
+        <state name="done" description="The element is done">
+          <transitions>
+          	<transition>toDelete</transition>
+          </transitions>
+        </state>
+        <state name="deleted" description="Document is deleted">
+          <transitions>
+            <transition>backToProject</transition>
+          </transitions>
+        </state>
+      </states>
+     </lifecycle>
+    
+  </extension>
+
+  <extension target="org.nuxeo.ecm.core.lifecycle.LifeCycleService"
+    point="types">
+    <types>
+      <type name="MailboxRoot">default</type>
+      <type name="Mailbox">default</type>
+      <type name="CaseRoot">default</type>
+      <type name="Case">case</type>
+      <type name="CaseLink">caselink</type>
+      <type name="CaseItem">default</type>
+      <type name="DistributionTask">documentRouteElement</type>
+      <type name="GenericDistributionTask">documentRouteElement</type>
+      <type name="PersonalDistributionTask">documentRouteElement</type>
+      <type name="DistributionStep">documentRouteElement</type>
+    </types>
+  </extension>
+
+</component>

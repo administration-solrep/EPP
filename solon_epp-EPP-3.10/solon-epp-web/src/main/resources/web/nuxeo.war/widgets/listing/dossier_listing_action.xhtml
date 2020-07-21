@@ -1,0 +1,52 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html">
+
+	<h:panelGroup layout="block" id="massActionButtons">
+
+		<style>
+#tdEnabledButtonContainer {
+	visibility: visible;
+}
+</style>
+
+	</h:panelGroup>
+
+	<h:form id="dossierListingAction">
+		<c:set var="document" value="#{currentDocument}" />
+		<c:if
+			test="#{contentViewActions.getCurrentContentView().getPageProvider().getCurrentPage() != null and contentViewActions.getCurrentContentView().getPageProvider().getCurrentPage().size()!=0}">
+			<c:set var="document"
+				value="#{contentViewActions.getCurrentContentView().getPageProvider().getCurrentPage().get(0)}" />
+		</c:if>
+		<table class="dossierListingAction" style="float: right;">
+			<tr>
+				<td class="enabledButtonContainer" id="tdEnabledButtonContainer">
+					<nxu:set var="contentView"
+						value="#{contentViewActions.getCurrentContentView()}">
+						<nxd:restDocumentLink document="#{document}" view="csv"
+							addTabInfo="false" target="_blank">
+							<f:param name="contentViewName" value="#{contentView.name}" />
+							<f:param name="resultLayout" value="cm_dossier_csv" />
+							<f:param name="currentPage" value="0" />
+							<f:param name="pageSize" value="0" />
+							<f:param name="contentViewState"
+								value="#{contentViewRestActions.getContentViewState(contentView)}" />
+							<h:outputText style="font-size: 10px;" value="Export CSV" />
+						</nxd:restDocumentLink>
+					</nxu:set>
+				</td>
+			</tr>
+		</table>
+	</h:form>
+
+	<div style="clear: both"></div>
+
+</div>

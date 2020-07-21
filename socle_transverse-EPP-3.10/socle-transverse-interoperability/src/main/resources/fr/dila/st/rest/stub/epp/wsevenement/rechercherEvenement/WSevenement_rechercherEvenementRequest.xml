@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:rechercherEvenementRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd ">
+
+
+
+	<p:par_critere>
+		<p2:id_corbeille>CORB003</p2:id_corbeille>
+		<p2:etat_dossier>EN_INSTANCE</p2:etat_dossier>
+		<p2:numero_depot>
+			<p1:date>2011-06-05</p1:date>
+			<p1:numero>DEP001</p1:numero>
+		</p2:numero_depot>
+
+	</p:par_critere>
+
+
+</p:rechercherEvenementRequest>

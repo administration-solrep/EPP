@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component
+  name="org.nuxeo.ecm.classification.core.ClassificationService.contrib">
+
+  <extension target="org.nuxeo.ecm.classification.core.ClassificationService"
+    point="types">
+    <classifiable type="File" />
+    <classifiable type="Note" />
+    <classifiable type="Folder" />
+  </extension>
+
+</component>

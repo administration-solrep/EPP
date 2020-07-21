@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.cm.service.synchronization.test.contrib">
+
+  <extension target="fr.dila.cm.core.service.synchronization.MailboxSynchronizationService" point="directoryToMailbox">
+
+    <userToMailbox>
+      <titleGenerator>fr.dila.cm.core.service.synchronization.DefaultPersonalMailboxTitleGenerator</titleGenerator>
+    </userToMailbox>
+
+
+    <groupToMailbox>
+      <titleGenerator>fr.dila.cm.core.service.synchronization.DefaultGroupMailboxTitleGenerator</titleGenerator>
+    </groupToMailbox>
+
+  </extension>
+
+</component>

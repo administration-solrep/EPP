@@ -1,0 +1,30 @@
+<div xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition
+		template="/admin/parametre/view_parametre_template.xhtml">
+		<ui:param name="currentParametreSubTab" value="edit" />
+
+		<ui:define name="mainContent">
+			<h:form>
+				<nxl:layout name="parametreLayout" mode="edit"
+					value="#{currentDocument}" />
+
+				<table class="dataInput">
+					<tbody>
+						<tr>
+							<td></td>
+							<td><h:commandButton value="#{messages['command.save']}"
+									action="#{parametreActions.updateDocument}" styleClass="button" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</div>

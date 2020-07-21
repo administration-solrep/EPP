@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<component name="fr.dila.solonepp.core.versioning.contrib">
+
+	<extension target="org.nuxeo.ecm.core.versioning.VersioningService"
+		point="versioningRules">
+
+		<defaultVersioningRule>
+			<initialState major="0" minor="0" />
+		</defaultVersioningRule>
+		<!-- <versioningRule typeName="FondDeDossierFichier" enabled="true"> <initialState 
+			major="0" minor="0" /> <options lifeCycleState="undefined"> <none default="true" 
+			/> <minor /> <major /> </options> </versioningRule> <versioningRule typeName="ParapheurFichier" 
+			enabled="true"> <initialState major="0" minor="0" /> <options lifeCycleState="undefined"> 
+			<none default="true" /> <minor /> <major /> </options> </versioningRule> -->
+
+	</extension>
+</component>

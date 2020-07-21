@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<chercherQuestionsResponse
+	xmlns:ns2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion"
+	xmlns:ns3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion 1.6.10/reponses/WSquestion.xsd ">
+	<jeton_questions></jeton_questions>
+	<dernier_renvoi>true</dernier_renvoi>
+	<statut>OK</statut>
+	<questions>
+		<id_question>
+			<ns2:numero_question>107753</ns2:numero_question>
+			<ns2:type>QE</ns2:type>
+			<ns2:source>AN</ns2:source>
+			<ns2:legislature>13</ns2:legislature>
+		</id_question>
+		<date_publication_jo>2011-05-10+02:00</date_publication_jo>
+		<page_jo>4668</page_jo>
+		<ministre_depot id="50000938">
+			<ns2:titre_jo>Agriculture, alimentation, pêche, ruralité et
+				aménagement du territoire</ns2:titre_jo>
+			<ns2:intitule_min>Ministère de l'agriculture, de l'alimentation, de
+				la pêche, de la ruralité et de l'aménagement du territoire</ns2:intitule_min>
+		</ministre_depot>
+		<auteur id_mandat="386496">
+			<ns3:civilite>M.</ns3:civilite>
+			<ns3:prenom>Alain</ns3:prenom>
+			<ns3:nom>Rodet</ns3:nom>
+			<ns3:grp_pol>Socialiste, radical, citoyen et divers gauche</ns3:grp_pol>
+			<ns3:circonscription>Haute-Vienne 4</ns3:circonscription>
+		</auteur>
+		<texte><![CDATA[M. Alain Rodet attire l'attention de M. le ministre de l'agriculture, de l'alimentation, de la pêche, de la ruralité et de l'aménagement du territoire sur les graves difficulté
+s qui touchent le secteur de l'élevage bovin allaitant en Limousin. En effet, les éleveurs sont actuellement confrontés à plusieurs facteurs très pénalisants pour leur activité. Ainsi, la hausse continue
+ des charges, conjuguée à la stagnation des prix de vente, menace directement la survie de nombreuses exploitations bovines allaitantes. Dans ce contexte déjà très préoccupant, l'annonce d'un projet d'ac
+cord avec le Mercosur, qui se traduira par une augmentation des importations exonérées de droits de douanes et une baisse de revenus pour les éleveurs bovins européens, est considérée avec une grande inq
+uiétude. Par ailleurs, il avait été remis au ministère de l'agriculture une demande d'aide européenne exceptionnelle qui à ce jour, ne semble pas avoir été transmise aux autorités communautaires compéten
+tes. Les éleveurs ont donc demandé, par le biais de leur fédération nationale, la mise en place immédiate d'un plan de sauvegarde, ainsi que le paiement anticipé, au 15 octobre prochain, de 70 % du monta
+nt des droits à paiement uniques détenus par les éleveurs possédant plus de 3 PMTVA. Ils souhaitent également des mesures visant à prévenir la spéculation sur le fourrage en cas de pénurie, en interdisan
+t notamment le broyage de la paille et en privilégiant le stockage dans les régions productrices. En conséquence, il lui demande quelles dispositions seront prises pour rassurer l'ensemble de la filière 
+bovine allaitante et garantir sa pérennité dans les mois et les années à venir.]]></texte>
+		<indexation_an>
+			<ns3:rubrique>élevage</ns3:rubrique>
+			<ns3:rubrique_ta>PAC et bovins</ns3:rubrique_ta>
+			<ns3:analyse>revendications</ns3:analyse>
+		</indexation_an>
+	</questions>
+</chercherQuestionsResponse>

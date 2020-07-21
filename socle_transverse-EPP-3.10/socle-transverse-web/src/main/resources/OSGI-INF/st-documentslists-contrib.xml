@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Ce composant contribue les listes de sélections du socle transverse. -->
+<component name="fr.dila.st.web.documentList">
+	<require>org.nuxeo.ecm.webapp.documentsLists.DefaultDocumentsLists</require>
+
+	<extension target="org.nuxeo.ecm.webapp.documentsLists.DocumentsListsService"
+		point="list">
+
+		<!-- Surcharge de la liste de documents "CLIPBOARD", change la catégorie 
+			afin de la masquer -->
+		<documentsList name="CLIPBOARD">
+			<category>ST_CLIPBOARD</category>
+			<imageURL>/icons/clipboard.gif</imageURL>
+			<title>workingList.clipboard</title>
+			<defaultInCategory>false</defaultInCategory>
+			<supportAppends>false</supportAppends>
+		</documentsList>
+	</extension>
+</component>
+

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Ce composant contribue les schémas de l'application SOLON EPP. -->
+<component name="fr.dila.solonepp.core.schema">
+
+	<require>org.nuxeo.ecm.core.CoreExtensions</require>
+	<require>org.nuxeo.ecm.directory.types</require>
+	<require>fr.dila.cm.schemas</require>
+
+	<extension target="org.nuxeo.ecm.core.schema.TypeService"
+		point="schema">
+
+		<!-- *********************************************************************** 
+			Vocabulaires *********************************************************************** -->
+		<schema name="vocabularyRubrique" src="data/schema/domain/vocabulary-rubrique.xsd" />
+		
+		<!-- *********************************************************************** 
+			Jetons *********************************************************************** -->
+		<!-- Liaison jeton / notification -->
+		<schema name="jeton_doc" src="data/schema/domain/jeton_doc.xsd"
+			prefix="jtd" override="true" />
+
+		<!-- *********************************************************************** 
+			Schémas des tables de références. *********************************************************************** -->
+		<!-- Acteur -->
+		<schema name="acteur" src="data/schema/domain/acteur.xsd"
+			prefix="act" />
+
+		<!-- Circonscription -->
+		<schema name="circonscription" src="data/schema/domain/circonscription.xsd"
+			prefix="cir" />
+
+		<!-- Identité -->
+		<schema name="identite" src="data/schema/domain/identite.xsd"
+			prefix="idt" />
+
+		<!-- Gouvernement -->
+		<schema name="gouvernement" src="data/schema/domain/gouvernement.xsd"
+			prefix="gvt" />
+
+		<!-- Mandat -->
+		<schema name="mandat" src="data/schema/domain/mandat.xsd"
+			prefix="man" />
+
+		<!-- Membre de groupe -->
+		<schema name="membre_groupe" src="data/schema/domain/membre_groupe.xsd"
+			prefix="mgr" />
+
+		<!-- Ministère -->
+		<schema name="ministere" src="data/schema/domain/ministere.xsd"
+			prefix="min" />
+
+		<!-- Organisme -->
+		<schema name="organisme" src="data/schema/domain/organisme.xsd"
+			prefix="org" />
+
+		<!-- Période -->
+		<schema name="periode" src="data/schema/domain/periode.xsd"
+			prefix="per" />
+
+		<!-- *********************************************************************** 
+			Schémas du dossier SOLON EPP. *********************************************************************** -->
+		<!-- Dossier SOLON EPP -->
+		<schema name="dossier" src="data/schema/domain/dossier.xsd"
+			prefix="dos" />
+
+		<!-- *********************************************************************** 
+			Schémas des événement. *********************************************************************** -->
+		<!-- Événement -->
+		<schema name="evenement" src="data/schema/domain/evenement.xsd"
+			prefix="evt" />
+
+		<!-- Version d'un événement -->
+		<schema name="version" src="data/schema/domain/version.xsd"
+			prefix="ver" />
+
+		<!-- Pièce jointe -->
+		<schema name="piece_jointe" src="data/schema/domain/piece_jointe.xsd"
+			prefix="pj" />
+
+		<!-- *********************************************************************** 
+			Schémas des pièces jointes. *********************************************************************** -->
+		<!-- Fichier d'une pièce jointe <schema name="piece_jointe_fichier" src="data/schema/domain/piece_jointe_fichier.xsd" 
+			prefix="pjf" /> -->
+
+		<!-- *********************************************************************** 
+			Schémas des mailbox. *********************************************************************** -->
+		<!-- Mailbox : surcharge du schéma "mailbox" de Nuxeo afin de limiter le 
+			nombre de tables -->
+		<schema name="mailbox" src="data/schema/domain/mailbox.xsd"
+			prefix="mlbx" override="true" />
+
+		<!-- *********************************************************************** 
+			Schémas des messages. *********************************************************************** -->
+		<schema name="case_link" src="data/schema/domain/case_link.xsd"
+			prefix="cslk" override="true" />
+
+		<!-- *********************************************************************** 
+			Schémas de l'organigramme. *********************************************************************** -->
+		<!-- Utilisateur : surcharge du schema user de Nuxeo, car le mapping LDAP 
+			ne peut être composé que d'un seul schéma [SUPNXP-3039] -->
+		<schema name="user" src="data/schema/organigramme/user.xsd"
+			override="true" />
+
+		<!-- Profil : surcharge du schema "group" de Nuxeo -->
+		<schema name="group" src="data/schema/organigramme/group.xsd"
+			override="true" />
+
+		<!-- Fonctions unitaires -->
+		<schema name="base_function" src="data/schema/organigramme/base_function.xsd" />
+
+		<!-- Institution -->
+		<schema name="institution" src="data/schema/organigramme/institution.xsd" />
+
+		<!-- Unité structurelle -->
+		<schema name="organigramme-unite-structurelle" src="data/schema/organigramme/unite_structurelle.xsd" />
+
+		<!-- Poste -->
+		<schema name="organigramme-poste" src="data/schema/organigramme/poste.xsd" />
+
+		<schema name="profil_utilisateur_solon_epp"
+			src="data/schema/domain/profil_utilisateur_solon_epp.xsd" prefix="pusr" />
+
+		<schema name="parametrage_ws_epg" src="data/schema/admin/parametrage_ws_epg.xsd" prefix="parws"/>
+
+	</extension>
+
+</component>

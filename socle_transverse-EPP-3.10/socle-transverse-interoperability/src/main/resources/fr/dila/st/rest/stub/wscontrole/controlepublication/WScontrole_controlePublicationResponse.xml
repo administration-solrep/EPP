@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:controlePublicationResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WScontrole"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p4="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:p5="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WScontrole ../../../../../../../xsd/reponses/WScontrole.xsd ">
+
+
+	<!-- AR de controle publication pour les questions seules -->
+	<p:resultatControleQuestion>
+		<p5:statut>OK</p5:statut>
+		<p5:id_question>
+			<p3:numero_question>1234</p3:numero_question>
+			<p3:type>QE</p3:type>
+			<p3:source>AN</p3:source>
+			<p3:legislature>13</p3:legislature>
+		</p5:id_question>
+	</p:resultatControleQuestion>
+
+
+	<p:resultatControleQuestion>
+		<p5:statut>KO</p5:statut>
+		<p5:id_question>
+			<p3:numero_question>1234</p3:numero_question>
+			<p3:type>QE</p3:type>
+			<p3:source>AN</p3:source>
+			<p3:legislature>13</p3:legislature>
+		</p5:id_question>
+		<p5:message_erreur>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p5:message_erreur>
+	</p:resultatControleQuestion>
+
+
+	<!-- AR de controle publication pour les questions avec réponses : cas 1 
+		question -->
+	<p:resultatControleQuestionReponse>
+		<p5:statut>OK</p5:statut>
+		<p5:id_question>
+			<p3:numero_question>1234</p3:numero_question>
+			<p3:type>QE</p3:type>
+			<p3:source>AN</p3:source>
+			<p3:legislature>13</p3:legislature>
+		</p5:id_question>
+	</p:resultatControleQuestionReponse>
+
+	<!-- AR de controle publication pour les questions avec réponses :cas n 
+		questions -->
+	<p:resultatControleQuestionReponse>
+		<p5:statut>OK</p5:statut>
+
+		<p5:id_question>
+			<p3:numero_question>1234</p3:numero_question>
+			<p3:type>QE</p3:type>
+			<p3:source>AN</p3:source>
+			<p3:legislature>13</p3:legislature>
+		</p5:id_question>
+
+		<p5:id_question>
+			<p3:numero_question>1235</p3:numero_question>
+			<p3:type>QE</p3:type>
+			<p3:source>AN</p3:source>
+			<p3:legislature>13</p3:legislature>
+		</p5:id_question>
+
+	</p:resultatControleQuestionReponse>
+
+
+	<!-- AR de controle publication pour les erratums de question -->
+	<p:resultatControleErratumQuestion>
+		<p5:statut>OK</p5:statut>
+
+		<p5:id_question>
+			<p3:numero_question>1234</p3:numero_question>
+			<p3:type>QE</p3:type>
+			<p3:source>AN</p3:source>
+			<p3:legislature>13</p3:legislature>
+		</p5:id_question>
+
+	</p:resultatControleErratumQuestion>
+
+
+
+	<p:resultatControleErratumReponse>
+		<p5:statut>OK</p5:statut>
+
+		<p5:id_question>
+			<p3:numero_question>1234</p3:numero_question>
+			<p3:type>QE</p3:type>
+			<p3:source>AN</p3:source>
+			<p3:legislature>13</p3:legislature>
+		</p5:id_question>
+
+	</p:resultatControleErratumReponse>
+
+</p:controlePublicationResponse>

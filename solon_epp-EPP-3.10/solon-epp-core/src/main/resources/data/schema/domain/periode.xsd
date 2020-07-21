@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://dila.fr/solonepp/schema/periode/" xmlns:per="http://dila.fr/solonepp/schema/periode/">
+
+	<!-- Identifiant technique de l'enregistrement -->
+	<xs:element name="identifiant" type="xs:string" />
+
+	<!-- Type de période (PERIODE, LEGISLATURE) -->
+	<xs:element name="typePeriode" type="xs:string" />
+
+	<!-- Propriétaire de la période (GOUVERNEMENT, AN, SENAT) -->
+	<xs:element name="proprietaire" type="xs:string" />
+
+	<!-- Numéro -->
+	<xs:element name="numero" type="xs:string" />
+
+	<!-- Date de début de la période -->
+	<xs:element name="dateDebut" type="xs:date" />
+
+	<!-- Date de fin de la période -->
+	<xs:element name="dateFin" type="xs:date" />
+
+</xs:schema>

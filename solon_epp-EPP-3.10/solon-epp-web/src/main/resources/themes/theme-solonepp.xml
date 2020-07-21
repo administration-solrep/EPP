@@ -1,0 +1,2341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<theme name="solonepp" template-engines="jsf-facelets">
+	<layout>
+		<page name="default">
+			<section>
+				<cell>
+					<fragment type="DilaFragment" />
+				</cell>
+			</section>
+			<section>
+				<cell>
+					<fragment type="DilaFragment" />
+				</cell>
+				<cell>
+					<fragment type="generic fragment" />
+				</cell>
+			</section>
+			<section>
+				<cell>
+					<fragment type="DilaFragment" />
+					<!-- calendar -->
+					<fragment perspectives="view_calendar" type="generic fragment" />
+				</cell>
+				<cell>
+					<!-- main area -->
+					<fragment type="region fragment" />
+					<!-- Sub Area -->
+					<fragment type="region fragment" />
+				</cell>
+			</section>
+			<section>
+				<cell>
+					<fragment type="DilaFragment" />
+				</cell>
+			</section>
+		</page>
+		<page name="popup">
+			<section>
+				<cell>
+					<!-- main area -->
+					<fragment type="region fragment" />
+				</cell>
+				<cell>
+					<!-- Include -->
+					<fragment type="generic fragment" />
+				</cell>
+			</section>
+		</page>
+		<page name="print">
+			<section>
+				<cell>
+					<!-- includes -->
+					<fragment type="generic fragment" />
+					<!-- Subbody -->
+					<fragment type="region fragment" />
+				</cell>
+			</section>
+		</page>
+	</layout>
+	<properties element="page[1]/section[3]/cell[2]/fragment[1]">
+		<name>body</name>
+		<defaultBody />
+		<defaultSrc />
+	</properties>
+	<properties element="page[1]/section[3]/cell[2]/fragment[2]">
+		<name>subbody</name>
+		<defaultBody />
+		<defaultSrc />
+	</properties>
+	<properties element="page[2]/section[1]/cell[1]/fragment[1]">
+		<name>body</name>
+		<defaultBody />
+		<defaultSrc />
+	</properties>
+	<properties element="page[3]/section[1]/cell[1]/fragment[2]">
+		<name>subbody</name>
+		<defaultBody />
+		<defaultSrc />
+	</properties>
+	<formats>
+		<layout element="page[1]">
+			<margin>0</margin>
+			<padding>0</padding>
+		</layout>
+		<layout element="page[1]/section[3]">
+			<height>700px</height>
+			<width>100%</width>
+		</layout>
+		<layout element="page[1]/section[3]/cell[1]">
+			<height>100%</height>
+			<width>0%</width>
+			<padding>0px</padding>
+		</layout>
+		<layout element="page[1]/section[4]">
+			<width>100%</width>
+		</layout>
+		<layout element="page[1]/section[4]/cell[1]">
+			<width>100%</width>
+			<text-align>right</text-align>
+		</layout>
+		<layout element="page[2]">
+			<margin>0</margin>
+			<padding>0</padding>
+		</layout>
+		<layout element="page[2]/section[1]">
+			<width>100%</width>
+		</layout>
+		<layout element="page[2]/section[1]/cell[1]" />
+		<layout element="page[2]/section[1]/cell[2]">
+			<width>0%</width>
+		</layout>
+		<layout element="page[3]">
+			<padding>20px</padding>
+		</layout>
+		<layout element="page[3]/section[1]">
+			<width>100%</width>
+		</layout>
+		<layout element="page[3]/section[1]/cell[1]" />
+		<layout element="page[1]/section[2]">
+			<width>100%</width>
+			<overflow>auto</overflow>
+		</layout>
+		<layout element="page[1]/section[2]/cell[1]">
+			<width>100%</width>
+		</layout>
+		<layout element="page[1]/section[2]/cell[2]">
+			<width>0%</width>
+		</layout>
+		<layout element="page[1]/section[3]/cell[2]">
+			<width>100%</width>
+		</layout>
+		<layout element="page[1]/section[1]">
+			<width>100%</width>
+		</layout>
+		<layout element="page[1]/section[1]/cell[1]">
+			<width>100%</width>
+		</layout>
+		<widget element="">
+			<view>theme view</view>
+			<icon>${org.nuxeo.ecm.contextPath}/icons/favicon.png</icon>
+			<charset>utf-8</charset>
+		</widget>
+		<widget element="page[1]">
+			<view>page frame</view>
+		</widget>
+		<widget element="page[1]/section[3]">
+			<view>section frame</view>
+		</widget>
+		<widget element="page[1]/section[4]">
+			<view>section frame</view>
+		</widget>
+		<widget element="page[1]/section[4]/cell[1]">
+			<view>cell frame</view>
+		</widget>
+		<widget element="page[1]/section[3]/cell[1]">
+			<view>cell frame</view>
+		</widget>
+		<widget element="page[1]/section[3]/cell[1]/fragment[2]">
+			<view>nuxeo5 calendar actions</view>
+		</widget>
+		<widget element="page[1]/section[3]/cell[2]/fragment[1]">
+			<view>facelet region</view>
+		</widget>
+		<!-- Page 2 -->
+		<widget element="page[2]">
+			<view>page frame</view>
+		</widget>
+		<widget element="page[2]/section[1]">
+			<view>section frame</view>
+		</widget>
+		<widget element="page[2]/section[1]/cell[1]">
+			<view>cell frame</view>
+		</widget>
+		<widget element="page[2]/section[1]/cell[2]/fragment[1]">
+			<view>nuxeo5 includes</view>
+		</widget>
+		<widget element="page[2]/section[1]/cell[1]/fragment[1]">
+			<view>facelet region</view>
+		</widget>
+		<!-- Page 4 : print page -->
+		<widget element="page[3]">
+			<view>page frame</view>
+		</widget>
+		<widget element="page[3]/section[1]">
+			<view>section frame</view>
+		</widget>
+		<widget element="page[3]/section[1]/cell[1]">
+			<view>cell frame</view>
+		</widget>
+		<widget element="page[3]/section[1]/cell[1]/fragment[1]">
+			<view>nuxeo5 includes</view>
+		</widget>
+		<widget element="page[1]/section[2]">
+			<view>section frame</view>
+		</widget>
+		<widget element="page[1]/section[2]/cell[1]">
+			<view>cell frame</view>
+		</widget>
+		<widget element="page[1]/section[3]/cell[2]/fragment[2]">
+			<view>facelet region</view>
+		</widget>
+		<widget element="page[1]/section[2]/cell[2]">
+			<view>cell frame</view>
+		</widget>
+		<widget element="page[1]/section[2]/cell[2]/fragment[1]">
+			<view>nuxeo5 includes</view>
+		</widget>
+		<widget element="page[1]/section[3]/cell[2]">
+			<view>cell frame</view>
+		</widget>
+		<widget element="page[1]/section[3]/cell[1]/fragment[1]">
+			<view>Collapsible Panel</view>
+		</widget>
+		<widget element="page[1]/section[1]">
+			<view>section frame</view>
+		</widget>
+		<widget element="page[1]/section[1]/cell[1]">
+			<view>cell frame</view>
+		</widget>
+		<widget element="page[1]/section[2]/cell[1]/fragment[1]">
+			<view>User services</view>
+		</widget>
+		<widget element="page[1]/section[1]/cell[1]/fragment[1]">
+			<view>User meta services</view>
+		</widget>
+		<widget element="page[3]/section[1]/cell[1]/fragment[2]">
+			<view>facelet region</view>
+		</widget>
+		<widget element="page[1]/section[4]/cell[1]/fragment[1]">
+			<view>SolonEppFooter</view>
+		</widget>
+		<!-- buttons -->
+		<style name="default buttons">
+			<selector path="input.button">
+				<font preset="default (Reponses fonts)" />
+				<color preset="buttons (Reponses colors)" />
+				<border preset="buttons (Reponses borders)" />
+				<background preset="buttons (Reponses backgrounds)" />
+				<margin>5px 0px 10px 0px</margin>
+				<padding>2px 5px 2px 5px</padding>
+				<cursor>pointer</cursor>
+			</selector>
+			<selector path="input.button:hover">
+				<color preset="buttons.hover (Reponses colors)" />
+				<border preset="buttons.hover (Reponses borders)" />
+			</selector>
+			<selector
+				path="input.button[disabled=disabled], input.button[disabled=disabled]:hover">
+				<color preset="buttons.disabled (Reponses colors)" />
+				<border preset="buttons (Reponses borders)" />
+				<cursor>default</cursor>
+			</selector>
+			<selector path=".printButton">
+				<padding>5px 5px 0</padding>
+				<float>right</float>
+				<text-align>right</text-align>
+			</selector>
+		</style>
+		<!-- <style name="breadcrumbs style"> <selector path=""> <border-bottom 
+			preset="breadcrumb (Reponses borders)"/> <background preset="breadcrumb (Reponses 
+			fonts)"/> <padding>3px 7px</padding> </selector> <selector path="div"> <font 
+			preset="small (Reponses fonts)"/> <margin>0</margin> <line-height>1.25em</line-height> 
+			<padding>0</padding> </selector> <selector path="a"> <color preset="breadcrumblink 
+			(Reponses colors)" /> <text-decoration>none</text-decoration> </selector> 
+			<selector path="a:visited"> <color preset="breadcrumblink (Reponses colors)" 
+			/> </selector> <selector path="a:active"> <color preset="breadcrumblink (Reponses 
+			colors)" /> </selector> <selector path="a:hover"> <color preset="breadcrumblink 
+			(Reponses colors)" /> <text-decoration>underline</text-decoration> </selector> 
+			<selector path=".breadcrumbs a, .breadcrumbs a:link, .breadcrumbs a:visited"> 
+			<font-weight>normal</font-weight> <text-decoration>none</text-decoration> 
+			</selector> <selector path=".breadcrumbs a:hover, .breadcrumbs a:active"> 
+			<font-weight>normal</font-weight> <text-decoration>underline</text-decoration> 
+			</selector> <selector path=".printButton"> <float>right</float> <padding-right>1px</padding-right> 
+			</selector> <selector path=".printButton div a img"> <margin-left>5px</margin-left> 
+			<height>16px</height> <width>16px</width> </selector> <selector path=".printButton 
+			.liveEditCreateButtons"> <margin-right>5px</margin-right> <border-right preset="tablelines 
+			(Reponses borders)" /> <padding-right>8px</padding-right> </selector> <selector 
+			path=".breadcrumbs"> <font-size>9px</font-size> <padding>5px 4px 0px 0px</padding> 
+			<float>left</float> </selector> <selector path=".printButton form, .breadcrumbs 
+			form"> <padding>0</padding> <margin>0</margin> </selector> </style> -->
+		<style name="default tabs" inherit="default buttons">
+			<selector path=".tabsBar">
+				<border-bottom preset="tabsbar (Reponses borders)" />
+				<width>100%</width>
+				<margin-top>5px</margin-top>
+				<line-height>normal</line-height>
+				<float>left</float>
+			</selector>
+			<selector path=".tabsBar ul">
+				<margin>0</margin>
+				<padding>0px 10px 0 0</padding>
+				<list-style>none</list-style>
+			</selector>
+			<selector path=".tabsBar li">
+				<margin-right>5px</margin-right>
+				<margin>0</margin>
+				<padding>0</padding>
+				<float>left</float>
+			</selector>
+			<selector path=".tabsBar a, .tabsBar a:hover, .tabsBar a:visited">
+				<color preset="tablink (Reponses colors)" />
+				<border preset="tabisnotselected (Reponses borders)" />
+				<background preset="white (Reponses backgrounds)" />
+				<text-decoration>none</text-decoration>
+				<font-weight>normal</font-weight>
+				<display>block</display>
+				<padding>3px 7px</padding>
+				<float>left</float>
+			</selector>
+			<selector
+				path=".tabsBar li.selected a, .tabsBar li.selected a:hover, .tabsBar li.selected a:visited">
+				<color preset="tablink.active (Reponses colors)" />
+				<border preset="tabiselected (Reponses borders)" />
+				<background preset="tabiselected (Reponses backgrounds)" />
+			</selector>
+			<selector path=".tabsBar li a:hover">
+				<color preset="tablink.active (Reponses colors)" />
+				<background preset="tabiselected (Reponses backgrounds)" />
+			</selector>
+			<selector path=".subtabsBar">
+				<border-bottom preset="subtabsbar (Reponses borders)" />
+				<font preset="default (Reponses borders)" />
+			</selector>
+			<selector path=".subtabsBar a, .subtabsBar a:hover, .subtabsBar a:visited">
+				<color preset="subtablink (Reponses colors)" />
+				<border preset="subtabisnotselected (Reponses borders)" />
+			</selector>
+			<selector path=".subtabsBar li a:hover">
+				<color preset="subtablink.active (Reponses colors)" />
+				<background preset="subtabiselected (Reponses backgrounds)" />
+			</selector>
+			<selector
+				path=".subtabsBar li.selected a, .subtabsBar li.selected a:hover, .subtabsBar li.selected a:visited">
+				<color preset="subtablink.active (Reponses colors)" />
+				<border preset="subtabiselected (Reponses borders)" />
+				<background preset="subtabiselected (Reponses backgrounds)" />
+			</selector>
+		</style>
+		<style inherit="default buttons" name="header style">
+			<selector path=".searchService, .userMetaActions">
+				<font preset="small (Reponses fonts)" />
+			</selector>
+			<selector path=".searchService">
+				<float>right</float>
+			</selector>
+			<selector path=".directoryFilter, .searchField">
+				<border preset="dataInput (Reponses borders)" />
+				<background preset="search (Reponses backgrounds)" />
+				<margin>0 5px 10px 0</margin>
+				<font-size>11px</font-size>
+				<padding>3px 3px 3px 20px</padding>
+			</selector>
+			<selector path="a, a:link, a:visited">
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path="a:hover, a:active">
+				<text-decoration>underline</text-decoration>
+			</selector>
+			<selector path="a, a:link, a:visited, a:hover, a:active">
+				<color preset="header.link (Reponses colors)" />
+			</selector>
+			<selector path="img">
+				<margin-left>5px</margin-left>
+				<margin-right>2px</margin-right>
+				<vertical-align>middle</vertical-align>
+			</selector>
+			<selector path=".advancedSearchLink">
+				<margin>0 2px 0 0</margin>
+				<line-height>1%</line-height>
+				<padding>0</padding>
+			</selector>
+			<selector path=".userServices .button">
+				<margin-right>4px</margin-right>
+			</selector>
+		</style>
+		<style inherit="default tabs" name="common style 1">
+			<selector path="h1, h2, h3, h4, h5, h6, form, p">
+				<margin>0</margin>
+				<padding>0</padding>
+			</selector>
+			<selector path="input">
+				<margin>0</margin>
+			</selector>
+			<selector path=".pageNavigationControls span">
+				<color>#757575</color>
+				<vertical-align>top</vertical-align>
+				<font-weight>bold</font-weight>
+				<margin>10px 5px</margin>
+				<font-size>13px</font-size>
+			</selector>
+			<selector path=".directoryBack">
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/arrow_left.gif)
+					3px 1px no-repeat</background>
+				<padding>2px 2px 2px 20px</padding>
+			</selector>
+			<selector path=".errorMessage">
+				<color>#000</color>
+				<border>1px solid #666</border>
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/warning.gif) 2px
+					3px no-repeat #FFCC33</background>
+				<width>480px</width>
+				<margin>2px 0 2px 0</margin>
+				<display>block</display>
+				<list-style>none</list-style>
+				<padding>3px 3px 3px 23px</padding>
+			</selector>
+			<selector path=".taskActions">
+				<width>470px</width>
+			</selector>
+			<selector path=".infoMessage">
+				<color>#003399</color>
+				<border>1px solid #0066cc</border>
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/tip.gif) 2px 3px
+					no-repeat #f2f7fc</background>
+				<margin-bottom>5px</margin-bottom>
+				<display>block</display>
+				<padding>5px 5px 5px 23px</padding>
+			</selector>
+			<selector path=".rightsAddManager td">
+				<border>1px solid #4e9ae1</border>
+				<background-color>#fff</background-color>
+				<margin>0 10px 0 10px</margin>
+				<padding>10px</padding>
+			</selector>
+			<selector path=".massEditForm foldableBox">
+				<margin-right>15px</margin-right>
+			</selector>
+			<selector path=".wizardFrame">
+				<border>2px solid #3399ff</border>
+				<width>800px</width>
+				<padding>0 5px</padding>
+			</selector>
+			<selector path=".error">
+				<color>red</color>
+				<font-weight>bold</font-weight>
+			</selector>
+			<selector path=".archiveTabContent">
+				<margin-left>18px</margin-left>
+			</selector>
+			<selector path="h4">
+				<color>#4a4a4a</color>
+				<margin-top>5px</margin-top>
+			</selector>
+			<selector path=".iconColumn">
+				<width>20px</width>
+				<text-align>center</text-align>
+			</selector>
+			<selector path=".iconColumn .dropInto">
+				<background-color>#adf</background-color>
+			</selector>
+			<selector path=".wizardFrame .wizardFinish h4 img">
+				<margin-right>10px</margin-right>
+				<float>left</float>
+			</selector>
+			<selector path=".dataInputGroup">
+				<vertical-align>top</vertical-align>
+				<margin>0</margin>
+				<padding>0</padding>
+			</selector>
+			<selector path=".relationActionsColumn">
+				<vertical-align>top</vertical-align>
+				<width>60px</width>
+				<text-align>center</text-align>
+			</selector>
+			<selector
+				path="table.dataOutput thead th a, table.dataOutput thead th a:hover, table.dataOutput thead th a:active, table.dataOutput thead th a:visited">
+				<color>#606161</color>
+			</selector>
+			<selector path=".boldColumn">
+				<font-weight>bold</font-weight>
+			</selector>
+			<selector
+				path=".facesStatusMessage ul, .infoFeedback ul, .warningFeedback ul, .errorFeedback ul">
+				<list-style-type>none</list-style-type>
+				<width>200px</width>
+				<padding>10px</padding>
+			</selector>
+			<selector path=".vocabularyEntryContent .notEditable">
+				<color>#000</color>
+				<background-color>#fff</background-color>
+			</selector>
+			<selector path=".warningMessage">
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/warning.gif) 2px
+					3px no-repeat #FFCC33</background>
+				<width>500px</width>
+				<margin>2px 0 2px 0</margin>
+				<border>1px solid #666</border>
+				<color>#000</color>
+				<margin-bottom>12px</margin-bottom>
+				<display>block</display>
+				<padding>5px 5px 5px 23px</padding>
+				<list-style>none</list-style>
+			</selector>
+			<selector path=".vocabularyEntryContent .dataInput">
+				<border>none</border>
+				<margin-bottom>15px</margin-bottom>
+			</selector>
+			<selector path=".buttonColumn">
+				<width>280px</width>
+				<text-align>center</text-align>
+			</selector>
+			<selector path=".radioColumn">
+				<vertical-align>top</vertical-align>
+				<width>8px</width>
+				<padding>0 0 0 5px</padding>
+			</selector>
+			<selector path=".focusColumn">
+				<background-color>#ddeeff</background-color>
+			</selector>
+			<selector path="a:visited">
+				<color preset="link.visited (Reponses colors)" />
+			</selector>
+			<selector path=".dataInput textarea, .dataInput .dataInputText">
+				<width>500px</width>
+			</selector>
+			<selector path=".selectDocumentType td">
+				<padding>3px</padding>
+			</selector>
+			<selector path=".vocabularyEntryContent">
+				<margin-left>18px</margin-left>
+			</selector>
+			<selector path=".dataOutput, .dataList">
+				<width>100%</width>
+			</selector>
+			<selector path=".wizardFrame .templatePreview">
+				<border>1px solid #3399FF</border>
+				<padding>10px</padding>
+			</selector>
+			<selector path=".dataList td">
+				<border-bottom preset="tablelines (Reponses borders)" />
+				<border-top preset="tablelines (Reponses borders)" />
+				<padding>5px 3px</padding>
+			</selector>
+			<selector path=".dataOutput td table td">
+				<border>0px none transparent</border>
+			</selector>
+			<selector path=".currentItemDescription">
+				<color>#454545</color>
+				<font-size>13px</font-size>
+			</selector>
+			<!-- Specific to Case Management & Correspondence -->
+			<selector path=".float">
+				<float>left</float>
+			</selector>
+			<selector path=".modeButton a">
+				<color>#333</color>
+				<border>1px solid #CCC</border>
+				<background-color>#EEEFF0</background-color>
+				<font-size>9px</font-size>
+				<padding>4px 5px</padding>
+				<float>right</float>
+			</selector>
+			<selector path=".dataInput">
+				<margin-top>5px</margin-top>
+			</selector>
+			<selector path=".classificationView">
+				<width>100%</width>
+			</selector>
+			<selector path=".classificationView .labelColumn">
+				<text-align>left</text-align>
+			</selector>
+			<selector path="div">
+				<font preset="default (Reponses fonts)" />
+				<margin>0</margin>
+				<line-height>1.25em</line-height>
+				<padding>0</padding>
+			</selector>
+			<selector path=".listingLayoutSelector">
+				<margin>11px 0 10px</margin>
+				<float>right</float>
+			</selector>
+			<!-- rich faces tree -->
+			<selector path=".dr-tree-h-ic-div">
+				<margin-left>8px</margin-left>
+				<padding-left>10px</padding-left>
+			</selector>
+			<selector path=".treeNodeHighlightedClass">
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path=".treeNodeSelectedClass">
+				<border>none</border>
+			</selector>
+			<!-- Rich Faces fileUpload -->
+			<selector path=".rich-fileupload-list-decor">
+				<margin>10px 0px</margin>
+			</selector>
+			<selector path=".rich-fileupload-button, .rich-fileupload-button-border">
+				<padding>2px</padding>
+			</selector>
+			<selector
+				path=".rich-fileupload-button-light, .rich-fileupload-button-press">
+				<padding>1px</padding>
+			</selector>
+			<selector path=".rich-fileupload-button-content">
+				<padding>2px 6px 2px 19px</padding>
+			</selector>
+			<!-- End of Rich Faces fileUpload -->
+			<selector path=".rightsAddSelect">
+				<border>1px normal #666</border>
+				<margin-top>0px</margin-top>
+			</selector>
+			<selector path=".dataList thead th">
+				<border-bottom preset="tablelines (Reponses borders)" />
+				<color>#606161</color>
+				<background preset="tablethead (Reponses backgrounds)" />
+				<padding>5px 3px</padding>
+				<text-align>left</text-align>
+			</selector>
+			<selector path=".dataList thead th a, .dataList thead th a:link">
+				<color>#606161</color>
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path=".dataList thead th a:visited">
+				<color>#606161</color>
+			</selector>
+			<selector path=".dataList thead th a:active">
+				<color>#606161</color>
+			</selector>
+			<selector path=".dataList thead th a:hover">
+				<color>#606161</color>
+				<text-decoration>underline</text-decoration>
+			</selector>
+			<selector path=".relationPredicateColumn">
+				<vertical-align>top</vertical-align>
+				<width>100px</width>
+			</selector>
+			<selector path=".selectDocumentType">
+				<margin-top>10px</margin-top>
+			</selector>
+			<selector path=".archiveTabContent .notEditable">
+				<color>#000</color>
+				<border>none</border>
+				<background-color>#fff</background-color>
+			</selector>
+			<selector path=".twoColumns">
+				<width>50%</width>
+			</selector>
+			<selector path=".dataInput .button">
+				<margin>0 10px 0 0</margin>
+			</selector>
+			<selector path=".wizardFrame .templatePreview .templatePreviewDescription">
+				<font-style>italic</font-style>
+			</selector>
+			<selector path=".pageNavigationControls">
+				<margin>5px 0px</margin>
+				<padding>7px</padding>
+				<text-align>center</text-align>
+				<float>left</float>
+			</selector>
+			<selector path=".dataList">
+				<background>white</background>
+				<border-collapse>collapse</border-collapse>
+				<margin>0</margin>
+			</selector>
+			<selector path=".dataInput .fieldColumn table.mceEditor .mceToolbarBottom">
+				<background-color>#ddeeff</background-color>
+			</selector>
+			<selector path=".wizardFrame .wizardButtonBar">
+				<text-align>right</text-align>
+			</selector>
+			<selector path=".buttonsGadgetNoForm .button">
+				<margin-right>10px</margin-right>
+			</selector>
+			<selector path=".iconColumn .cell">
+				<background>none</background>
+				<width>40px</width>
+			</selector>
+			<selector path="a, a:link">
+				<color preset="link (Reponses colors)" />
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path="a:active">
+				<color preset="link.active (Reponses colors)" />
+			</selector>
+			<!-- surcharge pour afficher les liens en tant que texte dans l'administration 
+				des parapheurs -->
+			<selector
+				path=".administrationParapheurTreeWidth a, .administrationParapheurTreeWidth a:link, .administrationParapheurTreeWidth a:hover, .administrationParapheurTreeWidth a:active, .administrationParapheurTreeWidth a:visited">
+				<color>black</color>
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path="a:hover">
+				<color preset="link (Reponses colors)" />
+				<text-decoration>underline</text-decoration>
+			</selector>
+			<selector path="table">
+				<margin>0</margin>
+			</selector>
+			<selector path=".pictureBookItem">
+				<height>160px</height>
+				<border>1px solid #2A90F6</border>
+				<background-color>#ddeeff</background-color>
+				<width>140px</width>
+				<margin>10px 20px 10px 0px</margin>
+				<float>left</float>
+				<text-align>center</text-align>
+			</selector>
+			<selector path=".itemSelected">
+				<border>1px solid #ff9933</border>
+				<background-color>#ffcc66</background-color>
+			</selector>
+			<selector path=".pictureBookItem .cell">
+				<height>110px</height>
+				<padding-top>15px</padding-top>
+				<text-align>center</text-align>
+			</selector>
+			<selector path=".pictureBookItem .cell a">
+				<height>100px</height>
+				<width>100px</width>
+				<display>block</display>
+				<padding>20px</padding>
+			</selector>
+			<selector path=".pictureBookItemTitle">
+				<font preset="small (Reponses fonts)" />
+				<background-color>#2A90F6</background-color>
+				<padding>5px 0</padding>
+			</selector>
+			<selector
+				path=".pictureBookItemTitle a, .pictureBookItemTitle a:hover, .pictureBookItemTitle a:visited">
+				<color>#001986</color>
+			</selector>
+			<selector path=".slideshowContent">
+				<padding>10px 0px 5px 50px</padding>
+			</selector>
+			<selector path=".slideshowContent h3">
+				<padding>8px 0px 5px 70px</padding>
+			</selector>
+			<selector path=".slideShowControl">
+				<margin>0px 0px 10px</margin>
+			</selector>
+			<selector path=".slideShowControl input">
+				<margin>0px 3px</margin>
+				<padding>0px</padding>
+			</selector>
+			<selector
+				path=".slideShowControl input.button[disabled=&quot;disabled&quot;]">
+				<background>url(${org.nuxeo.ecm.contextPath}/img/button_disabled.gif)
+					0 0 repeat-x #ebeff4</background>
+				<border-color>#ccc #999 #999 #ccc</border-color>
+				<cursor>default</cursor>
+			</selector>
+			<selector path=".slideShowControl .indexPicture">
+				<margin>0px 3px 4px 0px</margin>
+			</selector>
+			<selector path=".rightsAdd">
+				<margin>10px 0 10px 0</margin>
+			</selector>
+			<selector path=".foldableBox">
+				<border preset="tabisnotselected (Reponses borders)" />
+				<margin-bottom>20px</margin-bottom>
+			</selector>
+			<selector path=".foldableBox h3">
+				<border-bottom preset="tabiselected (Reponses borders)" />
+				<color preset="white (Reponses colors)" />
+				<font-size>11px</font-size>
+				<padding>3px 3px 3px 18px</padding>
+			</selector>
+			<selector path=".foldableBox h3.folded">
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/arrow_folded.gif)
+					top left no-repeat</background>
+			</selector>
+			<selector
+				path=".foldableBox h3 a:link, .foldableBox h3 a:visited, .foldableBox h3 a:hover, .foldableBox h3 a:visited:hover">
+				<color preset="white (Reponses colors)" />
+			</selector>
+			<selector path=".foldableBox h3.unfolded">
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/arrow_unfolded.gif)
+					top left no-repeat</background>
+			</selector>
+			<selector path=".foldableBox h3 a">
+				<color preset="white (Reponses colors)" />
+				<display>block</display>
+			</selector>
+			<selector path=".foldableBox .boxBody">
+				<background>#ffffff</background>
+				<padding>10px</padding>
+			</selector>
+			<selector
+				path=".relationCreateFieldColumn, .fieldColumn, .workflowFieldColumn">
+				<vertical-align>top</vertical-align>
+			</selector>
+			<selector path=".commentQuote">
+				<font-family>Verdana, Arial, sans-serif</font-family>
+				<width>99%</width>
+				<font-weight>normal</font-weight>
+				<margin>5px 0 5px 0</margin>
+			</selector>
+			<selector path=".warningFeedback">
+				<color>#000</color>
+				<font>bold 11px Verdana, sans-serif</font>
+				<border>2px solid #666</border>
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/warning.gif) 4px
+					5px no-repeat #FFCC33</background>
+				<padding>7px 7px 7px 24px</padding>
+			</selector>
+			<selector path=".vocabularyEntryContent .currentDocumentInformation">
+				<background-color>#DDEEFF</background-color>
+			</selector>
+			<selector path=".rightsAddLabel">
+				<font-weight>bold</font-weight>
+				<padding>0 5px 0 0px</padding>
+			</selector>
+			<selector path=".archiveTabContent .currentDocumentInformation">
+				<background-color>#DDEEFF</background-color>
+			</selector>
+			<selector path=".buttonsGadget">
+				<margin>5px 0px 5px 135px</margin>
+			</selector>
+			<selector path=".errorFeedback">
+				<color>#000</color>
+				<font>bold 11px Verdana, sans-serif</font>
+				<border>2px solid #666</border>
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/warning.gif) 4px
+					5px no-repeat #FFCC33</background>
+				<padding>7px 7px 7px 24px</padding>
+			</selector>
+			<selector path=".wizardFrame .templatePreview img">
+				<border>1px solid #333</border>
+				<float>left</float>
+			</selector>
+			<selector path=".dataInput td">
+				<border>0px solid #FFF</border>
+				<padding>4px 4px</padding>
+			</selector>
+			<selector
+				path=".dataInput textarea, .dataInput .dataInputText, .dataInput .dataInputTextNoSize">
+				<font>normal 11px Verdana, sans-serif</font>
+				<border>1px normal #666</border>
+				<vertical-align>top</vertical-align>
+				<padding>4px</padding>
+			</selector>
+			<selector path="h4, h5, h6">
+				<font preset="title4+ (Reponses fonts)" />
+			</selector>
+			<selector path=".relationCommentList">
+				<background>transparent</background>
+			</selector>
+			<selector path=".infoFeedback">
+				<color>#003399</color>
+				<font>bold 11px Verdana, sans-serif</font>
+				<border>2px solid #0066cc</border>
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/info.gif) 4px 5px
+					no-repeat #f2f7fc</background>
+				<padding>7px 7px 7px 24px</padding>
+			</selector>
+			<selector path=".pageNavigationControls input">
+				<margin-left>5px</margin-left>
+			</selector>
+			<selector path=".relationCreateLabelColumn">
+				<width>80px</width>
+			</selector>
+			<selector path=".commentAuthor">
+				<color>#666</color>
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/comment.gif)
+					no-repeat 4px 4px</background>
+				<font-weight>bold</font-weight>
+				<padding>5px 3px 3px 24px</padding>
+			</selector>
+			<selector path=".serverChoice">
+				<margin-right>30px</margin-right>
+				<width>200px</width>
+				<margin-top>20px</margin-top>
+				<float>left</float>
+				<text-align>center</text-align>
+			</selector>
+			<selector path=".dataInput .fieldColumn table.mceEditor">
+				<background-color>#ddeeff</background-color>
+				<border-color>#ccc</border-color>
+				<border-style>solid</border-style>
+				<border-width>1px</border-width>
+			</selector>
+			<selector path="table.dataOutput thead th">
+				<border-bottom preset="tablelines (Reponses borders)" />
+				<color>#606161</color>
+				<background preset="tablethead (Reponses backgrounds)" />
+				<padding>5px 3px</padding>
+				<text-align>left</text-align>
+			</selector>
+			<selector path=".relationCommentList td">
+				<border>0px none</border>
+			</selector>
+			<selector path=".facesStatusMessage">
+				<position>fixed</position>
+				<left>48%</left>
+				<top>19%</top>
+			</selector>
+			<selector path=".currentDocumentDescription">
+				<padding>4px 0</padding>
+			</selector>
+			<selector path=".rightsAddTitle">
+				<border>1px solid #0066cc</border>
+				<background>#f2f7fc</background>
+				<padding>5px</padding>
+				<text-align>center</text-align>
+			</selector>
+			<selector path=".dataOutput">
+				<border-collapse>collapse</border-collapse>
+				<margin-bottom>5px</margin-bottom>
+				<margin-top>7px</margin-top>
+			</selector>
+			<selector path=".dataOutput2Columns td">
+				<vertical-align>top</vertical-align>
+				<padding>5px 3px</padding>
+			</selector>
+			<selector path=".selectDocumentType td a img">
+				<margin-right>4px</margin-right>
+				<vertical-align>top</vertical-align>
+			</selector>
+			<selector path=".commentCreationDate">
+				<font-weight>normal</font-weight>
+			</selector>
+			<selector path="table thead th">
+				<padding>3px</padding>
+				<text-align>left</text-align>
+			</selector>
+			<selector path=".fieldColumn img">
+				<margin-left>4px</margin-left>
+				<margin-right>4px</margin-right>
+				<vertical-align>top</vertical-align>
+			</selector>
+			<selector
+				path=".relationCreateFieldColumn table, .fieldColumn table, .workflowFieldColumn table">
+				<border>0px none #fff</border>
+				<vertical-align>top</vertical-align>
+				<margin>0 0 0 0</margin>
+			</selector>
+			<selector path=".required">
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/required.gif) top
+					right no-repeat</background>
+				<padding-right>8px</padding-right>
+			</selector>
+			<selector path=".archiveTabContent .dataInput">
+				<border>none</border>
+				<margin-bottom>15px</margin-bottom>
+			</selector>
+			<selector path=".closedContent">
+				<background>#FFF</background>
+				<border-color>#0066cc</border-color>
+				<margin>15px 0px 0px 0px</margin>
+				<padding>0px 10px 10px 10px</padding>
+				<border-style>solid</border-style>
+				<border-width>1px</border-width>
+			</selector>
+			<selector path=".dataOutput td">
+				<border-bottom preset="tablelines (Reponses borders)" />
+				<border-top preset="tablelines (Reponses borders)" />
+				<padding>2px 3px</padding>
+			</selector>
+			<selector path=".relationObjectColumn">
+				<vertical-align>top</vertical-align>
+				<width>100px</width>
+			</selector>
+			<selector path=".labelColumn">
+				<vertical-align>top</vertical-align>
+				<width>200px</width>
+				<font-weight>bold</font-weight>
+			</selector>
+			<selector path=".rightsAddManager .labelColumn">
+				<width>80px</width>
+			</selector>
+			<selector path=".smallButtonsGadget">
+				<margin>0 0 5px 100px</margin>
+			</selector>
+			<selector
+				path=".relationCreateLabelColumn, .labelColumn, .workflowLabelColumn">
+				<text-align>right</text-align>
+			</selector>
+			<selector path=".workflowLabelColumn">
+				<width>120px</width>
+			</selector>
+			<selector path="h2">
+				<color>#4a4a4a</color>
+				<font preset="title 2 (Reponses fonts)" />
+				<padding>0.5em 1em 0.5em 0</padding>
+			</selector>
+			<selector path=".dataInput select">
+				<border>1px normal #666</border>
+				<vertical-align>top</vertical-align>
+				<padding>2px 1px 2px 1px</padding>
+			</selector>
+			<selector path=".dataInput .fieldColumn table.mceEditor .mceEditorIframe">
+				<background-color>#fff</background-color>
+				<border-color>#333 #999 #999 #333</border-color>
+				<padding>0px</padding>
+				<border-style>solid</border-style>
+				<border-width>1px</border-width>
+			</selector>
+			<selector path=".action_bar">
+				<margin>10px 10px 10px 20px</margin>
+				<line-height>normal</line-height>
+			</selector>
+			<selector path=".action_bar ul">
+				<margin>0</margin>
+				<list-style>none</list-style>
+				<padding>0px 10px 0 0</padding>
+				<float>left</float>
+			</selector>
+			<selector path=".action_bar li">
+				<margin>0</margin>
+				<padding>0</padding>
+			</selector>
+			<selector path=".action_bar img">
+				<display>none</display>
+			</selector>
+			<selector path=".action_bar a">
+				<color>#333333</color>
+				<font preset="default (Reponses fonts)" />
+				<margin-right>10px</margin-right>
+				<border preset="buttons (Reponses borders)" />
+				<background preset="buttons (Reponses backgrounds)" />
+				<text-decoration>none</text-decoration>
+				<padding>4px 7px</padding>
+				<cursor>pointer</cursor>
+			</selector>
+			<selector path=".action_bar a:hover">
+				<color>#000000</color>
+				<border-color>#92999e</border-color>
+			</selector>
+			<selector path=".tabsContent">
+				<margin>0px</margin>
+				<padding>5px 10px 10px 10px</padding>
+			</selector>
+			<selector path=".tabsContent table.trashTable thead th">
+				<background-color>#ff9999</background-color>
+			</selector>
+			<selector path="table.trashTable tbody tr.dataRowOdd">
+				<background-color>#F7EEDD</background-color>
+			</selector>
+			<selector path="textarea">
+				<padding>5px</padding>
+			</selector>
+			<selector path=".rightsAddManager">
+				<background>url(${org.nuxeo.ecm.contextPath}/img/rightsadd_bar.gif)
+					no-repeat center</background>
+				<width>100%</width>
+				<margin>3px 0 0 0</margin>
+			</selector>
+			<selector path=".userAndGroupSearch">
+				<margin>0</margin>
+			</selector>
+			<selector path=".userAndGroupFilter">
+				<margin>15px 0 0 0</margin>
+			</selector>
+			<selector path=".buttonsGadgetNoForm">
+				<margin>0px 5px</margin>
+			</selector>
+			<selector path=".dataOutput .button">
+				<margin>2px 10px 2px 0px</margin>
+			</selector>
+			<selector path=".commentBlock">
+				<border>1px solid #666</border>
+				<margin-bottom>8px</margin-bottom>
+				<margin-top>7px</margin-top>
+				<padding>2px 10px</padding>
+			</selector>
+			<selector path="h1">
+				<color>#4a4a4a</color>
+				<font preset="title1 (Reponses fonts)" />
+				<overflow>auto</overflow>
+			</selector>
+			<selector path=".dataRowEven">
+				<background>#fff</background>
+			</selector>
+			<selector path=".relationCommentColumn">
+				<vertical-align>top</vertical-align>
+			</selector>
+			<selector path=".subtabsBar">
+				<font>normal 11px "Lucida Grande", Verdana, sans-serif</font>
+			</selector>
+			<selector path=".taskAssign">
+				<border>1px solid #0066cc</border>
+				<background>#f2f7fc</background>
+				<margin>5px 0px 10px 0px</margin>
+				<display>block</display>
+				<padding>5px</padding>
+				<text-align>center</text-align>
+			</selector>
+			<selector path=".commentActions">
+				<margin-right>4px</margin-right>
+				<font-size>10px</font-size>
+				<padding>3px</padding>
+				<float>right</float>
+			</selector>
+			<selector path=".iconColumn img">
+				<position>relative</position>
+				<background>none</background>
+				<z-index>25</z-index>
+			</selector>
+			<selector path="h3">
+				<color>#4a4a4a</color>
+				<font preset="title3 (Reponses fonts)" />
+				<margin>0</margin>
+				<padding>13px 0px 10px 0px</padding>
+			</selector>
+			<selector path=".directoryFilter, .searchField">
+				<border>1px normal #666</border>
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/search.gif) 2px
+					2px no-repeat #FFF</background>
+				<margin>0 5px 10px 0</margin>
+				<font-size>11px</font-size>
+				<padding>3px 3px 3px 20px</padding>
+			</selector>
+			<selector path=".taskPrincipalSelect select">
+				<border>1px normal #666</border>
+				<margin>5px 0px 10px 15px</margin>
+				<padding>2px 1px 2px 1px</padding>
+			</selector>
+			<selector path=".dataRowOdd">
+				<background preset="tableevenlines (Reponses backgrounds)" />
+			</selector>
+			<selector path=".dataRowRetourPourModification">
+				<background
+					preset="tabledossierretourpourmodificationlines (Reponses backgrounds)" />
+			</selector>
+			<selector path=".dataRowUrgent">
+				<background preset="tabledossierurgentlines (Reponses backgrounds)" />
+			</selector>
+			<selector path="table.dataOutput th a img">
+				<vertical-align>bottom</vertical-align>
+				<margin>0 0 0 2px</margin>
+				<padding>0</padding>
+			</selector>
+			<selector path="table.dataInput td.fieldColumn label">
+				<vertical-align>top</vertical-align>
+			</selector>
+			<!-- Style for Resume Tab -->
+			<selector path="h3.summaryTitle">
+				<border-bottom preset="summary (Reponses borders)" />
+				<color preset="gray.dark (Reponses colors)" />
+				<font preset="title3 (Reponses fonts)" />
+				<margin>none</margin>
+				<padding>0px 0px 3px 0px</padding>
+			</selector>
+			<selector path=".dublincore_block table.floatingLeftTable">
+				<margin-right>100px</margin-right>
+				<float>left</float>
+			</selector>
+			<selector path=".labelColumnLeftAlign">
+				<font-weight>bold</font-weight>
+				<padding-right>30px</padding-right>
+			</selector>
+			<selector path=".boldLabel">
+				<font-weight>bold</font-weight>
+			</selector>
+			<selector path=".rank_block, .publication_block, .attachments">
+				<margin-top>15px</margin-top>
+			</selector>
+			<selector path=".content_block td">
+				<vertical-align>top</vertical-align>
+				<padding>0px 0px 10px 0px</padding>
+			</selector>
+			<selector path=".content_block .labelColumn">
+				<width>100px</width>
+			</selector>
+			<selector path=".content_block .fieldColumn div">
+				<padding>0px 0px 2px</padding>
+			</selector>
+			<selector path=".content_block img">
+				<padding>0px 5px</padding>
+			</selector>
+			<selector path=".note_content_block">
+				<border>1px solid #D7D7D7</border>
+				<margin-top>20px</margin-top>
+				<padding>15px</padding>
+			</selector>
+			<selector path=".lockFile_block, .restoreFile_block">
+				<padding>0px 0px 10px</padding>
+			</selector>
+			<selector path=".summary_locked">
+				<color preset="red (Reponses colors)" />
+				<font-weight>bold</font-weight>
+			</selector>
+			<selector path=".summary_unlocked">
+				<color preset="green (Reponses colors)" />
+				<font-weight>bold</font-weight>
+			</selector>
+			<selector path=".lockDetail, .DetailList">
+				<padding-top>5px</padding-top>
+			</selector>
+			<selector path=".lcAndVersion">
+				<border>1px solid #dedede</border>
+				<padding>3px</padding>
+			</selector>
+			<selector path=".actions_block">
+				<border>1px solid #DEDEDE</border>
+				<margin>10px 0</margin>
+				<padding>10px 7px 3px</padding>
+			</selector>
+			<selector path=".comments_block .commentBlock">
+				<border>none</border>
+			</selector>
+			<selector path=".comments_block .commentQuote">
+				<margin>5px 0 5px 24px</margin>
+			</selector>
+			<selector path=".metadata_block .dataInput td">
+				<padding>3px</padding>
+			</selector>
+			<selector path=".layoutViewMode">
+				<margin>0px</margin>
+				<padding>0px</padding>
+			</selector>
+			<selector path=".layoutViewMode li">
+				<display>inline</display>
+			</selector>
+			<selector path=".layoutViewMode a img">
+				<border>1px solid #fff</border>
+			</selector>
+			<selector
+				path=".layoutViewMode a:hover img, .layoutViewMode li.selected img">
+				<border>1px solid #aaa</border>
+			</selector>
+			<selector path=".summary_div_0">
+				<width>62%</width>
+				<float>left</float>
+			</selector>
+			<selector path=".summary_div_1">
+				<width>33%</width>
+				<padding>2px 0</padding>
+				<float>right</float>
+			</selector>
+			<selector path=".summary_div_1 h3.summaryTitle">
+				<color>#848484</color>
+				<font-size>12px</font-size>
+			</selector>
+			<selector path=".summary_div_2">
+				<clear>both</clear>
+			</selector>
+			<selector path=".bigIcon">
+				<width>50px</width>
+			</selector>
+			<!-- Specific to Document Routing -->
+			<selector path=".dataOutput td.cellVerticalBorder">
+				<vertical-align>top</vertical-align>
+				<border-right>1px solid #c7c7c7</border-right>
+			</selector>
+			<selector path=".cellActionIcon">
+				<cursor>pointer</cursor>
+			</selector>
+			<selector path=".stepExecutionIcon">
+				<margin-top>16px</margin-top>
+			</selector>
+			<selector path="td.routeRowBackground0">
+				<background-color>#fff</background-color>
+			</selector>
+			<selector path="td.routeRowBackground1">
+				<background-color>#f1fffb</background-color>
+			</selector>
+			<selector path="td.routeRowBackground2">
+				<background-color>#fffcee</background-color>
+			</selector>
+			<selector path="td.routeRowBackground3">
+				<background-color>#ecf4ff</background-color>
+			</selector>
+			<!-- WARN .fddTreeNodeHighlightedClass already defined in common style1 -->
+			<selector path=".fddTreeNodeHighlightedClass">
+				<color>#000000</color>
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path=".menuContextuelStyle .rich-menu-list-border">
+				<border>0px</border>
+				<background-color>#232323</background-color>
+				<width>150px</width>
+				<font preset="small (Reponses fonts)" />
+				<margin>0</margin>
+				<padding>1px</padding>
+			</selector>
+			<selector path=".menuContextuelStyle .rich-menu-list-bg">
+				<border>1px solid #232323</border>
+			</selector>
+			<selector path=".menuContextuelStyle .rich-menu-item">
+				<color>#E7E7E7</color>
+				<font preset="small (Reponses fonts)" />
+				<border>1px solid #232323</border>
+				<background-color>#3A3D40</background-color>
+				<margin>0</margin>
+				<display>block</display>
+				<padding>3px</padding>
+				<cursor>pointer</cursor>
+			</selector>
+			<selector path=".menuContextuelStyle .rich-menu-item:hover">
+				<color>#E7E7E7</color>
+				<font preset="small (Reponses fonts)" />
+				<border>1px solid #232323</border>
+				<background-color>#4E9AE1</background-color>
+				<margin>0</margin>
+				<display>block</display>
+				<padding>3px</padding>
+				<cursor>pointer</cursor>
+			</selector>
+			<selector path=".menuContextuelStyle .dr-menu-icon">
+				<margin-right>0px</margin-right>
+			</selector>
+			<!-- style menu contextuel feuille route dossier -->
+			<selector path=".ctxMenuItemStyle, .ctxMenuItemHoverStyle">
+				<text-align>left</text-align>
+			</selector>
+			<selector path=".ctxMenuItemStyle a, .ctxMenuItemHoverStyle a">
+				<color>#E7E7E7</color>
+				<font preset="small (Reponses fonts)" />
+				<margin>0</margin>
+				<cursor>pointer</cursor>
+				<text-decoration>none</text-decoration>
+				<text-align>left</text-align>
+			</selector>
+			<!-- on affiche pas les images du menu contextuel : affichage à l'interieur 
+				du rich:menu -->
+			<selector path=".menuContextuelStyle .rich-menu-item-icon">
+				<display>none</display>
+			</selector>
+			<selector path=".menuContextuelStyle .rich-menu-item-label img">
+				<vertical-align>middle</vertical-align>
+				<text-decoration>none</text-decoration>
+				<padding>1px 4px 1px 1px</padding>
+			</selector>
+			<selector path=".menuContextuelStyle .rich-menu-list-strut">
+				<display>none</display>
+			</selector>
+		</style>
+		<style inherit="common style 1" name="toolbar">
+			<selector path=".reponseToolBar">
+				<border-bottom preset="bluethin (Reponses borders)" />
+				<background-color>#D4E1F2</background-color>
+				<border-left preset="bluethin (Reponses borders)" />
+				<border-right preset="lessbluethick (Reponses borders)" />
+				<border-top preset="lessbluethick (Reponses borders)" />
+				<text-align>right</text-align>
+			</selector>
+			<selector path="div .reponseToolBar">
+				<height>38px</height>
+				<padding>5px</padding>
+			</selector>
+			<selector path=".enabledButton img, .disabledButton img">
+				<padding>3px</padding>
+			</selector>
+			<selector path=".dossierActions">
+				<float>left</float>
+			</selector>
+			<selector path="div .separator">
+				<height>25px</height>
+				<background-color>white</background-color>
+				<width>1px</width>
+				<margin>2px 2px 2px 2px</margin>
+				<border-right preset="bluethin (Reponses borders)" />
+				<display>inline-block</display>
+			</selector>
+			<selector path=".enabledButtonContainer">
+				<height>30px</height>
+				<border preset="reponseslightborder (Reponses borders)" />
+				<background preset="gradientbar (Reponses backgrounds)" />
+				<width>30px</width>
+				<display>inline-block</display>
+			</selector>
+			<selector path=".disabledButtonContainer">
+				<height>30px</height>
+				<border>1px solid #ABABAB</border>
+				<background preset="blackbar (Reponses backgrounds)" />
+				<width>30px</width>
+				<display>inline-block</display>
+			</selector>
+			<selector path=".disabledButtonContainer img">
+				<opacity>0.40</opacity>
+				<padding>3px</padding>
+			</selector>
+		</style>
+		<style inherit="toolbar" name="Dossier Print">
+			<selector path=".reponseToolBar">
+				<display>none</display>
+			</selector>
+			<selector path=".tabsBar">
+				<display>none</display>
+			</selector>
+			<selector path=".reponseInfoBar">
+				<display>none</display>
+			</selector>
+			<selector path=".tabsContent input">
+				<display>none</display>
+			</selector>
+		</style>
+		<style inherit="common style 1" name="MainArea">
+			<selector path=".inputNumberSpinnerStyle .rich-spinner-input-container">
+				<background-image>none</background-image>
+				<height>16px</height>
+				<border-color>#D3D3D3</border-color>
+				<padding>0px</padding>
+				<border-width>1px</border-width>
+			</selector>
+			<selector path=".emptyStyleClass">
+				<border preset="bluethin (Reponses borders)" />
+				<margin-top>5px</margin-top>
+				<display>block</display>
+				<padding>30px</padding>
+				<text-align>center</text-align>
+			</selector>
+			<selector path=".inputNumberSpinnerStyle .rich-spinner-buttons">
+				<height>16px</height>
+				<padding>0px</padding>
+				<border-width>1px</border-width>
+			</selector>
+			<selector
+				path=".inputNumberSpinnerStyle .rich-spinner-buttons table tbody tr td">
+				<padding>0px</padding>
+			</selector>
+			<selector
+				path=".inputNumberSpinnerStyle .rich-spinner-input td, .inputNumberSpinnerStyle .rich-spinner-button">
+				<margin-left>0px</margin-left>
+				<margin-right>1px</margin-right>
+				<margin-bottom>1px</margin-bottom>
+				<margin-top>1px</margin-top>
+				<padding>0px</padding>
+			</selector>
+			<!-- WARN .fddTreeNodeHighlightedClass already defined in common style1 -->
+			<selector path=".fddTreeNodeHighlightedClass">
+				<color>#000000</color>
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path=".menuContextuelStyle .rich-menu-list-border">
+				<background-color>#232323</background-color>
+				<width>150px</width>
+				<font preset="small (Reponses fonts)" />
+				<margin>0</margin>
+				<padding>1px</padding>
+			</selector>
+			<selector path=".menuContextuelStyle .rich-menu-list-bg">
+				<border>1px solid #232323</border>
+			</selector>
+			<selector path=".menuContextuelStyle .rich-menu-item">
+				<color>#E7E7E7</color>
+				<font preset="small (Reponses fonts)" />
+				<border>1px solid #232323</border>
+				<background-color>#3A3D40</background-color>
+				<margin>0</margin>
+				<display>block</display>
+				<padding>3px</padding>
+				<cursor>default</cursor>
+			</selector>
+			<selector path=".menuContextuelStyle .dr-menu-icon">
+				<margin-right>0px</margin-right>
+			</selector>
+			<selector path=".menuContextuelStyle .rich-menu-item-icon">
+				<color>#E7E7E7</color>
+				<vertical-align>middle</vertical-align>
+				<text-decoration>none</text-decoration>
+				<padding>1px 4px 1px 1px</padding>
+			</selector>
+			<selector path=".menuContextuelStyle .rich-menu-list-strut">
+				<display>none</display>
+			</selector>
+			<!-- style pour l'administration des modèles de parapheurs et de fonds 
+				de dossiers -->
+			<selector path=".adminModel .treeModelTitle">
+				<padding>10px 0px 10px 70px</padding>
+				<width>100%</width>
+				<float>left</float>
+			</selector>
+			<selector path=".adminModel .administrationFondDossierTreeWidth">
+				<width>50%</width>
+				<float>left</float>
+			</selector>
+			<selector path=".adminModel .administrationParapheurTreeWidth">
+				<width>37%</width>
+				<float>left</float>
+			</selector>
+			<selector path=".adminModel .formulaireFondDossierFolderModel">
+				<width>350px</width>
+				<float>left</float>
+			</selector>
+			<selector path=".adminModel .formulaireParapheurFolderModel">
+				<width>450px</width>
+				<float>left</float>
+			</selector>
+			<selector path=".adminModel .fullWidthLayout">
+				<width>100%</width>
+				<float>left</float>
+			</selector>
+			<selector path=".adminModel .formFolderModelField">
+				<padding>10px 0px 0px 0px</padding>
+			</selector>
+			<selector path=".adminModel .largeSolonEppInput">
+				<width>250px</width>
+			</selector>
+			<selector path=".adminModel .smallSolonEppInput">
+				<width>100px</width>
+			</selector>
+			<selector path=".dataInput .formatList td">
+				<padding>1px 2px</padding>
+			</selector>
+			<selector path=".fullWidthLayout .labelColumn">
+				<width>80px</width>
+				<text-align>right</text-align>
+				<vertical-align>middle</vertical-align>
+			</selector>
+			<selector path=".fullWidthLayout .iconColumn">
+				<width>66px</width>
+				<padding>0px</padding>
+			</selector>
+			<selector path=".formFolderModelField .dataInput .labelColumn">
+				<width>130px</width>
+				<text-align>right</text-align>
+			</selector>
+			<selector path=".adminModel .formFolderModelButtons">
+				<padding>15px 0px 0px 150px</padding>
+			</selector>
+			<!-- style pour l'administration des paramètres de l'applications -->
+			<selector path=".parametrageApplication h4">
+				<margin>25px 0px 0px 20px</margin>
+			</selector>
+			<selector path=" .parametrageApplication .labelColumn">
+				<font-weight>normal</font-weight>
+				<width>265px</width>
+			</selector>
+			<selector path=".parametrageApplication .formFolderModelButtons">
+				<margin-left>500px</margin-left>
+			</selector>
+			<!-- style concernant le composant rich-list-shuttle dans l'espace d'administration -->
+			<selector path=".rich-list-shuttle-caption div">
+				<margin-bottom>5px</margin-bottom>
+			</selector>
+			<selector
+				path=".rich-shuttle-control-disabled, .rich-shuttle-control-copy, .rich-shuttle-control-remove">
+				<margin>0px 5px 5px 5px</margin>
+			</selector>
+			<selector
+				path=".rich-shuttle-control-copy a, .rich-shuttle-control-remove a,.rich-shuttle-control-copy a:hover, .rich-shuttle-control-remove a:hover">
+				<color>black</color>
+				<text-decoration>none</text-decoration>
+			</selector>
+			<!-- style message erreur simple -->
+			<selector path=".msgError">
+				<color>red</color>
+				<font-weight>bold</font-weight>
+			</selector>
+		</style>
+		<style inherit="common style 1" name="Sub Area">
+			<selector path=".reponseToolBar">
+				<text-align>right</text-align>
+			</selector>
+			<selector path="div .reponseToolBar">
+				<margin-top>15px</margin-top>
+			</selector>
+			<selector path=".enabledButtonContainer img">
+				<padding>3px</padding>
+			</selector>
+			<selector path=".enabledButtonContainer input">
+				<padding>3px</padding>
+			</selector>
+			<selector path=".dossierActions">
+				<float>left</float>
+			</selector>
+			<selector path="div .separator">
+				<height>25px</height>
+				<background-color>white</background-color>
+				<width>1px</width>
+				<margin>2px 2px 2px 2px</margin>
+				<border-right preset="bluethin (Reponses borders)" />
+				<display>inline-block</display>
+			</selector>
+			<selector path=".enabledButtonContainer">
+				<height>30px</height>
+				<border preset="reponseslightborder (Reponses borders)" />
+				<background preset="gradientbar (Reponses backgrounds)" />
+				<width>30px</width>
+				<display>inline-block</display>
+			</selector>
+			<selector path=".disabledButtonContainer">
+				<height>30px</height>
+				<border>1px solid #ABABAB</border>
+				<background preset="blackbar (Reponses backgrounds)" />
+				<width>30px</width>
+				<display>inline-block</display>
+			</selector>
+			<selector path=".disabledButtonContainer img">
+				<opacity>0.75</opacity>
+				<padding>3px</padding>
+			</selector>
+			<selector path=".documentationJointe td">
+				<padding-bottom>3px</padding-bottom>
+			</selector>
+			<selector path=".documentationJointe a img">
+				<padding-left>15px</padding-left>
+				<padding-right>5px</padding-right>
+			</selector>
+			<selector path=".documentationJointe a">
+				<color>#000000</color>
+			</selector>
+			<selector path=".dataOutput .fddTreeStyleClass td">
+				<border-bottom>none</border-bottom>
+				<border-top>none</border-top>
+			</selector>
+			<selector path="#fddTreeStyle .dr-tree-h-ic-div">
+				<margin-left>0px</margin-left>
+				<padding-left>0px</padding-left>
+			</selector>
+			<selector
+				path="#fddTreeStyle .dr-tree-h-ic-line-node, #fddTreeStyle .dr-tree-h-ic-line-exp, #fddTreeStyle .dr-tree-h-ic-line-last, #fddTreeStyle .dr-tree-h-text, #fddTreeStyle .dr-tree-h-ic-line-clp">
+				<border-bottom preset="tablelines (Reponses borders)" />
+				<background>none</background>
+			</selector>
+			<selector path="#fddTreeStyle .rich-tree-node-handleicon">
+				<display>none</display>
+			</selector>
+			<selector path="#fddTreeStyle .dr-tree-h-ic-line">
+				<background>none</background>
+			</selector>
+			<selector path=".fddTreeNodeHighlightedClass">
+				<color>#000000</color>
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path="#fddMenuContextuelStyle .rich-menu-list-border">
+				<background-color>#232323</background-color>
+				<width>130px</width>
+				<font preset="small (Reponses fonts)" />
+				<margin>0</margin>
+				<padding>1px</padding>
+			</selector>
+			<selector path="#fddMenuContextuelStyle .rich-menu-list-bg">
+				<border>1px solid #232323</border>
+			</selector>
+			<selector path="#fddMenuContextuelStyle .rich-menu-item">
+				<color>#E7E7E7</color>
+				<font preset="small (Reponses fonts)" />
+				<border>1px solid #232323</border>
+				<background-color>#3A3D40</background-color>
+				<margin>0</margin>
+				<display>block</display>
+				<padding>3px</padding>
+				<cursor>default</cursor>
+			</selector>
+			<selector path="#fddMenuContextuelStyle .dr-menu-icon">
+				<margin-right>0px</margin-right>
+			</selector>
+			<selector path="#fddMenuContextuelStyle .rich-menu-item-icon">
+				<color>#E7E7E7</color>
+				<vertical-align>middle</vertical-align>
+				<text-decoration>none</text-decoration>
+				<padding>1px 4px 1px 1px</padding>
+			</selector>
+			<selector path="#fddMenuContextuelStyle .rich-menu-list-strut">
+				<display>none</display>
+			</selector>
+			<selector path="#fddMenuContextuelStyle .fddContextMenuItemStyle">
+				<border-bottom>1px solid #232323</border-bottom>
+				<font preset="small (Reponses fonts)" />
+				<color>#E7E7E7</color>
+				<background-color>#3A3D40</background-color>
+				<margin>0</margin>
+				<display>block</display>
+				<padding>3px</padding>
+				<cursor>default</cursor>
+			</selector>
+			<!-- style du menu contextuel concernant le téléchargement de fichier -->
+			<selector path=".menuContextuelStyle .rich-menu-item a">
+				<color>#E7E7E7</color>
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path=".dataOutput .treeStyle .treeTableMainTd">
+				<border-bottom>none</border-bottom>
+			</selector>
+			<selector path=".dataOutput .treeStyle td">
+				<border-top>none</border-top>
+			</selector>
+			<selector path=".treeStyle .dr-tree-h-ic-div">
+				<margin-left>0px</margin-left>
+				<padding-left>0px</padding-left>
+			</selector>
+			<selector
+				path=".treeStyle .dr-tree-h-ic-line-node, .treeStyle .dr-tree-h-ic-line-exp, .treeStyle .dr-tree-h-ic-line-last, .treeStyle .dr-tree-h-text">
+				<border-bottom preset="tablelines (Reponses borders)" />
+				<background>none</background>
+			</selector>
+			<selector path=".treeStyle .rich-tree-node-handleicon">
+				<display>none</display>
+			</selector>
+			<selector path=".treeStyle .dr-tree-h-ic-line-clp">
+				<border-bottom preset="tablelines (Reponses borders)" />
+				<background>none</background>
+			</selector>
+			<selector path=".treeStyle .dr-tree-h-ic-line">
+				<background>none</background>
+			</selector>
+			<!-- style pour afficher un texte en plusieurs ligne si sa taille dépasse 
+				a valeur autorisé -->
+			<selector path=".treeStyle .dr-tree-h-text">
+				<white-space>normal</white-space>
+			</selector>
+			<!-- style sur le lien des documents nuxeo -->
+			<selector path=".treeStyle	tr .treeLinkBoldLabel">
+				<color>#000000</color>
+			</selector>
+			<selector path=".treeStyle	td .treeLinkBoldLabel img">
+				<padding-right>2px</padding-right>
+			</selector>
+		</style>
+		<!-- General -->
+		<style element="page[1]">
+			<selector path="img" view="page frame">
+				<border>0</border>
+			</selector>
+			<!-- note : Popup style must be placed here ! ARN -->
+			<selector path=".msgError" view="page frame">
+				<color>red</color>
+				<font-weight>bold</font-weight>
+			</selector>
+			<selector path=".msgError" view="page frame">
+				<color>red</color>
+				<font-weight>bold</font-weight>
+			</selector>
+			<selector path=".largePopupTd" view="page frame">
+				<width>500px</width>
+				<padding>0px 0px 0px 0px</padding>
+			</selector>
+			<selector path=".popupTd" view="page frame">
+				<width>320px</width>
+				<padding>0px 0px 0px 0px</padding>
+			</selector>
+			<selector path=".popupTd .popupMediumDiv" view="page frame">
+				<width>110px</width>
+				<padding>10px 0px 0px 0px</padding>
+			</selector>
+			<selector path=".largePopupTd td" view="page frame">
+				<width>210px</width>
+				<padding>10px 0px 0px 0px</padding>
+				<text-align>center</text-align>
+			</selector>
+			<selector path=".popupDiv" view="page frame">
+				<width>350px</width>
+				<padding>10px 20px 0px 0px</padding>
+			</selector>
+			<selector path=".popupTabbedDiv" view="page frame">
+				<width>350px</width>
+				<padding>20px 10px 10px 0px</padding>
+			</selector>
+			<selector path=".required" view="page frame">
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/required.gif) top
+					right no-repeat</background>
+				<padding-right>8px</padding-right>
+			</selector>
+			<!-- style pour la popup profil utilisateur -->
+			<selector path=".profilUtilisateur .labelColumn" view="page frame">
+				<font-weight>normal</font-weight>
+				<text-align>right</text-align>
+			</selector>
+			<selector path=".profilUtilisateur .notif_dossier .labelColumn"
+				view="page frame">
+				<width>150px</width>
+			</selector>
+			<selector path=".profilUtilisateur .notif_fdr .labelColumn"
+				view="page frame">
+				<width>410px</width>
+			</selector>
+			<!-- style sur la popup reset password -->
+			<selector path=".resetPassword table" view="page frame">
+				<font-weight>normal</font-weight>
+				<width>350px</width>
+				<padding>10px 0px 10px 0px</padding>
+			</selector>
+			<selector path=".notRequired" view="page frame">
+				<padding-right>8px</padding-right>
+			</selector>
+			<selector path=".login_label" view="page frame">
+				<text-align>right</text-align>
+			</selector>
+			<!-- style sur le lien des documents nuxeo -->
+			<selector path=".popupTd  tr .treeLinkBoldLabel" view="page frame">
+				<color>#000000</color>
+			</selector>
+			<selector path=".popupTd  td .treeLinkBoldLabel img" view="page frame">
+				<padding-right>2px</padding-right>
+			</selector>
+		</style>
+		<!-- Main cell -->
+		<style element="page[1]/section[3]/cell[2]">
+			<selector path="" view="cell frame">
+				<background preset="maincell (Reponses backgrounds)" />
+			</selector>
+		</style>
+		<!-- left cell -->
+		<style element="page[1]/section[3]/cell[1]">
+			<selector path="" view="cell frame">
+				<background preset="leftcell (Reponses backgrounds)" />
+			</selector>
+		</style>
+		<!-- main fragment for default page & popup -->
+		<style element="page[1]/section[3]/cell[2]/fragment[1]" inherit="MainArea">
+			<selector path="" view="facelet region">
+				<padding>5px 5px 0px 7px</padding>
+			</selector>
+			<selector path="#formCorbeille .corbeilleActions .enabledButtonContainer"
+				view="facelet region">
+				<background-color>#F9F9F9</background-color>
+				<border preset="reponsesmailboxbuttonborder (Reponses borders)" />
+			</selector>
+			<selector
+				path="#formCorbeille .corbeilleActions .enabledButtonContainer p"
+				view="facelet region">
+				<padding>2px 10px 2px 2px</padding>
+				<font>9px 'Lucida Grande',Verdana,Arial,sans-serif</font>
+			</selector>
+		</style>
+		<!-- Footer -->
+		<style element="page[1]/section[4]">
+			<selector path="" view="section frame">
+				<margin-top>3px</margin-top>
+				<font preset="small (Reponses fonts)" />
+			</selector>
+		</style>
+		<!-- General -->
+		<style element="page[2]">
+			<selector path="img" view="page frame">
+				<border>0</border>
+			</selector>
+		</style>
+		<style element="page[1]/section[2]">
+			<selector path="" view="section frame">
+				<background preset="topbar (Reponses backgrounds)" />
+			</selector>
+		</style>
+		<!-- Main cell -->
+		<style element="page[2]/section[1]/cell[1]">
+			<selector path="" view="cell frame">
+				<background preset="maincell (Reponses backgrounds)" />
+				<border-left preset="whitethin (Reponses borders)" />
+			</selector>
+		</style>
+		<!-- main fragment for default page & popup -->
+		<style element="page[2]/section[1]/cell[1]/fragment[1]">
+			<selector path="" view="facelet region">
+				<padding>0px 7px 7px 7px</padding>
+			</selector>
+		</style>
+		<style element="page[1]/section[3]/cell[2]/fragment[2]" inherit="Sub Area">
+			<selector path=".subbodyContainer" view="facelet region">
+				<border-top preset="reponsesthinborder (Reponses borders)" />
+				<padding>10px 7px 7px 7px</padding>
+			</selector>
+			<selector path=".enabledButton img, .disabledButton img"
+				view="facelet region">
+				<padding>3px</padding>
+			</selector>
+			<selector path=".emptyAttachedFileClass" view="facelet region">
+				<margin>10px 0px 0px 245px</margin>
+			</selector>
+			<selector path=".versionLabel" view="facelet region">
+				<width>233px</width>
+				<text-align>right</text-align>
+			</selector>
+		</style>
+		<style element="page[1]/section[2]/cell[2]" />
+		<style element="page[1]/section[3]/cell[1]/fragment[1]" inherit="common style 1">
+			<selector path=".userMailboxesContent" view="Collapsible Panel">
+				<padding-top>0</padding-top>
+			</selector>
+			<selector path=".userMailboxesContent ul" view="Collapsible Panel">
+				<margin>0</margin>
+				<font-size>10px</font-size>
+				<list-style>none</list-style>
+				<padding>0</padding>
+			</selector>
+			<selector path=".userMailboxesContent ul li" view="Collapsible Panel">
+				<margin>0</margin>
+				<padding>1px 0</padding>
+			</selector>
+			<selector path=".userMailboxesContent ul li.selected" view="Collapsible Panel">
+				<background-color>#F7EEDD</background-color>
+				<font-weight>bold</font-weight>
+			</selector>
+			<selector path=".userMailboxesContent a.permalink" view="Collapsible Panel">
+				<padding>0px 0px 0px 5px</padding>
+			</selector>
+			<selector path=".userMailboxesContent a" view="Collapsible Panel">
+				<color>#112b8c</color>
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path=".userMailboxesContent .espaceCorbeilleListTitle img"
+				view="Collapsible Panel">
+				<padding>0px 0px 0px 5px</padding>
+			</selector>
+			<selector path=".userMailboxesContent a:visited" view="Collapsible Panel">
+				<color preset="link.visited (Reponses colors)" />
+			</selector>
+			<selector path=".userMailboxesContent a:active" view="Collapsible Panel">
+				<color>#112b8c</color>
+			</selector>
+			<selector path=".userMailboxesContent a:hover" view="Collapsible Panel">
+				<color preset="link (Reponses colors)" />
+				<text-decoration>underline</text-decoration>
+			</selector>
+			<selector path=".userMailboxesContent h4" view="Collapsible Panel">
+				<font>bold 12px Georgia,"Lucida Grande", Verdana, sans-serif</font>
+				<color>#4F261E</color>
+				<background preset="reponsesbackground (Reponses backgrounds)" />
+				<border preset="reponsesdarkerblue (Reponses borders)" />
+				<margin>0px 0px 10px</margin>
+				<padding>5px 0px 5px 2px</padding>
+			</selector>
+			<selector path="#reponsesClipboard" view="Collapsible Panel">
+				<border preset="reponsesthinborder (Reponses borders)" />
+				<background-color>white</background-color>
+				<padding-bottom>20px</padding-bottom>
+			</selector>
+			<selector path="#reponsesClipboard h4, #tree_explorer_with_virtual_nav h4"
+				view="Collapsible Panel">
+				<font>bold 12px Georgia,"Lucida Grande", Verdana, sans-serif</font>
+				<color>#4F261E</color>
+				<background preset="reponsesbackground (Reponses backgrounds)" />
+				<border preset="reponsesdarkerblue (Reponses borders)" />
+				<margin>0px</margin>
+				<padding>5px 0px 5px 2px</padding>
+			</selector>
+			<selector
+				path="#reponsesClipboard .tabsBar, #tree_explorer_with_virtual_nav .tabsBar"
+				view="Collapsible Panel">
+				<border>none</border>
+				<margin>0</margin>
+			</selector>
+			<selector
+				path="#reponsesClipboard .tabsBar li, #tree_explorer_with_virtual_nav .tabsBar li"
+				view="Collapsible Panel">
+				<margin>0</margin>
+			</selector>
+			<selector
+				path="#tree_explorer_with_virtual_nav .treeLink a, #tree_explorer_with_virtual_nav .treeLink a:link, #tree_explorer_with_virtual_nav .treeLink a:visited"
+				view="Collapsible Panel">
+				<font-weight>normal</font-weight>
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector
+				path="#tree_explorer_with_virtual_nav .treeLink a:hover, #tree_explorer_with_virtual_nav .treeLink a:active"
+				view="Collapsible Panel">
+				<font-weight>normal</font-weight>
+				<text-decoration>underline</text-decoration>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav" view="Collapsible Panel">
+				<font preset="default (Reponses fonts)" />
+				<margin>0</margin>
+				<line-height>1.25em</line-height>
+				<padding>0px 0</padding>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav a" view="Collapsible Panel">
+				<color>#112b8c</color>
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav a:visited"
+				view="Collapsible Panel">
+				<color preset="link.visited (Reponses colors)" />
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav a:active"
+				view="Collapsible Panel">
+				<color>#112b8c</color>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav a:hover"
+				view="Collapsible Panel">
+				<color preset="link (Reponses colors)" />
+				<text-decoration>underline</text-decoration>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .dropInto"
+				view="Collapsible Panel">
+				<background-color>#adf</background-color>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .treeLink img"
+				view="Collapsible Panel">
+				<margin-left>4px</margin-left>
+				<margin-right>4px</margin-right>
+				<vertical-align>top</vertical-align>
+				<margin-top>3px</margin-top>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .userClipboard h4"
+				view="Collapsible Panel">
+				<border-bottom>1px dotted #999</border-bottom>
+				<height>16px</height>
+				<color>#4a4a4a</color>
+				<margin-bottom>2px</margin-bottom>
+				<margin-top>0px</margin-top>
+				<font-size>12px</font-size>
+				<padding>8px 2px 2px 2px</padding>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .cell" view="Collapsible Panel">
+				<margin-bottom>2px</margin-bottom>
+				<padding>2px</padding>
+			</selector>
+			<selector
+				path="#tree_explorer_with_virtual_nav .cell img, #tree_explorer_with_virtual_nav .clipboardFunction img"
+				view="Collapsible Panel">
+				<vertical-align>middle</vertical-align>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .cell .iconImage"
+				view="Collapsible Panel">
+				<margin-right>4px</margin-right>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .clipboardFunctions"
+				view="Collapsible Panel">
+				<padding-top>10px</padding-top>
+				<border-top>2px solid #e7e7e7</border-top>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .clipboardFunction"
+				view="Collapsible Panel">
+				<padding>2px 2px 2px 2px</padding>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .userClipboardContent"
+				view="Collapsible Panel">
+				<margin>0px</margin>
+				<padding>10px 10px 10px 10px</padding>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .userClipboard"
+				view="Collapsible Panel">
+				<height>1%</height>
+				<background-color>#FFF</background-color>
+				<margin>10px 0px 10px 0px</margin>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .menu dd"
+				view="Collapsible Panel">
+				<margin>0px</margin>
+				<padding>10px 0px</padding>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav div" view="Collapsible Panel">
+				<font preset="default (Reponses fonts)" />
+			</selector>
+			<selector path=".dr-tree-h-text" view="Collapsible Panel">
+				<white-space>normal</white-space>
+			</selector>
+			<selector path=".leftMenuActions span.subMenu" view="Collapsible Panel">
+				<border-bottom>1px solid black</border-bottom>
+				<margin>0em 5em 1em 1em</margin>
+				<display>block</display>
+				<font-size>1.1em</font-size>
+				<padding>1em 1em 0.3em 0em</padding>
+			</selector>
+			<selector path=".leftMenuActions a" view="Collapsible Panel">
+				<margin-left>1em</margin-left>
+				<display>block</display>
+			</selector>
+			<selector path=".clipboardEmptyMessage" view="Collapsible Panel">
+				<margin-bottom>20px</margin-bottom>
+				<width>100%</width>
+				<margin-top>20px</margin-top>
+				<text-align>center</text-align>
+			</selector>
+			<selector path="#collapsiblePanelIdOpened" view="Collapsible Panel">
+				<height>100%</height>
+				<background preset="leftpaneltransparent (Reponses backgrounds)" />
+				<padding-top>20px</padding-top>
+			</selector>
+			<selector path="#collapsiblePanelIdOpened .menu" view="Collapsible Panel">
+				<border preset="reponsesthinborder (Reponses borders)" />
+				<background-color>white</background-color>
+				<margin-bottom>20px</margin-bottom>
+				<padding-bottom>20px</padding-bottom>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .menu" view="Collapsible Panel">
+				<border>none</border>
+			</selector>
+		</style>
+		<!-- Banner -->
+		<style element="page[1]/section[1]" />
+		<style element="page[1]/section[1]/cell[1]" />
+		<style element="page[1]/section[2]/cell[1]/fragment[1]" inherit="default buttons">
+			<selector path="#userServicesForm" view="User services">
+				<font preset="reponses (Reponses fonts)" />
+				<margin>0</margin>
+				<height>33px</height>
+				<width>100%</width>
+			</selector>
+			<selector path="#userServicesForm .userServicesSeparator"
+				view="User services">
+				<background>white</background>
+				<float>left</float>
+				<margin-top>4px</margin-top>
+				<height>26px</height>
+				<width>4px</width>
+			</selector>
+			<selector path=".searchService" view="User services">
+				<float>right</float>
+			</selector>
+			<selector path=".userActions" view="User services">
+				<padding-top>6px</padding-top>
+				<padding-left>100px</padding-left>
+			</selector>
+			<selector path=".directoryFilter, .searchField" view="User services">
+				<border>1px normal #666</border>
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/search.gif) 2px
+					2px no-repeat #FFF</background>
+				<margin>0 5px 10px 0</margin>
+				<font-size>11px</font-size>
+				<padding>3px 3px 3px 20px</padding>
+			</selector>
+			<selector path="a, a:link, a:visited" view="User services">
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path="a:hover, a:active" view="User services">
+				<text-decoration>underline</text-decoration>
+			</selector>
+			<selector path="a, a:link, a:visited, a:hover, a:active"
+				view="User services">
+				<color>#4F261E</color>
+			</selector>
+			<selector path="img" view="User services">
+				<margin-right>2px</margin-right>
+				<vertical-align>middle</vertical-align>
+			</selector>
+			<selector path=".advancedSearchLink" view="User services">
+				<margin>0 2px 0 0</margin>
+				<line-height>1%</line-height>
+				<padding>0</padding>
+			</selector>
+			<selector path=".userServices .button" view="User services">
+				<margin-right>4px</margin-right>
+			</selector>
+			<selector path=".leftHandleTab" view="User services">
+				<float>left</float>
+			</selector>
+			<selector path=".selected .rightHandleTab .mainTab a" view="User services">
+				<color>#4F261E</color>
+			</selector>
+			<selector path=".rightHandleTab" view="User services">
+			</selector>
+			<selector path=".mainTab" view="User services">
+				<padding>10px 18px 0px 13px</padding>
+				<height>23px</height>
+			</selector>
+			<selector path=".selected .mainTab" view="User services">
+				<background preset="reponsesusertabselectedleft (Reponses backgrounds)" />
+			</selector>
+			<selector path=".mainTab a:hover" view="User services">
+				<text-decoration>none</text-decoration>
+			</selector>
+		</style>
+		<style element="page[1]/section[1]/cell[1]/fragment[1]" inherit="header style">
+			<selector path=".searchService" view="User meta services">
+				<float>right</float>
+			</selector>
+			<selector path=".userActions" view="User meta services">
+				<padding-top>11px</padding-top>
+			</selector>
+			<selector path=".userMetaActions" view="User meta services">
+				<padding-top>3px</padding-top>
+				<font-weight>bold</font-weight>
+				<float>left</float>
+			</selector>
+			<selector path="input.button" view="User meta services">
+				<margin>0 5px 0px 0</margin>
+			</selector>
+			<selector path=".directoryFilter, .searchField" view="User meta services">
+				<border>1px normal #666</border>
+				<background>url(${org.nuxeo.ecm.contextPath}/icons/search.gif) 2px
+					2px no-repeat #FFF</background>
+				<margin>0 5px 0px 0</margin>
+				<font-size>11px</font-size>
+				<padding>3px 3px 3px 20px</padding>
+			</selector>
+			<selector path="img" view="User meta services">
+				<margin-left>5px</margin-left>
+				<margin-right>5px</margin-right>
+				<vertical-align>middle</vertical-align>
+			</selector>
+			<selector path=".advancedSearchLink" view="User meta services">
+				<margin>0 2px 0 0</margin>
+				<line-height>1%</line-height>
+				<padding>0</padding>
+			</selector>
+			<selector path=".userServices .button" view="User meta services">
+				<margin-right>4px</margin-right>
+			</selector>
+			<selector path="#userMetaServicesSearchDiv" view="User meta services">
+				<padding>2px 20px 2px 30px</padding>
+				<margin>0</margin>
+				<height>21px</height>
+				<background preset="metatopbar (Reponses backgrounds)" />
+				<border-bottom preset="reponsesmailboxbuttonborder (Reponses borders)" />
+			</selector>
+			<selector path="#userMetaServicesSearchDiv .searchService form"
+				view="User meta services">
+				<display>inline</display>
+			</selector>
+			<selector path="a, a:link, a:visited" view="User meta services">
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path="a:hover, a:active" view="User meta services">
+				<text-decoration>underline</text-decoration>
+			</selector>
+			<selector path="a, a:link, a:visited, a:hover, a:active"
+				view="User meta services">
+				<color>black</color>
+			</selector>
+		</style>
+		<style element="page[3]/section[1]/cell[1]/fragment[2]" inherit="Dossier Print" />
+		<style element="page[1]/section[4]/cell[1]/fragment[1]" inherit="common style 1">
+			<selector path=".userMailboxesContent ul" view="Collapsible Panel">
+				<margin>0</margin>
+				<padding>0</padding>
+				<list-style>none</list-style>
+				<font-size>10px</font-size>
+			</selector>
+			<selector path=".userMailboxesContent ul li" view="Collapsible Panel">
+				<margin>0</margin>
+				<padding>1px 0</padding>
+			</selector>
+			<selector path=".userMailboxesContent ul li.selected" view="Collapsible Panel">
+				<background-color>#F7EEDD</background-color>
+				<font-weight>bold</font-weight>
+			</selector>
+			<selector path=".userMailboxesContent a.permalink" view="Collapsible Panel">
+				<padding>0px 0px 0px 5px</padding>
+			</selector>
+			<selector path=".userMailboxesContent a" view="Collapsible Panel">
+				<color>#112b8c</color>
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path=".userMailboxesContent a:visited" view="Collapsible Panel">
+				<color preset="link.visited (Reponses colors)" />
+			</selector>
+			<selector path=".userMailboxesContent a:active" view="Collapsible Panel">
+				<color>#112b8c</color>
+			</selector>
+			<selector path=".userMailboxesContent a:hover" view="Collapsible Panel">
+				<color preset="link (Reponses colors)" />
+				<text-decoration>underline</text-decoration>
+			</selector>
+			<selector path=".userMailboxesContent h4" view="Collapsible Panel">
+				<border-bottom>1px dotted #ccc</border-bottom>
+				<font>normal 13px "Lucida Grande", Verdana, sans-serif</font>
+				<margin>20px 0px 8px</margin>
+				<padding>2px 5px</padding>
+			</selector>
+			<selector
+				path="#tree_explorer_with_virtual_nav .treeLink a, #tree_explorer_with_virtual_nav .treeLink a:link, #tree_explorer_with_virtual_nav .treeLink a:visited"
+				view="Collapsible Panel">
+				<text-decoration>none</text-decoration>
+				<font-weight>normal</font-weight>
+			</selector>
+			<selector
+				path="#tree_explorer_with_virtual_nav .treeLink a:hover, #tree_explorer_with_virtual_nav .treeLink a:active"
+				view="Collapsible Panel">
+				<text-decoration>underline</text-decoration>
+				<font-weight>normal</font-weight>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav" view="Collapsible Panel">
+				<font preset="default (Reponses fonts)" />
+				<margin>0</margin>
+				<padding>5px 0</padding>
+				<line-height>1.25em</line-height>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav a" view="Collapsible Panel">
+				<color>#112b8c</color>
+				<text-decoration>none</text-decoration>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav a:visited"
+				view="Collapsible Panel">
+				<color preset="link.visited (Reponses colors)" />
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav a:active"
+				view="Collapsible Panel">
+				<color>#112b8c</color>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav a:hover"
+				view="Collapsible Panel">
+				<color preset="link (Reponses colors)" />
+				<text-decoration>underline</text-decoration>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .dropInto"
+				view="Collapsible Panel">
+				<background-color>#adf</background-color>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .treeLink img"
+				view="Collapsible Panel">
+				<margin-left>4px</margin-left>
+				<margin-right>4px</margin-right>
+				<vertical-align>top</vertical-align>
+				<margin-top>3px</margin-top>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .userClipboard h4"
+				view="Collapsible Panel">
+				<height>16px</height>
+				<border-bottom>1px dotted #999</border-bottom>
+				<color>#4a4a4a</color>
+				<margin-bottom>2px</margin-bottom>
+				<margin-top>0px</margin-top>
+				<padding>8px 2px 2px 2px</padding>
+				<font-size>12px</font-size>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .cell" view="Collapsible Panel">
+				<margin-bottom>2px</margin-bottom>
+				<padding>2px</padding>
+			</selector>
+			<selector
+				path="#tree_explorer_with_virtual_nav .cell img, #tree_explorer_with_virtual_nav .clipboardFunction img"
+				view="Collapsible Panel">
+				<vertical-align>middle</vertical-align>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .cell .iconImage"
+				view="Collapsible Panel">
+				<margin-right>4px</margin-right>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .clipboardFunctions"
+				view="Collapsible Panel">
+				<padding-top>10px</padding-top>
+				<border-top>2px solid #e7e7e7</border-top>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .clipboardFunction"
+				view="Collapsible Panel">
+				<padding>2px 2px 2px 2px</padding>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .userClipboardContent"
+				view="Collapsible Panel">
+				<margin>0px</margin>
+				<padding>10px 10px 10px 10px</padding>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .userClipboard"
+				view="Collapsible Panel">
+				<height>1%</height>
+				<background-color>#FFF</background-color>
+				<margin>10px 0px 10px 0px</margin>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .menu dl"
+				view="Collapsible Panel">
+				<margin>0px</margin>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav .menu dd"
+				view="Collapsible Panel">
+				<margin>0px</margin>
+				<padding>10px 0px</padding>
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav div" view="Collapsible Panel">
+				<font preset="default (Reponses fonts)" />
+			</selector>
+			<selector path="#tree_explorer_with_virtual_nav td.dr-tree-h-text"
+				view="Collapsible Panel">
+				<white-space>wrap</white-space>
+			</selector>
+			<selector path=".leftMenuActions span.subMenu" view="Collapsible Panel">
+				<border-bottom>1px solid black</border-bottom>
+				<margin>0em 5em 1em 1em</margin>
+				<font-size>1.1em</font-size>
+				<padding>1em 1em 0.3em 0em</padding>
+				<display>block</display>
+			</selector>
+			<selector path=".leftMenuActions a" view="Collapsible Panel">
+				<margin-left>1em</margin-left>
+				<display>block</display>
+			</selector>
+		</style>
+	</formats>
+</theme>

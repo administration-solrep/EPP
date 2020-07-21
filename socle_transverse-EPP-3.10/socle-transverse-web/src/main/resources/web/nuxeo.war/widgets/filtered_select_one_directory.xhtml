@@ -1,0 +1,56 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout">
+
+	<c:set var="rerenderValues"
+		value="#{nxu:test(!empty widget.properties.rerenderValues, widget.properties.rerenderValues, '')}" />
+	<c:set var="displayEmptyValue"
+		value="#{nxu:test(!empty widget.properties.displayEmptyValue, widget.properties.displayEmptyValue, 'false')}" />
+	<c:set var="vocabularySchema"
+		value="#{nxu:test(!empty widget.properties.vocabularySchema, widget.properties.vocabularySchema, 'vocabulary')}" />
+	<c:set var="onchange"
+		value="#{nxu:test(!empty widget.properties['onchange'], widget.properties['onchange'], '')}" />
+	<c:choose>
+		<c:when test="#{widget.mode == 'hidden'}">
+		</c:when>
+		<c:when test="#{widget.mode == 'view'}">
+			<nxdir:directoryEntryOutput id="#{widget.id}" value="#{field}"
+				directoryName="${widget.properties['directoryName']}"
+				localize="true" />
+		</c:when>
+		<c:otherwise>
+			<h:selectOneMenu id="#{widget.id}_select_one_menu" value="#{field}"
+				onchange="#{onchange}">
+				<f:selectItem itemLabel="Sélectionnez une valeur." itemValue=""
+					itemDisabled="#{!displayEmptyValue}" />
+				<c:choose>
+					<c:when test="${!widget.properties['localized']}">
+						<nxdir:selectItems id="#{widget.id}"
+							directoryName="${widget.properties['directoryName']}" var="item"
+							itemValue="#{item.id}"
+							itemLabel="#{messages[item.getProperty(vocabularySchema, 'label')]}"
+							localize="true"
+							itemRendered="#{filteredDirectoryWidget.accept(item, widget.properties['filter'])}" ordering="label" />
+					</c:when>
+					<c:otherwise>
+						<nxdir:selectItems id="#{widget.id}"
+							directoryName="${widget.properties['directoryName']}" var="item"
+							itemValue="#{item.id}" itemLabel="#{item.vocabulary.label}"
+							itemRendered="#{filteredDirectoryWidget.accept(item, widget.properties['filter'])}" ordering="label" />
+					</c:otherwise>
+				</c:choose>
+				<c:if test="#{! empty rerenderValues}">
+					<a4j:support event="onchange" reRender="#{rerenderValues}"
+						eventsQueue="ajax_events_queue" />
+				</c:if>
+			</h:selectOneMenu>
+		</c:otherwise>
+	</c:choose>
+
+	<h:message styleClass="errorMessage" for="#{widget.id}"
+		id="#{widget.id}_message" />
+</div>

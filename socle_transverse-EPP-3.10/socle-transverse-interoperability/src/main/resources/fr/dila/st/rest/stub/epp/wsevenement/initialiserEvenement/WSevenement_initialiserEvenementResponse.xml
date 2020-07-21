@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:initialiserEvenementResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd ">
+
+
+	<p:statut>OK</p:statut>
+	<p:evenement type="EVT06">
+		<p2:evt06 etat="BROUILLON" has_contenu_pj="true">
+			<p2:id_evenement></p2:id_evenement>
+			<p2:id_evenement_precedent>45325</p2:id_evenement_precedent>
+			<p2:id_dossier>45627</p2:id_dossier>
+			<p2:emetteur>GOUVERNEMENT</p2:emetteur>
+			<!-- non pré-rempli -->
+			<p2:destinataire>ASSEMBLEE_NATIONALE</p2:destinataire>
+			<p2:copie>SENAT</p2:copie>
+			<p2:horodatage>2011-02-01T15:15:48</p2:horodatage>
+			<!-- fin non pré-rempli -->
+			<p2:id_senat>4586</p2:id_senat>
+			<p2:niveau_lecture code="AN" niveau="2" />
+			<p2:objet>objet</p2:objet>
+			<p2:intitule>intitulé</p2:intitule>
+			<p2:libelle_annexes></p2:libelle_annexes>
+		</p2:evt06>
+	</p:evenement>
+
+</p:initialiserEvenementResponse>

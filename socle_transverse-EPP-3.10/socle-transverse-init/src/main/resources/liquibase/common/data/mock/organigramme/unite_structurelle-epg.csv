@@ -1,0 +1,338 @@
+ID_ORGANIGRAMME,DATE_FIN,DATE_DEBUT,DATE_VERROU,LABEL,DELETED,UTILISATEUR_VERROU,ID_PARENT_ENTITE,ID_PARENT_UNITE,ID_PARENT_INSTITUTION,TYPE,FUNCTION_READ,NOR_DIRECTION
+"50000608",null,"07-06-08T02:00:000",null,"DGCIS (Dir gén Compétit, Ind, services)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"I\"};"
+"50000610",null,"06-05-04T02:00:000",null,"Cabinet du Premier ministre",0,null,"50000607",null,null,"DIR",null,"{\"ID\":\"50000607\",\"NOR\":\"X\"};"
+"50000615",null,"06-05-04T02:00:000",null,"Secrétariat général du Gouvernement",0,null,"50000607",null,null,"DIR",null,"{\"ID\":\"50000607\",\"NOR\":\"X\"};"
+"50000619",null,"06-05-04T02:00:000",null,"Chargés de mission au SGG",0,null,null,"50000615",null,"AUT",null,null
+"50000983",null,"06-05-04T02:00:000",null,"Service législation et qualité du droit",0,null,null,"50000615;50000615",null,"AUT",null,null
+"50000624",null,"07-01-02T01:00:000",null,"Département de l'activité normative",0,null,null,"50000983",null,"AUT",null,null
+"50000629",null,"06-05-04T02:00:000",null,"Dir information légale et administrative",0,null,null,"50000615",null,"AUT",null,null
+"50000631",null,"06-05-04T02:00:000",null,"service de la rédaction DILA",0,null,null,"50000629",null,"AUT",null,null
+"50000634",null,"06-05-04T02:00:000",null,"Section des finances",0,null,"50000582",null,null,"DIR",null,"{\"ID\":\"50000582\",\"NOR\":\"X\"};"
+"50000637",null,"06-05-04T02:00:000",null,"Section de l'intérieur",0,null,"50000582",null,null,"DIR",null,"{\"ID\":\"50000582\",\"NOR\":\"X\"};"
+"50000638",null,"06-05-04T02:00:000",null,"Section des travaux publics",0,null,"50000582",null,null,"DIR",null,"{\"ID\":\"50000582\",\"NOR\":\"X\"};"
+"50000639",null,"06-05-04T02:00:000",null,"Section sociale",0,null,"50000582",null,null,"DIR",null,"{\"ID\":\"50000582\",\"NOR\":\"X\"};"
+"50000640",null,"06-05-04T02:00:000",null,"Section CE (à préciser)",0,null,"50000582",null,null,"DIR",null,"{\"ID\":\"50000582\",\"NOR\":\"X\"};"
+"50000646",null,"06-05-04T02:00:000",null,"Direction du budget",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"B\"};"
+"50000648",null,"06-05-04T02:00:000",null,"DGME",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"J\"};"
+"50000991",null,"11-01-06T01:00:000",null,"SG (Secrétariat général Ecologie)",0,null,"50000976",null,null,"DIR",null,"{\"ID\":\"50000976\",\"NOR\":\"K\"};"
+"50000653",null,"11-01-06T01:00:000",null,"Direction affaires juridiques (SG-DAJ)",0,null,null,"50000991",null,"AUT",null,null
+"50000655",null,"06-05-04T02:00:000",null,"Bureau des Cabinets (Economie)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"Z\"};"
+"50000657",null,"06-05-04T02:00:000",null,"OBSOLETE DPAEP (Economie)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"P\"};"
+"50000659",null,"06-05-04T02:00:000",null,"DG-Trésor - lettre T (Economie)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"T\"};"
+"50000666",null,"06-05-04T02:00:000",null,"Direction gale de la police nationale",0,null,"50000632",null,null,"DIR",null,"{\"ID\":\"50000632\",\"NOR\":\"C\"};"
+"50000737",null,"06-05-10T02:00:000",null,"Service de documentation",0,null,null,"50000615",null,"AUT",null,null
+"50005109",null,"10-11-24T01:00:000",null,"DGALN (Dir Gén Aménagemt, Logmt, Nature)",0,null,"50000976",null,null,"DIR",null,"{\"ID\":\"50000976\",\"NOR\":\"L\"};"
+"50000832",null,"11-01-06T01:00:000",null,"Eau, Biodiversité (DGALN-DEB)",0,null,null,"50005109",null,"AUT",null,null
+"50000833",null,"07-06-04T02:00:000",null,"DGPR (Direction Gén. prév. des risques)",0,null,"50000976",null,null,"DIR",null,"{\"ID\":\"50000976\",\"NOR\":\"P\"};"
+"50000835",null,"07-06-04T02:00:000",null,"CGDD (Commissariat Gén. au Dév. Durable)",0,null,"50000976",null,null,"DIR",null,"{\"ID\":\"50000976\",\"NOR\":\"D\"};"
+"50000836",null,"06-06-07T02:00:000",null,"DGCCRF (Economie)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"C\"};"
+"50000837",null,"10-04-20T02:00:000",null,"OBSOLETE DGI",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"L\"};"
+"50000838",null,"10-04-20T02:00:000",null,"OBSOLETE DGCP",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"R\"};"
+"50000865",null,"06-05-04T02:00:000",null,"Cabinet Intérieur",0,null,"50000632",null,null,"DIR",null,"{\"ID\":\"50000632\",\"NOR\":\"K\"};"
+"50000866",null,"06-05-04T02:00:000",null,"Direction générale des Coll. Locales",0,null,"50000632",null,null,"DIR",null,"{\"ID\":\"50000632\",\"NOR\":\"B\"};"
+"50000867",null,"10-12-13T01:00:000",null,"Direction des Lib. Pub. et des Aff. Jur.",0,null,"50000632",null,null,"DIR",null,"{\"ID\":\"50000632\",\"NOR\":\"D\"};"
+"50000868",null,"06-05-04T02:00:000",null,"Direction de la sécurité civile (DSC)",0,null,"50000632",null,null,"DIR",null,"{\"ID\":\"50000632\",\"NOR\":\"E\"};"
+"50000870",null,"06-05-04T02:00:000",null,"Direction des sys. d'inf. et de com.",0,null,"50000632",null,null,"DIR",null,"{\"ID\":\"50000632\",\"NOR\":\"G\"};"
+"50000871",null,"06-05-04T02:00:000",null,"Inspection Gale de l'Admin. (Intérieur)",0,null,"50000632",null,null,"DIR",null,"{\"ID\":\"50000632\",\"NOR\":\"I\"};"
+"50000872",null,"06-05-04T02:00:000",null,"Dir. gale de la gendarmerie nationale",0,null,"50000632",null,null,"DIR",null,"{\"ID\":\"50000632\",\"NOR\":\"J\"};"
+"50000889",null,"06-09-12T02:00:000",null,"Secrétariat général (Economie)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"P\"};"
+"50000946",null,"07-02-09T01:00:000",null,"Bureau du cabinet MAE",0,null,"50000937",null,null,"DIR",null,"{\"ID\":\"50000937\",\"NOR\":\"C\"};"
+"50000947",null,"07-02-09T01:00:000",null,"Dir. générale de l'administration MAE",0,null,"50000937",null,null,"DIR",null,"{\"ID\":\"50000937\",\"NOR\":\"A\"};"
+"50000948",null,"07-06-04T02:00:000",null,"Dir. Fr étranger et étrangers en France",0,null,"50000937",null,null,"DIR",null,"{\"ID\":\"50000937\",\"NOR\":\"F\"};"
+"50000949",null,"07-02-09T01:00:000",null,"Direction des affaires juridiques MAE",0,null,"50000937",null,null,"DIR",null,"{\"ID\":\"50000937\",\"NOR\":\"J\"};"
+"50000950",null,"07-02-09T01:00:000",null,"Service du Protocole",0,null,"50000937",null,null,"DIR",null,"{\"ID\":\"50000937\",\"NOR\":\"P\"};"
+"50000951",null,"07-02-09T01:00:000",null,"Haut Fonctionnaire Corr. de Déf et Séc.",0,null,"50000937",null,null,"DIR",null,"{\"ID\":\"50000937\",\"NOR\":\"O\"};"
+"50000952",null,"07-02-09T01:00:000",null,"Dir. Gale de la Coop. Internat. et Dév.",0,null,"50000937",null,null,"DIR",null,"{\"ID\":\"50000937\",\"NOR\":\"G\"};"
+"50000953",null,"07-02-09T01:00:000",null,"Direction des Archives et de la Doc.",0,null,"50000937",null,null,"DIR",null,"{\"ID\":\"50000937\",\"NOR\":\"D\"};"
+"50000954",null,"07-02-13T01:00:000",null,"DGDDI",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"D\"};"
+"50000955",null,"07-02-13T01:00:000",null,"Service des retraites de l'Etat",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"W\"};"
+"50000962",null,"07-01-02T01:00:000",null,"Mission DPDD",0,null,null,"50000983",null,"AUT",null,null
+"50000963",null,"07-01-02T01:00:000",null,"Mission qualité de la norme",0,null,null,"50000983",null,"AUT",null,null
+"50000984",null,"07-02-08T01:00:000",null,"Bureau du Cab. Ecologie",0,null,"50000976",null,null,"DIR",null,"{\"ID\":\"50000976\",\"NOR\":\"C\"};"
+"50000987",null,"07-02-08T01:00:000",null,"CGEDD (Conseil gal Envir & Dev durable)",0,null,"50000976",null,null,"DIR",null,"{\"ID\":\"50000976\",\"NOR\":\"V\"};"
+"50001963",null,"07-06-08T02:00:000",null,"Secrétariat général (BCR)",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"P\"};"
+"50001964",null,"07-06-08T02:00:000",null,"IGF",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"N\"};"
+"50001965",null,"10-03-25T01:00:000",null,"OBSOLETE DPAEP (BCR)",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"P\"};"
+"50001966",null,"07-06-08T02:00:000",null,"DAJ (BCR)",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"M\"};"
+"50001967",null,"07-06-08T02:00:000",null,"Contrôle gal éco. et fin (BCR)",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"U\"};"
+"50001968",null,"10-06-23T02:00:000",null,"SG Ht fonctionnaire défense (BCR)",0,null,null,"50001963",null,"AUT",null,null
+"50001972",null,"07-06-08T02:00:000",null,"DGCIS (MEDAD)",0,null,"50000976",null,null,"DIR",null,"{\"ID\":\"50000976\",\"NOR\":\"I\"};"
+"50001976",null,"07-06-08T02:00:000",null,"DARQSI (Economie)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"Q\"};"
+"50001991",null,"07-06-08T02:00:000",null,"IGAENR (ESR)",0,null,"50000940",null,null,"DIR",null,"{\"ID\":\"50000940\",\"NOR\":\"I\"};"
+"50002010",null,"10-11-24T01:00:000",null,"DSS (SCS)",0,null,"50005038",null,null,"DIR",null,"{\"ID\":\"50005038\",\"NOR\":\"S\"};"
+"50002013",null,"10-11-29T01:00:000",null,"Sec. gl à l'immigrat° & intégrat° (IOC)",0,null,"50000632",null,null,"DIR",null,"{\"ID\":\"50000632\",\"NOR\":\"V\"};"
+"50003307",null,"10-12-13T01:00:000",null,"Dir° de l'immigration",0,null,null,"50002013;50002013",null,"AUT",null,null
+"50002011",null,"10-12-13T01:00:000",null,"Comité interm contrôle immigrat° (IOC)",0,null,null,"50003307",null,"AUT",null,null
+"50002014",null,"07-06-08T02:00:000",null,"Dir° accueil, intégr & citoyenneté (IOC)",0,null,null,"50002013",null,"AUT",null,null
+"50002020",null,"10-12-13T01:00:000",null,"Ss-dir accès à la nationalité (IOC)",0,null,null,"50002014",null,"AUT",null,null
+"50002027",null,"10-12-13T01:00:000",null,"Service de l'asile (IOC)",0,null,null,"50003307",null,"AUT",null,null
+"50002032",null,"07-06-14T02:00:000",null,"Secrétariat général (Min ESR)",0,null,"50000940",null,null,"DIR",null,"{\"ID\":\"50000940\",\"NOR\":\"G\"};"
+"50002033",null,"07-06-14T02:00:000",null,"Direction générale RH (Min. ESR.)",0,null,"50000940",null,null,"DIR",null,"{\"ID\":\"50000940\",\"NOR\":\"H\"};"
+"50002037",null,"07-06-14T02:00:000",null,"Direction de l'encadrement (Min. ESR)",0,null,"50000940",null,null,"DIR",null,"{\"ID\":\"50000940\",\"NOR\":\"D\"};"
+"50002040",null,"07-06-14T02:00:000",null,"Dir. affaires financières (Min. ESR)",0,null,"50000940",null,null,"DIR",null,"{\"ID\":\"50000940\",\"NOR\":\"F\"};"
+"50002043",null,"07-06-14T02:00:000",null,"Dir. affaires juridiques (Min. ESR)",0,null,"50000940",null,null,"DIR",null,"{\"ID\":\"50000940\",\"NOR\":\"J\"};"
+"50002046",null,"07-06-14T02:00:000",null,"Dir. éval, prospect et perf. (Min. ESR)",0,null,"50000940",null,null,"DIR",null,"{\"ID\":\"50000940\",\"NOR\":\"P\"};"
+"50002050",null,"07-06-14T02:00:000",null,"D. relat. eur, internat, coop (Min ESR)",0,null,"50000940",null,null,"DIR",null,"{\"ID\":\"50000940\",\"NOR\":\"C\"};"
+"50002053",null,"07-06-14T02:00:000",null,"Serv action admin., modernis. (Min ESR)",0,null,"50000940",null,null,"DIR",null,"{\"ID\":\"50000940\",\"NOR\":\"A\"};"
+"50002058",null,"07-06-19T02:00:000",null,"Organismes de recherche (Min. ESR)",0,null,null,"50001266",null,"AUT",null,null
+"50002084",null,"07-05-30T02:00:000",null,"Dir. de la sécurité sociale (Min. BCR)",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"S\"};"
+"50002160",null,"07-07-16T02:00:000",null,"Sous-dir. corps préfectoral-SDCPAC",0,null,null,"50001285",null,"AUT",null,null
+"50002362",null,"07-08-23T02:00:000",null,"Régulation de l'énergie",0,null,"50002357",null,null,"DIR",null,"{\"ID\":\"50002357\",\"NOR\":\"E\"};"
+"50002366",null,"10-12-13T01:00:000",null,"OFII (IOC)",0,null,null,"50003307",null,"AUT",null,null
+"50002370",null,"07-08-24T02:00:000",null,"Service opérateurs et ressources (ARCEP)",0,null,"50002368",null,null,"DIR",null,"{\"ID\":\"50002368\",\"NOR\":\"L\"};"
+"50002383",null,"07-08-28T02:00:000",null,"Coll. terr. de la Rép. (Département)",0,null,"50002382",null,null,"DIR",null,"{\"ID\":\"50002382\",\"NOR\":\"D\"};"
+"50002384",null,"07-08-28T02:00:000",null,"Coll. terr. de la Rép. (Région)",0,null,"50002382",null,null,"DIR",null,"{\"ID\":\"50002382\",\"NOR\":\"R\"};"
+"50002385",null,"07-08-28T02:00:000",null,"Coll. terr. de la Rép. (Autre)",0,null,"50002382",null,null,"DIR",null,"{\"ID\":\"50002382\",\"NOR\":\"C\"};"
+"50002482",null,"07-10-08T02:00:000",null,"Dir. circulation aérienne",0,null,null,"50001136",null,"AUT",null,null
+"50002486",null,"07-10-17T02:00:000",null,"Sous-direction du droit civil (Justice)",0,null,null,"50001088",null,"AUT",null,null
+"50002487",null,"07-10-17T02:00:000",null,"Sous-dir. prof. jud. et jurid. (Justice)",0,null,null,"50001088",null,"AUT",null,null
+"50002508",null,"07-10-25T02:00:000",null,"Direction CNIL",0,null,"50002507",null,null,"DIR",null,"{\"ID\":\"50002507\",\"NOR\":\"A\"};"
+"50002510",null,"07-10-25T02:00:000",null,"Direction Cour des comptes",0,null,"50002509",null,null,"DIR",null,"{\"ID\":\"50002509\",\"NOR\":\"P\"};"
+"50002533",null,"07-11-06T01:00:000",null,"Concours (DGAFP)",0,null,null,"50001912",null,"AUT",null,null
+"50002534",null,"07-11-06T01:00:000",null,"Mesures normatives (DGAFP)",0,null,null,"50001912",null,"AUT",null,null
+"50002535",null,"07-11-06T01:00:000",null,"Mesures individuelles (DGAFP)",0,null,null,"50001912",null,"AUT",null,null
+"50002536",null,"07-11-06T01:00:000",null,"Contrôle final textes (DGAFP)",0,null,null,"50001912",null,"AUT",null,null
+"50002546",null,"07-11-06T01:00:000",null,"Concours (DGAFP)",0,null,null,"50001442",null,"AUT",null,null
+"50002547",null,"07-11-06T01:00:000",null,"Mesures normatives (DGAFP)",0,null,null,"50001442",null,"AUT",null,null
+"50002548",null,"07-11-06T01:00:000",null,"Mesures individuelles (DGAFP)",0,null,null,"50001442",null,"AUT",null,null
+"50002549",null,"07-11-06T01:00:000",null,"Contrôle final textes (DGAFP)",0,null,null,"50001442",null,"AUT",null,null
+"50002683",null,"08-01-10T01:00:000",null,"Président CSA",0,null,"50002682",null,null,"DIR",null,"{\"ID\":\"50002682\",\"NOR\":\"P\"};"
+"50002684",null,"08-01-10T01:00:000",null,"Collège CSA",0,null,"50002682",null,null,"DIR",null,"{\"ID\":\"50002682\",\"NOR\":\"C\"};"
+"50002757",null,"08-02-20T01:00:000",null,"Décorations - Sanctions",0,null,"50000764",null,null,"DIR",null,"{\"ID\":\"50000764\",\"NOR\":\"R\"};"
+"50002833",null,"06-05-04T02:00:000",null,"Section de l'administration",0,null,"50000582",null,null,"DIR",null,"{\"ID\":\"50000582\",\"NOR\":\"X\"};"
+"50003057",null,"10-11-19T01:00:000",null,"Centre national de gestion (CNG)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"N\"};"
+"50003082",null,"08-05-27T02:00:000",null,"Lois (Conseil constitutionnel)",0,null,"50002907",null,null,"DIR",null,"{\"ID\":\"50002907\",\"NOR\":\"L\"};"
+"50000989",null,"11-01-06T01:00:000",null,"Direction ressources humaines (SG-DRH)",0,null,null,"50000991",null,"AUT",null,null
+"50000990",null,"07-02-08T01:00:000",null,"BDC "Grenelle"",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"C\"};"
+"50000998",null,"07-02-08T01:00:000",null,"DGITM (Dir Gén Infrastr, Transport, Mer)",0,null,"50000976",null,null,"DIR",null,"{\"ID\":\"50000976\",\"NOR\":\"T\"};"
+"50000992",null,"11-01-06T01:00:000",null,"Infrastructures de transport (DGITM-DIT)",0,null,null,"50000998",null,"AUT",null,null
+"50000993",null,"07-02-08T01:00:000",null,"DSCR (Délég sécur et circul routière)",0,null,"50000976",null,null,"DIR",null,"{\"ID\":\"50000976\",\"NOR\":\"S\"};"
+"50000994",null,"07-02-08T01:00:000",null,"DGAC (Direction Gén. Aviation Civile)",0,null,"50000976",null,null,"DIR",null,"{\"ID\":\"50000976\",\"NOR\":\"A\"};"
+"50000995",null,"11-01-06T01:00:000",null,"Recherche Innovation (CGDD-DRI)",0,null,null,"50000835",null,"AUT",null,null
+"50000996",null,"11-01-06T01:00:000",null,"Observations & Stats (CGDD-SOeS)",0,null,null,"50000835",null,"AUT",null,null
+"50000997",null,"07-02-08T01:00:000",null,"Serv. Pilotage & évolut° des services",0,null,null,"50000991",null,"AUT",null,null
+"50001004",null,"07-02-08T01:00:000",null,"Dir du Transport aérien (DGAC-DTA)",0,null,null,"50000994",null,"AUT",null,null
+"50001006",null,"07-02-08T01:00:000",null,"Dir. Sécurité Aviat° civile (DGAC-DSAC)",0,null,null,"50000994",null,"AUT",null,null
+"50001009",null,"07-02-09T01:00:000",null,"Sec. Etat coopération et francophonie",0,null,"50000937",null,null,"DIR",null,"{\"ID\":\"50000937\",\"NOR\":\"S\"};"
+"50001010",null,"07-02-12T01:00:000",null,"Dir. ressources humaines MAE",0,null,null,"50000947",null,"AUT",null,null
+"50001011",null,"07-02-12T01:00:000",null,"Dir. affaires financières MAE",0,null,null,"50000947",null,"AUT",null,null
+"50001012",null,"07-02-12T01:00:000",null,"Serv. affaires juridiques internes MAE",0,null,null,"50000947",null,"AUT",null,null
+"50001021",null,"07-02-13T01:00:000",null,"DAJ (Economie)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"M\"};"
+"50001022",null,"07-02-13T01:00:000",null,"IGF (Economie)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"N\"};"
+"50001023",null,"07-02-13T01:00:000",null,"INSEE (Economie)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"S\"};"
+"50001024",null,"07-02-13T01:00:000",null,"Contrôle gal éco et financier (Economie)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"U\"};"
+"50001025",null,"10-06-23T02:00:000",null,"SG Ht fonctionnaire défense (Economie)",0,null,null,"50000889",null,"AUT",null,null
+"50001032",null,"07-02-08T01:00:000",null,"Sec. gal aviation civile (DGAC-SG)",0,null,null,"50000994",null,"AUT",null,null
+"50001033",null,"07-02-08T01:00:000",null,"Dir. Navigation Aérienne (DGAC-DSNA)",0,null,null,"50000994",null,"AUT",null,null
+"50001034",null,"07-02-08T01:00:000",null,"Services de transport (DGITM-DST)",0,null,null,"50000998",null,"AUT",null,null
+"50001036",null,"07-02-08T01:00:000",null,"Affaires maritimes (DGITM-DAM)",0,null,null,"50000998",null,"AUT",null,null
+"50001043",null,"10-11-19T01:00:000",null,"BDC "Santé"",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"C\"};"
+"50001044",null,"10-11-19T01:00:000",null,"Dir ressources humaines (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"R\"};"
+"50001046",null,"10-11-19T01:00:000",null,"Dir. gén. de la santé (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"P\"};"
+"50001047",null,"10-11-19T01:00:000",null,"Dir. gale de l'organ. soins (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"H\"};"
+"50001048",null,"10-11-19T01:00:000",null,"Dir. de la sécurité sociale (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"S\"};"
+"50001049",null,"10-11-24T01:00:000",null,"Dir. rech, études, stats (Min. SCS)",0,null,"50005038",null,null,"DIR",null,"{\"ID\":\"50005038\",\"NOR\":\"E\"};"
+"50001050",null,"10-11-19T01:00:000",null,"Agce sécu. san prod santé (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"M\"};"
+"50001051",null,"10-11-19T01:00:000",null,"UNCAM (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"U\"};"
+"50001052",null,"10-11-19T01:00:000",null,"Autorité sûreté nucléaire (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"Y\"};"
+"50001053",null,"10-11-19T01:00:000",null,"Etablissement frçs du sang (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"K\"};"
+"50001054",null,"10-11-19T01:00:000",null,"Agence biomédecine (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"B\"};"
+"50001055",null,"10-11-19T01:00:000",null,"Agence vétérinaire (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"L\"};"
+"50001056",null,"10-11-24T01:00:000",null,"DGCS (SCS)",0,null,"50005038",null,null,"DIR",null,"{\"ID\":\"50005038\",\"NOR\":\"A\"};"
+"50001057",null,"07-06-04T02:00:000",null,"CGIET (Economie)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"G\"};"
+"50001085",null,"07-06-07T02:00:000",null,"DCASPL Obsolète",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"A\"};"
+"50001086",null,"07-02-20T01:00:000",null,"Cabinet du garde des sceaux",0,null,"50000972",null,null,"DIR",null,"{\"ID\":\"50000972\",\"NOR\":\"A\"};"
+"50001087",null,"07-02-20T01:00:000",null,"Direction des services judiciaires",0,null,"50000972",null,null,"DIR",null,"{\"ID\":\"50000972\",\"NOR\":\"B\"};"
+"50001088",null,"07-02-20T01:00:000",null,"Direction des aff. civiles et du sceau",0,null,"50000972",null,null,"DIR",null,"{\"ID\":\"50000972\",\"NOR\":\"C\"};"
+"50001089",null,"07-02-20T01:00:000",null,"Dir. des aff. criminelles et des grâces",0,null,"50000972",null,null,"DIR",null,"{\"ID\":\"50000972\",\"NOR\":\"D\"};"
+"50001090",null,"07-02-20T01:00:000",null,"Dir. protection jud. de la jeunesse",0,null,"50000972",null,null,"DIR",null,"{\"ID\":\"50000972\",\"NOR\":\"F\"};"
+"50001092",null,"07-02-20T01:00:000",null,"Ecole nationale de la magistrature",0,null,"50000972",null,null,"DIR",null,"{\"ID\":\"50000972\",\"NOR\":\"H\"};"
+"50001093",null,"07-02-20T01:00:000",null,"Services aff. européennes et internat.",0,null,"50000972",null,null,"DIR",null,"{\"ID\":\"50000972\",\"NOR\":\"I\"};"
+"50001094",null,"07-02-20T01:00:000",null,"Serv. accès droit et just. polit. ville",0,null,"50000972",null,null,"DIR",null,"{\"ID\":\"50000972\",\"NOR\":\"J\"};"
+"50001095",null,"07-02-20T01:00:000",null,"Direction de l'admin. pénitentiaire",0,null,"50000972",null,null,"DIR",null,"{\"ID\":\"50000972\",\"NOR\":\"K\"};"
+"50001096",null,"07-02-20T01:00:000",null,"Décret changement de noms",0,null,"50000972",null,null,"DIR",null,"{\"ID\":\"50000972\",\"NOR\":\"N\"};"
+"50001103",null,"07-02-21T01:00:000",null,"(vide) Délégation gale pour l'armement",0,null,"50000967",null,null,"DIR",null,"{\"ID\":\"50000967\",\"NOR\":\"A\"};"
+"50001104",null,"07-02-21T01:00:000",null,"(vide) Bureau des officiers généraux",0,null,"50000967",null,null,"DIR",null,"{\"ID\":\"50000967\",\"NOR\":\"B\"};"
+"50001105",null,"07-02-21T01:00:000",null,"(vide) Contrôle général des armées",0,null,"50000967",null,null,"DIR",null,"{\"ID\":\"50000967\",\"NOR\":\"C\"};"
+"50001106",null,"07-02-21T01:00:000",null,"Dir. des affaires juridiques (Défense)",0,null,"50000967",null,null,"DIR",null,"{\"ID\":\"50000967\",\"NOR\":\"D\"};"
+"50001118",null,"10-11-15T01:00:000",null,"Cabinet coll territoriales (COT)",0,null,"50005041",null,null,"DIR",null,"{\"ID\":\"50005041\",\"NOR\":\"COT\"};"
+"50001132",null,"07-02-21T01:00:000",null,"Dir. affaires financières (DEF)",0,null,"50000967",null,null,"DIR",null,"{\"ID\":\"50000967\",\"NOR\":\"F\"};"
+"50001134",null,"07-02-21T01:00:000",null,"Dir. des ressources humaines (Défense)",0,null,"50000967",null,null,"DIR",null,"{\"ID\":\"50000967\",\"NOR\":\"H\"};"
+"50001135",null,"07-02-21T01:00:000",null,"Etat-major des armées",0,null,"50000967",null,null,"DIR",null,"{\"ID\":\"50000967\",\"NOR\":\"K\"};"
+"50001136",null,"07-02-21T01:00:000",null,"Etat-major de l'armée de l'air",0,null,"50000967",null,null,"DIR",null,"{\"ID\":\"50000967\",\"NOR\":\"L\"};"
+"50001137",null,"07-08-13T02:00:000",null,"Sous-dir. BDC (Défense)",0,null,"50000967",null,null,"DIR",null,"{\"ID\":\"50000967\",\"NOR\":\"M\"};"
+"50001138",null,"07-02-21T01:00:000",null,"(vide) Etat-major de la marine",0,null,"50000967",null,null,"DIR",null,"{\"ID\":\"50000967\",\"NOR\":\"N\"};"
+"50001139",null,"07-02-21T01:00:000",null,"(vide) Dir mémoire, patrimoine, archives",0,null,"50000967",null,null,"DIR",null,"{\"ID\":\"50000967\",\"NOR\":\"P\"};"
+"50001140",null,"07-02-21T01:00:000",null,"(vide) Etat-major de l'armée de terre",0,null,"50000967",null,null,"DIR",null,"{\"ID\":\"50000967\",\"NOR\":\"T\"};"
+"50001147",null,"07-08-13T02:00:000",null,"BDC Défense",0,null,null,"50001137",null,"AUT",null,null
+"50001153",null,"07-02-21T01:00:000",null,"Ss-dir. droit public et privé (Défense)",0,null,null,"50001106",null,"AUT",null,null
+"50001154",null,"07-02-21T01:00:000",null,"Ss-dir droit internat et europ (Défense)",0,null,null,"50001106",null,"AUT",null,null
+"50001155",null,"07-02-21T01:00:000",null,"Division des affaires pénales militaires",0,null,null,"50001106",null,"AUT",null,null
+"50001163",null,"07-02-08T01:00:000",null,"DGT",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"T\"};"
+"50001164",null,"07-02-08T01:00:000",null,"DAGEMO (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"O\"};"
+"50001166",null,"10-11-19T01:00:000",null,"DGEFP (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"D\"};"
+"50001167",null,"07-02-08T01:00:000",null,"IGAS (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"J\"};"
+"50001170",null,"10-11-24T01:00:000",null,"Dir Aff financ, juri et des serv (SCS)",0,null,"50005038",null,null,"DIR",null,"{\"ID\":\"50005038\",\"NOR\":\"G\"};"
+"50001173",null,"07-02-08T01:00:000",null,"DARES (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"W\"};"
+"50001174",null,"10-11-24T01:00:000",null,"IGAS (SCS)",0,null,"50005038",null,null,"DIR",null,"{\"ID\":\"50005038\",\"NOR\":\"J\"};"
+"50001175",null,"07-02-08T01:00:000",null,"DAEI (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"I\"};"
+"50001211",null,"07-02-08T01:00:000",null,"DGCS (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"A\"};"
+"50001248",null,"06-05-04T02:00:000",null,"Bureau des Cabinets (Intérieur)",0,null,"50000632",null,null,"DIR",null,"{\"ID\":\"50000632\",\"NOR\":\"K\"};"
+"50001249",null,"06-05-04T02:00:000",null,"Secrétariat général (Intérieur)",0,null,"50000632",null,null,"DIR",null,"{\"ID\":\"50000632\",\"NOR\":\"A\"};"
+"50001263",null,"07-02-27T01:00:000",null,"Bureau Cab éducation (Min. Educ.)",0,null,"50000968",null,null,"DIR",null,"{\"ID\":\"50000968\",\"NOR\":\"B\"};"
+"50001264",null,"07-02-27T01:00:000",null,"Dir. gale de l'enseignement scolaire",0,null,"50000968",null,null,"DIR",null,"{\"ID\":\"50000968\",\"NOR\":\"E\"};"
+"50001265",null,"07-06-04T02:00:000",null,"Dir. gale enseign sup et insertion prof.",0,null,"50000940",null,null,"DIR",null,"{\"ID\":\"50000940\",\"NOR\":\"S\"};"
+"50001266",null,"07-06-04T02:00:000",null,"Dir. gale recherche et innovation",0,null,"50000940",null,null,"DIR",null,"{\"ID\":\"50000940\",\"NOR\":\"R\"};"
+"50001267",null,"07-02-27T01:00:000",null,"Secrétariat général (Min. Educ.)",0,null,"50000968",null,null,"DIR",null,"{\"ID\":\"50000968\",\"NOR\":\"G\"};"
+"50001268",null,"07-02-27T01:00:000",null,"Direction générale RH (Min. Educ.)",0,null,"50000968",null,null,"DIR",null,"{\"ID\":\"50000968\",\"NOR\":\"H\"};"
+"50001269",null,"07-02-27T01:00:000",null,"Direction de l'encadrement (Min. Educ.)",0,null,"50000968",null,null,"DIR",null,"{\"ID\":\"50000968\",\"NOR\":\"D\"};"
+"50001270",null,"07-02-27T01:00:000",null,"Dir. affaires financières (Min. Educ.)",0,null,"50000968",null,null,"DIR",null,"{\"ID\":\"50000968\",\"NOR\":\"F\"};"
+"50001271",null,"07-02-27T01:00:000",null,"Dir. affaires juridiques (Min. Educ.)",0,null,"50000968",null,null,"DIR",null,"{\"ID\":\"50000968\",\"NOR\":\"J\"};"
+"50001283",null,"07-02-27T01:00:000",null,"Cabinet Sécrétariat général",0,null,null,"50001249",null,"AUT",null,null
+"50001285",null,"07-02-27T01:00:000",null,"Secrétariat général - DMAT",0,null,null,"50001249",null,"AUT",null,null
+"50001286",null,"07-02-27T01:00:000",null,"Secrétariat général - DRH (A)",0,null,null,"50001249",null,"AUT",null,null
+"50001287",null,"07-02-27T01:00:000",null,"Secrétariat général - DEPAFI (F)",0,null,null,"50001249",null,"AUT",null,null
+"50001288",null,"07-02-27T01:00:000",null,"Secrétariat général - DSIC (G)",0,null,null,"50001249",null,"AUT",null,null
+"50001306",null,"07-02-27T01:00:000",null,"Sous-dir. élus locaux et FPT",0,null,null,"50000866",null,"AUT",null,null
+"50001307",null,"07-02-27T01:00:000",null,"Sous-dir. finances locales",0,null,null,"50000866",null,"AUT",null,null
+"50001308",null,"07-02-27T01:00:000",null,"Sous-dir. compétences et instit. loc.",0,null,null,"50000866",null,"AUT",null,null
+"50001309",null,"10-11-15T01:00:000",null,"BDC sports",0,null,"50005040",null,null,"DIR",null,"{\"ID\":\"50005040\",\"NOR\":\"K\"};"
+"50001313",null,"10-11-15T01:00:000",null,"Direction des sports",0,null,"50005040",null,null,"DIR",null,"{\"ID\":\"50005040\",\"NOR\":\"V\"};"
+"50001315",null,"10-11-26T01:00:000",null,"Dir jeunesse, éduc pop et vie asso",0,null,"50000968",null,null,"DIR",null,"{\"ID\":\"50000968\",\"NOR\":\"V\"};"
+"50001317",null,"10-11-17T01:00:000",null,"Dir. vie asso, emploi, formations",0,null,"50005040",null,null,"DIR",null,"{\"ID\":\"50005040\",\"NOR\":\"F\"};"
+"50001332",null,"07-02-28T01:00:000",null,"DGPN Cabinet",0,null,null,"50000666",null,"AUT",null,null
+"50001364",null,"07-02-28T01:00:000",null,"DLPAJ Cabinet",0,null,null,"50000867",null,"AUT",null,null
+"50001365",null,"07-02-28T01:00:000",null,"DLPAJ Sous-dir. des libertés publiques",0,null,null,"50000867",null,"AUT",null,null
+"50001367",null,"08-12-01T01:00:000",null,"Sous-dir. circ. et sécurité routière",0,null,null,"50001285",null,"AUT",null,null
+"50001369",null,"11-01-06T01:00:000",null,"Habitat, urba, paysages (DGALN-DHUP)",0,null,null,"50005109",null,"AUT",null,null
+"50001386",null,"07-03-02T01:00:000",null,"DDSC cabinet",0,null,null,"50000868",null,"AUT",null,null
+"50001387",null,"07-03-02T01:00:000",null,"Sous-dir. gestion des risques",0,null,null,"50000868",null,"AUT",null,null
+"50001388",null,"07-03-02T01:00:000",null,"Sous-dir. sapeurs pompiers",0,null,null,"50000868",null,"AUT",null,null
+"50001389",null,"07-03-02T01:00:000",null,"Sous-dir. administration",0,null,null,"50000868",null,"AUT",null,null
+"50001395",null,"07-03-02T01:00:000",null,"BDC Culture",0,null,"50000966",null,null,"DIR",null,"{\"ID\":\"50000966\",\"NOR\":\"A\"};"
+"50001396",null,"07-03-02T01:00:000",null,"Secrétariat général (SG)",0,null,"50000966",null,null,"DIR",null,"{\"ID\":\"50000966\",\"NOR\":\"B\"};"
+"50001398",null,"07-03-02T01:00:000",null,"Dir gén des médias et indus culturelles",0,null,"50000966",null,null,"DIR",null,"{\"ID\":\"50000966\",\"NOR\":\"E\"};"
+"50001399",null,"07-03-02T01:00:000",null,"Dir gén des patrimoines (DGP)",0,null,"50000966",null,null,"DIR",null,"{\"ID\":\"50000966\",\"NOR\":\"C\"};"
+"50001401",null,"07-03-02T01:00:000",null,"Dir gén de la création artistique",0,null,"50000966",null,null,"DIR",null,"{\"ID\":\"50000966\",\"NOR\":\"D\"};"
+"50001402",null,"07-03-02T01:00:000",null,"Centre nat du cinéma et image animée",0,null,"50000966",null,null,"DIR",null,"{\"ID\":\"50000966\",\"NOR\":\"K\"};"
+"50001405",null,"07-03-02T01:00:000",null,"Sec. gal défense et sécurité nationale",0,null,"50000607",null,null,"DIR",null,"{\"ID\":\"50000607\",\"NOR\":\"D\"};"
+"50001442",null,"07-03-02T01:00:000",null,"Dir gale de l'admin. et de la FP (DGAFP)",0,null,"50000607",null,null,"DIR",null,"{\"ID\":\"50000607\",\"NOR\":\"G\"};"
+"50001443",null,"07-03-09T01:00:000",null,"BDC Agriculture",0,null,"50000938",null,null,"DIR",null,"{\"ID\":\"50000938\",\"NOR\":\"U\"};"
+"50001444",null,"07-03-09T01:00:000",null,"Secrétariat général (AGR)",0,null,"50000938",null,null,"DIR",null,"{\"ID\":\"50000938\",\"NOR\":\"S\"};"
+"50001447",null,"07-03-09T01:00:000",null,"Dir. gale enseignem et recherche (AGR)",0,null,"50000938",null,null,"DIR",null,"{\"ID\":\"50000938\",\"NOR\":\"E\"};"
+"50001448",null,"07-03-09T01:00:000",null,"Dir gale de l'alimentation (AGR)",0,null,"50000938",null,null,"DIR",null,"{\"ID\":\"50000938\",\"NOR\":\"G\"};"
+"50001449",null,"07-03-09T01:00:000",null,"Dir. pêches marit. et aquaculture",0,null,"50000938",null,null,"DIR",null,"{\"ID\":\"50000938\",\"NOR\":\"M\"};"
+"50001460",null,"07-03-12T01:00:000",null,"Sous-dir. fonction militaire",0,null,null,"50001134",null,"AUT",null,null
+"50001461",null,"07-03-12T01:00:000",null,"Ss-dir rel. soc, statuts, filières (Déf)",0,null,null,"50001134",null,"AUT",null,null
+"50001462",null,"07-03-12T01:00:000",null,"Ss-dir gestion collect. pers civil (Déf)",0,null,null,"50001134",null,"AUT",null,null
+"50001545",null,"07-06-04T02:00:000",null,"Bureau Cab recherche",0,null,"50000940",null,null,"DIR",null,"{\"ID\":\"50000940\",\"NOR\":\"B\"};"
+"50001559",null,"07-03-27T02:00:000",null,"Dir. services admin et financiers (DSAF)",0,null,"50000607",null,null,"DIR",null,"{\"ID\":\"50000607\",\"NOR\":\"G\"};"
+"50001604",null,"07-03-29T02:00:000",null,"DAPN",0,null,null,"50000666",null,"AUT",null,null
+"50001605",null,"07-03-29T02:00:000",null,"DFPN",0,null,null,"50000666",null,"AUT",null,null
+"50001606",null,"07-03-29T02:00:000",null,"DCPJ",0,null,null,"50000666",null,"AUT",null,null
+"50001607",null,"07-03-29T02:00:000",null,"DCCRS",0,null,null,"50000666",null,"AUT",null,null
+"50001608",null,"07-03-29T02:00:000",null,"IGPN",0,null,null,"50000666",null,"AUT",null,null
+"50001609",null,"07-03-29T02:00:000",null,"Dir coopération internatio (DCI)",0,null,null,"50000666",null,"AUT",null,null
+"50001610",null,"07-03-29T02:00:000",null,"DCSP",0,null,null,"50000666",null,"AUT",null,null
+"50001611",null,"07-03-29T02:00:000",null,"DCPAF",0,null,null,"50000666",null,"AUT",null,null
+"50001612",null,"07-03-29T02:00:000",null,"Sous-dir admin. gale finances DAPN",0,null,null,"50001604",null,"AUT",null,null
+"50001613",null,"07-03-29T02:00:000",null,"Sous-dir ressources humaines DAPN",0,null,null,"50001604",null,"AUT",null,null
+"50001650",null,"07-03-29T02:00:000",null,"Serv. aff jur et internatio (Culture)",0,null,null,"50001396",null,"AUT",null,null
+"50001651",null,"07-03-29T02:00:000",null,"Serv aff financ et gén. (Culture)",0,null,null,"50001396",null,"AUT",null,null
+"50001652",null,"07-03-29T02:00:000",null,"Service RH (Culture)",0,null,null,"50001396",null,"AUT",null,null
+"50001681",null,"07-02-27T01:00:000",null,"Dir. éval, prospect et perf. (Min. Educ)",0,null,"50000968",null,null,"DIR",null,"{\"ID\":\"50000968\",\"NOR\":\"P\"};"
+"50001682",null,"07-02-27T01:00:000",null,"D. relat. eur, internat, coop (Min Educ)",0,null,"50000968",null,null,"DIR",null,"{\"ID\":\"50000968\",\"NOR\":\"C\"};"
+"50001683",null,"07-02-27T01:00:000",null,"Serv action admin., modernis. (Min Educ)",0,null,"50000968",null,null,"DIR",null,"{\"ID\":\"50000968\",\"NOR\":\"A\"};"
+"50001684",null,"07-02-27T01:00:000",null,"IGEN/IGAENR (Min. Educ.)",0,null,"50000968",null,null,"DIR",null,"{\"ID\":\"50000968\",\"NOR\":\"I\"};"
+"50001732",null,"07-04-02T02:00:000",null,"Vigie Agriculture",0,null,"50000938",null,null,"DIR",null,"{\"ID\":\"50000938\",\"NOR\":\"U\"};"
+"50001741",null,"07-04-04T02:00:000",null,"Comité entreprises assurances (CEA)",0,null,null,"50000659",null,"AUT",null,null
+"50001742",null,"07-04-04T02:00:000",null,"(CEA) Comité entreprises assurances",0,null,null,"50001741",null,"AUT",null,null
+"50001745",null,"07-04-04T02:00:000",null,"Service affaires fin, soc, et log (AGR)",0,null,null,"50001444",null,"AUT",null,null
+"50001747",null,"07-04-04T02:00:000",null,"Délégation Mobilité / carrières (AGR)",0,null,null,"50001444",null,"AUT",null,null
+"50001748",null,"07-04-04T02:00:000",null,"Service ressources humaines (AGR)",0,null,null,"50001444",null,"AUT",null,null
+"50001814",null,"07-11-20T01:00:000",null,"Conseil de la concurrence (Economie)",0,null,"50002618",null,null,"DIR",null,"{\"ID\":\"50002618\",\"NOR\":\"Z\"};"
+"50001828",null,"07-05-02T02:00:000",null,"(CEA) Comité entreprises assurances",0,null,"50001827",null,null,"DIR",null,"{\"ID\":\"50001827\",\"NOR\":\"A\"};"
+"50001882",null,"10-11-19T01:00:000",null,"Direction Santé (à préciser)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"ETS\"};"
+"50001912",null,"10-11-15T01:00:000",null,"DGAFP",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"F\"};"
+"50001917",null,"07-05-30T02:00:000",null,"Bureau des cabinets (BCR)",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"Z\"};"
+"50001926",null,"06-05-04T02:00:000",null,"DéGéOM (IOC)",0,null,"50000632",null,null,"DIR",null,"{\"ID\":\"50000632\",\"NOR\":\"O\"};"
+"50001932",null,"10-04-20T02:00:000",null,"OBSOLETE DGI - DLF",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"L\"};"
+"50001934",null,"07-02-13T01:00:000",null,"AFNOR (Economie)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"F\"};"
+"50001946",null,"10-11-19T01:00:000",null,"DREES (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"E\"};"
+"50001962",null,"07-06-08T02:00:000",null,"DREES",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"E\"};"
+"50003132",null,"07-06-01T02:00:000",null,"Service commun laboratoires (Economie)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"Y\"};"
+"50003157",null,"07-08-24T02:00:000",null,"Service économie et prospective (ARCEP)",0,null,"50002368",null,null,"DIR",null,"{\"ID\":\"50002368\",\"NOR\":\"E\"};"
+"50003158",null,"07-08-24T02:00:000",null,"Serv. régulation marchés fixe et mobiles",0,null,"50002368",null,null,"DIR",null,"{\"ID\":\"50002368\",\"NOR\":\"T\"};"
+"50003159",null,"07-08-24T02:00:000",null,"Serv. collect. rég. marchés haut débit",0,null,"50002368",null,null,"DIR",null,"{\"ID\":\"50002368\",\"NOR\":\"T\"};"
+"50003160",null,"07-08-24T02:00:000",null,"Service juridique (ARCEP)",0,null,"50002368",null,null,"DIR",null,"{\"ID\":\"50002368\",\"NOR\":\"J\"};"
+"50003161",null,"07-08-24T02:00:000",null,"Service international (ARCEP)",0,null,"50002368",null,null,"DIR",null,"{\"ID\":\"50002368\",\"NOR\":\"I\"};"
+"50003162",null,"07-08-24T02:00:000",null,"Service du directeur gal ou du président",0,null,"50002368",null,null,"DIR",null,"{\"ID\":\"50002368\",\"NOR\":\"P\"};"
+"50003163",null,"07-08-24T02:00:000",null,"Service régulation postale (ARCEP)",0,null,"50002368",null,null,"DIR",null,"{\"ID\":\"50002368\",\"NOR\":\"R\"};"
+"50003164",null,"07-08-24T02:00:000",null,"Serv admin ressources humaines (ARCEP)",0,null,"50002368",null,null,"DIR",null,"{\"ID\":\"50002368\",\"NOR\":\"G\"};"
+"50003207",null,"08-09-01T02:00:000",null,"Commission perm. publication du BOA",0,null,null,"50001106",null,"AUT",null,null
+"50003232",null,"08-09-04T02:00:000",null,"Cabinet du SGG",0,null,null,"50000615",null,"AUT",null,null
+"50003282",null,"10-12-13T01:00:000",null,"OFPRA",0,null,null,"50003307",null,"AUT",null,null
+"50003357",null,"08-10-24T02:00:000",null,"Sce Bulletins Officiels DILA",0,null,null,"50000629",null,"AUT",null,null
+"50003632",null,"07-06-07T02:00:000",null,"Caisse des dépôts et consignations",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"K\"};"
+"50003707",null,"10-11-26T01:00:000",null,"SG-CIV (Min. VIL)",0,null,"50005039",null,null,"DIR",null,"{\"ID\":\"50005039\",\"NOR\":\"V\"};"
+"50003733",null,"09-03-02T01:00:000",null,"Rapporteur Autorité de la concurrence",0,null,"50003732",null,null,"DIR",null,"{\"ID\":\"50003732\",\"NOR\":\"R\"};"
+"50003758",null,"09-03-02T01:00:000",null,"Président Autorité de la concurrence",0,null,"50003732",null,null,"DIR",null,"{\"ID\":\"50003732\",\"NOR\":\"P\"};"
+"50003858",null,"09-05-12T02:00:000",null,"Service de l'alimentation (AGR)",0,null,null,"50001448",null,"AUT",null,null
+"50003859",null,"09-05-12T02:00:000",null,"Serv. prév risq san, prod primaire",0,null,null,"50001448",null,"AUT",null,null
+"50003860",null,"09-05-12T02:00:000",null,"Serv. coordinations actions sanitaires",0,null,null,"50001448",null,"AUT",null,null
+"50003862",null,"07-03-09T01:00:000",null,"Dir. gale pol agri, agro, territoires",0,null,"50000938",null,null,"DIR",null,"{\"ID\":\"50000938\",\"NOR\":\"T\"};"
+"50003863",null,"09-05-12T02:00:000",null,"Service production agricole",0,null,null,"50003862",null,"AUT",null,null
+"50003864",null,"09-05-12T02:00:000",null,"Service forêt, ruralité et cheval",0,null,null,"50003862",null,"AUT",null,null
+"50003865",null,"09-05-12T02:00:000",null,"Serv. strateg. agroalim, dvt durable",0,null,null,"50003862",null,"AUT",null,null
+"50003866",null,"09-05-12T02:00:000",null,"Service relations internationales (AGR)",0,null,null,"50003862",null,"AUT",null,null
+"50003957",null,"10-11-19T01:00:000",null,"Dir Aff financ, juri et des serv (ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"G\"};"
+"50003982",null,"09-06-24T02:00:000",null,"Bureau des cabinets (IND)",0,null,"50011153",null,null,"DIR",null,"{\"ID\":\"50011153\",\"NOR\":\"Z\"};"
+"50003985",null,"10-11-24T01:00:000",null,"DATAR (AGR)",0,null,"50000938",null,null,"DIR",null,"{\"ID\":\"50000938\",\"NOR\":\"R\"};"
+"50004007",null,"10-11-24T01:00:000",null,"Dir ressources humaines (SCS)",0,null,"50005038",null,null,"DIR",null,"{\"ID\":\"50005038\",\"NOR\":\"R\"};"
+"50004057",null,"09-07-24T02:00:000",null,"DAJ (IND)",0,null,"50011153",null,null,"DIR",null,"{\"ID\":\"50011153\",\"NOR\":\"M\"};"
+"50004059",null,"09-07-24T02:00:000",null,"DGEFP (IND)",0,null,"50011153",null,null,"DIR",null,"{\"ID\":\"50011153\",\"NOR\":\"D\"};"
+"50004132",null,"07-02-21T01:00:000",null,"Service parisien soutien admin centrale",0,null,"50000967",null,null,"DIR",null,"{\"ID\":\"50000967\",\"NOR\":\"S\"};"
+"50004157",null,"09-08-17T02:00:000",null,"SS dir gest pers civil admin centrale",0,null,null,"50004132",null,"AUT",null,null
+"50004183",null,"09-09-30T02:00:000",null,"DGCIS (IND)",0,null,"50011153",null,null,"DIR",null,"{\"ID\":\"50011153\",\"NOR\":\"I\"};"
+"50004234",null,"09-11-06T01:00:000",null,"BDC Outre-mer",0,null,"50004232",null,null,"DIR",null,"{\"ID\":\"50004232\",\"NOR\":\"S\"};"
+"50004259",null,"09-11-09T01:00:000",null,"DéGéOM (Outre-Mer)",0,null,"50004232",null,null,"DIR",null,"{\"ID\":\"50004232\",\"NOR\":\"O\"};"
+"50004307",null,"07-06-14T02:00:000",null,"Service techno. syst. information (ESR)",0,null,"50000940",null,null,"DIR",null,"{\"ID\":\"50000940\",\"NOR\":\"T\"};"
+"50004332",null,"09-03-02T01:00:000",null,"Collège Autorité de la concurrence",0,null,"50003732",null,null,"DIR",null,"{\"ID\":\"50003732\",\"NOR\":\"C\"};"
+"50004357",null,"10-11-19T01:00:000",null,"Secrétariat général  (Min. ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"Z\"};"
+"50004382",null,"08-01-10T01:00:000",null,"CTR-CSA",0,null,"50002682",null,null,"DIR",null,"{\"ID\":\"50002682\",\"NOR\":\"R\"};"
+"50004489",null,"10-04-19T02:00:000",null,"OBSOLETE DGCP",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"R\"};"
+"50004503",null,"09-09-30T02:00:000",null,"DPAEP (IND)",0,null,"50011153",null,null,"DIR",null,"{\"ID\":\"50011153\",\"NOR\":\"P\"};"
+"50004507",null,"07-06-01T02:00:000",null,"DGFIP (Economie)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"E\"};"
+"50004534",null,"06-06-07T02:00:000",null,"DGFIP (Budget)",0,null,"50013998",null,null,"DIR",null,"{\"ID\":\"50013998\",\"NOR\":\"E\"};"
+"50004635",null,"10-11-24T01:00:000",null,"Secrétariat général  (Min. SCS)",0,null,"50005038",null,null,"DIR",null,"{\"ID\":\"50005038\",\"NOR\":\"Z\"};"
+"50004711",null,"07-02-20T01:00:000",null,"Secrétariat général  (Min. JUS)",0,null,"50000972",null,null,"DIR",null,"{\"ID\":\"50000972\",\"NOR\":\"T\"};"
+"50004757",null,"10-05-21T02:00:000",null,"Directeur adjoint au SGG",0,null,null,"50000615",null,"AUT",null,null
+"50004857",null,"09-09-30T02:00:000",null,"Secrétariat général (IND)",0,null,"50011153",null,null,"DIR",null,"{\"ID\":\"50011153\",\"NOR\":\"P\"};"
+"50004933",null,"10-09-22T02:00:000",null,"Direction ACP",0,null,"50004632",null,null,"DIR",null,"{\"ID\":\"50004632\",\"NOR\":\"P\"};"
+"50005048",null,"10-11-15T01:00:000",null,"Direction",0,null,"50001008",null,null,"DIR",null,"{\"ID\":\"50001008\",\"NOR\":\"Nlle unitéSt\"};"
+"50005049",null,"10-11-15T01:00:000",null,"BDC Solidarités, cohésion sociale (SCS)",0,null,"50005038",null,null,"DIR",null,"{\"ID\":\"50005038\",\"NOR\":\"C\"};"
+"50005051",null,"10-11-15T01:00:000",null,"DGCL (COT)",0,null,"50005041",null,null,"DIR",null,"{\"ID\":\"50005041\",\"NOR\":\"B\"};"
+"50005082",null,"10-11-19T01:00:000",null,"BDC "Grenelle" (Min. APP)",0,null,"50005042",null,null,"DIR",null,"{\"ID\":\"50005042\",\"NOR\":\"C\"};"
+"50005084",null,"10-11-19T01:00:000",null,"DGEFP (Min. APP)",0,null,"50005042",null,null,"DIR",null,"{\"ID\":\"50005042\",\"NOR\":\"D\"};"
+"50005086",null,"10-11-19T01:00:000",null,"BDC "Grenelle" (Min. VIL)",0,null,"50005039",null,null,"DIR",null,"{\"ID\":\"50005039\",\"NOR\":\"C\"};"
+"50005110",null,"10-11-24T01:00:000",null,"DGEC (IND)",0,null,"50011153",null,null,"DIR",null,"{\"ID\":\"50011153\",\"NOR\":\"R\"};"
+"50005112",null,"10-11-24T01:00:000",null,"DGEC (EFI)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"R\"};"
+"50005115",null,"10-11-25T01:00:000",null,"DGEC (Dir gén énergie et climat)",0,null,"50000976",null,null,"DIR",null,"{\"ID\":\"50000976\",\"NOR\":\"R\"};"
+"50005117",null,"07-06-14T02:00:000",null,"Haut fonctionnaire défense et sécurité",0,null,"50000940",null,null,"DIR",null,"{\"ID\":\"50000940\",\"NOR\":\"N\"};"
+"50005118",null,"07-02-27T01:00:000",null,"Haut fonctionnaire défense et sécurité",0,null,"50000968",null,null,"DIR",null,"{\"ID\":\"50000968\",\"NOR\":\"N\"};"
+"50005132",null,"10-11-17T01:00:000",null,"Dir ressources humaines (Min. SPO)",0,null,"50005040",null,null,"DIR",null,"{\"ID\":\"50005040\",\"NOR\":\"R\"};"
+"50005133",null,"10-11-17T01:00:000",null,"Dir Aff financ, juri et des serv (SPO)",0,null,"50005040",null,null,"DIR",null,"{\"ID\":\"50005040\",\"NOR\":\"G\"};"
+"50005136",null,"10-11-24T01:00:000",null,"DAEI (Min.SCS)",0,null,"50005038",null,null,"DIR",null,"{\"ID\":\"50005038\",\"NOR\":\"I\"};"
+"50005138",null,"10-11-26T01:00:000",null,"Direction",0,null,"50000977",null,null,"DIR",null,"{\"ID\":\"50000977\",\"NOR\":\"Nlle unitéSt\"};"
+"50005157",null,"10-11-29T01:00:000",null,"Ss-dir. élus locaux et fpt (COT)",0,null,null,"50005051",null,"AUT",null,null
+"50005158",null,"10-11-29T01:00:000",null,"Ss-dir finances loc & action éco (COT)",0,null,null,"50005051",null,"AUT",null,null
+"50005159",null,"10-11-29T01:00:000",null,"Ss-dir compétences et instit loc (COT)",0,null,null,"50005051",null,"AUT",null,null
+"50005182",null,"10-12-07T01:00:000",null,"DSCR (Délég sécur et circul routière)",0,null,"50000632",null,null,"DIR",null,"{\"ID\":\"50000632\",\"NOR\":\"S\"};"
+"50005207",null,"07-02-27T01:00:000",null,"DRH Travail (Min. Educ)",0,null,"50000968",null,null,"DIR",null,"{\"ID\":\"50000968\",\"NOR\":\"R\"};"
+"50005271",null,"11-01-06T01:00:000",null,"Eco., Eval. & Intégration Dev.durable",0,null,null,"50000835",null,"AUT",null,null
+"50005327",null,"11-01-07T01:00:000",null,"Risques Technologiques (DGPR-SRT)",0,null,null,"50000833",null,"AUT",null,null
+"50005328",null,"11-01-07T01:00:000",null,"Prevent° nuisances & Qualité Environn.",0,null,null,"50000833",null,"AUT",null,null
+"50005329",null,"11-01-07T01:00:000",null,"Risques naturels & Hydraul. (DGPR-SRNH)",0,null,null,"50000833",null,"AUT",null,null
+"50005408",null,"10-11-19T01:00:000",null,"Délégation gale pilotage Direccte (ETS)",0,null,"50000969",null,null,"DIR",null,"{\"ID\":\"50000969\",\"NOR\":\"F\"};"
+"50005409",null,"07-02-13T01:00:000",null,"Délégation gale pilotage Direccte (EFI)",0,null,"50000507",null,null,"DIR",null,"{\"ID\":\"50000507\",\"NOR\":\"H\"};"
+"50005457",null,"10-11-24T01:00:000",null,"DGALN (IND)",0,null,"50011153",null,null,"DIR",null,"{\"ID\":\"50011153\",\"NOR\":\"L\"};"

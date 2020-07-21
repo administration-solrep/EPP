@@ -1,0 +1,65 @@
+ID_ORGANIGRAMME,DATE_FIN,DATE_DEBUT,DATE_VERROU,LABEL,DELETED,UTILISATEUR_VERROU,ID_PARENT_GOUV,EDITION,FORMULE,CIVILITE_MINISTRE,NOM_MINISTRE,PRENOM_MINISTRE,ORDRE,FUNCTION_READ,NOR_MINISTERE,SUIVI_ACTIVITE_NORMATIVE
+"50000507",null,"10-11-15T01:00:000",null,"Min. Economie, finances et industrie",0,null,"gouv_1","Min. Economie, finances et industrie","à renseigner",null,"à renseigner",null,23,null,"EFI",0
+"50000582",null,"06-05-04T02:00:000",null,"Conseil d'État",0,null,"gouv_1","Conseil d'État","à renseigner",null,"à renseigner",null,10,null,"CET",0
+"50000607",null,"06-05-04T02:00:000",null,"Premier Ministre",0,null,"gouv_1","Premier Ministre","à renseigner",null,"à renseigner",null,63,null,"PRM",0
+"50000632",null,"10-12-15T01:00:000",null,"Min. Intérieur, OM, collect terr, immigr",0,null,"gouv_1","Min. Intérieur, OM, collect terr, immigr","à renseigner",null,"à renseigner",null,27,null,"IOC",0
+"50000633",null,"07-06-28T02:00:000",null,"NOR DEV",0,null,"gouv_1","NOR DEV","à renseigner",null,"à renseigner",null,39,null,"DEV",0
+"50000635",null,"06-05-04T02:00:000",null,"Ministère pilote (à préciser)",0,null,"gouv_1","Ministère pilote (à préciser)","à renseigner",null,"à renseigner",null,34,null,"PIL",0
+"50000636",null,"06-05-04T02:00:000",null,"Ministère(s) suiveur(s) (à préciser)",0,null,"gouv_1","Ministère(s) suiveur(s) (à préciser)","à renseigner",null,"à renseigner",null,35,null,"SUI",0
+"50000764",null,"06-05-15T02:00:000",null,"Présidence de la République",0,null,"gouv_1","Présidence de la République","à renseigner",null,"à renseigner",null,64,null,"PRE",0
+"50000783",null,"07-05-25T02:00:000",null,"NOR SAN",0,null,"gouv_1","NOR SAN","à renseigner",null,"à renseigner",null,58,null,"SAN",0
+"50000937",null,"07-05-18T02:00:000",null,"Min. Affaires étrangères et européennes",0,null,"gouv_1","Min. Affaires étrangères et européennes","à renseigner",null,"à renseigner",null,14,null,"MAE",0
+"50000938",null,"10-11-15T01:00:000",null,"Min. Agr, alim, pêche, rur, amén. territ",0,null,"gouv_1","Min. Agr, alim, pêche, rur, amén. territ","à renseigner",null,"à renseigner",null,15,null,"AGR",0
+"50000940",null,"07-05-18T02:00:000",null,"Min. Enseignement sup. et recherche",0,null,"gouv_1","Min. Enseignement sup. et recherche","à renseigner",null,"à renseigner",null,25,null,"ESR",0
+"50000945",null,"07-06-06T02:00:000",null,"NOR TOU",0,null,"gouv_1","NOR TOU","à renseigner",null,"à renseigner",null,62,null,"TOU",0
+"50000966",null,"07-04-19T02:00:000",null,"Min. Culture et communication",0,null,"gouv_1","Min. Culture et communication","à renseigner",null,"à renseigner",null,20,null,"MCC",0
+"50000967",null,"10-11-15T01:00:000",null,"Min. Défense, anciens combattants",0,null,"gouv_1","Min. Défense, anciens combattants","à renseigner",null,"à renseigner",null,21,null,"DEF",0
+"50000968",null,"10-11-15T01:00:000",null,"Min. Education nat, jeunesse, vie assoc.",0,null,"gouv_1","Min. Education nat, jeunesse, vie assoc.","à renseigner",null,"à renseigner",null,24,null,"MEN",0
+"50000969",null,"10-04-13T02:00:000",null,"Min. Travail, emploi et santé",0,null,"gouv_1","Min. Travail, emploi et santé","à renseigner",null,"à renseigner",null,32,null,"ETS",0
+"50000970",null,"07-05-30T02:00:000",null,"NOR FPP",0,null,"gouv_1","NOR FPP","à renseigner",null,"à renseigner",null,46,null,"FPP",0
+"50000971",null,"07-06-05T02:00:000",null,"NOR MJS",0,null,"gouv_1","NOR MJS","à renseigner",null,"à renseigner",null,54,null,"MJS",0
+"50000972",null,"07-10-18T02:00:000",null,"Min. Justice et des libertés",0,null,"gouv_1","Min. Justice et des libertés","à renseigner",null,"à renseigner",null,28,null,"JUS",0
+"50000973",null,"07-06-07T02:00:000",null,"NOR DOM",0,null,"gouv_1","NOR DOM","à renseigner",null,"à renseigner",null,40,null,"DOM",0
+"50000974",null,"07-06-07T02:00:000",null,"NOR PME",0,null,"gouv_1","NOR PME","à renseigner",null,"à renseigner",null,57,null,"PME",0
+"50000975",null,"10-11-19T01:00:000",null,"NOR SAS",0,null,"gouv_1","NOR SAS","à renseigner",null,"à renseigner",null,59,null,"SAS",0
+"50000976",null,"10-11-15T01:00:000",null,"Min. Ecologie, dév durable, transp, logt",0,null,"gouv_1","Min. Ecologie, dév durable, transp, logt","à renseigner",null,"à renseigner",null,22,null,"DEV",0
+"50000977",null,"08-03-06T01:00:000",null,"Min. Affaires européennes",0,null,"gouv_1","Min. Affaires européennes","à renseigner",null,"à renseigner",null,13,null,"EUR",0
+"50000978",null,"07-06-07T02:00:000",null,"NOR MAT",0,null,"gouv_1","NOR MAT","à renseigner",null,"à renseigner",null,50,null,"MAT",0
+"50000979",null,"07-06-28T02:00:000",null,"NOR DAC",0,null,"gouv_1","NOR DAC","à renseigner",null,"à renseigner",null,38,null,"DAC",0
+"50000980",null,"07-06-07T02:00:000",null,"NOR MCP",0,null,"gouv_1","NOR MCP","à renseigner",null,"à renseigner",null,51,null,"MCP",0
+"50000981",null,"07-06-07T02:00:000",null,"NOR MCT",0,null,"gouv_1","NOR MCT","à renseigner",null,"à renseigner",null,52,null,"MCT",0
+"50001007",null,"07-06-01T02:00:000",null,"NOR EXT",0,null,"gouv_1","NOR EXT","à renseigner",null,"à renseigner",null,45,null,"EXT",0
+"50001008",null,"07-06-28T02:00:000",null,"Min. Coopération",0,null,"gouv_1","Min. Coopération","à renseigner",null,"à renseigner",null,19,null,"COP",0
+"50001441",null,"07-06-07T02:00:000",null,"NOR MET",0,null,"gouv_1","NOR MET","à renseigner",null,"à renseigner",null,53,null,"MET",0
+"50001498",null,"07-05-25T02:00:000",null,"NOR ECO",0,null,"gouv_1","NOR ECO","à renseigner",null,"à renseigner",null,43,null,"ECO",0
+"50001501",null,"07-05-25T02:00:000",null,"NOR INT",0,null,"gouv_1","NOR INT","à renseigner",null,"à renseigner",null,47,null,"INT",0
+"50001827",null,"07-07-02T02:00:000",null,"Comité entreprises assurances (CEA)",0,null,"gouv_1","Comité entreprises assurances (CEA)","à renseigner",null,"à renseigner",null,6,null,"CEA",0
+"50001886",null,"10-11-15T01:00:000",null,"NOR LOG",0,null,"gouv_1","NOR LOG","à renseigner",null,"à renseigner",null,49,null,"LOG",0
+"50001888",null,"10-03-24T01:00:000",null,"NOR BCF",0,null,"gouv_1","NOR BCF","à renseigner",null,"à renseigner",null,36,null,"BCF",0
+"50001894",null,"07-05-25T02:00:000",null,"NOR BUD",0,null,"gouv_1","NOR BUD","à renseigner",null,"à renseigner",null,37,null,"BUD",0
+"50001900",null,"07-05-25T02:00:000",null,"NOR SOC",0,null,"gouv_1","NOR SOC","à renseigner",null,"à renseigner",null,61,null,"SOC",0
+"50001910",null,"07-05-29T02:00:000",null,"NOR EQU",0,null,"gouv_1","NOR EQU","à renseigner",null,"à renseigner",null,44,null,"EQU",0
+"50002357",null,"08-11-04T01:00:000",null,"Commission de régulation de l'énergie",0,null,"gouv_1","Commission de régulation de l'énergie","à renseigner",null,"à renseigner",null,7,null,"CRE",0
+"50002368",null,"07-08-24T02:00:000",null,"ARCEP",0,null,"gouv_1","ARCEP","à renseigner",null,"à renseigner",null,1,null,"ART",0
+"50002382",null,"07-08-28T02:00:000",null,"Collectivités territoriales République",0,null,"gouv_1","Collectivités territoriales République","à renseigner",null,"à renseigner",null,5,null,"CTR",0
+"50002507",null,"07-10-25T02:00:000",null,"Commission nat informatique libertés",0,null,"gouv_1","Commission nat informatique libertés","à renseigner",null,"à renseigner",null,8,null,"CNI",0
+"50002509",null,"07-10-25T02:00:000",null,"Cour des comptes",0,null,"gouv_1","Cour des comptes","à renseigner",null,"à renseigner",null,12,null,"CPT",0
+"50002618",null,"07-11-20T01:00:000",null,"CCO",0,null,"gouv_1","CCO","à renseigner",null,"à renseigner",null,4,null,"CCO",0
+"50002682",null,"08-01-10T01:00:000",null,"Conseil supérieur de l'audiovisuel",0,null,"gouv_1","Conseil supérieur de l'audiovisuel","à renseigner",null,"à renseigner",null,11,null,"CSA",0
+"50002907",null,"08-04-01T02:00:000",null,"Conseil constitutionnel",0,null,"gouv_1","Conseil constitutionnel","à renseigner",null,"à renseigner",null,9,null,"CSC",0
+"50003582",null,"09-01-15T01:00:000",null,"NOR SJS",0,null,"gouv_1","NOR SJS","à renseigner",null,"à renseigner",null,60,null,"SJS",0
+"50003584",null,"09-01-15T01:00:000",null,"NOR MLV",0,null,"gouv_1","NOR MLV","à renseigner",null,"à renseigner",null,55,null,"MLV",0
+"50003732",null,"09-03-11T01:00:000",null,"Autorité de la concurrence",0,null,"gouv_1","Autorité de la concurrence","à renseigner",null,"à renseigner",null,3,null,"ACO",0
+"50003983",null,"10-12-17T01:00:000",null,"NOR EAT",0,null,"gouv_1","NOR EAT","à renseigner",null,"à renseigner",null,41,null,"EAT",0
+"50004232",null,"09-11-06T01:00:000",null,"Min. Outre-mer",0,null,"gouv_1","Min. Outre-mer","à renseigner",null,"à renseigner",null,29,null,"OME",0
+"50004432",null,"10-12-17T01:00:000",null,"NOR JSA",0,null,"gouv_1","NOR JSA","à renseigner",null,"à renseigner",null,48,null,"JSA",0
+"50004632",null,"10-04-19T02:00:000",null,"Autorité contrôle prudentiel",0,null,"gouv_1","Autorité contrôle prudentiel","à renseigner",null,"à renseigner",null,2,null,"ACP",0
+"50005032",null,"10-11-15T01:00:000",null,"NOR ECE",0,null,"gouv_1","NOR ECE","à renseigner",null,"à renseigner",null,42,null,"ECE",0
+"50005036",null,"10-11-15T01:00:000",null,"NOR MTS",0,null,"gouv_1","NOR MTS","à renseigner",null,"à renseigner",null,56,null,"MTS",0
+"50005038",null,"10-11-15T01:00:000",null,"Min. Solidarités et cohésion sociale",0,null,"gouv_1","Min. Solidarités et cohésion sociale","à renseigner",null,"à renseigner",null,30,null,"SCS",0
+"50005039",null,"10-11-15T01:00:000",null,"Min. Ville",0,null,"gouv_1","Min. Ville","à renseigner",null,"à renseigner",null,33,null,"VIL",0
+"50005040",null,"10-11-15T01:00:000",null,"Min. Sports",0,null,"gouv_1","Min. Sports","à renseigner",null,"à renseigner",null,31,null,"SPO",0
+"50005041",null,"10-11-15T01:00:000",null,"Min. Collectivités territoriales",0,null,"gouv_1","Min. Collectivités territoriales","à renseigner",null,"à renseigner",null,18,null,"COT",0
+"50005042",null,"10-11-15T01:00:000",null,"Min. Apprentissage, formation prof",0,null,"gouv_1","Min. Apprentissage, formation prof","à renseigner",null,"à renseigner",null,16,null,"APP",0
+"50011153",null,"09-06-24T02:00:000",null,"Min. Industrie, énergie, éco. numérique",0,null,"gouv_1","Min. Industrie, énergie, éco. numérique","à renseigner",null,"à renseigner",null,26,null,"IND",0
+"50013998",null,"10-11-15T01:00:000",null,"Min. Budget, comptes pub, FP, réf. Etat",0,null,"gouv_1","Min. Budget, comptes pub, FP, réf. Etat","à renseigner",null,"à renseigner",null,17,null,"BCR",0

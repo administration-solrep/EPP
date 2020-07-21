@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<!-- Cet composant contribue les associations type de document / cycle de 
+	vie. -->
+<component name="fr.dila.solonepp.core.lifecycletype">
+
+	<required>fr.dila.solonepp.core.lifecycle</required>
+
+	<!-- Associations type de document / cycle de vie -->
+	<extension target="org.nuxeo.ecm.core.lifecycle.LifeCycleService"
+		point="types">
+		<types>
+			<type name="Dossier">dossier</type>
+			<type name="Evenement"
+				noRecursionForTransitions="toBrouillonFromInit,toPublieFromInit,toPublie,toInstance,backToInstance,toAttenteValidation,toAnnule">evenement</type>
+			<type name="Version"
+				noRecursionForTransitions="toBrouillonFromInit,backToBrouillon,toPublieFromInit,toAttenteValidationFromInit,toPublie,toBrouillonAttenteValidation,toAttenteValidation,toObsolete,toRejete,toAbandonne">version</type>
+			<type name="Message">message</type>
+			<type name="Mailbox">default</type>
+			<type name="PieceJointe">default</type>
+		</types>
+	</extension>
+</component>

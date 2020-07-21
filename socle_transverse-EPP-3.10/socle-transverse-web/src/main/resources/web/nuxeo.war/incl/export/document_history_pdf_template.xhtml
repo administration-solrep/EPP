@@ -1,0 +1,53 @@
+<f:subview xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxp="http://nuxeo.org/nxweb/pdf">
+
+	<nxp:paragraph>
+
+		<nxp:table columns="5" widths="2 2 5 2 5" widthPercentage="100"
+			headerRows="1">
+			<nxp:cell grayFill=".6">
+				<nxp:paragraph alignment="center">#{messages['label.journal.date']}</nxp:paragraph>
+			</nxp:cell>
+			<nxp:cell grayFill=".6">
+				<nxp:paragraph alignment="center">#{messages['label.journal.userName']}</nxp:paragraph>
+			</nxp:cell>
+			<nxp:cell grayFill=".6">
+				<nxp:paragraph alignment="center">#{messages['label.journal.poste']}</nxp:paragraph>
+			</nxp:cell>
+			<nxp:cell grayFill=".6">
+				<nxp:paragraph alignment="center">#{messages['label.journal.category']}</nxp:paragraph>
+			</nxp:cell>
+			<nxp:cell grayFill=".6">
+				<nxp:paragraph alignment="center">#{messages['label.comment']}</nxp:paragraph>
+			</nxp:cell>
+			<c:forEach items="#{logEntries}" var="logEntry">
+				<nxp:cell>
+					<nxp:html>
+					<h:outputText value="#{logEntry.eventDate}"
+						converter="DateTimeConverter" style="font-size:8px;" />
+					</nxp:html>
+				</nxp:cell>
+				<nxp:cell>
+					<nxp:font size="8">#{logEntry.principalName}</nxp:font>
+				</nxp:cell>
+				<nxp:cell>
+					<nxp:font size="8">#{logEntry.docPath}</nxp:font>
+				</nxp:cell>
+				<nxp:cell>
+					<nxp:font size="8">#{messages[logEntry.category]}</nxp:font>
+				</nxp:cell>
+				<nxp:cell>
+					<nxp:font size="8">#{messages[logEntry.comment]}</nxp:font>
+				</nxp:cell>
+			</c:forEach>
+		</nxp:table>
+
+	</nxp:paragraph>
+
+</f:subview>

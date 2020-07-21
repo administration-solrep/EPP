@@ -1,0 +1,10 @@
+# Pour lancer ce script :
+# 1 - copier ce fichier dans /tmp/
+# 2 - Aller dans le répertoire contenant nxshell.sh
+# 3 - Taper la commande sh nxshell.sh -f /tmp/01-template_email.nxshell
+
+# connect to http://localhost:8180/solon-epp (obligatoire sinon Unknown command...) 
+connect -u Administrator -p Administrator http://localhost:8180/solon-epp/site/automation
+
+setp /case-management/parametre-root/mail-transmettre-evenement-corps -xpath parametre:value -value "<html><head></head><body><p>Message envoyé par ${expediteur} - merci de répondre à cette adresse</p><br/><p>${corps}</p><br/><table><p>Métadonnées de la communication</p><#list metadonnees as m><tr><td>${m.title}</td><td>${m.value}</td></tr></#list></table><p>Pièces jointes</p><table><#list piecesjointes as p><tr><td>${p.title}</td><td>${p.value}</td></tr></#list></table></body></html>"
+

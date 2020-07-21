@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/dila_solrep/!svn/ver/3005/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/api
+END
+ReportInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/api/ReportInstance.java
+END
+BirtReportInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/dila_solrep/!svn/ver/3005/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/api/BirtReportInstance.java
+END
+AdapterFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/api/AdapterFactory.java
+END
+BaseBirtReportAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/api/BaseBirtReportAdapter.java
+END
+Constants.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/api/Constants.java
+END
+ReportModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/api/ReportModel.java
+END
+ReportService.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/api/ReportService.java
+END
+BirtReportModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/api/BirtReportModel.java
+END

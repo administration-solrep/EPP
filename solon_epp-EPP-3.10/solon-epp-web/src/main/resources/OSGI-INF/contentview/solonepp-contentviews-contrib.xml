@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue les content view de l'application SOLON EPP -->
+<component name="fr.dila.solonepg.requete.contentviews.contrib">
+
+	<extension target="org.nuxeo.ecm.platform.ui.web.ContentViewService"
+		point="contentViews">
+
+		<!-- Content view de la liste des messages dans une corbeille -->
+		<contentView name="corbeille_message_list">
+			<genericPageProvider
+				class="fr.dila.solonepp.web.contentview.CorbeillePageProvider">
+				<property name="coreSession">#{documentManager}</property>
+				<property name="queryString">#{corbeilleActions.messageListQueryString}</property>
+				<property name="parameters">#{corbeilleActions.messageListQueryParameter}</property>
+				<property name="corbeilleTree">#{corbeilleTree}</property>
+				<sort column="m.cslk:date" ascending="false" />
+				<pageSize>20</pageSize>
+			</genericPageProvider>
+			<useGlobalPageSize>true</useGlobalPageSize>
+			<refresh>
+				<event>documentChanged</event>
+				<event>documentChildrenChanged</event>
+			</refresh>
+			<cacheKey>corbeille_message_list</cacheKey>
+			<cacheSize>20</cacheSize>
+
+			<resultLayouts>
+				<layout name="corbeille_message_list_listing_layout" title="document_listing"
+					translateTitle="true" iconPath="/icons/document_listing_icon.png" />
+			</resultLayouts>
+
+			<selectionList>CURRENT_SELECTION_CORBEILLE_MESSAGE</selectionList>
+			<actions category="CURRENT_SELECTION_LIST" />
+		</contentView>
+
+		<!-- Content view de la liste des messages résultants de la recherche -->
+		<contentView name="recherche_message_list">
+			<genericPageProvider
+				class="fr.dila.solonepp.web.contentview.CorbeillePageProvider">
+				<property name="coreSession">#{documentManager}</property>
+				<property name="queryString">#{rechercheDocumentaireActions.messageListQueryString}</property>
+				<property name="parameters">#{rechercheDocumentaireActions.messageListQueryParameter}</property>
+				<sort column="m.dc:title" ascending="true" />
+				<pageSize>20</pageSize>
+			</genericPageProvider>
+			<useGlobalPageSize>true</useGlobalPageSize>
+			<refresh>
+				<event>documentChanged</event>
+				<event>documentChildrenChanged</event>
+			</refresh>
+			<cacheKey>corbeille_message_list</cacheKey>
+			<cacheSize>20</cacheSize>
+
+			<resultLayouts>
+				<layout name="corbeille_message_list_listing_layout" title="document_listing"
+					translateTitle="true" iconPath="/icons/document_listing_icon.png" />
+			</resultLayouts>
+
+			<selectionList>CURRENT_SELECTION_RECHERCHE_MESSAGE</selectionList>
+			<actions category="CURRENT_SELECTION_LIST" />
+		</contentView>
+
+		<!-- Content view de la liste des messages résultants de la recherche -->
+		<contentView name="recherche_libre_message_list">
+			<genericPageProvider
+				class="fr.dila.solonepp.web.contentview.CorbeillePageProvider">
+				<property name="coreSession">#{documentManager}</property>
+				<property name="queryString">#{rechercheDocumentaireActions.messageListQueryString}</property>
+				<property name="parameters">#{rechercheDocumentaireActions.messageListQueryParameter}</property>
+				<sort column="m.dc:title" ascending="true" />
+				<pageSize>20</pageSize>
+			</genericPageProvider>
+			<useGlobalPageSize>true</useGlobalPageSize>
+			<refresh>
+				<event>documentChanged</event>
+				<event>documentChildrenChanged</event>
+			</refresh>
+			<cacheKey>corbeille_message_list</cacheKey>
+			<cacheSize>20</cacheSize>
+
+			<resultLayouts>
+				<layout name="corbeille_message_list_listing_layout" title="document_listing"
+					translateTitle="true" iconPath="/icons/document_listing_icon.png" />
+			</resultLayouts>
+
+			<selectionList>CURRENT_SELECTION_RECHERCHE_MESSAGE</selectionList>
+			<actions category="CURRENT_SELECTION_LIST" />
+		</contentView>
+	</extension>
+</component>

@@ -1,0 +1,106 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<style>
+.upperCollasiblePanel {
+	width: 100%;
+	margin: 0;
+	padding-right: 5px;
+}
+
+.x-tool-collapse-north {
+	background-position: 0px -210px;
+}
+
+.x-tool-collapse-north:hover {
+	background-position: -15px -210px;
+}
+
+.x-tool-collapse-south {
+	background-position: 0px -195px;
+}
+
+.x-tool-collapse-south:hover {
+	background-position: -15px -195px;
+}
+</style>
+	<c:if test="#{navigationWebActions.upperPanelIsOpened}">
+		<style>
+#upperContentView {
+	display: block;
+}
+
+#openContentViewButton {
+	display: none;
+}
+
+#closeContentViewButton {
+	display: block;
+}
+</style>
+	</c:if>
+	<c:if test="#{!navigationWebActions.upperPanelIsOpened}">
+		<style>
+#upperContentView {
+	display: none;
+}
+
+#openContentViewButton {
+	display: block;
+}
+
+#closeContentViewButton {
+	display: none;
+}
+</style>
+	</c:if>
+
+	<script>
+    function closeUpperContentView() {
+      document.getElementById('upperContentView').style.display='none';
+      document.getElementById('openContentViewButton').style.display='block';
+      document.getElementById('closeContentViewButton').style.display='none';
+    }
+
+    function openUpperContentView() {
+      document.getElementById('upperContentView').style.display='block';
+      document.getElementById('openContentViewButton').style.display='none';
+      document.getElementById('closeContentViewButton').style.display='block';
+    }
+  </script>
+
+	<h:form id="toggleContentViewForm">
+		<div id="openContentViewButton" class="upperCollasiblePanel">
+			<a4j:commandLink id="openContentViewButtonId"
+				styleClass="x-tool x-tool-toggle x-tool-collapse-south"
+				onclick="openUpperContentView();" eventsQueue="ajax_events_queue">
+				<a4j:actionparam name="upperPanelIsOpened" value="true"
+					assignTo="#{navigationWebActions.upperPanelIsOpened}" />
+			</a4j:commandLink>
+		</div>
+		<div id="closeContentViewButton" class="upperCollasiblePanel">
+			<a4j:commandLink id="closeContentViewButtonId"
+				styleClass="x-tool x-tool-toggle x-tool-collapse-north"
+				onclick="closeUpperContentView();" eventsQueue="ajax_events_queue">
+				<a4j:actionparam name="upperPanelIsOpened" value="false"
+					assignTo="#{navigationWebActions.upperPanelIsOpened}" />
+			</a4j:commandLink>
+		</div>
+	</h:form>
+
+	<!-- reouvre le panel si le document courant est null ou si c'est pas un dossier ie au changement de menu-->
+	<c:if
+		test="#{currentDocument == null or currentDocument.getType() != 'Dossier'}">
+		<script>
+		openUpperContentView();
+		</script>
+		#{navigationWebActions.setUpperPanelIsOpened(true)}
+	</c:if>
+</div>

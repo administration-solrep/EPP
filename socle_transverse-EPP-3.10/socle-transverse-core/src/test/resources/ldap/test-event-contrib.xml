@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.st.core.test.event">
+	<extension target="org.nuxeo.ecm.core.event.EventServiceComponent"
+		point="listener">
+		<listener name="classificationListener" enabled="false">
+		</listener>
+	</extension>
+</component>

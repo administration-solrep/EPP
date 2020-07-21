@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.nuxeo.build</groupId>
+  <artifactId>nuxeo-tools</artifactId>
+  <version>SW-1.0.7</version>
+  <packaging>pom</packaging>
+  <name>Nuxeo Build Tools</name>
+  <description>Nuxeo Build Tools parent project.</description>
+
+  <modules>
+    <module>nuxeo-apt</module>
+    <module>nuxeo-distribution-tools</module>
+  </modules>
+
+  <repositories>
+    <repository>
+      <id>releases</id>
+      <url>http://idlv-nexus-standalone.lyon-dev2.local:8081/nexus/content/groups/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>snapshots</id>
+      <url>http://idlv-nexus-standalone.lyon-dev2.local:8081/nexus/content/groups/public-snapshot</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <updatePolicy>always</updatePolicy>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>releases</id>
+      <url>http://idlv-nexus-standalone.lyon-dev2.local:8081/nexus/content/groups/public</url>
+      <name>Nuxeo virtual release repository</name>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>snapshots</id>
+      <url>http://idlv-nexus-standalone.lyon-dev2.local:8081/nexus/content/groups/public-snapshot</url>
+      <name>Nuxeo virtual snapshot repository</name>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <updatePolicy>always</updatePolicy>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <url>http://idlv-nexus-standalone.lyon-dev2.local:8081/nexus/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>public-snapshots</name>     
+      <url>http://idlv-nexus-standalone.lyon-dev2.local:8081/nexus/content/repositories/snapshots</url>
+      <uniqueVersion>true</uniqueVersion>
+    </snapshotRepository>
+  </distributionManagement>
+</project>

@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.st.core.organigramme">
+	<implementation class="org.nuxeo.ecm.directory.ldap.LDAPDirectoryDescriptor" />
+	<implementation class="org.nuxeo.ecm.directory.ldap.LDAPServerDescriptor" />
+
+	<require>org.nuxeo.ecm.directory.ldap.LDAPDirectoryFactory</require>
+	<require>org.nuxeo.ecm.directory.ldap.storage.users</require>
+
+
+	<extension target="org.nuxeo.ecm.core.schema.TypeService"
+		point="schema">
+		<schema name="organigramme-poste" src="schemas/organigramme-poste.xsd" />
+		<schema name="organigramme-unite-structurelle" src="schemas/organigramme-unite-structurelle.xsd" />
+	</extension>
+
+	<extension target="org.nuxeo.ecm.directory.ldap.LDAPDirectoryFactory"
+		point="directories">
+
+		<directory name="posteDirectory">
+
+			<!-- Reuse the default server configuration defined for userDirectory -->
+			<server>default</server>
+
+			<schema>organigramme-poste</schema>
+
+			<idField>groupName</idField>
+
+			<searchBaseDn>ou=organigramme,ou=SolonEpg,dc=dila,dc=fr</searchBaseDn>
+			<searchFilter>(|(objectClass=poste)(objectClass=groupOfURLs))</searchFilter>
+			<searchScope>subtree</searchScope>
+
+			<readOnly>false</readOnly>
+
+			<!-- comment <cache* /> tags to disable the cache -->
+			<!-- cache timeout in seconds -->
+			<!--<cacheTimeout>3600</cacheTimeout> -->
+
+			<!-- maximum number of cached entries before global invalidation -->
+			<!--<cacheMaxSize>1000</cacheMaxSize> -->
+
+			<creationBaseDn>ou=organigramme,ou=SolonEpg,dc=dila,dc=fr</creationBaseDn>
+			<creationClass>top</creationClass>
+			<creationClass>poste</creationClass>
+
+			<rdnAttribute>cn</rdnAttribute>
+			<fieldMapping name="groupName">cn</fieldMapping>
+			<fieldMapping name="fullPath">dn</fieldMapping>
+			<fieldMapping name="dateDebut">dateDebut</fieldMapping>
+			<fieldMapping name="dateFin">dateFin</fieldMapping>
+			<fieldMapping name="lockDate">lockDate</fieldMapping>
+			<fieldMapping name="lockUserName">lockUserName</fieldMapping>
+
+			<references>
+
+
+				<!-- LDAP reference resolve DNs embedded in uniqueMember attributes If 
+					the target directory has no specific filtering policy, it is most of the 
+					time not necessary to enable the 'forceDnConsistencyCheck' policy. Enabling 
+					this option will fetch each reference entry to ensure its existence in the 
+					target directory. -->
+
+				<ldapReference field="members" directory="userLdapDirectory"
+					forceDnConsistencyCheck="false" staticAttributeId="uniqueMember"
+					dynamicAttributeId="memberURL" />
+
+				<ldapReference field="subGroups" directory="posteDirectory"
+					forceDnConsistencyCheck="false" staticAttributeId="uniqueMember"
+					dynamicAttributeId="memberURL" />
+
+				<!-- <inverseReference field="parentGroups" directory="posteDirectory" 
+					dualReferenceField="subGroups" /> LDAP tree reference resolves children following 
+					the ldap tree structure. Available scopes are "onelevel" (default), "subtree". 
+					Children with same id than parent will be filtered. Enabling this option 
+					will fetch each reference entry to ensure its existence in the target directory. 
+					WARNING: Edit is NOT IMPLEMENTED: modifications to this field will be ignored 
+					when saving the entry. -->
+
+
+				<!--<ldapTreeReference field="directChildren" directory="posteDirectory" 
+					scope="onelevel" /> <ldapTreeReference field="children" directory="posteDirectory" 
+					scope="subtree" /> <inverseReference field="directParents" directory="posteDirectory" 
+					dualReferenceField="directChildren" /> <inverseReference field="parents" 
+					directory="posteDirectory" dualReferenceField="children" /> -->
+
+			</references>
+		</directory>
+
+
+		<directory name="uniteStructurelleDirectory">
+
+			<!-- Reuse the default server configuration defined for userDirectory -->
+			<server>default</server>
+
+			<schema>organigramme-unite-structurelle</schema>
+
+			<idField>groupName</idField>
+
+			<searchBaseDn>ou=organigramme,ou=SolonEpg,dc=dila,dc=fr</searchBaseDn>
+			<searchFilter>(|(objectClass=uniteStructurelle)(objectClass=groupOfURLs))</searchFilter>
+			<searchScope>onelevel</searchScope>
+
+			<readOnly>false</readOnly>
+
+			<!-- comment <cache* /> tags to disable the cache -->
+			<!-- cache timeout in seconds -->
+			<!--<cacheTimeout>3600</cacheTimeout> -->
+
+			<!-- maximum number of cached entries before global invalidation -->
+			<!--<cacheMaxSize>1000</cacheMaxSize> -->
+
+			<creationBaseDn>ou=organigramme,ou=SolonEpg,dc=dila,dc=fr</creationBaseDn>
+			<creationClass>top</creationClass>
+			<creationClass>uniteStructurelle</creationClass>
+
+			<rdnAttribute>ou</rdnAttribute>
+			<fieldMapping name="groupName">ou</fieldMapping>
+			<fieldMapping name="fullPath">dn</fieldMapping>
+			<fieldMapping name="dateDebut">dateDebut</fieldMapping>
+			<fieldMapping name="dateFin">dateFin</fieldMapping>
+			<fieldMapping name="lockDate">lockDate</fieldMapping>
+			<fieldMapping name="lockUserName">lockUserName</fieldMapping>
+
+			<references>
+
+
+				<!-- LDAP reference resolve DNs embedded in uniqueMember attributes If 
+					the target directory has no specific filtering policy, it is most of the 
+					time not necessary to enable the 'forceDnConsistencyCheck' policy. Enabling 
+					this option will fetch each reference entry to ensure its existence in the 
+					target directory. -->
+
+				<!--<ldapReference field="members" directory="userDirectory" forceDnConsistencyCheck="false" 
+					staticAttributeId="uniqueMember" dynamicAttributeId="memberURL" /> -->
+
+				<!--<ldapReference field="subGroups" directory="posteDirectory" forceDnConsistencyCheck="false" 
+					staticAttributeId="uniqueMember" dynamicAttributeId="memberURL" /> -->
+
+				<!--<inverseReference field="parentGroups" directory="posteDirectory" 
+					dualReferenceField="subGroups" /> -->
+
+				<ldapReference field="rattachementParent" directory="uniteStructurelleDirectory"
+					forceDnConsistencyCheck="false" staticAttributeId="rattachement"
+					dynamicAttributeId="rattachementURL" />
+
+				<!-- <inverseReference field="rattachementEnfant" directory="uniteStructurelleDirectory" 
+					dualReferenceField="rattachementParent" /> -->
+
+
+				<!-- LDAP tree reference resolves children following the ldap tree structure. 
+					Available scopes are "onelevel" (default), "subtree". Children with same 
+					id than parent will be filtered. Enabling this option will fetch each reference 
+					entry to ensure its existence in the target directory. WARNING: Edit is NOT 
+					IMPLEMENTED: modifications to this field will be ignored when saving the 
+					entry. -->
+
+				<ldapTreeReference field="directChildren"
+					directory="uniteStructurelleDirectory" scope="onelevel" />
+				<ldapTreeReference field="children"
+					directory="uniteStructurelleDirectory" scope="subtree" />
+
+				<!-- <inverseReference field="directParents" directory="uniteStructurelleDirectory" 
+					dualReferenceField="directChildren" /> <inverseReference field="parents" 
+					directory="uniteStructurelleDirectory" dualReferenceField="children" /> -->
+
+
+				<ldapTreeReference field="poste" directory="posteDirectory"
+					scope="onelevel" />
+				<!-- <inverseReference field="posteParent" directory="uniteStructurelleDirectory" 
+					dualReferenceField="poste" /> -->
+
+
+
+			</references>
+		</directory>
+
+	</extension>
+</component>

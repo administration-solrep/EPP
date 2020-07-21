@@ -1,0 +1,35 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<input type="hidden" name="#{manager.conversationIdParameter}"
+		value="#{conversation.id}" />
+
+	<h:form id="rechercheDocumentaireCategorieForm">
+		<ul class="critereCategorieEvenement"
+			style="list-style-type: none; margin: 0; padding: 3px; margin-top: 40px;">
+			<c:forEach var="categorie"
+				items="#{vocabulary.getAllEntry('categorie_evenement')}"
+				varStatus="status">
+				<c:set var="background" value="#fcfcfc;" />
+				<c:if
+					test="#{rechercheDocumentaireActions.categorieEvenementId eq categorie.id}">
+					<c:set var="background" value="#BFD2FF;" />
+				</c:if>
+				<li class="selectCategorieEvenement"
+					style="margin: 2px; padding: 3px; background: ${background}"><nxh:commandLink
+						action="#{rechercheDocumentaireActions.selectCategorieEvenement(categorie.id)}"
+						value="#{categorie.getProperty('vocabulary', 'label')}"
+						immediate="true"
+						id="selectCategorieEvenementButton${status.index}" /></li>
+			</c:forEach>
+		</ul>
+	</h:form>
+</div>

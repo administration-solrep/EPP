@@ -1,0 +1,28 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<c:if test="#{widget.mode == 'csv'}">
+		<h:outputText value="#{field_0}" escape="false" />
+	</c:if>
+
+	<c:if test="#{widget.mode != 'csv'}">
+
+		<div class="popupTarget" docRef="#{field_1}">
+
+			<h:commandLink value="#{field_0}"
+				styleClass="#{nxu:test(field_3, '', 'boldLabel')}"
+				action="#{corbeilleActions.readMessageLink(field_1, field_2, field_3)}" />
+			<sup><h:outputText value="#{field_4}" /></sup>
+
+			<c:if
+				test="#{currentDocument != null and currentDocument.getId() == field_2}">
+				<script>jQuery('div[docRef="#{field_1}"]').parent().parent().css('background-color', '#85A9CD');</script>
+			</c:if>
+
+		</div>
+
+	</c:if>
+</f:subview>

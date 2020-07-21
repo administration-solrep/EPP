@@ -1,0 +1,13 @@
+update voc_type_loi v set v."label" = 'Loi constitutionnelle' where v."id" = 'LOI_CONSTITUTIONNELLE';
+update voc_type_loi v set v."label" = 'Loi référendaire' where v."id" = 'LOI_REFERENDAIRE';
+update voc_type_loi v set v."label" = 'Loi organique' where v."id" = 'LOI_ORGANIQUE';
+update voc_type_loi v set v."label" = 'Loi de finances' where v."id" = 'LOI_FINANCE';
+update voc_type_loi v set v."label" = 'Loi de finances rectificative' where v."id" = 'LOI_FINANCE_RECTIFICATIVE';
+update voc_type_loi v set v."label" = 'Loi de règlement' where v."id" = 'LOI_REGLEMENT';
+update voc_type_loi v set v."label" = 'Loi de financement de la Sécurité sociale' where v."id" = 'LOI_FINANCEMENT_SECURITE_SOCIALE';
+update voc_type_loi v set v."label" = 'Loi autorisant la ratification ou l''approbation de traités ou accords internationaux' where v."id" = 'ART_53_CONST';
+update voc_type_loi v set v."label" = 'Loi de programmation' where v."id" = 'LOI_PROGRAMMATION';
+update voc_type_loi v set v."label" = 'Loi d''orientation' where v."id" = 'LOI_ORIENTATION';
+update voc_type_loi v set v."label" = 'Loi' where v."id" = 'LOI';
+update voc_type_loi v set v."label" = 'Loi cadre' where v."id" = 'LOI_CADRE';
+commit;

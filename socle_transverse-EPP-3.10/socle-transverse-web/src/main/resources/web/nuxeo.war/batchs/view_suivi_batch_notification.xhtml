@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="page title">
+		<c:choose>
+			<c:when test="#{suiviBatchActions.isAccessAuthorized()}">
+				<h:outputText value="#{nuxeoApplicationName}" />
+			</c:when>
+			<c:otherwise>
+				<h:outputText
+					value="#{nuxeoApplicationName} - #{messages['command.espaceNonAutorise']}" />
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="body">
+		<c:if test="#{suiviBatchActions.isAccessAuthorized()}">
+
+			<h1>
+				<h:outputText
+					value="#{messages['command.admin.batch.viewsuivi.notification']}" />
+			</h1>
+			<br />
+
+			<ui:include src="/incl/message_banner.xhtml" />
+
+			<a4j:region id="updateSuiviBatchNotificationFormPoll">
+				<h:form>
+					<a4j:poll id="espaceSuiviBatchNotificationListPoll"
+						interval="60000" timeout="30000" enabled="true"
+						reRender="updateSuiviBatchNotificationForm" />
+				</h:form>
+			</a4j:region>
+
+			<h:form id="updateSuiviBatchNotificationForm">
+				<div style="padding: 20px 15px 5px 0px;">
+					<h:panelGrid columns="2">
+						<h:outputText value="Etat des notifications : " />
+						<c:choose>
+							<c:when test="#{suiviBatchActions.isNotificationActive()}">
+								<h:outputText value="Activées" />
+								<h:commandButton class="button" value="Désactiver"
+									action="#{suiviBatchActions.deactivateNotification()}"
+									id="button_deactiv_notif"
+									reRender="updateSuiviBatchNotificationForm" />
+							</c:when>
+							<c:otherwise>
+								<h:outputText value="Désactivées" />
+								<h:commandButton class="button" value="Activer"
+									action="#{suiviBatchActions.activateNotification()}"
+									id="button_activ_notif"
+									reRender="updateSuiviBatchNotificationForm" />
+							</c:otherwise>
+						</c:choose>
+					</h:panelGrid>
+				</div>
+
+				<!-- Parameter -->
+				<div style="padding: 20px 15px 5px 0px;">
+					<h:panelGrid columns="1">
+						<h:panelGroup id="suiviBatchNotification_suggestionGroup">
+							<!-- filtre sur la date de debut et la date de fin-->
+							<div style="padding: 0px 5px 5px 5px; float: left;"
+								rendered="false">
+								<h:panelGrid columns="2">
+									<h:panelGroup>
+										<!-- Suggestion de l'utilisateur -->
+										<h:outputLabel value="Utilisateurs : "
+											style="white-space: nowrap;" />
+										<h:inputText value="#{suiviBatchActions.currentUserBatch}"
+											id="suiviBatchNotification_user_suggest"
+											onkeydown="if (event.keyCode == 13) {return false;}" />
+										<h:inputHidden id="userAction" />
+										<rich:suggestionbox
+											id="suiviBatchNotification_user_suggestionBox"
+											for="suiviBatchNotification_user_suggest" tokens=""
+											suggestionAction="#{userSuggestionActions.getSuggestionSuiviBatchNotification}"
+											var="result" fetchValue="#{result}"
+											nothingLabel="#{messages['label.suggestion.noSearchResults']}"
+											minChars="1" frequency="0" requestDelay="100">
+											<f:param name="userSuggestionSearchType" value="USER_TYPE" />
+											<f:param name="userSuggestionMaxSearchResults" value="20" />
+											<h:column>
+												<f:subview>
+													<h:graphicImage value="/icons/user.gif" alt="user.gif" />
+													<h:outputText value="#{result}" />
+												</f:subview>
+											</h:column>
+										</rich:suggestionbox>
+									</h:panelGroup>
+									<h:panelGroup>
+										<h:commandButton
+											action="#{suiviBatchActions.addUserToNotify()}"
+											value="Ajouter" class="button button2"
+											reRender="updateSuiviBatchNotificationForm" />
+									</h:panelGroup>
+									<h:panelGroup>
+
+										<!-- Affichage -->
+										<nxu:set var="usersList"
+											value="#{suiviBatchActions.getAllUsername()}">
+											<h:dataTable var="currentUserBatch" value="#{usersList}"
+												class="dataOutput" rowClasses="dataRowEven,dataRowOdd"
+												rendered="#{!empty usersList}">
+												<h:column>
+													<f:facet name="header">
+														<h:outputText value="Destinataires des notifications" />
+													</f:facet>
+													<h:outputLabel id="userSearchaction" value="#{currentUserBatch}" />
+													<nxh:commandLink
+														action="#{suiviBatchActions.removeUsername(currentUserBatch)}"
+														id="user_selection_reset" ajaxSingle="true"
+														reRender="userAction, userSearchaction">
+														<h:graphicImage id="#{currentUserBatch}_delete"
+															value="/icons/action_delete.gif" />
+													</nxh:commandLink>
+												</h:column>
+											</h:dataTable>
+										</nxu:set>
+
+									</h:panelGroup>
+								</h:panelGrid>
+							</div>
+						</h:panelGroup>
+					</h:panelGrid>
+				</div>
+
+			</h:form>
+
+			<script>
+				var j = jQuery.noConflict();
+				j(document).ready(function() {
+					window.onresize = resize;
+					resize();
+				});
+			</script>
+		</c:if>
+	</ui:define>
+</nxthemes:composition>

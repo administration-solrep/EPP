@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.solonepp.web.widget.message">
+	<require>fr.dila.solonepp.web.layout.widgetType</require>
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="widgets">
+
+		<!-- widget etat message -->
+		<widget name="etat_message_column" type="template">
+			<fields>
+				<field>data.etatMessage</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/listing/listing_message_state_message_widget_template.xhtml</property>
+			</properties>
+		</widget>
+
+		<!-- widget etat evenement -->
+		<widget name="etat_evenement_column" type="template">
+			<fields>
+				<field>data.etatEvenement</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/listing/listing_message_state_evenement_widget_template.xhtml</property>
+			</properties>
+		</widget>
+
+		<!-- widget piece jointe -->
+		<widget name="piece_jointe_column" type="template">
+			<labels>
+				<label mode="any">label.epp.message.piece.jointe</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.pieceJointe</field>
+				<field>data.alerte</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/listing/listing_message_piecejointe_widget_template.xhtml</property>
+			</properties>
+		</widget>
+
+		<widget name="objet_dossier_column" type="text">
+			<labels>
+				<label mode="any">label.epp.dossier.objet</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.objetDossier</field>
+			</fields>
+		</widget>
+
+		<!-- widget id dossier -->
+		<widget name="id_dossier_column_link" type="epp_listing_inbox_title_link">
+			<labels>
+				<label mode="any">label.epp.dossier.id</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.idDossier</field>
+				<field>data.idMessage</field>
+				<field>data.uidEvenement</field>
+			</fields>
+		</widget>
+
+		<!-- widget id dossier -->
+		<widget name="id_senat_column" type="text">
+			<labels>
+				<label mode="any">label.epp.dossier.idSenat</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.idSenat</field>
+			</fields>
+		</widget>
+
+		<!-- widget lecture -->
+		<widget name="lecture_column" type="template">
+			<labels>
+				<label mode="any">label.epp.message.lecture</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.niveauLectureNumero</field>
+				<field>data.niveauLecture</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/listing/epp_listing_niveau_lecture_widget_template.xhtml</property>
+				<property name="directoryName">niveau_lecture</property>
+			</properties>
+		</widget>
+
+		<!-- widget emetteur -->
+		<widget name="emetteur_column" type="template">
+			<labels>
+				<label mode="any">label.epp.message.emetteur</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.emetteur</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/listing/epp_listing_message_key_widget_template.xhtml</property>
+			</properties>
+		</widget>
+
+		<!-- widget destinataire -->
+		<widget name="destinataire_column" type="template">
+			<labels>
+				<label mode="any">label.epp.message.destinataire</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.destinataire</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/listing/epp_listing_message_key_widget_template.xhtml</property>
+			</properties>
+		</widget>
+
+		<!-- copie -->
+		<widget name="copie_column" type="template">
+			<labels>
+				<label mode="any">label.epp.message.copie</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.copie</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/listing/epp_listing_message_key_widget_template.xhtml</property>
+			</properties>
+		</widget>
+
+		<!-- widget evenement -->
+		<widget name="evenement_column" type="text">
+			<labels>
+				<label mode="any">label.epp.message.evenement</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.evenement</field>
+			</fields>
+		</widget>
+
+		<!-- widget numero version -->
+		<widget name="num_version_column" type="text">
+			<labels>
+				<label mode="any">label.epp.message.numero.version</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.numeroVersion</field>
+			</fields>
+		</widget>
+
+		<!-- widget date -->
+		<widget name="date_column" type="datetime">
+			<labels>
+				<label mode="any">label.epp.message.date</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.date</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy HH:mm</property>
+				<property name="format">dd/MM/yyyy HH:mm</property>
+			</properties>
+		</widget>
+
+		<!-- widget lock detail -->
+		<widget name="lock_detail_column" type="template">
+			<fields>
+				<field>data.locker</field>
+				<field>data.lockTime</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/listing/epp_listing_lock_detail_widget_template.xhtml</property>
+			</properties>
+		</widget>
+
+	</extension>
+</component>

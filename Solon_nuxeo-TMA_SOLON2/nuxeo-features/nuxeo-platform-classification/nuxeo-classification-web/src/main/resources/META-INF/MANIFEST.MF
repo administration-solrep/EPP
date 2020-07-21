@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: Nuxeo classification web
+Bundle-SymbolicName: org.nuxeo.ecm.platform.classification.web;singleton=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Nuxeo
+Export-Package: org.nuxeo.ecm.platform.classification
+Bundle-Category: stateless
+Require-Bundle: org.nuxeo.ecm.platform.classification.api,
+ org.nuxeo.ecm.platform.classification.core,
+ org.nuxeo.ecm.platform.ui
+Nuxeo-Component: OSGI-INF/classification-ecm-types-contrib.xml,
+ OSGI-INF/classification-resultsprovider-contrib.xml,
+ OSGI-INF/classification-querymodel-contrib.xml,
+ OSGI-INF/classification-treemanager-contrib.xml,
+ OSGI-INF/classification-documentslists-contrib.xml,
+ OSGI-INF/classification-actions-contrib.xml
+Nuxeo-RequiredBy: org.nuxeo.ecm.war

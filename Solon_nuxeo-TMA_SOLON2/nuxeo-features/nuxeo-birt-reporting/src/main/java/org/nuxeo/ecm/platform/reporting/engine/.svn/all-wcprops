@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/engine
+END
+BirtEngine.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/engine/BirtEngine.java
+END
+BirtFSDeployer.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/engine/BirtFSDeployer.java
+END
+ReportComponent.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/engine/ReportComponent.java
+END

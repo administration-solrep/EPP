@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://dila.fr/solonepp/schema/evenement/" xmlns:evt="http://dila.fr/solonepp/schema/evenement/">
+
+	<xs:include schemaLocation="base.xsd" />
+
+	<!-- *********************************************************************** 
+		Données communes de l'événement. *********************************************************************** -->
+	<!-- Identifiant technique du type d'événement (vocabulaire) -->
+	<xs:element name="typeEvenement" type="xs:string" />
+
+	<!-- Identifiant technique de l'événement parent (renseigné ssi événement 
+		successif) -->
+	<xs:element name="evenementParent" type="xs:string" />
+
+	<!-- Nom du dossier (dc:title) -->
+	<xs:element name="dossier" type="xs:string" />
+
+	<!-- Nom du dossier precedent (dc:title) -->
+	<xs:element name="dossierPrecedent" type="xs:string" />
+
+	<!-- Identifiant technique de l'émetteur (annuaire LDAP) -->
+	<xs:element name="emetteur" type="xs:string" />
+
+	<!-- Identifiant technique du destinataire (annuaire LDAP) -->
+	<xs:element name="destinataire" type="xs:string" />
+
+	<!-- Identifiant technique des destinataires en copie (annuaire LDAP) -->
+	<xs:element name="destinataireCopie" type="evt:stringList" />
+
+	<!-- Identifiant technique concaténé des destinataires en copie pour permettre 
+		le tri -->
+	<xs:element name="destinataireCopieConcat" type="xs:string" />
+
+	<!-- État en alerte de la branche (POSEE, LEVEE) -->
+	<xs:element name="brancheAlerte" type="xs:string" />
+
+	<!-- Identifiant evenement (e.dc:title) -->
+	<xs:element name="idEvenement" type="xs:string" />
+
+
+</xs:schema>

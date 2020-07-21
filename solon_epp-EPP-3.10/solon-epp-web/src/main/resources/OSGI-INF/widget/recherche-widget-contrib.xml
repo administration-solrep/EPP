@@ -1,0 +1,152 @@
+<component name="fr.dila.solonepp.web.widget.recherche">
+	<require>fr.dila.solonepp.web.layout.widgetType</require>
+
+	<!-- recherche widget -->
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="widgets">
+
+		<!-- widget champ libre -->
+		<widget name="recherche_champ_libre" type="text">
+			<labels>
+				<label mode="any">epp.rechercheMessage.criteria.champLibre</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>champLibre</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="required">true</property>
+				<property name="size">100</property>
+			</properties>
+		</widget>
+
+		<!-- widget type evenement -->
+		<widget name="recherche_type_evenement" type="select_many_type_evenement">
+			<labels>
+				<label mode="any">epp.rechercheMessage.criteria.evenementType</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>typeEvenement</field>
+			</fields>
+		</widget>
+
+		<!-- widget type evenement -->
+		<widget name="recherche_type_evenement_par_categorie" type="select_many_type_evenement">
+			<labels>
+				<label mode="any">epp.rechercheMessage.criteria.evenementType</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>typeEvenement</field>
+				<field>categorieEvenementId</field>
+			</fields>
+		</widget>
+
+		<!-- widget objet dossier -->
+		<widget name="recherche_objet_dossier" type="text">
+			<labels>
+				<label mode="any">epp.rechercheMessage.criteria.dossierObjet</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>objetDossier</field>
+			</fields>
+		</widget>
+
+		<!-- widget id evenement -->
+		<widget name="recherche_id_evenement" type="text">
+			<labels>
+				<label mode="any">epp.rechercheMessage.criteria.evenementId</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>idEvent</field>
+			</fields>
+		</widget>
+
+		<!-- widget id dossier -->
+		<widget name="recherche_id_dossier" type="text">
+			<labels>
+				<label mode="any">epp.rechercheMessage.criteria.dossierId</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>idDossier</field>
+			</fields>
+		</widget>
+
+		<!-- widget date de la communication -->
+		<widget name="recherche_date_evenement" type="datetime">
+			<labels>
+				<label mode="any">epp.rechercheMessage.criteria.evenementDate</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dateEvenement</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="format">dd/MM/yyyy</property>
+			</properties>
+		</widget>
+
+		<!-- widget date fin (periode) de la communication -->
+		<widget name="recherche_date_periode_evenement" type="datetime">
+			<labels>
+				<label mode="any">epp.rechercheMessage.criteria.evenementPeriode</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dateEvenementPeriode</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="format">dd/MM/yyyy</property>
+			</properties>
+		</widget>
+
+		<!-- widget emetteur -->
+		<widget name="recherche_emetteur" type="participant_list">
+			<labels>
+				<label mode="any">epp.rechercheMessage.criteria.evenementEmetteur</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>emetteur</field>
+			</fields>
+		</widget>
+
+		<!-- widget destinataire -->
+		<widget name="recherche_destinataire" type="participant_list">
+			<labels>
+				<label mode="any">epp.rechercheMessage.criteria.evenementDestinataire</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>destinataire</field>
+			</fields>
+		</widget>
+
+		<!-- widget copie -->
+		<widget name="recherche_copie" type="participant_list">
+			<labels>
+				<label mode="any">epp.rechercheMessage.criteria.evenementCopie</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>copie</field>
+			</fields>
+		</widget>
+
+		<!-- Widget permettant de rechercher du texte dans le contenu des fichiers 
+			de pièces jointes -->
+		<widget name="recherche_piecejointefichier_fulltext" type="text">
+			<labels>
+				<label mode="any">epp.rechercheMessage.criteria.pieceJointeFichierFulltext</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>pieceJointeFichierFulltext</field>
+			</fields>
+		</widget>
+	</extension>
+</component>

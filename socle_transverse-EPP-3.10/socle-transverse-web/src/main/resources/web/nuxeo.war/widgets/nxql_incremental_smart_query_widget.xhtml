@@ -1,0 +1,233 @@
+<f:subview xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" id="#{widget.id}">
+
+	<c:if test="#{widget.mode == 'view'}">
+		<table class="dataInput">
+			<tbody>
+				<tr>
+					<td class="fieldColumn">
+						<h:outputText id="smartQueryPart" value="#{field}" style="display:none" />
+						<a4j:outputPanel id="smartQueryPartPanel">
+							<nxu:dataTable id="dataTable"
+								value="#{smartNXQLQueryActions.userInfo}" var="row"
+								rowIndexVar="rowIndex" rowCountVar="rowCount"
+								rowClasses="dataRowEven,dataRowOdd" styleClass="dataOutput">
+								<nxu:column>
+									<f:facet name="header">
+										<h:outputText
+											value="#{messages['label.requeteur.searchField']}" />
+									</f:facet>
+									<nxu:set var="labelSearchField"
+										value="label.requeteur.#{fn:replace(row.searchField, ':','.')}">
+										<h:outputText value="#{messages[labelSearchField]}" />
+									</nxu:set>
+								</nxu:column>
+								<nxu:column>
+									<f:facet name="header">
+										<h:outputText
+											value="#{messages['label.requeteur.condOperator']}" />
+									</f:facet>
+									<nxu:set var="labelCond"
+										value="label.smart.query.operator.#{fn:replace(row.conditionalOperator,' ','_')}">
+										<h:outputText value="#{messages[labelCond]}" />
+									</nxu:set>
+								</nxu:column>
+								<nxu:column>
+									<f:facet name="header">
+										<h:outputText value="#{messages['label.requeteur.value']}" />
+									</f:facet>
+									<h:outputText value="#{row.userFriendlyValue}"
+										converter="#{requeteurActions.getConverter(row.searchField)}">
+										<f:attribute name="prefixed" value="false" />
+										<f:attribute name="userDirectory"
+											value="#{userManager.userDirectoryName}" />
+										<f:attribute name="userSchema"
+											value="#{userManager.userSchemaName}" />
+										<f:attribute name="firstNameField" value="firstName" />
+										<f:attribute name="lastNameField" value="lastName" />
+									</h:outputText>
+								</nxu:column>
+								<nxu:column>
+									<f:facet name="header">
+										<h:outputText
+											value="#{messages['label.requeteur.logicalOperator']}" />
+									</f:facet>
+									<nxu:set var="labelLogical"
+										value="label.smart.query.operator.#{row.logicalOperator}">
+										<h:outputText value="#{messages[labelLogical]}" />
+									</nxu:set>
+								</nxu:column>
+							</nxu:dataTable>
+							<h:message for="smartQueryPart" class="errorMessage" />
+						</a4j:outputPanel>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</c:if>
+
+	<c:if test="#{widget.mode == 'edit'}">
+		<c:if test="#{not facesContext.clientIdsWithMessages.hasNext()}">
+	      #{smartNXQLQueryActions.initCurrentSmartQuery(field)}
+	    </c:if>
+
+		<a4j:region id="smartSearchAjaxRegion">
+			<a4j:outputPanel id="smartSearchAjaxPanel">
+				<table class="dataInput">
+					<tbody>
+						<tr>
+							<td class="fieldColumn"><nxl:layout
+									name="#{widgetProperty_selectionLayout}" mode="edit"
+									value="#{smartNXQLQueryActions.currentSmartQuery}" /></td>
+						</tr>
+						<tr>
+							<td class="fieldColumn"><a4j:commandButton
+									value="#{messages['label.smart.query.addToQuery']}"
+									eventsQueue="ajax_events_queue"
+									actionListener="#{smartNXQLQueryActions.buildQueryPart}"
+									reRender="smartSearchAjaxPanel, smartQueryPartPanel"
+									styleClass="button" id="addToQuery">
+									<a4j:actionparam name="queryPartComponentId"
+										value="smartQueryPart" />
+									<a4j:actionparam name="updateQueryPart"
+										value="#{widgetProperty_updateQueryPart}" />
+								</a4j:commandButton> <a4j:status>
+									<f:facet name="start">
+										<h:graphicImage value="/img/standart_waiter.gif" />
+									</f:facet>
+								</a4j:status></td>
+						</tr>
+					</tbody>
+				</table>
+			</a4j:outputPanel>
+		</a4j:region>
+
+		<table class="dataInput">
+			<tbody>
+				<tr>
+					<td class="fieldColumn"><a4j:outputPanel
+							id="smartQueryPartPanel">
+							<h:inputTextarea id="smartQueryPart" value="#{field}"
+								required="#{widget.required and not smartNXQLQueryActions.ajaxRequest}"
+								validator="#{smartNXQLQueryActions.validateQueryPart}" rows="4"
+								style="display:none">
+								<a4j:support event="onchange" eventsQueue="ajax_events_queue"
+									actionListener="#{smartNXQLQueryActions.queryPartChanged}"
+									reRender="smartSearchAjaxPanel" ignoreDupResponses="true"
+									bypassUpdates="#{widgetProperty_updateQueryPart}"
+									immediate="true">
+									<a4j:actionparam name="updateQueryPart"
+										value="#{widgetProperty_updateQueryPart}" />
+								</a4j:support>
+							</h:inputTextarea>
+							<nxu:dataTable id="dataTable"
+								value="#{smartNXQLQueryActions.userInfo}" var="row"
+								rowIndexVar="rowIndex" rowCountVar="rowCount"
+								rowClasses="dataRowEven,dataRowOdd" styleClass="dataOutput">
+								<nxu:column>
+									<f:facet name="header">
+										<h:outputText
+											value="#{messages['label.requeteur.searchField']}" />
+									</f:facet>
+									<nxu:set var="labelSearchField"
+										value="label.requeteur.#{fn:replace(row.searchField, ':','.')}">
+										<h:outputText value="#{messages[labelSearchField]}" />
+									</nxu:set>
+								</nxu:column>
+								<nxu:column>
+									<f:facet name="header">
+										<h:outputText
+											value="#{messages['label.requeteur.condOperator']}" />
+									</f:facet>
+									<nxu:set var="labelCond"
+										value="label.smart.query.operator.#{fn:replace(row.conditionalOperator,' ','_')}">
+										<h:outputText value="#{messages[labelCond]}" />
+									</nxu:set>
+								</nxu:column>
+								<nxu:column>
+									<f:facet name="header">
+										<h:outputText value="#{messages['label.requeteur.value']}" />
+									</f:facet>
+									<h:outputText value="#{row.userFriendlyValue}"
+										converter="#{requeteurActions.getConverter(row.searchField)}">
+										<f:attribute name="prefixed" value="false" />
+										<f:attribute name="userDirectory"
+											value="#{userManager.userDirectoryName}" />
+										<f:attribute name="userSchema"
+											value="#{userManager.userSchemaName}" />
+										<f:attribute name="firstNameField" value="firstName" />
+										<f:attribute name="lastNameField" value="lastName" />
+									</h:outputText>
+								</nxu:column>
+								<nxu:column>
+									<f:facet name="header">
+										<h:outputText
+											value="#{messages['label.requeteur.logicalOperator']}" />
+									</f:facet>
+									<nxu:set var="labelLogical"
+										value="label.smart.query.operator.#{row.logicalOperator}">
+										<h:outputText value="#{messages[labelLogical]}" />
+									</nxu:set>
+								</nxu:column>
+								<nxu:column>
+									<a4j:commandLink actionListener="#{smartNXQLQueryActions.up}"
+										reRender="smartSearchAjaxPanel, smartQueryPartPanel, smartQueryPart"
+										immediate="true" rendered="#{rowIndex != 0}">
+										<a4j:actionparam name="index" value="#{rowIndex}" />
+										<a4j:actionparam name="queryPartComponentId"
+											value="smartQueryPart" />
+										<h:graphicImage url="icons/sort_selected_up.png"
+											alt="#{messages['command.requeteur.up']}" />
+									</a4j:commandLink>
+								</nxu:column>
+								<nxu:column>
+									<a4j:commandLink actionListener="#{smartNXQLQueryActions.down}"
+										reRender="smartSearchAjaxPanel, smartQueryPartPanel, smartQueryPart"
+										immediate="true" rendered="#{(rowIndex + 1) != rowCount}">
+										<a4j:actionparam name="index" value="#{rowIndex}" />
+										<a4j:actionparam name="queryPartComponentId"
+											value="smartQueryPart" />
+										<h:graphicImage url="icons/sort_selected_down.png"
+											alt="#{messages['command.requeteur.down']}" />
+									</a4j:commandLink>
+								</nxu:column>
+								<nxu:column>
+									<a4j:commandLink
+										actionListener="#{smartNXQLQueryActions.delete}"
+										reRender="smartSearchAjaxPanel, smartQueryPartPanel, smartQueryPart"
+										immediate="true">
+										<a4j:actionparam name="index" value="#{rowIndex}" />
+										<a4j:actionparam name="queryPartComponentId"
+											value="smartQueryPart" />
+										<h:graphicImage url="/icons/action_delete_mini.gif"
+											alt="#{messages['command.requeteur.delete']}" />
+									</a4j:commandLink>
+								</nxu:column>
+							</nxu:dataTable>
+							<h:message for="smartQueryPart" class="errorMessage" />
+						</a4j:outputPanel></td>
+					<td valign="bottom"><a4j:commandButton
+							value="#{messages['label.smart.query.clearQuery']}"
+							actionListener="#{smartNXQLQueryActions.clearQueryPart}"
+							reRender="smartSearchAjaxPanel,smartQueryPartPanel,smartQueryPart"
+							immediate="true" styleClass="button">
+							<a4j:actionparam name="queryPartComponentId"
+								value="smartQueryPart" />
+							<a4j:actionparam name="update"
+								value="#{widgetProperty_updateQueryPart}" />
+						</a4j:commandButton> <a4j:status>
+							<f:facet name="start">
+								<h:graphicImage value="/img/standart_waiter.gif" />
+							</f:facet>
+						</a4j:status></td>
+				</tr>
+			</tbody>
+		</table>
+	</c:if>
+</f:subview>

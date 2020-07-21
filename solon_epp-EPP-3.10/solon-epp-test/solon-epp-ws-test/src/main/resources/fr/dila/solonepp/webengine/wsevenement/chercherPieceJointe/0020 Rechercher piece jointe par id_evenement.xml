@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsevt:chercherPieceJointeRequest
+	xmlns:wsevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:evt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd ">
+
+	<wsevt:id_dossier>EFIM1100007Z</wsevt:id_dossier>
+	<wsevt:id_evt>
+		<evt:id>EFIM1100007Z_00001</evt:id>
+	</wsevt:id_evt>
+	<wsevt:type_piece_jointe>TEXTE</wsevt:type_piece_jointe>
+	<wsevt:nom_fichier>test1.gif</wsevt:nom_fichier>
+	<wsevt:compression>AUCUNE</wsevt:compression>
+
+</wsevt:chercherPieceJointeRequest>

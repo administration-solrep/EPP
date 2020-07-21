@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSepg"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSepg"
+	elementFormDefault="qualified"
+
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:solco="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"
+	xmlns:ar="http://www.dila.premier-ministre.gouv.fr/solon/epg/ar"
+	xmlns:ac="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes"
+	xmlns:speco="http://www.dila.premier-ministre.gouv.fr/solon/epg/spe-commons">
+
+	<!-- ====================================== -->
+	<!-- Imports -->
+	<!-- ====================================== -->
+	<xs:import schemaLocation="../../commons/commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons" />
+	<xs:import schemaLocation="solon-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons" />
+	<xs:import schemaLocation="ar.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/ar" />
+	<xs:import schemaLocation="actes.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes" />
+
+ 
+	<!-- =============================================== -->
+	<!-- Methode attribuerNor -->
+	<!-- =============================================== -->
+	<xs:element name="attribuerNorRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Service d’attribution de NOR permettant à une
+				application tierce de créer
+				un dossier S.O.L.O.N. II avec un socle
+				minimum de métadonnées requises
+				pour l’établissement du bordereau d’un dossier S.O.L.O.N. et d’obtenir
+				un NOR.
+				Remarque : l'année est connue
+
+				- type_acte : le type de l'acte
+				- code_entite :
+				- code_direction :
+			</xs:documentation>
+
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="type_acte" type="ac:ActeType"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="code_entite" type="solco:EntiteType"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="code_direction" type="solco:DirectionType"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+
+	<xs:element name="attribuerNorResponse">
+		<xs:annotation>
+			<xs:documentation>
+				Attribution d'un NOR.
+				- statut : OK ou KO
+
+				- si OK
+				- code_erreur
+				- message_erreur : si statut=KO, le message d'erreur associé
+
+				- si KO
+				- nor : le NOR attribué
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+
+					<xs:sequence>
+						<xs:element name="code_erreur" type="ar:CodeErreur"
+							minOccurs="1" maxOccurs="1"></xs:element>
+						<xs:element name="message_erreur" type="xs:string"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+
+					<xs:sequence>
+						<xs:element name="nor" type="solco:NorType" minOccurs="1"
+							maxOccurs="1" />
+					</xs:sequence>
+
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- ====================================== -->
+	<!-- Methode chercherDossier -->
+	<!-- ====================================== -->
+	<xs:element name="chercherDossierRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Service de mise à disposition des dossier :
+				requête
+				par jeton
+				Requête par liste de nor.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="jeton" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+				</xs:sequence>
+
+				<xs:sequence>
+					<xs:element name="nor" type="solco:NorType" minOccurs="1"
+						maxOccurs="unbounded" />
+				</xs:sequence>
+
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="chercherDossierResponse">
+		<xs:annotation>
+			<xs:documentation>
+				Resultat d'une requete chercherDossier.
+				- statut : etat de la requete (OK ou KO)
+				- jeton : le jeton courant
+				- dernier_envoi : permet de savoir si il reste des donnees à
+				transferer
+				true : toutes les donnees ont été transférees
+				false :il
+				reste des données à recuperer
+				- dossier : la liste des dossiers avec le bordereau, les fichiers du
+				parapheur et les fichiers du répertoire publique du fond de dossier.
+				- erreur : dans le cas d'une recherche par nor, la liste eventuelle
+				des dossier qui n'ont pas
+				pu être recuperes
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="message_erreur" type="xs:string"
+					minOccurs="0" maxOccurs="1" />
+				<xs:element name="jeton" type="xs:string" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="dernier_envoi" type="xs:boolean"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="dossier" type="solco:DossierEpgWithFile"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="erreur" type="ar:ResultatRechercheInfructueuse"
+					minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ====================================== -->
+	<!-- Methode chercherModificationDossier -->
+	<!-- ====================================== -->
+	<xs:element name="chercherModificationDossierRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Service de mise à disposition des modifications du dossier :
+				requête par jeton
+				Requête par liste de nor
+				Requête par liste de numéro ISA
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="jeton" type="xs:string" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="nor" type="solco:NorType" minOccurs="1" maxOccurs="unbounded" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="numero_isa" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="chercherModificationDossierResponse">
+		<xs:annotation>
+			<xs:documentation>
+				Resultat d'une requete chercherModificationDossier.
+				- statut : etat de la requete (OK ou KO)
+				- jeton : le jeton courant
+				- dernier_envoi : permet de savoir si il reste des donnees à transferer
+					true : toutes les donnees ont été transférees
+					false :il reste des données à recuperer
+				- dossier_modification : la liste des modifications de dossier
+				- message_erreur : message d'erreur eventuel
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut" minOccurs="1" maxOccurs="1" />
+
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="message_erreur" type="xs:string" minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+
+					<xs:sequence>
+						<xs:element name="jeton" type="xs:string" minOccurs="1" maxOccurs="1" />
+						<xs:element name="dernier_envoi" type="xs:boolean" minOccurs="1" maxOccurs="1" />
+						
+						
+						<xs:element name="dossier_modification" type="solco:DossierModification" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:choice>
+
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- ====================================== -->
+	<!-- Methode donnerAvisCE -->
+	<!-- ====================================== -->
+	<xs:element name="donnerAvisCERequest">
+		<xs:annotation>
+			<xs:documentation>
+				Service de transmission d'envoi des documents
+				finaux, une fois que l'avis
+				du Conseil d'Etat
+				est rendu.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="nor" type="solco:NorType" maxOccurs="1"
+					minOccurs="1" />
+				<xs:element name="type_validation_ce" type="solco:TypeValidationCe"
+					maxOccurs="1" minOccurs="1" />
+				<xs:element name="section_ce" type="ac:SectionCe"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="projet_decret" type="solco:Fichier"
+					minOccurs="1" maxOccurs="unbounded" />
+				<xs:element name="note_gouvernement" type="solco:Fichier"
+					minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="donnerAvisCEResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="nor" type="solco:NorType" maxOccurs="1"
+					minOccurs="1" />
+				<xs:element name="message_erreur" type="xs:string"
+					minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ====================================== -->
+	<!-- Methode modifierDossierCE -->
+	<!-- ====================================== -->
+	<xs:element name="modifierDossierCERequest">
+		<xs:annotation>
+			<xs:documentation>
+				Permet au CE de modifier les donnees qui lui sont propre dans un dossier
+				- nor [1..1] : l'identifiant du dossier
+				- section_ce [1..1] : la section
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:complexType>
+			<xs:sequence>
+			
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="nor" type="solco:NorType" minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element name="numero_isa" type="xs:string" minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+				</xs:choice>
+				
+				<xs:element name="section_ce" type="ac:SectionCe" minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="modifierDossierCEResponse">
+		<xs:annotation>
+			<xs:documentation>
+				Accuse de reception a la demande de modification d'un dossier par le CE
+				- nor : le rappel du nor du dossier affecte
+				- statut : le statut de la requete (OK ou KO)
+				- message_erreur : le cas echeant un message d'erreur
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut" minOccurs="1" maxOccurs="1" />
+
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="code_erreur" type="ar:CodeErreur" minOccurs="1" maxOccurs="1" />
+						<xs:element name="message_erreur" type="xs:string" minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+
+					<xs:sequence>
+						<xs:element name="nor" type="solco:NorType" maxOccurs="1" minOccurs="1" />
+					</xs:sequence>
+				</xs:choice>
+
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- ====================================== -->
+	<!-- Methode creerDossier -->
+	<!-- ====================================== -->
+	<xs:element name="creerDossierRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Permet de créer un dossier
+				A la création, les
+				informations de responsable de l'acte sont repris du compte
+				utilisateur
+				- type_acte [1..1] : type d'acte à créer - uniquement
+				AVIS à court terme
+				- code_entite [1..1] : code de NOR de l'entité (ex
+				: FDJ)
+				- code_direction [1..1] : code de la direction de l'entité (ex
+				: J)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="type_acte" type="ac:ActeType"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="code_entite" type="solco:EntiteType"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="code_direction" type="solco:DirectionType"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="creerDossierResponse">
+		<xs:annotation>
+			<xs:documentation>
+				Accuse réception de la demande de création du
+				dossier et renvoi un statut suite à la création
+				- statut : le statut
+				de la requête (OK ou KO)
+				- message_erreur : message d'erreur en cas
+				de retour KO
+				- dossier : dossier créer en cas de retour OK
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="message_erreur" type="xs:string"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+
+					<xs:sequence>
+						<xs:element name="dossier" type="solco:DossierEpg"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- ====================================== -->
+	<!-- Methode modifierDossier -->
+	<!-- ====================================== -->
+	<xs:element name="modifierDossierRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Finalise la transmission des informations et valide
+				l'étape courante
+				- dossier [1..1] : complément à apporter au dossier
+				epg (métadonnée, fichier)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="dossier" type="solco:DossierEpgWithFile"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="modifierDossierResponse">
+		<xs:annotation>
+			<xs:documentation>
+				Accuse réception de la demande
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="message_erreur" type="xs:string"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+
+					<xs:sequence>
+						<xs:element name="dossier" type="solco:DossierEpg"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant permet de contribuer des valeurs par défaut des paramètres 
+	de configuration de l'application SOLON EPP. /!\ Pour configurer l'application, 
+	ne pas modifier les paramètres dans ce fichier mais dans nuxeo.conf ! -->
+<component name="fr.dila.solonepp.core.config">
+	<extension target="fr.dila.st.core.service.ConfigService"
+		point="configParameter">
+		<!-- Configuration du bulk mode -->
+		<parameter>
+			<name>nuxeo.bulk.mode</name>
+			<value>false</value>
+		</parameter>
+
+		<!-- Nom de l'utilisateur qui exécute les batch -->
+		<parameter>
+			<name>nuxeo.batch.user</name>
+			<value>Administrator</value>
+		</parameter>
+
+		<!-- Nombre d'éléments maximum dans les flux de syndication -->
+		<parameter>
+			<name>syndication.list.size</name>
+			<value>200</value>
+		</parameter>
+
+		<!-- Adress mail from -->
+		<parameter>
+			<name>mail.from</name>
+			<value>ne-pas-repondre@dila.gouv.fr</value>
+		</parameter>
+
+	</extension>
+</component>

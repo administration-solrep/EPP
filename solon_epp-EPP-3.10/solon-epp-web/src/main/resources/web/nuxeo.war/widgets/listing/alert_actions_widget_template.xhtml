@@ -1,0 +1,46 @@
+
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<nxu:set var="alert" value="#{field_0}" cache="true">
+		<h:outputLink id="titleref" class="#{field_0.ref}_popupTarget"
+			value="javascript:return false;">
+                #{nxd:titleOrId(alert)}
+    </h:outputLink>
+		<div>
+			<c:set var="popupId" value="#{nxu:concat(field_0.ref, '_menuPopup')}" />
+			<script type="text/javascript"> 
+          var options = {
+              bind: 'click',
+              useFilter: false,
+              anchor: '#popupReceiver'
+          };
+          setupContextMenu('a.#{field_0.ref}_popupTarget','#{popupId}', options);
+      </script>
+			<div style="display: none" class="contextMenu" id="#{popupId}">
+				<ul>
+					<li style="width: 100px;"><nxh:commandLink
+							action="#{navigationContext.navigateToDocumentWithView(alert,'edit')}">
+							<h:outputText value="#{messages['alert.command.editer']}" />
+						</nxh:commandLink></li>
+					<li style="width: 100px;"><nxh:commandLink
+							action="#{alertActions.suspend()}">
+							<h:outputText value="#{messages['alert.command.suspendre']}" />
+							<nxu:actionListenerMethod
+								value="#{navigationContext.navigateToDocument(alert)}" />
+						</nxh:commandLink></li>
+					<li style="width: 100px;"><nxh:commandLink
+							action="#{alertActions.activate()}">
+							<h:outputText value="#{messages['alert.command.activer']}" />
+							<nxu:actionListenerMethod
+								value="#{navigationContext.navigateToDocument(alert)}" />
+						</nxh:commandLink></li>
+				</ul>
+			</div>
+		</div>
+	</nxu:set>
+</f:subview>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.cm.service.defaultContrib">
+
+  <extension target="fr.dila.cm.service.mailboxManagement" point="mailboxCreator">
+    <contribution
+      class="fr.dila.cm.core.service.DefaultMailboxCreator" />
+  </extension>
+
+  <extension target="fr.dila.cm.service.mailboxManagement" point="persister">
+    <persister
+      class="fr.dila.cm.core.persister.CaseItemInCasePersister" />
+  </extension>
+
+</component>

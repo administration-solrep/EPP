@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: Nuxeo classification API Component
+Bundle-SymbolicName: org.nuxeo.ecm.platform.classification.api;singleton=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Nuxeo
+Bundle-Category: runtime
+Export-Package: org.nuxeo.ecm.classification.api
+Require-Bundle: org.nuxeo.ecm.core.api

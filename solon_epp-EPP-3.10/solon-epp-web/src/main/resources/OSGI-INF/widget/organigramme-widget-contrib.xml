@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue widgets nécessaires à la gestion de l'organigramme. -->
+<component name="fr.dila.solonepp.web.widget.organigramme">
+	<require>fr.dila.solonepp.web.layout.widgetType</require>
+
+	<!-- recherche widget -->
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="widgets">
+		
+		<widget name="label" type="text">
+			<labels>
+				<label mode="any">organigramme.node.libelle</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>label</field>
+			</fields>
+			<widgetModes>
+			</widgetModes>
+			<properties widgetMode="edit">
+				<property name="required">true</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+		</widget>
+
+		<widget name="startDate" type="datetime">
+			<labels>
+				<label mode="any">organigramme.startDate</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dateDebut</field>
+			</fields>
+			<widgetModes>
+				<mode value="any">view</mode>
+			</widgetModes>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+			</properties>
+		</widget>
+
+		<widget name="endDate" type="datetime">
+			<labels>
+				<label mode="any">organigramme.endDate</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dateFin</field>
+			</fields>
+			<widgetModes>
+				<mode value="any">view</mode>
+			</widgetModes>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+			</properties>
+		</widget>
+
+		<widget name="unites_structurelles_parentes" type="template">
+			<labels>
+				<label mode="any">organigramme.node.unitesStructurellesParentes</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>parentUnitIds</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/organigramme_select_node_widget.xhtml</property>
+				<property name="organigrammeSelectionMode">LIST</property>
+				<property name="organigrammeSelectionType">DIR_AND_UST_TYPE</property>
+			</properties>
+		</widget>
+
+		<widget name="institutions_parentes" type="template">
+			<labels>
+				<label mode="any">organigramme.node.institutionsParentes</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>parentInstitIds</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/organigramme_select_node_widget.xhtml</property>
+				<property name="organigrammeSelectionMode">LIST</property>
+				<property name="organigrammeSelectionType">INS_TYPE</property>
+			</properties>
+		</widget>
+		
+		<widget name="institutions_parentes_required" type="template">
+			<labels>
+				<label mode="any">organigramme.node.institutionsParentes</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>parentInstitIds</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="required">true</property>
+				<property name="template">/widgets/organigramme_select_node_widget.xhtml</property>
+				<property name="organigrammeSelectionMode">LIST</property>
+				<property name="organigrammeSelectionType">INS_TYPE</property>
+			</properties>
+		</widget>
+
+		<widget name="wsUrl" type="text">
+			<labels>
+				<label mode="any">organigramme.postews.url</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>wsUrl</field>
+			</fields>
+			<widgetModes>
+			</widgetModes>
+			<properties widgetMode="edit">
+				<property name="required">true</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+		</widget>
+
+		<widget name="wsUser" type="text">
+			<labels>
+				<label mode="any">organigramme.postews.user</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>wsUser</field>
+			</fields>
+			<widgetModes>
+			</widgetModes>
+			<properties widgetMode="edit">
+				<property name="styleClass">dataInputText</property>
+			</properties>
+		</widget>
+
+		<widget name="wsPassword" type="secret">
+			<labels>
+				<label mode="any">organigramme.postews.password</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>wsPassword</field>
+			</fields>
+			<widgetModes>
+			</widgetModes>
+			<properties widgetMode="edit">
+				<property name="redisplay">true</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+		</widget>
+
+	</extension>
+</component>

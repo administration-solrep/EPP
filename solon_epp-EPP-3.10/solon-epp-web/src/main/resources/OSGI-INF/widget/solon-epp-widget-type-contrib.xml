@@ -1,0 +1,155 @@
+<component name="fr.dila.solonepp.web.layout.widgetType">
+	<require>org.nuxeo.ecm.platform.forms.layout.MainContribution</require>
+	<!-- *********************************************************************** 
+		Types de widgets *********************************************************************** -->
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="widgettypes">
+		<widgetType name="stringList">
+			<documentation>
+				This widget type displays a List of String in a row using ', ' as
+				separator.
+				<br />
+				It requires the following fields configuration:
+				<ul>
+					<li>
+						the String List
+					</li>
+				</ul>
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/join_list_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="fileFormatList">
+			<documentation>
+				This widget type displays a List of File Format.
+				<br />
+				It requires the following fields configuration:
+				<ul>
+					<li>
+						the String List which contain the file format name
+					</li>
+				</ul>
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/file_format_suggestion_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="typeActe">
+			<documentation>
+				This widget type displays a List of type d'acte '(string)'.
+				<br />
+				It requires the following fields configuration:
+				<ul>
+					<li>
+						the Acte Type
+					</li>
+				</ul>
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/type_acte_suggestion_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<!-- journal widget type -->
+		<widgetType name="listing_typeMessage_history_category">
+			<documentation>
+				This widget type displays a action logged by the audit.
+				<br />
+				It requires the following fields configuration:
+				<ul>
+					<li>
+						first field maps the entryId for the entryLog
+					</li>
+				</ul>
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/listing_cm_text_history_action_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="listing_history_poste">
+			<documentation>
+				ce widget affiche le poste de l'utilisateur.
+				Si l'utilisateur a plusieurs postes, il n'en affiche qu'un seul.
+				Si l'utilisater n'a pas de poste, il renvoie le message "**poste
+				inconnu**".
+				<br />
+				It requires the following fields configuration:
+				<ul>
+					<li>
+						id de l'utilisateur
+					</li>
+				</ul>
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/listing_history_poste_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="listing_history_dossier_ref">
+			<documentation>
+				ce widget affiche le numéro de question de dossier à partir de son
+				identifiant.
+				<br />
+				It requires the following fields configuration:
+				<ul>
+					<li>
+						dossierRef
+					</li>
+				</ul>
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/listing_history_dossier_ref_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="epp_listing_inbox_title_link">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/epp_listing_cm_inbox_title_link_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="participant_list">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/participant_list_widget.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="select_many_type_evenement">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/select_many_type_evenement_widget.xhtml
+			</property>
+		</widgetType>
+
+	</extension>
+</component>

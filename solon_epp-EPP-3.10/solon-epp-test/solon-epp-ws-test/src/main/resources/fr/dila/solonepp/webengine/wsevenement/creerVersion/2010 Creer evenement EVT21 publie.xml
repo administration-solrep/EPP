@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsevt:creerVersionRequest
+	xmlns:wsevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:eppcommons="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:eppevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:epptdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd "
+	modeCreation="PUBLIER">
+
+	<wsevt:evenement type="EVT21">
+		<eppevt:evt21 etat="" has_contenu_pj="false"> <!-- état evt non pris en compte -->
+			<eppevt:id_evenement></eppevt:id_evenement>
+			<eppevt:id_evenement_precedent></eppevt:id_evenement_precedent>
+			<eppevt:id_dossier>CCOZ1100003V</eppevt:id_dossier>
+			<eppevt:emetteur>ASSEMBLEE_NATIONALE</eppevt:emetteur>
+			<eppevt:destinataire>GOUVERNEMENT</eppevt:destinataire>
+			<eppevt:id_senat></eppevt:id_senat>
+			<eppevt:niveau_lecture niveau="1" code="AN" />
+			<eppevt:objet>Objet</eppevt:objet>
+			<eppevt:intitule>Projet de loi relatif à l'action extérieure de l'État</eppevt:intitule>
+			<eppevt:commentaire><![CDATA[Commentaire]]></eppevt:commentaire>
+			<eppevt:dateCMP>2011-07-01</eppevt:dateCMP>
+		</eppevt:evt21>
+	</wsevt:evenement>
+
+</wsevt:creerVersionRequest>

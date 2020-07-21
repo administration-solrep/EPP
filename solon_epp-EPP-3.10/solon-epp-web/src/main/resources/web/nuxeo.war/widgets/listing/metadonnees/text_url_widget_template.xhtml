@@ -1,0 +1,13 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core" id="#{widget.id}">
+
+	<c:if test="#{widget.mode == 'view'}">
+		<h:outputLink id="#{widget.id}_link" value="#{field_0}"
+			target="_blank">
+			<h:outputText id="#{widget.id}_text" value="#{field_0}" />
+		</h:outputLink>
+	</c:if>
+	<c:if test="#{widget.mode == 'edit'}">
+		<h:inputText id="#{widget.id}_url" value="#{field_0}" />
+	</c:if>
+</div>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:hasCommunicationNonTraiteesResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp ../../../../../../../../xsd/solon/epp/WSepp.xsd ">
+	<p:statut>OK</p:statut>
+	<p:corbeille>
+		<p:id_corbeille>CORBEILLE_GOUVERNEMENT_COPIE</p:id_corbeille>
+		<p:has_non_traites>true</p:has_non_traites>
+	</p:corbeille>
+	<p:corbeille>
+		<p:id_corbeille>CORBEILLE_GOUVERNEMENT_NOMINATION</p:id_corbeille>
+		<p:has_non_traites>true</p:has_non_traites>
+	</p:corbeille>
+	<p:corbeille>
+		<p:id_corbeille>CORBEILLE_GOUVERNEMENT_RAPPORT</p:id_corbeille>
+		<p:has_non_traites>true</p:has_non_traites>
+	</p:corbeille>
+	<p:corbeille>
+		<p:id_corbeille>CORBEILLE_GOUVERNEMENT_INTERVENTION_EXTERIEURE</p:id_corbeille>
+		<p:has_non_traites>true</p:has_non_traites>
+	</p:corbeille>
+	<p:corbeille>
+		<p:id_corbeille>CORBEILLE_GOUVERNEMENT_DECLARATION_SUR_UN_SUJET_DETERMINE_50_1C</p:id_corbeille>
+		<p:has_non_traites>true</p:has_non_traites>
+	</p:corbeille>
+	<p:corbeille>
+		<p:id_corbeille>CORBEILLE_GOUVERNEMENT_DECLARATION_DE_POLITIQUE_GENERALE</p:id_corbeille>
+		<p:has_non_traites>true</p:has_non_traites>
+	</p:corbeille>
+	<p:corbeille>
+		<p:id_corbeille>CORBEILLE_GOUVERNEMENT_RESOLUTION_34-1</p:id_corbeille>
+		<p:has_non_traites>true</p:has_non_traites>
+	</p:corbeille>
+	<p:corbeille>
+		<p:id_corbeille>CORBEILLE_GOUVERNEMENT_OEP</p:id_corbeille>
+		<p:has_non_traites>true</p:has_non_traites>
+	</p:corbeille>
+	<p:corbeille>
+		<p:id_corbeille>CORBEILLE_GOUVERNEMENT_CENSURE</p:id_corbeille>
+		<p:has_non_traites>true</p:has_non_traites>
+	</p:corbeille>
+	<p:corbeille>
+		<p:id_corbeille>CORBEILLE_GOUVERNEMENT_DESTINATAIRE</p:id_corbeille>
+		<p:has_non_traites>true</p:has_non_traites>
+	</p:corbeille>
+	<p:corbeille>
+		<p:id_corbeille>CORBEILLE_GOUVERNEMENT_DECRET</p:id_corbeille>
+		<p:has_non_traites>true</p:has_non_traites>
+	</p:corbeille>
+	<p:corbeille>
+		<p:id_corbeille>CORBEILLE_GOUVERNEMENT_EMETTEUR</p:id_corbeille>
+		<p:has_non_traites>true</p:has_non_traites>
+	</p:corbeille>
+</p:hasCommunicationNonTraiteesResponse>

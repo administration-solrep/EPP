@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue les content view nécessaires aux parametres. -->
+<component name="fr.dila.st.web.contentview.parametre">
+	<extension target="org.nuxeo.ecm.platform.ui.web.ContentViewService"
+		point="contentViews">
+
+		<!-- Content view permettant d'afficher la liste des paramètres 
+			de route -->
+		<contentView name="parametre_folder_content">
+			<genericPageProvider
+				class="fr.dila.st.web.contentview.PaginatedPageDocumentProvider">
+				<property name="coreSession">#{documentManager}</property>
+				<pattern quoteParameters="true" escapeParameters="true">
+					SELECT * FROM Parametre WHERE ecm:parentId = ? AND ecm:isProxy = 0
+				</pattern>
+				<sort column="dc:title" ascending="true" />
+				<parameter>#{currentDocument.id}</parameter>
+				<pageSize>10</pageSize>
+				<pageSizeBinding>#{profilUtilisateurActions.getNbDossiersVisiblesMax()}
+				</pageSizeBinding>
+			</genericPageProvider>
+			<!-- <coreQueryPageProvider> -->
+			<!-- <property name="coreSession">#{documentManager}</property> -->
+			<!-- <pattern quoteParameters="false" escapeParameters="false"> -->
+			<!-- SELECT * FROM Parametre -->
+			<!-- </pattern> -->
+			<!-- <sort column="dc:title" ascending="true" /> -->
+			<!-- <pageSize>20</pageSize> -->
+			<!-- </coreQueryPageProvider> -->
+
+			<useGlobalPageSize>true</useGlobalPageSize>
+			<refresh>
+				<event>documentChanged</event>
+				<event>documentChildrenChanged</event>
+			</refresh>
+			<cacheKey>#{currentDocument.id}</cacheKey>
+			<cacheSize>10</cacheSize>
+
+			<resultLayouts>
+				<layout name="parametre_listing" title="document_listing"
+					translateTitle="true" iconPath="/icons/document_listing_icon.png" />
+			</resultLayouts>
+
+			<selectionList>CURRENT_SELECTION</selectionList>
+			<actions category="CURRENT_SELECTION_LIST" />
+
+		</contentView>
+
+	</extension>
+
+</component>

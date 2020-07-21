@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<!-- Cet composant contribue les fabriques pour créer les type de documents 
+	de l'application SOLON EPP. -->
+<component name="fr.dila.solonepp.contentTemplateTDRService">
+	<require>fr.dila.solonepp.contentTemplateService</require>
+	<require>fr.dila.cm.contentTemplate</require>
+	<require>fr.dila.st.core.type</require>
+
+	<extension
+		target="org.nuxeo.ecm.platform.content.template.service.ContentTemplateService"
+		point="factoryBinding">
+		<factoryBinding name="ActeurFactory" factoryName="SimpleTemplateFactory"
+			targetType="ActeurRoot">
+			<template>
+				<templateItem typeName="Acteur" id="ActeurTest0" title="ActeurTest0">
+					<properties>
+						<property xpath="acteur:identifiant" value="ActeurTest0" />
+					</properties>
+				</templateItem>
+				<templateItem typeName="Acteur" id="ActeurTest1" title="ActeurTest1">
+					<properties>
+						<property xpath="acteur:identifiant" value="ActeurTest1" />
+					</properties>
+				</templateItem>
+				<templateItem typeName="Acteur" id="ActeurTest2" title="ActeurTest2">
+					<properties>
+						<property xpath="acteur:identifiant" value="ActeurTest2" />
+					</properties>
+				</templateItem>
+				<templateItem typeName="Acteur" id="ActeurTest3" title="ActeurTest3">
+					<properties>
+						<property xpath="acteur:identifiant" value="ActeurTest3" />
+					</properties>
+				</templateItem>
+			</template>
+		</factoryBinding>
+
+		<factoryBinding name="CirconscriptionFactory"
+			factoryName="SimpleTemplateFactory" targetType="CirconscriptionRoot">
+			<template>
+				<templateItem typeName="Circonscription" id="CirconscriptionTest0"
+					title="CirconscriptionTest0">
+					<properties>
+						<property xpath="circonscription:identifiant" value="CirconscriptionTest0" />
+						<property xpath="circonscription:proprietaire" value="ASSEMBLEE_NATIONALE" />
+						<property xpath="circonscription:nom" value="Val d'oise, 6e" />
+					</properties>
+				</templateItem>
+				<templateItem typeName="Circonscription" id="CirconscriptionTest1"
+					title="CirconscriptionTest1">
+					<properties>
+						<property xpath="circonscription:identifiant" value="CirconscriptionTest1" />
+						<property xpath="circonscription:proprietaire" value="ASSEMBLEE_NATIONALE" />
+						<property xpath="circonscription:nom" value="Circonscription 1" />
+					</properties>
+				</templateItem>
+			</template>
+		</factoryBinding>
+
+		<factoryBinding name="GouvernementFactory" factoryName="SimpleTemplateFactory"
+			targetType="GouvernementRoot">
+			<template>
+				<templateItem typeName="Gouvernement" id="GouvernementTest0"
+					title="GouvernementTest0">
+					<properties>
+						<property xpath="gouvernement:identifiant" value="GouvernementTest0" />
+						<property xpath="gouvernement:appellation" value="Gouvernement Fillon (III)" />
+						<property xpath="gouvernement:dateDebut" value="2010-11-13" />
+					</properties>
+				</templateItem>
+				<templateItem typeName="Gouvernement" id="GouvernementTest1"
+					title="GouvernementTest1">
+					<properties>
+						<property xpath="gouvernement:identifiant" value="GouvernementTest1" />
+						<property xpath="gouvernement:appellation" value="Gouvernement Fillon (IV)" />
+						<property xpath="gouvernement:dateDebut" value="2010-11-13" />
+					</properties>
+				</templateItem>
+			</template>
+		</factoryBinding>
+
+		<factoryBinding name="IdentiteFactory" factoryName="SimpleTemplateFactory"
+			targetType="IdentiteRoot">
+			<template>
+				<templateItem typeName="Identite" id="IdentiteTest0"
+					title="IdentiteTest0">
+					<properties>
+						<property xpath="identite:identifiant" value="IdentiteTest0" />
+						<property xpath="identite:nom" value="Fillon" />
+						<property xpath="identite:prenom" value="François" />
+						<property xpath="identite:civilite" value="M." />
+						<property xpath="identite:dateDebut" value="2010-11-13" />
+						<property xpath="identite:dateNaissance" value="1954-03-04" />
+						<property xpath="identite:lieuNaissance" value="Mans" />
+						<property xpath="identite:departementNaissance" value="Sarthe" />
+						<property xpath="identite:paysNaissance" value="FRANCE" />
+						<property xpath="identite:acteur" value="ActeurTest0" />
+					</properties>
+				</templateItem>
+				<templateItem typeName="Identite" id="IdentiteTest1"
+					title="IdentiteTest1">
+					<properties>
+						<property xpath="identite:identifiant" value="IdentiteTest1" />
+						<property xpath="identite:nom" value="Nom identité1" />
+						<property xpath="identite:prenom" value="Prénom identité1" />
+						<property xpath="identite:civilite" value="M." />
+						<property xpath="identite:dateDebut" value="2010-11-13" />
+						<property xpath="identite:dateNaissance" value="1954-03-04" />
+						<property xpath="identite:lieuNaissance" value="Mans" />
+						<property xpath="identite:departementNaissance" value="Sarthe" />
+						<property xpath="identite:paysNaissance" value="FRANCE" />
+						<property xpath="identite:acteur" value="ActeurTest1" />
+					</properties>
+				</templateItem>
+				<templateItem typeName="Identite" id="IdentiteTest2"
+					title="IdentiteTest2">
+					<properties>
+						<property xpath="identite:identifiant" value="IdentiteTest2" />
+						<property xpath="identite:nom" value="Assemblée" />
+						<property xpath="identite:prenom" value="Nationale" />
+						<property xpath="identite:civilite" value="M." />
+						<property xpath="identite:dateDebut" value="2010-11-13" />
+						<property xpath="identite:dateNaissance" value="1954-03-04" />
+						<property xpath="identite:lieuNaissance" value="Mans" />
+						<property xpath="identite:departementNaissance" value="Sarthe" />
+						<property xpath="identite:paysNaissance" value="FRANCE" />
+						<property xpath="identite:acteur" value="ActeurTest2" />
+					</properties>
+				</templateItem>
+				<templateItem typeName="Identite" id="IdentiteTest3"
+					title="IdentiteTest3">
+					<properties>
+						<property xpath="identite:identifiant" value="IdentiteTest3" />
+						<property xpath="identite:nom" value="Sénat" />
+						<property xpath="identite:prenom" value="Sénat" />
+						<property xpath="identite:civilite" value="M." />
+						<property xpath="identite:dateDebut" value="2010-11-13" />
+						<property xpath="identite:dateNaissance" value="1954-03-04" />
+						<property xpath="identite:lieuNaissance" value="Mans" />
+						<property xpath="identite:departementNaissance" value="Sarthe" />
+						<property xpath="identite:paysNaissance" value="FRANCE" />
+						<property xpath="identite:acteur" value="ActeurTest3" />
+					</properties>
+				</templateItem>
+			</template>
+		</factoryBinding>
+
+		<factoryBinding name="MandatFactory" factoryName="SimpleTemplateFactory"
+			targetType="MandatRoot">
+			<template>
+				<templateItem typeName="Mandat" id="MandatTest0" title="MandatTest0">
+					<properties>
+						<property xpath="mandat:identifiant" value="MandatTest0" />
+						<property xpath="mandat:typeMandat" value="POUVOIR_EXECUTIF" />
+						<property xpath="mandat:identite" value="IdentiteTest0" />
+						<property xpath="mandat:circonscription" value="CirconscriptionTest0" />
+						<property xpath="mandat:ministere" value="MinistereTest0" />
+						<property xpath="mandat:proprietaire" value="GOUVERNEMENT" />
+						<property xpath="mandat:dateDebut" value="2010-11-13" />
+					</properties>
+				</templateItem>
+				<templateItem typeName="Mandat" id="MandatTest1" title="MandatTest1">
+					<properties>
+						<property xpath="mandat:identifiant" value="MandatTest1" />
+						<property xpath="mandat:typeMandat" value="POUVOIR_EXECUTIF" />
+						<property xpath="mandat:identite" value="IdentiteTest1" />
+						<property xpath="mandat:circonscription" value="CirconscriptionTest1" />
+						<property xpath="mandat:ministere" value="MinistereTest1" />
+						<property xpath="mandat:proprietaire" value="GOUVERNEMENT" />
+						<property xpath="mandat:dateDebut" value="2010-11-13" />
+					</properties>
+				</templateItem>
+				<templateItem typeName="Mandat" id="MandatTest2" title="MandatTest2">
+					<properties>
+						<property xpath="mandat:identifiant" value="MandatTest2" />
+						<property xpath="mandat:typeMandat" value="DEPUTE" />
+						<property xpath="mandat:identite" value="IdentiteTest2" />
+						<property xpath="mandat:circonscription" value="CirconscriptionTest1" />
+						<property xpath="mandat:ministere" value="MinistereTest1" />
+						<property xpath="mandat:proprietaire" value="ASSEMBLEE_NATIONALE" />
+						<property xpath="mandat:dateDebut" value="2010-11-13" />
+					</properties>
+				</templateItem>
+				<templateItem typeName="Mandat" id="MandatTest3" title="MandatTest3">
+					<properties>
+						<property xpath="mandat:identifiant" value="MandatTest3" />
+						<property xpath="mandat:typeMandat" value="DEPUTE" />
+						<property xpath="mandat:identite" value="IdentiteTest3" />
+						<property xpath="mandat:circonscription" value="CirconscriptionTest1" />
+						<property xpath="mandat:ministere" value="MinistereTest1" />
+						<property xpath="mandat:proprietaire" value="SENAT" />
+						<property xpath="mandat:dateDebut" value="2010-11-13" />
+					</properties>
+				</templateItem>
+			</template>
+		</factoryBinding>
+		<factoryBinding name="MembreGroupeFactory" factoryName="SimpleTemplateFactory"
+			targetType="MembreGroupeRoot">
+			<template>
+				<templateItem typeName="MembreGroupe" id="MembreGroupeTest0"
+					title="MembreGroupeTest0">
+					<properties>
+						<property xpath="membre_groupe:identifiant" value="MembreGroupeTest0" />
+						<property xpath="membre_groupe:organisme" value="OrganismeTest0" />
+						<property xpath="membre_groupe:mandat" value="MandatTest0" />
+						<property xpath="membre_groupe:dateDebut" value="2010-11-13" />
+					</properties>
+				</templateItem>
+			</template>
+		</factoryBinding>
+		<factoryBinding name="MinistereFactory" factoryName="SimpleTemplateFactory"
+			targetType="MinistereRoot">
+			<template>
+				<templateItem typeName="Ministere" id="MinistereTest0"
+					title="MinistereTest0">
+					<properties>
+						<property xpath="ministere:identifiant" value="MinistereTest0" />
+						<property xpath="ministere:gouvernement" value="GouvernementTest0" />
+					</properties>
+				</templateItem>
+				<templateItem typeName="Ministere" id="MinistereTest1"
+					title="MinistereTest1">
+					<properties>
+						<property xpath="ministere:identifiant" value="MinistereTest1" />
+						<property xpath="ministere:gouvernement" value="GouvernementTest1" />
+					</properties>
+				</templateItem>
+			</template>
+		</factoryBinding>
+
+		<factoryBinding name="OrganismeFactory" factoryName="SimpleTemplateFactory"
+			targetType="OrganismeRoot">
+			<template>
+				<templateItem typeName="Organisme" id="OrganismeTest0"
+					title="OrganismeTest0">
+					<properties>
+						<property xpath="organisme:identifiant" value="OrganismeTest0" />
+					</properties>
+				</templateItem>
+				<templateItem typeName="Organisme" id="OrganismeTest1"
+					title="OrganismeTest1">
+					<properties>
+						<property xpath="organisme:identifiant" value="OrganismeTest1" />
+					</properties>
+				</templateItem>
+			</template>
+		</factoryBinding>
+
+		<factoryBinding name="PeriodeFactory" factoryName="SimpleTemplateFactory"
+			targetType="PeriodeRoot">
+			<template>
+				<templateItem typeName="Periode" id="PeriodeTest0"
+					title="PeriodeTest0">
+					<properties>
+						<property xpath="periode:identifiant" value="PeriodeTest0" />
+						<property xpath="periode:typePeriode" value="LEGISLATURE" />
+						<property xpath="periode:numero" value="Numero" />
+						<property xpath="periode:dateDebut" value="2010-11-13" />
+						<property xpath="periode:proprietaire" value="SENAT" />
+					</properties>
+				</templateItem>
+			</template>
+		</factoryBinding>
+
+	</extension>
+</component>

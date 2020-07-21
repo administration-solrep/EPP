@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/test/resources/reports
+END
+simpleVCSReport.rptdesign
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/test/resources/reports/simpleVCSReport.rptdesign
+END
+testNX.rptdesign
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/test/resources/reports/testNX.rptdesign
+END
+VCSReportWithParams.rptdesign
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/test/resources/reports/VCSReportWithParams.rptdesign
+END
+testNX2.rptdesign
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/test/resources/reports/testNX2.rptdesign
+END
+test.rptdesign
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/test/resources/reports/test.rptdesign
+END
+test1.rptdesign
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/test/resources/reports/test1.rptdesign
+END

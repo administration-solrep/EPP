@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	xmlns:xad="http://uri.etsi.org/01903/v1.3.2#" Id="TAO_1_Signature">
+	<ds:SignedInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+		<ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+		<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+		<ds:Reference URI="#TAO_1_SignedManifest"
+			Type="http://www.w3.org/2000/09/xmldsig#Manifest">
+			<ds:Transforms>
+				<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+			</ds:Transforms>
+			<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+			<ds:DigestValue>pp8/i91VOhj+z9z0igSskGu0WuY=</ds:DigestValue>
+		</ds:Reference>
+		<ds:Reference xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+			Type="http://uri.etsi.org/01903#SignedProperties" URI="#TAO_1_SignedProperties">
+			<ds:Transforms>
+				<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+			</ds:Transforms>
+			<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+			<ds:DigestValue>iVSIIvDclmuMXkOziYvv2mPXB1A=</ds:DigestValue>
+		</ds:Reference>
+	</ds:SignedInfo>
+	<ds:SignatureValue Id="TAO_1_SignatureValue">gUirXllkVtrVR4RigGtQUmTZa0DJszzHmEoO/DTr/q2mWDwflafQW8VPkEiufP1n
+		DUknoNxoXapStUlviau+tnCbQHuSvUaE/wX2PMdc1pnLaiKt7fZ4w0C12/OYFQcR
+		6GWKpLCwncsTeYo2teh0A18zRujdyhM+XLzBOMuPlrE=</ds:SignatureValue>
+	<ds:KeyInfo>
+		<ds:X509Data>
+			<ds:X509Certificate>MIIDyjCCArKgAwIBAgICBCwwDQYJKoZIhvcNAQEFBQAwgYsxCzAJBgNVBAYTAkZSMRMwEQYDVQQIEwpTb21lLVN0YXRlMQ4wDAYDVQQHEwVQYXJpczESMBAGA1UEChMJRGljdGFvIFNBMRAwDgYDVQQLEwdBbnlTaWduMTEwLwYDVQQDEyhBdXRvcml0ZSBkZSBjZXJ0aWZpY2F0aW9uIERpY3RhbyBBbnlTaWduMB4XDTA4MDcxODExNTIyNloXDTE4MDcxNjExNTIyNlowYTELMAkGA1UEBhMCRlIxDDAKBgNVBAgTA0lERjEOMAwGA1UEBxMFUGFyaXMxFzAVBgNVBAoTDkRlbW8gRGljdGFvIFNBMRswGQYDVQQDExJEZW1vIEQyUyBQcm9vZlNpZ24wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAJi8pl3Poarj59ogz1Ehq0e2AEiIiZ+A0avgEqlr++h78hs6nM6C6bJtKqwqjqeWfG8AfxXh3Q8OQZGAlblnGrYBI8wmt6hEl7J5KHcJ2FXOmrkmQ1uIwl2DltR1aTNJvziTD40bx7L+V6sifloDQanRiUag2mQDw/MC9QqMknuRAgMBAAGjgeQwgeEwCQYDVR0TBAIwADALBgNVHQ8EBAMCBsAwEQYJYIZIAYb4QgEBBAQDAgWgMDgGCWCGSAGG+EIBDQQrFilJbnRlcm5hbCBEaWN0YW8gUEtJIEdlbmVyYXRlZCBDZXJ0aWZpY2F0ZTA6BgNVHR8EMzAxMC+gLaArhilodHRwOi8vd3d3LmRpY3Rhby5jb20vQW55U2lnbi9BbnlTaWduLmNybDAdBgNVHQ4EFgQUO8oTY6/wdrN0tgKAbfo2wYq3/vEwHwYDVR0jBBgwFoAUbkD7IbIlE+yRK0SOOxZlMqsnAUgwDQYJKoZIhvcNAQEFBQADggEBAL2AUlvQrJ6Y0IP0tOdQ+ibGcOnWKlttZhthDpi1sLKAE02uGhO9hDkdhAJwWvQN9o+qZviCc0xc6R+h/Z0ErNoaXbLxt1iFBSNokAIRTw8vQzxjZnVyT3/Wk43LqyOu1yZNJfThH4TmUCkhjFiZn7bnWq6PhAlYqwt5h3ekE9vLCNXPhNU5fbyDSjV0mSgCgNE62o4Lj6xLNhkMr42ygVvJnHSoJ3oIrssOpybKE7aQ+tJdfgZtIf42nvAdtD3C7kIsbN/MToutJ+P3Cb5ejt8qhLttFaK8UdQvAttd4OmTvuO/KzL2oZDAGjky+XmCkruxEWgfBAcE8ueWN8BMsps=</ds:X509Certificate>
+		</ds:X509Data>
+	</ds:KeyInfo>
+	<ds:Object>
+		<ds:Manifest Id="TAO_1_SignedManifest">
+			<ds:Reference URI="">
+				<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
+				<ds:DigestValue>3bf51fda2322c1655cb64bd07cd3ef3c65d389514e8d7c235fe2dc618d7b9ff0</ds:DigestValue>
+			</ds:Reference>
+		</ds:Manifest>
+	</ds:Object>
+	<ds:Object xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+		<xad:QualifyingProperties xmlns:xad="http://uri.etsi.org/01903/v1.3.2#"
+			Target="#TAO_1_Signature">
+			<xad:SignedProperties Id="TAO_1_SignedProperties">
+				<xad:SignedSignatureProperties>
+					<xad:SigningTime>2011-05-17T19:56:17Z</xad:SigningTime>
+					<xad:SigningCertificate>
+						<xad:Cert>
+							<xad:CertDigest>
+								<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+								<ds:DigestValue>F8kAk97V7bxAFHtNAirjpVy5hLs=</ds:DigestValue>
+							</xad:CertDigest>
+							<xad:IssuerSerial>
+								<ds:X509IssuerName>CN=Autorite de certification Dictao
+									AnySign,OU=AnySign,O=Dictao SA,L=Paris,ST=Some-State,C=FR</ds:X509IssuerName>
+								<ds:X509SerialNumber>1068</ds:X509SerialNumber>
+							</xad:IssuerSerial>
+						</xad:Cert>
+					</xad:SigningCertificate>
+				</xad:SignedSignatureProperties>
+			</xad:SignedProperties>
+		</xad:QualifyingProperties>
+	</ds:Object>
+</ds:Signature>

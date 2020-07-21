@@ -1,0 +1,73 @@
+<f:subview xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxp="http://nuxeo.org/nxweb/pdf"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util" id="#{widget.id}">
+
+	<a4j:outputPanel id="#{widget.id}_panel" ajaxRendered="false">
+		<nxu:set var="numeroLectureVisible"
+			value="#{metadonneesActions.isNumeroLectureVisible(nxu:concat(widget.id, '_select_one_menu'), field_1)}"
+			cache="true">
+			<c:choose>
+				<c:when test="#{widget.mode == 'pdf'}">
+					<c:choose>
+						<c:when test="#{numeroLectureVisible}">
+							<nxp:font size="8">#{field_0} - #{metadonneesActions.getNiveauLectureLabel(field_1)}</nxp:font>
+						</c:when>
+						<c:otherwise>
+							<nxp:font size="8">#{metadonneesActions.getNiveauLectureLabel(field_1)}</nxp:font>
+						</c:otherwise>
+					</c:choose>
+				</c:when>
+				<c:when test="#{widget.mode == 'view'}">
+					<c:choose>
+						<c:when test="#{numeroLectureVisible}">
+							<h:outputText
+								value="#{field_0} - #{vocabulary.getEntryLabel(widget.properties['directoryName'],field_1)}" />
+						</c:when>
+						<c:otherwise>
+							<h:outputText
+								value="#{vocabulary.getEntryLabel(widget.properties['directoryName'],field_1)}" />
+						</c:otherwise>
+					</c:choose>
+
+				</c:when>
+				<c:otherwise>
+					<h:inputText id="#{widget.id}_input" value="#{field_0}"
+						rendered="#{numeroLectureVisible}"
+						required="#{widget.required and numeroLectureVisible}"
+						validator="#{metadonneesActions.validateIntValue}" />
+					<h:outputText value=" - " rendered="#{numeroLectureVisible}" />
+					<c:set var="vocabularySchema"
+						value="#{nxu:test(!empty widget.properties.vocabularySchema, widget.properties.vocabularySchema, 'vocabulary')}" />
+					<h:selectOneMenu id="#{widget.id}_select_one_menu"
+						value="#{field_1}" required="#{widget.required}" immediate="true">
+						<f:selectItem itemLabel="Sélectionnez une valeur." itemValue="" />
+						<c:choose>
+							<c:when test="${!widget.properties['localized']}">
+								<nxdir:selectItems id="#{widget.id}"
+									directoryName="${widget.properties['directoryName']}"
+									var="item" itemValue="#{item.id}"
+									itemLabel="#{messages[item.getProperty(vocabularySchema, 'label')]}"
+									localize="true" />
+							</c:when>
+							<c:otherwise>
+								<nxdir:selectItems id="#{widget.id}"
+									directoryName="${widget.properties['directoryName']}"
+									var="item" itemValue="#{item.id}"
+									itemLabel="#{item.getProperty(vocabularySchema, 'label')}" />
+							</c:otherwise>
+						</c:choose>
+						<a4j:support event="onchange" reRender="#{widget.id}_panel" />
+					</h:selectOneMenu>
+					<h:message id="#{widget.id}_input_message" for="#{widget.id}_input"
+						styleClass="errorMessage" rendered="#{numeroLectureVisible}" />
+					<h:message id="#{widget.id}_sel" for="#{widget.id}_select_one_menu"
+						styleClass="errorMessage" />
+				</c:otherwise>
+			</c:choose>
+		</nxu:set>
+	</a4j:outputPanel>
+</f:subview>

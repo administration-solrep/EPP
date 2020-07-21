@@ -1,0 +1,44 @@
+<f:subview id="#{widget.id}_paste"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util">
+
+	<c:if test="#{currentRouteLockedByCurrentUser and isEmptyFork}">
+		<nxu:set var="actions"
+			value="#{routingWebActions.getPasteStepInForkActions(field_0)}"
+			cache="true">
+			<c:if test="#{!empty actions}">
+				<nxu:dataList var="action" value="#{actions}"
+					id="pasteStepInForkActionList">
+					<li class="ctxMenuItemStyle"><nxh:commandLink
+							action="#{action.getLink()}" id="pasteStepInFork">
+							<nxu:graphicImage value="#{action.icon}" />
+							<h:outputText value="#{messages[action.label]}" />
+							<f:param name="stepId" value="#{field_1}" />
+						</nxh:commandLink></li>
+				</nxu:dataList>
+			</c:if>
+		</nxu:set>
+	</c:if>
+	<c:if
+		test="#{currentRouteLockedByCurrentUser and isEditableRouteElement}">
+		<nxu:set var="actions"
+			value="#{routingWebActions.getPasteStepActions(field_0)}"
+			cache="true">
+			<c:if test="#{!empty actions}">
+				<nxu:dataList var="action" value="#{actions}"
+					id="pasteStepInForActionList">
+					<li class="ctxMenuItemStyle"><nxh:commandLink
+							action="#{action.getLink()}" id="pasteStep">
+							<nxu:graphicImage value="#{action.icon}" />
+							<h:outputText value="#{messages[action.label]}" />
+							<f:param name="stepId" value="#{field_1}" />
+						</nxh:commandLink></li>
+				</nxu:dataList>
+			</c:if>
+		</nxu:set>
+	</c:if>
+
+</f:subview>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue le service de sécurité du socle transverse. -->
+<component name="fr.dila.st.core.service.SecurityService">
+	<implementation class="fr.dila.st.core.service.SecurityServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.SecurityService" />
+	</service>
+</component>
+
+

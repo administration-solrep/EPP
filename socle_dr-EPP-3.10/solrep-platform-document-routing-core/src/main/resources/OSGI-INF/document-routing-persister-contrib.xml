@@ -1,0 +1,10 @@
+<component name="fr.dila.ecm.platform.routing.persister.contrib"
+  version="1.0">
+
+  <extension target="fr.dila.ecm.platform.routing.service"
+    point="persister">
+    <persister
+      class="fr.dila.ecm.platform.routing.core.impl.DocumentRoutingTreePersister" />
+  </extension>
+
+</component>

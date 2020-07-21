@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Ce composant contribue les schémas du socle transverse. -->
+<component name="fr.dila.st.core.schema">
+	<require>org.nuxeo.ecm.core.CoreExtensions</require>
+	<require>org.nuxeo.ecm.directory.types</require>
+
+	<extension target="org.nuxeo.ecm.core.schema.TypeService"
+		point="schema">
+		<!-- *********************************************************************** 
+			Jetons *********************************************************************** -->
+		<!-- Jeton -->
+		<schema name="jeton_maitre" src="schemas/jeton_maitre.xsd"
+			prefix="jtm" />
+
+		<!-- Liaison jeton / document -->
+		<schema name="jeton_doc" src="schemas/jeton_doc.xsd" prefix="jtd" />
+
+		<!-- lock Jeton maitre -->
+		<schema name="lock_jeton_maitre" src="schemas/lock_jeton_maitre.xsd"
+			prefix="ljtm" />
+
+		<!-- *********************************************************************** 
+			Paramètres *********************************************************************** -->
+		<schema name="parametre" src="schemas/parametre.xsd" prefix="prm" />
+
+		<!-- *********************************************************************** 
+			Alerte *********************************************************************** -->
+		<schema name="alert" src="schemas/alert.xsd" prefix="altr" />
+
+		<!-- *********************************************************************** 
+			Répertoires LDAP *********************************************************************** -->
+		<!-- Surcharge du schema "user" de Nuxeo, car le mapping LDAP ne peut être 
+			composé que d'un seul schéma [SUPNXP-3039] -->
+		<schema name="user" src="schemas/user.xsd" override="true" />
+
+		<!-- *********************************************************************** 
+			LogEntry *********************************************************************** -->
+		<schema name="log" src="schemas/log.xsd" prefix="log" />
+
+		<!-- *********************************************************************** 
+			Etat application *********************************************************************** -->
+		<schema name="etat_application" src="schemas/etat_application.xsd"
+			prefix="eapp" />
+
+		<!-- *********************************************************************** 
+			Notifications Suivi des Batchs *********************************************************************** -->
+		<schema name="notifications_suivi_batchs" src="schemas/notifications_suivi_batchs.xsd"
+			prefix="nsb" />
+
+		<!-- Surcharge des commentaires de Nuxeo pour ajouter la gestion des droits -->
+		<schema name="comment" src="schemas/comment.xsd" override="true" />
+
+		<!-- requetes -->
+		<schema name="smart_folder" src="schemas/smart_folder.xsd"
+			prefix="sf" />
+
+		<!-- Document export -->
+		<schema name="export_document" src="schemas/export_document.xsd"
+			prefix="expdoc" />
+
+		<schema name="stfile" src="schemas/st_file.xsd" />
+
+	</extension>
+
+</component>

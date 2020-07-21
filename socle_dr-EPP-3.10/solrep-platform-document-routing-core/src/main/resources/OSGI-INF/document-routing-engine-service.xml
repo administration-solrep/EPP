@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<component name="fr.dila.ecm.platform.routing.engine.service">
+
+  <documentation>
+    The Document Routing Persistence service is use to move the tolken from step
+    to step inside a DocumentRoute instance. The tolken represent the flow of
+    the RouteInstance.
+  </documentation>
+
+  <implementation
+    class="fr.dila.ecm.platform.routing.core.impl.DocumentRoutingEngineServiceImpl" />
+
+  <service>
+    <provide
+      interface="fr.dila.ecm.platform.routing.core.api.DocumentRoutingEngineService" />
+  </service>
+
+</component>

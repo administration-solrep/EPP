@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+
+<xs:schema targetNamespace="http://www.nuxeo.org/ecm/schemas/list-test"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nxs="http://www.nuxeo.org/ecm/schemas/list-test">
+
+	<xs:element name="names" type="nxs:stringArray" />
+	<xs:element name="birthdates" type="nxs:dateArray" />
+	<xs:element name="ages" type="nxs:intArray" />
+	<xs:element name="dupuisFamily" type="nxs:stringList" />
+	<xs:element name="dupuisDates" type="nxs:dateList" />
+	<xs:element name="familiesInfos" type="nxs:complexTypeStrDateList" />
+	<xs:element name="dupuisCharacters" type="nxs:characters" />
+
+
+
+	<!-- déclarations correspondants à des listes de types simples -->
+	<xs:complexType name="stringList">
+		<xs:sequence>
+			<xs:element name="item" type="xs:string" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="dateList">
+		<xs:sequence>
+			<xs:element name="item" type="xs:date" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="intList">
+		<xs:sequence>
+			<xs:element name="item" type="xs:integer" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- déclarations correspondants à des tableaux de types simples -->
+	<xs:simpleType name="stringArray">
+		<xs:list itemType="xs:string" />
+	</xs:simpleType>
+
+	<xs:simpleType name="dateArray">
+		<xs:list itemType="xs:date" />
+	</xs:simpleType>
+
+	<xs:simpleType name="intArray">
+		<xs:list itemType="xs:int" />
+	</xs:simpleType>
+
+	<!-- déclarations correspondants à des types complexes avec des listes ou 
+		tableaux de types simples -->
+	<xs:complexType name="complexTypeStrDateList">
+		<xs:sequence>
+			<xs:element name="itemStrList" type="nxs:stringList" />
+			<xs:element name="itemDateArray" type="nxs:dateArray" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Déclaration correspondant à un type complexe avec une liste de string 
+		et de date -->
+	<xs:complexType name="characters">
+		<xs:sequence>
+			<xs:element name="character" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="name" type="xs:string" minOccurs="1"
+							maxOccurs="1" />
+						<xs:element name="age" type="xs:int" minOccurs="1"
+							maxOccurs="1" />
+						<xs:element name="birthdate" type="xs:date" minOccurs="1"
+							maxOccurs="1" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

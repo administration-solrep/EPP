@@ -1,0 +1,3344 @@
+<component name="fr.dila.solonepp.web.widget.metadonnees">
+	<require>fr.dila.solonepp.web.layout.widgetType</require>
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="widgets">
+
+		<!-- MetaDonnées de l'evenement -->
+		<widget name="metadonnees_evenement_libelle" type="template">
+			<labels>
+				<label mode="any">label.epp.version.libelle</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>evt:typeEvenement</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">NO_RESTRICTION</property>
+				<property name="template">/widgets/listing/metadonnees/libelle_evenement_widget.xhtml</property>
+			</properties>
+		</widget>
+
+		<widget name="metadonnees_evenement_identifiant" type="text">
+			<labels>
+				<label mode="any">label.epp.evenement.identifiant</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dc:title</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">title</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('title')}</mode>
+			</widgetModes>
+		</widget>
+		<widget name="metadonnees_evenement_identifiant_precedent"
+			type="text">
+			<labels>
+				<label mode="any">label.epp.evenement.identifiant.precedent</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>evt:evenementParent</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">evenementParent</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('evenementParent')}</mode>
+			</widgetModes>
+		</widget>
+		<widget name="metadonnees_evenement_identifiant_dossier" type="text">
+			<labels>
+				<label mode="any">label.epp.evenement.identifiant.dossier</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>evt:dossier</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">dossier</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dossier')}</mode>
+			</widgetModes>
+		</widget>
+		<widget name="metadonnees_evenement_identifiant_dossier_precedent"
+			type="text">
+			<labels>
+				<label mode="any">label.epp.evenement.identifiant.dossier.precedent</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>evt:dossierPrecedent</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">dossierPrecedent</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dossierPrecedent')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_evenement_emetteur" type="template">
+			<labels>
+				<label mode="any">label.epp.evenement.emetteur</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>evt:emetteur</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/listing/metadonnees/select_institutions_widget.xhtml</property>
+				<property name="restriction">emetteur</property>
+				<property name="rerenderId1">metadonnees_evenement_destinataire</property>
+				<property name="rerenderId2">metadonnees_evenement_copie</property>
+				<property name="rerenderId3">universal_select_global_region</property>
+				<property name="organigrammeSelectionType">INS_TYPE</property>
+				<property name="organigrammeSelectionMode">SINGLE</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('emetteur')}</mode>
+			</widgetModes>
+		</widget>
+		<widget name="metadonnees_evenement_destinataire" type="template">
+			<labels>
+				<label mode="any">label.epp.evenement.destinataire</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>evt:destinataire</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/listing/metadonnees/select_institutions_widget.xhtml</property>
+				<property name="restriction">destinataire</property>
+				<property name="rerenderId1">metadonnees_evenement_emetteur</property>
+				<property name="rerenderId2">metadonnees_evenement_copie</property>
+				<property name="organigrammeSelectionType">INS_TYPE</property>
+				<property name="organigrammeSelectionMode">SINGLE</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('destinataire')}</mode>
+			</widgetModes>
+		</widget>
+		<widget name="metadonnees_evenement_copie" type="template">
+			<labels>
+				<label mode="any">label.epp.evenement.copie</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>evt:destinataireCopie</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/listing/metadonnees/select_institutions_widget.xhtml</property>
+				<property name="restriction">destinataireCopie</property>
+				<property name="rerenderId1">metadonnees_evenement_emetteur</property>
+				<property name="rerenderId2">metadonnees_evenement_destinataire</property>
+				<property name="organigrammeSelectionType">INS_TYPE</property>
+				<property name="organigrammeSelectionMode">LIST</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('destinataireCopie')}</mode>
+			</widgetModes>
+		</widget>
+
+		<!-- MetaDonnées de la version -->
+		<widget name="metadonnees_version_horodatage" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.horodatage</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:horodatage</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy HH:mm:ss</property>
+				<property name="format">dd/MM/yyyy HH:mm:ss</property>
+				<property name="restriction">horodatage</property>
+				<property name="modifiedField">ver:horodatage</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('horodatage')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_senat" type="text">
+			<labels>
+				<label mode="any">label.epp.version.senat</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:senat</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">senat</property>
+				<property name="modifiedField">ver:senat</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('senat')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_niveauLecture" type="niveau_lecture_widget">
+			<labels>
+				<label mode="any">label.epp.version.niveauLecture</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:niveauLectureNumero</field>
+				<field>ver:niveauLecture</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">niveauLecture</property>
+				<property name="directoryName">niveau_lecture</property>
+				<property name="modifiedField">ver:niveauLectureNumero</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('niveauLecture')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateAr" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateAr</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateAr</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy HH:mm</property>
+				<property name="format">dd/MM/yyyy HH:mm</property>
+				<property name="restriction">dateAr</property>
+				<property name="modifiedField">ver:dateAr</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateAr')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_objet" type="textarea">
+			<labels>
+				<label mode="any">label.epp.version.objet</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:objet</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">objet</property>
+				<property name="modifiedField">ver:objet</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('objet')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_identifiantMetier" type="text">
+			<labels>
+				<label mode="any">label.epp.version.identifiantMetier</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:identifiantMetier</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">identifiantMetier</property>
+				<property name="modifiedField">ver:identifiantMetier</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('identifiantMetier')}</mode>
+			</widgetModes>
+		</widget>
+
+
+
+		<widget name="metadonnees_version_dateDemande" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateDemande</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateDemande</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateDemande</property>
+				<property name="modifiedField">ver:dateDemande</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateDemande')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_norLoi" type="text">
+			<labels>
+				<label mode="any">label.epp.version.norLoi</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:norLoi</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">norLoi</property>
+				<property name="modifiedField">ver:norLoi</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('norLoi')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_nor" type="text">
+			<labels>
+				<label mode="any">label.epp.version.nor</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:nor</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">nor</property>
+				<property name="modifiedField">ver:nor</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('nor')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_typeLoi" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.typeLoi</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:typeLoi</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">typeLoi</property>
+				<property name="directoryName">type_loi</property>
+				<property name="modifiedField">ver:typeLoi</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('typeLoi')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_natureLoi" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.natureLoi</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:natureLoi</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">natureLoi</property>
+				<property name="directoryName">nature_loi</property>
+				<property name="modifiedField">ver:natureLoi</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('natureLoi')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_auteur" type="table_ref">
+			<labels>
+				<label mode="any">label.epp.version.auteur</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:auteur</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">auteur</property>
+				<!--<property name="required">#{metadonneesActions.isColumnRequiredWidget('auteur')}</property> -->
+				<property name="tableReference">Identite</property>
+				<property name="modifiedField">ver:auteur</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('auteur')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_version_organisme" type="table_ref">
+			<labels>
+				<label mode="any">label.epp.version.organisme</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:organisme</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">organisme</property>
+				<property name="tableReference">Organisme</property>
+				<property name="modifiedField">ver:organisme</property>
+				<property name="typeOrganisme">AUDITION</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('organisme')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_version_coauteur" type="table_ref_list">
+			<labels>
+				<label mode="any">label.epp.version.coauteur</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:coauteur</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">coauteur</property>
+				<property name="tableReference">Identite</property>
+				<property name="modifiedField">ver:coauteur</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('coauteur')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_intitule" type="textarea">
+			<labels>
+				<label mode="any">label.epp.version.intitule</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:intitule</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">intitule</property>
+				<property name="modifiedField">ver:intitule</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('intitule')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_description" type="textarea">
+			<labels>
+				<label mode="any">label.epp.version.description</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dc:description</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">description</property>
+				<property name="modifiedField">dc:description</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('description')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_urlDossierAn" type="text_url">
+			<labels>
+				<label mode="any">label.epp.version.urlDossierAn</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:urlDossierAn</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">urlDossierAn</property>
+				<property name="modifiedField">ver:urlDossierAn</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('urlDossierAn')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_urlDossierSenat" type="text_url">
+			<labels>
+				<label mode="any">label.epp.version.urlDossierSenat</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:urlDossierSenat</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">urlDossierSenat</property>
+				<property name="modifiedField">ver:urlDossierSenat</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('urlDossierSenat')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_cosignataire" type="text">
+			<labels>
+				<label mode="any">label.epp.version.cosignataire</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:cosignataire</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">cosignataire</property>
+				<property name="schema">version</property>
+				<property name="property">cosignataire</property>
+				<property name="modifiedField">ver:cosignataire</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('cosignataire')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateDepotTexte" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateDepotTexte</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateDepotTexte</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateDepotTexte</property>
+				<property name="modifiedField">ver:dateDepotTexte</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateDepotTexte')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateCMP" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.date</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateCMP</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateCMP</property>
+				<property name="modifiedField">ver:dateCMP</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateCMP')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_numeroDepotTexte" type="text">
+			<labels>
+				<label mode="any">label.epp.version.numeroDepotTexte</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:numeroDepotTexte</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">numeroDepotTexte</property>
+				<property name="modifiedField">ver:numeroDepotTexte</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('numeroDepotTexte')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_commissionSaisieAuFond" type="table_ref">
+			<labels>
+				<label mode="any">label.epp.version.commissionSaisieAuFond</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:commissionSaisieAuFond</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">commissionSaisieAuFond</property>
+				<property name="tableReference">Organisme</property>
+				<property name="modifiedField">ver:commissionSaisieAuFond</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('commissionSaisieAuFond')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_commissionSaisiePourAvis"
+			type="table_ref_list">
+			<labels>
+				<label mode="any">label.epp.version.commissionSaisiePourAvis</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:commissionSaisiePourAvis</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">commissionSaisiePourAvis</property>
+				<property name="tableReference">Organisme</property>
+				<property name="modifiedField">ver:commissionSaisiePourAvis</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('commissionSaisiePourAvis')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_commissions" type="table_ref_list">
+			<labels>
+				<label mode="any">label.epp.version.commissions</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:commissions</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">commissions</property>
+				<property name="tableReference">Organisme</property>
+				<property name="modifiedField">ver:commissions</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('commissions')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateSaisine" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateSaisine</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateSaisine</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateSaisine</property>
+				<property name="modifiedField">ver:dateSaisine</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateSaisine')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateRetrait" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateRetrait</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateRetrait</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateRetrait</property>
+				<property name="modifiedField">ver:dateRetrait</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateRetrait')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateDistributionElectronique"
+			type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateDistributionElectronique</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateDistributionElectronique</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateDistributionElectronique</property>
+				<property name="modifiedField">ver:dateDistributionElectronique</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateDistributionElectronique')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_nature" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.nature</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:nature</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">nature</property>
+				<property name="directoryName">nature_rapport</property>
+				<property name="modifiedField">ver:nature</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('nature')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_rapporteurList" type="table_ref_list">
+			<labels>
+				<label mode="any">label.epp.version.rapporteurList</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:rapporteurList</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">rapporteurList</property>
+				<property name="tableReference">Identite</property>
+				<property name="modifiedField">ver:rapporteurList</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('rapporteurList')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_titre" type="text">
+			<labels>
+				<label mode="any">label.epp.version.titre</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:titre</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">titre</property>
+				<property name="modifiedField">ver:titre</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('titre')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateDepotRapport" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateDepotRapport</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateDepotRapport</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateDepotRapport</property>
+				<property name="modifiedField">ver:dateDepotRapport</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateDepotRapport')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_numeroDepotRapport" type="text">
+			<labels>
+				<label mode="any">label.epp.version.numeroDepotRapport</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:numeroDepotRapport</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">numeroDepotRapport</property>
+				<property name="modifiedField">ver:numeroDepotRapport</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('numeroDepotRapport')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_commissionSaisie" type="table_ref">
+			<labels>
+				<label mode="any">label.epp.version.commissionSaisie</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:commissionSaisie</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">commissionSaisie</property>
+				<property name="tableReference">Organisme</property>
+				<property name="modifiedField">ver:commissionSaisie</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('commissionSaisie')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_attributionCommission" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.attributionCommission</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:attributionCommission</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">attributionCommission</property>
+				<property name="directoryName">attribution_commission</property>
+				<property name="modifiedField">ver:attributionCommission</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('attributionCommission')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateRefus" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateRefus</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateRefus</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateRefus</property>
+				<property name="modifiedField">ver:dateRefus</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateRefus')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_libelleAnnexe" type="multi_text">
+			<labels>
+				<label mode="any">label.epp.version.libelleAnnexe</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:libelleAnnexe</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">libelleAnnexe</property>
+				<property name="schema">version</property>
+				<property name="property">libelleAnnexe</property>
+				<property name="modifiedField">ver:libelleAnnexe</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('libelleAnnexe')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dossierLegislatif" type="multi_text">
+			<labels>
+				<label mode="any">label.epp.version.dossierLegislatif</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dossierLegislatif</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">dossierLegislatif</property>
+				<property name="schema">version</property>
+				<property name="property">dossierLegislatif</property>
+				<property name="modifiedField">ver:dossierLegislatif</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dossierLegislatif')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateEngagementProcedure"
+			type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateEngagementProcedure</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateEngagementProcedure</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateEngagementProcedure</property>
+				<property name="modifiedField">ver:dateEngagementProcedure</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateEngagementProcedure')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateRefusProcedureEngagementAn"
+			type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateRefusProcedureEngagementAn</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateRefusProcedureEngagementAn</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateRefusProcedureEngagementAn</property>
+				<property name="modifiedField">ver:dateRefusProcedureEngagementAn</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="view">#{empty
+					layoutValue.ver.dateRefusProcedureEngagementAn?'hidden':'view'}</mode>
+				<mode value="edit">hidden</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateRefusProcedureEngagementSenat"
+			type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateRefusProcedureEngagementSenat</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateRefusProcedureEngagementSenat</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateRefusProcedureEngagementSenat</property>
+				<property name="modifiedField">ver:dateRefusProcedureEngagementSenat</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="view">#{empty
+					layoutValue.ver.dateRefusProcedureEngagementSenat?'hidden':'view'}</mode>
+				<mode value="edit">hidden</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateRefusEngagementProcedure"
+			type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateRefusEngagementProcedure</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateRefusEngagementProcedure</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateRefusEngagementProcedure</property>
+				<property name="modifiedField">ver:dateRefusEngagementProcedure</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateRefusEngagementProcedure')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateAdoption" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateAdoption</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateAdoption</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateAdoption</property>
+				<property name="modifiedField">ver:dateAdoption</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateAdoption')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_numeroTexteAdopte" type="text">
+			<labels>
+				<label mode="any">label.epp.version.numeroTexteAdopte</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:numeroTexteAdopte</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">numeroTexteAdopte</property>
+				<property name="modifiedField">ver:numeroTexteAdopte</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('numeroTexteAdopte')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_sortAdoption" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.sortAdoption</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:sortAdoption</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">sortAdoption</property>
+				<property name="directoryName">sort_adoption</property>
+				<property name="modifiedField">ver:sortAdoption</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('sortAdoption')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_resultatCMP" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.resultatCMP</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:resultatCMP</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">resultatCMP</property>
+				<property name="directoryName">resultat_cmp</property>
+				<property name="modifiedField">ver:resultatCMP</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('resultatCMP')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_positionAlerte" type="position_alerte">
+			<labels>
+				<label mode="any">label.epp.version.positionAlerte</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:positionAlerte</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">positionAlerte</property>
+				<property name="modifiedField">ver:positionAlerte</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('positionAlerte')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_redepot" type="type_boolean">
+			<labels>
+				<label mode="any">label.epp.version.redepot</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:redepot</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">redepot</property>
+				<property name="modifiedField">ver:redepot</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('redepot')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_natureRapport" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.natureRapport</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:natureRapport</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">natureRapport</property>
+				<property name="directoryName">nature_rapport</property>
+				<property name="modifiedField">ver:natureRapport</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('natureRapport')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_motifIrrecevabilite" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.motifIrrecevabilite</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:motifIrrecevabilite</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">motifIrrecevabilite</property>
+				<property name="directoryName">motif_irrecevabilite</property>
+				<property name="modifiedField">ver:motifIrrecevabilite</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('motifIrrecevabilite')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_date" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.date</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:date</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">date</property>
+				<property name="modifiedField">ver:date</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('date')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_anneeRapport" type="int">
+			<labels>
+				<label mode="any">label.epp.version.anneeRapport</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:anneeRapport</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">anneeRapport</property>
+				<property name="modifiedField">ver:anneeRapport</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('anneeRapport')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_urlBaseLegale" type="text_url">
+			<labels>
+				<label mode="any">label.epp.version.urlBaseLegale</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:urlBaseLegale</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">urlBaseLegale</property>
+				<property name="modifiedField">ver:urlBaseLegale</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('urlBaseLegale')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_baseLegale" type="text">
+			<labels>
+				<label mode="any">label.epp.version.baseLegale</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:baseLegale</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">baseLegale</property>
+				<property name="modifiedField">ver:baseLegale</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('baseLegale')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_parlementaireTitulaireList"
+			type="table_ref_list">
+			<labels>
+				<label mode="any">label.epp.version.parlementaireTitulaireList</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:parlementaireTitulaireList</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">parlementaireTitulaireList</property>
+				<property name="tableReference">Identite</property>
+				<property name="modifiedField">ver:parlementaireTitulaireList</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('parlementaireTitulaireList')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_parlementaireSuppleantList"
+			type="table_ref_list">
+			<labels>
+				<label mode="any">label.epp.version.parlementaireSuppleantList</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:parlementaireSuppleantList</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">parlementaireSuppleantList</property>
+				<property name="tableReference">Identite</property>
+				<property name="modifiedField">ver:parlementaireSuppleantList</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('parlementaireSuppleantList')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_datePromulgation" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.datePromulgation</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:datePromulgation</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">datePromulgation</property>
+				<property name="modifiedField">ver:datePromulgation</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('datePromulgation')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_datePublication" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.datePublication</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:datePublication</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">datePublication</property>
+				<property name="modifiedField">ver:datePublication</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('datePublication')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_numeroLoi" type="text">
+			<labels>
+				<label mode="any">label.epp.version.numeroLoi</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:numeroLoi</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">numeroLoi</property>
+				<property name="modifiedField">ver:numeroLoi</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('numeroLoi')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateCongres" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateCongres</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateCongres</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateCongres</property>
+				<property name="modifiedField">ver:dateCongres</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateCongres')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_typeActe" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.typeActe</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:typeActe</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">typeActe</property>
+				<property name="directoryName">type_acte</property>
+				<property name="modifiedField">ver:typeActe</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('typeActe')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateActe" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateActe</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateActe</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateActe</property>
+				<property name="modifiedField">ver:dateActe</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateActe')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateConvocation" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateConvocation</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateConvocation</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateConvocation</property>
+				<property name="modifiedField">ver:dateConvocation</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateConvocation')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateDesignation" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateDesignation</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateDesignation</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateDesignation</property>
+				<property name="modifiedField">ver:dateDesignation</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateDesignation')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_numeroJo" type="int">
+			<labels>
+				<label mode="any">label.epp.version.numeroJo</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:numeroJo</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">numeroJo</property>
+				<property name="modifiedField">ver:numeroJo</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('numeroJo')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_pageJo" type="int">
+			<labels>
+				<label mode="any">label.epp.version.pageJo</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:pageJo</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">pageJo</property>
+				<property name="modifiedField">ver:pageJo</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('pageJo')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_anneeJo" type="int">
+			<labels>
+				<label mode="any">label.epp.version.anneeJo</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:anneeJo</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">anneeJo</property>
+				<property name="modifiedField">ver:anneeJo</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('anneeJo')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateJo" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateJo</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateJo</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateJo</property>
+				<property name="modifiedField">ver:dateJo</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateJo')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_numeroRubrique" type="int">
+			<labels>
+				<label mode="any">label.epp.version.numeroRubrique</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:numeroRubrique</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">numeroRubrique</property>
+				<property name="modifiedField">ver:numeroRubrique</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('numeroRubrique')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_urlPublication" type="text_url">
+			<labels>
+				<label mode="any">label.epp.version.urlPublication</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:urlPublication</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">urlPublication</property>
+				<property name="modifiedField">ver:urlPublication</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('urlPublication')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_echeance" type="text">
+			<labels>
+				<label mode="any">label.epp.version.echeance</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:echeance</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">echeance</property>
+				<property name="modifiedField">ver:echeance</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('echeance')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_sensAvis" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.sensAvis</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:sensAvis</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">sensAvis</property>
+				<property name="directoryName">sens_avis</property>
+				<property name="modifiedField">ver:sensAvis</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('sensAvis')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_suffrageExprime" type="int">
+			<labels>
+				<label mode="any">label.epp.version.suffrageExprime</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:suffrageExprime</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">suffrageExprime</property>
+				<property name="modifiedField">ver:suffrageExprime</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('suffrageExprime')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_bulletinBlanc" type="int">
+			<labels>
+				<label mode="any">label.epp.version.bulletinBlanc</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:bulletinBlanc</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">bulletinBlanc</property>
+				<property name="modifiedField">ver:bulletinBlanc</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('bulletinBlanc')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_votePour" type="int">
+			<labels>
+				<label mode="any">label.epp.version.votePour</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:votePour</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">votePour</property>
+				<property name="modifiedField">ver:votePour</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('votePour')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_voteContre" type="int">
+			<labels>
+				<label mode="any">label.epp.version.voteContre</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:voteContre</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">voteContre</property>
+				<property name="modifiedField">ver:voteContre</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('voteContre')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_abstention" type="int">
+			<labels>
+				<label mode="any">label.epp.version.abstention</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:abstention</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">abstention</property>
+				<property name="modifiedField">ver:abstention</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('abstention')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateCaducite" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateCaducite</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateCaducite</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateCaducite</property>
+				<property name="modifiedField">ver:dateCaducite</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateCaducite')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dossierCible" type="text">
+			<labels>
+				<label mode="any">label.epp.version.dossierCible</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dossierCible</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">dossierCible</property>
+				<property name="modifiedField">ver:dossierCible</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dossierCible')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_rapportParlement" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.rapportParlement</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:rapportParlement</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">rapportParlement</property>
+				<property name="directoryName">rapport_parlement</property>
+				<property name="modifiedField">ver:rapportParlement</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('rapportParlement')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_rectificatif" type="type_boolean">
+			<labels>
+				<label mode="any">label.epp.version.rectificatif</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:rectificatif</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">rectificatif</property>
+				<property name="modifiedField">ver:rectificatif</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('rectificatif')}</mode>
+			</widgetModes>
+		</widget>
+
+
+
+
+		<widget name="metadonnees_version_dateVote" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateVote</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateVote</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateVote</property>
+				<property name="modifiedField">ver:dateVote</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateVote')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_demandeVote" type="type_boolean">
+			<labels>
+				<label mode="any">label.epp.version.demandeVote</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:demandeVote</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">demandeVote</property>
+				<property name="modifiedField">ver:demandeVote</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('demandeVote')}</mode>
+			</widgetModes>
+		</widget>
+
+
+
+		<widget name="metadonnees_version_dateDeclaration" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateDeclaration</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateDeclaration</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateDeclaration</property>
+				<property name="modifiedField">ver:dateDeclaration</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateDeclaration')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_version_datePresentation" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.datePresentation</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:datePresentation</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">datePresentation</property>
+				<property name="modifiedField">ver:datePresentation</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('datePresentation')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_groupeParlementaire" type="table_ref_list">
+			<labels>
+				<label mode="any">label.epp.version.groupeParlementaire</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:groupeParlementaire</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">groupeParlementaire</property>
+				<property name="tableReference">Organisme</property>
+				<property name="modifiedField">ver:groupeParlementaire</property>
+				<property name="typeOrganisme">GROUPE_PARLEMENTAIRE</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('groupeParlementaire')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_version_personne_a_auditionner" type="text">
+			<labels>
+				<label mode="any">label.epp.version.personne</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:personne</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">personne</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('personne')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_version_fonction" type="text">
+			<labels>
+				<label mode="any">label.epp.version.fonction</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:fonction</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">fonction</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('fonction')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_version_dateAudition" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateAudition</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateAudition</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateAudition</property>
+				<property name="modifiedField">ver:dateAudition</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateAudition')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_dateLettrePm" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateLettrePm</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateLettrePm</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateLettrePm</property>
+				<property name="modifiedField">ver:dateLettrePm</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateLettrePm')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_date_refus_assemblee1" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateRefusAssemblee1</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateRefusAssemblee1</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateRefusAssemblee1</property>
+				<property name="modifiedField">ver:dateRefusAssemblee1</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateRefusAssemblee1')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_date_conference_assemblee2"
+			type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateConferenceAssemblee2</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateConferenceAssemblee2</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateConferenceAssemblee2</property>
+				<property name="modifiedField">ver:dateConferenceAssemblee2</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateConferenceAssemblee2')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_decision_proc_acc" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.decisionProcAcc</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:decisionProcAcc</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">decisionProcAcc</property>
+				<property name="directoryName">decision_proc_acc</property>
+				<property name="modifiedField">ver:decisionProcAcc</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('decisionProcAcc')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_version_rubrique" type="selectOneMenuDirectory">
+			<labels>
+				<label mode="any">label.epp.vocabulary.rubrique</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:rubrique</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="valuesGetter">#{rubriquesActions.getRubriquesValues()}</property>
+				<property name="labelResolver">#{rubriquesActions.getLabel()}</property>
+				<property name="restriction">rubrique</property>
+				<property name="modifiedField">ver:rubrique</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('rubrique')}</mode>
+			</widgetModes>
+		</widget>
+
+		<!-- Metadonnées dossier -->
+
+		<widget name="metadonnees_dossier_identifiant_dossier" type="text">
+			<labels>
+				<label mode="any">label.epp.evenement.identifiant.dossier</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dc:title</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">dossier</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dossier')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_emetteur" type="template">
+			<labels>
+				<label mode="any">label.epp.evenement.emetteur</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:emetteur</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/listing/metadonnees/select_institutions_widget.xhtml</property>
+				<property name="restriction">emetteur</property>
+				<property name="required">#{metadonneesActions.isColumnRequiredWidget('emetteur')}</property>
+				<property name="rerenderId1">metadonnees_evenement_destinataire</property>
+				<property name="rerenderId2">metadonnees_evenement_copie</property>
+				<property name="organigrammeSelectionType">INS_TYPE</property>
+				<property name="organigrammeSelectionMode">SINGLE</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('emetteur')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_destinataire" type="template">
+			<labels>
+				<label mode="any">label.epp.evenement.destinataire</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:destinataire</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/listing/metadonnees/select_institutions_widget.xhtml</property>
+				<property name="restriction">destinataire</property>
+				<property name="required">#{metadonneesActions.isColumnRequiredWidget('destinataire')}</property>
+				<property name="rerenderId1">metadonnees_evenement_emetteur</property>
+				<property name="rerenderId2">metadonnees_evenement_copie</property>
+				<property name="organigrammeSelectionType">INS_TYPE</property>
+				<property name="organigrammeSelectionMode">SINGLE</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('destinataire')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_horodatage" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.horodatage</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:horodatage</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">horodatage</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('horodatage')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_senat" type="text">
+			<labels>
+				<label mode="any">label.epp.version.senat</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:senat</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">senat</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('senat')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_niveauLecture" type="niveau_lecture_widget">
+			<labels>
+				<label mode="any">label.epp.version.niveauLecture</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:niveauLectureNumero</field>
+				<field>dos:niveauLecture</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">niveauLecture</property>
+				<property name="directoryName">niveau_lecture</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('niveauLecture')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateAr" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateAr</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateAr</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateAr</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateAr')}</mode>
+			</widgetModes>
+		</widget>
+		
+		<widget name="metadonnees_dossier_datePublication" type="datetime">
+			<labels>
+				<label mode="any">label.epp.dossier.datePublication</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:datePublication</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">datePublication</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('datePublication')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_objet" type="text">
+			<labels>
+				<label mode="any">label.epp.version.objet</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:objet</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">objet</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('objet')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_identifiantMetier" type="text">
+			<labels>
+				<label mode="any">label.epp.version.identifiantMetier</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:identifiantMetier</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">identifiantMetier</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('identifiantMetier')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_nor" type="text">
+			<labels>
+				<label mode="any">label.epp.version.nor</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:nor</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">nor</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('nor')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_typeLoi" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.typeLoi</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:typeLoi</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">typeLoi</property>
+				<property name="directoryName">type_loi</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('typeLoi')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_natureLoi" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.natureLoi</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:natureLoi</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">natureLoi</property>
+				<property name="directoryName">nature_loi</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('natureLoi')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_auteur" type="table_ref">
+			<labels>
+				<label mode="any">label.epp.version.auteur</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:auteur</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">auteur</property>
+				<property name="tableReference">Identite</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('auteur')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_organisme" type="table_ref">
+			<labels>
+				<label mode="any">label.epp.version.organisme</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:organisme</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">organisme</property>
+				<property name="tableReference">Organisme</property>
+				<property name="modifiedField">dos:organisme</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('organisme')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_dossier_coauteur" type="table_ref_list">
+			<labels>
+				<label mode="any">label.epp.version.coauteur</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:coauteur</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">coauteur</property>
+				<property name="tableReference">Identite</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('coauteur')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_intitule" type="text">
+			<labels>
+				<label mode="any">label.epp.version.intitule</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:intitule</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">intitule</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('intitule')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateVote" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateVote</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateVote</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateVote</property>
+				<property name="modifiedField">dos:dateVote</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateVote')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_dossier_demandeVote" type="type_boolean">
+			<labels>
+				<label mode="any">label.epp.version.demandeVote</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:demandeVote</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">demandeVote</property>
+				<property name="modifiedField">dos:demandeVote</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('demandeVote')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_dossier_dateDeclaration" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateDeclaration</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateDeclaration</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateDeclaration</property>
+				<property name="modifiedField">dos:dateDeclaration</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateDeclaration')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_datePresentation" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.datePresentation</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:datePresentation</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">datePresentation</property>
+				<property name="modifiedField">dos:datePresentation</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('datePresentation')}</mode>
+			</widgetModes>
+		</widget>
+
+
+
+		<widget name="metadonnees_version_dateList" type="multi_date">
+			<labels>
+				<label mode="any">label.epp.version.dateList</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>ver:dateList</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">dateList</property>
+				<property name="schema">version</property>
+				<property name="property">dateList</property>
+				<property name="modifiedField">ver:dateList</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateList')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_description" type="text">
+			<labels>
+				<label mode="any">label.epp.version.description</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dc:description</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">description</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('description')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_urlDossierAn" type="text_url">
+			<labels>
+				<label mode="any">label.epp.version.urlDossierAn</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:urlDossierAn</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">urlDossierAn</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('urlDossierAn')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_urlDossierSenat" type="text_url">
+			<labels>
+				<label mode="any">label.epp.version.urlDossierSenat</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:urlDossierSenat</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">urlDossierSenat</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('urlDossierSenat')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_cosignataire" type="multi_text">
+			<labels>
+				<label mode="any">label.epp.version.cosignataire</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:cosignataire</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">cosignataire</property>
+				<property name="schema">version</property>
+				<property name="property">cosignataire</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('cosignataire')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateDepotTexte" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateDepotTexte</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateDepotTexte</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateDepotTexte</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateDepotTexte')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateCMP" type="dateCMP">
+			<labels>
+				<label mode="any">label.epp.version.dateCMP</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateCMP</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateCMP</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateCMP')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_numeroDepotTexte" type="text">
+			<labels>
+				<label mode="any">label.epp.version.numeroDepotTexte</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:numeroDepotTexte</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">numeroDepotTexte</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('numeroDepotTexte')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_commissionSaisieAuFond" type="table_ref">
+			<labels>
+				<label mode="any">label.epp.version.commissionSaisieAuFond</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:commissionSaisieAuFond</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">commissionSaisieAuFond</property>
+				<property name="tableReference">Organisme</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('commissionSaisieAuFond')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_commissionSaisiePourAvis"
+			type="table_ref_list">
+			<labels>
+				<label mode="any">label.epp.version.commissionSaisiePourAvis</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:commissionSaisiePourAvis</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">commissionSaisiePourAvis</property>
+				<property name="tableReference">Organisme</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('commissionSaisiePourAvis')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateSaisine" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateSaisine</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateSaisine</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateSaisine</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateSaisine')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateRetrait" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateRetrait</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateRetrait</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateRetrait</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateRetrait')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateDistributionElectronique"
+			type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateDistributionElectronique</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateDistributionElectronique</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateDistributionElectronique</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateDistributionElectronique')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_nature" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.nature</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:nature</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">nature</property>
+				<property name="directoryName">nature_rapport</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('nature')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_rapporteurList" type="table_ref_list">
+			<labels>
+				<label mode="any">label.epp.version.rapporteurList</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:rapporteurList</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">rapporteurList</property>
+				<property name="tableReference">Identite</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('rapporteurList')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_titre" type="text">
+			<labels>
+				<label mode="any">label.epp.version.titre</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:titre</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">titre</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('titre')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateDepotRapport" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateDepotRapport</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateDepotRapport</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateDepotRapport</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateDepotRapport')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_numeroDepotRapport" type="text">
+			<labels>
+				<label mode="any">label.epp.version.numeroDepotRapport</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:numeroDepotRapport</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">numeroDepotRapport</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('numeroDepotRapport')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_commissionSaisie" type="table_ref">
+			<labels>
+				<label mode="any">label.epp.version.commissionSaisie</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:commissionSaisie</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">commissionSaisie</property>
+				<property name="tableReference">Organisme</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('commissionSaisie')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_attributionCommission" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.attributionCommission</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:attributionCommission</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">attributionCommission</property>
+				<property name="directoryName">attribution_commission</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('attributionCommission')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateRefus" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateRefus</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateRefus</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateRefus</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateRefus')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_libelleAnnexe" type="multi_text">
+			<labels>
+				<label mode="any">label.epp.version.libelleAnnexe</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:libelleAnnexe</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">libelleAnnexe</property>
+				<property name="schema">version</property>
+				<property name="property">libelleAnnexe</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('libelleAnnexe')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateEngagementProcedure"
+			type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateEngagementProcedure</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateEngagementProcedure</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateEngagementProcedure</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateEngagementProcedure')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateRefusProcedureEngagementAn"
+			type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateRefusProcedureEngagementAn</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateRefusProcedureEngagementAn</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateRefusProcedureEngagementAn</property>
+			</properties>
+			<widgetModes>
+				<mode value="view">#{empty
+					layoutValue.ver.dateRefusProcedureEngagementAn?'hidden':'view'}</mode>
+				<mode value="edit">hidden</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateRefusProcedureEngagementSenat"
+			type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateRefusProcedureEngagementSenat</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateRefusProcedureEngagementSenat</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateRefusProcedureEngagementSenat</property>
+			</properties>
+			<widgetModes>
+				<mode value="view">#{empty
+					layoutValue.ver.dateRefusProcedureEngagementSenat?'hidden':'view'}</mode>
+				<mode value="edit">hidden</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateRefusEngagementProcedure"
+			type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateRefusEngagementProcedure</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateRefusEngagementProcedure</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateRefusEngagementProcedure</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateRefusEngagementProcedure')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateAdoption" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateAdoption</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateAdoption</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateAdoption</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateAdoption')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_numeroTexteAdopte" type="text">
+			<labels>
+				<label mode="any">label.epp.version.numeroTexteAdopte</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:numeroTexteAdopte</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">numeroTexteAdopte</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('numeroTexteAdopte')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_sortAdoption" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.sortAdoption</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:sortAdoption</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">sortAdoption</property>
+				<property name="directoryName">sort_adoption</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('sortAdoption')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_redepot" type="type_boolean">
+			<labels>
+				<label mode="any">label.epp.version.redepot</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:redepot</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">redepot</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('redepot')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_positionAlerte" type="position_alerte">
+			<labels>
+				<label mode="any">label.epp.version.positionAlerte</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:positionAlerte</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">positionAlerte</property>
+				<property name="modifiedField">dos:positionAlerte</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('positionAlerte')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_dossier_echeance" type="text">
+			<labels>
+				<label mode="any">label.epp.version.echeance</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:echeance</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">echeance</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('echeance')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_sensAvis" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.sensAvis</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:sensAvis</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">sensAvis</property>
+				<property name="directoryName">sens_avis</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('sensAvis')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_suffrageExprime" type="int">
+			<labels>
+				<label mode="any">label.epp.version.suffrageExprime</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:suffrageExprime</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">suffrageExprime</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('suffrageExprime')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_bulletinBlanc" type="int">
+			<labels>
+				<label mode="any">label.epp.version.bulletinBlanc</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:bulletinBlanc</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">bulletinBlanc</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('bulletinBlanc')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_votePour" type="int">
+			<labels>
+				<label mode="any">label.epp.version.votePour</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:votePour</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">votePour</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('votePour')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_voteContre" type="int">
+			<labels>
+				<label mode="any">label.epp.version.voteContre</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:voteContre</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">voteContre</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('voteContre')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_abstention" type="int">
+			<labels>
+				<label mode="any">label.epp.version.abstention</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:abstention</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">abstention</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('abstention')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_dateActe" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateActe</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateActe</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateActe</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateActe')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_commissions" type="table_ref_list">
+			<labels>
+				<label mode="any">label.epp.version.commissions</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:commissions</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">commissions</property>
+				<property name="tableReference">Organisme</property>
+				<property name="modifiedField">dos:commissions</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('commissions')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_dossier_groupeParlementaire" type="table_ref_list">
+			<labels>
+				<label mode="any">label.epp.version.groupeParlementaire</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:groupeParlementaire</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">groupeParlementaire</property>
+				<property name="tableReference">Organisme</property>
+				<property name="typeOrganisme">GROUPE_PARLEMENTAIRE</property>
+				<property name="modifiedField">dos:groupeParlementaire</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('groupeParlementaire')}</mode>
+			</widgetModes>
+		</widget>
+
+
+
+		<widget name="metadonnees_dossier_personne_a_auditionner" type="text">
+			<labels>
+				<label mode="any">label.epp.version.personne</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:personne</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">personne</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('personne')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_dossier_fonction" type="text">
+			<labels>
+				<label mode="any">label.epp.version.fonction</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:fonction</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">fonction</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('fonction')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_dossier_dateAudition" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateAudition</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateAudition</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateAudition</property>
+				<property name="modifiedField">dos:dateAudition</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateAudition')}</mode>
+			</widgetModes>
+		</widget>
+
+
+
+		<widget name="metadonnees_dossier_dateLettrePm" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateLettrePm</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateLettrePm</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateLettrePm</property>
+				<property name="modifiedField">dos:dateLettrePm</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateLettrePm')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_dossier_dateDemande" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateDemande</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateDemande</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateDemande</property>
+				<property name="modifiedField">dos:dateDemande</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateDemande')}</mode>
+			</widgetModes>
+		</widget>
+
+
+		<widget name="metadonnees_dossier_dossierCible" type="text">
+			<labels>
+				<label mode="any">label.epp.version.dossierCible</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dossierCible</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">dossierCible</property>
+				<property name="modifiedField">dos:dossierCible</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dossierCible')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_baseLegale" type="text">
+			<labels>
+				<label mode="any">label.epp.version.baseLegale</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:baseLegale</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">baseLegale</property>
+				<property name="modifiedField">dos:baseLegale</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('baseLegale')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_date_refus_assemblee1" type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateRefusAssemblee1</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateRefusAssemblee1</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateRefusAssemblee1</property>
+				<property name="modifiedField">dos:dateRefusAssemblee1</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateRefusAssemblee1')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_date_conference_assemblee2"
+			type="datetime">
+			<labels>
+				<label mode="any">label.epp.version.dateConferenceAssemblee2</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:dateConferenceAssemblee2</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+				<property name="restriction">dateConferenceAssemblee2</property>
+				<property name="modifiedField">dos:dateConferenceAssemblee2</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('dateConferenceAssemblee2')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="metadonnees_dossier_decision_proc_acc" type="selectOneDirectory">
+			<labels>
+				<label mode="any">label.epp.version.decisionProcAcc</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dos:decisionProcAcc</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="restriction">decisionProcAcc</property>
+				<property name="directoryName">decision_proc_acc</property>
+				<property name="modifiedField">dos:decisionProcAcc</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+			<widgetModes>
+				<mode value="edit">#{metadonneesActions.getWidgetMode('decisionProcAcc')}</mode>
+			</widgetModes>
+		</widget>
+
+	</extension>
+
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="widgettypes">
+
+		<widgetType name="table_ref_list">
+			<documentation>Ce widget affiche une zone d'autocompletion pointant
+				sur une tables de reference
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/metadonnees/table_reference_list_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="table_ref">
+			<documentation>Ce widget affiche une zone d'autocompletion pointant
+				sur une tables de reference
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/metadonnees/table_reference_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="multi_text">
+			<documentation>Ce widget affiche une zone de saisie de type liste de
+				text
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/metadonnees/multi_text_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="multi_date">
+			<documentation>Ce widget affiche une zone de saisie de type liste de
+				date
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/metadonnees/multi_date_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="position_alerte">
+			<documentation>Ce widget affiche la position de l'alerte
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/metadonnees/position_alerte_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="type_boolean">
+			<documentation>Ce widget affiche un widget radio
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/boolean_radio_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="niveau_lecture_widget">
+			<documentation>Ce widget affiche un niveau de lecture
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/metadonnees/niveau_lecture_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="text_url">
+			<documentation>Ce widget affiche une zone de saisie de type text et
+				un lien en mode view
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/metadonnees/text_url_widget_template.xhtml
+			</property>
+		</widgetType>
+
+	</extension>
+</component>

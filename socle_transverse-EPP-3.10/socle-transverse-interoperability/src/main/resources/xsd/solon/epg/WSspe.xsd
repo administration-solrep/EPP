@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSSpe"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSSpe"
+	xmlns:speco="http://www.dila.premier-ministre.gouv.fr/solon/epg/spe-commons"
+	xmlns:solco="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"
+	elementFormDefault="qualified"
+	xmlns:pref="http://www.dila.premier-ministre.gouv.fr/solon/epg/spe-commons">
+
+
+
+	<!-- =============================================== -->
+	<!-- Methode envoyerPremiereDemandePE -->
+	<!-- =============================================== -->
+
+	<xs:import schemaLocation="spe-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/spe-commons" />
+	<xs:import schemaLocation="solon-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons" />
+
+	<xs:element name="envoyerPremiereDemandePERequest">
+		<xs:annotation>
+			<xs:documentation>
+				message correspondant à une premiere demande de publication ou d'epreuvage.
+
+				typeDemande : specifie le type de demande (PUBLICATION ou EPREUVAGE)
+				bordereau : une liste de metadonnée associees à la demande
+				parapheur : les fichiers qui constituent la demande
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="typeDemande" type="speco:PEDemandeType"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="dossier" type="solco:DossierEpgWithFile"
+					minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+
+	</xs:element>
+
+	<xs:element name="envoyerPremiereDemandePEResponse">
+		<xs:annotation>
+			<xs:documentation>
+
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SPEAck" />
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- =============================================== -->
+	<!-- Methode envoyerRetourPE -->
+	<!-- =============================================== -->
+	<xs:element name="envoyerRetourPERequest">
+		<xs:annotation>
+			<xs:documentation>
+				message de retour de publication
+				type : type du retour (PUBLICATION ou EPREUVAGE)
+				retourPublication : si type=PUBLICATION
+				retourEpreuvage : si type=EPREUVAGE
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="type" type="speco:PEDemandeType"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="retourPublicationJo" type="speco:PERetourPublicationJo"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element name="retourPublicationBo" type="speco:PERetourPublicationBo"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element name="retourEpreuvage" type="speco:PERetourEpreuvage"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+
+	</xs:element>
+
+
+	<xs:element name="envoyerRetourPEResponse">
+		<xs:annotation>
+			<xs:documentation>
+
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SPEAck" />
+			</xs:complexContent>
+		</xs:complexType>
+
+
+	</xs:element>
+
+
+
+	<xs:complexType name="SPEAck">
+		<xs:annotation>
+			<xs:documentation>
+				Type communs a tous les flux reponse
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:sequence>
+			<xs:element name="status" type="speco:PEstatut" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="message_erreur" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+
+	</xs:complexType>
+
+</xs:schema>

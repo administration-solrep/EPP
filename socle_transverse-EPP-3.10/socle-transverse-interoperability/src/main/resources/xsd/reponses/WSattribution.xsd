@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSattribution"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSattribution"
+	elementFormDefault="qualified"
+	xmlns:qn="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:ar="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:repco="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons">
+
+	<!-- ====================================== -->
+	<!-- Imports -->
+	<!-- ====================================== -->
+	<xs:import schemaLocation="ar.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar" />
+	<xs:import schemaLocation="reponses-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons" />
+	<xs:import schemaLocation="questions.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions" />
+
+
+
+	<!-- ===================================================== -->
+	<!-- Method chercherAttributions - Assemblees et Ministere -->
+	<!-- ====================================== -->
+
+	<xs:element name="chercherAttributionsRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Cherche les attributions réalisées par les ministères
+			</xs:documentation>
+		</xs:annotation>
+		<!-- ====================================== -->
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="jeton" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="id_questions" type="repco:QuestionId"
+						minOccurs="1" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+
+	</xs:element>
+
+	<xs:element name="chercherAttributionsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="jeton_attributions" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="dernier_renvoi" type="xs:boolean"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="statut" type="repco:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="message_erreur" type="xs:string"
+					minOccurs="0" maxOccurs="1" />
+				<xs:element name="attributions" type="qn:Attribution"
+					minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- ===================================================== -->
+	<!-- Method chercherAttributionsDate - Assemblees et Ministere -->
+	<!-- ====================================== -->
+
+	<xs:element name="chercherAttributionsDateRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Cherche les attributions réalisées par les ministères - FEV 302
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="jeton" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="id_questions" type="repco:QuestionId"
+						minOccurs="1" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+
+	</xs:element>
+
+	<xs:element name="chercherAttributionsDateResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="repco:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="message_erreur" type="xs:string"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element name="jeton_attributions" type="xs:string"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="dernier_renvoi" type="xs:boolean"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="attributions" type="qn:AttributionDate"
+							minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+
+	<!-- ====================================== -->
+	<!-- Method chercherMembresGouvernement -->
+	<!-- ====================================== -->
+
+
+	<xs:element name="chercherMembresGouvernementRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="en_fonction" type="repco:EnFonction"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="chercherMembresGouvernementResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="repco:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="message_erreur" type="xs:string"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element name="membre_gouvernement" type="repco:MembreGouvernement"
+							minOccurs="1" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- ====================================== -->
+	<!-- Method chercherLegislatures -->
+	<!-- ====================================== -->
+
+
+	<xs:element name="chercherLegislaturesRequest">
+		<xs:complexType>
+			<xs:sequence>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+
+	<xs:element name="chercherLegislaturesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="repco:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="message_erreur" type="xs:string"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element name="legislatures" type="repco:Legislature"
+							minOccurs="1" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

@@ -1,0 +1,142 @@
+<component name="fr.dila.solonepp.web.layout.messageLink">
+	<require>com.nuxeo.document.routing.table.widget</require>
+	<require>com.nuxeo.cm.table.layout</require>
+
+	<!-- message layout -->
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="layouts">
+
+		<!-- Layout par defaut de la liste des CaseLink -->
+		<layout name="corbeille_message_list_listing_layout">
+			<templates>
+				<template mode="any">/layouts/layout_contentview_corbeille_listing_ajax_template_dto.xhtml</template>
+			</templates>
+			<properties mode="any">
+				<property name="showListingHeader">true</property>
+				<property name="showRowEvenOddClass">true</property>
+			</properties>
+			<columns>
+				<!-- Colonne état message -->
+				<column>
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">false</property>
+						<property name="columnStyleClass">iconColumn</property>
+					</properties>
+					<widget>etat_message_column</widget>
+				</column>
+				<!-- Colonne état evenement -->
+				<column>
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">false</property>
+						<property name="columnStyleClass">iconColumn</property>
+					</properties>
+					<widget>etat_evenement_column</widget>
+				</column>
+				<!-- Colonne icône pièce jointe -->
+				<column>
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">false</property>
+						<property name="columnStyleClass">iconColumn</property>
+					</properties>
+					<widget>piece_jointe_column</widget>
+				</column>
+				<!-- Colonne objet dossier -->
+				<column>
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="sortPropertyName">v.ver:objet</property>
+						<property name="isHidden">OBJET</property>
+					</properties>
+					<widget>objet_dossier_column</widget>
+				</column>
+				<!-- Colonne id dossier -->
+				<column>
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="sortPropertyName">e.evt:dossier</property>
+					</properties>
+					<widget>id_dossier_column_link</widget>
+				</column>
+				<!-- Colonne id senat -->
+				<column>
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="sortPropertyName">v.ver:senat</property>
+						<property name="isHidden">SENAT</property>
+					</properties>
+					<widget>id_senat_column</widget>
+				</column>
+				<!-- Colonne Lecture -->
+				<column>
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="isHidden">LECTURE</property>
+					</properties>
+					<widget>lecture_column</widget>
+				</column>
+				<!-- Colonne Emmetteur -->
+				<column>
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="sortPropertyName">e.evt:emetteur</property>
+						<property name="isHidden">EMETTEUR</property>
+					</properties>
+					<widget>emetteur_column</widget>
+				</column>
+				<!-- Colonne Destinataire -->
+				<column>
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="sortPropertyName">e.evt:destinataire</property>
+						<property name="isHidden">DESTINATAIRE</property>
+					</properties>
+					<widget>destinataire_column</widget>
+				</column>
+				<!-- Colonne Copie -->
+				<column>
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="sortPropertyName">e.evt:destinataireCopieConcat</property>
+						<property name="isHidden">COPIE</property>
+					</properties>
+					<widget>copie_column</widget>
+				</column>
+				<!-- Colonne Evènement -->
+				<column>
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="sortPropertyName">e.evt:typeEvenement</property>
+						<property name="isHidden">EVENEMENT</property>
+					</properties>
+					<widget>evenement_column</widget>
+				</column>
+				<!-- Colonne numero version -->
+				<column>
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="isHidden">VERSION</property>
+					</properties>
+					<widget>num_version_column</widget>
+				</column>
+				<!-- Colonne Date -->
+				<column>
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">true</property>
+						<property name="sortPropertyName">m.cslk:date</property>
+						<property name="isHidden">DATE</property>
+					</properties>
+					<widget>date_column</widget>
+				</column>
+				<!-- Colonne lock detail -->
+				<column>
+					<properties mode="any">
+						<property name="useFirstWidgetLabelAsColumnHeader">false</property>
+					</properties>
+					<widget>lock_detail_column</widget>
+				</column>
+			</columns>
+		</layout>
+
+	</extension>
+
+</component>

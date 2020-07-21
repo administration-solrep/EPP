@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<xs:schema
+  targetNamespace="http://www.nuxeo.org/ecm/schemas/classification/"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:nxs="http://www.nuxeo.org/ecm/schemas/common/"
+  xmlns:nclxs="http://www.nuxeo.org/ecm/schemas/classification/">
+
+  <xs:complexType name="stringList">
+    <xs:sequence>
+      <xs:element name="item" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- references to classified docs -->
+  <xs:element name="targets" type="nclxs:stringList" />
+
+</xs:schema>
+

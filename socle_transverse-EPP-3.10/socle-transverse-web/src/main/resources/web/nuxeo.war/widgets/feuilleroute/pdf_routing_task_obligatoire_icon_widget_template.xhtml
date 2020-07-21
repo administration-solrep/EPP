@@ -1,0 +1,12 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://jboss.com/products/seam/pdf">
+
+	<c:if test="#{field_0 or field_1}">
+		<p:image value="/img/icons/check_16.png"
+			alt="#{messages['st.feuilleRoute.etape.obligatoire.label']}"
+			height="16" width="16" alignment="center" />
+	</c:if>
+
+</f:subview>

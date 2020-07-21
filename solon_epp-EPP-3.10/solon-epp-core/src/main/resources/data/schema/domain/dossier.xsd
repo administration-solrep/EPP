@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://dila.fr/solon/schemas/dossier/" xmlns:dos="http://dila.fr/solon/schemas/dossier/">
+
+	<xs:include schemaLocation="base.xsd" />
+
+	<xs:simpleType name="dateListType">
+		<xs:list itemType="xs:dateTime" />
+	</xs:simpleType>
+
+
+	<!-- *********************************************************************** 
+		Info generales dossier. *********************************************************************** -->
+
+	<!-- Nombre d'alertes posées sur le dossier, si supérieur à 0 le dossier 
+		est "en alerte" -->
+	<xs:element name="alerteCount" type="xs:int" default="0" />
+
+	<!-- *********************************************************************** 
+		Dénormalisation des attributs de la fiche dossier (événement). *********************************************************************** -->
+
+	<!-- Identifiant technique de l'émetteur (annuaire LDAP) -->
+	<xs:element name="emetteur" type="xs:string" />
+
+	<!-- Identifiant technique du destinataire (annuaire LDAP) -->
+	<xs:element name="destinataire" type="xs:string" />
+
+	<!-- *********************************************************************** 
+		Dénormalisation des attributs de la fiche dossier (version). *********************************************************************** -->
+
+	<!-- Numéro du niveau de lecture --> <!-- OK -->
+	<xs:element name="niveauLectureNumero" type="xs:int" />
+
+	<!-- Identifiant technique du niveau de lecture (vocabulaire) --> <!-- OK -->
+	<xs:element name="niveauLecture" type="xs:string" />
+
+	<!-- Horodatage de la publication de la version --> <!-- OK -->
+	<xs:element name="horodatage" type="xs:dateTime" />
+
+	<!-- Objet de l'événement --> <!-- OK -->
+	<xs:element name="objet" type="xs:string" />
+
+	<!-- Objet de l'événement --> <!-- OK -->
+	<xs:element name="identifiantMetier" type="xs:string" />
+
+	<!-- Identifiant sénat (chaîne libre renseignable uniquement par le sénat) --> <!-- OK -->
+	<xs:element name="senat" type="xs:string" />
+
+	<!-- Numéro de NOR --> <!-- OK -->
+	<xs:element name="nor" type="xs:string" />
+
+	<!-- Nature de loi (vocabulaire) --> <!-- OK -->
+	<xs:element name="natureLoi" type="xs:string" />
+
+	<!-- Type de loi (vocabulaire) --> <!-- OK -->
+	<xs:element name="typeLoi" type="xs:string" />
+
+	<!-- Identifiant technique de l'auteur (table de référence) -->  <!-- OK -->
+	<xs:element name="auteur" type="xs:string" />
+
+	<!-- Identifiant technique du coauteur (table de référence) --> <!-- OK -->
+	<xs:element name="coauteur" type="dos:stringList" />
+
+	<!-- Intitulé --> <!-- OK -->
+	<xs:element name="intitule" type="xs:string" />
+
+	<!-- URL du dossier AN --> <!-- OK -->
+	<xs:element name="urlDossierAn" type="xs:string" />
+
+	<!-- URL du dossier Sénat --> <!-- OK -->
+	<xs:element name="urlDossierSenat" type="xs:string" />
+
+	<!-- Cosignataire collectif --> <!-- OK -->
+	<xs:element name="cosignataire" type="xs:string" />
+
+	<!-- Date de dépôt du texte --> <!-- OK -->
+	<xs:element name="dateDepotTexte" type="xs:date" />
+
+	<!-- N° de dépôt du texte --> <!-- OK -->
+	<xs:element name="numeroDepotTexte" type="xs:string" />
+
+	<!-- Identifiant technique de la commission de saisie au fond (table de 
+		référence) --> <!-- OK -->
+	<xs:element name="commissionSaisieAuFond" type="xs:string" />
+
+	<!-- Identifiant technique de la commission de saisie pour avis (table de 
+		référence) --> <!-- OK -->
+	<xs:element name="commissionSaisiePourAvis" type="dos:stringList" />
+
+	<!-- Date (générique) --> <!-- OK -->
+	<xs:element name="date" type="xs:date" />
+
+	<!-- Date de retrait --> <!-- OK -->
+	<xs:element name="dateRetrait" type="xs:date" />
+
+	<!-- Date de distribution électronique --> <!-- OK -->
+	<xs:element name="dateDistributionElectronique" type="xs:date" />
+
+	<!-- Identifiant technique du (des) rapporteur (s) (table de référence) --> <!-- OK -->
+	<xs:element name="rapporteurList" type="dos:stringList" />
+
+	<!-- Titre (intitulé) --> <!-- OK -->
+	<xs:element name="titre" type="xs:string" />
+
+	<!-- Date de dépot du rapport --> <!-- OK -->
+	<xs:element name="dateDepotRapport" type="xs:date" />
+
+	<!-- Numéro de dépot du rapport --> <!-- OK -->
+	<xs:element name="numeroDepotRapport" type="xs:string" />
+
+	<!-- Nom de la commission saisie (table de référence) --> <!-- OK -->
+	<xs:element name="commissionSaisie" type="xs:string" />
+
+	<!-- Date de refus --> <!-- OK -->
+	<xs:element name="dateRefus" type="xs:date" />
+
+	<!-- Libellé des annexes --> <!-- OK -->
+	<xs:element name="libelleAnnexe" type="dos:stringList" />
+
+	<!-- Date de l'engagement de la procédure --> <!-- OK -->
+	<xs:element name="dateEngagementProcedure" type="xs:date" />
+
+	<!-- Date de refus de la procédure d'engagement par l'Assemblée Nationale --> <!-- OK -->
+	<xs:element name="dateRefusProcedureEngagementAn" type="xs:date" />
+
+	<!-- Date de refus de la procédure d'engagement par le sénat --> <!-- OK -->
+	<xs:element name="dateRefusProcedureEngagementSenat" type="xs:date" />
+
+	<!-- N° du texte adopté --> <!-- OK -->
+	<xs:element name="numeroTexteAdopte" type="xs:string" />
+
+	<!-- Date d'adoption --> <!-- OK -->
+	<xs:element name="dateAdoption" type="xs:date" />
+
+	<!-- Identifiant technique du sort d'adoption (vocabulaire) --> <!-- OK -->
+	<xs:element name="sortAdoption" type="xs:string" />
+
+	<!-- Redépot --> <!-- OK -->
+	<xs:element name="redepot" type="xs:boolean" default="false" />
+
+	<!-- Date de promulgation --> <!-- OK -->
+	<xs:element name="datePromulgation" type="xs:date" />
+
+	<!-- Date de publication --> <!-- OK -->
+	<xs:element name="datePublication" type="xs:date" />
+
+	<!-- Numéro de la loi --> <!-- OK -->
+	<xs:element name="numeroLoi" type="xs:int" />
+
+	<!-- Numéro du JO --> <!-- OK -->
+	<xs:element name="numeroJo" type="xs:int" />
+
+	<!-- Page du JO --> <!-- OK -->
+	<xs:element name="pageJo" type="xs:int" />
+
+	<!-- Date de la réunion CMP --> <!-- OK -->
+	<xs:element name="dateCMP" type="xs:date" />
+
+	<!-- Position de l'alerte (vrai : posée, faux : levée) -->
+	<xs:element name="positionAlerte" type="xs:boolean" />
+
+	<!-- Liste de date -->
+	<xs:element name="dateList" type="dos:dateListType" />
+
+	<!-- Identifiant dossier (d.dc:title) -->
+	<xs:element name="idDossier" type="xs:string" />
+
+	<!-- Commissions -->
+	<xs:element name="commissions" type="dos:stringList" />
+
+	<!-- Groupe Parlementaire -->
+	<xs:element name="groupeParlementaire" type="dos:stringList" />
+
+	<!-- Sens Avis -->
+	<xs:element name="sensAvis" type="xs:string" />
+
+	<!-- Suffrage Exprimé -->
+	<xs:element name="suffrageExprime" type="xs:int" />
+
+	<!-- Bulletin Blanc -->
+	<xs:element name="bulletinBlanc" type="xs:int" />
+
+	<!-- Vote Pour -->
+	<xs:element name="votePour" type="xs:int" />
+
+	<!-- Vote Contre -->
+	<xs:element name="voteContre" type="xs:int" />
+
+	<!-- Abstention -->
+	<xs:element name="abstention" type="xs:int" />
+
+	<!-- Echeance -->
+	<xs:element name="echeance" type="xs:string" />
+
+	<!-- Date Acte -->
+	<xs:element name="dateActe" type="xs:date" />
+
+	<!-- Type Acte -->
+	<xs:element name="typeActe" type="xs:string" />
+
+	<!-- Date de vote -->
+	<xs:element name="dateVote" type="xs:date" />
+
+	<!-- Date de la déclaration -->
+	<xs:element name="dateDeclaration" type="xs:date" />
+
+	<!-- Demande de vote -->
+	<xs:element name="demandeVote" type="xs:boolean" default="false" />
+
+	<!-- Date de la demande -->
+	<xs:element name="dateDemande" type="xs:date" />
+
+	<!-- Date de la présentation -->
+	<xs:element name="datePresentation" type="xs:date" />
+
+
+	<!-- Date prévue pour l'audition -->
+	<xs:element name="dateAudition" type="xs:date" />
+
+	<!-- Personne à éditionner -->
+	<xs:element name="personne" type="xs:string" />
+
+	<!-- Fonction -->
+	<xs:element name="fonction" type="xs:string" />
+
+	<!-- Fonction -->
+	<xs:element name="dateLettrePm" type="xs:date" />
+
+	<!-- Dossier cible -->
+	<xs:element name="dossierCible" type="xs:string" />
+
+	<!-- Base légale -->
+	<xs:element name="baseLegale" type="xs:string" />
+
+	<!-- Identifiant technique de l'Organisme (table de référence) -->
+	<xs:element name="organisme" type="xs:string" />
+
+	<!-- Identifiant technique de la décision sur l'engagement de la procédure 
+		accélérée -->
+	<xs:element name="decisionProcAcc" type="xs:string" />
+
+	<xs:element name="dateRefusAssemblee1" type="xs:date" />
+
+	<xs:element name="dateConferenceAssemblee2" type="xs:date" />
+
+	<!-- Date de refus de la procédure d'engagement par une des deux assemblées -->
+	<xs:element name="dateRefusEngagementProcedure" type="xs:date" />
+
+
+</xs:schema>

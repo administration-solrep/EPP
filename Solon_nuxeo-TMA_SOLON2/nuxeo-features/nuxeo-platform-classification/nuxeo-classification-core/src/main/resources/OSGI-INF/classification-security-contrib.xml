@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.classification.security">
+
+  <require>org.nuxeo.ecm.core.security.defaultPermissions</require>
+
+  <extension target="org.nuxeo.ecm.core.security.SecurityService"
+    point="permissions">
+
+    <permission name="Classify">
+      <include>Read</include>
+      <!-- classify a document means editing a property
+        on a classification root/folder -->
+      <include>WriteProperties</include>
+    </permission>
+
+  </extension>
+
+  <extension target="org.nuxeo.ecm.core.security.SecurityService"
+    point="permissionsVisibility">
+
+    <!-- set visibility of permissions on classification root -->
+    <visibility type="ClassificationRoot">
+      <item show="true" order="10">Read</item>
+      <item show="true" order="50">Classify</item>
+      <item show="true" order="100">Everything</item>
+    </visibility>
+
+  </extension>
+
+</component>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tns:verifySignatureEx xmlns:tns="http://www.dictao.com/DVS/Interface"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dictao.com/DVS/Interface ../../../../../../wsdl/dictao/dvs/DVSInterfaceFrontEnd.xsd ">
+
+
+	<tns:requestId>REQUEST_ID_D2S_REPONSES_001</tns:requestId>
+
+	<tns:transactionId>CreationSignature_DILA</tns:transactionId>
+
+	<tns:refreshCRLs>0</tns:refreshCRLs>
+
+	<tns:tag>TAG</tns:tag>
+
+	<!-- La signature à valider signature/binaryValue contient la version base64 
+		du XADES recupere lors de la signature -->
+	<tns:signature>
+		<tns:binaryValue dataFormat="b64Enc">aGVsbG9Xb3JsZA==</tns:binaryValue>
+	</tns:signature>
+
+
+	<tns:signedDataHash>
+	<![CDATA[
+	<SignedDataHash>
+		<Manifest Id="IdNœudManifest">
+			<Ref>
+				<DigestMethod>SHA256</DigestMethod>
+				<DigestValue>
+						YTU5MWE2ZDQwYmY0MjA0MDRhMDExNzMzY2ZiN2IxOTBkNjJjNjViZjBiY2RhMzJiNTdiMjc3ZDlh
+						ZDlmMTQ2ZQ==
+				</DigestValue>
+			</Ref>
+		</Manifest>
+	</SignedDataHash>	
+	]]>
+	</tns:signedDataHash>
+
+</tns:verifySignatureEx>

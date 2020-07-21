@@ -1,0 +1,19 @@
+# Pour lancer ce script :
+# 1 - copier ce fichier dans /tmp/
+# 2 - Aller dans le répertoire contenant nxshell.sh
+# 3 - Taper la commande sh nxshell.sh -f /tmp/01_M157388_create_param.nxshell
+
+# connect to http://localhost:8180/solon-epp (obligatoire sinon Unknown command...) 
+connect -u Administrator -p 4ju7Ix662Eo1d77u http://localhost:8180/solon-epp/site/automation
+
+########## Parametre d'activation
+# go to parametre folder
+cd /case-management/parametre-root/
+
+# create 
+mkdir Parametre page-renseignements
+cd page-renseignements
+setp -xpath parametre:value -value "http://extraqual.pm.ader.gouv.fr/demat/index.html"
+setp -xpath parametre:unit -value "page"
+setp -xpath dc:description -value "Page affichée par le lien « Pour tout renseignement sur les conditions d'accès à l'outil » de la page d'accueil"
+setp -xpath dc:title -value "Page de renseignements"

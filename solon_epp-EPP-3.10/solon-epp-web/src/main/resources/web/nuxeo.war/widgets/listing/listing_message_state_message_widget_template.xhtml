@@ -1,0 +1,25 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<c:set var="key" value="label.epp.message.etat.#{field_0}" />
+	<c:if
+		test="#{field_0 eq 'EN_COURS_REDACTION' or field_0 eq 'NON_TRAITE'}">
+		<h:graphicImage value="/img/icons/bullet_ball_glass_green_16.png"
+			alt="#{field_0}" title="#{messages[key]}" />
+	</c:if>
+	<c:if
+		test="#{field_0 eq 'EN_ATTENTE_AR' or field_0 eq 'EN_COURS_TRAITEMENT'}">
+		<h:graphicImage value="/img/icons/bullet_ball_glass_red_16.png"
+			alt="#{field_0}" title="#{messages[key]}" />
+	</c:if>
+	<c:if
+		test="#{field_0 eq 'AR_RECU' or field_0 eq 'EMIS' or field_0 eq 'TRAITE'}">
+		<h:graphicImage value="/img/icons/bullet_ball_glass_grey_16.png"
+			alt="#{field_0}" title="#{messages[key]}" />
+	</c:if>
+	<c:if test="#{field_0 eq 'AR_RECU_VERSION_REJETE'}">
+		<h:graphicImage value="/img/icons/exclamation.png" alt="#{field_0}"
+			title="#{messages[key]}" />
+	</c:if>
+</f:subview>

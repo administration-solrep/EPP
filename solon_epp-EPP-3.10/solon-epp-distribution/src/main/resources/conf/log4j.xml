@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Log4j Configuration - For more configuration information and examples 
+	see the Jakarta Log4j - website: http://jakarta.apache.org/log4j -->
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+	debug="false" threshold="null">
+
+
+	<!-- ============================== -->
+	<!-- console appender -->
+	<!-- ============================== -->
+
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} [%-5p] [%c{1}] %m%n" />
+		</layout>
+	</appender>
+
+	<!-- ================================= -->
+	<!-- main file appender : server.log -->
+	<!-- ================================= -->
+
+	<appender name="MAIN-FILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="File" value="${nuxeo.log.dir}/server.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<!-- clé de conversion : userName pathDoc, uidDoc, codeLog, typeDoc, titleDoc, 
+			parentDoc, infoCompl -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{ISO8601} %-5p (%t) %X{codeLog}%X{uidDoc}[%c]%X{userName}%X{titleDoc}%X{typeDoc}%X{infoCompl} %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="NOTIFICATION-FILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="File" value="${nuxeo.log.dir}/epp-notifications.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} %-5p [%c] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="SYSLOG" class="org.apache.log4j.net.SyslogAppender">
+		<param name="Facility" value="LOCAL1" />
+		<param name="FacilityPrinting" value="true" />
+		<param name="SyslogHost" value="localhost" />
+		<param name="Threshold" value="WARN" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="EPP INST %-5p %m%n" />
+		</layout>
+		<param name="Header" value="true" />
+	</appender>
+
+	<!-- ====================================== -->
+	<!-- error file appender : epp-error.log -->
+	<!-- ====================================== -->
+
+	<appender name="ERROR-FILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="File" value="${nuxeo.log.dir}/epp-error.log" />
+		<param name="Append" value="false" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} %-5p [%c] %m%n" />
+		</layout>
+	</appender>
+
+
+	<!-- ================================= -->
+	<!-- file appender : WebService -->
+	<!-- ================================= -->
+
+	<appender name="FILE-WS-CLIENT" class="org.apache.log4j.DailyRollingFileAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="File" value="${nuxeo.log.dir}/ws-client.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="FILE-WS-SERVER-WSEPP" class="org.apache.log4j.DailyRollingFileAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="File" value="${nuxeo.log.dir}/ws-epp.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{ISO8601} %-5p (%t) %X{codeLog}%X{uidDoc}[%c]%X{userName}%X{titleDoc}%X{typeDoc}%X{infoCompl} %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="FILE-WS-SERVER-WSEVENEMENT" class="org.apache.log4j.DailyRollingFileAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="File" value="${nuxeo.log.dir}/ws-evenement.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{ISO8601} %-5p (%t) %X{codeLog}%X{uidDoc}[%c]%X{userName}%X{titleDoc}%X{typeDoc}%X{infoCompl} %m%n" />
+		</layout>
+	</appender>
+
+
+	<!-- ================ -->
+	<!-- Nuxeo Loggers -->
+	<!-- ================ -->
+
+	<logger name="org.nuxeo">
+		<level value="INFO" />
+	</logger>
+
+	<logger name="org.nuxeo.runtime.osgi.OSGiRuntimeService">
+		<level value="INFO" />
+	</logger>
+
+	<logger name="org.nuxeo.osgi.application.loader.FrameworkLoader">
+		<level value="INFO" />
+	</logger>
+
+	<!-- remove "Could not retrieve base url correctly" en attente réponse nuxeo 
+		SUPNXP-6893 -->
+	<logger name="org.nuxeo.ecm.platform.web.common.vh.VirtualHostHelper">
+		<level value="OFF" />
+	</logger>
+
+	<logger name="nuxeo-error-log">
+		<level value="TRACE" />
+		<appender-ref ref="ERROR-FILE" />
+	</logger>
+
+	<!-- ================ -->
+	<!-- Custom Loggers -->
+	<!-- ================ -->
+
+	<logger name="fr.dila">
+		<level value="INFO" />
+	</logger>
+
+	<logger name="fr.dila.solonepp.server.logger" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="NOTIFICATION-FILE" />
+	</logger>
+
+	<!-- ================ -->
+	<!-- Web services client -->
+	<!-- ================ -->
+
+	<logger name="fr.dila.st.rest.client.AbstractWsProxy"
+		additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="FILE-WS-CLIENT" />
+	</logger>
+
+	<!-- ================ -->
+	<!-- Web services -->
+	<!-- ================ -->
+
+	<logger name="fr.dila.solonepp.rest.api.WSEppImpl" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="FILE-WS-SERVER-WSEPP" />
+	</logger>
+
+	<logger name="fr.dila.solonepp.rest.api.WSEvenementImpl"
+		additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="FILE-WS-SERVER-WSEVENEMENT" />
+	</logger>
+
+
+	<!-- ======================= -->
+	<!-- Setup the Root category -->
+	<!-- ======================= -->
+
+	<root>
+		<level value="WARN" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="MAIN-FILE" />
+		<appender-ref ref="SYSLOG" />
+	</root>
+
+</log4j:configuration>

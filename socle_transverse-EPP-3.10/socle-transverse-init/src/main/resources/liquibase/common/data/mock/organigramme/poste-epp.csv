@@ -1,0 +1,7 @@
+ID_ORGANIGRAMME,DATE_FIN,DATE_DEBUT,DATE_VERROU,LABEL,DELETED,UTILISATEUR_VERROU,ID_PARENT_ENTITE,ID_PARENT_UNITE,ID_PARENT_INSTITUTION,CHARGE_MISSION_SGG,POSTE_BDC,SUPERVISEUR_SGG,CONSEILLER_PM,POSTE_WS,WS_URL,WS_LOGIN,WS_MDP,WS_CLE,MEMBRES,FUNCTION_READ
+bdc-economie,null,"2011-06-15T02:00:00",null,"BDC économie",0,null,null,"mineconomie",null,0,0,null,0,0,null,null,null,"99991231000000Z","bdc;contributeur",null
+sgg,null,"2011-06-15T02:00:00",null,'SGG',0,null,null,"premierministre",null,0,0,null,0,0,null,null,null,"99991231000000Z","adminsgg",null
+technique-an,null,"2011-06-15T02:00:00",null,"Poste technique AN",0,null,null,null,"ASSEMBLEE_NATIONALE",0,0,null,0,0,null,null,null,"99991231000000Z","adminan;an;ws-an",null
+technique-dila,null,"2011-06-15T02:00:00",null,"Poste technique DILA",0,null,null,null,"DILA",0,0,null,0,0,null,null,null,"99991231000000Z","admindila;dila;ws-dila",null
+technique-gouvernement,null,"2011-06-15T02:00:00",null,"Poste technique gouvernement",0,null,null,null,"GOUVERNEMENT",0,0,null,0,0,null,null,null,"99991231000000Z","admingouvernement;usertest2;ws-gouvernement",null
+technique-senat,null,"2011-06-15T02:00:00",null,"Poste technique sénat",0,null,null,null,"SENAT",0,0,null,0,0,null,null,null,"99991231000000Z","adminsenat;senat;ws-senat",null

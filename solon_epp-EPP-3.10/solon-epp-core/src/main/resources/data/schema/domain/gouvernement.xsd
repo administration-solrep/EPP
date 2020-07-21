@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://dila.fr/solonepp/schema/gouvernement/"
+	xmlns:gvt="http://dila.fr/solonepp/schema/gouvernement/">
+
+	<!-- Identifiant technique de l'enregistrement -->
+	<xs:element name="identifiant" type="xs:string" />
+
+	<!-- Appellation -->
+	<xs:element name="appellation" type="xs:string" />
+
+	<!-- Date de début -->
+	<xs:element name="dateDebut" type="xs:date" />
+
+	<!-- Date de fin -->
+	<xs:element name="dateFin" type="xs:date" />
+
+</xs:schema>

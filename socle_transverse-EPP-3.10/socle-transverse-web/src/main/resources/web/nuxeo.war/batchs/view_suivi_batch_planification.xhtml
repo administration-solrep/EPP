@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxh="http://nuxeo.org/nxweb/html">
+
+	<ui:define name="page title">
+		<c:choose>
+			<c:when test="#{suiviBatchActions.isAccessAuthorized()}">
+				<h:outputText value="#{nuxeoApplicationName}" />
+			</c:when>
+			<c:otherwise>
+				<h:outputText
+					value="#{nuxeoApplicationName} - #{messages['command.espaceNonAutorise']}" />
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="body">
+		<c:if test="#{suiviBatchActions.isAccessAuthorized()}">
+
+			<h1>
+				<h:outputText
+					value="#{messages['command.admin.batch.viewsuivi.planification']}" />
+			</h1>
+			<br />
+
+			<ui:include src="/incl/message_banner.xhtml" />
+
+			<a4j:region id="updateSuiviBatchQrtzFormPoll">
+				<h:form>
+					<a4j:poll id="espaceSuiviBatchQrtzListPoll" interval="60000"
+						timeout="30000" enabled="true" reRender="updateSuiviBatchQrtzForm" />
+				</h:form>
+			</a4j:region>
+
+
+			<h:form id="updateSuiviBatchQrtzForm">
+
+				<!-- Batch View -->
+				<div name="containerTabDiv"
+					style="overflow-x: auto; overflow-y: hidden;">
+					<nxu:set var="qrtzList"
+						value="#{suiviBatchActions.getAllPlanification()}">
+						<h:dataTable var="currentLog" value="#{qrtzList}"
+							class="dataOutput" rowClasses="dataRowEven,dataRowOdd"
+							rendered="#{!empty qrtzList}">
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Batch" />
+								</f:facet>
+								<h:outputText value="#{currentLog[0]}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Date de dernier déclenchement" />
+								</f:facet>
+								<h:outputText value="#{currentLog[1]}"
+									converter="QuartzScheduleConverter" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Date de prochain déclenchement" />
+								</f:facet>
+								<h:outputText value="#{currentLog[2]}"
+									converter="QuartzScheduleConverter" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Périodicité" />
+								</f:facet>
+								<h:outputText value="#{currentLog[3]}" />
+							</h:column>
+
+						</h:dataTable>
+					</nxu:set>
+					<script>
+						resize();
+					</script>
+				</div>
+
+			</h:form>
+
+			<script>
+				var j = jQuery.noConflict();
+				j(document).ready(function() {
+					window.onresize = resize;
+					resize();
+				});
+			</script>
+		</c:if>
+	</ui:define>
+</nxthemes:composition>

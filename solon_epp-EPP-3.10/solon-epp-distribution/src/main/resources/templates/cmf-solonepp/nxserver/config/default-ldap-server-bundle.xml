@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.solonepp.ldap.server">
+	<implementation class="org.nuxeo.ecm.directory.ldap.LDAPServerDescriptor" />
+	<require>org.nuxeo.ecm.directory.ldap.LDAPDirectoryFactory</require>
+
+	<extension target="org.nuxeo.ecm.directory.ldap.LDAPDirectoryFactory"
+		point="servers">
+
+		<!-- Configuration of a server connection A single server declaration can 
+			point to a cluster of replicated servers (using OpenLDAP's slapd + sluprd 
+			for instance). To leverage such a cluster and improve availibility, please 
+			provide one <ldapUrl/> tag for each replica of the cluster. -->
+		<server name="default">
+
+			<ldapUrl>${nuxeo.ldap.url}</ldapUrl>
+			<!-- Optional servers from the same cluster for failover and load balancing: 
+				<ldapUrl>ldap://server2:389</ldapUrl> <ldapUrl>ldaps://server3:389</ldapUrl> 
+				"ldaps" means TLS/SSL connection. -->
+
+			<!-- Credentials used by Nuxeo5 to browse the directory, create and modify 
+				entries. Only the authentication of users (bind) use the credentials entered 
+				through the login form if any. -->
+			<bindDn>${nuxeo.ldap.bindDn}</bindDn>
+			<bindPassword>${nuxeo.ldap.password}</bindPassword>
+		</server>
+
+	</extension>
+
+</component>

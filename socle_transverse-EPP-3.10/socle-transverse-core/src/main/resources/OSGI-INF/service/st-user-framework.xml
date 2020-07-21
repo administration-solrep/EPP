@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue le service utlisateur du socle transverse. -->
+<component name="fr.dila.st.core.service.STUserService">
+	<implementation class="fr.dila.st.core.service.STUserServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.STUserService" />
+	</service>
+</component>

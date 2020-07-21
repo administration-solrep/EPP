@@ -1,0 +1,109 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<input type="hidden" name="#{manager.conversationIdParameter}"
+		value="#{conversation.id}" />
+
+	<h:panelGroup rendered="#{!currentUser.anonymous}">
+		<div class="menu">
+			<div class="userMailboxes" style="overflow: auto;">
+				<div class="userMailboxesContent">
+
+					<h4>
+						<h:outputText value="#{messages['label.mailBoxListTitle']}" />
+					</h4>
+					<h:form id="corbeilleForm">
+						<div id="uMContent" style="overflow-x: auto; overflow-y: hidden;">
+							<div>
+								<a4j:status for="corbeilleRegion">
+									<f:facet name="start">
+										<h:graphicImage value="/img/standart_waiter.gif"
+											style="position: absolute;" />
+									</f:facet>
+								</a4j:status>
+								<a4j:region id="corbeilleRegion">
+
+									<c:if test="#{corbeilleTree.corbeille.isEmpty() ne true}">
+										<rich:tree id="corbeilleTree" style="width:100%"
+											switchType="ajax" iconExpanded="/icons/toggle_minus.png"
+											iconCollapsed="/icons/toggle_plus.png"
+											ajaxSubmitSelection="false" ajaxSingle="true"
+											reRender="corbeilleTree" eventsQueue="ajax_events_queue"
+											toggleOnClick="false"
+											adviseNodeSelected="#{corbeilleTree.adviseNodeSelected}"
+											adviseNodeOpened="#{corbeilleTree.adviseNodeOpened}"
+											changeExpandListener="#{corbeilleTree.changeExpandListener}">
+
+											<rich:recursiveTreeNodesAdaptor
+												roots="#{corbeilleTree.corbeille}" var="corbeilleItem"
+												nodes="#{corbeilleItem.corbeilleNodeList}">
+
+												<rich:treeNode rendered="#{corbeilleItem.type == 'SECTION'}"
+													icon="/img/icons/unite_structurelle.png"
+													iconLeaf="/img/icons/unite_structurelle.png">
+													<h:commandLink id="sectionNodeCmd"
+														action="#{corbeilleTree.resetContext()}">
+														<h:outputText id="sectionNodeLabel"
+															value="#{corbeilleItem.label}" style="font-weight: bold;" />
+													</h:commandLink>
+												</rich:treeNode>
+
+												<rich:treeNode
+													rendered="#{corbeilleItem.type == 'CORBEILLE'}"
+													ajaxSubmitSelection="false" icon="/img/icons/poste.png"
+													iconLeaf="/img/icons/poste.png">
+													<h:panelGroup style="background: #BFD2FF; display:block;"
+														rendered="#{corbeilleTree.currentItem.name eq corbeilleItem.name}">
+														<h:commandLink id="etapeNodeCmd"
+															action="#{corbeilleTree.setContext(corbeilleItem)}">
+															<h:outputText id="corbeilleNodeLabel"
+																value="#{corbeilleItem.label} (#{corbeilleItem.count})"
+																style="font-weight: bold;" />
+														</h:commandLink>
+													</h:panelGroup>
+													<h:panelGroup
+														rendered="#{corbeilleTree.currentItem.name ne corbeilleItem.name}">
+														<h:commandLink id="etapeNodeCmd"
+															action="#{corbeilleTree.setContext(corbeilleItem)}">
+															<h:outputText id="corbeilleNodeLabel"
+																value="#{corbeilleItem.label} (#{corbeilleItem.count})"
+																style="font-weight: bold;" />
+														</h:commandLink>
+													</h:panelGroup>
+												</rich:treeNode>
+
+											</rich:recursiveTreeNodesAdaptor>
+										</rich:tree>
+									</c:if>
+								</a4j:region>
+							</div>
+						</div>
+					</h:form>
+
+					<!-- Bottom of the rounded box -->
+
+					<p class="nobottomgap"></p>
+				</div>
+			</div>
+		</div>
+		<div class="menu">
+			<div class="userMailboxes" style="overflow: auto;">
+				<div class="userMailboxesContent">
+					<ui:include src="/incl/create_evenement_createur.xhtml" />
+				</div>
+			</div>
+		</div>
+		<div class="bottom-left"></div>
+		<div class="bottom-right"></div>
+
+	</h:panelGroup>
+
+</div>

@@ -1,0 +1,24 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory">
+	<c:set var="propertyNameFull"
+		value="#{nxu:test(!empty widget.properties.propertyNameFull, widget.properties.propertyNameFull, 'dos:titreActe')}" />
+	<nxu:set var="dossier"
+		value="#{dossierActions.getDossierFromDossierLink(field_0)}"
+		cache="true">
+		<c:choose>
+			<c:when
+				test="#{dossier.getProperty(propertyNameFull).getValue() == 'true'}">
+				<h:outputText value="Oui" />
+			</c:when>
+			<c:when
+				test="#{dossier.getProperty(propertyNameFull).getValue() == 'false'}">
+				<h:outputText value="Non" />
+			</c:when>
+		</c:choose>
+	</nxu:set>
+</f:subview>

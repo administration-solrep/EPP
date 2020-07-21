@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:envoyerQuestionsRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:p4="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:p5="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion ../../../../../../../xsd/reponses/WSquestion.xsd ">
+	<p:questionReponse>
+		<p3:question>
+
+			<p3:id_question>
+				<p1:numero_question>771</p1:numero_question>
+				<p1:type>QE</p1:type>
+				<p1:source>AN</p1:source>
+				<p1:legislature>13</p1:legislature>
+			</p3:id_question>
+
+			<p3:date_publication_jo>2007-07-07</p3:date_publication_jo>
+
+			<p3:ministre_depot id="123">
+				<p1:titre_jo>?????????</p1:titre_jo>
+				<p1:intitule_min>?????????</p1:intitule_min>
+			</p3:ministre_depot>
+
+			<p3:ministre_attributaire id="50000632">
+				<p1:titre_min>Min. Intérieur, outre-mer et collectiv</p1:titre_min>
+				<p1:titre_jo>Min. outre-mer</p1:titre_jo>
+				<p1:intitule_min>Mr. le ministre .....</p1:intitule_min>
+			</p3:ministre_attributaire>
+
+			<p3:auteur id_mandat="">
+				<p3:civilite>M.</p3:civilite>
+				<p3:prenom>Jean-Luc</p3:prenom>
+				<p3:nom>Warsmann</p3:nom>
+				<p3:grp_pol>Union pour un Mouvement Populaire </p3:grp_pol>
+				<p3:circonscription>?????</p3:circonscription>
+			</p3:auteur>
+
+			<p3:texte><![CDATA[M. Jean-Luc Warsmann attire l'attention de Mme la ministre de l'intérieur, 
+			de l'outre-mer et des collectivités territoriales sur la mise en oeuvre de 
+			la loi n° 92-125 du 6 février 1992 d'orientation relative à l'administration 
+			territoriale de la République. En effet, il semblerait que les décrets 
+			d'application des articles 51-III, 52-I, 52-II, et 52-III de ce texte, 
+			n'aient pas encore été adoptés à ce jour. En conséquence il la prie de 
+			bien vouloir lui faire connaître sa position sur ce sujet.]]></p3:texte>
+
+			<p3:etat_question>EN_COURS</p3:etat_question>
+
+			<p3:indexation_an>
+				<p3:rubrique>Parlement</p3:rubrique>
+				<p3:rubrique_ta>lois</p3:rubrique_ta>
+				<p3:analyse>décrets d'application</p3:analyse>
+				<p3:analyse>publication</p3:analyse>
+				<p3:analyse>délais</p3:analyse>
+			</p3:indexation_an>
+
+		</p3:question>
+	</p:questionReponse>
+</p:envoyerQuestionsRequest>

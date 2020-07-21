@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<component name="com.nuxeo.case-management.eventContrib">
+
+  <extension target="org.nuxeo.ecm.core.event.EventServiceComponent"
+    point="listener">
+
+    <listener name="automaticActionCaseLinkValidatorListener" async="false" postCommit="true"
+      class="fr.dila.cm.core.event.AutomaticActionCaseLinkValidatorListener"
+      priority="200">
+      <event>validateCaseLink</event>
+    </listener>
+
+    <listener name="classificationListener" async="false" postCommit="true"
+      class="fr.dila.cm.core.event.ClassificationMailboxListener"
+      priority="120">
+    </listener>
+
+    <listener name="loginSuccessListener" async="false" postCommit="false"
+      class="fr.dila.cm.core.event.SuccessLoginListener"
+      priority="150">
+      <event>loginSuccess</event>
+    </listener>
+
+    <listener name="createMailboxd" async="false" postCommit="false"
+      class="fr.dila.cm.core.event.CreateMailboxIdListener"
+      priority="160">
+      <event>aboutToCreate</event>
+    </listener>
+
+    <listener name="updateMailboxRights" async="false" postCommit="false"
+      class="fr.dila.cm.core.event.UpdateMailboxRightsListener"
+      priority="170">
+      <event>documentCreated</event>
+      <event>documentModified</event>
+    </listener>
+
+    <listener name="updateClassificationRights" async="false" postCommit="false"
+      class="fr.dila.cm.core.event.UpdateClassificationRootRightsListener"
+      priority="170">
+      <event>documentCreated</event>
+    </listener>
+
+    <listener name="distributionlistener" async="false" postCommit="false"
+      class="fr.dila.cm.core.event.DistributionListener"
+      priority="180">
+      <event>afterCaseSentEvent</event>
+    </listener>
+
+    <listener name="afterCaseSentEvent" async="false" postCommit="false"
+      class="fr.dila.cm.core.event.AfterCaseSentEventListener"
+      priority="190">
+      <event>afterCaseSentEvent</event>
+    </listener>
+    
+    <listener name="mailboxSynchronizationListener" async="true" postCommit="false"
+      class="fr.dila.cm.core.event.synchronization.MailboxSynchronizationListener"
+      priority="10">
+      <event>syncMailbox</event>
+    </listener>
+
+    <listener name="mailboxCreatedListener" async="false" postCommit="false"
+      class="fr.dila.cm.core.event.synchronization.MailboxCreatedListener"
+      priority="2">
+      <event>onMailboxCreated</event>
+    </listener>
+
+    <listener name="mailboxUpdatedListener" async="false" postCommit="false"
+      class="fr.dila.cm.core.event.synchronization.MailboxUpdatedListener"
+      priority="3">
+      <event>onMailboxUpdated</event>
+    </listener>
+
+    <listener name="mailboxDeletedListener" async="false" postCommit="false"
+      class="fr.dila.cm.core.event.synchronization.MailboxDeletedListener"
+      priority="4">
+      <event>onMailboxDeleted</event>
+    </listener>
+
+    <listener name="updateRightsBeforeRemoveCaseLink" async="false" postCommit="false"
+      class="fr.dila.cm.core.event.CaseLinkRemovedListener"
+      priority="4">
+      <event>beforeCaseLinkRemovedEvent</event>
+    </listener>
+  </extension>
+
+</component>

@@ -1,0 +1,8 @@
+fr.dila.solonepp.webtest.webdriver020.TestAdministration 01_Administration
+fr.dila.solonepp.webtest.webdriver020.TestCreationUtilisateur 02_CreationUtilisateur
+fr.dila.solonepp.webtest.webdriver020.TestCreationCommGouv 03_CreationCommGouv
+fr.dila.solonepp.webtest.webdriver020.TestCreationCommSenat 04_CréationCommSénat
+fr.dila.solonepp.webtest.webdriver020.TestCreationCommAN 05_CréationCommAN
+fr.dila.solonepp.webtest.webdriver020.TestBoutonAlerte 06_BoutonAlerte
+fr.dila.solonepp.webtest.webdriver020.TestRectifier 07_Rectifier
+fr.dila.solonepp.webtest.webdriver020.TestTransmettreParMail 08_TransmettreParMail

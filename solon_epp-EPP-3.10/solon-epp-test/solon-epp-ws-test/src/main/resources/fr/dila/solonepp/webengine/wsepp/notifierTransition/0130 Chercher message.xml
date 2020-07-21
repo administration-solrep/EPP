@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsevt:chercherEvenementRequest
+	xmlns:wsevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:evt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd ">
+
+	<wsevt:id_evenement>
+		<evt:id>PRMX1200080L_00011</evt:id>
+	</wsevt:id_evenement>
+
+</wsevt:chercherEvenementRequest>

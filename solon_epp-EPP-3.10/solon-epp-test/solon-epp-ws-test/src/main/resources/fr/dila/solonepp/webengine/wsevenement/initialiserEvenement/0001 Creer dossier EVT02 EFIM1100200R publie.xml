@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsevt:creerVersionRequest
+	xmlns:wsevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:eppcommons="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:eppevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:epptdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd "
+	modeCreation="PUBLIER">
+
+	<wsevt:evenement type="EVT02">
+		<eppevt:evt02 etat="" has_contenu_pj="false"> <!-- état evt non pris en compte -->
+			<eppevt:id_evenement></eppevt:id_evenement>
+			<eppevt:id_evenement_precedent></eppevt:id_evenement_precedent>
+			<eppevt:id_dossier>EFIM1100200R</eppevt:id_dossier>
+			<eppevt:emetteur>SENAT</eppevt:emetteur>
+			<eppevt:destinataire>GOUVERNEMENT</eppevt:destinataire>
+			<eppevt:copie>ASSEMBLEE_NATIONALE</eppevt:copie>
+			<eppevt:id_senat>secret</eppevt:id_senat>
+			<eppevt:niveau_lecture niveau="1" code="AN" />
+			<eppevt:objet>Objet Evt02</eppevt:objet>
+			<eppevt:type_loi>LOI</eppevt:type_loi>
+			<eppevt:nature_loi>PROJET</eppevt:nature_loi>
+			<eppevt:auteur>
+				<epptdref:id>MandatTest0</epptdref:id>
+				<epptdref:type>DEPUTE</epptdref:type>
+				<epptdref:proprietaire>ASSEMBLEE_NATIONALE</epptdref:proprietaire>
+				<epptdref:identifiant>6</epptdref:identifiant>
+				<epptdref:date_debut>2010-09-04</epptdref:date_debut>
+				<epptdref:id_identite>4</epptdref:id_identite>
+				<epptdref:id_circonscription>65</epptdref:id_circonscription>
+			</eppevt:auteur>
+			<eppevt:co_auteur>
+				<epptdref:id>MandatTest0</epptdref:id>
+				<epptdref:type>DEPUTE</epptdref:type>
+				<epptdref:proprietaire>ASSEMBLEE_NATIONALE</epptdref:proprietaire>
+				<epptdref:identifiant>6</epptdref:identifiant>
+				<epptdref:date_debut>2010-09-04</epptdref:date_debut>
+				<epptdref:id_identite>4</epptdref:id_identite>
+				<epptdref:id_circonscription>65</epptdref:id_circonscription>
+			</eppevt:co_auteur>
+			<eppevt:intitule>Projet de loi relatif à l'action extérieure de l'État</eppevt:intitule>
+			<eppevt:depot>
+				<eppcommons:date>2011-06-01</eppcommons:date>
+				<eppcommons:numero>345</eppcommons:numero>
+			</eppevt:depot>
+			<eppevt:commission>
+				<eppcommons:saisie_au_fond>
+					<eppcommons:id>OrganismeTest0</eppcommons:id>
+					<eppcommons:nom>Commission de la défense</eppcommons:nom>
+					<eppcommons:date_debut>2018-04-14</eppcommons:date_debut>
+					<eppcommons:proprietaire>ASSEMBLEE_NATIONALE</eppcommons:proprietaire>
+				</eppcommons:saisie_au_fond>
+				<eppcommons:saisie_pour_avis>
+					<eppcommons:id>OrganismeTest0</eppcommons:id>
+					<eppcommons:nom>Commission de la défense</eppcommons:nom>
+					<eppcommons:date_debut>2018-04-14</eppcommons:date_debut>
+					<eppcommons:proprietaire>ASSEMBLEE_NATIONALE</eppcommons:proprietaire>
+				</eppcommons:saisie_pour_avis>
+			</eppevt:commission>
+			<eppevt:commentaire><![CDATA[Commentaire Evt02]]></eppevt:commentaire>
+		</eppevt:evt02>
+	</wsevt:evenement>
+
+</wsevt:creerVersionRequest>

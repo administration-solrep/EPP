@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>fr.dila.cm</groupId>
+    <artifactId>solrep-case-management-parent</artifactId>
+    <version>EPP-3.10.2</version>
+  </parent>
+
+  <groupId>fr.dila.cm</groupId>
+  <artifactId>solrep-case-management-distribution</artifactId>
+  <packaging>pom</packaging>
+  <name>Case Management distribution</name>
+  <description>Case Management distribution</description>
+
+  <properties>
+    <jboss.lib>../target/lib</jboss.lib>
+  </properties>
+
+  <profiles>
+    <profile>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <id>server</id>
+      <properties>
+        <assembly.name>assemble</assembly.name>
+      </properties>
+    </profile>
+    <profile>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <id>tomcat</id>
+      <properties>
+        <assembly.name>assemble</assembly.name>
+      </properties>
+    </profile>
+    <profile>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <id>serverCorr</id>
+      <properties>
+        <assembly.name>assemble</assembly.name>
+      </properties>
+    </profile>
+    <profile>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <id>tomcatCorr</id>
+      <properties>
+        <assembly.name>assemble</assembly.name>
+      </properties>
+    </profile>
+    <profile>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <id>funkloadLoadTest</id>
+      <properties>
+        <assembly.name>assemble</assembly.name>
+      </properties>
+    </profile>
+  </profiles>
+
+  <dependencies>
+    <dependency>
+      <groupId>fr.dila.cm</groupId>
+      <artifactId>solrep-case-management-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>fr.dila.cm</groupId>
+      <artifactId>solrep-case-management-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>fr.dila.cm</groupId>
+      <artifactId>solrep-case-management-web</artifactId>
+    </dependency>
+    <!-- addons -->
+    <dependency>
+      <groupId>fr.dila.ecm.platform</groupId>
+      <artifactId>solrep-platform-document-routing-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>fr.dila.ecm.platform</groupId>
+      <artifactId>solrep-platform-document-routing-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>fr.dila.ecm.platform</groupId>
+      <artifactId>solrep-platform-document-routing-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-classification-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-classification-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-classification-facade</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-classification-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-importer-core</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>org.nuxeo.build</groupId>
+        <artifactId>nuxeo-distribution-tools</artifactId>
+        <executions>
+          <execution>
+            <id>antbuild</id>
+            <phase>package</phase>
+            <goals>
+              <goal>build</goal>
+            </goals>
+            <configuration>
+              <buildFiles>
+                <buildFile>${basedir}/src/main/assemble/assembly.xml</buildFile>
+              </buildFiles>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

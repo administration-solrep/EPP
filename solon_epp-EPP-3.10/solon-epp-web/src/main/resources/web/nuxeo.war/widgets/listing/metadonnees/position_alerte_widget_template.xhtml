@@ -1,0 +1,19 @@
+<span xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core" id="#{widget.id}"> <c:if
+		test="#{widget.mode != 'edit'}">
+		<c:choose>
+			<c:when test="#{field_0}">
+				<h:outputText
+					value="#{messages['label.epp.version.positionAlerte.debut']}" />
+			</c:when>
+			<c:otherwise>
+				<h:outputText
+					value="#{messages['label.epp.version.positionAlerte.fin']}" />
+			</c:otherwise>
+		</c:choose>
+	</c:if> <c:if test="#{widget.mode == 'edit'}">
+		<!-- valeur auto calculee par epp, rien a afficher -->
+	</c:if>
+
+</span>

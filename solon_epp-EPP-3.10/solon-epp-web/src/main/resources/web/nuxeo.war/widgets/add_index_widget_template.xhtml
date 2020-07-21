@@ -1,0 +1,80 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
+	<!-- Constantes demandées pour ce widget : 
+widget.properties['vocabularyId']
+ -->
+	<nxu:set var="currentVocUI"
+		value="#{vocSuggMap[widget.properties['directoryName']]}">
+		<a4j:outputPanel id="#{widget.id}_indexPanel" ajaxRendered="false">
+			<ui:include src="/incl/message_banner.xhtml" />
+			<div>
+				<span id="#{widget.id}_index_suggestDiv"> <h:inputText
+						id="#{widget.id}_indexLabel" value="#{currentVocUI.indexLabel}"
+						styleClass="dataInputText"
+						onkeydown="if (event.keyCode == 13 || event.keyCode == 9) {return false;}">
+					</h:inputText>
+				</span>
+				<h:graphicImage value="/icons/action_add.gif">
+					<a4j:support event="onclick"
+						action="#{indexActions.addIndex(currentVocUI)}"
+						reRender="indexPanel_Senat,indexPanel_AN,indexPanel_Ministere,#{widget.id}_indexPanel" />
+				</h:graphicImage>
+
+			</div>
+
+			<h:panelGroup id="#{widget.id}_index_suggestGroup">
+				<rich:suggestionbox id="#{widget.id}_index_suggestBox"
+					for="#{widget.id}_indexLabel" tokens=""
+					suggestionAction="#{currentVocUI.getSuggestions}" var="sugindex"
+					nothingLabel="#{messages['label.suggestion.sansresultats']}"
+					minChars="3" frequency="0" requestDelay="100">
+					<h:column>
+						<f:subview>
+							<h:graphicImage value="/icons/tag_blue.png" alt="(index)" />
+							<h:outputText value="${sugindex}" />
+						</f:subview>
+					</h:column>
+				</rich:suggestionbox>
+			</h:panelGroup>
+
+			<h:panelGroup>
+				<a4j:outputPanel ajaxRendered="false" id="#{widget.id}_listRegion">
+					<nxu:inputList id="#{widget.id}_list" value="#{field_0}"
+						model="model" required="#{widget.required}">
+						<h:panelGroup id="#{widget.id}_listItem">
+							<h:panelGrid columns="2">
+								<a4j:commandLink immediate="true"
+									actionListener="#{editableListBean.performAction}"
+									id="#{widget.id}_delete" reRender="#{widget.id}_listRegion"
+									bypassUpdates="true">
+									<h:graphicImage value="/icons/action_delete.gif" />
+									<f:param name="for" value="#{widget.id}_list" />
+									<f:param name="index" value="#{model.rowIndex}" />
+									<f:param name="type" value="remove" />
+								</a4j:commandLink>
+								<nxu:methodResult name="info"
+									value="#{profileSuggestionActions.getUserInfo(model.rowData)}">
+									<f:subview rendered="#{info.type == 'GROUP_TYPE'}">
+										<h:graphicImage value="/icons/group.gif" alt="group.gif" />
+										<h:outputText value="#{info.id}" />
+									</f:subview>
+									<f:subview rendered="#{empty info.type}">
+										<h:outputText value="#{info}" />
+									</f:subview>
+								</nxu:methodResult>
+							</h:panelGrid>
+						</h:panelGroup>
+					</nxu:inputList>
+					<h:message styleClass="errorMessage" for="#{widget.id}_list"
+						id="#{widget.id}_message" />
+				</a4j:outputPanel>
+			</h:panelGroup>
+
+		</a4j:outputPanel>
+	</nxu:set>
+</div>

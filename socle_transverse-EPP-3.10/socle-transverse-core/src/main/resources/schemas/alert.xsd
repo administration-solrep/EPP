@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://dila.fr/solon/schemas/alert/" xmlns:alrt="http://dila.fr/solon/schemas/alert/">
+
+	<xs:include schemaLocation="base.xsd" />
+	<xs:element name="requeteId" type="xs:string" />
+	<xs:element name="dateValidityBegin" type="xs:date" />
+	<xs:element name="dateValidityEnd" type="xs:date" />
+	<xs:element name="periodicity" type="xs:string" default="7" />
+	<xs:element name="recipients" type="alrt:stringList" />
+	<xs:element name="externalRecipients" type="alrt:stringList" />
+	<xs:element name="isActivated" type="xs:boolean" />
+
+	<!-- données utilisées pour la confirmation du maintien de l'alerte -->
+
+	<!-- date à laquelle on a demandé la deamnde de confirmation de l'alerte 
+		à l'utilisateur -->
+	<xs:element name="dateDemandeConfirmation" type="xs:date" />
+
+	<!-- définit si une demande de confirmation de l'alerte est en cours -->
+	<xs:element name="hasDemandeConfirmation" type="xs:boolean" />
+
+</xs:schema>

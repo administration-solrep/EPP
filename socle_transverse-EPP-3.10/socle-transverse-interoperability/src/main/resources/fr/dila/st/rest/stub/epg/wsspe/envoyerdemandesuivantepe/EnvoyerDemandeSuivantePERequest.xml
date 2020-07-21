@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:envoyerDemandeSuivantePERequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSSpe"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epg/spe-commons"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSSpe ../../../../../../../../xsd/solon/epg/WSspe.xsd ">
+
+	<p:typeDemande>PUBLICATION</p:typeDemande>
+
+	<p:bordereau>
+		<p1:nor>AZER1234567A</p1:nor>
+	</p:bordereau>
+
+	<p:pdf-annote>
+
+		<p1:fichier ordre="1">
+			<p1:nom>nom du fichier</p1:nom>
+			<p1:content>MA==</p1:content>
+		</p1:fichier>
+
+		<p1:fichier ordre="2">
+			<p1:nom>nom du fichier</p1:nom>
+			<p1:content>MA==</p1:content>
+		</p1:fichier>
+
+		<p1:fichier ordre="3">
+			<p1:nom>nom du fichier</p1:nom>
+			<p1:content>MA==</p1:content>
+		</p1:fichier>
+
+
+	</p:pdf-annote>
+
+
+</p:envoyerDemandeSuivantePERequest>

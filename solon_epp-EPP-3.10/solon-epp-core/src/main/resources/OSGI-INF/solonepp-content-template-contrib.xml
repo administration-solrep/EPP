@@ -1,0 +1,477 @@
+<?xml version="1.0"?>
+<!-- Cet composant contribue les fabriques pour créer les type de documents 
+	de l'application SOLON EPP. -->
+<component name="fr.dila.solonepp.contentTemplateService">
+	<require>fr.dila.cm.contentTemplate</require>
+	<require>fr.dila.st.core.type</require>
+
+
+	<!-- définition des extension utilisées pour définir les répertoires créés 
+		par défaut -->
+	<extension
+		target="org.nuxeo.ecm.platform.content.template.service.ContentTemplateService"
+		point="factory">
+
+		<!-- Factory pour créer la racine des Mailbox -->
+		<contentFactory name="MailboxRootFactory"
+			class="fr.dila.solonepp.core.content.template.MailboxRootFactory" />
+	</extension>
+
+	<extension
+		target="org.nuxeo.ecm.platform.content.template.service.ContentTemplateService"
+		point="factoryBinding">
+		<!-- Binding de la racine du domaine -->
+		<factoryBinding name="DomainFactory" factoryName="SimpleTemplateFactory"
+			targetType="Domain">
+			<template>
+				<templateItem typeName="DossierRoot" id="dossier-root"
+					title="DossierRoot" />
+				<templateItem typeName="MailboxRoot" id="mailbox-root"
+					title="Mailbox" />
+				<templateItem typeName="JetonMaitreFolder" id="jeton-maitre-root"
+					title="JetonMaitreRoot" />
+				<templateItem typeName="JetonDocFolder" id="jeton-doc-root"
+					title="JetonDocRoot" />
+				<templateItem typeName="PieceJointeFichierRoot" id="piece-jointe-fichier-root"
+					title="PieceJointeFichierRoot" />
+				<templateItem typeName="TableReferenceRoot" id="table-reference-root"
+					title="TableReferenceRoot" />
+				<templateItem typeName="WorkspaceRoot" id="workspace-root"
+					title="WorkspaceRoot" />
+				<templateItem typeName="ParametreFolder" id="parametre-root"
+					title="ParametreRoot" />
+				<templateItem typeName="LockJetonMaitreFolder" id="lock-jeton-maitre-root"
+					title="Racine des locks de jetons maitres" />
+			</template>
+		</factoryBinding>
+
+		<!-- Binding de la fabrique de la racine des dossiers -->
+		<factoryBinding name="DossierRootFactory" factoryName="SimpleTemplateFactory"
+			targetType="DossierRoot">
+			<acl>
+				<ace principal="Everyone" permission="ReadWrite" granted="true" />
+			</acl>
+		</factoryBinding>
+
+		<!-- Binding de la fabrique de la racine des fichiers de pièces jointes -->
+		<factoryBinding name="PieceJointeFichierRootFactory"
+			factoryName="SimpleTemplateFactory" targetType="PieceJointeFichierRoot">
+			<acl>
+				<ace principal="Everyone" permission="ReadWrite" granted="true" />
+			</acl>
+		</factoryBinding>
+
+		<!-- Binding de la fabrique de la racine des Mailbox -->
+		<factoryBinding name="MailboxRootFactory" factoryName="MailboxRootFactory"
+			targetType="MailboxRoot" />
+
+		<!-- Binding de la fabrique de la racine des espaces de travail collaboratifs -->
+		<factoryBinding name="WorkspaceRootFactory"
+			factoryName="SimpleTemplateFactory" targetType="WorkspaceRoot">
+			<template>
+				<templateItem typeName="AdminWorkspace" id="admin"
+					title="Administration" />
+			</template>
+		</factoryBinding>
+
+		<!-- Binding de la fabrique de la racine des jetons maitres -->
+		<factoryBinding name="JetonMaitreFolderFactory"
+			factoryName="SimpleTemplateFactory" targetType="JetonMaitreFolder">
+			<acl>
+				<ace principal="Everyone" permission="ReadWrite" granted="true" />
+			</acl>
+		</factoryBinding>
+
+		<!-- Binding de la fabrique de la racine des jetons docs -->
+		<factoryBinding name="JetonDocFolderFactory"
+			factoryName="SimpleTemplateFactory" targetType="JetonDocFolder">
+			<acl>
+				<ace principal="Everyone" permission="ReadWrite" granted="true" />
+			</acl>
+		</factoryBinding>
+
+		<!-- Binding de la fabrique de la racine des locks jetons maitres -->
+		<factoryBinding name="LockJetonMaitreFolderFactory"
+			factoryName="SimpleTemplateFactory" targetType="LockJetonMaitreFolder">
+			<acl>
+				<ace principal="Everyone" permission="ReadWrite" granted="true" />
+			</acl>
+		</factoryBinding>
+
+		<!-- Binding de la fabrique de l'espace d'administration -->
+		<factoryBinding name="AdminWorkspaceFactory"
+			factoryName="SimpleTemplateFactory" targetType="AdminWorkspace">
+			<template>
+				<templateItem typeName="NotificationsSuiviBatchs" id="notifications-suivi-batchs"
+					title="Notifications du suivi des Batchs">
+					<properties>
+						<property xpath="notifications_suivi_batchs:etat_notification"
+							value="true" />
+					</properties>
+				</templateItem>
+			</template>
+			<acl>
+				<ace principal="Everyone" permission="ReadWrite" granted="true" />
+			</acl>
+		</factoryBinding>
+
+		<!-- Droit du document NotificationsSuiviBatchs -->
+		<factoryBinding name="NotificationsSuiviBatchsFactory"
+			factoryName="SimpleTemplateFactory" targetType="NotificationsSuiviBatchs">
+			<acl>
+				<ace principal="Everyone" permission="Everything" granted="true" />
+			</acl>
+		</factoryBinding>
+
+		<!-- Binding de la fabrique de l'espace de travail personnel -->
+		<factoryBinding name="WorkspaceFactory" factoryName="SimpleTemplateFactory"
+			targetType="Workspace">
+			<template>
+				<templateItem typeName="ProfilUtilisateur" id="profil-utilisateur"
+					title="Mon profil utilisateur" />
+			</template>
+		</factoryBinding>
+
+		<!-- Binding de la fabrique des tables de références -->
+		<factoryBinding name="TableReferenceRootFactory"
+			factoryName="SimpleTemplateFactory" targetType="TableReferenceRoot">
+			<template>
+				<templateItem typeName="ActeurRoot" id="acteur-root"
+					title="Acteur" />
+				<templateItem typeName="CirconscriptionRoot" id="circonscription-root"
+					title="Circonscription" />
+				<templateItem typeName="GouvernementRoot" id="gouvernement-root"
+					title="Gouvernement" />
+				<templateItem typeName="IdentiteRoot" id="identite-root"
+					title="Identite" />
+				<templateItem typeName="OrganismeRoot" id="organisme-root"
+					title="Organisme" />
+				<templateItem typeName="MandatRoot" id="mandat-root"
+					title="Mandat" />
+				<templateItem typeName="MembreGroupeRoot" id="membre-groupe-root"
+					title="MembreGroupe" />
+				<templateItem typeName="MinistereRoot" id="ministere-root"
+					title="Ministere" />
+				<templateItem typeName="PeriodeRoot" id="periode-root"
+					title="Periode" />
+			</template>
+			<acl>
+				<ace principal="TableReferenceReader" permission="Read" granted="true" />
+				<ace principal="TableReferenceUpdater" permission="Write"
+					granted="true" />
+			</acl>
+		</factoryBinding>
+
+		<!-- Binding de la fabrique des paramètres -->
+		<factoryBinding name="ParametreFactory" factoryName="SimpleTemplateFactory"
+			targetType="ParametreFolder">
+			<template>
+				<templateItem typeName="Parametre"
+					id="mail-notification-table-reference-objet" title="Objet du mèl de notification des objets de référence">
+					<properties>
+						<property xpath="parametre:value"
+							value="[REFERENCE : ${type_objet}] [${id_objet}]" />
+						<property xpath="parametre:unit" value="Objet" />
+						<property xpath="dc:description"
+							value="« Objet » de la notification lors de la mise à jour / du renouvellement des objets de référence. Les balises suivantes peuvent êtres utilisées : ${type_objet} : type de l'objet (Acteur, ...), ${id_objet} : identifiant technique de l'objet ou RENOUVELLEMENT." />
+					</properties>
+				</templateItem>
+
+				<templateItem typeName="Parametre"
+					id="mail-notification-table-reference-corps" title="Texte du mèl de notification des tables de référence">
+					<properties>
+						<property xpath="parametre:value"
+							value="[REFERENCE : ${type_objet}] [${id_objet}]" />
+						<property xpath="parametre:unit" value="Texte" />
+						<property xpath="dc:description"
+							value="« Texte du message » de la notification lors de la mise à jour / du renouvellement des objets de référence. Les balises suivantes peuvent êtres utilisées : ${type_objet} : type de l'objet (Acteur, ...), ${id_objet} : identifiant technique de l'objet ou RENOUVELLEMENT." />
+					</properties>
+				</templateItem>
+
+				<templateItem typeName="Parametre"
+					id="mail-notification-evenement-objet" title="Objet du mèl de notification des événements">
+					<properties>
+						<property xpath="parametre:value"
+							value="[COM][${type_message}][${etat_version}] ${type_evenement}" />
+						<property xpath="parametre:unit" value="Objet" />
+						<property xpath="dc:description"
+							value="« Objet » de la notification des événements. Les balises suivantes peuvent êtres utilisées : ${id_evenement} : Identifiant de la communication, ${etat_evenement} : état de la communication, ${type_evenement} : type de communication, ${date_evenement} : date de la communication, ${emetteur_evenement} : émetteur, ${destinataire_evenement} : destinataire, ${copie_evenement} : copie, ${presence_piece_jointe} : présence de pièce jointe, ${objet} : objet, ${niveau_lecture} : niveau de lecture (si communication de la procédure législative, valeur vide sinon), ${id_dossier} : identifiant du dossier, ${id_senat} : identifiant du sénat (uniquement pour le Sénat), ${numero_version} : numéro de la version concernée par la notification, ${etat_dossier} : état du dossier, ${etat_message} : état du message, ${type_version} : type de version (acceptation ou rejet de la version, version complémentaire ou rectificative, suppresion de la version), ${url_evenement} : lien vers l'écran de résultat de recherche initialisé avec l'identifiant de la communication, ${type_message} : destinataire du message (EMETTEUR, DESTINATAIRE, COPIE)." />
+					</properties>
+				</templateItem>
+
+				<templateItem typeName="Parametre"
+					id="mail-notification-evenement-corps" title="Texte du mèl de notification des événements">
+					<properties>
+						<property xpath="parametre:value"
+							value="
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;Identifiant de la communication : &lt;a href='${url_evenement}'&gt;${id_evenement}&lt;/a&gt;&lt;br/&gt;
+État de la communication : ${etat_evenement}&lt;br/&gt;
+Type de communication : ${type_evenement}&lt;br/&gt;
+Date de la communication : ${date_evenement}&lt;br/&gt;
+Émetteur : ${emetteur_evenement}&lt;br/&gt;
+Destinataire : ${destinataire_evenement}&lt;br/&gt;
+Copie : ${copie_evenement}&lt;br/&gt;
+Présence de pièce jointe : ${presence_piece_jointe}&lt;br/&gt;
+Objet : ${objet}&lt;br/&gt;
+Niveau de lecture : ${niveau_lecture}&lt;br/&gt;
+Identifiant du dossier : ${id_dossier}&lt;br/&gt;
+Identifiant du sénat : ${id_senat}&lt;br/&gt;
+Numéro de version : ${numero_version}&lt;br/&gt;
+État du dossier : ${etat_dossier}&lt;br/&gt;
+État du message : ${etat_message}&lt;br/&gt;
+Type de version : ${type_version}&lt;/body&gt;&lt;/html&gt;" />
+						<property xpath="parametre:unit" value="Texte" />
+						<property xpath="dc:description"
+							value="« Texte du message » de la notification des événements. Les balises suivantes peuvent êtres utilisées : ${id_evenement} : Identifiant de la communication, ${etat_evenement} : état de la communication, ${type_evenement} : type de communication, ${date_evenement} : date de la communication, ${emetteur_evenement} : émetteur, ${destinataire_evenement} : destinataire, ${copie_evenement} : copie, ${presence_piece_jointe} : présence de pièce jointe, ${objet} : objet, ${niveau_lecture} : niveau de lecture (si communication de la procédure législative, valeur vide sinon), ${id_dossier} : identifiant du dossier, ${id_senat} : identifiant du sénat (uniquement pour le Sénat), ${numero_version} : numéro de la version concernée par la notification, ${etat_dossier} : état du dossier, ${etat_message} : état du message, ${type_version} : type de version (acceptation ou rejet de la version, version complémentaire ou rectificative), ${url_evenement} : lien vers l'écran de résultat de recherche initialisé avec l'identifiant de la communication." />
+					</properties>
+				</templateItem>
+
+				<templateItem typeName="Parametre" id="mail-notification-error-objet"
+					title="Objet du mèl d'erreur de notification aux Web Services">
+					<properties>
+						<property xpath="parametre:value"
+							value="Echec lors de la notification au Web Service" />
+						<property xpath="parametre:unit" value="Objet" />
+						<property xpath="dc:description"
+							value="« Objet » du mèl d'erreur de notification aux Web Services" />
+					</properties>
+				</templateItem>
+
+				<templateItem typeName="Parametre" id="mail-notification-error-corps"
+					title="Texte du mèl d'erreur de notification aux Web Services">
+					<properties>
+						<property xpath="parametre:value"
+							value="
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;Erreur lors de la notification aux Web Services.&lt;br/&gt;
+Le nombre d'essais maximum pour notifier le webservice de l'institution a été atteint, et la notification a été abandonnée.&lt;br/&gt;
+Institution : ${institution}&lt;br/&gt;
+Evenement : ${evenement}&lt;br/&gt;
+ID technique jeton : ${jeton_id}&lt;br/&gt;
+&lt;/body&gt;&lt;/html&gt;" />
+						<property xpath="parametre:unit" value="Texte" />
+						<property xpath="dc:description"
+							value="« Texte du message » du mèl d'erreur de notification aux Web Services" />
+					</properties>
+				</templateItem>
+
+				<templateItem typeName="Parametre"
+					id="mail-transmettre-evenement-corps" title="Texte du mèl de transmission de la communication par mèl">
+					<properties>
+						<property xpath="parametre:value"
+							value="
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;
+&lt;p&gt;Message envoyé par ${expediteur} - merci de répondre à cette adresse&lt;/p&gt;&lt;br/&gt;
+&lt;p&gt;${corps}&lt;/p&gt;&lt;br/&gt;
+&lt;table&gt;
+&lt;p&gt;Métadonnées de la communication&lt;/p&gt;
+&lt;#list metadonnees as m&gt;
+&lt;tr&gt;
+&lt;td&gt;${m.title}&lt;/td&gt;&lt;td&gt;${m.value}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/#list&gt;
+&lt;/table&gt;
+&lt;p&gt;Pièces jointes&lt;/p&gt;
+&lt;table&gt;
+&lt;#list piecesjointes as p&gt;
+&lt;tr&gt;
+&lt;td&gt;${p.title}&lt;/td&gt;&lt;td&gt;${p.value}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/#list&gt;
+&lt;/table&gt;
+&lt;/body&gt;&lt;/html&gt;" />
+						<property xpath="parametre:unit" value="Texte" />
+						<property xpath="dc:description"
+							value="« Texte du message » de la transmission de la communication par mèl." />
+					</properties>
+				</templateItem>
+
+				<templateItem typeName="Parametre"
+					id="url-application-transmise-par-mel" title="Url application transmise par mèl">
+					<properties>
+						<property xpath="parametre:value"
+							value="http://idlv-solonepp-test.lyon-dev2.local:8180/solon-epp" />
+						<property xpath="parametre:unit" value="url" />
+						<property xpath="dc:description"
+							value="Adresse URL de l’application transmise systématiquement aux utilisateurs lors des notifications par mèl." />
+					</properties>
+				</templateItem>
+
+				<templateItem typeName="Parametre" id="nb-jour-message-affichable"
+					title="Nombre de jours d'affichage des messages">
+					<properties>
+						<property xpath="parametre:value" value="10" />
+						<property xpath="parametre:unit" value="jour(s)" />
+						<property xpath="dc:description"
+							value="Nombre de jours d'affichage des messages après traitement" />
+					</properties>
+				</templateItem>
+
+				<templateItem typeName="Parametre"
+					id="objet-mel-notification-creation-utilisateur" title="Objet mèl notification création utilisateur">
+					<properties>
+						<property xpath="parametre:value"
+							value="Création de votre compte pour l'application S.O.L.O.N. E.P.P." />
+						<property xpath="parametre:unit" value="objet" />
+						<property xpath="dc:description"
+							value="« Objet » (par défaut) de la notification par mèl suite à la création d’un utilisateur." />
+					</properties>
+				</templateItem>
+
+				<templateItem typeName="Parametre"
+					id="texte-mel-notification-creation-utilisateur" title="Texte du mèl notification création utilisateur">
+					<properties>
+						<property xpath="parametre:value"
+							value="Bienvenue dans l'application S.O.L.O.N. E.P.P." />
+						<property xpath="parametre:unit" value="texte" />
+						<property xpath="dc:description"
+							value="« Texte du message » (par défaut) de la notification par mèl suite à la création d’un utilisateur." />
+					</properties>
+				</templateItem>
+
+				<!-- param "mail de l'administrateur de l'application" -->
+				<templateItem typeName="Parametre"
+					id="adresse-mail-administrateur-application" title="Adresse mél. de l'administrateur de l'application">
+					<properties>
+						<property xpath="parametre:value" value="ne-pas-repondre-a-ce-mel@dila.gouv.fr" />
+						<property xpath="parametre:unit" value="adresse mèl" />
+						<property xpath="dc:description"
+							value="Adresse mél. de l'administrateur de l'application" />
+					</properties>
+				</templateItem>
+
+				<!-- param objet du mail d'envoi d'erreur de création de jeton -->
+				<templateItem typeName="Parametre"
+					id="objet-mel-notification-erreur-jeton" title="Objet mél notification erreur création jeton">
+					<properties>
+						<property xpath="parametre:value" value="Erreur dans la création d'un jeton" />
+						<property xpath="parametre:unit" value="Objet" />
+						<property xpath="dc:description"
+							value="« Objet » (par défaut) de la notification par mél suite à l'erreur de création d’un jeton" />
+					</properties>
+				</templateItem>
+
+				<!-- param texte du mail d'envoi d'erreur de création de jeton -->
+				<templateItem typeName="Parametre"
+					id="texte-mel-notification-erreur-jeton" title="Texte mél notification erreur création jeton">
+					<properties>
+						<property xpath="parametre:value"
+							value="Une erreur est intervenue lors de la création d'un jeton pour le dossier ${numero_dossier}" />
+						<property xpath="parametre:unit" value="texte" />
+						<property xpath="dc:description"
+							value="« Texte du message » (par défaut) de la notification par mél suite à une erreur lors de la création d’un jeton pour un dossier" />
+					</properties>
+				</templateItem>
+
+				<!-- Paramètre de délai de renouvellement des mots de passe -->
+				<templateItem typeName="Parametre"
+					id="delai-renouvellement-mots-de-passe" title="Délai de renouvellement des mots de passe">
+					<properties>
+						<property xpath="parametre:value" value="6" />
+						<property xpath="parametre:unit" value="Mois" />
+						<property xpath="dc:description"
+							value="Délai de renouvellement des mots de passe en mois." />
+					</properties>
+				</templateItem>
+
+				<!-- Paramètre de délai de prévenance du renouvellement de mot de passe -->
+				<templateItem typeName="Parametre"
+					id="delai-prevenance-renouvellement-mot-de-passe" title="Délai prévenance de renouvellement de mot de passe">
+					<properties>
+						<property xpath="parametre:value" value="10" />
+						<property xpath="parametre:unit" value="Jours" />
+						<property xpath="dc:description"
+							value="Délai de prévenance par mèl de renouvellement du mot de passe en jours." />
+					</properties>
+				</templateItem>
+
+				<!-- Objet mèl de prévenance du renouvellement de mot de passe -->
+				<templateItem typeName="Parametre"
+					id="objet-mel-prevenance-renouvellement-mot-de-passe" title="Objet du mél de prévenance du renouvellement de mot de passe">
+					<properties>
+						<property xpath="parametre:value"
+							value="Expiration prochaine de votre mot de passe" />
+						<property xpath="parametre:unit" value="objet" />
+						<property xpath="dc:description"
+							value="« Objet » (par défaut) de la notification par mél adressée aux utilisateurs dont le mot de passe va expirer (dépassement du délai de renouvellement)." />
+					</properties>
+				</templateItem>
+
+				<!-- Texte mèl de prévenance du renouvellement de mot de passe -->
+				<templateItem typeName="Parametre"
+					id="texte-mel-prevenance-renouvellement-mot-de-passe" title="Texte du mél de prévenance du renouvellement de mot de passe">
+					<properties>
+						<property xpath="parametre:value"
+							value="Le mot de passe pour le compte ${user_login} va expirer dans ${jours_restants} jours." />
+						<property xpath="parametre:unit" value="texte" />
+						<property xpath="dc:description"
+							value="« Texte du message » (par défaut) de la notification par mél adressée aux utilisateurs dont le mot de passe va expirer (dépassement du délai de renouvellement)." />
+					</properties>
+				</templateItem>
+
+				<!-- Objet mèl de notification de suivi des batchs -->
+				<templateItem typeName="Parametre"
+					id="objet-mel-suivi-batch-notification" title="Objet du mél de notification de suivi des batchs">
+					<properties>
+						<property xpath="parametre:value"
+							value="Notification d'échec d'exécution d'un batch" />
+						<property xpath="parametre:unit" value="objet" />
+						<property xpath="dc:description"
+							value="« Objet » (par défaut) de la notification par mél adressée aux administrateurs lors de l'échec de l'exécution d'un batch." />
+					</properties>
+				</templateItem>
+
+				<!-- Texte mèl de notification de suivi des batchs -->
+				<templateItem typeName="Parametre"
+					id="texte-mel-suivi-batch-notification" title="Texte du mél de notification de suivi des batchs">
+					<properties>
+						<property xpath="parametre:value"
+							value="Le batch ${eventName} s'est terminé avec des erreurs." />
+						<property xpath="parametre:unit" value="texte" />
+						<property xpath="dc:description"
+							value="« Texte du message » (par défaut) de la notification par mél adressée aux administrateurs lors de l'échec de l'exécution d'un batch." />
+					</properties>
+				</templateItem>
+				
+				<!-- paramétrage admin ws epg -->
+				<templateItem typeName="ParametrageWsEpg"
+					id="parametrage-ws-epg" title="Paramétrage WS EPG">
+					<properties>
+						<property xpath="parws:norEntite" value="INP" />
+						<property xpath="parws:norDirectionAN" value="A" />
+						<property xpath="parws:norDirectionSenat" value="S" />
+						<property xpath="parws:norDirectionAutres" value="X" />
+					</properties>
+				</templateItem>
+				
+				<!-- Batch Hebdomadaire - -->
+				<templateItem typeName="Parametre"
+					id="batch-hebdo-purgeTentativesConnexionEvent"
+					title="Batch Hebdomadaire - Jour d'exécution pour le batch purgeTentativesConnexionEvent">
+					<properties>
+						<property xpath="parametre:value" value="lundi" />
+						<property xpath="parametre:unit" value="Jour de la semaine" />
+						<property xpath="dc:description"
+							value="Jour d'exécution pour le batch purgeTentativesConnexionEvent - une valeur parmi lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche" />
+					</properties>
+				</templateItem>
+				
+				<!-- Lien de la page de renseignements -->
+				<templateItem typeName="Parametre" id="page-renseignements"
+					title="Page de renseignements">
+					<properties>
+						<property xpath="parametre:value"
+							value="http://extraqual.pm.ader.gouv.fr/demat/index.html" />
+						<property xpath="parametre:unit" value="page" />
+						<property xpath="dc:description"
+							value="Page affichée par le lien « Pour tout renseignement sur les conditions d'accès à l'outil » de la page d'accueil" />
+					</properties>
+				</templateItem>
+				
+
+			</template>
+			<acl>
+				<ace principal="Everyone" permission="ReadWrite" granted="true" />
+			</acl>
+		</factoryBinding>
+	</extension>
+</component>

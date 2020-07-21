@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<component name="fr.dila.ecm.platform.routing.comments.listener">
+
+  <extension target="org.nuxeo.ecm.core.event.EventServiceComponent"
+    point="listener">
+
+    <listener name="updateCommentsInfoListener" async="false" postCommit="false"
+      class="fr.dila.ecm.platform.routing.core.listener.DocumentRoutingUpdateCommentsInfoListener"
+      priority="120">
+      <event>commentAdded</event>
+      <event>commentRemoved</event>
+    </listener>
+  </extension>
+
+</component>

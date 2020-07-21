@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherMembresGouvernementResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSattribution"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSattribution ../../../../../../xsd/reponses/WSattribution.xsd ">
+	<p:statut>OK</p:statut>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50000937">
+			<p1:titre_min>Min. Affaires étrangères et européennes</p1:titre_min>
+			<p1:titre_jo>Min. Affaires étrangères et européennes</p1:titre_jo>
+			<p1:intitule_min>Min. Affaires étrangères et européennes</p1:intitule_min>
+			<p1:ordre_proto>Min. Affaires étrangères et européennes</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50000938">
+			<p1:titre_min>Min. Agriculture et pêche</p1:titre_min>
+			<p1:titre_jo>Min. Agriculture et pêche</p1:titre_jo>
+			<p1:intitule_min>Min. Agriculture et pêche</p1:intitule_min>
+			<p1:ordre_proto>Min. Agriculture et pêche</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50013998">
+			<p1:titre_min>Min. Budget, comptes publics et FP</p1:titre_min>
+			<p1:titre_jo>Min. Budget, comptes publics et FP</p1:titre_jo>
+			<p1:intitule_min>Min. Budget, comptes publics et FP</p1:intitule_min>
+			<p1:ordre_proto>Min. Budget, comptes publics et FP</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50000966">
+			<p1:titre_min>Min. Culture et communication</p1:titre_min>
+			<p1:titre_jo>Min. Culture et communication</p1:titre_jo>
+			<p1:intitule_min>Min. Culture et communication</p1:intitule_min>
+			<p1:ordre_proto>Min. Culture et communication</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50000967">
+			<p1:titre_min>Min. Défense</p1:titre_min>
+			<p1:titre_jo>Min. Défense</p1:titre_jo>
+			<p1:intitule_min>Min. Défense</p1:intitule_min>
+			<p1:ordre_proto>Min. Défense</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50000976">
+			<p1:titre_min>Min. Ecologie, énerg, dév d, amgt  terr</p1:titre_min>
+			<p1:titre_jo>Min. Ecologie, énerg, dév d, amgt  terr</p1:titre_jo>
+			<p1:intitule_min>Min. Ecologie, énerg, dév d, amgt  terr</p1:intitule_min>
+			<p1:ordre_proto>Min. Ecologie, énerg, dév d, amgt terr</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50000507">
+			<p1:titre_min>Min. Economie, industrie et emploi</p1:titre_min>
+			<p1:titre_jo>Min. Economie, industrie et emploi</p1:titre_jo>
+			<p1:intitule_min>Min. Economie, industrie et emploi</p1:intitule_min>
+			<p1:ordre_proto>Min. Economie, industrie et emploi</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50000968">
+			<p1:titre_min>Min. Education nationale</p1:titre_min>
+			<p1:titre_jo>Min. Education nationale</p1:titre_jo>
+			<p1:intitule_min>Min. Education nationale</p1:intitule_min>
+			<p1:ordre_proto>Min. Education nationale</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50000940">
+			<p1:titre_min>Min. Enseignement sup. et recherche</p1:titre_min>
+			<p1:titre_jo>Min. Enseignement sup. et recherche</p1:titre_jo>
+			<p1:intitule_min>Min. Enseignement sup. et recherche</p1:intitule_min>
+			<p1:ordre_proto>Min. Enseignement sup. et recherche</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50001885">
+			<p1:titre_min>Min. Immigration, intégr., id. nat</p1:titre_min>
+			<p1:titre_jo>Min. Immigration, intégr., id. nat.</p1:titre_jo>
+			<p1:intitule_min>Min. Immigration, intégr., id. nat.</p1:intitule_min>
+			<p1:ordre_proto>Min. Immigration, intégr., id. nat</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50000632">
+			<p1:titre_min>Min. Intérieur, outre-mer et collectiv</p1:titre_min>
+			<p1:titre_jo>Min. Intérieur, outre-mer et collectiv.</p1:titre_jo>
+			<p1:intitule_min>Min. Intérieur, outre-mer et collectiv.</p1:intitule_min>
+			<p1:ordre_proto>Min. Intérieur, outre-mer et collectiv</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50000972">
+			<p1:titre_min>Min. Justice</p1:titre_min>
+			<p1:titre_jo>Min. Justice</p1:titre_jo>
+			<p1:intitule_min>Min. Justice</p1:intitule_min>
+			<p1:ordre_proto>Min. Justice</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50001886">
+			<p1:titre_min>Min. Logement</p1:titre_min>
+			<p1:titre_jo>Min. Logement</p1:titre_jo>
+			<p1:intitule_min>Min. Logement</p1:intitule_min>
+			<p1:ordre_proto>Min. Logement</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50003832">
+			<p1:titre_min>Min. outre-mer</p1:titre_min>
+			<p1:titre_jo>Min. outre-mer</p1:titre_jo>
+			<p1:intitule_min>Min. outre-mer</p1:intitule_min>
+			<p1:ordre_proto>Min. outre-mer</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50000975">
+			<p1:titre_min>Min. Santé et sports</p1:titre_min>
+			<p1:titre_jo>Min. Santé et sports</p1:titre_jo>
+			<p1:intitule_min>Min. Santé et sports</p1:intitule_min>
+			<p1:ordre_proto>Min. Santé et sports</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50000969">
+			<p1:titre_min>Min. Travail, rel soc, fam, solida, vil.</p1:titre_min>
+			<p1:titre_jo>Min. Travail, rel soc, fam, solida, vil.</p1:titre_jo>
+			<p1:intitule_min>Min. Travail, rel soc, fam, solida, vil.</p1:intitule_min>
+			<p1:ordre_proto>Min. Travail, rel soc, fam, solida, vil.</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="50000607">
+			<p1:titre_min>Premier Ministre</p1:titre_min>
+			<p1:titre_jo>Premier Ministre</p1:titre_jo>
+			<p1:intitule_min>Premier Ministre</p1:intitule_min>
+			<p1:ordre_proto>Premier Ministre</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+	<p:membre_gouvernement en_fonction="true">
+		<p1:prenom></p1:prenom>
+		<p1:nom></p1:nom>
+		<p1:civilite>M.</p1:civilite>
+		<p1:ministre id="13370000">
+			<p1:titre_min>Assemblées parlementaires</p1:titre_min>
+			<p1:titre_jo>Assemblées parlementaires</p1:titre_jo>
+			<p1:intitule_min>Assemblées parlementaires</p1:intitule_min>
+			<p1:ordre_proto>Assemblées parlementaires</p1:ordre_proto>
+		</p1:ministre>
+	</p:membre_gouvernement>
+
+</p:chercherMembresGouvernementResponse>

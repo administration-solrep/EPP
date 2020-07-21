@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: Case Management API
+Bundle-SymbolicName: fr.dila.cm.api;singleton=true
+Bundle-Version: 1.0.0
+Require-Bundle: org.nuxeo.ecm.core.api,
+  org.nuxeo.ecm.relations.api

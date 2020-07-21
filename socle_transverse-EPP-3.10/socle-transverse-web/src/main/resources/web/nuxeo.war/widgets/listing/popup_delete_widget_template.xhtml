@@ -1,0 +1,16 @@
+<f:subview id="popup_delete_#{field_1}"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<nxh:commandLink
+		action="#{navigationWebActions.deleteDocument(field_0)}"
+		onclick="if (!confirmDeleteDocuments()) return false;">
+		<nxu:graphicImage value="/icons/delete.png" />
+		<h:outputText value=" #{messages['command.global.delete']}" />
+	</nxh:commandLink>
+</f:subview>

@@ -1,0 +1,34 @@
+
+<widget name="NAME" type="incremental_smart_query_condition">
+	<labels>
+		<label mode="any">LABEL</label>
+	</labels>
+	<translated>true</translated>
+	<properties widgetMode="edit">
+		<property name="searchField">SEARCH_FIELD</property>
+		<property name="category">CATEGORY</property>
+		<propertyList name="availableOperators">
+			<value>=</value>
+			<value>IS NULL</value>
+			<value>IS NOT NULL</value>
+		</propertyList>
+	</properties>
+	<subWidgets>
+		<widget name="userWidget" type="template">
+			<fields>
+				<field>stringValue</field>
+			</fields>
+			<properties mode="any">
+				<property name="template">
+					/widgets/single_user_suggestion_widget_template.xhtml
+				</property>
+				<property name="userSuggestionSearchType">USER_TYPE</property>
+			</properties>
+			<widgetModes>
+				<mode value="any">
+           <![CDATA[#{(not empty value.conditionalOperator and value.operatorArity == 0) ? 'hidden' : mode}]]>
+				</mode>
+			</widgetModes>
+		</widget>
+	</subWidgets>
+</widget>

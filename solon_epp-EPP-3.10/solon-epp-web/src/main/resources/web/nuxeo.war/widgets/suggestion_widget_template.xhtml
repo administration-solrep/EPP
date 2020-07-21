@@ -1,0 +1,28 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
+	<h:panelGroup>
+		<nxu:set var="providerName"
+			value="#{widget.properties['suggestionProviderName']}">
+			<nxu:set var="provider"
+				value="#{suggestionProviderMap[providerName]}">
+				<h:inputText id="#{widget.id}" value="#{field}" />
+				<rich:suggestionbox for="#{widget.id}"
+					suggestionAction="#{provider.getSuggestions}" var="result"
+					nothingLabel="#{messages['label.suggestion.noSearchResults']}"
+					minChars="3" frequency="0" requestDelay="100">
+					<h:column>
+						<f:subview>
+							<h:outputText value="${result}" />
+						</f:subview>
+					</h:column>
+				</rich:suggestionbox>
+			</nxu:set>
+		</nxu:set>
+
+	</h:panelGroup>
+</div>

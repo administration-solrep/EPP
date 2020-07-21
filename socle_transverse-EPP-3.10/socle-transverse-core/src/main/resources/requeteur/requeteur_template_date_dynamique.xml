@@ -1,0 +1,59 @@
+<widget name="NAME" type="incremental_smart_query_condition">
+	<labels>
+		<label mode="any">LABEL</label>
+	</labels>
+	<translated>true</translated>
+	<properties mode="edit">
+		<property name="searchField">SEARCH_FIELD</property>
+		<property name="category">CATEGORY</property>
+		<propertyList name="availableOperators">
+			<value>BETWEEN</value>
+			<value>NOT BETWEEN</value>
+			<value>&lt;</value>
+			<value>&gt;</value>
+			<value>&lt;=</value>
+			<value>&gt;=</value>
+			<value>IS NULL</value>
+			<value>IS NOT NULL</value>
+		</propertyList>
+	</properties>
+	<subWidgets>
+		<widget name="created_before" type="date_dynamic">
+			<fields>
+				<field>dynDateStaticValue</field>
+				<field>dynDateDynamicValue</field>
+				<field>dynDynamicDateSelector</field>
+			</fields>
+			<widgetModes>
+				<mode value="any">
+	      <![CDATA[#{(not empty value.conditionalOperator and value.operatorArity == 0) ? 'hidden' : mode}]]>
+				</mode>
+			</widgetModes>
+		</widget>
+		<widget name="and" type="text">
+			<widgetModes>
+				<mode value="any">
+            <![CDATA[#{(not empty value.conditionalOperator and value.operatorArity <2) ? 'hidden' : 'view'}]]>
+				</mode>
+			</widgetModes>
+			<properties mode="any">
+				<property name="value">
+					&amp;nbsp;#{messages['label.and']}&amp;nbsp;
+				</property>
+				<property name="escape">false</property>
+			</properties>
+		</widget>
+		<widget name="created_after" type="date_dynamic">
+			<fields>
+				<field>dynDateStaticOtherValue</field>
+				<field>dynDateDynamicOtherValue</field>
+				<field>dynDynamicDateOtherSelector</field>
+			</fields>
+			<widgetModes>
+				<mode value="any">
+         <![CDATA[#{(not empty value.conditionalOperator and value.operatorArity <2) ? 'hidden' : mode}]]>
+				</mode>
+			</widgetModes>
+		</widget>
+	</subWidgets>
+</widget>

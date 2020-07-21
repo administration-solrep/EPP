@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<xs:schema targetNamespace="http://www.nuxeo.org/ecm/schemas/group"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nxs="http://www.nuxeo.org/ecm/schemas/group">
+
+	<xs:include schemaLocation="base.xsd" />
+
+	<xs:element name="groupName" type="xs:string" />
+	<xs:element name="label" type="xs:string" />
+	<xs:element name="description" type="xs:string" />
+	<xs:element name="fullPath" type="xs:string" />
+	<xs:element name="type" type="xs:string" default="UST" />
+	<xs:element name="dateDebut" type="xs:date" />
+	<xs:element name="dateFin" type="xs:date" />
+	<xs:element name="deleted" type="xs:string" default="FALSE" />
+	<xs:element name="functionRead" type="nxs:stringList" />
+
+	<!-- Lock -->
+	<xs:element name="lockDate" type="xs:date" />
+	<xs:element name="lockUserName" type="xs:string" />
+
+	<!-- references -->
+	<xs:element name="subUnitesStructurelles" type="nxs:stringList" />
+	<xs:element name="subPostes" type="nxs:stringList" />
+
+	<!-- inverse reference -->
+	<xs:element name="parentUnitesStructurelles" type="nxs:stringList" />
+	<xs:element name="parentInstitutions" type="nxs:stringList" />
+
+</xs:schema>

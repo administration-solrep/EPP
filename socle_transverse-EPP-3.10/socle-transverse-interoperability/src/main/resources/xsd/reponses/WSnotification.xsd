@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSnotification"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSnotification"
+	elementFormDefault="qualified"
+
+	xmlns:repco="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:notif="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/notification">
+
+	<!-- ====================================== -->
+	<!-- Imports -->
+	<!-- ====================================== -->
+
+	<xs:import schemaLocation="reponses-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons" />
+	<xs:import schemaLocation="notification.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/notification" />
+
+	<!-- ====================================== -->
+	<!-- Methode envoyerNotification p/r aux questions -->
+	<!-- ====================================== -->
+	<xs:element name="envoyerNotificationRequest">
+		<xs:annotation>
+			<xs:documentation>
+				L'application Réponses peut notifier toute entité possèdant ce service.
+				La notification porte l'information sur le type de données.
+				- REPONSES_QUESTIONS WSquestion.chercherQuestions
+				- REPONSES_QUESTIONS_ERRATA WSquestion.chercherErrataQuestions
+				- REPONSES_CHANGEMENT_ETAT
+				WSquestion.chercherChangementDEtatQuestions
+				- REPONSES_ATTRIBUTIONS WSattribution.chercherAttributions
+				- REPONSES_RETOUR_PUBLICATION
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="type_notification" type="notif:NotificationType"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="jeton" type="xs:string" minOccurs="1"
+							maxOccurs="1" />
+					</xs:sequence>
+
+					<xs:sequence>
+						<xs:element name="id_questions" type="repco:QuestionId"
+							minOccurs="1" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="envoyerNotificationResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut_traitement" type="repco:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- ========================================================= -->
+	<!-- Methode envoyerNotificationFlux p/r aux flux de controles -->
+	<!-- ========================================================= -->
+	<!-- <xs:element name="envoyerNotificationFluxRequest"> <xs:annotation> 
+		<xs:documentation> Les ministères voulant être notifiés lorsque des informations 
+		de publication sont disponibles, doivent implémenter ce webservice de notification 
+		</xs:documentation> </xs:annotation> </xs:element> <xs:element name="envoyerNotificationFluxResponse"> 
+		<xs:complexType> <xs:sequence> <xs:element name="statut_traitement" type="repco:TraitementStatut" 
+		minOccurs="1" maxOccurs="1" /> </xs:sequence> </xs:complexType> </xs:element> -->
+
+
+</xs:schema>

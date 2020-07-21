@@ -1,0 +1,65 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout">
+
+	<nxu:set var="baseFunctionMap"
+		value="#{profileManagerActions.getBaseFunctionMap()}">
+		<c:if test="#{widget.mode == 'edit'}">
+			<a4j:region id="#{widget.id}_ajax_region" immediate="true">
+				<h:selectOneMenu id="#{widget.id}_selectBaseFunction"
+					value="#{baseFunctionSelectionActions.currentBaseFunction}">
+					<c:forEach var="baseFunction"
+						items="#{profileManagerActions.getBaseFunctionList()}">
+						<f:selectItem
+							itemLabel="#{baseFunction.getAdapter(BaseFunction).description}"
+							itemValue="#{baseFunction.id}" />
+					</c:forEach>
+				</h:selectOneMenu>
+				<a4j:commandLink
+					action="#{baseFunctionSelectionActions.addBaseFunction(value)}"
+					reRender="#{widget.id}_baseFunctionPanel">
+					<h:graphicImage value="/icons/action_add.gif"
+						id="#{widget.id}_addBaseFunction" />
+				</a4j:commandLink>
+			</a4j:region>
+			<br />
+
+			<a4j:outputPanel id="#{widget.id}_baseFunctionPanel">
+				<c:forEach var="baseFunction"
+					items="#{profileManagerActions.sortBaseFonctions(field_0)}">
+					<h:outputText
+						value="#{baseFunctionMap.get(baseFunction).getAdapter(BaseFunction).description}" />
+					<a4j:commandLink
+						action="#{baseFunctionSelectionActions.removeBaseFunction(value, baseFunction)}"
+						ajaxSingle="true" reRender="#{widget.id}_baseFunctionPanel">
+						<h:graphicImage value="/icons/action_delete_mini.gif" />
+					</a4j:commandLink>
+					<br />
+				</c:forEach>
+				<nxu:inputList id="#{widget.id}_list" value="#{field_0}"
+					model="baseFunction" required="#{widget.required}">
+				</nxu:inputList>
+				<h:message styleClass="errorMessage" for="#{widget.id}_list"
+					id="#{widget.id}_message" />
+			</a4j:outputPanel>
+		</c:if>
+
+		<c:if test="#{widget.mode == 'view'}">
+			<c:forEach var="baseFunction"
+				items="#{profileManagerActions.sortBaseFonctions(field_0)}">
+				<h:panelGroup>
+					<h:panelGrid columns="2">
+						<f:subview>
+							<h:graphicImage value="/icons/task.png" alt="task.png" />
+							<h:outputText
+								value="#{baseFunctionMap.get(baseFunction).getAdapter(BaseFunction).description}" />
+						</f:subview>
+					</h:panelGrid>
+				</h:panelGroup>
+			</c:forEach>
+		</c:if>
+	</nxu:set>
+</div>

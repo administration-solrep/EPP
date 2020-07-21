@@ -1,0 +1,17 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util">
+
+	<nxu:set var="dossier"
+		value="#{dossierActions.getDossierFromDossierLink(field_0)}"
+		cache="true">
+		<c:if test="#{dossierActions.isDossierComplet(dossier)}">
+     Oui
+  </c:if>
+		<c:if test="#{!dossierActions.isDossierComplet(dossier)}">
+     Non
+  </c:if>
+	</nxu:set>
+</f:subview>

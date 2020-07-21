@@ -1,0 +1,526 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue les widgets utilisés dans les feuilles de routes. -->
+<component name="fr.dila.st.web.widget.feuilleRoute">
+	<require>fr.dila.st.web.widget</require>
+	<require>fr.dila.st.web.widgettype.feuilleRoute</require>
+
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="widgets">
+
+		<!-- *********************************************************************** 
+			Widgets de la liste des feuilles de route *********************************************************************** -->
+		<!-- Icone indiquant l'état de validation de la feuille de route -->
+		<widget name="feuille_route_list_validation_icon" type="feuille_route_list_validation_icon">
+			<labels>
+				<label mode="any">st.feuilleRoute.liste.validation</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.currentLifeCycleState</field>
+				<field>data.fdr.demandeValidation</field>
+			</fields>
+		</widget>
+
+		<!-- Titre de la feuille de route -->
+		<widget name="feuille_route_list_intitule" type="feuille_route_list_intitule">
+			<labels>
+				<label mode="any">st.feuilleRoute.liste.intitule</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data</field>
+				<field>data.id</field>
+				<field>data.dc.title</field>
+			</fields>
+		</widget>
+
+		<!-- Titre de la feuille de route sans lien -->
+		<widget name="feuille_route_list_intitule_sans_lien" type="text">
+			<labels>
+				<label mode="any">st.feuilleRoute.liste.intitule</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.dc.title</field>
+			</fields>
+		</widget>
+
+		<!-- Widget indiquant le ministère propriétaire de la feuille de route -->
+		<widget name="feuille_route_list_ministere_name" type="template">
+			<labels>
+				<label mode="any">st.feuilleRoute.liste.ministere</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.fdr.ministere</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/organigramme_select_node_widget.xhtml</property>
+				<property name="organigrammeSelectionType">MIN_TYPE</property>
+				<property name="organigrammeSelectionMode">SINGLE</property>
+			</properties>
+			<properties widgetMode="csv">
+				<property name="template">/widgets/csv/organigramme_view_node_widget.xhtml</property>
+				<property name="organigrammeSelectionType">MIN_TYPE</property>
+				<property name="organigrammeSelectionMode">SINGLE</property>
+			</properties>
+		</widget>
+
+    <!--  Widgets de la création d'étapes en masse -->
+    <widget name="routing_task_distribution_mailbox_dto" type="template">
+		<labels>
+				<label mode="any">label.casemanagement.routing.task.mailboxId.mandatory</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.distributionMailboxId</field>
+			</fields>
+			<properties mode="any">
+				<property name="template">/widgets/organigramme_select_node_widget.xhtml</property>
+				<property name="organigrammeSelectionType">MAILBOX_TYPE</property>
+				<property name="organigrammeSelectionMode">SINGLE</property>
+				<property name="organigrammeActivatePosteFilter">true</property>
+			</properties>
+			<properties widgetMode="edit">
+				<property name="required">false</property>
+			</properties>
+	</widget>
+	
+	<widget name="routing_task_deadline_dto" type="input_number_spinner">
+		<labels>
+			<label mode="any">label.casemanagement.routing.task.deadline</label>
+		</labels>
+		<translated>true</translated>
+		<fields>
+			<field>data.deadline</field>
+		</fields>
+	</widget>
+
+	<widget name="routing_task_validation_automatique_dto" type="checkbox">
+      <translated>true</translated>
+      <labels>
+        <label mode="any">label.casemanagement.routing.task.automaticValidation</label>
+      </labels>
+      <fields>
+        <field>data.automaticValidation</field>
+      </fields>
+    </widget>
+    
+    <widget name="routing_task_obligatoire_ministere_dto" type="checkbox">
+      <translated>true</translated>
+      <labels>
+        <label mode="any">st.feuilleRoute.etape.obligatoire.ministere</label>
+      </labels>
+      <fields>
+        <field>data.obligatoireMinistere</field>
+      </fields>
+      <widgetModes>
+            <mode value="create">#{nxu:test(modeleFeuilleRouteActions.isAdminMinisteriel(),
+                  'edit', 'hidden')}</mode>
+            <mode value="edit">#{nxu:test(modeleFeuilleRouteActions.isAdminMinisteriel(),
+                  'edit', 'view')}</mode>
+      </widgetModes>
+    </widget>
+    
+    <widget name="routing_task_obligatoire_sgg_dto" type="checkbox">
+      <translated>true</translated>
+      <labels>
+        <label mode="any">st.feuilleRoute.etape.obligatoire.sgg</label>
+      </labels>
+      <fields>
+        <field>data.obligatoireSGG</field>
+      </fields>
+      <widgetModes>
+        <mode value="create">#{nxu:test(modeleFeuilleRouteActions.isObligatoireSggUpdater(), 'edit', 'hidden')}</mode>
+        <mode value="edit">#{nxu:test(modeleFeuilleRouteActions.isObligatoireSggUpdater(), 'edit', 'view')}</mode>
+      </widgetModes>
+    </widget>
+    
+    <widget name="etape_feuille_de_route_mass_widget_remove" type="etape_feuille_de_route_widget_type_remove">
+      <labels>
+        <label mode="any"></label>
+      </labels>
+      <translated>true</translated>
+      <fields>
+        <field>data</field>
+      </fields>
+    </widget>
+    
+    <!--  Fin Widgets de la création d'étapes en masse -->
+    
+		<!-- *********************************************************************** 
+			Widgets du détail de la feuille de route *********************************************************************** -->
+		<widget name="feuille_route_intitule" type="text">
+			<labels>
+				<label mode="any">st.feuilleRoute.detail.intitule</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dc:title</field>
+			</fields>
+			<properties widgetMode="edit">
+				<property name="required">true</property>
+				<property name="styleClass">dataInputText</property>
+			</properties>
+		</widget>
+
+		<widget name="feuille_route_ministere" type="template">
+			<labels>
+				<label mode="any">st.feuilleRoute.detail.ministere</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>fdr:ministere</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/organigramme_select_node_widget.xhtml</property>
+				<property name="organigrammeSelectionType">MIN_TYPE</property>
+				<property name="organigrammeSelectionMode">SINGLE</property>
+			</properties>
+			<properties widgetMode="edit">
+				<property name="required">#{nxu:test(modeleFeuilleRouteActions.isAdminFonctionnel(),
+					'false', 'true')}</property>
+			</properties>
+			<widgetModes>
+				<mode value="any">#{nxu:test(modeleFeuilleRouteActions.isAdminFonctionnel(),
+					mode, 'view')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="feuille_route_defaut" type="checkbox">
+			<labels>
+				<label mode="any">st.feuilleRoute.detail.feuilleRouteDefaut</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>fdr:feuilleRouteDefaut</field>
+			</fields>
+		</widget>
+
+		<!-- *********************************************************************** 
+			Widgets de la liste des étapes de feuilles de route *********************************************************************** -->
+
+		<!-- Widget indiquant l'action à effectuer sur l'étape de la feuille de 
+			route -->
+		<widget name="routing_task_list_type_action" type="selectOneDirectory">
+			<fields>
+				<field>data.document.rtsk.type</field>
+			</fields>
+			<labels>
+				<label mode="any">st.feuilleRoute.etape.list.type</label>
+			</labels>
+			<translated>true</translated>
+			<properties widgetMode="any">
+				<property name="directoryName">cm_routing_task_type</property>
+				<property name="localize">true</property>
+			</properties>
+			<properties widgetMode="edit">
+				<property name="notDisplayDefaultOption">true</property>
+				<property name="ordering">label</property>
+				<property name="required">true</property>
+			</properties>
+		</widget>
+
+		<!-- Widget indiquant les ministères destinataires de l'étape de la feuille 
+			de route -->
+		<widget name="routing_task_list_ministere_name" type="routing_task_list_ministere_name">
+			<labels>
+				<label mode="any">st.feuilleRoute.etape.list.ministere</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.document.rtsk.distributionMailboxId</field>
+				<field>data.document.hasFacet('RouteStep')</field>
+			</fields>
+		</widget>
+
+		<!-- Widget indiquant le poste destinataire de l'étape de la feuille de 
+			route -->
+		<widget name="routing_task_list_poste_name" type="routing_task_list_poste_name">
+			<labels>
+				<label mode="any">st.feuilleRoute.etape.list.poste</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.document.rtsk.distributionMailboxId</field>
+				<field>data.document.hasFacet('RouteStep')</field>
+			</fields>
+		</widget>
+
+		<!-- Icone indiquant qu'une étape de la feuille de route est obligatoire 
+			(SGG ou ministère) -->
+		<widget name="routing_task_list_obligatoire_icon" type="routing_task_list_obligatoire_icon">
+			<labels>
+				<label mode="any">st.feuilleRoute.etape.list.obligatoire</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.document.rtsk.obligatoireSGG</field>
+				<field>data.document.rtsk.obligatoireMinistere</field>
+			</fields>
+		</widget>
+
+		<!-- Ce type de widget permet d'afficher des cases à cocher pour une sélection 
+			multiple. Contrairement à la sélection multiple de Nuxeo, cette sélection 
+			n'est pas basée sur les ContentViews -->
+		<widget name="routing_task_ajax_selection_box_with_current_document"
+			type="routing_task_ajax_selection_box_with_current_document">
+			<labels>
+				<label mode="any"></label>
+			</labels>
+			<fields>
+				<field>data</field>
+				<field>selected</field>
+				<field>data.ref</field>
+			</fields>
+		</widget>
+
+		<!-- Bouton d'action permettant d'aller sur les notes d'étapes -->
+		<widget name="route_step_list_note" type="route_step_list_note">
+			<labels>
+				<label mode="any">st.feuilleRoute.etape.list.note</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.document</field>
+			</fields>
+		</widget>
+
+		<!-- Icone indiquant l'état en cours d'une étape de feuille de route -->
+		<widget name="routing_task_list_element_state" type="routing_task_list_element_state">
+			<translated>true</translated>
+			<fields>
+				<field>data.document.currentLifeCycleState</field>
+				<field>data.document.rtsk.validationStatus</field>
+				<field>data.document.rtsk.type</field>
+			</fields>
+		</widget>
+
+		<!-- Affiche la date de traitement de l'étape de feuille de route -->
+		<widget name="cm_listing_routing_task_date_fin" type="listing_cm_routing_date_properties">
+			<labels>
+				<label mode="any">label.casemanagement.routing.task.dateFinEtape</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.document.rtsk.dateFinEtape</field>
+				<field>data.document.hasFacet('RouteStep')</field>
+			</fields>
+		</widget>
+
+		<!-- *********************************************************************** 
+			Widgets de la liste des étapes de feuilles de route : utilisé pour l'impression 
+			pdf *********************************************************************** -->
+
+		<!-- Widget indiquant le type de l'étape de la feuille de route : utilisé 
+			pour l'impression pdf -->
+		<widget name="pdf_dr_listing_document_route_folder_element_type"
+			type="pdf_listing_document_route_folder_element_type">
+			<labels>
+				<label mode="any">label.document.route.content.header.type</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>routeElement.document</field>
+				<field>routeElement.document.id</field>
+				<field>routeElement.document.hasFacet('Folderish')</field>
+			</fields>
+		</widget>
+
+		<!-- Widget indiquant l'action à effectuer sur l'étape de la feuille de 
+			route : utilisé pour l'impression pdf -->
+		<widget name="pdf_routing_task_list_type_action" type="pdf_selectOneDirectory">
+			<fields>
+				<field>data.document.rtsk.type</field>
+			</fields>
+			<labels>
+				<label mode="any">st.feuilleRoute.etape.list.type</label>
+			</labels>
+			<translated>true</translated>
+			<properties widgetMode="any">
+				<property name="directoryName">cm_routing_task_type</property>
+			</properties>
+		</widget>
+
+		<!-- Widget indiquant les ministères destinataires de l'étape de la feuille 
+			de route : utilisé pour l'impression pdf -->
+		<widget name="pdf_routing_task_list_ministere_name" type="pdf_routing_task_list_ministere_name">
+			<labels>
+				<label mode="any">st.feuilleRoute.etape.list.ministere</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.document.rtsk.distributionMailboxId</field>
+				<field>data.document.hasFacet('RouteStep')</field>
+			</fields>
+		</widget>
+
+		<!-- Widget indiquant le poste destinataire de l'étape de la feuille de 
+			route : utilisé pour l'impression pdf -->
+		<widget name="pdf_routing_task_list_poste_name" type="pdf_routing_task_list_poste_name">
+			<labels>
+				<label mode="any">st.feuilleRoute.etape.list.poste</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.document.rtsk.distributionMailboxId</field>
+				<field>data.document.hasFacet('RouteStep')</field>
+			</fields>
+		</widget>
+
+		<!-- Icone indiquant qu'une étape de la feuille de route est obligatoire 
+			(SGG ou ministère) : utilisé pour l'impression pdf -->
+		<widget name="pdf_routing_task_list_obligatoire_icon" type="pdf_routing_task_list_obligatoire_icon">
+			<labels>
+				<label mode="any">st.feuilleRoute.etape.list.obligatoire</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.document.rtsk.obligatoireSGG</field>
+				<field>data.document.rtsk.obligatoireMinistere</field>
+			</fields>
+		</widget>
+
+		<!-- Icone indiquant l'état en cours d'une étape de feuille de route : 
+			affichage pour l'impression pdf -->
+		<widget name="pdf_routing_task_list_element_state" type="pdf_routing_task_list_element_state">
+			<translated>true</translated>
+			<fields>
+				<field>data.document.currentLifeCycleState</field>
+				<field>data.document.rtsk.validationStatus</field>
+				<field>data.document.rtsk.type</field>
+			</fields>
+		</widget>
+
+		<!-- Affiche la date d'échéance de l'étape de feuille de route : utilisé 
+			pour l'impression pdf -->
+		<widget name="pdf_cm_listing_routing_task_due_date" type="pdf_listing_cm_routing_doc_properties">
+			<labels>
+				<label mode="any">label.casemanagement.routing.task.dueDate</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.document.rtsk.dueDate</field>
+				<field>data.document.hasFacet('RouteStep')</field>
+			</fields>
+		</widget>
+
+		<!-- Affiche la date de traitement de l'étape de feuille de route : utilisé 
+			pour l'impression pdf -->
+		<widget name="pdf_cm_listing_routing_task_date_fin" type="pdf_listing_cm_routing_doc_properties">
+			<labels>
+				<label mode="any">label.casemanagement.routing.task.dateFinEtape</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.document.rtsk.dateFinEtape</field>
+				<field>data.document.hasFacet('RouteStep')</field>
+			</fields>
+		</widget>
+
+		<!-- *********************************************************************** 
+			Widgets du détail des étapes de feuille de route *********************************************************************** -->
+		<widget name="routing_task_distribution_mailbox" type="template">
+			<labels>
+				<label mode="any">label.casemanagement.routing.task.mailboxId</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>rtsk:distributionMailboxId</field>
+			</fields>
+			<properties mode="any">
+				<property name="template">/widgets/organigramme_select_node_widget.xhtml</property>
+				<property name="organigrammeSelectionType">MAILBOX_TYPE</property>
+				<property name="organigrammeSelectionMode">SINGLE</property>
+				<property name="organigrammeActivatePosteFilter">true</property>
+			</properties>
+			<properties widgetMode="edit">
+				<property name="required">true</property>
+			</properties>
+		</widget>
+
+		<widget name="routing_task_description" type="textarea">
+			<labels>
+				<label mode="any">label.casemanagement.routing.task.commentaire</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>dc:description</field>
+			</fields>
+		</widget>
+
+		<widget name="routing_task_deadline" type="input_number_spinner">
+			<labels>
+				<label mode="any">label.casemanagement.routing.task.deadline</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>rtsk.deadline</field>
+			</fields>
+		</widget>
+
+		<widget name="routing_task_automatic_validation" type="checkbox">
+			<translated>true</translated>
+			<labels>
+				<label mode="any">label.casemanagement.routing.task.automaticValidation
+				</label>
+			</labels>
+			<fields>
+				<field>rtsk:automaticValidation</field>
+			</fields>
+		</widget>
+
+		<widget name="routing_task_obligatoire_sgg" type="checkbox">
+			<translated>true</translated>
+			<labels>
+				<label mode="any">st.feuilleRoute.etape.obligatoire.sgg</label>
+			</labels>
+			<fields>
+				<field>rtsk:obligatoireSGG</field>
+			</fields>
+			<widgetModes>
+				<mode value="create">#{nxu:test(modeleFeuilleRouteActions.isAdminFonctionnel(),
+					'edit', 'hidden')}</mode>
+				<mode value="edit">#{nxu:test(modeleFeuilleRouteActions.isAdminFonctionnel(),
+					'edit', 'view')}</mode>
+			</widgetModes>
+		</widget>
+
+		<widget name="routing_task_obligatoire_ministere" type="checkbox">
+			<translated>true</translated>
+			<labels>
+				<label mode="any">st.feuilleRoute.etape.obligatoire.ministere</label>
+			</labels>
+			<fields>
+				<field>rtsk:obligatoireMinistere</field>
+			</fields>
+			<widgetModes>
+				<mode value="create">#{nxu:test(modeleFeuilleRouteActions.isAdminMinisteriel(),
+					'edit', 'hidden')}</mode>
+				<mode value="edit">#{nxu:test(modeleFeuilleRouteActions.isAdminMinisteriel(),
+					'edit', 'view')}</mode>
+			</widgetModes>
+		</widget>
+
+	</extension>
+	
+	  <!-- *********************************************************************** 
+		Types de widgets *********************************************************************** -->
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="widgettypes">
+		
+	     <widgetType name="etape_feuille_de_route_widget_type_remove">
+		     <documentation>Ce widget affiche un lien pour supprimer une étape de feuille de route lors de la creation 
+		     en masse </documentation>
+		     <handler-class>
+		       org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+		     </handler-class>
+		     <property name="template">
+		       /widgets/listing/feuilleroute/etape_feuille_de_route_remove_widget_template.xhtml
+		     </property>
+	    </widgetType>
+    
+	</extension>
+	
+</component>

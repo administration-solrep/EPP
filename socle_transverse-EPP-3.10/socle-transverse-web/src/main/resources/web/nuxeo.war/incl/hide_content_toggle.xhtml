@@ -1,0 +1,101 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<style>
+.upperCollasiblePanelPopup {
+	width: 100%;
+	margin: 0;
+	padding-right: 5px;
+}
+
+.x-tool-collapse-north {
+	background-position: 0px -210px;
+}
+
+.x-tool-collapse-north:hover {
+	background-position: -15px -210px;
+}
+
+.x-tool-collapse-south {
+	background-position: 0px -195px;
+}
+
+.x-tool-collapse-south:hover {
+	background-position: -15px -195px;
+}
+</style>
+	<c:choose>
+		<c:when test="#{navigationWebActions.getPanelState(idDivToToggle)}">
+			<style>
+##{
+idDivToToggle
+
+
+}
+{
+display
+
+
+:block
+
+
+;
+}
+#openContentViewButtonPopup {
+	display: none;
+}
+
+#closeContentViewButtonPopup {
+	display: block;
+}
+</style>
+		</c:when>
+		<c:otherwise>
+			<style>
+##{
+idDivToToggle
+
+
+}
+{
+display
+
+
+:none
+
+
+;
+}
+#openContentViewButtonPopup {
+	display: block;
+}
+
+#closeContentViewButtonPopup {
+	display: none;
+}
+</style>
+		</c:otherwise>
+	</c:choose>
+
+	<script>
+		function closeUpperContentView() {
+			document.getElementById("#{idDivToToggle}").style.display = 'none';
+			document.getElementById('openContentViewButtonPopup').style.display = 'block';
+			document.getElementById('closeContentViewButtonPopup').style.display = 'none';
+		}
+
+		function openUpperContentView() {
+			document.getElementById("#{idDivToToggle}").style.display = 'block';
+			document.getElementById('openContentViewButtonPopup').style.display = 'none';
+			document.getElementById('closeContentViewButtonPopup').style.display = 'block';
+		}
+	</script>
+
+</div>

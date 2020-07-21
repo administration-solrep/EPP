@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<component name="fr.dila.solonepp.mailComponent">
+	<require>org.nuxeo.ecm.platform.mail.service.MailServiceContrib</require>
+
+	<extension target="org.nuxeo.ecm.platform.MailService" point="sessionFactory">
+		<sessionFactory name="mailSession" fetcherName="simple">
+			<properties>
+				<property name="mail.store.protocol">${mail.store.protocol}</property>
+				<property name="mail.transport.protocol">${mail.transport.protocol}</property>
+				<property name="mail.smtp.port">${mail.smtp.port}</property>
+				<property name="mail.pop3.port">${mail.pop3.port}</property>
+				<property name="mail.host">${mail.host}</property>
+				<property name="mail.smtp.host">${mail.smtp.host}</property>
+				<property name="mail.user">${mail.user}</property>
+				<property name="mail.from">${mail.from}</property>
+				<property name="password">${mail.smtp.password}</property>
+				<property name="user">${mail.smtp.username}</property>
+			</properties>
+		</sessionFactory>
+	</extension>
+</component>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:majTableRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp"
+	xmlns:eppcommons="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp ../../../../../../../../../../../socle_transverse/socle-transverse-interoperability/src/main/resources/xsd/solon/epp/WSepp.xsd http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons ../../../../../../../../../../../socle_transverse/socle-transverse-interoperability/src/main/resources/xsd/solon/epp/epp-tableReference.xsd http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref ../../../../../../../../../../socle-transverse-interoperability/src/main/resources/xsd/solon/epp/epp-tableReference.xsd ">
+
+	<p:action>AJOUTER</p:action>
+
+	<p:objet_container type="MEMBRE_GROUPE">
+		<p2:membre_groupe>
+			<p2:date_debut>2010-11-13</p2:date_debut>
+			<p2:id_mandat>Mandat1</p2:id_mandat>
+			<p2:id_acteur>Acteur1</p2:id_acteur>
+			<p2:id_organisme>Organisme1</p2:id_organisme>
+		</p2:membre_groupe>
+
+	</p:objet_container>
+
+</p:majTableRequest>

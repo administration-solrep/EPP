@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
+	version="2.1">
+
+
+	<bindings schemaLocation="../xsd/solon/epg/actes.xsd">
+		<schemaBindings>
+			<package name="fr.sword.xsd.solon.epg" />
+		</schemaBindings>
+	</bindings>
+
+	<bindings schemaLocation="../xsd/solon/epg/ar.xsd">
+		<schemaBindings>
+			<package name="fr.sword.xsd.solon.epg" />
+		</schemaBindings>
+	</bindings>
+
+	<bindings schemaLocation="../xsd/solon/epg/solon-commons.xsd">
+		<schemaBindings>
+			<package name="fr.sword.xsd.solon.epg" />
+		</schemaBindings>
+	</bindings>
+
+	<bindings schemaLocation="../xsd/solon/epg/WSepg.xsd">
+		<schemaBindings>
+			<package name="fr.sword.xsd.solon.epg" />
+		</schemaBindings>
+	</bindings>
+
+
+</bindings>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:envoyerReponsesRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSreponse"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSreponse ../../../../../../xsd/reponses/WSreponse.xsd ">
+	<p:reponseQuestion>
+		<p2:id_questions>
+			<p1:numero_question>0</p1:numero_question>
+			<p1:type>QE</p1:type>
+			<p1:source>AN</p1:source>
+			<p1:legislature>0</p1:legislature>
+		</p2:id_questions>
+		<p2:reponse>
+			<p2:ministre_reponse id="0">
+				<p1:titre_jo>p1:titre_jo</p1:titre_jo>
+				<p1:intitule_min>p1:intitule_min</p1:intitule_min>
+			</p2:ministre_reponse>
+			<p2:texte_reponse>p2:texte_reponse</p2:texte_reponse>
+		</p2:reponse>
+	</p:reponseQuestion>
+</p:envoyerReponsesRequest>

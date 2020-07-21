@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherCorbeilleResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp ../../../../../../../../xsd/solon/epp/WSepp.xsd ">
+	<p:statut>OK</p:statut>
+	<p:section>
+		<p1:id_section>SEC_0001</p1:id_section>
+		<p1:nom>Séance Procédure législative</p1:nom>
+		<p1:corbeille>
+			<p1:id_corbeille>COR_0001</p1:id_corbeille>
+			<p1:nom>Séance Reception</p1:nom>
+			<p1:nombre_evenement_courant>10</p1:nombre_evenement_courant>
+		</p1:corbeille>
+		<p1:corbeille>
+			<p1:id_corbeille>COR_0002</p1:id_corbeille>
+			<p1:nom>Séance Envoi</p1:nom>
+			<p1:nombre_evenement_courant>10</p1:nombre_evenement_courant>
+		</p1:corbeille>
+	</p:section>
+	<p:corbeille>
+		<p1:id_corbeille>COR_0003</p1:id_corbeille>
+		<p1:nom>Rapport au parlement</p1:nom>
+		<p1:nombre_evenement_courant>10</p1:nombre_evenement_courant>
+	</p:corbeille>
+	<p:corbeille>
+		<p1:id_corbeille>COR_0004</p1:id_corbeille>
+		<p1:nom>Organismes Extraparlementaires</p1:nom>
+		<p1:nombre_evenement_courant>10</p1:nombre_evenement_courant>
+	</p:corbeille>
+	<p:corbeille>
+		<p1:id_corbeille>COR_0005</p1:id_corbeille>
+		<p1:nom>Séances Divers</p1:nom>
+		<p1:nombre_evenement_courant>10</p1:nombre_evenement_courant>
+	</p:corbeille>
+	<p:corbeille>
+		<p1:id_corbeille>COR_0006</p1:id_corbeille>
+		<p1:nom>Insertion au JO-LD</p1:nom>
+		<p1:nombre_evenement_courant>10</p1:nombre_evenement_courant>
+	</p:corbeille>
+	<p:corbeille>
+		<p1:id_corbeille>COR_0007</p1:id_corbeille>
+		<p1:nom>Composition</p1:nom>
+		<p1:nombre_evenement_courant>10</p1:nombre_evenement_courant>
+	</p:corbeille>
+	<p:corbeille>
+		<p1:id_corbeille>COR_0008</p1:id_corbeille>
+		<p1:nom>Lois Consultation</p1:nom>
+		<p1:nombre_evenement_courant>10</p1:nombre_evenement_courant>
+	</p:corbeille>
+	<p:corbeille>
+		<p1:id_corbeille>COR_0009</p1:id_corbeille>
+		<p1:nom>Lois Envoi</p1:nom>
+		<p1:nombre_evenement_courant>10</p1:nombre_evenement_courant>
+	</p:corbeille>
+	<p:corbeille>
+		<p1:id_corbeille>COR_0010</p1:id_corbeille>
+		<p1:nom>Publication Consultation</p1:nom>
+
+		<p1:nombre_evenement_courant>10</p1:nombre_evenement_courant>
+	</p:corbeille>
+	<p:corbeille>
+		<p1:id_corbeille>COR_0011</p1:id_corbeille>
+		<p1:nom>Publication Envoi</p1:nom>
+
+		<p1:nombre_evenement_courant>10</p1:nombre_evenement_courant>
+	</p:corbeille>
+	<p:corbeille>
+		<p1:id_corbeille>COR_0012</p1:id_corbeille>
+		<p1:nom>Admninistration LEGIS</p1:nom>
+
+		<p1:nombre_evenement_courant>10</p1:nombre_evenement_courant>
+	</p:corbeille>
+	<p:corbeille>
+		<p1:id_corbeille>COR_0013</p1:id_corbeille>
+		<p1:nom>Évènements techniques</p1:nom>
+
+		<p1:nombre_evenement_courant>10</p1:nombre_evenement_courant>
+	</p:corbeille>
+	<p:corbeille>
+		<p1:id_corbeille>COR_0014</p1:id_corbeille>
+		<p1:nom>Tous les évènements</p1:nom>
+		<p1:nombre_evenement_courant>10</p1:nombre_evenement_courant>
+	</p:corbeille>
+
+</p:chercherCorbeilleResponse>

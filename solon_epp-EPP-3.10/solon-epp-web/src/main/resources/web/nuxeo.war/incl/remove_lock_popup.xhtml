@@ -1,0 +1,36 @@
+<div xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<rich:modalPanel id="remove_lock_popup"
+		onmaskclick="Richfaces.hideModalPanel('remove_lock_popup')"
+		autosized="true" showWhenRendered="true">
+		<f:facet name="header">
+			<h:outputText value="Communication verrouillée" />
+		</f:facet>
+		<f:facet name="controls">
+			<h:panelGroup>
+				<h:graphicImage value="/icons/action_delete_mini.gif"
+					id="hide_remove_lock_popup" />
+				<rich:componentControl for="remove_lock_popup"
+					attachTo="hide_remove_lock_popup" operation="hide" event="onclick" />
+			</h:panelGroup>
+		</f:facet>
+
+		<h:panelGroup id="remove_lock_popup_panel" layout="block"
+			style="width: 250px;">
+			<h:outputText value="La communication verrouillée par " />
+			<h:outputText value="#{evenementActions.messageLocker}" />
+			<br />
+			<br />
+			<h:commandButton styleClass="button" value="Forcer le déverrouillage"
+				action="#{evenementActions.forceUnlockCurrentMessage()}"
+				onclick="Richfaces.hideModalPanel('remove_lock_popup'); return true;" />
+			<h:commandButton styleClass="button" value="Annuler"
+				onclick="Richfaces.hideModalPanel('remove_lock_popup')" />
+		</h:panelGroup>
+	</rich:modalPanel>
+	#{evenementActions.setShowRemoveLockPopup(false)}
+</div>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue le service des messages. -->
+<component name="fr.dila.solonepp.core.service.MessageService">
+	<implementation class="fr.dila.solonepp.core.service.MessageServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.solonepp.api.service.MessageService" />
+	</service>
+</component>

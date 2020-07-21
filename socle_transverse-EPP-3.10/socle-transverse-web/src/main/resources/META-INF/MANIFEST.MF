@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: Socle transverse Web
+Bundle-SymbolicName: fr.dila.st.web;singleton:=true
+Bundle-Version: 1.0.0
+Nuxeo-Component: OSGI-INF/widgettype/st-widgettype-contrib.xml,
+ OSGI-INF/widgettype/feuille-route-widgettype-contrib.xml,
+ OSGI-INF/widget/st-widget-contrib.xml,
+ OSGI-INF/widget/feuille-route-widget-contrib.xml,
+ OSGI-INF/layout/feuille-route-layout-contrib.xml,
+ OSGI-INF/layout/etat-application-layout-contrib.xml,
+ OSGI-INF/layout/banniere-layout-contrib.xml,
+ OSGI-INF/layout/parametre-layout-contrib.xml,
+ OSGI-INF/ecmtype/st-ecm-type-contrib.xml,
+ OSGI-INF/contentview/parametre-contentviews-contrib.xml,
+ OSGI-INF/dila-theme-fragment-contrib.xml,
+ OSGI-INF/st-audit-platform-contrib.xml,
+ OSGI-INF/st-documentslists-contrib.xml

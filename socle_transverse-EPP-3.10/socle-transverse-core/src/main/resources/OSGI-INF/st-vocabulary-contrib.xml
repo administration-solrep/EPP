@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Cet composant contribue les vocabulaires du socle transverse. -->
+<component name="fr.dila.st.core.vocabulary" version="1.0.0">
+	<require>org.nuxeo.runtime.started</require>
+
+	<extension target="org.nuxeo.ecm.directory.sql.SQLDirectoryFactory"
+		point="directories">
+		<!-- *********************************************************************** 
+			Vocabulaires des feuilles de route *********************************************************************** -->
+		<!-- Types de conteneurs d'étapes de feuille route (surcharge de Nuxeo 
+			CM) -->
+		<directory name="execution_type">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<table>ecp-note-type</table>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<dataFile>vocabulary/execution_type.csv</dataFile>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+		</directory>
+
+		<!-- *********************************************************************** 
+			Vocabulaires organigramme *********************************************************************** -->
+		<!-- type d'unité structurelle -->
+		<directory name="type_unite_structurelle">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<table>VOC_TYPE_UNITE_STRUCTURELLE</table>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<dataFile>vocabulary/type_unite_structurelle.csv</dataFile>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+		</directory>
+
+		<!-- *********************************************************************** 
+			Vocabulaires requêteur *********************************************************************** -->
+		<directory name="boolean_requeteur_voc">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<table>VOC_BOOLEAN_REQUETEUR</table>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<dataFile>vocabulary/boolean_requeteur.csv</dataFile>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+		</directory>
+
+	</extension>
+
+</component>

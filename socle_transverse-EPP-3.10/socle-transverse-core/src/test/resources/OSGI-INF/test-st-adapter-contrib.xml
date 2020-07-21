@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<component name="fr.dila.st.core.test.adapterContrib">
+	<require>fr.dila.st.core.adapterContrib</require>
+	<extension target="org.nuxeo.ecm.core.api.DocumentAdapterService"
+		point="adapters">
+
+		<!-- *********************************************************************** 
+			Adapteurs pour les données utilisateur *********************************************************************** -->
+		<!-- Adaptateur des utilisateurs -->
+		<adapter class="fr.dila.st.api.user.STUser" factory="fr.dila.st.core.adapter.MockSTUserAdapterFactory" />
+
+	</extension>
+</component>

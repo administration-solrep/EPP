@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:envoyerMelRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd ">
+
+	<p:id_evenement>
+		<p2:id>EVT001</p2:id>
+		<p2:version majeur="2" mineur="1" />
+	</p:id_evenement>
+
+	<p:destinataire_mel>user1@example.com</p:destinataire_mel>
+	<p:copie_mel>user2@example.com</p:copie_mel>
+	<p:objet_mel>Lorem Ipsum</p:objet_mel>
+	<p:contenu_mel><![CDATA[Lorem Ipsum dolor sit amet]]></p:contenu_mel>
+	<p:inclus_piece_jointe>false</p:inclus_piece_jointe>
+
+
+</p:envoyerMelRequest>

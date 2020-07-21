@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="page title">
+		<h:outputText value="Corbeille" />
+	</ui:define>
+
+	<ui:define name="body">
+
+		<script type="text/javascript">
+  function confirmCancel() {
+      return confirm("#{messages['label.evenement.confim.cancel']}");
+  }
+  </script>
+		<style>
+#evenement_metadonnees input[type="text"] {
+	width: 500px;
+}
+
+#evenement_metadonnees textarea {
+	height: 200px;
+}
+</style>
+
+		<ui:include src="/incl/message_banner.xhtml" />
+		<div xmlns:h="http://java.sun.com/jsf/html"
+			xmlns:c="http://java.sun.com/jstl/core"
+			xmlns:ui="http://java.sun.com/jsf/facelets"
+			xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+			xmlns:nxl="http://nuxeo.org/nxforms/layout"
+			xmlns:f="http://java.sun.com/jsf/core"
+			xmlns:nxh="http://nuxeo.org/nxweb/html"
+			xmlns:nxdir="http://nuxeo.org/nxdirectory"
+			xmlns:nxu="http://nuxeo.org/nxweb/util"
+			xmlns:rich="http://richfaces.org/rich">
+
+			<h:form id="evenement_metadonnees" enctype="multipart/form-data">
+				<a4j:region id="documentViewRegion">
+
+					<a4j:outputPanel id="documentViewPanel">
+						<div style="clear: both;"></div>
+
+						<div class="foldableBox">
+							<h3 class="folded">
+								<a href="#nologo" onclick="return toggleBox(this)"> <h:outputText
+										value="Transmettre par mél." />
+								</a>
+							</h3>
+							<div class="boxBody">
+								<table width="100%" style="border-collapse: collapse;">
+									<tr>
+										<td style="width: 80%;">
+											<!-- layout de mail --> <nxl:layout
+												value="#{evenementActions.mailEvenement}" mode="edit"
+												name="transmettre_mail_evenement" />
+										</td>
+									</tr>
+								</table>
+							</div>
+							<div style="margin-left: 257px;">
+								<h:commandButton class="button"
+									value="#{messages['label.evenement.transmettre.envoyer']}"
+									action="#{evenementActions.transmettreParMailEnvoyer()}"
+									style="margin-right: 10px;" />
+								<h:commandButton class="button"
+									value="#{messages['label.evenement.transmettre.annuler']}"
+									action="#{evenementActions.transmettreParMailAnnuler()}"
+									onclick="return confirmCancel();" bypassUpdates="true"
+									immediate="true" />
+							</div>
+						</div>
+
+					</a4j:outputPanel>
+				</a4j:region>
+			</h:form>
+		</div>
+	</ui:define>
+</nxthemes:composition>

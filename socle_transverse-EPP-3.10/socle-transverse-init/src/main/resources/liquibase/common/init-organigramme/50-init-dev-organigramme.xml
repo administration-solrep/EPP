@@ -1,0 +1,157 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd"
+	logicalFilePath="init-dev-organigramme">
+
+	<!-- non utilisé dans solonepp -->
+	<changeSet id="gouvernement" author="system" context="(dev or qa) and (solonepg or reponses)">
+		<preConditions onFail="MARK_RAN">
+			<tableIsEmpty tableName="GOUVERNEMENT" />
+		</preConditions>
+		<loadData tableName="GOUVERNEMENT" file="liquibase/common/data/mock/organigramme/gouvernement.csv">
+			<column name="DELETED" type="NUMERIC" />
+			<column name="DATE_DEBUT" type="DATETIME" />
+			<column name="DATE_FIN" type="DATETIME" />
+			<column name="DATE_VERROU" type="DATETIME" />
+		</loadData>
+	</changeSet>
+
+	<changeSet id="epp-gouvernement" author="system" context="(dev or qa) and solonepp">
+		<preConditions onFail="MARK_RAN">
+			<tableIsEmpty tableName="GOUVERNEMENT" />
+		</preConditions>
+		<loadData tableName="GOUVERNEMENT" file="liquibase/common/data/mock/organigramme/gouvernement-epp.csv">
+			<column name="DATEDEBUT" type="DATETIME" />
+			<column name="DATEFIN" type="DATETIME" />
+		</loadData>
+	</changeSet>
+
+	<changeSet id="institution" author="system" context="dev or qa">
+		<preConditions onFail="MARK_RAN">
+			<tableIsEmpty tableName="INSTITUTION" />
+		</preConditions>
+		<loadData tableName="INSTITUTION" file="liquibase/common/data/mock/organigramme/institution.csv">
+			<column name="DELETED" type="NUMERIC" />
+			<column name="DATE_DEBUT" type="DATETIME" />
+			<column name="DATE_FIN" type="DATETIME" />
+			<column name="DATE_VERROU" type="DATETIME" />
+		</loadData>
+	</changeSet>
+
+	<changeSet id="entite" author="system" context="(dev or qa) and (solonepg or solonepp)">
+		<preConditions onFail="MARK_RAN">
+			<tableIsEmpty tableName="ENTITE" />
+		</preConditions>
+		<loadData tableName="ENTITE" file="liquibase/common/data/mock/organigramme/entite.csv">
+			<column name="DELETED" type="NUMERIC" />
+			<column name="DATE_DEBUT" type="DATETIME" />
+			<column name="DATE_FIN" type="DATETIME" />
+			<column name="DATE_VERROU" type="DATETIME" />
+			<column name="ORDRE" type="NUMERIC" />
+			<column name="SUIVI_ACTIVITE_NORMATIVE" type="NUMERIC" />
+		</loadData>
+	</changeSet>
+
+	<changeSet id="reponses-entite" author="system" context="(dev or qa) and reponses">
+		<preConditions onFail="MARK_RAN">
+			<tableIsEmpty tableName="ENTITE" />
+		</preConditions>
+		<loadData tableName="ENTITE" file="liquibase/common/data/mock/organigramme/entite-reponses.csv">
+			<column name="DELETED" type="NUMERIC" />
+			<column name="DATE_DEBUT" type="DATETIME" />
+			<column name="DATE_FIN" type="DATETIME" />
+			<column name="DATE_VERROU" type="DATETIME" />
+			<column name="ORDRE" type="NUMERIC" />
+			<column name="SUIVI_ACTIVITE_NORMATIVE" type="NUMERIC" />
+		</loadData>
+	</changeSet>
+
+	<changeSet id="epg-unite_structurelle" author="system" context="(dev or qa) and solonepg">
+		<preConditions onFail="MARK_RAN">
+			<tableIsEmpty tableName="UNITE_STRUCTURELLE" />
+		</preConditions>
+		<loadData tableName="UNITE_STRUCTURELLE" file="liquibase/common/data/mock/organigramme/unite_structurelle-epg.csv">
+			<column name="DELETED" type="NUMERIC" />
+			<column name="DATE_DEBUT" type="DATETIME" />
+			<column name="DATE_FIN" type="DATETIME" />
+			<column name="DATE_VERROU" type="DATETIME" />
+		</loadData>
+	</changeSet>
+
+	<changeSet id="epp-unite_structurelle" author="system" context="(dev or qa) and solonepp">
+		<preConditions onFail="MARK_RAN">
+			<tableIsEmpty tableName="UNITE_STRUCTURELLE" />
+		</preConditions>
+		<loadData tableName="UNITE_STRUCTURELLE" file="liquibase/common/data/mock/organigramme/unite_structurelle-epp.csv">
+			<column name="DELETED" type="NUMERIC" />
+			<column name="DATE_DEBUT" type="DATETIME" />
+			<column name="DATE_FIN" type="DATETIME" />
+			<column name="DATE_VERROU" type="DATETIME" />
+		</loadData>
+	</changeSet>
+
+	<changeSet id="reponses-unite_structurelle" author="system" context="(dev or qa) and reponses">
+		<preConditions onFail="MARK_RAN">
+			<tableIsEmpty tableName="UNITE_STRUCTURELLE" />
+		</preConditions>
+		<loadData tableName="UNITE_STRUCTURELLE" file="liquibase/common/data/mock/organigramme/unite_structurelle-reponses.csv">
+			<column name="DELETED" type="NUMERIC" />
+			<column name="DATE_DEBUT" type="DATETIME" />
+			<column name="DATE_FIN" type="DATETIME" />
+			<column name="DATE_VERROU" type="DATETIME" />
+		</loadData>
+	</changeSet>
+
+	<changeSet id="epg-poste" author="system" context="(dev or qa) and solonepg">
+		<preConditions onFail="MARK_RAN">
+			<tableIsEmpty tableName="POSTE" />
+		</preConditions>
+		<loadData tableName="POSTE" file="liquibase/common/data/mock/organigramme/poste-epg.csv">
+			<column name="DELETED" type="NUMERIC" />
+			<column name="DATE_DEBUT" type="DATETIME" />
+			<column name="DATE_FIN" type="DATETIME" />
+			<column name="DATE_VERROU" type="DATETIME" />
+			<column name="CHARGE_MISSION_SGG" type="NUMERIC" />
+			<column name="POSTE_BDC" type="NUMERIC" />
+			<column name="SUPERVISEUR_SGG" type="NUMERIC" />
+			<column name="CONSEILLER_PM" type="NUMERIC" />
+			<column name="POSTE_WS" type="NUMERIC" />
+		</loadData>
+	</changeSet>
+
+	<changeSet id="epp-poste" author="system" context="(dev or qa) and solonepp">
+		<preConditions onFail="MARK_RAN">
+			<tableIsEmpty tableName="POSTE" />
+		</preConditions>
+		<loadData tableName="POSTE" file="liquibase/common/data/mock/organigramme/poste-epp.csv">
+			<column name="DELETED" type="NUMERIC" />
+			<column name="DATE_DEBUT" type="DATETIME" />
+			<column name="DATE_FIN" type="DATETIME" />
+			<column name="DATE_VERROU" type="DATETIME" />
+			<column name="CHARGE_MISSION_SGG" type="NUMERIC" />
+			<column name="POSTE_BDC" type="NUMERIC" />
+			<column name="SUPERVISEUR_SGG" type="NUMERIC" />
+			<column name="CONSEILLER_PM" type="NUMERIC" />
+			<column name="POSTE_WS" type="NUMERIC" />
+		</loadData>
+	</changeSet>
+
+	<changeSet id="reponses-poste" author="system" context="(dev or qa) and reponses">
+		<preConditions onFail="MARK_RAN">
+			<tableIsEmpty tableName="POSTE" />
+		</preConditions>
+		<loadData tableName="POSTE" file="liquibase/common/data/mock/organigramme/poste-reponses.csv">
+			<column name="DELETED" type="NUMERIC" />
+			<column name="DATE_DEBUT" type="DATETIME" />
+			<column name="DATE_FIN" type="DATETIME" />
+			<column name="DATE_VERROU" type="DATETIME" />
+			<column name="CHARGE_MISSION_SGG" type="NUMERIC" />
+			<column name="POSTE_BDC" type="NUMERIC" />
+			<column name="SUPERVISEUR_SGG" type="NUMERIC" />
+			<column name="CONSEILLER_PM" type="NUMERIC" />
+			<column name="POSTE_WS" type="NUMERIC" />
+		</loadData>
+	</changeSet>
+
+</databaseChangeLog>

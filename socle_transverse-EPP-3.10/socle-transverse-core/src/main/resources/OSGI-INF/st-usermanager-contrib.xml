@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue le gestionnaire d'utilisateur du socle transverse. 
+	Le gestionnaire d'utilisateur instancie les Principal, on le surcharge pour 
+	ajouter les données spécifiques aux utilisateurs de l'application (ensemble 
+	des postes, ministères...) -->
+<component name="fr.dila.st.core.service.STUserManager">
+
+	<require>org.nuxeo.ecm.platform.usermanager.UserManagerImpl</require>
+
+</component>

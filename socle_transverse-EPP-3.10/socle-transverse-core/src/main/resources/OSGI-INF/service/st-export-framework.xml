@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue le service d'export du socle transverse -->
+<component name="fr.dila.st.core.service.STExportService">
+	<implementation class="fr.dila.st.core.service.STExportServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.STExportService" />
+	</service>
+</component>

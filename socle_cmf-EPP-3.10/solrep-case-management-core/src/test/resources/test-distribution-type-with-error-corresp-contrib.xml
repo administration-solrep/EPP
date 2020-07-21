@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.cm.service.test.distributionTypeError">
+
+  <extension target="fr.dila.cm.DistributionTypeService" point="distributionType">
+
+    <distributionType>
+      <name>TEST_ERROR</name>
+    </distributionType>
+
+  </extension>
+
+</component>

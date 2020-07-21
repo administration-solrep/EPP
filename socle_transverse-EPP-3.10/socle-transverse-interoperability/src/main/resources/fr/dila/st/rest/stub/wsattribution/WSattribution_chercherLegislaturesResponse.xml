@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherLegislaturesResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSattribution"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSattribution ../../../../../../xsd/reponses/WSattribution.xsd ">
+
+	<p:statut>OK</p:statut>
+
+	<p:legislatures id="0">
+		<p1:date_debut>2001-01-01</p1:date_debut>
+		<p1:date_fin>2011-12-31</p1:date_fin>
+	</p:legislatures>
+
+	<p:legislatures id="1">
+		<p1:date_debut>2012-01-01</p1:date_debut>
+	</p:legislatures>
+
+</p:chercherLegislaturesResponse>

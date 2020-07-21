@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: API
+Bundle-SymbolicName: fr.dila.st.webengine;singleton:=true
+Bundle-Version: 1.0.0
+Nuxeo-Require: org.nuxeo.ecm.webengine.core
+Nuxeo-WebModule: org.nuxeo.ecm.webengine.app.WebEngineModule

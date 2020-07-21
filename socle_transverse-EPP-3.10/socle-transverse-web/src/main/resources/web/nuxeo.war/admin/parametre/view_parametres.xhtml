@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxu="http://nuxeo.org/nxweb/util">
+
+	<ui:define name="page title">
+		<c:choose>
+			<c:when test="#{administrationActions.isAccessAuthorized()}">
+				<h:outputText
+					value="#{nuxeoApplicationName} - #{nxd:titleOrId(currentDocument)}" />
+			</c:when>
+			<c:otherwise>
+				<h:outputText
+					value="#{nuxeoApplicationName} - #{messages['command.espaceNonAutorise']}" />
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="body">
+		<c:if test="#{administrationActions.isAccessAuthorized()}">
+			<div>
+				<h:panelGroup rendered="#{! currentDocument.version}">
+					<h1>
+						<h:outputText value="#{nxd:titleOrId(currentDocument)}" />
+					</h1>
+				</h:panelGroup>
+
+				<ui:include src="/incl/message_banner.xhtml" />
+
+				<p class="currentDocumentDescription">
+					<h:outputText value="#{currentDocument.dublincore.description}" />
+				</p>
+
+				<div style="clear: both"></div>
+
+				<div class="tabsContent">
+
+					<nxu:set var="contentViewName" value="parametre_folder_content">
+						<nxu:set var="contentViewUnitSingle" value="paramètre"
+							cache="true">
+							<nxu:set var="contentViewUnit" value="paramètres" cache="true">
+								<ui:decorate template="/incl/content_view.xhtml" />
+							</nxu:set>
+						</nxu:set>
+					</nxu:set>
+
+				</div>
+
+				<div style="clear: both"></div>
+			</div>
+		</c:if>
+	</ui:define>
+</nxthemes:composition>

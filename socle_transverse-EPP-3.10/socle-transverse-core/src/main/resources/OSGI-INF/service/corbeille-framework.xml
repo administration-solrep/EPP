@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+
+<component name="fr.dila.st.core.service.CorbeilleService">
+	<implementation class="fr.dila.st.core.service.CorbeilleServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.CorbeilleService" />
+	</service>
+</component>

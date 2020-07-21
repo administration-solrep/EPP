@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:transmissionDatePublicationJORequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp ../../../../../../../../xsd/solon/epp/WSepp.xsd ">
+
+	<p:id_dossier>INPX00001X</p:id_dossier>
+	<p:date_publication>2018-09-10</p:date_publication>
+
+</p:transmissionDatePublicationJORequest>

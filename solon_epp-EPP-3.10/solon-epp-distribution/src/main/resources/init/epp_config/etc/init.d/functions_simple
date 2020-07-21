@@ -1,0 +1,7 @@
+success(){
+  echo "OK"
+}
+
+failure(){
+  echo "FAILED"
+}

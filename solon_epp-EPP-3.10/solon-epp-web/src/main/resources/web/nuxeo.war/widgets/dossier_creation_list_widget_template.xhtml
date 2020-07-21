@@ -1,0 +1,84 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<a4j:region renderRegionOnly="true" id="#{widget.id}_ajax_region">
+		<nxu:set var="widgetTypeMap"
+			value="#{widget.properties['widgetTypeMap']}">
+			<a4j:outputPanel id="#{widget.id}_indexPanel" ajaxRendered="false">
+				<!-- Champs d'entrée des données d'indexation -->
+				<c:if test="#{widget.mode == 'edit'}">
+					<table style="background: #eee;">
+						<tr>
+							<td>
+								<table cellpadding="0" cellspacing="0">
+									<c:forEach var="fieldWidget"
+										items="#{dossierCreationActions.getWidgetFields(widgetTypeMap)}"
+										varStatus="status">
+										<nxu:set var="fieldWidgetLabel"
+											value="label.content.creationwidget.#{fieldWidget}">
+											<tr>
+												<td style="font-weight: bold;"><h:outputText
+														value="#{messages[fieldWidgetLabel]}" /></td>
+												<td><h:inputText
+														id="#{widget.id}_indexLabel_#{status.index}"
+														value="#{dossierCreationActions.widgetMap[fieldWidget]}"
+														styleClass="dataInputText" style="width: 500px;"
+														onkeydown="if (event.keyCode == 13 || event.keyCode == 9) {return false;}">
+													</h:inputText></td>
+											</tr>
+										</nxu:set>
+									</c:forEach>
+								</table>
+							</td>
+							<td style="vertical-align: top;"><a4j:commandLink
+									action="#{dossierCreationActions.addWidgetItem()}"
+									reRender="#{widget.id}_indexPanel">
+									<h:graphicImage value="/icons/action_add.gif"
+										id="addTranspositionImage" />
+								</a4j:commandLink></td>
+						</tr>
+					</table>
+				</c:if>
+
+				<!-- Panneau d'affichage des données d'indexation -->
+				<c:forEach var="widgetItems"
+					items="#{dossierCreationActions.widgetList}"
+					rendered="#{not empty dossierCreationActions.widgetList}">
+					<table>
+						<tr>
+							<td>
+								<table style="margin: 5px;">
+									<c:forEach var="widgetItem" items="#{widgetItems}">
+										<tr>
+											<c:if test="#{widgetItem.key == 'titre'}">
+												<td
+													style="margin: 0; padding: 2px; text-align: center; font-size: 14px;"><h:outputText
+														value="#{widgetItem.value}" /></td>
+											</c:if>
+											<c:if test="#{widgetItem.key != 'titre'}">
+												<td style="margin: 0; padding: 2px; text-align: center;"><h:outputText
+														value="#{widgetItem.value}" /></td>
+											</c:if>
+										</tr>
+									</c:forEach>
+								</table>
+							</td>
+							<td><c:if test="#{widget.mode == 'edit'}">
+									<a4j:commandLink
+										action="#{dossierCreationActions.removeWidgetItem(widgetItems)}"
+										reRender="#{widget.id}_indexPanel">
+										<h:graphicImage value="/icons/action_delete_mini.gif" />
+									</a4j:commandLink>
+								</c:if></td>
+						</tr>
+					</table>
+				</c:forEach>
+			</a4j:outputPanel>
+		</nxu:set>
+	</a4j:region>
+</div>

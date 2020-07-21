@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant permet de contribuer les opérations du socle transverse. -->
+<component name="fr.dila.st.core.operation">
+
+	<extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
+		point="operations">
+		<!-- Opérations sur les documents -->
+		<operation class="fr.dila.st.core.operation.document.QueryUFNXQLOperation" />
+		<operation class="fr.dila.st.core.operation.utils.UpdateListOperation" />
+		<operation class="fr.dila.st.core.operation.organigramme.CheckDirectionsOperation" />
+		<operation class="fr.dila.st.core.operation.organigramme.CleanUsersOperation" />
+	</extension>
+</component>

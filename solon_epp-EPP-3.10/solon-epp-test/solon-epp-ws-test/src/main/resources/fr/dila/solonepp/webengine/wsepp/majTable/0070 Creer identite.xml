@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:majTableRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp"
+	xmlns:eppcommons="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp ../../../../../../../../../../../socle_transverse/socle-transverse-interoperability/src/main/resources/xsd/solon/epp/WSepp.xsd http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons ../../../../../../../../../../../socle_transverse/socle-transverse-interoperability/src/main/resources/xsd/solon/epp/epp-tableReference.xsd http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref ../../../../../../../../../../socle-transverse-interoperability/src/main/resources/xsd/solon/epp/epp-tableReference.xsd ">
+
+	<p:action>AJOUTER</p:action>
+
+	<p:objet_container type="IDENTITE">
+		<p2:identite>
+			<p2:civilite>M.</p2:civilite>
+			<p2:date_debut>2010-11-13</p2:date_debut>
+			<p2:date_naissance>1985-04-26</p2:date_naissance>
+			<p2:dept_naissance>63</p2:dept_naissance>
+			<p2:lieu_naissance>Clermont-Ferrand</p2:lieu_naissance>
+			<p2:nom>LY</p2:nom>
+			<p2:pays_naissance>France</p2:pays_naissance>
+			<p2:prenom>Sanh</p2:prenom>
+		</p2:identite>
+	</p:objet_container>
+
+</p:majTableRequest>

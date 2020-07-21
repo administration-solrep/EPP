@@ -1,0 +1,32 @@
+<widget name="NAME" type="incremental_smart_query_condition">
+	<labels>
+		<label mode="any">LABEL</label>
+	</labels>
+	<translated>true</translated>
+	<properties widgetMode="edit">
+		<property name="searchField">SEARCH_FIELD</property>
+		<property name="category">CATEGORY</property>
+		<propertyList name="availableOperators">
+			<value>LIKE</value>
+			<value>NOT LIKE</value>
+			<value>=</value>
+			<value>!=</value>
+			<value>IS NULL</value>
+			<value>IS NOT NULL</value>
+			<value>CONTAINS</value>
+			<value>NOT CONTAINS</value>
+		</propertyList>
+	</properties>
+	<subWidgets>
+		<widget name="fulltextWidget" type="text">
+			<fields>
+				<field>fulltextValue</field>
+			</fields>
+			<widgetModes>
+				<mode value="any">
+           <![CDATA[#{(not empty value.conditionalOperator and value.operatorArity == 0) ? 'hidden' : mode}]]>
+				</mode>
+			</widgetModes>
+		</widget>
+	</subWidgets>
+</widget>

@@ -1,0 +1,18 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<a4j:outputPanel ajaxRendered="true">
+		<h:selectOneRadio value="#{rechercheManager.currentZone}">
+			<f:selectItem itemLabel="Assemblée nationale" itemValue="AN" />
+			<f:selectItem itemLabel="Sénat" itemValue="Senat" />
+			<f:selectItem itemLabel="Ministère" itemValue="Ministere" />
+			<f:selectItem itemLabel="Tous" itemValue="Tous" />
+			<a4j:support reRender="requeteIndexRegion" event="onclick" />
+		</h:selectOneRadio>
+	</a4j:outputPanel>
+</div>

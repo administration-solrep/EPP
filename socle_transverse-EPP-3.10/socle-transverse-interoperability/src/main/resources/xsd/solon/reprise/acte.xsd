@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+	<xs:element name="ACTE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="NOR" type="xs:NCName" />
+				<xs:element name="N_DU_TEXTE" type="xs:string" />
+				<xs:element name="STATUT" type="xs:string" />
+				<xs:element name="TYPE_DACTE" type="xs:string" />
+				<xs:element name="OBJET_DE_LACTE" type="xs:string" />
+				<xs:element minOccurs="0" name="SUITE_OBJET" type="xs:string" />
+				<xs:element minOccurs="0" name="PERS_CONCERNEE" type="xs:string" />
+				<xs:element ref="MINISTERE_RESP" />
+				<xs:element minOccurs="0" ref="DIRECTION_RESP" />
+				<xs:element minOccurs="0" name="NOM_RESP" type="xs:string" />
+				<xs:element minOccurs="0" name="PRENOM_RESP" type="xs:string" />
+				<xs:element minOccurs="0" name="QUALITE_RESP" type="xs:string" />
+				<xs:element minOccurs="0" name="TEL_RESP" type="xs:string" />
+				<xs:element minOccurs="0" name="MEL_RESP" type="xs:string" />
+				<xs:element ref="CREE_PAR" />
+				<xs:element minOccurs="0" name="CATEG_ACTE" type="xs:string" />
+				<xs:element minOccurs="0" name="BASE_LEGALE" type="xs:string" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="LOI_DE_REFER"
+					type="xs:string" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="ORDO_DE_REFER"
+					type="xs:string" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="DIR_DE_REF"
+					type="xs:string" />
+				<xs:element minOccurs="0" name="SIGNATAIRE" type="xs:string" />
+				<xs:element minOccurs="0" name="CONSULT_OBLIG" type="xs:string" />
+				<xs:element minOccurs="0" ref="CHARGE_MISSION" />
+				<xs:element minOccurs="0" ref="CONSEILLER_PM" />
+				<xs:element minOccurs="0" name="DATE_SIGNA" type="xs:string" />
+				<xs:element minOccurs="0" name="DATE_SIGNA_PM" type="xs:string" />
+				<xs:element minOccurs="0" name="DATE_SIGNA_PR" type="xs:string" />
+				<xs:element minOccurs="0" name="DATE_PREVUE_PUB" type="xs:string" />
+				<xs:element minOccurs="0" name="DATE_PUBLICAT" type="xs:string" />
+				<xs:element minOccurs="0" name="TYPE_PUBLICAT" type="xs:string" />
+				<xs:element minOccurs="0" name="NOM_PUBLICATION" type="xs:string" />
+				<xs:element minOccurs="0" name="DECRET_NUMEROTE" type="xs:string" />
+				<xs:element minOccurs="0" name="MODE_PARUTION" type="xs:string" />
+				<xs:element minOccurs="0" name="DELAI_PUBLICAT" type="xs:string" />
+				<xs:element minOccurs="0" ref="SECTIONCE" />
+				<xs:element minOccurs="0" name="RAPPORTEUR_CE" type="xs:string" />
+				<xs:element minOccurs="0" name="DATE_TRANS_SECTION" type="xs:string" />
+				<xs:element minOccurs="0" name="DATE_SECTION" type="xs:string" />
+				<xs:element minOccurs="0" name="DATE_AG" type="xs:string" />
+				<xs:element minOccurs="0" name="PUB_CONJOINTE" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="MINISTERE_RESP">
+		<xs:complexType mixed="true">
+			<xs:attribute name="id" use="required" type="xs:integer" />
+			<xs:attribute name="type" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DIRECTION_RESP">
+		<xs:complexType mixed="true">
+			<xs:attribute name="id" use="required" type="xs:integer" />
+			<xs:attribute name="type" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CREE_PAR">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="id" use="required" type="xs:NCName" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CONSEILLER_PM">
+		<xs:complexType mixed="true">
+			<xs:attribute name="id" use="required" type="xs:NCName" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CHARGE_MISSION">
+		<xs:complexType mixed="true">
+			<xs:attribute name="id" use="required" type="xs:NCName" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SECTIONCE">
+		<xs:complexType mixed="true">
+			<xs:attribute name="id" use="required" type="xs:integer" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

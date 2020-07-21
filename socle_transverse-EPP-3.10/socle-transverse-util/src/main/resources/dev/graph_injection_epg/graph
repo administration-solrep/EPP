@@ -1,0 +1,12 @@
+#!/bin/sh
+source /home/admin/graph_injection_epg/scripts/vars.sh
+echo "-> Rassemblement des données de l'injection dans un format simple"
+${SCRIPT_DIR}/createRawData.sh $INJECTION_DATA_DIR  $RAW_DATA_DIR
+
+echo "-> Traitement des données extraites dans un format directement utilisable par gnuplot"
+${SCRIPT_DIR}/createPlotData.sh $RAW_DATA_DIR $PLOT_DATA_DIR 
+
+echo "-> Production des graphiques dans le répertoire graphe et des scripts gnuplot dans le répertoire plot_data"
+${SCRIPT_DIR}/createGraph.sh $PLOT_DATA_DIR $PLOT_DIR $GRAPH_DIR
+
+

@@ -1,0 +1,20 @@
+<f:subview id="popup_open_#{field_1}"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<c:if
+		test="#{!isRouteFolder and (!currentRouteLockedByCurrentUser or !isEditableRouteElement or !isEditableEtapeObligatoire)}">
+		<li><nxh:commandLink action="#{routingActions.viewStep()}"
+				id="open_action_#{field_1}">
+				<nxu:graphicImage value="/icons/view_doc.png" />
+				<h:outputText value=" #{messages['command.global.open']}" />
+				<f:param name="stepId" value="#{field_1}" />
+			</nxh:commandLink></li>
+	</c:if>
+
+</f:subview>

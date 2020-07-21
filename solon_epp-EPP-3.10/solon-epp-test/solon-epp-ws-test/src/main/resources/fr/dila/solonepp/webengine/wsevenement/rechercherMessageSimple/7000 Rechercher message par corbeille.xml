@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsevt:rechercherEvenementRequest
+	xmlns:wsevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:eppevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:eppcommons="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd">
+
+	<wsevt:par_critere>
+		<id_corbeille>CORBEILLE_GOUVERNEMENT_EMETTEUR</id_corbeille>
+		<etat_message_exclus>TRAITE</etat_message_exclus>
+		<etat_message_exclus>AR_RECU</etat_message_exclus>
+		<anciennete_message_exclus>20</anciennete_message_exclus>
+	</wsevt:par_critere>
+</wsevt:rechercherEvenementRequest>

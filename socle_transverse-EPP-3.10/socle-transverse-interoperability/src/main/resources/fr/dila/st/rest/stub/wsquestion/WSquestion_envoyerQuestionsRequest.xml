@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:envoyerQuestionsRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:p4="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion ../../../../../../xsd/reponses/WSquestion.xsd ">
+	<p:questionReponse>
+		<p2:question>
+
+			<p2:id_question>
+				<p1:numero_question>0</p1:numero_question>
+				<p1:type>QE</p1:type>
+				<p1:source>AN</p1:source>
+				<p1:legislature>13</p1:legislature>
+			</p2:id_question>
+
+			<p2:date_publication_jo>2001-01-01</p2:date_publication_jo>
+
+			<p2:page_jo>12</p2:page_jo>
+
+			<p2:ministre_depot id="0">
+				<p1:titre_jo>p1:titre_jo</p1:titre_jo>
+				<p1:intitule_min>p1:intitule_min</p1:intitule_min>
+			</p2:ministre_depot>
+
+			<p2:auteur id_mandat="0">
+
+				<p2:civilite>M.</p2:civilite>
+				<p2:prenom>p2:prenom</p2:prenom>
+				<p2:nom>p2:nom</p2:nom>
+				<p2:grp_pol>p2:grp_pol</p2:grp_pol>
+				<p2:circonscription>p2:circonscription</p2:circonscription>
+
+			</p2:auteur>
+
+			<p2:texte><![CDATA[Lorem Ipsum <som tag >]]></p2:texte>
+
+			<p2:etat_question>EN_COURS</p2:etat_question>
+
+			<p2:indexation_an>
+				<p2:rubrique>rubrique</p2:rubrique>
+				<p2:rubrique_ta>rubrique ta</p2:rubrique_ta>
+				<p2:analyse>analyse</p2:analyse>
+			</p2:indexation_an>
+
+		</p2:question>
+	</p:questionReponse>
+</p:envoyerQuestionsRequest>

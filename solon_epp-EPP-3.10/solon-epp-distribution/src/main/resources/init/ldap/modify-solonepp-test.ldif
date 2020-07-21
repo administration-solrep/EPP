@@ -1,0 +1,18 @@
+# -----------------------------
+# Ajout des paramètres des WS notification
+# -----------------------------
+#dn: cn=technique-an,ou=poste,ou=SolonEpp,dc=dila,dc=fr
+#changetype: modify
+#add: wsUrl
+#wsUrl: http://idlv-legis-demo.lyon-dev2.local:8080/solexdev/ws/solex/
+
+#dn: cn=technique-an,ou=poste,ou=SolonEpp,dc=dila,dc=fr
+#changetype: modify
+#add: wsUser
+#wsUser: ws-epp
+
+#dn: cn=technique-an,ou=poste,ou=SolonEpp,dc=dila,dc=fr
+#changetype: modify
+#add: wsPassword
+#wsPassword: ws-epp
+

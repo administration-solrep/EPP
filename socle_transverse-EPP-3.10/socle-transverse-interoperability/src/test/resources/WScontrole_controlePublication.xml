@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:controlePublicationRequest
+	date_publication="2001-01-01" no_publication="0" source="AN" type="QE"
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WScontrole"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p4="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WScontrole WScontrole.xsd ">
+	<p:QuestionReponse>
+		<p:question>
+			<p1:numero_question>p1:numero_question</p1:numero_question>
+			<p1:type>QE</p1:type>
+			<p1:page_jo>0</p1:page_jo>
+		</p:question>
+		<p:reponses>
+			<p2:numero_question>p2:numero_question</p2:numero_question>
+			<p2:type>QE</p2:type>
+			<p2:page_jo>0</p2:page_jo>
+			<p2:texte_reponse>p2:texte_reponse</p2:texte_reponse>
+		</p:reponses>
+	</p:QuestionReponse>
+</p:controlePublicationRequest>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue les types ECM du socle transverse. -->
+<component name="fr.dila.solonepp.web.ecmtype">
+	<extension target="org.nuxeo.ecm.platform.types.TypeService"
+		point="types">
+
+		<type id="ParametrageWsEpg">
+			<default-view>edit_document</default-view>
+			<edit-view>edit_document</edit-view>
+
+			<layouts mode="edit">
+				<layout>parametrageWsEpgLayout</layout>
+			</layouts>
+		</type>
+
+	</extension>
+</component>

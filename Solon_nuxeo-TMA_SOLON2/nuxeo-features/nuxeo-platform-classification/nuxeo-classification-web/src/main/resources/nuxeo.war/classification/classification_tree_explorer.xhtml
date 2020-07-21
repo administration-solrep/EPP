@@ -1,0 +1,84 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:c="http://java.sun.com/jstl/core"
+  xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+  xmlns:nxd="http://nuxeo.org/nxweb/document"
+  xmlns:nxh="http://nuxeo.org/nxweb/html"
+  xmlns:nxu="http://nuxeo.org/nxweb/util"
+  xmlns:rich="http://richfaces.org/rich"
+  class="menu">
+
+  <h:panelGroup rendered="#{!empty classificationRoots}">
+    <!-- Top of the rounded box -->
+    <div class="userMailboxes">
+    <div class="userMailboxesContent">
+    <h4><h:outputText value="#{messages['label.userClassificationRoots']}" />
+    </h4>
+
+    <h:form>
+      <dl>
+        <dd class="menuForm">
+          <h:selectOneListbox class="dataInputText" size="1"
+            value="#{classificationActions.currentClassificationRootId}"
+            onchange="Element.next(this).firstChild.click();">
+            <nxu:selectItems value="#{classificationRoots}"
+              var="root"
+              itemValue="#{root.id}"
+              itemLabel="#{root.dublincore.title}" />
+          </h:selectOneListbox>
+          <div style="display: none;">
+            <h:commandButton value="submit"
+              action="#{classificationActions.navigateToCurrentClassificationRoot}" />
+          </div>
+      </dd>
+      </dl>
+    </h:form>
+
+    <a4j:region renderRegionOnly="true">
+    <a4j:outputPanel ajaxRendered="true">
+    <a4j:form ajaxSubmit="true">
+      <dl>
+        <dd class="menuForm">
+          <h:panelGroup id="treeNav">
+
+            <rich:tree
+              icon="#{nodeState.isExpanded(rowKey)?nxd:iconExpandedPath(node.document):nxd:iconPath(node.document)}"
+              iconLeaf="#{nxd:iconPath(node.document)}"
+              iconExpanded="/icons/toggle_minus.png"
+              iconCollapsed="/icons/toggle_plus.png"
+              rowKeyVar="rowKey"
+              stateVar="nodeState">
+              <rich:recursiveTreeNodesAdaptor
+                roots="#{currentClassificationTree}"
+                nodes="#{node.children}"
+                var="node">
+                <rich:treeNode
+                  highlightedClass="treeNodeHighlightedClass"
+                  selectedClass="treeNodeSelectedClass">
+                  <nxd:restDocumentLink document="#{node.document}"
+                    styleClass="treeLink">
+                    <h:outputText value="#{nxd:titleOrId(node.document)}" />
+                  </nxd:restDocumentLink>
+                </rich:treeNode>
+              </rich:recursiveTreeNodesAdaptor>
+            </rich:tree>
+
+          </h:panelGroup>
+        </dd>
+      </dl>
+    </a4j:form>
+    </a4j:outputPanel>
+    </a4j:region>
+    
+    </div>
+    
+    <!-- Bottom of the rounded box -->
+
+    <p class="nobottomgap"></p>
+    </div>
+
+    <div class="bottom-left"></div>
+    <div class="bottom-right"></div>
+  </h:panelGroup>
+
+</div>

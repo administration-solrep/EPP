@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<component name="org.nuxeo.ecm.classification.web.tree">
+
+  <extension target="org.nuxeo.ecm.platform.treeManager" point="plugin">
+
+    <documentation>
+      Configuration for classification trees.
+
+      Filters documents not marked as hidden in navigation, and sorts by
+      dc:title property.
+    </documentation>
+
+    <treeManagerPlugin name="classification">
+      <excludedFacets>
+        <facet name="HiddenInNavigation" />
+      </excludedFacets>
+      <includedFacets>
+        <facet name="Folderish" />
+      </includedFacets>
+      <leafFilterClass>
+        org.nuxeo.ecm.webapp.tree.BigFolderLeafFilter
+      </leafFilterClass>
+      <sortPropertyPath>dc:title</sortPropertyPath>
+      <queryModel>CLASSIFICATION_ROOTS</queryModel>
+    </treeManagerPlugin>
+
+  </extension>
+
+</component>

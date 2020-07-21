@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wsq:envoyerQuestionsRequest
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:qu="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:rep="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:wsq="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion"
+	xmlns:ns9="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSrecherche"
+	xmlns:ns10="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSnotification">
+	<wsq:questionReponse>
+		<qu:question>
+			<qu:id_question>
+				<numero_question>36001</numero_question>
+				<type>QE</type>
+				<source>AN</source>
+				<legislature>0</legislature>
+			</qu:id_question>
+			<qu:date_publication_jo>2008-11-25</qu:date_publication_jo>
+			<qu:page_jo>10107</qu:page_jo>
+			<qu:ministre_depot id="17">
+				<titre_jo>Éducation nationale</titre_jo>
+				<intitule_min>M. le ministre de l'éducation nationale</intitule_min>
+			</qu:ministre_depot>
+			<qu:auteur id_mandat="386399">
+				<qu:civilite>M.</qu:civilite>
+				<qu:prenom>Philippe Armand</qu:prenom>
+				<qu:nom>Martin</qu:nom>
+				<qu:grp_pol>Non connu</qu:grp_pol>
+			</qu:auteur>
+			<qu:texte>M. Philippe Armand Martin attire l'attention de M. le
+				ministre de l'éducation nationale sur la situation budgétaire des
+				professeurs documentalistes. M. le Président de la République a tenu
+				à ce que tous les Français puissent, dans leurs fonctions, s'ils le
+				souhaitent, bénéficier d'heures supplémentaires dans des conditions
+				très attractives. Les personnels enseignants de l'éducation
+				nationale, tous corps confondus, peuvent accéder à cette
+				opportunité. Or une seule catégorie d'enseignants est exclue de
+				cette possibilité : il s'agit des professeurs documentalistes des
+				lycées et collèges, recrutés par voie de CAPES, et dont la gestion
+				de carrière est la même que celle des certifiés des autres
+				disciplines. Alors que leurs collègues peuvent prétendre à
+				l'obtention d'heures supplémentaires correspondant à leur mode de
+				recrutement et au statut afférent, les professeurs documentalistes
+				n'y ont pas droit. Associés à un même projet pédagogique, à
+				l'occasion de l'accompagnement scolaire ou lors d'une intervention
+				dans le cadre de la formation continue du personnel enseignant, les
+				professeurs documentalistes ne sont pas rémunérés ou, quand ils le
+				sont, à des taux très inférieurs à ceux des autres certifiés.
+				Certes, devant une telle aberration et en signe de reconnaissance
+				pour la qualité du travail réalisé par ces personnels, certains
+				chefs d'établissements ont adopté, un temps, des solutions de «
+				contournement » (avec, par exemple, l'attribution d'heures
+				péri-éducatives). Dans la « lettre flash » du ministère de
+				l'éducation nationale (septembre 2008), « l'engagement a été pris
+				pour les certifiés de documentation qui participent à
+				l'accompagnement éducatif de porter dès la rentrée la rémunération à
+				hauteur de l'heure supplémentaire effective d'enseignement » ; cet
+				engagement n'est, à ce jour, pas entré en application. Mais plus que
+				de porter « à la hauteur de l'HSE effective » une rémunération qui
+				ne s'appliquerait qu'aux heures d'accompagnement éducatif, il
+				importe de généraliser ce principe à l'ensemble des activités
+				pédagogiques exercées par les professeurs documentalistes en dehors
+				de leur horaire statutaire. Autrement, on le constate au quotidien,
+				les palliatifs administratifs entraînent des disparités
+				inacceptables d'une académie à l'autre, d'un établissement à
+				l'autre. De plus, ces situations d'exclusion et ces expédients sont
+				vécus par ces enseignants comme insultants, en regard de leur statut
+				et de la qualité du travail effectué. C'est pourquoi il souhaiterait
+				connaître les mesures envisagées qui permettront aux professeurs
+				documentalistes d'être considérés comme leurs collègues et de
+				bénéficier des mêmes conditions de rétribution pour le travail
+				réalisé dans le cadre de leurs activités de professeur certifié.</qu:texte>
+			<qu:etat_question>EN_COURS</qu:etat_question>
+			<qu:indexation_an>
+				<qu:rubrique>enseignement secondaire : personnel</qu:rubrique>
+				<qu:rubrique_ta>professeurs documentalistes</qu:rubrique_ta>
+				<qu:analyse>rémunérations</qu:analyse>
+			</qu:indexation_an>
+		</qu:question>
+		<qu:reponse>
+			<rep:ministre_reponse id="17">
+				<titre_jo>Éducation nationale</titre_jo>
+				<intitule_min>M. le ministre de l'éducation nationale</intitule_min>
+			</rep:ministre_reponse>
+			<rep:texte_reponse>
+				Le ministère a estimé que le texte s’appliquait aux fournisseurs
+				étrangers, « sous réserve de l’appréciation souveraine des
+				tribunaux», ainsi qu’aux fournisseurs intra-groupe.Concernant les
+				sociétés soumises à l’une des procédures amiables ou collectives
+				prévues au livre VI du code de commerce, les dispositions relatives
+				aux délais de paiement doivent s’appliquer mais sous réserve des
+				dérogations prévues dans ce même livre VI.
+			</rep:texte_reponse>
+		</qu:reponse>
+	</wsq:questionReponse>
+</wsq:envoyerQuestionsRequest>

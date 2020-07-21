@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsevt:rechercherEvenementRequest
+	xmlns:wsevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:eppevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:eppcommons="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd">
+
+	<wsevt:par_critere>
+		<eppevt:id_evenement></eppevt:id_evenement>
+		<eppevt:objet>TEST_PAGINATION</eppevt:objet>
+	</wsevt:par_critere>
+	<wsevt:pagination>
+		<eppcommons:nombre_element_par_page>2</eppcommons:nombre_element_par_page>
+		<eppcommons:numero_page>0</eppcommons:numero_page>
+	</wsevt:pagination>
+</wsevt:rechercherEvenementRequest>

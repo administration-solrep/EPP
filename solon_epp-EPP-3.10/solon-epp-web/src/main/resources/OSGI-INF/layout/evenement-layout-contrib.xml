@@ -1,0 +1,28 @@
+<component name="fr.dila.solonepp.web.layout.evenement">
+	<require>com.nuxeo.cm.table.layout</require>
+
+	<!-- evenement layout -->
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="layouts">
+
+		<!-- layout transmettre par mail evenement -->
+		<layout name="transmettre_mail_evenement">
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml
+				</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>objet_mail</widget>
+				</row>
+				<row>
+					<widget>destinataire_mail</widget>
+				</row>
+				<row>
+					<widget>message_mail</widget>
+				</row>
+			</rows>
+		</layout>
+
+	</extension>
+</component>

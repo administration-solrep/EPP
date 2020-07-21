@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>fr.dila.solonepp</groupId>
+		<artifactId>solon-epp-parent</artifactId>
+		<version>EPP-3.10.2</version>
+	</parent>
+
+	<artifactId>solon-epp-web</artifactId>
+	<name>SOLON EPP Web</name>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<!-- Dépendances au socle transverse -->
+		<dependency>
+			<groupId>fr.dila.st</groupId>
+			<artifactId>socle-transverse-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.st</groupId>
+			<artifactId>socle-transverse-web</artifactId>
+		</dependency>
+
+		<!-- Dépendances à SOLON EPP -->
+		<dependency>
+			<groupId>fr.dila.solonepp</groupId>
+			<artifactId>solon-epp-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.solonepp</groupId>
+			<artifactId>solon-epp-core</artifactId>
+		</dependency>
+
+		<!-- Dépendances à Nuxeo -->
+		<dependency>
+			<groupId>fr.dila.cm</groupId>
+			<artifactId>solrep-case-management-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.cm</groupId>
+			<artifactId>solrep-case-management-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.ecm.platform</groupId>
+			<artifactId>solrep-platform-document-routing-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.ecm.platform</groupId>
+			<artifactId>solrep-platform-document-routing-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.nuxeo.ecm.platform</groupId>
+			<artifactId>nuxeo-platform-search-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.nuxeo.ecm.platform</groupId>
+			<artifactId>nuxeo-platform-ui-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<artifactId>nuxeo-core-api</artifactId>
+			<groupId>org.nuxeo.ecm.core</groupId>
+		</dependency>
+
+		<dependency>
+			<artifactId>nuxeo-core-event</artifactId>
+			<groupId>org.nuxeo.ecm.core</groupId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.nuxeo.ecm.platform</groupId>
+			<artifactId>nuxeo-platform-syndication</artifactId>
+			<version>${nuxeo.ep.version}</version>
+		</dependency>
+
+		<!-- Dépendances externes -->
+		<dependency>
+			<groupId>org.richfaces</groupId>
+			<artifactId>richfaces-ui-sword</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.richfaces</groupId>
+			<artifactId>richfaces-impl-sword</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.richfaces.framework</groupId>
+			<artifactId>richfaces-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>jboss</groupId>
+			<artifactId>jboss-annotations-ejb3</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>ejb</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>ejb-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+		</dependency>
+
+		<!-- Dépendances de Test -->
+		<dependency>
+			<groupId>org.nuxeo.ecm.core</groupId>
+			<artifactId>nuxeo-core-storage-sql-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.cm</groupId>
+			<artifactId>solrep-case-management-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+</project>

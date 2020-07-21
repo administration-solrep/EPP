@@ -1,0 +1,112 @@
+<div xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:nxh="http://nuxeo.org/nxweb/html">
+
+	<a4j:region id="editFileRegion">
+		<rich:modalPanel id="editFilePanel" autosized="true">
+			<div>
+				<f:facet name="header">
+					<h:outputText value="Ajouter un document" />
+				</f:facet>
+			</div>
+			<h:form id="editFileForm">
+				<a4j:queue requestDelay="500" sizeExceededBehavior="dropNew"
+					ignoreDupResponses="true" size="10" id="editFileQueue"
+					name="inputeditFileQueue" timeout="5000" />
+				<div>
+					<!-- file input -->
+					<!--
+					La région permet de limiter les modifications apportées par le widget d'upload.
+					En particulier, il mettait à zéro (car hors formulaire) le champ rubrique lors du déroulement
+					de l'upload.
+					
+					Le composant errorName qui permet l'affichage du message d'erreur doit rester à l'intérieur
+					de la région pour pouvoir être mise à jour.
+					-->
+					<a4j:region id="fileUploadRegion" renderRegionOnly="true">
+						<rich:fileUpload listHeight="120"
+							fileUploadListener="#{fileTreeManagerActions.fileUploadListener}"
+							maxFilesQuantity="#{fileTreeManagerActions.uploadsAvailable}"
+							id="uploadParapheurFiles" doneLabel="Téléchargement effectué"
+							clearAllControlLabel="Supprimer" immediateUpload="true"
+							addControlLabel="Ajouter Fichier" clearControlLabel="Supprimer"
+							allowFlash="false">
+
+							<a4j:support event="onclear">
+								<a4j:actionparam name="fname" noEscape="true"
+									value="(event.memo.entry)?event.memo.entry.fileName:'' "
+									assignTo="#{fileTreeManagerActions.fileName}"
+									actionListener="#{fileTreeManagerActions.clearUploadData}" />
+							</a4j:support>
+
+							<a4j:support event="onuploadcomplete" eventsQueue="editFileQueue"
+								reRender="errorName" />
+						</rich:fileUpload>
+
+						<div class="popupDiv">
+							<h:outputText class="msgError" id="errorName"
+								value="#{fileTreeManagerActions.errorName}" />
+						</div>
+					</a4j:region>
+
+					<!--
+					IMPORTANT: les limitToList sont nécessaires pour éviter de faire un reset de tous les éléments
+					en ajaxRendered="true" qui sont des éléments de formulaire en dehors de ce formulaire.
+					-->
+					<!-- button ajout document -->
+					<div class="popupDiv">
+						<a4j:commandLink
+							action="#{fileTreeManagerActions.ajoutDocument()}"
+							eventsQueue="editFileQueue" id="editFileButtonImage"
+							reRender="pieceJointePanel, editFilePanel" ajaxSingle="true"
+							limitToList="true">
+							<rich:componentControl for="editFilePanel" operation="hide"
+								event="onclick" />
+							<h:graphicImage height="24" width="24" url="/img/icons/check.png"
+								alt="Valider" />
+						</a4j:commandLink>
+						<a4j:commandLink
+							action="#{fileTreeManagerActions.ajoutDocument()}"
+							eventsQueue="editFileQueue"
+							reRender="pieceJointePanel, editFilePanel" ajaxSingle="true"
+							limitToList="true">
+							<rich:componentControl for="editFilePanel" operation="hide"
+								event="onclick" />
+							<h:outputText value="Valider" />
+						</a4j:commandLink>
+					</div>
+
+					<!-- button close -->
+					<div class="popupDiv">
+						<a4j:commandLink
+							action="#{fileTreeManagerActions.resetProperties()}"
+							id="annulerParapheurFileCreationImage"
+							eventsQueue="editFileQueue"
+							reRender="pieceJointePanel, editFilePanel" ajaxSingle="true"
+							limitToList="true">
+							<rich:componentControl for="editFilePanel" operation="hide"
+								event="onclick" />
+							<h:graphicImage height="24" width="24"
+								url="/img/icons/delete.png" alt="Annuler" />
+						</a4j:commandLink>
+						<a4j:commandLink
+							action="#{fileTreeManagerActions.resetProperties()}"
+							id="annulerParapheurFileCreationText" eventsQueue="editFileQueue"
+							reRender="pieceJointePanel, editFilePanel" ajaxSingle="true"
+							limitToList="true">
+							<rich:componentControl for="editFilePanel" operation="hide"
+								event="onclick" />
+							<h:outputText value="Annuler" />
+						</a4j:commandLink>
+					</div>
+				</div>
+			</h:form>
+		</rich:modalPanel>
+	</a4j:region>
+</div>

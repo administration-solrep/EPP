@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/resources/OSGI-INF
+END
+doctype-contrib.xml
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/resources/OSGI-INF/doctype-contrib.xml
+END
+report-service.xml
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/resources/OSGI-INF/report-service.xml
+END
+life-cycle-contrib.xml
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/resources/OSGI-INF/life-cycle-contrib.xml
+END
+adapter-contrib.xml
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/resources/OSGI-INF/adapter-contrib.xml
+END
+schema-contrib.xml
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/resources/OSGI-INF/schema-contrib.xml
+END
+event-contrib.xml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/resources/OSGI-INF/event-contrib.xml
+END

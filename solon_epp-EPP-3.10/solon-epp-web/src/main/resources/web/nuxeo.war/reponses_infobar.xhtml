@@ -1,0 +1,27 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:nxh="http://nuxeo.org/nxweb/html" class="reponseInfoBar">
+	<style>
+.reponseInfoBar {
+	float: right;
+}
+</style>
+
+
+	<span class="infos"> <nxu:set var="infos"
+			value="#{webActions.getActionsList('DOSSIER_TOPBAR_INFOS')}"
+			cache="true">
+			<nxu:dataList layout="simple" var="info" value="#{infos}"
+				rowIndexVar="row" rowCountVar="rowCount" id="dossierInfosTable">
+				<h:graphicImage value="#{info.getIcon()}" alt="#{info.getLabel()}"
+					title="#{info.getLabel()}" />
+			</nxu:dataList>
+		</nxu:set>
+	</span>
+</div>

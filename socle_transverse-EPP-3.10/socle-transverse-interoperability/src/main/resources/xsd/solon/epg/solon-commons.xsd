@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"
+	elementFormDefault="qualified"
+	xmlns:ac="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes">
+	<!-- ====================================== -->
+	<!-- Imports -->
+	<!-- ====================================== -->
+	<xs:import schemaLocation="actes.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes" />
+
+
+
+	<!-- ====================================== -->
+	<!-- Simple types -->
+	<!-- ====================================== -->
+
+	<xs:simpleType name="NorType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\w{4}\d{7}\w"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EntiteType">
+		<xs:annotation>
+			<xs:documentation>TODO : REGEX 3 lettres majuscules
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\w{3}"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="DirectionType">
+		<xs:annotation>
+			<xs:documentation>TODO : REGEX 1 lettre majuscules</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\w{1}"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="AnneeType">
+		<xs:restriction base="xs:int">
+			<xs:pattern value="\d{4}"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EnFonction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ALL" />
+			<xs:enumeration value="TRUE" />
+			<xs:enumeration value="FALSE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Boolean">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OUI" />
+			<xs:enumeration value="NON" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Operateur">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ET" />
+			<xs:enumeration value="OU" />
+			<xs:enumeration value="NON" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- action de validation pour l'avis du Conseil d'Etat -->
+	<xs:simpleType name="TypeValidationCe">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AVIS_RENDU" />
+			<xs:enumeration value="RETRAIT" />
+			<xs:enumeration value="DESSAISISSEMENT" />
+			<xs:enumeration value="RENVOI" />
+			<xs:enumeration value="REJET" />
+			<xs:enumeration value="AVIS_RECTIFICATIF" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TypeModification">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="REATTRIBUTION" />
+			<xs:enumeration value="RETRAIT_DOSSIER" />
+			<xs:enumeration value="PIECE_COMPLEMENTAIRE" />
+			<xs:enumeration value="SAISINE_RECTIFICATIVE" />
+			<xs:enumeration value="PUBLICATION" />
+			<xs:enumeration value="PRIORISATION" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="StatutActe">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="INITIE" />
+			<xs:enumeration value="LANCE" />
+			<xs:enumeration value="NOR_ATTRIBUE" />
+			<xs:enumeration value="PUBLIE" />
+			<xs:enumeration value="TERMINE_SANS_PUBLICATION" />
+			<xs:enumeration value="ABANDONNE" />
+			<xs:enumeration value="ARCHIVE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- ====================================== -->
+	<!-- Complex types -->
+	<!-- ====================================== -->
+
+	<xs:complexType name="Acteur">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1"></xs:element>
+			<xs:element name="nom" type="xs:string" minOccurs="1"
+				maxOccurs="1"></xs:element>
+			<xs:element name="prenom" type="xs:string" minOccurs="1"
+				maxOccurs="1"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Ministere">
+		<xs:attribute name="id" use="required" />
+		<xs:attribute name="libelle" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Poste">
+		<xs:attribute name="id" use="required" />
+		<xs:attribute name="libelle" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Utilisateur">
+		<xs:attribute name="id" use="required" />
+		<xs:attribute name="prenom" />
+		<xs:attribute name="nom" />
+	</xs:complexType>
+
+
+	<xs:complexType name="ListeFichiers">
+		<xs:annotation>
+			<xs:documentation>
+				Essentiellement il s'agit d'une liste de fichiers.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fichier" type="Fichier" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Fichier">
+		<xs:sequence>
+			<xs:element name="nom" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="mime_type" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="taille_fichier" type="xs:int" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="contenu" type="xs:base64Binary"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="cheminFichier" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="version" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="ordre" type="xs:int" use="optional" />
+	</xs:complexType>
+
+
+	<!-- ====================== -->
+	<!-- Dossier -->
+	<!-- ====================== -->
+	<xs:complexType name="DossierEpg">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="amnistie" type="ac:Amnistie" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="arrete_ministeriel" type="ac:ArreteMinisteriel"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="arrete_interministeriel" type="ac:ArreteInterministeriel"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="arrete_pm" type="ac:ArretePM"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="arrete_pr" type="ac:ArretePR"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="arrete_ce" type="ac:ArreteCE"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="avenant" type="ac:Avenant" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="avis" type="ac:Avis" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="circulaire" type="ac:Circulaire"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="citation" type="ac:Citation" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="communique" type="ac:Communique"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="convention" type="ac:Convention"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="decision" type="ac:Decision" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="decret_ce" type="ac:DecretCE"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="decret_ce_art_37" type="ac:DecretCEart37"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="decret_ce_cm" type="ac:DecretCECM"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="decret_cm" type="ac:DecretCM"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="decret_pr" type="ac:DecretPR"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="decret_publication_traite_ou_accord"
+					type="ac:DecretPublicationDeTraiteOuAccord" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="decret_simple" type="ac:DecretSimple"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="decret_pr_ce" type="ac:DecretPRCE"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="deliberation" type="ac:Deliberation"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="demande_avis_ce" type="ac:DemandeAvisCE"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="divers" type="ac:Divers" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="exequatur" type="ac:Exequatur"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="instruction" type="ac:Instruction"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="liste" type="ac:Liste" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="loi" type="ac:Loi" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="loi_art_53_constitution" type="ac:LoiArt53Constitution"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="loi_constitutionnelle" type="ac:LoiConstitutionnelle"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="loi_organique" type="ac:LoiOrganique"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="note" type="ac:Note" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="ordonnance" type="ac:Ordonnance"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="rapport" type="ac:Rapport" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="rectificatif" type="ac:Rectificatif"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="tableau" type="ac:Tableau" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="arrete_ministeriel_ind" type="ac:ArreteMinisterielIndividuel"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="arrete_interministeriel_ind" type="ac:ArreteInterministerielIndividuel"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="arrete_pm_ind" type="ac:ArretePMIndividuel"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="arrete_pr_ind" type="ac:ArretePRIndividuel"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="decret_ce_ind" type="ac:DecretCEIndividuel"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="decret_ce_cm_ind" type="ac:DecretCECMIndividuel"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="decret_cm_ind" type="ac:DecretCMIndividuel"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="decret_pr_ind" type="ac:DecretPRIndividuel"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="decret_simple_ind" type="ac:DecretSimpleIndividuel"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="informations_parlementaires" type="ac:InformationsParlementaires"
+					minOccurs="1" maxOccurs="1" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DossierEpgWithFile">
+		<xs:sequence>
+			<xs:element name="DossierEpg" type="DossierEpg" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="Parapheur" type="ListeFichiers"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="FondDossier" type="ListeFichiers"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DossierModification">
+		<xs:sequence>
+			<xs:element name="type_modification" type="TypeModification" minOccurs="1" maxOccurs="1" />
+			<xs:element name="numero_isa" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="numero_nor" type="NorType" minOccurs="1" maxOccurs="1" />
+			<xs:element name="priorite" type="xs:integer" minOccurs="0" maxOccurs="1" />
+			<xs:element name="date_modification" type="xs:dateTime" minOccurs="0" maxOccurs="1" />
+			<xs:choice>
+				<!-- Type REATTRIBUTION -->
+				<xs:element name="nouveau_nor" type="NorType" maxOccurs="1" minOccurs="1" />
+				
+				<!-- Type PIECE_COMPLEMENTAIRE ou SAISINE_RECTIFICATIVE ou RETRAIT_DOSSIER -->
+				<xs:sequence>
+					<xs:element name="fichier" type="Fichier" minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+				
+				<!-- Type PUBLICATION -->
+				<xs:element name="retour_publication" type="InformationPublication"/>
+			</xs:choice>
+			
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="InformationPublication">
+		<xs:sequence>
+			<xs:element name="date_parution" type="xs:date" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="titre_officiel" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="numero_texte" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="page" type="xs:int" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>

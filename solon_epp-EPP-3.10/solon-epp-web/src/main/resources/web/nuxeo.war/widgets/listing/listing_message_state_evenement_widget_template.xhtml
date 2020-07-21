@@ -1,0 +1,27 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<c:set var="key" value="label.epp.evenement.etat.#{field_0}" />
+	<c:if test="#{field_0 eq 'ANNULER'}">
+		<h:graphicImage value="/img/icons/document_delete.png"
+			alt="#{field_0}" title="#{messages[key]}" />
+	</c:if>
+	<c:if
+		test="#{field_0 eq 'EN_ATTENTE_VALIDATION' or field_0 eq 'EN_ATTENTE_VALIDATION_ANNULATION'}">
+		<h:graphicImage value="/img/icons/document_time.png" alt="#{field_0}"
+			title="#{messages[key]}" />
+	</c:if>
+	<c:if test="#{field_0 eq 'EN_INSTANCE'}">
+		<h:graphicImage value="/img/icons/document_ok.png" alt="#{field_0}"
+			title="#{messages[key]}" />
+	</c:if>
+	<c:if test="#{field_0 eq 'PUBLIE'}">
+		<h:graphicImage value="/img/icons/document_out.png" alt="#{field_0}"
+			title="#{messages[key]}" />
+	</c:if>
+	<c:if test="#{field_0 eq 'BROUILLON'}">
+		<h:graphicImage value="/img/icons/document_dirty.png" alt="#{field_0}"
+			title="#{messages[key]}" />
+	</c:if>
+</f:subview>

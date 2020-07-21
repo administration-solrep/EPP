@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: Case Management Test
+Bundle-SymbolicName: fr.dila.cm.test;singleton=true
+Bundle-Version: 1.0.0
+Nuxeo-Component: OSGI-INF/test-sql-directories-contrib.xml,
+  OSGI-INF/LoginService.xml

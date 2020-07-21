@@ -1,0 +1,68 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:c="http://java.sun.com/jstl/core"
+  xmlns:nxd="http://nuxeo.org/nxweb/document"
+  xmlns:nxu="http://nuxeo.org/nxweb/util">
+
+  <h2><h:outputText value="#{messages['label.classification.currentClassifications']}" /></h2>
+
+  <nxu:methodResult name="provider" value="#{resultsProvidersCache.get('CURRENT_DOCUMENT_CLASSIFICATIONS')}" >
+
+    <h:form id="#{currentDocumentClassificationsSelection.name}">
+
+      <ui:decorate template="/classification/classified_documents_table.xhtml">
+        <ui:param name="documents" value="#{currentDocumentClassificationsSelection}" />
+        <ui:param name="showCheckboxes" value="#{nxd:hasPermission(currentDocument, 'Classify')}" />
+        <ui:param name="provider" value="#{provider}" />
+        <ui:param name="providerName" value="CURRENT_DOCUMENT_CLASSIFICATIONS" />
+        <ui:param name="listName" value="CURRENT_DOCUMENT_CLASSIFICATIONS_SELECTION" />
+        <ui:define name="empty_folder_label">
+          <h:outputText value="#{messages['label.classification.noClassifications']}"
+            rendered="#{documents.rowCount == 0}" />
+        </ui:define>
+        <ui:define name="buttons">
+          <f:subview rendered="#{!empty currentDocumentClassificationsSelection.rows}">
+
+            <script type="text/javascript">
+              function confirmUnclassify() {
+                  return confirm("#{messages['label.classification.confirmUnclassify']}");
+              }
+            </script>
+            <h:commandButton rendered="#{nxd:hasPermission(currentDocument, 'Classify')}"
+              styleClass="button" action="#{classificationActions.unclassify}"
+              onclick="if( !confirmUnclassify() ) return false;"
+              value="#{messages['label.classification.unclassify']}" />
+          </f:subview>
+        </ui:define>
+        <ui:define name="syndication_buttons" />
+      </ui:decorate>
+
+    </h:form>
+
+  </nxu:methodResult>
+
+  <h2><h:outputText value="#{messages['label.classification.currentSubFolders']}" /></h2>
+
+  <ui:include src="/incl/document_actions.xhtml" />
+  <nxu:methodResult name="provider" value="#{resultsProvidersCache.get('CURRENT_DOC_CHILDREN')}" >
+
+    <ui:decorate template="/classification/classification_folders_table.xhtml">
+      <ui:param name="documents" value="#{currentChildrenSelectModel}" />
+      <ui:param name="showCheckboxes" value="true" />
+      <ui:param name="provider" value="#{provider}" />
+      <ui:param name="providerName" value="CURRENT_DOC_CHILDREN" />
+      <ui:param name="listName" value="CURRENT_SELECTION" />
+      <ui:define name="empty_folder_label">
+        <h:outputText value="#{messages['label.classification.emptyFolder']}"
+          rendered="#{documents.rowCount == 0}" />
+      </ui:define>
+      <ui:define name="buttons">
+        <ui:include src="/classification/classification_clipboard.xhtml" />
+      </ui:define>
+      <ui:define name="syndication_buttons" />
+    </ui:decorate>
+
+  </nxu:methodResult>
+</div>

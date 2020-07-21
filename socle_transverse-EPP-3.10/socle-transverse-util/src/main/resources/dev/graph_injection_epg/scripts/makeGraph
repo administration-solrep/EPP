@@ -1,0 +1,41 @@
+#!/bin/sh
+
+datafile=$1
+plotname=$2
+outputfile=$3
+
+img=${outputfile}.png
+datafile=$(basename $datafile .txt).data
+
+plotfile1=${plotname}_1.plot
+output1=${img}_1.png
+plotfile2=${plotname}_2.plot
+output2=${img}_2.png
+
+INPUT=$1 
+
+### Temps moyen de l'injection
+cat  > ${plotfile1} <<EOF
+set output "${output1}"
+set title "Temps moyen d'injection d'un dossier en fonction du nombre de dossiers injecté"
+set xlabel "Injections"
+set ylabel "Temps moyen de l'injection (s)"
+set grid
+set terminal png size 640,540
+plot "${INPUT}" using 1:3 title "données", "${INPUT}" using 1:3 smooth bezier title "interpolation" with lines
+EOF
+gnuplot ${plotfile1}
+
+
+### Temps écoulé depuis le début de l'injection
+cat  > ${plotfile2} <<EOF
+set output "${output2}"
+set title "Temps écoulé depuis le début de l'injection en fontion du nombre de dossiers injecté"
+set xlabel "Injections"
+set ylabel "Temps écoulé depuis le début de l'injection (s)"
+set grid
+set terminal png size 640,540
+plot "${INPUT}" using 1:4 title "données", "${INPUT}" using 1:4 smooth bezier with lines title "interpolation"
+EOF
+gnuplot $plotfile2
+

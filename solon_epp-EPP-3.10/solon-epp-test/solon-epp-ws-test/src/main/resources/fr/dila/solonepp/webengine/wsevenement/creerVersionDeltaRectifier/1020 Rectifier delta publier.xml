@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<creerVersionDeltaRequest
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:evt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:eppco="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:epptdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:delta="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt-delta"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd "
+	modeCreation="RECTIFIER_PUBLIER">
+
+	<evenement>
+		<delta:id_evenement>0000</delta:id_evenement>
+		<delta:metadonnee key="objet" reset="true">
+			<delta:valeur>Objet rectifié</delta:valeur>
+		</delta:metadonnee>
+		<delta:metadonnee key="type_loi">
+			<delta:valeur>LOI_CADRE</delta:valeur>
+		</delta:metadonnee>
+		<delta:metadonnee key="co_auteur">
+			<delta:valeur>MandatTest1</delta:valeur>
+		</delta:metadonnee>
+		<delta:metadonnee key="commentaire" reset="true" />
+	</evenement>
+
+</creerVersionDeltaRequest>

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+
+<component name="org.nuxeo.ecm.directory.ldap.storage.users">
+	<implementation class="org.nuxeo.ecm.directory.ldap.LDAPDirectoryDescriptor" />
+	<require>org.nuxeo.ecm.directory.ldap.LDAPDirectoryFactory</require>
+
+	<!-- the groups SQL directories are required to make this bundle work -->
+	<require>fr.dila.solonepp.core.schema</require>
+	<require>fr.dila.solonepp.ldap.server</require>
+
+	<extension target="org.nuxeo.ecm.directory.ldap.LDAPDirectoryFactory"
+		point="directories">
+
+		<directory name="userLdapDirectory">
+			<server>default</server>
+			<schema>user</schema>
+			<idField>username</idField>
+			<passwordField>password</passwordField>
+
+			<searchBaseDn>ou=people,ou=SolonEpp,dc=dila,dc=fr</searchBaseDn>
+			<searchClass>personne</searchClass>
+			<!-- To additionally restricte entries you can add an arbitrary search 
+				filter such as the following: <searchFilter>(&amp;(sn=toto*)(myCustomAttribute=somevalue))</searchFilter> 
+				Beware that "&" writes "&amp;" in XML. -->
+
+			<!-- use subtree if the people branch is nested -->
+			<searchScope>onelevel</searchScope>
+
+			<querySizeLimit>5000</querySizeLimit>
+
+			<!-- using 'subany', search will match *toto*. use 'subfinal' to match 
+				*toto and 'subinitial' to match toto*. subinitial is the default behaviour -->
+			<substringMatchType>subinitial</substringMatchType>
+
+			<readOnly>false</readOnly>
+
+			<!-- comment <cache* /> tags to disable the cache -->
+			<!-- cache timeout in seconds -->
+			<cacheTimeout>${nuxeo.ldap.cacheTimeout}</cacheTimeout>
+
+			<!-- maximum number of cached entries before global invalidation -->
+			<cacheMaxSize>1000</cacheMaxSize>
+
+			<creationBaseDn>ou=people,ou=SolonEpp,dc=dila,dc=fr</creationBaseDn>
+			<creationClass>top</creationClass>
+			<creationClass>person</creationClass>
+			<creationClass>organizationalPerson</creationClass>
+			<creationClass>inetOrgPerson</creationClass>
+			<creationClass>personne</creationClass>
+
+			<rdnAttribute>uid</rdnAttribute>
+			<fieldMapping name="username">uid</fieldMapping>
+			<fieldMapping name="password">userPassword</fieldMapping>
+			<fieldMapping name="firstName">givenName</fieldMapping>
+			<fieldMapping name="lastName">sn</fieldMapping>
+			<fieldMapping name="title">title</fieldMapping>
+			<fieldMapping name="postalAddress">postalAddress</fieldMapping>
+			<fieldMapping name="postalCode">postalCode</fieldMapping>
+			<fieldMapping name="locality">l</fieldMapping>
+			<fieldMapping name="telephoneNumber">telephoneNumber</fieldMapping>
+			<fieldMapping name="email">mail</fieldMapping>
+			<fieldMapping name="dateDebut">dateDebut</fieldMapping>
+			<fieldMapping name="dateFin">dateFin</fieldMapping>
+			<fieldMapping name="temporary">temporary</fieldMapping>
+			<fieldMapping name="occasional">occasional</fieldMapping>
+			<fieldMapping name="pwdReset">passwordReset</fieldMapping>
+
+			<references>
+				<inverseReference field="groups" directory="groupLdapDirectory"
+					dualReferenceField="members" />
+			</references>
+
+		</directory>
+
+	</extension>
+
+</component>

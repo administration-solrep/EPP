@@ -1,0 +1,16 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxu="http://nuxeo.org/nxweb/util">
+
+	<nxu:set var="infos"
+		value="#{routingActions.getActionFeuilleRouteInfos(field_0, field_1, field_2)}"
+		cache="true">
+		<c:if test="#{infos != null}">
+			<h:graphicImage value="#{infos.img}" alt="#{infos.label}"
+				title="#{infos.label}" style="#{infos.style}" />
+			<h:outputText value="#{infos.text}" />
+		</c:if>
+	</nxu:set>
+
+</f:subview>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsevt:creerVersionRequest
+	xmlns:wsevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:eppcommons="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:eppevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:epptdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd "
+	modeCreation="PUBLIER">
+
+	<wsevt:evenement type="ALERTE01">
+		<eppevt:evtAlerte01 etat="" has_contenu_pj="false"> <!-- état evt non pris en compte -->
+			<eppevt:id_evenement></eppevt:id_evenement>
+			<eppevt:id_evenement_precedent></eppevt:id_evenement_precedent>
+			<eppevt:id_dossier>CCOZ1100001A</eppevt:id_dossier>
+			<eppevt:emetteur>GOUVERNEMENT</eppevt:emetteur>
+			<eppevt:destinataire>ASSEMBLEE_NATIONALE</eppevt:destinataire>
+			<eppevt:copie>SENAT</eppevt:copie>
+			<eppevt:id_senat></eppevt:id_senat>
+			<eppevt:niveau_lecture niveau="1" code="AN" />
+			<eppevt:objet>Alerte</eppevt:objet>
+			<eppevt:commentaire><![CDATA[
+			integer et orci felis. 
+			Proin sodales consequat ante nec sagittis. 
+			Aenean sed tortor et dui auctor egestas. Praesent a lacus quis nisi pellentesque egestas lacinia a felis. Morbi quis felis eget neque posuere vehicula. Phasellus venenatis nisi porta leo vehicula sit amet iaculis purus dapibus. Integer aliquam iaculis porta. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In hac habitasse platea dictumst. Pellentesque dapibus tellus sit amet tellus tempor ac aliquet lorem facilisis. Phasellus nibh mi, commodo vel dictum et, tempor eu quam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi augue ipsum, feugiat non blandit id, iaculis eu libero. Cras quis facilisis enim. Cras vehicula lacus nec velit pretium cursus. Curabitur volutpat nisi non tellus lobortis semper. Praesent interdum, dui eu vulputate egestas, sapien ipsum ullamcorper tellus, aliquet faucibus dolor arcu et odio.
+			]]></eppevt:commentaire>
+
+			<eppevt:date_distribution>2011-07-01</eppevt:date_distribution>
+			<eppevt:nature_loi>PROJET</eppevt:nature_loi>
+			<eppevt:auteur>
+				<epptdref:type>DEPUTE</epptdref:type>
+				<epptdref:proprietaire>ASSEMBLEE_NATIONALE</epptdref:proprietaire>
+				<epptdref:identifiant>6</epptdref:identifiant>
+				<epptdref:date_debut>2010-09-04</epptdref:date_debut>
+				<epptdref:id_identite>4</epptdref:id_identite>
+				<epptdref:id_circonscription>65</epptdref:id_circonscription>
+			</eppevt:auteur>
+			<eppevt:titre>Projet de loi relatif à l'action extérieure de l'État</eppevt:titre>
+			<eppevt:depot_rapport>
+				<eppcommons:date>2011-07-01</eppcommons:date>
+				<eppcommons:numero>233</eppcommons:numero>
+			</eppevt:depot_rapport>
+			<eppevt:depot_texte>
+				<eppcommons:date>2011-06-01</eppcommons:date>
+				<eppcommons:numero>345</eppcommons:numero>
+			</eppevt:depot_texte>
+			<eppevt:commission>
+				<eppcommons:id>873</eppcommons:id>
+				<eppcommons:nom>Commission de la défense</eppcommons:nom>
+				<eppcommons:date_debut>2018-04-14</eppcommons:date_debut>
+				<eppcommons:proprietaire>ASSEMBLEE_NATIONALE</eppcommons:proprietaire>
+			</eppevt:commission>
+			<eppevt:attribution>AU_FOND</eppevt:attribution>
+			<eppevt:position_alerte>false</eppevt:position_alerte>
+		</eppevt:evtAlerte01>
+	</wsevt:evenement>
+
+</wsevt:creerVersionRequest>

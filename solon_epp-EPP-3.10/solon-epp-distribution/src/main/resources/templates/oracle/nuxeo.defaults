@@ -1,0 +1,7 @@
+nuxeo.template.includes=default
+nuxeo.db.noDDL=true
+
+solrep.db.classpath=${nuxeo.home}/lib/ojdbc6.jar
+solrep.db.driver=oracle.jdbc.driver.OracleDriver
+
+solrep.db.liquibase.contexts=oracle,qa,solonepp

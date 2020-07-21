@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="org.nuxeo.ecm.classification.facade.contrib">
+
+  <extension target="org.nuxeo.runtime.api.ServiceManagement"
+    point="services">
+
+    <documentation>
+      Define the Classification bean as a platform service.
+    </documentation>
+    <service class="org.nuxeo.ecm.classification.api.ClassificationService"
+      group="platform/classification">
+      <locator>%ClassificationServiceBean</locator>
+    </service>
+
+  </extension>
+
+</component>

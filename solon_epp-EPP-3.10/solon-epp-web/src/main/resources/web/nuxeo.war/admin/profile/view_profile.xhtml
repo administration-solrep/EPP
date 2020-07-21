@@ -1,0 +1,17 @@
+<div xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="/admin/profile/view_profile_template.xhtml">
+		<ui:param name="currentProfileSubTab" value="view" />
+
+		<ui:define name="mainContent">
+			<h:form>
+				<nxl:layout name="profile" mode="view"
+					value="#{profileManagerActions.selectedProfile}" />
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</div>

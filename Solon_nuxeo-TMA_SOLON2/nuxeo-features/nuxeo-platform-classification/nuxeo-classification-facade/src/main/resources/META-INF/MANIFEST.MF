@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: Nuxeo classification facade
+Bundle-SymbolicName: org.nuxeo.ecm.platform.classification.facade;singleton=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Nuxeo
+Require-Bundle: org.nuxeo.ecm.platform.classification.core,
+ org.nuxeo.ecm.platform.classification.api
+Bundle-Category: web,stateful
+Nuxeo-Component: OSGI-INF/classification-facade-contrib.xml

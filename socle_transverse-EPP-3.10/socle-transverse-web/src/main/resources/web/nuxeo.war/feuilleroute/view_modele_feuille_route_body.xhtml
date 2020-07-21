@@ -1,0 +1,113 @@
+<div xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout">
+
+	<c:choose>
+		<c:when
+			test="#{!(modeleFeuilleRouteActions.canUserModifyRoute(currentDocument) and stLockActions.isDocumentLockedByCurrentUser(currentDocument))}">
+
+			<!-- Affichage des méta-données de la feuille de route -->
+			<h:form id="document_view">
+				<a4j:region id="documentViewRegion">
+					<a4j:outputPanel id="documentViewPanel">
+						<nxl:layout value="#{currentDocument}" mode="view"
+							name="feuille_route_detail" />
+					</a4j:outputPanel>
+				</a4j:region>
+			</h:form>
+		</c:when>
+		<c:otherwise>
+			<h:form enctype="multipart/form-data" id="document_edit">
+
+				<!-- Édition des méta-données de la feuille de route -->
+				<c:if test="#{!empty documentActions.changeableDocumentType.layout}">
+					<ui:include src="/incl/document_editor.xhtml" />
+				</c:if>
+
+				<c:if test="#{empty documentActions.changeableDocumentType.layout}">
+					<nxl:documentLayout mode="edit" value="#{changeableDocument}" />
+					<ui:include src="/incl/document_versioning.xhtml" />
+				</c:if>
+
+				<p class="buttonsGadget">
+					<h:commandButton value="#{messages['command.save']}"
+						styleClass="button"
+						action="#{modeleFeuilleRouteActions.updateDocument}" />
+				</p>
+
+			</h:form>
+		</c:otherwise>
+	</c:choose>
+
+	<!-- Affichage / édition des étapes de la feuille de route -->
+	<div class="tabsContent">
+		<ui:include src="/incl/tabs/document_route_content_elements.xhtml" />
+	</div>
+
+	<div style="clear: both"></div>
+
+	<!-- Boutons d'action -->
+	<h:form id="actionsForm">
+		<div id="action_buttons">
+			<!-- Retour à la liste -->
+			<h:commandButton type="submit" class="button"
+				value="#{messages['command.global.retourListe']}"
+				action="#{administrationActions.navigateToModeleFeuilleRouteFolder()}"
+				rendered="#{administrationActions.isInEspaceAdministration()}" />
+
+			<c:set var="lifeCycleState"
+				value="#{currentDocument.getCurrentLifeCycleState()}" />
+
+			<!-- Libération du verrou -->
+			<c:if test="#{modeleFeuilleRouteActions.canUserLibererVerrou()}">
+				<h:commandButton type="submit" class="button"
+					value="#{messages['command.global.libererVerrou']}"
+					action="#{modeleFeuilleRouteActions.libererVerrou()}" />
+			</c:if>
+
+			<!-- Demande de validation du modèle -->
+			<c:if test="#{modeleFeuilleRouteActions.canRequestValidateRoute()}">
+				<h:commandButton type="submit" class="button"
+					value="#{messages['st.feuilleRoute.command.demanderValidation']}"
+					action="#{modeleFeuilleRouteActions.requestValidateRouteModel()}" />
+			</c:if>
+
+			<!-- Annulation de la demande de validation -->
+			<c:if
+				test="#{modeleFeuilleRouteActions.canCancelRequestValidateRoute()}">
+				<h:commandButton type="submit" class="button"
+					value="#{messages['st.feuilleRoute.command.annulerDemandeValidation']}"
+					action="#{modeleFeuilleRouteActions.cancelRequestValidateRouteModel()}" />
+			</c:if>
+
+			<!-- Validation du modèle -->
+			<c:if test="#{modeleFeuilleRouteActions.canValidateRoute()}">
+				<h:commandButton type="submit" class="button"
+					value="#{messages['st.feuilleRoute.command.valider']}"
+					action="#{modeleFeuilleRouteActions.validateRouteModel()}" />
+			</c:if>
+
+			<!-- Refuse de validation du modèle -->
+			<c:if test="#{modeleFeuilleRouteActions.canRefuseValidateRoute()}">
+				<h:commandButton type="submit" class="button"
+					value="#{messages['st.feuilleRoute.command.refuserValidation']}"
+					action="#{modeleFeuilleRouteActions.refuseValidateRouteModel()}" />
+			</c:if>
+
+			<!-- Dévalidation du modèle -->
+			<c:if test="#{modeleFeuilleRouteActions.canInvalidateRoute()}">
+				<h:commandButton type="submit" class="button"
+					value="#{messages['st.feuilleRoute.command.modifier']}"
+					action="#{modeleFeuilleRouteActions.invalidateRouteModel()}" />
+			</c:if>
+		</div>
+
+		<ui:include src="/incl/feuille_route_detail_ajax_button.xhtml" />
+	</h:form>
+</div>

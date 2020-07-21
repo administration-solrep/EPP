@@ -1,0 +1,70 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:nxu="http://nuxeo.org/nxweb/util"
+  xmlns:c="http://java.sun.com/jstl/core"
+  xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+  <h3><h:outputText
+    value="#{messages['action.classificationRequestTitle']}" /></h3>
+
+  <h:outputText
+    value="#{messages['label.classification.noClassificationTree']}"
+    rendered="#{empty currentEditableClassificationTree}" />
+    
+  <h:form rendered="#{!empty currentEditableClassificationTree}">
+    <table class="dataInput">
+      <tbody>
+        <tr>
+          <td class="labelColumn"><h:outputText
+            value="#{messages['label.classification.targets']}" /></td>
+        </tr>
+        <tr>
+          <td class="fieldColumn">
+            <ui:insert name="documents_to_classify">
+              ERROR: should be filled by user template
+            </ui:insert>
+          </td>
+        </tr>
+        <tr>
+          <td class="labelColumn">
+            <h:outputText
+              value="#{messages['label.classification.tree']}" />
+          </td>
+        </tr>
+        <tr>
+          <td class="fieldColumn">
+            <h:selectOneListbox class="dataInputText" size="1"
+              value="#{currentEditableClassificationRootId}"
+              valueChangeListener="#{classificationActions.editableClassificationRootSelected}">
+              <nxu:selectItems value="#{editableClassificationRoots}"
+                var="editableRoot"
+                itemValue="#{editableRoot.id}"
+                itemLabel="#{editableRoot.dublincore.title}" />
+              <a4j:support event="onchange" reRender="editableClassificationTree"
+                ignoreDupResponses="true" bypassUpdates="true" />
+            </h:selectOneListbox>
+            
+            <ui:decorate template="/classification/editable_classification_tree_explorer.xhtml">
+              <ui:param name="classificationTree" value="#{currentEditableClassificationTree}" />
+              <ui:define name="classification_command">
+                <a4j:commandLink immediate="true"
+                  action="#{classificationActions.massClassify(node)}"
+                  reRender="classification_message"
+                  ignoreDupResponses="true" bypassUpdates="true">
+                  <h:outputText value="#{messages['label.classification.classifyHere']}" />
+                </a4j:commandLink>
+              </ui:define>
+            </ui:decorate>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ui:insert name="cancel_button" />
+          </td>
+        </tr>
+      </tbody>
+    </table>      
+  </h:form>
+
+</div>

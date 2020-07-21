@@ -1,0 +1,18 @@
+<div xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition
+		template="/admin/parametre/view_parametre_template.xhtml">
+		<ui:param name="currentParametreSubTab" value="view" />
+
+		<ui:define name="mainContent">
+			<h:form>
+				<nxl:layout name="parametreLayout" mode="view"
+					value="#{currentDocument}" />
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</div>

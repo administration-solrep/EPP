@@ -1,0 +1,127 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+	<a4j:outputPanel id="#{pieceJointeType}_pieceJointePanel"
+		ajaxRendered="false">
+		<h:message styleClass="errorMessage"
+			for="#{pieceJointeType}_pieceJointePanel"
+			id="#{pieceJointeType}_input_message" />
+
+		<nxu:set var="listPJ"
+			value="#{evenementActions.getListPieceJointe(pieceJointeType)}"
+			cache="true">
+		
+			<c:if
+				test="#{empty listPJ or listPJ.isEmpty() or descriptor.isMultivalue()}">
+				<a4j:outputPanel>
+					<a4j:commandLink reRender="#{pieceJointeType}_pieceJointePanel"
+						immediate="true" value="Ajout d'une pièce jointe"
+						id="#{pieceJointeType}_addPj"
+						action="#{evenementActions.addPieceJointe(pieceJointeType)}">
+						<h:graphicImage value="/icons/action_add.gif"
+							title="Ajouter une pièce jointe" />
+					</a4j:commandLink>
+				</a4j:outputPanel>
+				<br />
+				<br />
+			</c:if>
+
+			<c:if test="#{empty listPJ or listPJ.isEmpty()}">
+				<c:if
+					test="#{evenementActions.isDisplayRequired() and not evenementActions.enregistrerBrouillon eq 'true' and descriptor.isObligatoire()}">
+					<h:outputText value="Cette valeur est requise"
+						styleClass="errorMessage" />
+				</c:if>
+			</c:if>
+
+			<c:forEach var="pj" items="#{listPJ}" varStatus="pjStatus">
+				<table
+					style="border-left: 1px solid #F2F2DD; border-collapse: collapse; border-bottom: 1px solid #F2F2DD;">
+					<tr>
+						<ui:fragment rendered="#{displayTitle}">
+							<td><h:outputText value="Titre :" /></td>
+							<td><h:inputText value="#{pj.nom}" immediate="true" /></td>
+						</ui:fragment>
+
+						<c:if test="#{!descriptor.isInitToOne() or listPj.size() lt 1}">
+							<td><a4j:outputPanel>
+									<a4j:commandLink reRender="#{pieceJointeType}_pieceJointePanel"
+										immediate="true"
+										action="#{evenementActions.removePieceJointe(pj)}">
+										<h:graphicImage value="/icons/action_delete.gif"
+											styleClass="add_icon" title="Supprimer la pièce jointe" />
+									</a4j:commandLink>
+								</a4j:outputPanel></td>
+						</c:if>
+						
+						<c:if test="#{descriptor.isMultiPj() or empty pj.pieceJointeFichierDocList or pj.pieceJointeFichierDocList.isEmpty()}">
+							<td><a4j:outputPanel>
+									<a4j:commandLink immediate="true"
+										id="#{pieceJointeType}_#{pjStatus.index}_addPjf"
+										action="#{fileTreeManagerActions.setCurrentPieceJointe(pj, descriptor.getMimetypes(), descriptor.isMultiPj())}"
+										oncomplete="Richfaces.showModalPanel('editFilePanel'); return false;">
+										<h:graphicImage value="/icons/action_add.gif"
+											title="Ajouter fichier(s)" />
+										<f:param name="myMaxFilesQuantity" value="#{nxu:test(descriptor.isMultiPj(), 10000, 1)}"/>
+									</a4j:commandLink>
+								</a4j:outputPanel><br /></td>
+						</c:if>
+					</tr>
+					<ui:fragment rendered="#{displayUrl}">
+						<tr>
+							<td><h:outputText value="url :" /></td>
+							<td>
+								<div
+									class="#{nxu:test(pj.getModifiedMetaList().contains('url'),'modifiedValue','')}">
+									<h:inputText value="#{pj.url}" immediate="true" />
+								</div>
+							</td>
+						</tr>
+					</ui:fragment>
+					<tr>
+						<c:if test="#{descriptor.isMultiPj()}">
+							<td><h:outputText value="Fichiers :" /></td>
+						</c:if>
+						<c:if test="#{!descriptor.isMultiPj()}">
+							<td><h:outputText value="Fichier (max. 1) :" /></td>
+						</c:if>
+						<td>
+							<table>
+								<tr>
+									<c:forEach var="fichier"
+										items="#{pj.pieceJointeFichierDocList}" varStatus="status">
+										<td>
+											<div
+												class="#{nxu:test(pj.getModifiedFileList().contains(fichier.file.filename),'modifiedValue','')}">
+												<a4j:outputPanel>
+													<nxh:graphicImage
+														value="#{nxd:fileIconPath(blobHolderGenerator.getBlobHolder(fichier).blob)}"
+														title="#{fichier.file.filename}" />
+													<a4j:commandLink
+														reRender="#{pieceJointeType}_pieceJointePanel"
+														immediate="true"
+														action="#{evenementActions.removePieceJointeFichier(pj, fichier)}">
+														<h:graphicImage value="/icons/action_delete.gif"
+															styleClass="add_icon" title="Supprimer fichier" />
+													</a4j:commandLink>
+												</a4j:outputPanel>
+											</div>
+										</td>
+									</c:forEach>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</c:forEach>
+
+		</nxu:set>
+	</a4j:outputPanel>
+
+</div>

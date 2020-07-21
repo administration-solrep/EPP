@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:rechercherEvenementResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:evt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:epptdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:eppco="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd ">
+
+	<p:statut>OK</p:statut>
+
+
+	<p:message>
+		<evt:etat_message>EMIS</evt:etat_message>
+		<evt:id_evenement>EVT001</evt:id_evenement>
+		<evt:etat_evenement>ANNULE</evt:etat_evenement>
+		<evt:type_evenement>EVT01</evt:type_evenement>
+		<evt:date_evenement>2011-01-01T00:00:00</evt:date_evenement>
+		<evt:emetteur_evenement>GOUVERNEMENT</evt:emetteur_evenement>
+		<evt:destinataire_evenement>ASSEMBLEE_NATIONALE</evt:destinataire_evenement>
+		<evt:copie_evenement>SENAT</evt:copie_evenement>
+		<evt:presence_piece_jointe>false</evt:presence_piece_jointe>
+		<evt:objet>Lorem ipsum</evt:objet>
+		<evt:niveau_lecture code="AN" niveau="3" />
+		<evt:id_dossier>DOS001</evt:id_dossier>
+		<evt:id_senat>SENAT001</evt:id_senat>
+		<evt:etat_dossier>EN_INSTANCE</evt:etat_dossier>
+		<evt:numero_depot>
+			<eppco:date>2011-05-06</eppco:date>
+			<eppco:numero>3</eppco:numero>
+		</evt:numero_depot>
+	</p:message>
+
+</p:rechercherEvenementResponse>

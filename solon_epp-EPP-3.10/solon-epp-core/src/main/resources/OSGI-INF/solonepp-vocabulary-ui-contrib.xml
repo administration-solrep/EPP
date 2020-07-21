@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Cet composant contribue l'IHM des vocabulaires de l'application SOLON 
+	EPP. -->
+<component name="fr.dila.solonepp.core.vocabulary.ui">
+	<require>org.nuxeo.runtime.started</require>
+
+	<!-- define UI info for vocabulary -->
+	<extension target="org.nuxeo.ecm.directory.ui.DirectoryUIManager"
+		point="directories">
+		<!-- <directory name="format_fichier_autorise" layout="dilaVocabulary" 
+			sortField="id" /> -->
+	</extension>
+
+</component>

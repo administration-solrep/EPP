@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsevt:creerVersionRequest
+	xmlns:wsevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:eppcommons="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:eppevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:epptdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd "
+	modeCreation="PUBLIER">
+
+	<wsevt:evenement type="EVT04BIS">
+		<eppevt:evt04bis etat="" has_contenu_pj="false"> <!-- état evt non pris en compte -->
+			<eppevt:id_evenement></eppevt:id_evenement>
+			<eppevt:id_evenement_precedent></eppevt:id_evenement_precedent>
+			<eppevt:id_dossier>CCOZ1100002M</eppevt:id_dossier>
+			<eppevt:emetteur>ASSEMBLEE_NATIONALE</eppevt:emetteur>
+			<eppevt:destinataire>GOUVERNEMENT</eppevt:destinataire>
+			<eppevt:copie>SENAT</eppevt:copie>
+			<eppevt:id_senat></eppevt:id_senat>
+			<eppevt:niveau_lecture niveau="1" code="AN" />
+			<eppevt:objet>Objet Evt04</eppevt:objet>
+			<eppevt:titre>Titre Evt04</eppevt:titre>
+			<eppevt:intitule>Projet de loi relatif à l'action extérieure de l'État</eppevt:intitule>
+			<eppevt:commentaire><![CDATA[Commentaire Evt04]]></eppevt:commentaire>
+			<eppevt:date_distribution>2010-09-04</eppevt:date_distribution>
+			<eppevt:nature_rapport>RAPPORT</eppevt:nature_rapport>
+			<eppevt:rapporteur>
+				<epptdref:id>MandatTest0</epptdref:id>
+				<epptdref:type>DEPUTE</epptdref:type>
+				<epptdref:proprietaire>ASSEMBLEE_NATIONALE</epptdref:proprietaire>
+				<epptdref:identifiant>6</epptdref:identifiant>
+				<epptdref:date_debut>2010-09-04</epptdref:date_debut>
+				<epptdref:id_identite>4</epptdref:id_identite>
+				<epptdref:id_circonscription>65</epptdref:id_circonscription>
+			</eppevt:rapporteur>
+			<eppevt:depot_rapport>
+				<eppcommons:date>2011-06-01</eppcommons:date>
+				<eppcommons:numero>DEPOT_1</eppcommons:numero>
+			</eppevt:depot_rapport>
+			<eppevt:depot_texte>
+				<eppcommons:date>2011-01-01</eppcommons:date>
+				<eppcommons:numero>DEPOT_2</eppcommons:numero>
+			</eppevt:depot_texte>
+			<eppevt:commission>
+				<eppcommons:id>OrganismeTest0</eppcommons:id>
+				<eppcommons:nom>Commission de la défense</eppcommons:nom>
+				<eppcommons:date_debut>2018-04-14</eppcommons:date_debut>
+				<eppcommons:proprietaire>ASSEMBLEE_NATIONALE</eppcommons:proprietaire>
+			</eppevt:commission>
+			<eppevt:attribution>AU_FOND</eppevt:attribution>
+		</eppevt:evt04bis>
+	</wsevt:evenement>
+
+</wsevt:creerVersionRequest>

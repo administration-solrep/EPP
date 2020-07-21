@@ -1,0 +1,24 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd"
+	logicalFilePath="ddl-dev-vocabulary">
+
+	<!-- Suppression des tables de vocabulaires pour laisser Nuxeo les gérer -->
+
+	<changeSet id="VOC_TYPE_UNITE_STRUCTURELLE" author="system" context="dev or qa">
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="VOC_TYPE_UNITE_STRUCTURELLE" />
+		</preConditions>
+		<dropTable tableName="VOC_TYPE_UNITE_STRUCTURELLE" />
+	</changeSet>
+
+	<changeSet id="VOC_BOOLEAN_REQUETEUR" author="system" context="dev or qa">
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="VOC_BOOLEAN_REQUETEUR" />
+		</preConditions>
+		<dropTable tableName="VOC_BOOLEAN_REQUETEUR" />
+	</changeSet>
+
+</databaseChangeLog>
+

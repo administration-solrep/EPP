@@ -1,0 +1,10 @@
+1- se connecter au nxshell : 
+	$ cd /opt/solonepp-server_inst1/tools/
+	$ sh nxshell.sh
+	
+2- lancer le script
+	> script utils/removeDocument.groovy -ctx "docType='[type document]'"
+3- Attendre la fin du script - voir détails dans les logs ( /var/log/solonepp-server_inst1/server.log)	
+
+
+/!\ Le passage de ce script supprime les données liées au document passé en paramètre. Ceci est définitif !

@@ -1,0 +1,64 @@
+<f:subview id="#{widget.id}_add" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxh="http://nuxeo.org/nxweb/html">
+
+	<c:choose>
+		<c:when test="#{currentRouteLockedByCurrentUser and isEmptyFork}">
+			<!-- Ajout d'une étape dans un conteneur vide -->
+			<nxu:set var="actions"
+				value="#{routingWebActions.getAddStepInActions(field_0)}"
+				cache="true">
+				<c:if test="#{!empty actions}">
+					<nxu:dataList var="action" value="#{actions}"
+						id="addStepInForkActionList" rowIndexVar="rowIndex"
+						rowCountVar="rowCount">
+						<li class="ctxMenuItemStyle"><h:commandLink
+								onclick="document.getElementById('selectRouteElementsTypeForCreationForm:hiddenSourceDocId').value = '#{field_1}';#{action.getLink()}; return false;">
+								<nxu:graphicImage value="#{action.icon}" />
+							</h:commandLink> <h:commandLink id="step_#{rowCount%1}" styleClass="#{action.id}"
+								onclick="document.getElementById('selectRouteElementsTypeForCreationForm:hiddenSourceDocId').value = '#{field_1}';#{action.getLink()} return false;"
+								value="#{messages[action.label]}">
+								<f:param name="stepId" value="#{field_1}" />
+							</h:commandLink></li>
+					</nxu:dataList>
+				</c:if>
+			</nxu:set>
+		</c:when>
+		<c:when
+			test="#{currentRouteLockedByCurrentUser and isEditableRouteElement}">
+			<!-- Ajout d'une étape avant / après une étape -->
+			<nxu:set var="actions"
+				value="#{routingWebActions.getAddStepActions(field_0)}" cache="true">
+				<c:if test="#{!empty actions}">
+					<nxu:dataList var="action" value="#{actions}"
+						id="addStepInForActionList" rowIndexVar="rowIndex">
+						<li class="ctxMenuItemStyle"><h:commandLink
+								onclick="document.getElementById('selectRouteElementsTypeForCreationForm:hiddenSourceDocId').value = '#{field_1}';#{action.getLink()} return false;"
+								rendered="#{!(fn:startsWith(action.link, '#'))}">
+								<h:graphicImage value="#{action.icon}" />
+								<f:param name="stepId" value="#{field_1}" />
+							</h:commandLink> <h:commandLink id="step_#{rowCount%2}" styleClass="#{action.id}"
+								onclick="document.getElementById('selectRouteElementsTypeForCreationForm:hiddenSourceDocId').value = '#{field_1}';#{action.getLink()} return false;"
+								value="#{messages[action.label]}"
+								rendered="#{!(fn:startsWith(action.link, '#'))}">
+								<f:param name="stepId" value="#{field_1}" />
+							</h:commandLink> <nxh:commandLink action="#{action.getLink()}"
+								rendered="#{fn:startsWith(action.link, '#')}">
+								<h:graphicImage value="#{action.icon}" />
+								<f:param name="stepId" value="#{field_1}" />
+							</nxh:commandLink> <nxh:commandLink id="step_action_#{rowCount%2}"
+								styleClass="#{action.id}" action="#{action.getLink()}"
+								value="#{messages[action.label]}"
+								rendered="#{fn:startsWith(action.link, '#')}">
+								<f:param name="stepId" value="#{field_1}" />
+							</nxh:commandLink></li>
+					</nxu:dataList>
+				</c:if>
+			</nxu:set>
+		</c:when>
+	</c:choose>
+
+</f:subview>

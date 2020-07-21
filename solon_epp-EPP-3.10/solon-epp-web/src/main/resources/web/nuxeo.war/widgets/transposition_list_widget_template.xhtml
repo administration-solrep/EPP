@@ -1,0 +1,73 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<a4j:region renderRegionOnly="true" id="#{widget.id}_ajax_region">
+		<nxu:set var="widgetTypeMap"
+			value="#{widget.properties['widgetTypeMap']}">
+			<a4j:outputPanel id="#{widget.id}_indexPanel" ajaxRendered="false">
+				<!-- Champs d'entrée des données d'indexation -->
+				<c:if test="#{widget.mode == 'edit'}">
+					<table cellpadding="4" cellspacing="0" style="margin-left: 30px;">
+						<c:forEach var="fieldWidget"
+							items="#{dossierCreationActions.getWidgetFields(widgetTypeMap)}"
+							varStatus="status">
+							<nxu:set var="fieldWidgetLabel"
+								value="label.content.creationwidget.#{fieldWidget}">
+								<tr>
+									<td style="width: 200px; text-align: right;"><strong><h:outputText
+												value="#{messages[fieldWidgetLabel]}" /></strong></td>
+									<td><h:inputText
+											id="#{widget.id}_indexLabel_#{status.index}"
+											value="#{tranpositionActions.widgetMap[fieldWidget]}"
+											styleClass="dataInputText"
+											onkeydown="if (event.keyCode == 13 || event.keyCode == 9) {return false;}">
+										</h:inputText></td>
+								</tr>
+							</nxu:set>
+						</c:forEach>
+					</table>
+					<a4j:commandLink
+						action="#{tranpositionActions.addTransposition(value, widgetTypeMap)}"
+						reRender="#{widget.id}_indexPanel">
+						<h:graphicImage style="margin-left: 200px;"
+							value="/icons/action_add.gif"
+							id="#{widget.id}_addTranspositionImage" />
+					</a4j:commandLink>
+				</c:if>
+
+				<!-- Panneau d'affichage des données d'indexation -->
+				<c:forEach var="widgetItems" items="#{field_0}"
+					rendered="#{not empty field_0}">
+					<table cellspacing="5"
+						style="border: 1px solid #ccc; margin: 5px; margin-left: 30px;">
+						<c:forEach var="widgetField"
+							items="#{dossierCreationActions.getWidgetFields(widgetTypeMap)}">
+							<tr>
+								<nxu:set var="fieldWidgetLabel"
+									value="label.content.creationwidget.#{widgetField}">
+									<td style="width: 200px; text-align: right;"><strong><h:outputText
+												value="#{messages[fieldWidgetLabel]}" /></strong></td>
+									<td><h:outputText
+											value="#{widgetItems.get(widgetField).getValue()}" /></td>
+								</nxu:set>
+							</tr>
+						</c:forEach>
+					</table>
+					<c:if test="#{widget.mode == 'edit'}">
+						<a4j:commandLink
+							action="#{tranpositionActions.removeTransposition(value, widgetTypeMap, widgetItems)}"
+							reRender="#{widget.id}_indexPanel">
+							<h:graphicImage style="margin-left: 200px;"
+								value="/icons/action_delete_mini.gif" />
+						</a4j:commandLink>
+					</c:if>
+				</c:forEach>
+			</a4j:outputPanel>
+		</nxu:set>
+	</a4j:region>
+</div>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Création utilisateur</title>
+</head>
+<body>
+	<table cellpadding="1" cellspacing="1" border="1">
+		<thead>
+			<tr>
+				<td rowspan="1" colspan="3">Création utilisateur</td>
+			</tr>
+		</thead>
+		<tbody>
+			<!--Connexion-->
+			<tr>
+				<td>setTimeout</td>
+				<td>120000</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>open</td>
+				<td>/solon-epp/logout</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>open</td>
+				<td>/solon-epp/login.jsp</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>username</td>
+				<td>adminsgg</td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>password</td>
+				<td>adminsgg</td>
+			</tr>
+			<tr>
+				<td>clickAndWait</td>
+				<td>Submit</td>
+				<td></td>
+			</tr>
+			<!--Espace Administration - création utilisateur-->
+			<tr>
+				<td>clickAndWait</td>
+				<td>link=Administration</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>waitForTextPresent</td>
+				<td>Utilisateurs</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>clickAndWait</td>
+				<td>link=Gestion de l'organigramme</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>waitForTextPresent</td>
+				<td>Gouvernement</td>
+				<td></td>
+			</tr>
+			<!--Création unité structurelle-->
+			<tr>
+				<td>contextMenu</td>
+				<td>viewOrganigrammeForm:organigrammeTree:node:0::ins:text</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>clickAndWait</td>
+				<td>ctxMenu:ins_createUst</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>createUniteStructurelleForm:nxl_unite_structurelle:nxw_label</td>
+				<td>Unité struturelle test selenium</td>
+			</tr>
+			<tr>
+				<td>clickAndWait</td>
+				<td>createUniteStructurelleForm:button_create</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>waitForTextPresent</td>
+				<td>Unité struturelle test selenium</td>
+				<td></td>
+			</tr>
+			<!--Création d'un poste-->
+			<tr>
+				<td>watchA4jRequests</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>contextMenu</td>
+				<td>viewOrganigrammeForm:organigrammeTree:node:0:node:0::ust:text</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>clickAndWait</td>
+				<td>ctxMenu:ust_createPst</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>createPosteForm:nxl_poste:nxw_label</td>
+				<td>Poste test selenium</td>
+			</tr>
+			<tr>
+				<td>clickAndWait</td>
+				<td>createPosteForm:button_create</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>viewOrganigrammeForm:organigrammeTree:node:0:node:0::ust:handle</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>waitForTextPresent</td>
+				<td>Poste test selenium</td>
+				<td></td>
+			</tr>
+			<!--Déconnexion-->
+			<tr>
+				<td>open</td>
+				<td>/solon-epp/logout</td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

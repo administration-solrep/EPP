@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue le gestionnaire d'utilisateur de l'application 
+	SOLON EPP. Le gestionnaire d'utilisateur instancie les Principal, on le surcharge 
+	pour ajouter les données spécifiques aux utilisateurs de l'application (ensemble 
+	des postes, ministères...) -->
+<component name="fr.dila.solonepp.UserManagerImpl">
+
+	<require>org.nuxeo.ecm.platform.usermanager.UserManagerImpl</require>
+	<require>fr.dila.st.core.service.STUserManager</require>
+
+	<extension target="org.nuxeo.ecm.platform.usermanager.UserService"
+		point="userManager">
+
+		<userManager class="fr.dila.solonepp.core.service.SolonEppUserManagerImpl">
+			<users>
+				<listingMode>tabbed</listingMode>
+				<directory>userLdapDirectory</directory>
+			</users>
+			<groups>
+				<listingMode>all</listingMode>
+				<directory>groupLdapDirectory</directory>
+			</groups>
+			<userSortField>lastName</userSortField>
+			<userPasswordPattern>^.{8,}$</userPasswordPattern>
+		</userManager>
+	</extension>
+</component>

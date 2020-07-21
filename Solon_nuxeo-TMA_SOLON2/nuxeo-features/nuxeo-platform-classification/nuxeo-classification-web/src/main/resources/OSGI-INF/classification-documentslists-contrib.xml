@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<component name="org.nuxeo.ecm.classification.web.documentLists">
+
+  <extension target="org.nuxeo.ecm.webapp.documentsLists.DocumentsListsService"
+    point="list">
+
+    <documentsList name="CURRENT_DOCUMENT_CLASSIFICATIONS_SELECTION">
+      <events>
+        <event>folderishDocumentSelectionChanged</event>
+      </events>
+      <isSession>false</isSession>
+    </documentsList>
+
+    <documentsList name="CURRENT_SELECTION_FOR_CLASSIFICATION">
+      <events>
+        <event>folderishDocumentSelectionChanged</event>
+      </events>
+      <isSession>false</isSession>
+    </documentsList>
+
+  </extension>
+
+</component>

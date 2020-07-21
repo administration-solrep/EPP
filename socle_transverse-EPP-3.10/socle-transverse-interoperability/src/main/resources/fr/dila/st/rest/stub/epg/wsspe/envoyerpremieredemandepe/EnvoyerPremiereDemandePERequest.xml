@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:envoyerPremiereDemandePERequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSSpe"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solon/epg/spe-commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSSpe ../../../../../../../../xsd/solon/epg/WSspe.xsd ">
+
+
+	<p:typeDemande>EPREUVAGE</p:typeDemande>
+
+	<p:dossier>
+		<p2:DossierEpg>
+			<p2:avis>
+				<!-- Tags communs à tous les types -->
+				<p1:statut_acte>PUBLIE</p1:statut_acte>
+				<p1:type_acte>AVIS</p1:type_acte>
+				<p1:nor>AZER1234567A</p1:nor>
+				<p1:titre_acte>titre de l'acte</p1:titre_acte>
+				<p1:entite_responsable>entite</p1:entite_responsable>
+				<p1:direction_responsable>direction</p1:direction_responsable>
+				<p1:ministere_rattachement>ministere</p1:ministere_rattachement>
+				<p1:direction_rattachement>direction</p1:direction_rattachement>
+				<p1:createur>createur</p1:createur>
+				<p1:responsable>
+					<p1:nom_reponsable>Sable</p1:nom_reponsable>
+					<p1:prenom_responsable>respon</p1:prenom_responsable>
+					<p1:qualite_responsable>Mr</p1:qualite_responsable>
+					<p1:telephone_responsable>06 07 08 09 10</p1:telephone_responsable>
+					<p1:mail_responsable>respon.sable@example.com</p1:mail_responsable>
+				</p1:responsable>
+				<p1:categorie_acte>REGLEMENTAIRE</p1:categorie_acte>
+				<p1:date_publication_souhaitee>2011-12-12</p1:date_publication_souhaitee>
+				<p1:charge_de_mission>charge de mission</p1:charge_de_mission>
+				<p1:conseiller_pm>conseiller pm</p1:conseiller_pm>
+				<p1:date_signature>2011-01-01T09:00:00</p1:date_signature>
+				<p1:pour_fourniture_epreuve>2010-01-01T10:00:00</p1:pour_fourniture_epreuve>
+				<p1:vecteur_de_publication>vecteur de publication</p1:vecteur_de_publication>
+				<p1:publication_conjointe>EFGH1234567A</p1:publication_conjointe>
+				<p1:mode_parution>ELECTRONIQUE</p1:mode_parution>
+				<p1:delai_publication>DE_RIGUEUR</p1:delai_publication>
+				<p1:publication_date_precisee>2010-01-01T10:00:00</p1:publication_date_precisee>
+				<p1:parution_JORF>
+					<p1:date_jorf>2011-01-01T09:00:00</p1:date_jorf>
+					<p1:numero_texte_jo>123</p1:numero_texte_jo>
+					<p1:page_jo>1</p1:page_jo>
+					<p1:titre_officiel>titre officiel</p1:titre_officiel>
+				</p1:parution_JORF>
+				<p1:commentaire_sgg_dila>pas de commentaires</p1:commentaire_sgg_dila>
+				<p1:indexation>
+					<p1:rubriques>rubrique</p1:rubriques>
+					<p1:mots_cles>mot cles</p1:mots_cles>
+					<p1:champ_libre>champ libre</p1:champ_libre>
+				</p1:indexation>
+				<!-- note : on ne renvoie aucune info sur le traitement papier -->
+				<!-- tags specifiques à l'avis -->
+				<p1:base_legale>base légale</p1:base_legale>
+				<p1:publication_integrale_ou_extrait>IN_EXTENSO</p1:publication_integrale_ou_extrait>
+			</p2:avis>
+		</p2:DossierEpg>
+		<p2:Parapheur>
+			<p2:fichier>
+				<p2:nom>nom du fichier.txt</p2:nom>
+				<p2:mime_type></p2:mime_type>
+				<p2:taille_fichier>0</p2:taille_fichier>
+				<p2:contenu></p2:contenu>
+			</p2:fichier>
+		</p2:Parapheur>
+		<p2:FondDossier>
+			<p2:fichier>
+				<p2:nom>rapport presentation</p2:nom>
+				<p2:mime_type></p2:mime_type>
+				<p2:taille_fichier>0</p2:taille_fichier>
+				<p2:contenu></p2:contenu>
+				<p2:cheminFichier>Répertoire accessible à tous les utilisateurs/Documentation jointe/Rapport de présentation/</p2:cheminFichier>
+			</p2:fichier>
+		</p2:FondDossier>
+	</p:dossier>
+
+</p:envoyerPremiereDemandePERequest>

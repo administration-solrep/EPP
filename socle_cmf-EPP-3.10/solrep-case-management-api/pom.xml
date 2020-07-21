@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>fr.dila.cm</groupId>
+    <artifactId>solrep-case-management-parent</artifactId>
+    <version>EPP-3.10.2</version>
+  </parent>
+
+  <groupId>fr.dila.cm</groupId>
+  <artifactId>solrep-case-management-api</artifactId>
+  <name>Case Management API</name>
+  <description>Case Managment API</description>
+  
+  <properties>
+		<nuxeo.dr.version>EPP-3.10.2</nuxeo.dr.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>fr.dila.ecm.platform</groupId>
+      <artifactId>solrep-platform-document-routing-api</artifactId>
+      <version>${nuxeo.dr.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.core</groupId>
+      <artifactId>nuxeo-core-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.automation</groupId>
+      <artifactId>nuxeo-automation-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.core</groupId>
+      <artifactId>nuxeo-core-schema</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-mail-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+    </dependency>
+  </dependencies>
+
+</project>

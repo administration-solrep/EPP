@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<fragment version="1">
+
+	<requiredBy>org.nuxeo.ecm.war</requiredBy>
+
+	<require>fr.dila.cm.web</require>
+	<require>org.nuxeo.ecm.webapp.core</require>
+	<require>org.nuxeo.ecm.webapp.base</require>
+	<require>fr.dila.ecm.platform.routing.web</require>
+	<require>org.nuxeo.ecm.platform.classification.web</require>
+	<require>org.nuxeo.ecm.platform.usermanager</require>
+	<require>org.nuxeo.ecm.platform.smart.folder.core</require>
+	<require>org.nuxeo.ecm.platform.smart.folder.jsf</require>
+	<require>org.nuxeo.ecm.platform.smart.query.api</require>
+	<require>org.nuxeo.ecm.platform.smart.query.jsf</require>
+
+	<require>fr.dila.st.core</require>
+
+	<!-- On utilise EXCEPTION-FILTER au lieu de FILTER car il faut absolument 
+		que ce filtre soit en tête de tous les autres -->
+	<!-- Voir pour explication : http://stackoverflow.com/questions/10173128/javax-faces-facesexception-error-decode-resource-data-while-loading-jsf-page -->
+	<extension target="web#EXCEPTION-FILTER">
+		<filter>
+			<filter-name>RichFacesFirefox11Filter</filter-name>
+			<filter-class>fr.dila.st.web.filter.RichFacesFirefox11Filter</filter-class>
+		</filter>
+		<filter-mapping>
+			<filter-name>RichFacesFirefox11Filter</filter-name>
+			<url-pattern>/a4j/*</url-pattern>
+		</filter-mapping>
+	</extension>
+
+	<extension target="application#MODULE">
+		<module>
+			<ejb>${bundle.fileName}</ejb>
+		</module>
+	</extension>
+
+	<extension target="faces-config#NAVIGATION">
+		<!-- *********************************************************************** 
+			Espace d'administration *********************************************************************** -->
+		<!-- Vue vide (première page de l'admin) -->
+		<navigation-case>
+			<from-outcome>view_empty</from-outcome>
+			<to-view-id>/view_empty.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Modèles de feuille de route -->
+		<navigation-case>
+			<from-outcome>view_modeles_feuille_route</from-outcome>
+			<to-view-id>/admin/modelefeuilleroute/view_modeles_feuilles_route.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Modèles de feuille de route pour la selection -->
+		<navigation-case>
+			<from-outcome>view_modeles_feuille_route_for_selection</from-outcome>
+			<to-view-id>/admin/modelefeuilleroute/view_modeles_feuilles_route_for_selection.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Détails de feuille de route -->
+		<navigation-case>
+			<from-outcome>create_modele_feuille_route</from-outcome>
+			<to-view-id>/admin/modelefeuilleroute/create_modele_feuille_route.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>view_modele_feuille_route</from-outcome>
+			<to-view-id>/admin/modelefeuilleroute/view_modele_feuille_route.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Détail d'un élément de feuille de route (création) -->
+		<navigation-case>
+			<from-outcome>create_route_element</from-outcome>
+			<to-view-id>/feuilleroute/create_route_element.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Détail d'un élément de feuille de route (assistant de création d'une 
+			branche) -->
+		<navigation-case>
+			<from-outcome>create_route_fork</from-outcome>
+			<to-view-id>/feuilleroute/create_route_fork.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Détail d'un élément de feuille de route (lecture / modification) -->
+		<navigation-case>
+			<from-outcome>view_route_element</from-outcome>
+			<to-view-id>/feuilleroute/view_route_element.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Liste des paramètres -->
+		<navigation-case>
+			<from-outcome>view_parametres</from-outcome>
+			<to-view-id>/admin/parametre/view_parametres.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Détail d'un paramètre (lecture seule) -->
+		<navigation-case>
+			<from-outcome>view_parametre</from-outcome>
+			<to-view-id>/admin/parametre/view_parametre.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Détail d'un paramètre (modification) -->
+		<navigation-case>
+			<from-outcome>edit_parametre</from-outcome>
+			<to-view-id>/admin/parametre/edit_parametre.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Détail d'état de l'application (modification) -->
+		<navigation-case>
+			<from-outcome>edit_etat-application</from-outcome>
+			<to-view-id>/admin/etat-application/edit_etat-application.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- *********************************************************************** 
+			Dossiers / feuille de route *********************************************************************** -->
+		<!-- Notes d'étapes -->
+		<navigation-case>
+			<from-outcome>view_route_step_note</from-outcome>
+			<to-view-id>/feuilleroute/view_route_step_note.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- *********************************************************************** 
+			Export pdf *********************************************************************** -->
+
+		<!-- export pdf feuille de route : fonction de base nuxeo -->
+		<navigation-case>
+			<from-outcome>route_to_pdf</from-outcome>
+			<to-view-id>/view_pdf_route.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- pdf bordereau : nécessite currentDocument = dossier -->
+		<navigation-case>
+			<from-outcome>pdf_bordereaur</from-outcome>
+			<to-view-id>/view_pdf_bordereau.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- pdf feuille de route : nécessite currentDocument = dossier avec fdr -->
+		<navigation-case>
+			<from-outcome>pdf_full_fdr</from-outcome>
+			<to-view-id>/view_pdf_full_fdr.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- pdf journal : nécessite currentDocument = dossier -->
+		<navigation-case>
+			<from-outcome>pdf_journal</from-outcome>
+			<to-view-id>/view_pdf_journal.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- pdf dossier (bordereau + feuille de route + journal) : nécessite currentDocument 
+			= dossier -->
+		<navigation-case>
+			<from-outcome>pdf_dossier</from-outcome>
+			<to-view-id>/view_pdf_dossier.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+	</extension>
+
+	<!-- *********************************************************************** 
+		Converter *********************************************************************** -->
+
+	<extension target="faces-config#CONVERTER">
+		<converter>
+			<converter-id>OrganigrammeUserIdToLabelConverter</converter-id>
+			<converter-class>
+				fr.dila.st.web.converter.OrganigrammeUserIdToLabelConverter
+			</converter-class>
+		</converter>
+
+		<converter>
+			<converter-id>QuartzScheduleConverter</converter-id>
+			<converter-class>
+				fr.dila.st.web.converter.QuartzScheduleConverter
+			</converter-class>
+		</converter>
+	</extension>
+
+	<install>
+		<unzip from="${bundle.fileName}" to="/" prefix="web">
+			<include>web/nuxeo.war/**</include>
+		</unzip>
+
+		<!-- Traductions -->
+		<delete path="${bundle.fileName}.tmp" />
+		<mkdir path="${bundle.fileName}.tmp" />
+		<unzip from="${bundle.fileName}" to="${bundle.fileName}.tmp" />
+
+		<!-- Surcharge la locale FR car on force la locale à FR dans l'application -->
+		<append from="${bundle.fileName}.tmp/l10n/messages.properties"
+			to="nuxeo.war/WEB-INF/classes/messages_fr.properties" addNewLine="true" />
+		<!-- Surcharge la locale par défaut, au cas où <append from="${bundle.fileName}.tmp/l10n/messages.properties" 
+			to="nuxeo.war/WEB-INF/classes/messages.properties" addNewLine="true" /> -->
+
+		<delete path="${bundle.fileName}.tmp" />
+	</install>
+
+	<!-- *********************************************************************** 
+		component *********************************************************************** -->
+	<extension target="faces-config#COMPONENT">
+		<component>
+			<component-type>
+				fr.dila.st.web.ui.component.seam.STUICell
+			</component-type>
+			<component-class>
+				fr.dila.st.web.ui.component.seam.STUICell
+			</component-class>
+		</component>
+	</extension>
+
+</fragment>
+

@@ -1,0 +1,5 @@
+update VOC_MOTIF_IRRECEVABILITE  set "id" = 'MISE_EN_CAUSE_RESPONSABILITE_GOUVERNEMENT' where "id" = 'REPSONSABILITE';
+
+update VERSION  set motifIrrecevabilite = 'MISE_EN_CAUSE_RESPONSABILITE_GOUVERNEMENT' where motifIrrecevabilite = 'REPSONSABILITE';
+
+commit;

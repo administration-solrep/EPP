@@ -1,0 +1,19 @@
+# Pour lancer ce script :
+# 1 - copier ce fichier dans /tmp/
+# 2 - Aller dans le répertoire contenant nxshell.sh
+# 3 - Taper la commande sh nxshell.sh -f /tmp/03_FEV550_create-params.nxshell
+
+# connect to http://localhost:8180/solon-epp (obligatoire sinon Unknown command...) 
+connect -u Administrator -p 4ju7Ix662Eo1d77u http://localhost:8180/solon-epp/site/automation
+
+########## Parametre d'activation
+# go to parametre folder
+cd /case-management/parametre-root/
+
+# create 
+mkdir Parametre batch-hebdo-purgeTentativesConnexionEvent
+cd batch-hebdo-purgeTentativesConnexionEvent
+setp -xpath parametre:value -value "lundi"
+setp -xpath parametre:unit -value "Jour de la semaine"
+setp -xpath dc:description -value "Jour d'exécution pour le batch purgeTentativesConnexionEvent - une valeur parmi lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche"
+setp -xpath dc:title -value "Batch Hebdomadaire - Jour d'exécution pour le batch purgeTentativesConnexionEvent"

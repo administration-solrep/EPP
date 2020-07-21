@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue le service d'organigramme de SOLON EPP. -->
+<component name="fr.dila.solonepp.core.service.OrganigrammeService">
+	<implementation class="fr.dila.solonepp.core.service.OrganigrammeServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.organigramme.OrganigrammeService" />
+		<provide interface="fr.dila.solonepp.api.service.OrganigrammeService" />
+	</service>
+	<require>org.nuxeo.ecm.core.persistence.PersistenceComponent</require>
+
+	<extension target="org.nuxeo.ecm.core.persistence.PersistenceComponent"
+		point="hibernate">
+		<hibernateConfiguration name="organigramme-provider">
+			<datasource>organigramme</datasource>
+			<classes>
+				<class>fr.dila.st.core.organigramme.OrganigrammeNodeImpl</class>
+				<class>fr.dila.st.core.organigramme.EntiteNodeImpl</class>
+				<class>fr.dila.st.core.organigramme.GouvernementNodeImpl</class>
+				<class>fr.dila.st.core.organigramme.UniteStructurelleNodeImpl</class>
+				<class>fr.dila.st.core.organigramme.PosteNodeImpl</class>
+				<class>fr.dila.st.core.organigramme.InstitutionNodeImpl</class>
+			</classes>
+		</hibernateConfiguration>
+	</extension>
+</component>

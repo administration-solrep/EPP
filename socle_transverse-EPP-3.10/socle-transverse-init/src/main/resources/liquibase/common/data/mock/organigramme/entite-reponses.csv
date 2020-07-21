@@ -1,0 +1,19 @@
+ID_ORGANIGRAMME,DATE_DEBUT,DATE_FIN,DATE_VERROU,DELETED,FUNCTION_READ,LABEL,UTILISATEUR_VERROU,CIVILITE_MINISTRE,EDITION,FORMULE,NOM_MINISTRE,NOR_MINISTERE,ORDRE,ID_PARENT_GOUV,PRENOM_MINISTRE,SUIVI_ACTIVITE_NORMATIVE
+13370000,"2009-15-01T01:00:00",null,null,0,"AssembleesParlementairesReader","Assemblées parlementaires",null,"à renseigner","Assemblées parlementaires","à renseigner","à renseigner",null,18,gouv_1,"à renseigner",null
+50000507,"2008-19-03T01:00:00",null,null,0,null,"Min. Economie, industrie et emploi",null,"à renseigner","Min. Economie, industrie et emploi","à renseigner","à renseigner",null,7,gouv_1,"à renseigner",null
+50000607,"2006-04-05T02:00:00",null,null,0,null,"Premier Ministre",null,"à renseigner","Premier Ministre","à renseigner","à renseigner",null,17,gouv_1,"à renseigner",null
+50000632,"2007-18-05T02:00:00",null,null,0,null,"Min. Intérieur, outre-mer et collectiv.",null,"à renseigner","Min. Intérieur, outre-mer et collectiv.","à renseigner","à renseigner",null,11,gouv_1,"à renseigner",null
+50000937,"2007-18-05T02:00:00",null,null,0,null,"Min. Affaires étrangères et européennes",null,"à renseigner","Min. Affaires étrangères et européennes","à renseigner","à renseigner",null,1,gouv_1,"à renseigner",null
+50000938,"2007-18-05T02:00:00",null,null,0,null,"Min. Agriculture et pêche",null,"à renseigner","Min. Agriculture et pêche","à renseigner","à renseigner",null,2,gouv_1,"à renseigner",null
+50000940,"2007-18-05T02:00:00",null,null,0,null,"Min. Enseignement sup. et recherche",null,"à renseigner","Min. Enseignement sup. et recherche","à renseigner","à renseigner",null,9,gouv_1,"à renseigner",null
+50000966,"2007-19-04T02:00:00",null,null,0,null,"Min. Culture et communication",null,"à renseigner","Min. Culture et communication","à renseigner","à renseigner",null,4,gouv_1,"à renseigner",null
+50000967,"2007-19-04T02:00:00",null,null,0,null,"Min. Défense",null,"à renseigner","Min. Défense","à renseigner","à renseigner",null,5,gouv_1,"à renseigner",null
+50000968,"2007-19-04T02:00:00",null,null,0,null,"Min. Education nationale",null,"à renseigner","Min. Education nationale","à renseigner","à renseigner",null,8,gouv_1,"à renseigner",null
+50000969,"2009-15-01T01:00:00",null,null,0,null,"Min. Travail, rel soc, fam, solida, vil.",null,"à renseigner","Min. Travail, rel soc, fam, solida, vil.","à renseigner","à renseigner",null,16,gouv_1,"à renseigner",null
+50000972,"2007-19-04T02:00:00",null,null,0,null,"Min. Justice",null,"à renseigner","Min. Justice","à renseigner","à renseigner",null,12,gouv_1,"à renseigner",null
+50000975,"2009-19-01T01:00:00",null,null,0,null,"Min. Santé et sports",null,"à renseigner","Min. Santé et sports","à renseigner","à renseigner",null,15,gouv_1,"à renseigner",null
+50000976,"2008-19-03T01:00:00",null,null,0,null,"Min. Ecologie, énerg, dév d, amgt  terr",null,"à renseigner","Min. Ecologie, énerg, dév d, amgt  terr","à renseigner","à renseigner",null,6,gouv_1,"à renseigner",null
+50001885,"2007-18-05T02:00:00",null,null,0,null,"Min. Immigration, intégr., id. nat.",null,"à renseigner","Min. Immigration, intégr., id. nat.","à renseigner","à renseigner",null,10,gouv_1,"à renseigner",null
+50001886,"2009-15-01T01:00:00",null,null,0,null,"Min. Logement",null,"à renseigner","Min. Logement","à renseigner","à renseigner",null,13,gouv_1,"à renseigner",null
+50003832,"2009-09-11T01:00:00",null,null,0,null,"Min. outre-mer",null,"à renseigner","Min. outre-mer","à renseigner","à renseigner",null,14,gouv_1,"à renseigner",null
+50013998,"2007-18-05T02:00:00",null,null,0,null,"Min. Budget, comptes publics et FP",null,"à renseigner","Min. Budget, comptes publics et FP","à renseigner","à renseigner",null,3,gouv_1,"à renseigner",null

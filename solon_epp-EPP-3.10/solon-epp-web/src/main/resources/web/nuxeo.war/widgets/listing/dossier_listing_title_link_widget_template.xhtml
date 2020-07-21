@@ -1,0 +1,58 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<nxu:set var="dossier" value="#{field_0}" cache="true">
+		<c:if test="#{widget.mode == 'csv'}">
+			<h:outputText value="#{nxd:titleOrId(dossier)}" />
+		</c:if>
+		<c:if test="#{widget.mode != 'csv'}">
+			<nxu:set var="dossierLinkList"
+				value="#{dossierListingActions.findDossierLink(dossier)}"
+				cache="true">
+				<c:choose>
+					<c:when test="#{fn:length(dossierLinkList) > 1}">
+						<h:outputLink id="titleref" class="#{field_0.ref}_popupTarget"
+							value="javascript:return false;">
+              #{nxd:titleOrId(dossier)}
+            </h:outputLink>
+
+						<div>
+							<c:set var="popupId"
+								value="#{nxu:concat(field_0.ref, '_menuPopup')}" />
+							<script type="text/javascript"> 
+                  var options = {
+                      bind: 'click',
+                      useFilter: false,
+                      anchor: '#popupReceiver'
+                  };
+                  setupContextMenu('a.#{field_0.ref}_popupTarget','#{popupId}', options);
+              </script>
+							<div style="display: none" class="contextMenu" id="#{popupId}">
+								<ul>
+									<c:forEach var="dossierLink"
+										items="#{dossierLinkList.toArray()}">
+										<li style="width: 300px;"><nxu:graphicImage
+												value="/icons/view_doc.png" /> <nxh:commandLink
+												action="#{dossierListingActions.navigateToDossierLink(dossier, dossierLink)}">
+                        #{dossierListingActions.getDossierLinkLabel(dossierLink)}
+                      </nxh:commandLink></li>
+									</c:forEach>
+								</ul>
+							</div>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<nxh:commandLink
+							action="#{dossierListingActions.navigateToDossier(dossier)}">
+              #{nxd:titleOrId(dossier)}
+            </nxh:commandLink>
+					</c:otherwise>
+				</c:choose>
+			</nxu:set>
+		</c:if>
+	</nxu:set>
+</f:subview>

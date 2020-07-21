@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue les types de widgets des feuilles de route. -->
+<component name="fr.dila.st.web.widgettype.feuilleRoute">
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="widgettypes">
+
+		<!-- *********************************************************************** 
+			Types de widgets de la liste des feuilles de route *********************************************************************** -->
+
+		<!-- Icone indiquant l'état en cours d'une étape de feuille de route : 
+			affichage pour l'impression pdf -->
+		<widgetType name="pdf_listing_document_route_folder_element_type">
+			<documentation>
+				This widget type displays an icon representing the type of folder,
+				"Serial" or "Parallel "
+				<br />
+				It requires the following fields configuration:
+				<ul>
+					<li>the documentRouteElement</li>
+				</ul>
+			</documentation>
+
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/pdf_listing_document_route_folder_element_type_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<!-- Intitulé de la feuille de route avec un menu contextuel -->
+		<widgetType name="feuille_route_list_intitule">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/feuille_route_intitule_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<!-- Intitulé de la feuille de route avec un lien -->
+		<widgetType name="feuille_route_list_intitule_link">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/feuille_route_intitule_link_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<!-- Icone indiquant l'état de validation de la feuille de route -->
+		<widgetType name="feuille_route_list_validation_icon">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/feuille_route_model_validation_icon_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<!-- widget pour la selection d'un modele de feuille de route -->
+		<widgetType name="feuille_route_listing_selection_button">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/feuille_route_listing_selection_button_widget_template.xhtml
+			</property>
+			<fields>
+				<field>data.id</field>
+				<field>data.dc.title</field>
+			</fields>
+		</widgetType>
+
+		<widgetType name="feuille_route_listing_selection_link">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/feuille_route_listing_selection_link_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<!-- *********************************************************************** 
+			Types de widgets de la liste des étapes de feuilles de route *********************************************************************** -->
+		<!-- Icone indiquant qu'une étape de la feuille de route est obligatoire 
+			(SGG ou ministère) -->
+		<widgetType name="routing_task_list_obligatoire_icon">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/routing_task_obligatoire_icon_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<!-- Ce type de widget permet d'afficher le nom des ministères destinataires 
+			d'une étape de la feuille de route -->
+		<widgetType name="routing_task_list_ministere_name">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/listing_mailbox_ministere_name_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<!-- Ce type de widget permet d'afficher le nom du poste destinataire d'une 
+			étape de la feuille de route -->
+		<widgetType name="routing_task_list_poste_name">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/listing/listing_mailbox_poste_name_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<!-- Bouton d'action permettant d'aller sur les notes d'étapes. -->
+		<widgetType name="route_step_list_note">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">/widgets/feuilleroute/route_step_list_note_widget_template.xhtml</property>
+		</widgetType>
+
+		<!-- Ce type de widget permet de sélectionner un élément d'une liste (comme 
+			selectOneDirectory), avec en plus un filtre de certains éléments. -->
+		<widgetType name="routing_task_type">
+			<documentation>
+				The selectOneDirectory widget displays a selection of directory entries
+				in create or edit mode, with additional message tag for errors, and
+				the
+				directory entry label in other modes.
+
+				Widgets using this type can provide properties accepted on a
+				&lt;nxd:selectOneListbox /&gt; tag in create or edit mode, and
+				properties accepted on a &lt;nxd:directoryEntryOutput /&gt; tag in
+				other
+				modes.
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">/widgets/feuilleroute/routing_task_type_widget_template.xhtml</property>
+		</widgetType>
+
+		<!-- Ce type de widget permet d'afficher des cases à cocher pour une sélection 
+			multiple. Contrairement à la sélection multiple de Nuxeo, cette sélection 
+			n'est pas basée sur les ContentViews -->
+		<widgetType name="routing_task_ajax_selection_box_with_current_document">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/routing_task_ajax_selection_box_with_current_document_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<!-- Ce type de widget indique l'état en cours d'une étape de feuille de 
+			route. -->
+		<widgetType name="routing_task_list_element_state">
+			<documentation>
+				This widget type displays the description of the task
+				<br />
+				It requires the following fields configuration:
+				<ul>
+					<li>
+						the document lifecycle
+					</li>
+					<li>
+						the document status
+					</li>
+				</ul>
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/routing_task_listing_document_route_element_state_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<!-- *********************************************************************** 
+			Types de widgets de la liste des étapes de feuilles de route : affichage 
+			pour l'impression pdf *********************************************************************** -->
+
+		<!-- Ce type de widget permet d'afficher le nom des ministères destinataires 
+			d'une étape de la feuille de route -->
+		<widgetType name="pdf_routing_task_list_ministere_name">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/pdf_listing_mailbox_ministere_name_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<!-- Ce type de widget permet d'afficher le nom du poste destinataire d'une 
+			étape de la feuille de route -->
+		<widgetType name="pdf_routing_task_list_poste_name">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/pdf_listing_mailbox_poste_name_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<!-- Icone indiquant qu'une étape de la feuille de route est obligatoire 
+			(SGG ou ministère) : utilisé pour l'impression d'une feuille de route -->
+		<widgetType name="pdf_routing_task_list_obligatoire_icon">
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/pdf_routing_task_obligatoire_icon_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<!-- Ce type de widget indique l'état en cours d'une étape de feuille de 
+			route. : affichage pour l'impression pdf -->
+		<widgetType name="pdf_routing_task_list_element_state">
+			<documentation>
+				This widget type displays the description of the task
+				<br />
+				It requires the following fields configuration:
+				<ul>
+					<li>
+						the document lifecycle
+					</li>
+					<li>
+						the document status
+					</li>
+				</ul>
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/pdf_routing_task_listing_document_route_element_state_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="pdf_listing_cm_routing_doc_properties">
+			<documentation>
+				This widget type displays some task properties
+				<br />
+				It requires the following fields configuration:
+				<ul>
+					<li>
+						the documentRouteElement
+					</li>
+				</ul>
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/pdf_listing_cm_routing_doc_properties_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="pdf_text">
+			<documentation>
+				This widget type displays text
+				<br />
+				It requires the following fields configuration:
+				<ul>
+					<li>
+						the property to display
+					</li>
+				</ul>
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/pdf_text_widget_template.xhtml
+			</property>
+		</widgetType>
+
+		<widgetType name="pdf_selectOneDirectory">
+			<documentation>
+				This widget type displays the label of the entry selected in the
+				directory
+				<br />
+				It requires the following fields configuration:
+				<ul>
+					<li>
+						the directory
+					</li>
+					<li>
+						the entry id
+					</li>
+				</ul>
+			</documentation>
+			<handler-class>
+				org.nuxeo.ecm.platform.forms.layout.facelets.plugins.TemplateWidgetTypeHandler
+			</handler-class>
+			<property name="template">
+				/widgets/feuilleroute/pdf_select_one_directory_widget_template.xhtml
+			</property>
+		</widgetType>
+
+	</extension>
+</component>

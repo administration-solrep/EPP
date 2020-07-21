@@ -1,0 +1,140 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+
+	<nxu:set var="listPJDTO"
+		value="#{metadonneesActions.getListPieceJointeFichier(pieceJointeType)}"
+		cache="true">
+
+		<c:forEach var="pjDTO" items="#{listPJDTO}">
+			<nxu:set var="newPJDTO"
+				value="#{metadonneesActions.isNewPieceJointe(pieceJointeType, pjDTO.pieceJointeTitre)}">
+				<div class="#{nxu:test(newPJDTO,'modifiedValue','')}">
+					<table
+						style="border-left: 1px solid #F2F2DD; border-collapse: collapse;">
+						<tr>
+							<c:choose>
+								<c:when test="#{!empty pjDTO.pieceJointeUrl}">
+									<td style="border-bottom: 1px solid #F2F2DD;">
+										<div
+											class="#{nxu:test(!newPJDTO and pjDTO.isUrlModified(),'modifiedValue','')}">
+											<h:outputLink value="#{pjDTO.pieceJointeUrl}" target="_blank">
+												<h:graphicImage url="/icons/webpage.png" alt="lien"
+													title="#{pjDTO.pieceJointeUrl}" />
+											</h:outputLink>
+										</div>
+									</td>
+								</c:when>
+								<c:otherwise>
+									<c:if test="#{pjDTO.isUrlModified()}">
+										<td style="border-bottom: 1px solid #F2F2DD;">
+											<div style="border: 1px solid #848484">
+												<h:graphicImage url="/icons/webpage.png" alt="lien"
+													title="#{metadonneesActions.getDeletedUrl(pieceJointeType)}" />
+											</div>
+										</td>
+									</c:if>
+								</c:otherwise>
+							</c:choose>
+
+							<c:forEach var="fichier_suppr"
+								items="#{pjDTO.getDeletedFileList()}">
+								<td style="border-bottom: 1px solid #F2F2DD;">
+									<div style="border: 1px solid #848484;">
+										<nxh:graphicImage value="/icons/file.gif"
+											title="#{fichier_suppr} (supprimé)" />
+									</div>
+								</td>
+							</c:forEach>
+							<c:forEach var="fichier" items="#{pjDTO.listPieceJointeFichier}">
+								<td style="border-bottom: 1px solid #F2F2DD;"><a4j:outputPanel>
+										<div
+											class="#{nxu:test(!newPJDTO and pjDTO.isFileModified(fichier.file.filename),'modifiedValue','')}">
+											<nxh:graphicImage
+												value="#{nxd:fileIconPath(blobHolderGenerator.getBlobHolder(fichier).blob)}"
+												title="#{fichier.file.filename}" />
+										</div>
+										<h:outputText value=" " />
+
+										<rich:componentControl event="onclick" for="menuPieceJointe"
+											operation="show">
+											<f:param
+												value="#{nxd:fileUrl('downloadFile', fichier, 'file:content', fichier.file.filename)}"
+												name="downloadFileLink" />
+										</rich:componentControl>
+									</a4j:outputPanel></td>
+							</c:forEach>
+							<ui:fragment rendered="#{displayTitle}">
+								<td>
+									<div
+										class="#{nxu:test(!newPJDTO and pjDTO.isTitreModified(),'modifiedValue','')}">
+										<h:outputText value="#{pjDTO.pieceJointeTitre}" />
+									</div>
+								</td>
+							</ui:fragment>
+						</tr>
+					</table>
+				</div>
+			</nxu:set>
+		</c:forEach>
+
+	</nxu:set>
+	<nxu:set var="listDeletedPJDTO"
+		value="#{metadonneesActions.getDeletedListPieceJointe(pieceJointeType)}"
+		cache="true">
+
+		<c:forEach var="pjDTO2" items="#{listDeletedPJDTO}">
+
+
+			<div style="border: 1px solid #848484;">
+
+				<table style="border: 1px solid #F2F2DD; border-collapse: collapse;">
+					<tr>
+						<c:if test="#{!empty pjDTO2.pieceJointeUrl}">
+							<td style="border-bottom: 1px solid #F2F2DD;">
+								<div class="">
+									<h:outputLink value="#{pjDTO2.pieceJointeUrl}" target="_blank">
+										<h:graphicImage url="/icons/webpage.png" alt="lien"
+											title="#{pjDTO2.pieceJointeUrl}" />
+									</h:outputLink>
+								</div>
+							</td>
+						</c:if>
+
+						<c:forEach var="fichier_suppr"
+							items="#{pjDTO2.getDeletedFileList()}">
+							<td style="border-bottom: 1px solid #F2F2DD;">
+								<div style="border: 1px solid #848484;">
+									<nxh:graphicImage value="/icons/file.gif"
+										title="#{fichier_suppr} (supprimé)" />
+								</div>
+							</td>
+						</c:forEach>
+						<c:forEach var="fichier" items="#{pjDTO2.listPieceJointeFichier}">
+							<td style="border-bottom: 1px solid #F2F2DD;"><a4j:outputPanel>
+									<div>
+										<nxh:graphicImage
+											value="#{nxd:fileIconPath(blobHolderGenerator.getBlobHolder(fichier).blob)}"
+											title="#{fichier.file.filename}" />
+									</div>
+									<h:outputText value=" " />
+								</a4j:outputPanel></td>
+						</c:forEach>
+						<td>
+							<div class="">
+								<h:outputText value="#{pjDTO2.pieceJointeTitre}" />
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</c:forEach>
+	</nxu:set>
+</div>

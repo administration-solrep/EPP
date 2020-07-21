@@ -1,0 +1,11 @@
+username, password, firstName, lastName, email
+"Administrator","Administrator","","","Administrator@example.com"
+"user","password","User","Lambda","my@mail"
+"user1","password1","User1","Lambda","my1@mail"
+"user2","password2","User2","Lambda","my2@mail"
+"user3","password3","User3","Lambda","my3@mail"
+"nulrich","nulrich","nicolas","ulrich","nulrich@nuxeo.com"
+"adminsgg","adminsgg","Admin SGG","Lambda","adminsgg@mail"
+"user_gvt","user_gvt","User Gouvernement","User Gouvernement","user_gvt@mail"
+"user_an","user_an","User AN","User AN","user_an@mail"
+"user_senat","user_senat","User sénat","User sénat","user_senat@mail"

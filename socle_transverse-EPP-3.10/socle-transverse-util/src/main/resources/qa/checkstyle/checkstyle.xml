@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Conventions de code pour Sword. @author Jean-Marc Trémeaux Created on 
+	15 mai 2007 -->
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+<module name="Checker">
+	<property name="severity" value="warning" />
+	<module name="TreeWalker">
+		<!-- ************************************************************ Commentaires 
+			Javadoc ************************************************************ -->
+		<!-- Commentaires Javadoc des types (classes, interfaces...) -->
+		<module name="JavadocType" />
+
+		<!-- Commentaires Javadoc des méthodes -->
+		<module name="JavadocMethod">
+			<property name="allowUndeclaredRTE" value="true" />
+			<property name="allowThrowsTagsForSubclasses" value="true" />
+		</module>
+
+		<!-- Commentaires Javadoc des attributs non privés -->
+		<module name="JavadocVariable">
+			<property name="scope" value="protected" />
+		</module>
+
+		<!-- Pas de commentaires Javadoc vides ;-) -->
+		<module name="JavadocStyle">
+			<property name="checkEmptyJavadoc" value="true" />
+		</module>
+
+		<!-- ************************************************************ Conventions 
+			de nommage ************************************************************ -->
+		<!-- Constantes de classes (attributs final+static) de la forme "IMPORTANT_CONSTANT" -->
+		<!-- Désactivé car les loggers commons sont final mais logiquement pas 
+			des constantes <module name="ConstantName"/> -->
+
+		<!-- Constantes locales (variable final) de la forme "localConstant" -->
+		<module name="LocalFinalVariableName" />
+
+		<!-- Variables locales -->
+		<module name="LocalVariableName" />
+
+		<!-- Attributs -->
+		<module name="MemberName" />
+
+		<!-- Noms de méthodes -->
+		<module name="MethodName" />
+
+		<!-- Noms de packages -->
+		<module name="PackageName">
+			<property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$" />
+		</module>
+
+		<!-- Noms de paramètres -->
+		<module name="ParameterName" />
+
+		<!-- Noms d'attributs statiques -->
+		<module name="StaticVariableName" />
+
+		<!-- Noms des types (classes, interfaces...) -->
+		<module name="TypeName" />
+
+		<!-- ************************************************************ Imports 
+			************************************************************ -->
+		<!-- Imports en .* interdits -->
+		<module name="AvoidStarImport" />
+
+		<!-- Imports redondants -->
+		<module name="RedundantImport" />
+
+		<!-- Imports inutilisés -->
+		<module name="UnusedImports" />
+
+		<!-- ************************************************************ Espaces 
+			blancs ************************************************************ -->
+		<!-- Espaces blancs après les instructions if, for, opérateurs binaires... 
+			Fix pour Checkstyle 4.4 : ne pas mettre WILDCARD_TYPE sinon il peine sur 
+			le generics du type List<? extends... -->
+		<module name="WhitespaceAround">
+			<property name="tokens"
+				value="ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, EQUAL, GE, GT, LAND, LCURLY, LE, LITERAL_ASSERT, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR, LITERAL_IF, LITERAL_RETURN, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE, LOR, LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, NOT_EQUAL, PLUS, PLUS_ASSIGN, QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR, SR_ASSIGN, STAR, STAR_ASSIGN" />
+		</module>
+
+		<!-- Pas d'espaces blancs après certains opérateurs unaires (., +, -...) -->
+		<module name="NoWhitespaceAfter" />
+
+		<!-- Espaces blancs après certains opérateurs unaires (cast...) -->
+		<module name="WhitespaceAfter" />
+
+		<!-- ************************************************************ Modificateurs 
+			************************************************************ -->
+		<!-- Ordre des modificateurs -->
+		<module name="ModifierOrder" />
+
+		<!-- Modificateurs redondants (e.g. public sur les méthodes d'une interface) -->
+		<module name="RedundantModifier" />
+
+		<!-- ************************************************************ Blocs 
+			************************************************************ -->
+		<!-- Blocs vides -->
+		<module name="EmptyBlock">
+			<!-- Nécessite au moins un commentaire de justification -->
+			<property name="option" value="text" />
+		</module>
+
+		<!-- Blocs imbriqués -->
+		<module name="AvoidNestedBlocks" />
+
+		<!-- Placement des accolades ouvrantes sur la même ligne -->
+		<module name="LeftCurly" />
+
+		<!-- Accolades toujours obligatoires, même pour les if sur une ligne -->
+		<module name="NeedBraces" />
+
+		<!-- Placement des accolades fermantes -->
+		<module name="RightCurly" />
+
+		<!-- ************************************************************ Code 
+			************************************************************ -->
+		<!-- Instructions vides -->
+		<module name="EmptyStatement" />
+
+		<!-- Les classes qui surchargent equals() doivent aussi surcharger hashCode() -->
+		<module name="EqualsHashCode" />
+
+		<!-- Expressions booléennes non simplifiées -->
+		<module name="SimplifyBooleanExpression" />
+
+		<!-- Expressions booléennes de retour de fonction non simplifiées -->
+		<module name="SimplifyBooleanReturn" />
+
+		<!-- Egalité des chaînes de caractères non testées avec == ou != -->
+		<module name="StringLiteralEquality" />
+
+		<!-- Assignation des paramètres -->
+		<module name="ParameterAssignment" />
+
+		<!-- Assignation (redontante) des attributs à leur valeur par défaut (e.g. 
+			un objet à null) -->
+		<module name="ExplicitInitialization" />
+
+		<!-- Instruction "defaut" en dernier cas d'un switch -->
+		<module name="DefaultComesLast" />
+
+		<!-- Parenthèses superflues -->
+		<module name="UnnecessaryParentheses" />
+	</module>
+
+	<!-- Suppression des vérifications sur les fichiers auto-générés -->
+	<module name="SuppressionFilter">
+		<property name="file"
+			value="${basedir}/qa/checkstyle/checkstyle-suppressions.xml" />
+	</module>
+</module>
+

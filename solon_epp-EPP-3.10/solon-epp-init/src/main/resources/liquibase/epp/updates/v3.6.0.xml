@@ -1,0 +1,32 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd"
+	logicalFilePath="v3.6.0">
+
+	<changeSet id="01_create_rubriques.sql" author="system" context="oracle,dev">
+		<sqlFile path="liquibase/epp/sql/EPP-3.6.0/01_create_rubriques.sql" />
+	</changeSet>
+	
+	<changeSet id="02_insert_institutions.sql" author="system" context="oracle,dev">
+		<sqlFile path="liquibase/epp/sql/EPP-3.6.0/02_insert_institutions.sql" />
+	</changeSet>
+	
+	<changeSet id="03_insert_rubriques.sql" author="system" context="oracle,dev">
+		<sqlFile path="liquibase/epp/sql/EPP-3.6.0/03_insert_rubriques.sql" />
+	</changeSet>
+	
+	<changeSet id="04_FEV550_bruteforce_create_table.sql" author="system" context="dev,oracle">
+		<sqlFile path="liquibase/epp/sql/EPP-3.6.0/04_FEV550_bruteforce_create_table.sql" />
+	</changeSet>
+	
+	<changeSet id="05_FEV549_parametrage_ws_epg.sql" author="system" context="oracle">
+		<sqlFile path="liquibase/epp/sql/EPP-3.6.0/05_FEV549_parametrage_ws_epg.sql" />
+	</changeSet>
+	
+	<changeSet id="06_FEV549_update_version.sql" author="system" context="oracle">
+		<sqlFile path="liquibase/epp/sql/EPP-3.6.0/06_FEV549_update_version.sql" />
+	</changeSet>
+
+
+</databaseChangeLog>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherAttributionsResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSattribution"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSattribution ../../../../../../xsd/reponses/WSattribution.xsd ">
+	<p:jeton_attributions>p:jeton_attributions</p:jeton_attributions>
+	<p:statut>OK</p:statut>
+
+	<p:attributions type="REATTRIBUTION">
+
+		<p2:attributaire>
+			<p1:ministre id="1234">
+				<p1:titre_jo>titre_jo</p1:titre_jo>
+				<p1:intitule_min>intitule_min</p1:intitule_min>
+			</p1:ministre>
+		</p2:attributaire>
+
+		<p2:id_question>
+			<p1:numero_question>1234</p1:numero_question>
+			<p1:type>QE</p1:type>
+			<p1:source>AN</p1:source>
+			<p1:legislature>13</p1:legislature>
+		</p2:id_question>
+
+
+	</p:attributions>
+
+
+</p:chercherAttributionsResponse>

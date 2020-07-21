@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue le service de requeteur de l'application Réponses. -->
+<component name="fr.dila.st.core.service.RequeteurService">
+	<implementation class="fr.dila.st.core.service.RequeteurServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.RequeteurService" />
+	</service>
+
+	<extension-point name="solvers">
+		<object class="fr.dila.st.core.descriptor.RequeteurFunctionSolverDescriptor" />
+	</extension-point>
+</component>

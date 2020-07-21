@@ -1,0 +1,15 @@
+-- Mise à jour de l'objet des informations parlementaires en utilisant la rubrique
+
+UPDATE VERSION V
+SET V.OBJET = (
+	SELECT R."label"
+	FROM VOC_RUBRIQUES R
+	WHERE V.RUBRIQUE=R."id"
+)
+WHERE V.ID IN (
+	SELECT V2.ID
+	FROM VERSION V2, EVENEMENT E
+	WHERE E.IDEVENEMENT=V2.EVENEMENT AND E.TYPEEVENEMENT='EVT45' AND V2.RUBRIQUE IS NOT NULL
+);
+
+commit;

@@ -1,0 +1,44 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout">
+
+	<c:if test="#{widget.mode == 'edit'}">
+		<a4j:region renderRegionOnly="true" id="#{widget.id}_ajax_region">
+			<a4j:outputPanel id="#{widget.id}_profilePanel" ajaxRendered="false">
+				<h:selectOneMenu id="#{widget.id}_selectProfile"
+					value="#{delegationActions.currentProfile}">
+					<c:forEach var="profile"
+						items="#{userManagerActions.getProfilList(currentUser.name)}">
+						<f:selectItem itemLabel="#{profile}" itemValue="#{profile}" />
+					</c:forEach>
+				</h:selectOneMenu>
+				<a4j:commandLink action="#{delegationActions.addProfile(value)}"
+					reRender="#{widget.id}_profilePanel">
+					<h:graphicImage value="/icons/action_add.gif"
+						id="#{widget.id}_addVecteurImage" />
+				</a4j:commandLink>
+
+				<br />
+
+				<c:forEach var="profile"
+					items="#{value.getAdapter(Delegation).profilListId}">
+					<h:outputText value="#{profile}" />
+					<a4j:commandLink
+						action="#{delegationActions.removeProfile(value, profile)}"
+						reRender="#{widget.id}_profilePanel">
+						<h:graphicImage value="/icons/action_delete_mini.gif" />
+					</a4j:commandLink>
+					<br />
+				</c:forEach>
+			</a4j:outputPanel>
+		</a4j:region>
+	</c:if>
+
+	<c:if test="#{widget.mode == 'view'}">
+		<h:outputText
+			value="#{nxu:joinCollection(value.getAdapter(Delegation).profilListId, ', ')}" />
+	</c:if>
+</div>

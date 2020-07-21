@@ -1,0 +1,16 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout">
+
+	<h:form id="quickSearchForm">
+		<nxl:layout name="recherche_rapide_layout" mode="edit"
+			value="#{rechercheWebActions}" />
+		<h:commandButton id="submitQuickSearch" styleClass="button"
+			value="Rechercher" action="#{rechercheWebActions.rechercheRapide()}" />
+		<h:commandButton styleClass="button" value="Réinitialiser"
+			action="#{rechercheWebActions.resetRecherche()}" />
+	</h:form>
+</div>

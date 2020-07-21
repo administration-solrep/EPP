@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="org.nuxeo.ecm.classification.web.actions">
+
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService"
+    point="actions">
+
+    <action id="newClassificationRoot"
+      link="#{documentActions.createDocument('ClassificationRoot')}"
+      enabled="true" label="command.createClassificationRoot"
+      icon="/icons/action_add_file.gif">
+      <category>SUBVIEW_UPPER_LIST</category>
+      <filter id="newClassificationRoot">
+        <rule grant="true">
+          <permission>AddChildren</permission>
+          <facet>Folderish</facet>
+        </rule>
+      </filter>
+    </action>
+
+    <action id="newClassificationFolder"
+      link="#{documentActions.createDocument('ClassificationFolder')}"
+      enabled="true" label="command.createClassificationFolder"
+      icon="/icons/action_add_file.gif">
+      <category>SUBVIEW_UPPER_LIST</category>
+      <filter id="newClassificationFolder">
+        <rule grant="true">
+          <permission>AddChildren</permission>
+          <schema>classification</schema>
+        </rule>
+      </filter>
+    </action>
+
+    <!-- avoid rights setting on classification folders -->
+    <action id="TAB_RIGHTS">
+      <filter-id>is_not_classification_folder</filter-id>
+    </action>
+
+    <action id="TAB_CONTENT">
+      <filter id="is_not_classification_container">
+        <rule grant="false">
+          <schema>classification</schema>
+        </rule>
+      </filter>
+    </action>
+
+    <!-- specific content presentation for classification containers -->
+    <action id="TAB_CLASSIFICATION_CONTENT"
+      link="/classification/classification_content.xhtml" order="10"
+      label="action.view.content">
+      <category>VIEW_ACTION_LIST</category>
+      <filter id="is_classification_container">
+        <rule grant="true">
+          <schema>classification</schema>
+        </rule>
+      </filter>
+    </action>
+
+    <action id="CURRENT_SELECTION_CLASSIFICATION"
+      link="#{classificationActions.showCurrentSelectionClassificationForm(facesContext.viewRoot.viewId)}"
+      label="action.classificationRequest">
+      <category>CURRENT_SELECTION_LIST</category>
+      <filter-id>canClassifyFromCurrentSelection</filter-id>
+    </action>
+
+    <!-- remove generic actions for classification folder documents -->
+    <action id="newDocument">
+      <filter-id>is_not_classification_container</filter-id>
+    </action>
+    <action id="newFile">
+      <filter-id>is_not_classification_container</filter-id>
+    </action>
+
+  </extension>
+
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService"
+    point="filters">
+
+    <filter id="is_not_classification_folder">
+      <rule grant="false">
+        <type>ClassificationFolder</type>
+      </rule>
+    </filter>
+
+    <filter id="canClassifyFromCurrentSelection">
+      <rule grant="true">
+        <condition>
+          #{classificationActions.canClassifyFromCurrentSelection}
+        </condition>
+      </rule>
+    </filter>
+
+  </extension>
+
+</component>

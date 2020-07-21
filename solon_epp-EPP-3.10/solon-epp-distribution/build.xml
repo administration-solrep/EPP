@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Script Ant permettant de déployer la distribution et de lancer les tests
+	fonctionnels sur l'environnement d'assurance qualité. Les tâches de ce script
+	doivent être exécutées après la construction de la distribution. Taches assurance
+	qualité :
+    - deployqa : déploiement sur le serveur QA et lancement des tests
+	  fonctionnels automatisés; -->
+<project name="QA">
+	<target name="autodeploy" description="Déploiement de l'application sur le serveur QA">
+		<echo>
+		    ===========================================================
+		    . Déploiement sur le serveur de QA
+		    .
+		    . Serveur de déploiement :
+		    ${ssh.username}@${ssh.host}"
+		    ===========================================================
+		</echo>
+		<scp file="${deploy.srcdir}/${deploy.archive}"
+		    todir="${ssh.username}@${ssh.host}:${deploy.destdir}"
+		    password="${ssh.password}" trust="true" />
+
+		<!-- Déploiement de la distribution -->
+		<sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}"
+		    command="${deploy.script} -r db,ldap,ldapdb /opt/solonepp-server-SNAPSHOT ${deploy.destdir}/${deploy.archive}"
+		    trust="true" />
+	</target>
+</project>

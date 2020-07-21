@@ -1,0 +1,18 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd"
+	logicalFilePath="liquibase-epp">
+
+	<includeAll path="liquibase/epp/ddl-init/" />
+	<includeAll path="liquibase/common/ddl-organigramme/" />
+	<includeAll path="liquibase/common/init-nuxeo/" />
+	<includeAll path="liquibase/common/init-organigramme/" />
+
+	<!-- updates -->
+	<include file="liquibase/epp/updates/v3.5.0.xml" />
+	<include file="liquibase/epp/updates/v3.6.0.xml" />
+	<include file="liquibase/epp/updates/v3.6.1.xml" />
+	
+</databaseChangeLog>
+

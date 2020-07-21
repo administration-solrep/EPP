@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chercherQuestionsRequest
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion"
+	xmlns:ar="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:repco="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:qn="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:rep="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion ../../main/resources/xsd/reponses/WSquestion.xsd ">
+	<login_ministere>50000507</login_ministere>
+	<id_questions>
+		<repco:numero_question>12001</repco:numero_question>
+		<repco:type>QE</repco:type>
+		<repco:source>AN</repco:source>
+		<repco:legislature>13</repco:legislature>
+	</id_questions>
+</chercherQuestionsRequest>

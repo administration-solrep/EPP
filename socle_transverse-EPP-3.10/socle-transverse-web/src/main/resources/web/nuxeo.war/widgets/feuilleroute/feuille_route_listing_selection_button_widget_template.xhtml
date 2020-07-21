@@ -1,0 +1,13 @@
+<a4j:commandLink xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core" id="selectBtn" immediate="true"
+	reRender="#{regionToRenderId}">
+	<a4j:actionparam name="selectedNode" value="#{field_0}"
+		assignTo="#{routingActions.relatedRouteModelDocumentId}" />
+
+	<h:graphicImage id="selectionButton" value="/icons/action_add.gif"
+		alt="Select." />
+
+</a4j:commandLink>

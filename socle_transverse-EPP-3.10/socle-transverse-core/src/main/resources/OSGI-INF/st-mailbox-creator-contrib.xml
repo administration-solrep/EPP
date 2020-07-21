@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.st.service.defaultContrib">
+
+	<require>fr.dila.cm.service.defaultContrib</require>
+	<require>fr.dila.cm.service.mailboxManagement</require>
+
+  <extension target="fr.dila.cm.service.mailboxManagement" point="mailboxCreator">
+    <contribution class="fr.dila.st.core.service.STDefaultMailboxCreator" />
+  </extension>
+
+</component>

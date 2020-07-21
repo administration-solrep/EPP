@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<fragment version="1">
+
+	<require>org.nuxeo.ecm.automation.core</require>
+
+	<require>fr.dila.st.webengine</require>
+	<require>fr.dila.solonepp.core</require>
+</fragment>
+
+

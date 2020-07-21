@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	elementFormDefault="qualified"
+
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:rep="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:repco="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons">
+
+
+	<!-- ====================================== -->
+	<!-- Imports -->
+	<!-- ====================================== -->
+	<xs:import schemaLocation="../commons/commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons" />
+	<xs:import schemaLocation="reponses-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons" />
+	<xs:import schemaLocation="reponses.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses" />
+
+	<!-- ====================================== -->
+	<!-- Complex types -->
+	<!-- ====================================== -->
+
+	<xs:complexType name="QuestionReponse">
+		<xs:sequence>
+			<xs:element name="question" type="Question" minOccurs="1"
+				maxOccurs="unbounded" />
+			<!-- REPRISE -->
+			<xs:element name="reponse" type="rep:ReponsePubliee"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Question">
+		<xs:annotation>
+			<xs:documentation>
+				Conteneur de la question :
+				- id_question : identifiant de type QuestionId, il identifie de
+				maniere unique la question.
+				- ministre : Ministere interpelle
+				- texte : texte de la question, il peut comporter des balises
+				richText mais doit etre encode en base64.
+				- etat_modification : s'il y a eu modification, la question en garde
+				une trace
+			</xs:documentation>
+		</xs:annotation>
+		<!-- ====================================== -->
+		<xs:sequence>
+			<xs:element name="id_question" type="repco:QuestionId"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="date_publication_jo" type="xs:date"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="page_jo" type="xs:int" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="ministre_depot" type="repco:Ministre"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="ministre_attributaire" type="repco:Ministre"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="auteur" type="Auteur" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="texte" type="commons:CDataString"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="etat_question" type="repco:EtatQuestion"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="rappel" type="repco:QuestionId"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="texte_joint" type="commons:CDataString"
+				minOccurs="0" maxOccurs="1" />
+			<!-- Pour la reprise -->
+			<xs:element name="date_retrait" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="indexation_an" type="IndexationAn"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="titre_senat" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="indexation_senat" type="IndexationSenat"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="Attribution">
+		<xs:sequence>
+			<xs:element name="attributaire" type="repco:Attributaire"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="id_question" type="repco:QuestionId"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="type" type="repco:AttributionType"
+			use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="AttributionDate">
+		<xs:sequence>
+			<xs:element name="attributaire" type="repco:Attributaire"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="id_question" type="repco:QuestionId"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="date_attribution" type="xs:dateTime"
+				minOccurs="1" maxOccurs="1" />
+			<!-- l'heure est également transmise en cas de plusieurs changement sur 
+				une journée -->
+		</xs:sequence>
+		<xs:attribute name="type" type="repco:AttributionType"
+			use="required" />
+	</xs:complexType>
+
+
+	<xs:complexType name="Auteur">
+		<xs:sequence>
+			<xs:element name="civilite" type="repco:Civilite"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="prenom" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="nom" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="grp_pol" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="circonscription" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="id_mandat" type="xs:string" use="required" />
+	</xs:complexType>
+
+
+	<xs:complexType name="IndexationAn">
+		<xs:sequence>
+			<xs:element name="rubrique" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<!-- Tete d'analyse -->
+			<xs:element name="rubrique_ta" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="analyse" type="xs:string" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<xs:complexType name="IndexationSenat">
+		<xs:sequence>
+			<xs:element name="theme" type="xs:string" minOccurs="1"
+				maxOccurs="unbounded" />
+			<xs:element name="rubrique" type="xs:string" minOccurs="1"
+				maxOccurs="unbounded" />
+			<xs:element name="renvois" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="renvoi" type="xs:string" minOccurs="1"
+							maxOccurs="3" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<!-- =============================================== -->
+	<!-- Types relatifs au controle publication -->
+	<!-- =============================================== -->
+
+	<xs:complexType name="ControleQuestionReponses">
+		<xs:sequence>
+			<xs:element name="question" type="ControleQuestion"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="reponses" type="rep:ControleReponses"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ControleQuestion">
+		<xs:annotation>
+			<xs:documentation>
+				Controle d'une question
+				id_question : identifiant de la question
+				referencePulication : coordonnees de la question dans le JO
+				texte_question : texte de la question
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:sequence>
+			<xs:element name="id_question" type="repco:QuestionId" />
+			<xs:element name="referencePublication" type="repco:ReferencePublication"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="ministre_jo" type="repco:MinistrePublication"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="texte_question" type="commons:CDataString"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ControleErratumQuestion">
+		<xs:annotation>
+			<xs:documentation>
+				Controle d'un erratum de question
+				id_question :
+				identifiant de la question
+				referencePublication : coordonnees dans le
+				JO
+				texte_erratum : Texte de l'erratum. Attention, ce n'est pas le
+				texte consolide.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id_question" type="repco:QuestionId"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="referencePublicationErratum" type="repco:ReferencePublication"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="texte_erratum" type="commons:CDataString"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+
+	<xs:complexType name="RetourPublication">
+		<xs:sequence>
+			<xs:element name="id_question" type="repco:QuestionId" />
+			<xs:element name="date_publication_jo" type="xs:date" />
+			<xs:element name="page_jo" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>

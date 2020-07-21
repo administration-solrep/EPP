@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue le service de configuration globale de l'application. -->
+<component name="fr.dila.st.core.service.ConfigService">
+	<implementation class="fr.dila.st.core.service.ConfigServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.ConfigService" />
+	</service>
+
+	<extension-point name="configParameter">
+		<object class="fr.dila.st.core.descriptor.ConfigParameterDescriptor" />
+	</extension-point>
+</component>

@@ -1,0 +1,21 @@
+#############
+# Création
+#############
+    
+#  FEV346 : visualisation du suivi des batchs
+dn: cn=BatchSuiviReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: BatchSuiviReader
+uniqueMember: cn=emptyRef
+description: Administration : suivi des batchs
+
+##########
+# Ajout
+##########
+
+dn: cn=Administrateur fonctionnel,ou=groups,ou=SolonEpp,dc=dila,dc=fr
+changetype: modify
+add: uniqueMember
+uniqueMember: cn=BatchSuiviReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+

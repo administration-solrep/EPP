@@ -1,0 +1,18 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout">
+
+	<h:selectManyCheckbox value="#{field}">
+		<nxdir:selectItems id="#{widget.id}"
+			directoryName="${widget.properties['directoryName']}" var="item"
+			itemValue="#{item.vocabulary.id}"
+			itemLabel="#{item.vocabulary.label}" />
+	</h:selectManyCheckbox>
+	<h:message styleClass="errorMessage" for="#{widget.id}"
+		id="#{widget.id}_message" />
+
+</div>

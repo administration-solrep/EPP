@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="fr.dila.solonepp.core.journal.audit">
+	<require>org.nuxeo.ecm.platform.audit.service.NXAuditEventsService</require>
+
+	<extension target="org.nuxeo.ecm.platform.audit.service.NXAuditEventsService"
+		point="event">
+		<event name="documentCreated" />
+		<event name="documentRemoved" />
+		<event name="documentModified" />
+		<event name="documentLocked" />
+		<event name="documentUnlocked" />
+		<event name="documentPublished" />
+		<event name="documentImported" />
+		<event name="documentSubmitedForPublication" />
+		<event name="afterCaseSentEvent" />
+		<event name="lifecycle_transition_event" />
+		<event name="versioningChangeCoreEvent" />
+		<event name="ajoutFondDossier" />
+		<event name="supprimerFondDossier" />
+		<event name="modifierFondDossier" />
+
+		<!-- events de validation de la feuille de route -->
+		<event name="afterCaseSentEvent" />
+		<event name="avisFavorable" />
+		<event name="avisDeFavorable" />
+		<event name="substituerFeuilleRoute" />
+
+		<!-- events des actions du dossier -->
+		<event name="envoiMailDossier" />
+		<event name="archivageDossier" />
+		<event name="preparationArchivageDossier" />
+		<event name="exportZipDossier" />
+	</extension>
+</component>

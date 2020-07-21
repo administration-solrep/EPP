@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory">
+
+	<c:choose>
+		<c:when test="#{administrationActions.isAccessAuthorized()}">
+			<h:outputText value="#{nuxeoApplicationName}" />
+		</c:when>
+		<c:otherwise>
+			<h:outputText
+				value="#{nuxeoApplicationName} - #{messages['command.espaceNonAutorise']}" />
+		</c:otherwise>
+	</c:choose>
+
+	<ui:define name="body">
+		<c:if test="#{administrationActions.isAccessAuthorized()}">
+			<div class="tabsContent">
+				<br />
+
+				<h:form>
+					<p class="directoryBack">
+						<h:commandLink immediate="true"
+							value="#{messages['command.parametre.back']}"
+							action="#{administrationActions.navigateToParentFolder}" />
+					</p>
+				</h:form>
+
+				<ui:include src="/incl/message_banner.xhtml" />
+
+				<br />
+
+				<h1>
+					<h:outputText styleClass="label" value="#{currentDocument.title}" />
+				</h1>
+
+				<div class="tabsBar subtabsBar">
+					<h:form>
+						<ul>
+
+							<li
+								class="#{nxu:test(currentParametreSubTab == 'view', 'selected', '')}">
+								<h:commandLink action="view_parametre" immediate="true">
+									<h:outputText value="#{messages['label.parametre.view']}" />
+								</h:commandLink>
+							</li>
+
+							<li
+								class="#{nxu:test(currentParametreSubTab == 'edit', 'selected', '')}">
+								<h:commandLink action="edit_parametre" immediate="true">
+									<h:outputText value="#{messages['label.parametre.edit']}" />
+								</h:commandLink>
+							</li>
+
+						</ul>
+					</h:form>
+				</div>
+				<div style="clear: both" />
+
+				<div class="tabsContent">
+
+					<ui:insert name="mainContent" />
+
+				</div>
+
+			</div>
+		</c:if>
+	</ui:define>
+
+</nxthemes:composition>

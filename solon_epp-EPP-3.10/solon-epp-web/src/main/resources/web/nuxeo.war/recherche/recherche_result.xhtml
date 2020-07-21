@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:nxu="http://nuxeo.org/nxweb/util">
+
+	<ui:define name="page title">
+		<h:outputText
+			value="#{nuxeoApplicationName} - #{messages['epp.rechercheDocumentaire.title']}" />
+	</ui:define>
+
+	<ui:define name="body">
+		<ui:include src="/incl/message_banner.xhtml" />
+
+		<div id="mailboxList">
+			<div id="upperContentView">
+				<div class="mailboxContent">
+					<nxu:set var="contentViewName" value="recherche_message_list">
+						<ui:decorate template="/incl/content_view.xhtml">
+							<ui:define name="content_view_no_data">
+								<f:subview
+									rendered="#{documents.rowCount == 0 and not provider.hasError()}">
+									<div style="text-align: center;">
+										<b><h:outputText value="#{messages['recherche.no_data']}" /></b><br />
+									</div>
+								</f:subview>
+							</ui:define>
+							<ui:define name="content_view_header_before_selector" />
+						</ui:decorate>
+					</nxu:set>
+				</div>
+			</div>
+		</div>
+
+		<h:form id="rechercheDocumentaireResultForm">
+			<c:choose>
+				<c:when
+					test="#{rechercheDocumentaireActions.displayBackToRequeteLibreButton()}">
+					<div class="bottomActionBar">
+						<h:commandButton styleClass="button"
+							value="#{messages['epp.rechercheDocumentaire.requete.libre.action.result.back']}"
+							action="#{rechercheDocumentaireActions.backToRequeteLibre()}" />
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="bottomActionBar">
+						<h:commandButton styleClass="button"
+							value="#{messages['epp.rechercheDocumentaire.action.result.back']}"
+							action="#{rechercheDocumentaireActions.backToCriteria()}" />
+					</div>
+				</c:otherwise>
+			</c:choose>
+		</h:form>
+
+		<ui:include src="/incl/upper_panel_toggle.xhtml" />
+	</ui:define>
+
+	<ui:define name="subbody">
+		<div id="currentEvenementDisplayed" style="padding: 5px;">
+			<c:if test="#{rechercheWebActions.displayMessageRecherche()}">
+				<h:panelGroup id="case_content">
+					<ui:insert name="case_content">
+						<div class="tabsBar">
+							<h:form>
+								<nxu:dataList layout="unorderedList" var="tab"
+									value="#{tabsActionsList}"
+									itemStyleClass="#{nxu:test(webActions.currentTabAction == tab, 'selected', '')}">
+									<nxd:restDocumentLink document="#{currentDocument}"
+										tab="#{tab.id}" view="recherche_result">
+										<h:outputText value="#{messages[tab.label]}" />
+									</nxd:restDocumentLink>
+								</nxu:dataList>
+							</h:form>
+						</div>
+						<div style="clear: both" />
+						<div class="tabsContent">
+							<ui:include src="#{webActions.currentTabAction.link}" />
+						</div>
+					</ui:insert>
+				</h:panelGroup>
+				<c:if test="#{currentDocument.getType() == 'Evenement'}">
+					<script>
+	        var j = jQuery.noConflict();
+	        j(document).ready(function() {
+	        	j("html, body").scrollTop(j('#currentEvenementDisplayed').offset().top);
+	        });
+        </script>
+				</c:if>
+			</c:if>
+		</div>
+	</ui:define>
+</nxthemes:composition>

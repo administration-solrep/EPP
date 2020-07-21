@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base"
+	href="http://idlv-solonepp-test.lyon-dev2.local:8080/" />
+<title>Bouton Transmettre Par Mél</title>
+</head>
+<body>
+	<table cellpadding="1" cellspacing="1" border="1">
+		<thead>
+			<tr>
+				<td rowspan="1" colspan="3">Bouton Transmettre Par Mél</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>store</td>
+				<td>ANAT1230782L</td>
+				<td>NOR</td>
+			</tr>
+			<tr>
+				<td>store</td>
+				<td>2 - Information du gouvernement du dépôt d'une proposition
+					de loi</td>
+				<td>EVTNUM</td>
+			</tr>
+			<!--Connexion-->
+			<tr>
+				<td>setTimeout</td>
+				<td>120000</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>setSpeed</td>
+				<td>500</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>open</td>
+				<td>/solon-epp/logout</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>open</td>
+				<td>/solon-epp/login.jsp</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>username</td>
+				<td>adminsgg</td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>password</td>
+				<td>adminsgg</td>
+			</tr>
+			<tr>
+				<td>clickAndWait</td>
+				<td>Submit</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>waitForPageToLoad</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>//*[@id=&quot;collapsiblePanelIdOpened&quot;]/div/div/div/div[2]/div/div/div/form/div/div/div/div/table/tbody/tr/td/div/a</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>waitForElementPresent</td>
+				<td>//*[@id=&quot;collapsiblePanelIdOpened&quot;]/div/div/div/div[2]/div/div/div/form/div/div/div/div/div/table/tbody/tr/td[3]/a</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>//*[@id=&quot;collapsiblePanelIdOpened&quot;]/div/div/div/div[2]/div/div/div/form/div/div/div/div/div/table/tbody/tr/td[3]/a</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>waitForPageToLoad</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>waitForTextPresent</td>
+				<td></td>
+				<td>${NOR}</td>
+			</tr>
+			<tr>
+				<td>clickAndWait</td>
+				<td>link=${NOR}</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>waitForPageToLoad</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<!--Verification des metadonnees presentes-->
+			<tr>
+				<td>setSpeed</td>
+				<td>0</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>assertElementPresent</td>
+				<td>link=Détail communication</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>assertElementPresent</td>
+				<td>link=Détail dossier</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>assertElementPresent</td>
+				<td>link=Historique dossier</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>assertTextPresent</td>
+				<td>Détails communication</td>
+				<td></td>
+			</tr>
+			<!--Verification Page -Transmettre par mél--->
+			<tr>
+				<td>setSpeed</td>
+				<td>500</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>//*[@id=&quot;evenement_metadonnees&quot;]/span/div[2]/div/table/tbody/tr/td/div[2]/div[2]/input[1]</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>waitForTextPresent</td>
+				<td>Transmettre par mèl</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>assertTextPresent</td>
+				<td>Objet*</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>assertTextPresent</td>
+				<td>Destinataire*</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>assertTextPresent</td>
+				<td>Message*</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>assertElementPresent</td>
+				<td>//*[@id=&quot;evenement_metadonnees:documentViewPanel&quot;]/div[2]/input</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>assertElementPresent</td>
+				<td>//*[@id=&quot;evenement_metadonnees:documentViewPanel&quot;]/div[2]/input[2]</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>assertValue</td>
+				<td>id=evenement_metadonnees:nxl_transmettre_mail_evenement:nxw_objet_mail</td>
+				<td>${EVTNUM}</td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>//*[@id=&quot;evenement_metadonnees:nxl_transmettre_mail_evenement:nxw_destinataire_mail&quot;]</td>
+				<td>destinataire@gmail.com</td>
+			</tr>
+			<tr>
+				<td>type</td>
+				<td>//*[@id=&quot;evenement_metadonnees:nxl_transmettre_mail_evenement:nxw_message_mail&quot;]</td>
+				<td>message complémentaire a transmettre</td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>//*[@id=&quot;evenement_metadonnees:documentViewPanel&quot;]/div[2]/input[1]</td>
+				<td></td>
+			</tr>
+			<!--Déconnexion-->
+			<tr>
+				<td>open</td>
+				<td>/solon-epp/logout</td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

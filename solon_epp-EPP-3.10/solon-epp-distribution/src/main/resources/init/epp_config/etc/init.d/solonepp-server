@@ -1,0 +1,90 @@
+#!/bin/sh
+#
+# Init file for Nuxeo server daemon
+#
+# chkconfig: 2345 55 25
+# description: Nuxeo server daemon
+#
+
+# the service name defined the instance to run
+NAME=solonepp-server_inst1
+
+DESC="$NAME"
+
+EPP_DIR=/etc/epp
+
+NUXEO_USER=epp
+NUXEO_CONF=${EPP_DIR}/${NAME}.conf
+NUXEO_HOME=/opt/$NAME
+NUXEO_PID=/var/run/${NAME}
+export NUXEO_CONF
+export PID_DIR=${NUXEO_PID}
+
+# Source function library
+. /etc/init.d/functions
+
+PIDFILE="${NUXEO_PID}/nuxeo.pid"
+
+pidof_nuxeo() {
+    if [ -e "$PIDFILE" ]; then
+        cat ${PIDFILE}
+        return 0
+	else	
+        return 1
+	fi
+}
+
+create_pid_dir() {
+    mkdir -p ${NUXEO_PID}
+    chown -R ${NUXEO_USER}:${NUXEO_USER} ${NUXEO_PID}
+}
+
+case "$1" in
+  start)
+        echo -n $"Starting $DESC"
+        create_pid_dir
+        su $NUXEO_USER -m -c "${NUXEO_HOME}/bin/nuxeoctl start"
+        RETVAL=$?
+        [ "$RETVAL" = 0 ] && success || failure
+        echo
+        ;;
+  startbg)
+        echo -n $"Starting $DESC"
+        create_pid_dir
+        su $NUXEO_USER -m -c "${NUXEO_HOME}/bin/nuxeoctl startbg"
+        RETVAL=$?
+        [ "$RETVAL" = 0 ] && success || failure
+        echo
+        ;;
+  stop)
+        echo -n $"Stopping $DESC"
+        if [ -e "$PIDFILE" ] ; then
+            su $NUXEO_USER -m -c "${NUXEO_HOME}/bin/nuxeoctl stop"
+        else
+            failure $"Stopping $prog"
+        fi
+        RETVAL=$?
+        [ "$RETVAL" = 0 ] && success || failure
+        echo
+        if [ -f "${PIDFILE}" ] ; then
+        	rm -f ${PIDFILE}
+        fi
+        ;;
+  restart)
+        create_pid_dir
+        su $NUXEO_USER -m -c "${NUXEO_HOME}/bin/nuxeoctl restart"
+        ;;
+  force-reload)
+        create_pid_dir
+        su $NUXEO_USER -m -c "${NUXEO_HOME}/bin/nuxeoctl restart"
+        ;;
+  status)
+      	su $NUXEO_USER -m -c "${NUXEO_HOME}/bin/nuxeoctl status"
+      	;;
+  *)
+        echo "Usage: $0 {start|stop|restart|force-reload|status}" >&2
+        exit 3
+        ;;
+esac
+
+

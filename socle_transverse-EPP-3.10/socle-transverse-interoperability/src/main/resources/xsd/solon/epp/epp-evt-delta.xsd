@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt-delta"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt-delta"
+	xmlns:eppco="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:epptdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:evt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	elementFormDefault="qualified">
+
+	<xs:import schemaLocation="../../commons/commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons" />
+	<xs:import schemaLocation="epp-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons" />
+	<xs:import schemaLocation="epp-tableReference.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref" />
+	<xs:import schemaLocation="epp-evt.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt" />
+
+
+
+	<xs:complexType name="EppEvtDelta">
+		<xs:sequence>
+			<xs:element name="id_evenement" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="metadonnee" type="DeltaMetadonnee"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="piece_jointe" type="DeltaPieceJointe"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DeltaMetadonnee">
+		<xs:sequence>
+			<xs:element name="valeur" type="xs:string" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="key" type="xs:string" use="required" />
+		<xs:attribute name="reset" type="xs:boolean" use="optional" />
+		<xs:attribute name="delete" type="xs:boolean" use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="DeltaPieceJointe">
+		<xs:sequence>
+			<xs:element name="valeur" type="eppco:PieceJointe"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="key" type="xs:string" use="required" />
+		<xs:attribute name="reset" type="xs:boolean" use="optional" />
+		<xs:attribute name="delete" type="xs:boolean" use="optional" />
+	</xs:complexType>
+
+</xs:schema>

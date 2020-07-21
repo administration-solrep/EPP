@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:majTableResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp ../../../../../../../../xsd/solon/epp/WSepp.xsd ">
+
+	<p:statut>OK</p:statut>
+	<p:objet_container type="IDENTITE">
+		<p2:identite>
+			<p2:id>ID001</p2:id>
+			<p2:civilite>M.</p2:civilite>
+			<p2:nom>nom identite</p2:nom>
+			<p2:prenom>prenom identite</p2:prenom>
+			<p2:date_debut>2011-02-01</p2:date_debut>
+			<p2:date_naissance>1975-04-14</p2:date_naissance>
+			<p2:dept_naissance>56</p2:dept_naissance>
+			<p2:pays_naissance>France</p2:pays_naissance>
+		</p2:identite>
+
+		<p2:identite>
+			<p2:id>ID002</p2:id>
+			<p2:civilite>M.</p2:civilite>
+			<p2:nom>nom identite</p2:nom>
+			<p2:prenom>prenom identite</p2:prenom>
+			<p2:date_debut>2011-02-01</p2:date_debut>
+			<p2:date_naissance>1975-04-14</p2:date_naissance>
+			<p2:dept_naissance>56</p2:dept_naissance>
+			<p2:pays_naissance>France</p2:pays_naissance>
+		</p2:identite>
+
+	</p:objet_container>
+
+</p:majTableResponse>

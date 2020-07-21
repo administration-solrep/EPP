@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<component name="org.nuxeo.ecm.directory.ldap.storage.fonctions">
+	<implementation class="org.nuxeo.ecm.directory.ldap.LDAPDirectoryDescriptor" />
+
+	<require>org.nuxeo.ecm.directory.ldap.LDAPDirectoryFactory</require>
+
+	<!-- the groups LDAP directory for groups is required to make this bundle 
+		work -->
+	<require>org.nuxeo.ecm.directory.ldap.storage.groups</require>
+	<require>fr.dila.solonepp.ldap.server</require>
+
+	<extension target="org.nuxeo.ecm.directory.ldap.LDAPDirectoryFactory"
+		point="directories">
+
+		<directory name="fonctionsDirectory">
+
+			<!-- Reuse the default server configuration defined for userDirectory -->
+			<server>default</server>
+
+			<schema>base_function</schema>
+			<idField>groupname</idField>
+
+			<searchBaseDn>ou=fonctions,ou=SolonEpp,dc=dila,dc=fr</searchBaseDn>
+			<searchFilter>(|(objectClass=groupOfUniqueNames)(objectClass=groupOfURLs))</searchFilter>
+			<searchScope>subtree</searchScope>
+
+			<readOnly>false</readOnly>
+
+			<!-- comment <cache* /> tags to disable the cache -->
+			<!-- cache timeout in seconds -->
+			<cacheTimeout>${nuxeo.ldap.cacheTimeout}</cacheTimeout>
+
+			<!-- maximum number of cached entries before global invalidation -->
+			<cacheMaxSize>1000</cacheMaxSize>
+
+			<creationBaseDn>ou=fonctions,ou=SolonEpp,dc=dila,dc=fr</creationBaseDn>
+			<creationClass>top</creationClass>
+			<creationClass>groupOfUniqueNames</creationClass>
+
+			<rdnAttribute>cn</rdnAttribute>
+			<fieldMapping name="groupname">cn</fieldMapping>
+
+			<references>
+
+
+				<!-- LDAP reference resolve DNs embedded in uniqueMember attributes If 
+					the target directory has no specific filtering policy, it is most of the 
+					time not necessary to enable the 'forceDnConsistencyCheck' policy. Enabling 
+					this option will fetch each reference entry to ensure its existence in the 
+					target directory. -->
+
+				<inverseReference field="parentGroups" directory="groupLdapDirectory"
+					dualReferenceField="subGroups" />
+
+				<!-- LDAP tree reference resolves children following the ldap tree structure. 
+					Available scopes are "onelevel" (default), "subtree". Children with same 
+					id than parent will be filtered. Enabling this option will fetch each reference 
+					entry to ensure its existence in the target directory. WARNING: Edit is NOT 
+					IMPLEMENTED: modifications to this field will be ignored when saving the 
+					entry. <ldapTreeReference field="directChildren" directory="unitDirectory" 
+					scope="onelevel"/> <ldapTreeReference field="children" directory="unitDirectory" 
+					scope="subtree"/> -->
+			</references>
+
+		</directory>
+
+	</extension>
+
+</component>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxh="http://nuxeo.org/nxweb/html">
+
+	<ui:define name="page title">
+		<h:outputText value="#{messages['organigramme.manage.title']}" />
+	</ui:define>
+
+	<ui:define name="body">
+
+		<h1>
+			<h:outputText
+				value="#{messages['label.recherche.consultation.organigramme']}" />
+		</h1>
+		<br />
+		<h:form id="viewActivElement">
+			<h:selectOneRadio id="type"
+				value="#{organigrammeTree.showDeactivedNode}"
+				onclick="this.form.submit();">
+				<f:selectItem id="activElement"
+					itemLabel="#{messages['organigramme.view.activElement']}"
+					itemValue="false" />
+				<f:selectItem id="posteId"
+					itemLabel="#{messages['organigramme.view.activAndInactivElement']}"
+					itemValue="true" />
+			</h:selectOneRadio>
+		</h:form>
+		<br />
+
+		<ui:include src="/admin/organigramme/view_organigramme.xhtml" />
+
+	</ui:define>
+</nxthemes:composition>

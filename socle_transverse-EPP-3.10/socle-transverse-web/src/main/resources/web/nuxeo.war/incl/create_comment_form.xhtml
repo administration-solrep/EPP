@@ -1,0 +1,38 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxh="http://nuxeo.org/nxweb/html">
+
+	<script>
+	function limitTextArea(element, limit) {
+		var comparaisonElement1 = document.getElementById('createForm:errorMsg');
+		if (element.value.length > limit) {
+			element.value = element.value.substring(0, limit);
+			comparaisonElement1.innerHTML = "Le texte a été tronqué à " + limit + " caractères";
+		}else{
+			comparaisonElement1.innerHTML = "";
+		}
+	}
+</script>
+
+	<a name="add_comment" />
+	<table class="dataInput">
+		<tr>
+			<td><h:inputTextarea rows="5" cols="50"
+					value="#{commentManagerActions.newContent}"
+					onblur="limitTextArea(this,2000);" /> <br /></td>
+		</tr>
+	</table>
+	<table class="dataInput">
+		<tr>
+			<td><h:outputText id="errorMsg" value=""
+					style="color:red; font-weight:bold !important; " /></td>
+		</tr>
+	</table>
+	<ui:include src="/incl/comment_buttons.xhtml" />
+
+</div>

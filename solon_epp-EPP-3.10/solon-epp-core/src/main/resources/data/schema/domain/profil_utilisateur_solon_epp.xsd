@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://nuxeo.org/schemas/profil_utilisateur_solon_epp/"
+	xmlns:pusr="http://nuxeo.org/schemas/profil_utilisateur_solon_epp/">
+
+	<!-- on inclut le schema contenant la definition de stringList -->
+	<xs:include schemaLocation="base.xsd" />
+
+	<!-- Metadonnées liées aux préférences de l'utilisateur -->
+
+	<xs:element name="notificationEmail" type="xs:boolean"
+		default="true" />
+
+	<!-- date de dernier changement de mot de passe -->
+	<xs:element name="dernierChangementMotDePasse" type="xs:date" />
+</xs:schema>

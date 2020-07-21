@@ -1,0 +1,2706 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant déclare les types de corbeilles de SOLON EPP. -->
+<component name="fr.dila.solonepp.core.service.corbeilleType.contrib">
+	<require>fr.dila.solonepp.core.service.CorbeilleTypeService</require>
+
+	<extension target="fr.dila.solonepp.core.service.CorbeilleTypeService"
+		point="corbeilleType">
+		<!-- Corbeilles du gouvernement -->
+		<corbeilleInstitution institution="GOUVERNEMENT">
+			<corbeilleNode type="SECTION"
+				name="SECTION_GOUVERNEMENT_PROCEDURE_LEGISLATIVE" label="Procédure législative"
+				description="Section regroupant les messages reçus et émis concernant les procédures législatives">
+				<corbeilleNode type="CORBEILLE"
+					name="CORBEILLE_GOUVERNEMET_PROC_LEG_RECEPTION" label="Reçu"
+					description="Regroupe les messages des évènements de la procédure législative dont le gouvernement est destinataire">
+					<messageGroup>
+						<messageTypes>
+							<messageType name="DESTINATAIRE" />
+							<messageType name="COPIE" />
+						</messageTypes>
+						<evenementTypes>
+							<evenementType name="EVT01" />
+							<evenementType name="EVT02" />
+							<evenementType name="EVT03" />
+							<evenementType name="EVT04BIS" />
+							<evenementType name="EVT05" />
+							<evenementType name="EVT06" />
+							<evenementType name="EVT07" />
+							<evenementType name="EVT07BIS" />
+							<evenementType name="EVT08" />
+							<evenementType name="EVT08BIS" />
+							<evenementType name="EVT08BIS_AB" />
+							<evenementType name="EVT09" />
+							<evenementType name="EVT09BIS" />
+							<evenementType name="EVT10" />
+							<evenementType name="EVT11" />
+							<evenementType name="EVT12" />
+							<evenementType name="EVT13" />
+							<evenementType name="EVT13BIS" />
+							<evenementType name="EVT13TER" />
+							<evenementType name="EVT14" />
+							<evenementType name="EVT14TER" />
+							<evenementType name="EVT15" />
+							<evenementType name="EVT17BIS" />
+							<evenementType name="EVT19" />
+							<evenementType name="EVT20" />
+							<evenementType name="EVT21" />
+							<evenementType name="EVT22" />
+							<evenementType name="EVT23" />
+							<evenementType name="EVT23BIS" />
+							<evenementType name="EVT23TER" />
+							<evenementType name="EVT23QUATER" />
+							<evenementType name="EVT23QUINQUIES" />
+							<evenementType name="EVT24" />
+							<evenementType name="EVT25" />
+							<evenementType name="EVT25BIS" />
+							<evenementType name="EVT26" />
+							<evenementType name="EVT28" />
+							<evenementType name="EVT52" />
+							<evenementType name="EVT53-01" />
+							<evenementType name="GENERIQUE01" />
+							<evenementType name="ALERTE01" />
+							<evenementType name="EVT53-02" />
+							<evenementType name="GENERIQUE02" />
+							<evenementType name="ALERTE02" />
+							<evenementType name="LEX-40" />
+						</evenementTypes>
+					</messageGroup>
+					<hiddenColumns>
+						<hiddenColumn>DESTINATAIRE</hiddenColumn>
+					</hiddenColumns>
+				</corbeilleNode>
+				<corbeilleNode type="CORBEILLE"
+					name="CORBEILLE_GOUVERNEMET_PROC_LEG_EMIS" label="Emis"
+					description="Regroupe les messages des évènements de la procédure législative dont le gouvernement est emetteur">
+					<messageGroup>
+						<messageTypes>
+							<messageType name="EMETTEUR" />
+						</messageTypes>
+						<evenementTypes>
+							<evenementType name="EVT01" />
+							<evenementType name="EVT02" />
+							<evenementType name="EVT03" />
+							<evenementType name="EVT04BIS" />
+							<evenementType name="EVT05" />
+							<evenementType name="EVT06" />
+							<evenementType name="EVT07" />
+							<evenementType name="EVT07BIS" />
+							<evenementType name="EVT08" />
+							<evenementType name="EVT08BIS" />
+							<evenementType name="EVT08BIS_AB" />
+							<evenementType name="EVT09" />
+							<evenementType name="EVT09BIS" />
+							<evenementType name="EVT10" />
+							<evenementType name="EVT11" />
+							<evenementType name="EVT12" />
+							<evenementType name="EVT13" />
+							<evenementType name="EVT13BIS" />
+							<evenementType name="EVT13TER" />
+							<evenementType name="EVT14" />
+							<evenementType name="EVT14TER" />
+							<evenementType name="EVT15" />
+							<evenementType name="EVT17BIS" />
+							<evenementType name="EVT19" />
+							<evenementType name="EVT20" />
+							<evenementType name="EVT21" />
+							<evenementType name="EVT22" />
+							<evenementType name="EVT23" />
+							<evenementType name="EVT23BIS" />
+							<evenementType name="EVT23TER" />
+							<evenementType name="EVT23QUATER" />
+							<evenementType name="EVT23QUINQUIES" />
+							<evenementType name="EVT24" />
+							<evenementType name="EVT25" />
+							<evenementType name="EVT25BIS" />
+							<evenementType name="EVT26" />
+							<evenementType name="EVT28" />
+							<evenementType name="EVT52" />
+							<evenementType name="EVT53-01" />
+							<evenementType name="GENERIQUE01" />
+							<evenementType name="ALERTE01" />
+							<evenementType name="EVT53-02" />
+							<evenementType name="GENERIQUE02" />
+							<evenementType name="ALERTE02" />
+							<evenementType name="LEX-40" />
+						</evenementTypes>
+					</messageGroup>
+					<hiddenColumns>
+						<hiddenColumn>EMETTEUR</hiddenColumn>
+					</hiddenColumns>
+				</corbeilleNode>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_GOUVERNEMENT_CENSURE"
+				label="Motion de censure"
+				description="Corbeille regroupant les communications relatives à l'application de l'alinéa 2 de l'article 49 de la constitution">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT17" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_GOUVERNEMENT_RAPPORT"
+				label="Dépôt de rapport" description="Corbeille regroupant les rapports au parlement">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT44" />
+						<evenementType name="EVT44TER" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="COPIE" />
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT53-08" />
+						<evenementType name="GENERIQUE08" />
+						<evenementType name="ALERTE08" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_GOUVERNEMENT_OEP"
+				label="Désignation OEP" description="">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT49-0" />
+						<evenementType name="EVT49" />
+						<evenementType name="EVT51" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT53-10" />
+						<evenementType name="GENERIQUE10" />
+						<evenementType name="ALERTE10" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_GOUVERNEMENT_NOMINATION"
+				label="Avis nomination" description="">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT32" />
+						<evenementType name="EVT34" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT53-04" />
+						<evenementType name="GENERIQUE04" />
+						<evenementType name="ALERTE04" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_GOUVERNEMENT_DECRET"
+				label="Décret" description="">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+						<evenementType name="EVT31" />
+						<evenementType name="EVT35" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT53-03" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="EVT53-05" />
+						<evenementType name="GENERIQUE05" />
+						<evenementType name="ALERTE05" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE"
+				name="CORBEILLE_GOUVERNEMENT_INTERVENTION_EXTERIEURE" label="Intervention extérieure"
+				description="Intervention extérieure">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT36" />
+						<evenementType name="EVT38" />
+						<!-- evenementType name="GENERIQUE" / -->
+						<!-- evenementType name="ALERTE"/ -->
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT53-06" />
+						<evenementType name="GENERIQUE06" />
+						<evenementType name="ALERTE06" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE"
+				name="CORBEILLE_GOUVERNEMENT_RESOLUTION_34-1" label="Résolutions"
+				description="">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT39" />
+						<evenementType name="EVT40" />
+						<evenementType name="EVT41" />
+						<evenementType name="EVT43" />
+						<evenementType name="EVT43BIS" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT53-07" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="ALERTE07" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+
+
+			<corbeilleNode type="CORBEILLE"
+				name="CORBEILLE_GOUVERNEMENT_DECLARATION_DE_POLITIQUE_GENERALE"
+				label="Déclaration de politique générale" description="">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="FUSION11" />
+						<evenementType name="GENERIQUE11" />
+						<evenementType name="ALERTE11" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="PG01" />
+						<evenementType name="PG02" />
+						<evenementType name="PG03" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="PG04" />
+					</evenementTypes>
+				</messageGroup>
+				<hiddenColumns />
+			</corbeilleNode>
+
+
+			<corbeilleNode type="CORBEILLE"
+				name="CORBEILLE_GOUVERNEMENT_DECLARATION_SUR_UN_SUJET_DETERMINE_50_1C"
+				label="Déclaration sur un sujet déterminé" description="">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="FUSION12" />
+						<evenementType name="GENERIQUE12" />
+						<evenementType name="ALERTE12" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="SD02" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="SD01" />
+						<evenementType name="SD03" />
+					</evenementTypes>
+				</messageGroup>
+				<hiddenColumns />
+			</corbeilleNode>
+
+
+
+			<corbeilleNode type="CORBEILLE"
+				name="CORBEILLE_GOUVERNEMENT_DEMANDE_DE_MISE_EN_OEUVRE_ARTICLE_28-3C"
+				label="Article 28-3C" description="">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="FUSION13" />
+						<evenementType name="GENERIQUE13" />
+						<evenementType name="ALERTE13" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="JSS01" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="JSS02" />
+					</evenementTypes>
+				</messageGroup>
+				<hiddenColumns />
+			</corbeilleNode>
+
+
+
+			<corbeilleNode type="CORBEILLE"
+				name="CORBEILLE_GOUVERNEMENT_AUTRES_DOCUMENTS_TRANSMIS_AUX_ASSEMBLEES"
+				label="Autres documents transmis aux assemblées" description="">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="FUSION15" />
+						<evenementType name="GENERIQUE15" />
+						<evenementType name="ALERTE15" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="DOC01" />
+					</evenementTypes>
+				</messageGroup>
+				<hiddenColumns />
+			</corbeilleNode>
+
+
+
+			<corbeilleNode type="CORBEILLE"
+				name="CORBEILLE_GOUVERNEMENT_DEMANDE_AUDITION" label="Demandes d’audition"
+				description="">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="FUSION14" />
+						<evenementType name="GENERIQUE14" />
+						<evenementType name="ALERTE14" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="AUD01" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="AUD02" />
+					</evenementTypes>
+				</messageGroup>
+
+				<hiddenColumns />
+			</corbeilleNode>
+
+
+
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_GOUVERNEMENT_EMETTEUR"
+				label="Émetteur" description="Corbeille émetteur">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT01" />
+						<evenementType name="EVT02" />
+						<evenementType name="EVT03" />
+						<evenementType name="EVT04BIS" />
+						<evenementType name="EVT05" />
+						<evenementType name="EVT06" />
+						<evenementType name="EVT07" />
+						<evenementType name="EVT07BIS" />
+						<evenementType name="EVT08" />
+						<evenementType name="EVT08BIS" />
+						<evenementType name="EVT08BIS_AB" />
+						<evenementType name="EVT09" />
+						<evenementType name="EVT09BIS" />
+						<evenementType name="EVT10" />
+						<evenementType name="EVT11" />
+						<evenementType name="EVT12" />
+						<evenementType name="EVT13" />
+						<evenementType name="EVT13BIS" />
+						<evenementType name="EVT13TER" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT14TER" />
+						<evenementType name="EVT15" />
+						<evenementType name="EVT17" />
+						<evenementType name="EVT17BIS" />
+						<evenementType name="EVT19" />
+						<evenementType name="EVT20" />
+						<evenementType name="EVT21" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT23" />
+						<evenementType name="EVT23BIS" />
+						<evenementType name="EVT23TER" />
+						<evenementType name="EVT23QUATER" />
+						<evenementType name="EVT23QUINQUIES" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT25" />
+						<evenementType name="EVT25BIS" />
+						<evenementType name="EVT26" />
+						<evenementType name="EVT28" />
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+						<evenementType name="EVT31" />
+						<evenementType name="EVT32" />
+						<evenementType name="EVT34" />
+						<evenementType name="EVT35" />
+						<evenementType name="EVT36" />
+						<evenementType name="EVT38" />
+						<evenementType name="EVT39" />
+						<evenementType name="EVT40" />
+						<evenementType name="EVT41" />
+						<evenementType name="EVT43" />
+						<evenementType name="EVT43BIS" />
+						<evenementType name="EVT44" />
+						<evenementType name="EVT44TER" />
+						<evenementType name="EVT48" />
+						<evenementType name="EVT49" />
+						<evenementType name="EVT49-0" />
+						<evenementType name="EVT51" />
+						<evenementType name="EVT52" />
+						<evenementType name="EVT53-01" />
+						<evenementType name="EVT53-02" />
+						<evenementType name="EVT53-03" />
+						<evenementType name="EVT53-04" />
+						<evenementType name="EVT53-05" />
+						<evenementType name="EVT53-06" />
+						<evenementType name="EVT53-07" />
+						<evenementType name="EVT53-08" />
+						<evenementType name="EVT53-09" />
+						<evenementType name="EVT53-10" />
+						<evenementType name="FUSION11" />
+						<evenementType name="FUSION12" />
+						<evenementType name="FUSION13" />
+						<evenementType name="FUSION14" />
+						<evenementType name="FUSION15" />
+						<evenementType name="EVT54" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="GENERIQUE02" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="GENERIQUE04" />
+						<evenementType name="GENERIQUE05" />
+						<evenementType name="GENERIQUE06" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="GENERIQUE08" />
+						<evenementType name="GENERIQUE09" />
+						<evenementType name="GENERIQUE10" />
+						<evenementType name="GENERIQUE11" />
+						<evenementType name="GENERIQUE12" />
+						<evenementType name="GENERIQUE13" />
+						<evenementType name="GENERIQUE14" />
+						<evenementType name="GENERIQUE15" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="ALERTE02" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="ALERTE04" />
+						<evenementType name="ALERTE05" />
+						<evenementType name="ALERTE06" />
+						<evenementType name="ALERTE07" />
+						<evenementType name="ALERTE08" />
+						<evenementType name="ALERTE09" />
+						<evenementType name="ALERTE10" />
+						<evenementType name="ALERTE11" />
+						<evenementType name="ALERTE12" />
+						<evenementType name="ALERTE13" />
+						<evenementType name="ALERTE14" />
+						<evenementType name="ALERTE15" />
+						<evenementType name="AUD01" />
+						<evenementType name="DOC01" />
+						<evenementType name="JSS01" />
+						<evenementType name="PG01" />
+						<evenementType name="PG02" />
+						<evenementType name="PG03" />
+						<evenementType name="SD02" />
+						<evenementType name="LEX-40" />
+					</evenementTypes>
+				</messageGroup>
+				<hiddenColumns>
+					<hiddenColumn>EMETTEUR</hiddenColumn>
+				</hiddenColumns>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE"
+				name="CORBEILLE_GOUVERNEMENT_DESTINATAIRE" label="Destinataire"
+				description="Corbeille destinataire">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT01" />
+						<evenementType name="EVT02" />
+						<evenementType name="EVT03" />
+						<evenementType name="EVT04BIS" />
+						<evenementType name="EVT05" />
+						<evenementType name="EVT06" />
+						<evenementType name="EVT07" />
+						<evenementType name="EVT07BIS" />
+						<evenementType name="EVT08" />
+						<evenementType name="EVT08BIS" />
+						<evenementType name="EVT08BIS_AB" />
+						<evenementType name="EVT09" />
+						<evenementType name="EVT09BIS" />
+						<evenementType name="EVT10" />
+						<evenementType name="EVT11" />
+						<evenementType name="EVT12" />
+						<evenementType name="EVT13" />
+						<evenementType name="EVT13BIS" />
+						<evenementType name="EVT13TER" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT14TER" />
+						<evenementType name="EVT15" />
+						<evenementType name="EVT17" />
+						<evenementType name="EVT17BIS" />
+						<evenementType name="EVT19" />
+						<evenementType name="EVT20" />
+						<evenementType name="EVT21" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT23" />
+						<evenementType name="EVT23BIS" />
+						<evenementType name="EVT23TER" />
+						<evenementType name="EVT23QUATER" />
+						<evenementType name="EVT23QUINQUIES" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT25" />
+						<evenementType name="EVT25BIS" />
+						<evenementType name="EVT26" />
+						<evenementType name="EVT28" />
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+						<evenementType name="EVT31" />
+						<evenementType name="EVT32" />
+						<evenementType name="EVT34" />
+						<evenementType name="EVT35" />
+						<evenementType name="EVT36" />
+						<evenementType name="EVT38" />
+						<evenementType name="EVT39" />
+						<evenementType name="EVT40" />
+						<evenementType name="EVT41" />
+						<evenementType name="EVT43" />
+						<evenementType name="EVT43BIS" />
+						<evenementType name="EVT44" />
+						<evenementType name="EVT44TER" />
+						<evenementType name="EVT48" />
+						<evenementType name="EVT49" />
+						<evenementType name="EVT49-0" />
+						<evenementType name="EVT51" />
+						<evenementType name="EVT52" />
+						<evenementType name="EVT53-01" />
+						<evenementType name="EVT53-02" />
+						<evenementType name="EVT53-03" />
+						<evenementType name="EVT53-04" />
+						<evenementType name="EVT53-05" />
+						<evenementType name="EVT53-06" />
+						<evenementType name="EVT53-07" />
+						<evenementType name="EVT53-08" />
+						<evenementType name="EVT53-09" />
+						<evenementType name="EVT53-10" />
+						<evenementType name="FUSION11" />
+						<evenementType name="FUSION12" />
+						<evenementType name="FUSION13" />
+						<evenementType name="FUSION14" />
+						<evenementType name="FUSION15" />
+						<evenementType name="EVT54" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="GENERIQUE02" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="GENERIQUE04" />
+						<evenementType name="GENERIQUE05" />
+						<evenementType name="GENERIQUE06" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="GENERIQUE08" />
+						<evenementType name="GENERIQUE09" />
+						<evenementType name="GENERIQUE10" />
+						<evenementType name="GENERIQUE11" />
+						<evenementType name="GENERIQUE12" />
+						<evenementType name="GENERIQUE13" />
+						<evenementType name="GENERIQUE14" />
+						<evenementType name="GENERIQUE15" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="ALERTE02" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="ALERTE04" />
+						<evenementType name="ALERTE05" />
+						<evenementType name="ALERTE06" />
+						<evenementType name="ALERTE07" />
+						<evenementType name="ALERTE08" />
+						<evenementType name="ALERTE09" />
+						<evenementType name="ALERTE10" />
+						<evenementType name="ALERTE11" />
+						<evenementType name="ALERTE12" />
+						<evenementType name="ALERTE13" />
+						<evenementType name="ALERTE14" />
+						<evenementType name="ALERTE15" />
+						<evenementType name="AUD02" />
+						<evenementType name="JSS02" />
+						<evenementType name="PG04" />
+						<evenementType name="SD01" />
+						<evenementType name="SD03" />
+						<evenementType name="LEX-40" />
+					</evenementTypes>
+				</messageGroup>
+				<hiddenColumns>
+					<hiddenColumn>DESTINATAIRE</hiddenColumn>
+				</hiddenColumns>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_GOUVERNEMENT_COPIE"
+				label="Copie" description="Corbeille copie">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT01" />
+						<evenementType name="EVT02" />
+						<evenementType name="EVT03" />
+						<evenementType name="EVT04BIS" />
+						<evenementType name="EVT05" />
+						<evenementType name="EVT06" />
+						<evenementType name="EVT07" />
+						<evenementType name="EVT07BIS" />
+						<evenementType name="EVT08" />
+						<evenementType name="EVT08BIS" />
+						<evenementType name="EVT08BIS_AB" />
+						<evenementType name="EVT09" />
+						<evenementType name="EVT09BIS" />
+						<evenementType name="EVT10" />
+						<evenementType name="EVT11" />
+						<evenementType name="EVT12" />
+						<evenementType name="EVT13" />
+						<evenementType name="EVT13BIS" />
+						<evenementType name="EVT13TER" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT14TER" />
+						<evenementType name="EVT15" />
+						<evenementType name="EVT17" />
+						<evenementType name="EVT17BIS" />
+						<evenementType name="EVT19" />
+						<evenementType name="EVT20" />
+						<evenementType name="EVT21" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT23" />
+						<evenementType name="EVT23BIS" />
+						<evenementType name="EVT23TER" />
+						<evenementType name="EVT23QUATER" />
+						<evenementType name="EVT23QUINQUIES" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT25" />
+						<evenementType name="EVT25BIS" />
+						<evenementType name="EVT26" />
+						<evenementType name="EVT28" />
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+						<evenementType name="EVT31" />
+						<evenementType name="EVT32" />
+						<evenementType name="EVT34" />
+						<evenementType name="EVT35" />
+						<evenementType name="EVT36" />
+						<evenementType name="EVT38" />
+						<evenementType name="EVT39" />
+						<evenementType name="EVT40" />
+						<evenementType name="EVT41" />
+						<evenementType name="EVT43" />
+						<evenementType name="EVT43BIS" />
+						<evenementType name="EVT44" />
+						<evenementType name="EVT44TER" />
+						<evenementType name="EVT48" />
+						<evenementType name="EVT49" />
+						<evenementType name="EVT49-0" />
+						<evenementType name="EVT51" />
+						<evenementType name="EVT52" />
+						<evenementType name="EVT53-01" />
+						<evenementType name="EVT53-02" />
+						<evenementType name="EVT53-03" />
+						<evenementType name="EVT53-04" />
+						<evenementType name="EVT53-05" />
+						<evenementType name="EVT53-06" />
+						<evenementType name="EVT53-07" />
+						<evenementType name="EVT53-08" />
+						<evenementType name="EVT53-09" />
+						<evenementType name="EVT53-10" />
+						<evenementType name="EVT54" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="GENERIQUE02" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="GENERIQUE04" />
+						<evenementType name="GENERIQUE05" />
+						<evenementType name="GENERIQUE06" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="GENERIQUE08" />
+						<evenementType name="GENERIQUE09" />
+						<evenementType name="GENERIQUE10" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="ALERTE02" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="ALERTE04" />
+						<evenementType name="ALERTE05" />
+						<evenementType name="ALERTE06" />
+						<evenementType name="ALERTE07" />
+						<evenementType name="ALERTE08" />
+						<evenementType name="ALERTE09" />
+						<evenementType name="ALERTE10" />
+					</evenementTypes>
+				</messageGroup>
+				<hiddenColumns>
+					<hiddenColumn>COPIE</hiddenColumn>
+				</hiddenColumns>
+			</corbeilleNode>
+
+
+
+		</corbeilleInstitution>
+
+		<!-- Corbeilles de l'AN -->
+		<corbeilleInstitution institution="ASSEMBLEE_NATIONALE">
+			<corbeilleNode type="SECTION"
+				name="SECTION_AN_SEANCE_PROCEDURE_LEGISLATIVE" label="Séance procédure législative"
+				description="Section regroupant les messages reçus et émis concernant les procédures législatives et intéressant la division de la Séance.">
+				<corbeilleNode type="CORBEILLE" name="CORBEILLE_AN_SEANCE_RECEPTION"
+					label="Séance réception"
+					description="Regroupe les messages des évènements de la procédure législative dont l'AN est destinataire et intéressant la division de la Séance.">
+					<messageGroup>
+						<messageTypes>
+							<messageType name="DESTINATAIRE" />
+						</messageTypes>
+						<evenementTypes>
+							<evenementType name="EVT01" />
+							<evenementType name="EVT06" />
+							<evenementType name="EVT07" />
+							<evenementType name="EVT08" />
+							<evenementType name="EVT09" />
+							<evenementType name="EVT10" />
+							<evenementType name="EVT11" />
+							<evenementType name="EVT13" />
+							<evenementType name="EVT14" />
+							<evenementType name="EVT19" />
+							<evenementType name="EVT23" />
+							<evenementType name="EVT25" />
+							<evenementType name="EVT26" />
+							<evenementType name="EVT53-01" />
+							<evenementType name="GENERIQUE01" />
+							<evenementType name="ALERTE01" />
+							<evenementType name="LEX-40" />
+						</evenementTypes>
+					</messageGroup>
+					<messageGroup>
+						<messageTypes>
+							<messageType name="EMETTEUR" />
+							<messageType name="DESTINATAIRE" />
+							<messageType name="COPIE" />
+						</messageTypes>
+						<evenementTypes>
+							<evenementType name="EVT13TER" />
+							<evenementType name="EVT15" />
+							<evenementType name="EVT23BIS" />
+							<evenementType name="EVT23QUATER" />
+						</evenementTypes>
+					</messageGroup>
+				</corbeilleNode>
+				<corbeilleNode type="CORBEILLE" name="CORBEILLE_AN_SEANCE_ENVOI"
+					label="Séance envoi"
+					description="Regroupe les messages des évènements de la procédure législative émis par la division de la Séance.">
+					<messageGroup>
+						<messageTypes>
+							<messageType name="EMETTEUR" />
+						</messageTypes>
+						<evenementTypes>
+							<evenementType name="EVT02" />
+							<evenementType name="EVT03" />
+							<evenementType name="EVT04BIS" />
+							<evenementType name="EVT05" />
+							<evenementType name="EVT07BIS" />
+							<evenementType name="EVT08BIS" />
+							<evenementType name="EVT08BIS_AB" />
+							<evenementType name="EVT09BIS" />
+							<evenementType name="EVT11" />
+							<evenementType name="EVT13BIS" />
+							<evenementType name="EVT14TER" />
+							<evenementType name="EVT20" />
+							<evenementType name="EVT22" />
+							<evenementType name="EVT25BIS" />
+							<evenementType name="EVT53-01" />
+							<evenementType name="LEX-40" />
+						</evenementTypes>
+					</messageGroup>
+					<messageGroup>
+						<messageTypes>
+							<messageType name="EMETTEUR" />
+							<messageType name="DESTINATAIRE" />
+							<messageType name="COPIE" />
+						</messageTypes>
+						<evenementTypes>
+							<evenementType name="EVT17" />
+							<evenementType name="EVT17BIS" />
+							<evenementType name="EVT21" />
+							<evenementType name="EVT23TER" />
+							<evenementType name="EVT23QUINQUIES" />
+							<evenementType name="GENERIQUE01" />
+							<evenementType name="ALERTE01" />
+						</evenementTypes>
+					</messageGroup>
+				</corbeilleNode>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_AN_RAPPORT_PARLEMENT"
+				label="Rapports au Parlement"
+				description="Regroupe les messages des évènements de la procédure de dépôt des rapports au Parlement.">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+
+						<evenementType name="EVT44" />
+						<evenementType name="EVT44TER" />
+						<evenementType name="GENERIQUE08" />
+						<evenementType name="ALERTE08" />
+
+						<evenementType name="DOC01" />
+						<evenementType name="GENERIQUE15" />
+						<evenementType name="ALERTE15" />
+
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE"
+				name="CORBEILLE_AN_NOMINATIONS_ET_AUDITIONS" label="Nominations et auditions"
+				description="Regroupe les messages des communications des procédures « Consultation des assemblées sur les projets de nomination », « Organismes extraparlementaire » et « Demandes d’audition des personnes dont la nomination à certains emplois est envisagée ».">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT32" />
+						<evenementType name="EVT34" />
+						<evenementType name="GENERIQUE04" />
+						<evenementType name="ALERTE04" />
+
+						<evenementType name="EVT49" />
+						<evenementType name="EVT49-0" />
+						<evenementType name="EVT51" />
+						<evenementType name="GENERIQUE10" />
+						<evenementType name="ALERTE10" />
+
+						<evenementType name="AUD01" />
+						<evenementType name="AUD02" />
+						<evenementType name="GENERIQUE14" />
+						<evenementType name="ALERTE14" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+
+
+			<corbeilleNode type="CORBEILLE"
+				name="CORBEILLE_AN_DELCARATIONS_DU_GOUVERNEMENT" label="Déclarations du Gouvernement"
+				description="Regroupe les messages des communications des procédures « Déclarations de politique générale », « Déclarations sur un sujet déterminé » et « Demande de prolongation d'une intervention extérieure ».">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="PG01" />
+						<evenementType name="PG02" />
+						<evenementType name="PG03" />
+						<evenementType name="PG04" />
+
+
+						<evenementType name="SD01" />
+						<evenementType name="SD02" />
+						<evenementType name="SD03" />
+
+						<evenementType name="EVT36" />
+						<evenementType name="EVT38" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+
+
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_AN_ORGANISATION_SESSION"
+				label="Organisation session"
+				description="Regroupe les messages des communications des procédures « Organisation des sessions extraordinaires », « Convocation du congrès au titre de l'article 18 de la constitution » et « Demande de mise en œuvre de l’article 28-3C ».">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+						<evenementType name="EVT31" />
+
+						<evenementType name="EVT35" />
+
+						<evenementType name="JSS01" />
+						<evenementType name="JSS02" />
+
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+
+
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_AN_RESOLUTIONS"
+				label="Résolutions"
+				description="Regroupe les messages des communications de la procédure « Résolutions».">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT39" />
+						<evenementType name="EVT40" />
+						<evenementType name="EVT41" />
+						<evenementType name="EVT43" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="ALERTE07" />
+						<evenementType name="EVT53-07" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT43BIS" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+
+
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_AN_DIQS_DIVERS"
+				label="DIQS Divers"
+				description="Regroupe les messages des communications des procédures d’organisation des sessions extraordinaires, de révision de la constitution, de consultation des assemblées sur les projets de nomination, de convocation du congrès au titre de l’article 18 de la Constitution, de demande de prolongation d’une intervention extérieure, Déclarations de politique générale, Déclarations sur un sujet déterminé, Demande de mise en œuvre de l’article 28-3C.">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT19" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT20" />
+						<evenementType name="EVT21" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT31" />
+
+
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+
+
+						<evenementType name="EVT32" />
+						<evenementType name="EVT34" />
+
+
+						<evenementType name="EVT35" />
+
+
+						<evenementType name="EVT36" />
+						<evenementType name="EVT38" />
+
+
+						<evenementType name="PG01" />
+						<evenementType name="PG02" />
+						<evenementType name="PG03" />
+						<evenementType name="PG04" />
+
+
+						<evenementType name="SD01" />
+						<evenementType name="SD02" />
+						<evenementType name="SD03" />
+
+
+						<evenementType name="JSS01" />
+						<evenementType name="JSS02" />
+
+
+						<evenementType name="EVT17" />
+
+
+						<evenementType name="EVT44" />
+						<evenementType name="EVT44TER" />
+
+						<evenementType name="EVT54" />
+
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+
+
+
+
+
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_AN_INSERTION_JO_LD"
+				label="Insertions au JO-LD"
+				description="Regroupe les messages des évènements de la procédure Insertion au journal officiel (Lois et Décrets).">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT45" />
+						<evenementType name="EVT48" />
+						<evenementType name="GENERIQUE09" />
+						<evenementType name="ALERTE09" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_AN_COMPOSITION"
+				label="Composition"
+				description="Regroupe les messages des évènements de la procédure législative et de la procédure des résolutions de l'article 34-1 de la constitution intéressant la division de la composition.">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT03" />
+						<evenementType name="EVT07BIS" />
+						<evenementType name="EVT09BIS" />
+						<evenementType name="EVT13BIS" />
+						<evenementType name="EVT14TER" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT43BIS" />
+
+						<evenementType name="EVT02" />
+						<evenementType name="EVT23TER" />
+						<evenementType name="EVT23QUINQUIES" />
+						<evenementType name="EVT25BIS" />
+
+						<evenementType name="EVT08BIS" />
+						<evenementType name="EVT08BIS_AB" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT01" />
+						<evenementType name="EVT06" />
+						<evenementType name="EVT07" />
+						<evenementType name="EVT09" />
+						<evenementType name="EVT10" />
+						<evenementType name="EVT13" />
+						<evenementType name="EVT26" />
+
+						<evenementType name="EVT23BIS" />
+						<evenementType name="EVT23QUATER" />
+						<evenementType name="EVT25" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT11" />
+						<evenementType name="EVT12" />
+						<evenementType name="EVT13TER" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT39" />
+						<evenementType name="EVT43" />
+						<evenementType name="EVT53-07" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="ALERTE07" />
+						<evenementType name="EVT53-01" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="ALERTE01" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_AN_LOI_CONSULTATION"
+				label="Lois consultation"
+				description="Regroupe les messages des évènements de la procédure législative, de révision de la constitution et de convocation du congrès au titre de l'article 18 de la constitution, intéressant la division des lois pour consultation.">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT04BIS" />
+						<evenementType name="EVT08BIS" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT01" />
+						<evenementType name="EVT07" />
+						<evenementType name="EVT08" />
+						<evenementType name="EVT09" />
+						<evenementType name="EVT10" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT19" />
+						<evenementType name="EVT23" />
+						<evenementType name="EVT26" />
+						<evenementType name="EVT25" />
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT12" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT43BIS" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT11" />
+						<evenementType name="EVT13TER" />
+						<evenementType name="EVT15" />
+						<evenementType name="EVT17" />
+						<evenementType name="EVT17BIS" />
+						<evenementType name="EVT20" />
+						<evenementType name="EVT21" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT23BIS" />
+						<evenementType name="EVT23QUATER" />
+						<evenementType name="EVT31" />
+						<evenementType name="EVT35" />
+						<evenementType name="EVT53-01" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="EVT53-02" />
+						<evenementType name="GENERIQUE02" />
+						<evenementType name="ALERTE02" />
+						<evenementType name="EVT53-03" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="EVT53-05" />
+						<evenementType name="GENERIQUE05" />
+						<evenementType name="ALERTE05" />
+						<evenementType name="EVT53-07" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="ALERTE07" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_AN_LOI_ENVOI"
+				label="Lois envoi"
+				description="Regroupe les messages des évènements de la procédure législative et des résolutions de l'article 34-1 de la Constitution, émis par la division des lois.">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT12" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT43BIS" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT43" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="ALERTE07" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE"
+				name="CORBEILLE_AN_PUBLICATION_CONSULTATION" label="Publication consultation"
+				description="Regroupe les messages des évènements de la procédure législative, d'organisation des sessions extraordinaires, de révision de la constitution et procédure de dépôt des rapports au Parlement, intéressant la division de la publication pour consultation.">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT08BIS" />
+						<evenementType name="EVT11" />
+						<evenementType name="EVT13BIS" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT43BIS" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT01" />
+						<evenementType name="EVT06" />
+						<evenementType name="EVT07" />
+						<evenementType name="EVT08" />
+						<evenementType name="EVT10" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT19" />
+						<evenementType name="EVT23" />
+						<evenementType name="EVT25" />
+						<evenementType name="EVT26" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT12" />
+						<evenementType name="EVT13" />
+						<evenementType name="EVT13TER" />
+						<evenementType name="EVT20" />
+						<evenementType name="EVT21" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT23BIS" />
+						<evenementType name="EVT29" />
+						<evenementType name="EVT31" />
+						<evenementType name="EVT53-01" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="EVT53-03" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="EVT53-07" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="ALERTE07" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_AN_PUBLICATION_ENVOI"
+				label="Publication envoi"
+				description="Regroupe les messages des évènements de la procédure législative et des résolutions de l'article 34-1 de la constitution, émis par la division de la publication.">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT02" />
+						<evenementType name="EVT03" />
+						<evenementType name="EVT04BIS" />
+						<evenementType name="EVT07BIS" />
+						<evenementType name="EVT09BIS" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT25BIS" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT39" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="ALERTE07" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_AN_ADMINISTRATION_LEGIS"
+				label="Administration LEGIS"
+				description="Regroupe les messages des évènements utilisés pour l'administration LEGIS.">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT08BIS_AB" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT01" />
+						<evenementType name="EVT02" />
+						<evenementType name="EVT03" />
+						<evenementType name="EVT04BIS" />
+						<evenementType name="EVT05" />
+						<evenementType name="EVT06" />
+						<evenementType name="EVT07" />
+						<evenementType name="EVT07BIS" />
+						<evenementType name="EVT08" />
+						<evenementType name="EVT08BIS" />
+						<evenementType name="EVT09" />
+						<evenementType name="EVT09BIS" />
+						<evenementType name="EVT10" />
+						<evenementType name="EVT11" />
+						<evenementType name="EVT12" />
+						<evenementType name="EVT13" />
+						<evenementType name="EVT13BIS" />
+						<evenementType name="EVT13TER" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT14TER" />
+						<evenementType name="EVT15" />
+						<evenementType name="EVT17" />
+						<evenementType name="EVT17BIS" />
+						<evenementType name="EVT19" />
+						<evenementType name="EVT20" />
+						<evenementType name="EVT21" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT23" />
+						<evenementType name="EVT23BIS" />
+						<evenementType name="EVT23TER" />
+						<evenementType name="EVT23QUATER" />
+						<evenementType name="EVT23QUINQUIES" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT25" />
+						<evenementType name="EVT25BIS" />
+						<evenementType name="EVT26" />
+						<evenementType name="EVT28" />
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+						<evenementType name="EVT31" />
+						<evenementType name="EVT35" />
+						<evenementType name="EVT36" />
+						<evenementType name="EVT38" />
+						<evenementType name="EVT39" />
+						<evenementType name="EVT41" />
+						<evenementType name="EVT43" />
+						<evenementType name="EVT43BIS" />
+						<evenementType name="EVT49-0" />
+						<evenementType name="EVT49" />
+						<evenementType name="EVT51" />
+						<evenementType name="EVT53-01" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="EVT53-05" />
+						<evenementType name="GENERIQUE05" />
+						<evenementType name="ALERTE05" />
+						<evenementType name="EVT53-02" />
+						<evenementType name="GENERIQUE02" />
+						<evenementType name="ALERTE02" />
+						<evenementType name="EVT53-03" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="EVT53-03" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="EVT53-06" />
+						<evenementType name="GENERIQUE06" />
+						<evenementType name="ALERTE06" />
+						<evenementType name="EVT53-07" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="ALERTE07" />
+						<evenementType name="EVT53-10" />
+						<evenementType name="GENERIQUE10" />
+						<evenementType name="ALERTE10" />
+
+						<evenementType name="PG01" />
+						<evenementType name="PG02" />
+						<evenementType name="PG03" />
+						<evenementType name="PG04" />
+						<evenementType name="GENERIQUE11" />
+						<evenementType name="ALERTE11" />
+						<evenementType name="FUSION11" />
+						<evenementType name="SD01" />
+						<evenementType name="SD02" />
+						<evenementType name="SD03" />
+						<evenementType name="GENERIQUE12" />
+						<evenementType name="ALERTE12" />
+						<evenementType name="FUSION12" />
+						<evenementType name="JSS01" />
+						<evenementType name="JSS02" />
+						<evenementType name="GENERIQUE13" />
+						<evenementType name="ALERTE13" />
+						<evenementType name="FUSION13" />
+
+						<evenementType name="AUD01" />
+						<evenementType name="AUD02" />
+						<evenementType name="GENERIQUE14" />
+						<evenementType name="ALERTE14" />
+						<evenementType name="FUSION14" />
+
+
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_AN_EVENEMENT_TECHNIQUE"
+				label="Communications techniques"
+				description="Aucun message n'est actuellement affiché dans cette corbeille.">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<!-- evenementType name="ALERTE" / -->
+						<evenementType name="ALERTE01" />
+						<evenementType name="ALERTE02" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="ALERTE04" />
+						<evenementType name="ALERTE05" />
+						<evenementType name="ALERTE06" />
+						<evenementType name="ALERTE07" />
+						<evenementType name="ALERTE08" />
+						<evenementType name="ALERTE09" />
+						<evenementType name="ALERTE10" />
+						<evenementType name="ALERTE11" />
+						<evenementType name="ALERTE12" />
+						<evenementType name="ALERTE13" />
+						<evenementType name="ALERTE14" />
+						<evenementType name="ALERTE15" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_AN_TOUS"
+				label="Toutes les communications" description="Toutes les communications">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT01" />
+						<evenementType name="EVT02" />
+						<evenementType name="EVT03" />
+						<evenementType name="EVT04BIS" />
+						<evenementType name="EVT05" />
+						<evenementType name="EVT06" />
+						<evenementType name="EVT07" />
+						<evenementType name="EVT07BIS" />
+						<evenementType name="EVT08" />
+						<evenementType name="EVT08BIS" />
+						<evenementType name="EVT08BIS_AB" />
+						<evenementType name="EVT09" />
+						<evenementType name="EVT09BIS" />
+						<evenementType name="EVT10" />
+						<evenementType name="EVT11" />
+						<evenementType name="EVT12" />
+						<evenementType name="EVT13" />
+						<evenementType name="EVT13BIS" />
+						<evenementType name="EVT13TER" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT14TER" />
+						<evenementType name="EVT15" />
+						<evenementType name="EVT17" />
+						<evenementType name="EVT17BIS" />
+						<evenementType name="EVT19" />
+						<evenementType name="EVT20" />
+						<evenementType name="EVT21" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT23" />
+						<evenementType name="EVT23BIS" />
+						<evenementType name="EVT23TER" />
+						<evenementType name="EVT23QUATER" />
+						<evenementType name="EVT23QUINQUIES" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT25" />
+						<evenementType name="EVT25BIS" />
+						<evenementType name="EVT26" />
+						<evenementType name="EVT28" />
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+						<evenementType name="EVT31" />
+						<evenementType name="EVT32" />
+						<evenementType name="EVT34" />
+						<evenementType name="EVT35" />
+						<evenementType name="EVT36" />
+						<evenementType name="EVT38" />
+						<evenementType name="EVT39" />
+						<evenementType name="EVT40" />
+						<evenementType name="EVT41" />
+						<evenementType name="EVT43" />
+						<evenementType name="EVT43BIS" />
+						<evenementType name="EVT44" />
+						<evenementType name="EVT44TER" />
+						<evenementType name="EVT45" />
+						<evenementType name="EVT48" />
+						<evenementType name="EVT49" />
+						<evenementType name="EVT49-0" />
+						<evenementType name="EVT51" />
+						<evenementType name="EVT52" />
+						<evenementType name="EVT53-01" />
+						<evenementType name="LEX-40" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="EVT53-02" />
+						<evenementType name="GENERIQUE02" />
+						<evenementType name="ALERTE02" />
+						<evenementType name="EVT53-03" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="EVT53-04" />
+						<evenementType name="GENERIQUE04" />
+						<evenementType name="ALERTE04" />
+						<evenementType name="EVT53-05" />
+						<evenementType name="GENERIQUE05" />
+						<evenementType name="ALERTE05" />
+						<evenementType name="EVT53-06" />
+						<evenementType name="GENERIQUE06" />
+						<evenementType name="ALERTE06" />
+						<evenementType name="EVT53-07" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="ALERTE07" />
+						<evenementType name="EVT53-08" />
+						<evenementType name="GENERIQUE08" />
+						<evenementType name="ALERTE08" />
+						<evenementType name="EVT53-09" />
+						<evenementType name="GENERIQUE09" />
+						<evenementType name="ALERTE09" />
+						<evenementType name="EVT53-10" />
+						<evenementType name="GENERIQUE10" />
+						<evenementType name="ALERTE10" />
+
+						<evenementType name="FUSION11" />
+						<evenementType name="GENERIQUE11" />
+						<evenementType name="ALERTE11" />
+
+						<evenementType name="FUSION12" />
+						<evenementType name="GENERIQUE12" />
+						<evenementType name="ALERTE12" />
+
+						<evenementType name="FUSION13" />
+						<evenementType name="GENERIQUE13" />
+						<evenementType name="ALERTE13" />
+
+						<evenementType name="FUSION14" />
+						<evenementType name="GENERIQUE14" />
+						<evenementType name="ALERTE14" />
+
+						<evenementType name="FUSION15" />
+						<evenementType name="GENERIQUE15" />
+						<evenementType name="ALERTE15" />
+
+						<evenementType name="AUD01" />
+						<evenementType name="AUD02" />
+
+						<evenementType name="JSS01" />
+						<evenementType name="JSS02" />
+
+
+						<evenementType name="PG01" />
+						<evenementType name="PG02" />
+						<evenementType name="PG03" />
+						<evenementType name="PG04" />
+
+						<evenementType name="DOC01" />
+
+						<evenementType name="SD01" />
+						<evenementType name="SD02" />
+						<evenementType name="SD03" />
+
+
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+		</corbeilleInstitution>
+
+		<!-- Corbeilles du sénat -->
+		<corbeilleInstitution institution="SENAT">
+			<corbeilleNode type="SECTION" name="SECTION_SENAT_DEPOT"
+				label="Dépôt"
+				description="Section regroupant les messages reçus et émis concernant les procédures législatives">
+				<corbeilleNode type="CORBEILLE" name="CORBEILLE_SENAT_DEPOT_RECU"
+					label="Reçu"
+					description="Regroupe les messages des évènements devant donner lieu à un dépôt sur le bureau du Sénat.">
+					<messageGroup>
+						<messageTypes>
+							<messageType name="DESTINATAIRE" />
+						</messageTypes>
+						<evenementTypes>
+							<evenementType name="EVT01" />
+							<evenementType name="EVT02" />
+							<evenementType name="EVT03" />
+							<evenementType name="EVT04BIS" />
+							<evenementType name="EVT05" />
+							<evenementType name="EVT06" />
+							<evenementType name="EVT07" />
+							<evenementType name="EVT07BIS" />
+							<evenementType name="EVT08" />
+							<evenementType name="EVT08BIS" />
+							<evenementType name="EVT08BIS_AB" />
+							<evenementType name="EVT09" />
+							<evenementType name="EVT09BIS" />
+							<evenementType name="EVT10" />
+							<evenementType name="EVT11" />
+							<evenementType name="EVT13" />
+							<evenementType name="EVT13BIS" />
+							<evenementType name="EVT13TER" />
+							<evenementType name="EVT14" />
+							<evenementType name="EVT14TER" />
+							<evenementType name="EVT15" />
+							<evenementType name="EVT17" />
+							<evenementType name="EVT17BIS" />
+							<evenementType name="EVT19" />
+							<evenementType name="EVT20" />
+							<evenementType name="EVT21" />
+							<evenementType name="EVT22" />
+							<evenementType name="EVT23" />
+							<evenementType name="EVT23BIS" />
+							<evenementType name="EVT23TER" />
+							<evenementType name="EVT23QUATER" />
+							<evenementType name="EVT25" />
+							<evenementType name="EVT25BIS" />
+							<evenementType name="EVT26" />
+							<evenementType name="EVT28" />
+							<evenementType name="EVT52" />
+							<evenementType name="EVT53-01" />
+							<evenementType name="GENERIQUE01" />
+							<evenementType name="ALERTE01" />
+							<evenementType name="LEX-40" />
+						</evenementTypes>
+					</messageGroup>
+					<hiddenColumns>
+						<hiddenColumn>DESTINATAIRE</hiddenColumn>
+						<hiddenColumn>COPIE</hiddenColumn>
+					</hiddenColumns>
+				</corbeilleNode>
+				<corbeilleNode type="CORBEILLE" name="CORBEILLE_SENAT_DEPOT_EMIS"
+					label="Émis"
+					description="Regroupe les messages des évènements permettant la validation de tout dépot.">
+					<messageGroup>
+						<messageTypes>
+							<messageType name="EMETTEUR" />
+						</messageTypes>
+						<evenementTypes>
+							<evenementType name="EVT01" />
+							<evenementType name="EVT02" />
+							<evenementType name="EVT03" />
+							<evenementType name="EVT04BIS" />
+							<evenementType name="EVT05" />
+							<evenementType name="EVT06" />
+							<evenementType name="EVT07" />
+							<evenementType name="EVT07BIS" />
+							<evenementType name="EVT08" />
+							<evenementType name="EVT08BIS" />
+							<evenementType name="EVT08BIS_AB" />
+							<evenementType name="EVT09" />
+							<evenementType name="EVT09BIS" />
+							<evenementType name="EVT10" />
+							<evenementType name="EVT11" />
+							<evenementType name="EVT13" />
+							<evenementType name="EVT13BIS" />
+							<evenementType name="EVT13TER" />
+							<evenementType name="EVT14" />
+							<evenementType name="EVT14TER" />
+							<evenementType name="EVT15" />
+							<evenementType name="EVT17" />
+							<evenementType name="EVT17BIS" />
+							<evenementType name="EVT19" />
+							<evenementType name="EVT20" />
+							<evenementType name="EVT21" />
+							<evenementType name="EVT22" />
+							<evenementType name="EVT23" />
+							<evenementType name="EVT23BIS" />
+							<evenementType name="EVT23TER" />
+							<evenementType name="EVT23QUATER" />
+							<evenementType name="EVT25" />
+							<evenementType name="EVT25BIS" />
+							<evenementType name="EVT26" />
+							<evenementType name="EVT52" />
+							<evenementType name="EVT53-01" />
+							<evenementType name="GENERIQUE01" />
+							<evenementType name="ALERTE01" />
+							<evenementType name="LEX-40" />
+						</evenementTypes>
+					</messageGroup>
+					<hiddenColumns>
+						<hiddenColumn>EMETTEUR</hiddenColumn>
+						<hiddenColumn>COPIE</hiddenColumn>
+					</hiddenColumns>
+				</corbeilleNode>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_SENAT_ADOPTION"
+				label="Adoption"
+				description="Regroupe les messages correspondant aux communications envoyés par le Sénat concernant une adoption.">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT12" />
+						<evenementType name="EVT12BIS" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT28" />
+					</evenementTypes>
+				</messageGroup>
+				<hiddenColumns>
+					<hiddenColumn>COPIE</hiddenColumn>
+				</hiddenColumns>
+			</corbeilleNode>
+			<corbeilleNode type="SECTION" name="SECTION_SENAT_CORRESPONDANCE"
+				label="Correspondance"
+				description="Section regroupant les messages appelant un traitement et ne relevant ni de la feuille de dépôt ni de la feuille d’adoption, ainsi que les réponses à ces messages.">
+
+				<corbeilleNode type="CORBEILLE" name="CORBEILLE_SENAT_NOMINATIONS"
+					label="Nominations"
+					description="Correspondance relative aux organismes extraparlementaires, aux auditions dans des organismes et aux nominations nécessitant consultation des commissions parlementaires permanentes.">
+					<messageGroup>
+						<messageTypes>
+							<messageType name="EMETTEUR" />
+							<messageType name="DESTINATAIRE" />
+						</messageTypes>
+						<evenementTypes>
+							<evenementType name="EVT49-0" />
+							<evenementType name="EVT49" />
+							<evenementType name="EVT51" />
+							<evenementType name="EVT32" />
+							<evenementType name="EVT34" />
+						</evenementTypes>
+					</messageGroup>
+					<messageGroup>
+						<messageTypes>
+							<messageType name="DESTINATAIRE" />
+							<messageType name="EMETTEUR" />
+							<messageType name="COPIE" />
+						</messageTypes>
+						<evenementTypes>
+							<evenementType name="GENERIQUE10" />
+							<evenementType name="ALERTE10" />
+							<evenementType name="EVT53-10" />
+							<evenementType name="ALERTE04" />
+							<evenementType name="GENERIQUE04" />
+							<evenementType name="EVT53-04" />
+
+							<evenementType name="AUD01" />
+							<evenementType name="AUD02" />
+							<evenementType name="GENERIQUE14" />
+							<evenementType name="ALERTE14" />
+							<evenementType name="FUSION14" />
+
+						</evenementTypes>
+					</messageGroup>
+					<!-- hiddenColumns> <hiddenColumn>COPIE</hiddenColumn> </hiddenColumns -->
+				</corbeilleNode>
+				<corbeilleNode type="CORBEILLE"
+					name="CORBEILLE_SENAT_RAPPORTS_ET_DOCUMENTS" label="Rapports et documents"
+					description="Correspondance relative aux rapports déposés par le Gouvernement au Parlement.">
+					<messageGroup>
+						<messageTypes>
+							<messageType name="EMETTEUR" />
+							<messageType name="DESTINATAIRE" />
+						</messageTypes>
+						<evenementTypes>
+							<evenementType name="EVT44" />
+							<evenementType name="EVT44TER" />
+						</evenementTypes>
+					</messageGroup>
+					<messageGroup>
+						<messageTypes>
+							<messageType name="DESTINATAIRE" />
+							<messageType name="EMETTEUR" />
+							<messageType name="COPIE" />
+						</messageTypes>
+						<evenementTypes>
+							<evenementType name="EVT53-08" />
+							<evenementType name="GENERIQUE08" />
+							<evenementType name="ALERTE08" />
+
+							<evenementType name="DOC01" />
+							<evenementType name="GENERIQUE15" />
+							<evenementType name="ALERTE15" />
+							<evenementType name="FUSION15" />
+						</evenementTypes>
+					</messageGroup>
+					<!-- hiddenColumns> <hiddenColumn>COPIE</hiddenColumn> </hiddenColumns -->
+				</corbeilleNode>
+				<corbeilleNode type="CORBEILLE"
+					name="CORBEILLE_SENAT_AUTRE_CORRESPONDANCE" label="Autres correspondances"
+					description="Regroupe les messages des communications à destination du Sénat nécessitant un traitement de leur part.">
+					<messageGroup>
+						<messageTypes>
+							<messageType name="EMETTEUR" />
+							<messageType name="DESTINATAIRE" />
+						</messageTypes>
+						<evenementTypes>
+							<evenementType name="EVT29" />
+							<evenementType name="EVT30" />
+							<evenementType name="EVT35" />
+							<evenementType name="EVT36" />
+							<evenementType name="EVT38" />
+							<evenementType name="EVT39" />
+							<evenementType name="EVT40" />
+							<evenementType name="EVT41" />
+							<evenementType name="EVT43" />
+							<evenementType name="EVT43BIS" />
+
+							<evenementType name="PG01" />
+							<evenementType name="PG02" />
+							<evenementType name="PG03" />
+							<evenementType name="PG04" />
+
+							<evenementType name="GENERIQUE11" />
+							<evenementType name="ALERTE11" />
+							<evenementType name="FUSION11" />
+
+
+							<evenementType name="SD01" />
+							<evenementType name="SD02" />
+							<evenementType name="SD03" />
+							<evenementType name="GENERIQUE12" />
+							<evenementType name="ALERTE12" />
+							<evenementType name="FUSION12" />
+
+							<evenementType name="JSS01" />
+							<evenementType name="JSS02" />
+
+
+							<evenementType name="EVT31" />
+
+							<evenementType name="GENERIQUE13" />
+							<evenementType name="ALERTE13" />
+							<evenementType name="FUSION13" />
+
+						</evenementTypes>
+					</messageGroup>
+					<messageGroup>
+						<messageTypes>
+							<messageType name="DESTINATAIRE" />
+							<messageType name="EMETTEUR" />
+							<messageType name="COPIE" />
+						</messageTypes>
+						<evenementTypes>
+							<evenementType name="GENERIQUE02" />
+							<evenementType name="ALERTE02" />
+							<evenementType name="EVT53-02" />
+
+							<evenementType name="GENERIQUE03" />
+							<evenementType name="ALERTE03" />
+							<evenementType name="EVT53-03" />
+
+							<evenementType name="GENERIQUE05" />
+							<evenementType name="ALERTE05" />
+							<evenementType name="EVT53-05" />
+
+							<evenementType name="GENERIQUE06" />
+							<evenementType name="ALERTE06" />
+							<evenementType name="EVT53-06" />
+
+							<evenementType name="GENERIQUE07" />
+							<evenementType name="ALERTE07" />
+							<evenementType name="EVT53-07" />
+
+						</evenementTypes>
+					</messageGroup>
+					<!-- hiddenColumns> <hiddenColumn>COPIE</hiddenColumn> </hiddenColumns -->
+				</corbeilleNode>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_SENAT_PUBLICATION_JO"
+				label="Publication au JO"
+				description="Messages émis par le Sénat en direction de la DILA et inversement.">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT45" />
+						<evenementType name="EVT48" />
+					</evenementTypes>
+				</messageGroup>
+				<messageGroup>
+					<messageTypes>
+						<messageType name="DESTINATAIRE" />
+						<messageType name="EMETTEUR" />
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT53-09" />
+						<evenementType name="GENERIQUE09" />
+						<evenementType name="ALERTE09" />
+					</evenementTypes>
+				</messageGroup>
+				<!-- hiddenColumns> <hiddenColumn>COPIE</hiddenColumn> </hiddenColumns -->
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_SENAT_POUR_INFO"
+				label="Pour info" description="Regroupe les messages dont le Sénat est en copie.">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT01" />
+						<evenementType name="EVT02" />
+						<evenementType name="EVT03" />
+						<evenementType name="EVT04BIS" />
+						<evenementType name="EVT05" />
+						<evenementType name="EVT06" />
+						<evenementType name="EVT07" />
+						<evenementType name="EVT07BIS" />
+						<evenementType name="EVT08" />
+						<evenementType name="EVT08BIS" />
+						<evenementType name="EVT08BIS_AB" />
+						<evenementType name="EVT09" />
+						<evenementType name="EVT09BIS" />
+						<evenementType name="EVT10" />
+						<evenementType name="EVT11" />
+						<evenementType name="EVT12" />
+						<evenementType name="EVT13" />
+						<evenementType name="EVT13BIS" />
+						<evenementType name="EVT13TER" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT14TER" />
+						<evenementType name="EVT15" />
+						<evenementType name="EVT17" />
+						<evenementType name="EVT17BIS" />
+						<evenementType name="EVT19" />
+						<evenementType name="EVT20" />
+						<evenementType name="EVT21" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT23" />
+						<evenementType name="EVT23BIS" />
+						<evenementType name="EVT23TER" />
+						<evenementType name="EVT23QUATER" />
+						<evenementType name="EVT23QUINQUIES" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT25" />
+						<evenementType name="EVT25BIS" />
+						<evenementType name="EVT26" />
+						<evenementType name="EVT28" />
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+						<evenementType name="EVT31" />
+						<evenementType name="EVT32" />
+						<evenementType name="EVT34" />
+						<evenementType name="EVT35" />
+						<evenementType name="EVT36" />
+						<evenementType name="EVT38" />
+						<evenementType name="EVT39" />
+						<evenementType name="EVT40" />
+						<evenementType name="EVT41" />
+						<evenementType name="EVT43" />
+						<evenementType name="EVT43BIS" />
+						<evenementType name="EVT44" />
+						<evenementType name="EVT44TER" />
+						<evenementType name="EVT48" />
+						<evenementType name="EVT49" />
+						<evenementType name="EVT49-0" />
+						<evenementType name="EVT51" />
+						<evenementType name="EVT52" />
+						<evenementType name="EVT53-01" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="EVT53-02" />
+						<evenementType name="GENERIQUE02" />
+						<evenementType name="ALERTE02" />
+						<evenementType name="EVT53-03" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="EVT53-04" />
+						<evenementType name="GENERIQUE04" />
+						<evenementType name="ALERTE04" />
+						<evenementType name="EVT53-05" />
+						<evenementType name="GENERIQUE05" />
+						<evenementType name="ALERTE05" />
+						<evenementType name="EVT53-06" />
+						<evenementType name="GENERIQUE06" />
+						<evenementType name="ALERTE06" />
+						<evenementType name="EVT53-07" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="ALERTE07" />
+						<evenementType name="EVT53-08" />
+						<evenementType name="GENERIQUE08" />
+						<evenementType name="ALERTE08" />
+						<evenementType name="EVT53-09" />
+						<evenementType name="GENERIQUE09" />
+						<evenementType name="ALERTE09" />
+						<evenementType name="EVT53-10" />
+						<evenementType name="GENERIQUE10" />
+						<evenementType name="ALERTE10" />
+						<evenementType name="GENERIQUE11" />
+						<evenementType name="ALERTE11" />
+						<evenementType name="FUSION11" />
+						<evenementType name="GENERIQUE14" />
+						<evenementType name="ALERTE14" />
+						<evenementType name="FUSION14" />
+						<evenementType name="GENERIQUE15" />
+						<evenementType name="ALERTE15" />
+						<evenementType name="FUSION15" />
+						<evenementType name="PG01" />
+						<evenementType name="PG04" />
+						<evenementType name="SD01" />
+						<evenementType name="SD03" />
+						<evenementType name="JSS01" />
+						<evenementType name="JSS02" />
+
+
+					</evenementTypes>
+				</messageGroup>
+				<hiddenColumns>
+					<hiddenColumn>COPIE</hiddenColumn>
+				</hiddenColumns>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_SENAT_EMETTEUR"
+				label="Émetteur" description="Corbeille émetteur">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT01" />
+						<evenementType name="EVT02" />
+						<evenementType name="EVT03" />
+						<evenementType name="EVT04BIS" />
+						<evenementType name="EVT05" />
+						<evenementType name="EVT06" />
+						<evenementType name="EVT07" />
+						<evenementType name="EVT07BIS" />
+						<evenementType name="EVT08" />
+						<evenementType name="EVT08BIS" />
+						<evenementType name="EVT08BIS_AB" />
+						<evenementType name="EVT09" />
+						<evenementType name="EVT09BIS" />
+						<evenementType name="EVT10" />
+						<evenementType name="EVT11" />
+						<evenementType name="EVT12" />
+						<evenementType name="EVT13" />
+						<evenementType name="EVT13BIS" />
+						<evenementType name="EVT13TER" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT14TER" />
+						<evenementType name="EVT15" />
+						<evenementType name="EVT17" />
+						<evenementType name="EVT17BIS" />
+						<evenementType name="EVT19" />
+						<evenementType name="EVT20" />
+						<evenementType name="EVT21" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT23" />
+						<evenementType name="EVT23BIS" />
+						<evenementType name="EVT23TER" />
+						<evenementType name="EVT23QUATER" />
+						<evenementType name="EVT23QUINQUIES" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT25" />
+						<evenementType name="EVT25BIS" />
+						<evenementType name="EVT26" />
+						<evenementType name="EVT28" />
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+						<evenementType name="EVT31" />
+						<evenementType name="EVT32" />
+						<evenementType name="EVT34" />
+						<evenementType name="EVT35" />
+						<evenementType name="EVT36" />
+						<evenementType name="EVT38" />
+						<evenementType name="EVT39" />
+						<evenementType name="EVT40" />
+						<evenementType name="EVT41" />
+						<evenementType name="EVT43" />
+						<evenementType name="EVT43BIS" />
+						<evenementType name="EVT44" />
+						<evenementType name="EVT44TER" />
+						<evenementType name="EVT45" />
+						<evenementType name="EVT48" />
+						<evenementType name="EVT49" />
+						<evenementType name="EVT49-0" />
+						<evenementType name="EVT51" />
+						<evenementType name="EVT52" />
+						<evenementType name="EVT53-01" />
+						<evenementType name="EVT53-02" />
+						<evenementType name="EVT53-03" />
+						<evenementType name="EVT53-04" />
+						<evenementType name="EVT53-05" />
+						<evenementType name="EVT53-06" />
+						<evenementType name="EVT53-07" />
+						<evenementType name="EVT53-08" />
+						<evenementType name="EVT53-09" />
+						<evenementType name="EVT53-10" />
+						<evenementType name="FUSION11" />
+						<evenementType name="FUSION12" />
+						<evenementType name="FUSION13" />
+						<evenementType name="FUSION14" />
+						<evenementType name="FUSION15" />
+						<evenementType name="EVT54" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="GENERIQUE02" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="GENERIQUE04" />
+						<evenementType name="GENERIQUE05" />
+						<evenementType name="GENERIQUE06" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="GENERIQUE08" />
+						<evenementType name="GENERIQUE09" />
+						<evenementType name="GENERIQUE10" />
+						<evenementType name="GENERIQUE11" />
+						<evenementType name="GENERIQUE12" />
+						<evenementType name="GENERIQUE13" />
+						<evenementType name="GENERIQUE14" />
+						<evenementType name="GENERIQUE15" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="ALERTE02" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="ALERTE04" />
+						<evenementType name="ALERTE05" />
+						<evenementType name="ALERTE06" />
+						<evenementType name="ALERTE07" />
+						<evenementType name="ALERTE08" />
+						<evenementType name="ALERTE09" />
+						<evenementType name="ALERTE10" />
+						<evenementType name="ALERTE11" />
+						<evenementType name="ALERTE12" />
+						<evenementType name="ALERTE13" />
+						<evenementType name="ALERTE14" />
+						<evenementType name="ALERTE15" />
+						<evenementType name="AUD02" />
+						<evenementType name="JSS02" />
+						<evenementType name="PG04" />
+						<evenementType name="SD01" />
+						<evenementType name="SD03" />
+						<evenementType name="LEX-40" />
+
+					</evenementTypes>
+				</messageGroup>
+				<hiddenColumns>
+					<hiddenColumn>EMETTEUR</hiddenColumn>
+					<hiddenColumn>COPIE</hiddenColumn>
+				</hiddenColumns>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_SENAT_DESTINATAIRE"
+				label="Destinataire" description="Corbeille destinataire">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT01" />
+						<evenementType name="EVT02" />
+						<evenementType name="EVT03" />
+						<evenementType name="EVT04BIS" />
+						<evenementType name="EVT05" />
+						<evenementType name="EVT06" />
+						<evenementType name="EVT07" />
+						<evenementType name="EVT07BIS" />
+						<evenementType name="EVT08" />
+						<evenementType name="EVT08BIS" />
+						<evenementType name="EVT08BIS_AB" />
+						<evenementType name="EVT09" />
+						<evenementType name="EVT09BIS" />
+						<evenementType name="EVT10" />
+						<evenementType name="EVT11" />
+						<evenementType name="EVT12" />
+						<evenementType name="EVT13" />
+						<evenementType name="EVT13BIS" />
+						<evenementType name="EVT13TER" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT14TER" />
+						<evenementType name="EVT15" />
+						<evenementType name="EVT17" />
+						<evenementType name="EVT17BIS" />
+						<evenementType name="EVT19" />
+						<evenementType name="EVT20" />
+						<evenementType name="EVT21" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT23" />
+						<evenementType name="EVT23BIS" />
+						<evenementType name="EVT23TER" />
+						<evenementType name="EVT23QUATER" />
+						<evenementType name="EVT23QUINQUIES" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT25" />
+						<evenementType name="EVT25BIS" />
+						<evenementType name="EVT26" />
+						<evenementType name="EVT28" />
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+						<evenementType name="EVT31" />
+						<evenementType name="EVT32" />
+						<evenementType name="EVT34" />
+						<evenementType name="EVT35" />
+						<evenementType name="EVT36" />
+						<evenementType name="EVT38" />
+						<evenementType name="EVT39" />
+						<evenementType name="EVT40" />
+						<evenementType name="EVT41" />
+						<evenementType name="EVT43" />
+						<evenementType name="EVT43BIS" />
+						<evenementType name="EVT44" />
+						<evenementType name="EVT44TER" />
+						<evenementType name="EVT48" />
+						<evenementType name="EVT49" />
+						<evenementType name="EVT49-0" />
+						<evenementType name="EVT51" />
+						<evenementType name="EVT52" />
+						<evenementType name="EVT53-01" />
+						<evenementType name="EVT53-02" />
+						<evenementType name="EVT53-03" />
+						<evenementType name="EVT53-04" />
+						<evenementType name="EVT53-05" />
+						<evenementType name="EVT53-06" />
+						<evenementType name="EVT53-07" />
+						<evenementType name="EVT53-08" />
+						<evenementType name="EVT53-09" />
+						<evenementType name="EVT53-10" />
+						<evenementType name="FUSION11" />
+						<evenementType name="FUSION12" />
+						<evenementType name="FUSION13" />
+						<evenementType name="FUSION14" />
+						<evenementType name="FUSION15" />
+						<evenementType name="EVT54" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="GENERIQUE02" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="GENERIQUE04" />
+						<evenementType name="GENERIQUE05" />
+						<evenementType name="GENERIQUE06" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="GENERIQUE08" />
+						<evenementType name="GENERIQUE09" />
+						<evenementType name="GENERIQUE10" />
+						<evenementType name="GENERIQUE11" />
+						<evenementType name="GENERIQUE12" />
+						<evenementType name="GENERIQUE13" />
+						<evenementType name="GENERIQUE14" />
+						<evenementType name="GENERIQUE15" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="ALERTE02" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="ALERTE04" />
+						<evenementType name="ALERTE05" />
+						<evenementType name="ALERTE06" />
+						<evenementType name="ALERTE07" />
+						<evenementType name="ALERTE08" />
+						<evenementType name="ALERTE09" />
+						<evenementType name="ALERTE10" />
+						<evenementType name="ALERTE11" />
+						<evenementType name="ALERTE12" />
+						<evenementType name="ALERTE13" />
+						<evenementType name="ALERTE14" />
+						<evenementType name="ALERTE15" />
+						<evenementType name="AUD01" />
+						<evenementType name="DOC01" />
+						<evenementType name="JSS01" />
+						<evenementType name="PG02" />
+						<evenementType name="PG03" />
+						<evenementType name="SD02" />
+						<evenementType name="LEX-40" />
+					</evenementTypes>
+				</messageGroup>
+				<hiddenColumns>
+					<hiddenColumn>DESTINATAIRE</hiddenColumn>
+					<hiddenColumn>COPIE</hiddenColumn>
+				</hiddenColumns>
+			</corbeilleNode>
+		</corbeilleInstitution>
+
+		<!-- Corbeilles de l'DILA -->
+		<corbeilleInstitution institution="DILA">
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_DILA_EMETTEUR"
+				label="Émetteur" description="Corbeille émetteur">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="EMETTEUR" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT01" />
+						<evenementType name="EVT02" />
+						<evenementType name="EVT03" />
+						<evenementType name="EVT04BIS" />
+						<evenementType name="EVT05" />
+						<evenementType name="EVT06" />
+						<evenementType name="EVT07" />
+						<evenementType name="EVT07BIS" />
+						<evenementType name="EVT08" />
+						<evenementType name="EVT08BIS" />
+						<evenementType name="EVT08BIS_AB" />
+						<evenementType name="EVT09" />
+						<evenementType name="EVT09BIS" />
+						<evenementType name="EVT10" />
+						<evenementType name="EVT11" />
+						<evenementType name="EVT12" />
+						<evenementType name="EVT13" />
+						<evenementType name="EVT13BIS" />
+						<evenementType name="EVT13TER" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT14TER" />
+						<evenementType name="EVT15" />
+						<evenementType name="EVT17" />
+						<evenementType name="EVT17BIS" />
+						<evenementType name="EVT19" />
+						<evenementType name="EVT20" />
+						<evenementType name="EVT21" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT23" />
+						<evenementType name="EVT23BIS" />
+						<evenementType name="EVT23TER" />
+						<evenementType name="EVT23QUATER" />
+						<evenementType name="EVT23QUINQUIES" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT25" />
+						<evenementType name="EVT25BIS" />
+						<evenementType name="EVT26" />
+						<evenementType name="EVT28" />
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+						<evenementType name="EVT31" />
+						<evenementType name="EVT32" />
+						<evenementType name="EVT34" />
+						<evenementType name="EVT35" />
+						<evenementType name="EVT36" />
+						<evenementType name="EVT38" />
+						<evenementType name="EVT39" />
+						<evenementType name="EVT40" />
+						<evenementType name="EVT41" />
+						<evenementType name="EVT43" />
+						<evenementType name="EVT43BIS" />
+						<evenementType name="EVT44" />
+						<evenementType name="EVT44TER" />
+						<evenementType name="EVT48" />
+						<evenementType name="EVT49" />
+						<evenementType name="EVT49-0" />
+						<evenementType name="EVT51" />
+						<evenementType name="EVT52" />
+						<evenementType name="EVT53-01" />
+						<evenementType name="EVT53-02" />
+						<evenementType name="EVT53-03" />
+						<evenementType name="EVT53-04" />
+						<evenementType name="EVT53-05" />
+						<evenementType name="EVT53-06" />
+						<evenementType name="EVT53-07" />
+						<evenementType name="EVT53-08" />
+						<evenementType name="EVT53-09" />
+						<evenementType name="EVT53-10" />
+						<evenementType name="EVT54" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="GENERIQUE02" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="GENERIQUE04" />
+						<evenementType name="GENERIQUE05" />
+						<evenementType name="GENERIQUE06" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="GENERIQUE08" />
+						<evenementType name="GENERIQUE09" />
+						<evenementType name="GENERIQUE10" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="ALERTE02" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="ALERTE04" />
+						<evenementType name="ALERTE05" />
+						<evenementType name="ALERTE06" />
+						<evenementType name="ALERTE07" />
+						<evenementType name="ALERTE08" />
+						<evenementType name="ALERTE09" />
+						<evenementType name="ALERTE10" />
+						<evenementType name="LEX-40" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_DILA_DESTINATAIRE"
+				label="Destinataire" description="Corbeille destinataire">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="DESTINATAIRE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT01" />
+						<evenementType name="EVT02" />
+						<evenementType name="EVT03" />
+						<evenementType name="EVT04BIS" />
+						<evenementType name="EVT05" />
+						<evenementType name="EVT06" />
+						<evenementType name="EVT07" />
+						<evenementType name="EVT07BIS" />
+						<evenementType name="EVT08" />
+						<evenementType name="EVT08BIS" />
+						<evenementType name="EVT08BIS_AB" />
+						<evenementType name="EVT09" />
+						<evenementType name="EVT09BIS" />
+						<evenementType name="EVT10" />
+						<evenementType name="EVT11" />
+						<evenementType name="EVT12" />
+						<evenementType name="EVT13" />
+						<evenementType name="EVT13BIS" />
+						<evenementType name="EVT13TER" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT14TER" />
+						<evenementType name="EVT15" />
+						<evenementType name="EVT17" />
+						<evenementType name="EVT17BIS" />
+						<evenementType name="EVT19" />
+						<evenementType name="EVT20" />
+						<evenementType name="EVT21" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT23" />
+						<evenementType name="EVT23BIS" />
+						<evenementType name="EVT23TER" />
+						<evenementType name="EVT23QUATER" />
+						<evenementType name="EVT23QUINQUIES" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT25" />
+						<evenementType name="EVT25BIS" />
+						<evenementType name="EVT26" />
+						<evenementType name="EVT28" />
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+						<evenementType name="EVT31" />
+						<evenementType name="EVT32" />
+						<evenementType name="EVT34" />
+						<evenementType name="EVT35" />
+						<evenementType name="EVT36" />
+						<evenementType name="EVT38" />
+						<evenementType name="EVT39" />
+						<evenementType name="EVT40" />
+						<evenementType name="EVT41" />
+						<evenementType name="EVT43" />
+						<evenementType name="EVT43BIS" />
+						<evenementType name="EVT44" />
+						<evenementType name="EVT44TER" />
+						<evenementType name="EVT45" />
+						<evenementType name="EVT48" />
+						<evenementType name="EVT49" />
+						<evenementType name="EVT49-0" />
+						<evenementType name="EVT51" />
+						<evenementType name="EVT52" />
+						<evenementType name="EVT53-01" />
+						<evenementType name="EVT53-02" />
+						<evenementType name="EVT53-03" />
+						<evenementType name="EVT53-04" />
+						<evenementType name="EVT53-05" />
+						<evenementType name="EVT53-06" />
+						<evenementType name="EVT53-07" />
+						<evenementType name="EVT53-08" />
+						<evenementType name="EVT53-09" />
+						<evenementType name="EVT53-10" />
+						<evenementType name="EVT54" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="GENERIQUE02" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="GENERIQUE04" />
+						<evenementType name="GENERIQUE05" />
+						<evenementType name="GENERIQUE06" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="GENERIQUE08" />
+						<evenementType name="GENERIQUE09" />
+						<evenementType name="GENERIQUE10" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="ALERTE02" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="ALERTE04" />
+						<evenementType name="ALERTE05" />
+						<evenementType name="ALERTE06" />
+						<evenementType name="ALERTE07" />
+						<evenementType name="ALERTE08" />
+						<evenementType name="ALERTE09" />
+						<evenementType name="ALERTE10" />
+						<evenementType name="LEX-40" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+			<corbeilleNode type="CORBEILLE" name="CORBEILLE_DILA_COPIE"
+				label="Copie" description="Corbeille copie">
+				<messageGroup>
+					<messageTypes>
+						<messageType name="COPIE" />
+					</messageTypes>
+					<evenementTypes>
+						<evenementType name="EVT01" />
+						<evenementType name="EVT02" />
+						<evenementType name="EVT03" />
+						<evenementType name="EVT04BIS" />
+						<evenementType name="EVT05" />
+						<evenementType name="EVT06" />
+						<evenementType name="EVT07" />
+						<evenementType name="EVT07BIS" />
+						<evenementType name="EVT08" />
+						<evenementType name="EVT08BIS" />
+						<evenementType name="EVT08BIS_AB" />
+						<evenementType name="EVT09" />
+						<evenementType name="EVT09BIS" />
+						<evenementType name="EVT10" />
+						<evenementType name="EVT11" />
+						<evenementType name="EVT12" />
+						<evenementType name="EVT13" />
+						<evenementType name="EVT13BIS" />
+						<evenementType name="EVT13TER" />
+						<evenementType name="EVT14" />
+						<evenementType name="EVT14TER" />
+						<evenementType name="EVT15" />
+						<evenementType name="EVT17" />
+						<evenementType name="EVT17BIS" />
+						<evenementType name="EVT19" />
+						<evenementType name="EVT20" />
+						<evenementType name="EVT21" />
+						<evenementType name="EVT22" />
+						<evenementType name="EVT23" />
+						<evenementType name="EVT23BIS" />
+						<evenementType name="EVT23TER" />
+						<evenementType name="EVT23QUATER" />
+						<evenementType name="EVT23QUINQUIES" />
+						<evenementType name="EVT24" />
+						<evenementType name="EVT25" />
+						<evenementType name="EVT25BIS" />
+						<evenementType name="EVT26" />
+						<evenementType name="EVT28" />
+						<evenementType name="EVT29" />
+						<evenementType name="EVT30" />
+						<evenementType name="EVT31" />
+						<evenementType name="EVT32" />
+						<evenementType name="EVT34" />
+						<evenementType name="EVT35" />
+						<evenementType name="EVT36" />
+						<evenementType name="EVT38" />
+						<evenementType name="EVT39" />
+						<evenementType name="EVT40" />
+						<evenementType name="EVT41" />
+						<evenementType name="EVT43" />
+						<evenementType name="EVT43BIS" />
+						<evenementType name="EVT44" />
+						<evenementType name="EVT44TER" />
+						<evenementType name="EVT48" />
+						<evenementType name="EVT49" />
+						<evenementType name="EVT49-0" />
+						<evenementType name="EVT51" />
+						<evenementType name="EVT52" />
+						<evenementType name="EVT53-01" />
+						<evenementType name="EVT53-02" />
+						<evenementType name="EVT53-03" />
+						<evenementType name="EVT53-04" />
+						<evenementType name="EVT53-05" />
+						<evenementType name="EVT53-06" />
+						<evenementType name="EVT53-07" />
+						<evenementType name="EVT53-08" />
+						<evenementType name="EVT53-09" />
+						<evenementType name="EVT53-10" />
+						<evenementType name="EVT54" />
+						<evenementType name="GENERIQUE01" />
+						<evenementType name="GENERIQUE02" />
+						<evenementType name="GENERIQUE03" />
+						<evenementType name="GENERIQUE04" />
+						<evenementType name="GENERIQUE05" />
+						<evenementType name="GENERIQUE06" />
+						<evenementType name="GENERIQUE07" />
+						<evenementType name="GENERIQUE08" />
+						<evenementType name="GENERIQUE09" />
+						<evenementType name="GENERIQUE10" />
+						<evenementType name="ALERTE01" />
+						<evenementType name="ALERTE02" />
+						<evenementType name="ALERTE03" />
+						<evenementType name="ALERTE04" />
+						<evenementType name="ALERTE05" />
+						<evenementType name="ALERTE06" />
+						<evenementType name="ALERTE07" />
+						<evenementType name="ALERTE08" />
+						<evenementType name="ALERTE09" />
+						<evenementType name="ALERTE10" />
+					</evenementTypes>
+				</messageGroup>
+			</corbeilleNode>
+		</corbeilleInstitution>
+
+
+	</extension>
+</component>

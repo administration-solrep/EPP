@@ -1,0 +1,40 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout">
+
+	<c:choose>
+		<c:when test="#{widget.mode == 'hidden'}">
+		</c:when>
+		<c:when test="#{widget.mode == 'view'}">
+			<nxdir:directoryEntryOutput value="#{field}"
+				directoryName="${widget.properties['directoryName']}"
+				localize="true" />
+		</c:when>
+		<c:otherwise>
+			<h:selectOneMenu value="#{field}" id="routing_task_type">
+				<c:choose>
+					<c:when test="${!widget.properties['localized']}">
+						<nxdir:selectItems id="#{widget.id}"
+							directoryName="${widget.properties['directoryName']}" var="item"
+							itemValue="#{item.id}"
+							itemLabel="#{messages[item.vocabulary.label]}" localize="true"
+							itemRendered="#{routingTaskFilter.accept(item)}" />
+					</c:when>
+					<c:otherwise>
+						<nxdir:selectItems id="#{widget.id}"
+							directoryName="${widget.properties['directoryName']}" var="item"
+							itemValue="#{item.id}" itemLabel="#{item.vocabulary.label}"
+							itemRendered="#{routingTaskFilter.accept(item)}" />
+					</c:otherwise>
+				</c:choose>
+			</h:selectOneMenu>
+		</c:otherwise>
+	</c:choose>
+
+	<h:message styleClass="errorMessage" for="#{widget.id}"
+		id="#{widget.id}_message" />
+</div>

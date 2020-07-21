@@ -1,0 +1,2372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:eppco="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:epptdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	elementFormDefault="qualified">
+
+	<xs:import schemaLocation="../../commons/commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons" />
+	<xs:import schemaLocation="epp-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons" />
+	<xs:import schemaLocation="epp-tableReference.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref" />
+
+	<xs:complexType name="updatableString">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="update" type="xs:boolean" use="optional" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:simpleType name="IdTableReference">
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EvenementType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EVTBase" />
+			<!-- Procedure legislative -->
+			<xs:enumeration value="EVT01" />
+			<xs:enumeration value="EVT02" />
+			<xs:enumeration value="EVT03" />
+			<xs:enumeration value="EVT04BIS" />
+			<xs:enumeration value="EVT05" />
+			<xs:enumeration value="EVT06" />
+			<xs:enumeration value="EVT07" />
+			<xs:enumeration value="EVT07BIS" />
+			<xs:enumeration value="EVT08" />
+			<xs:enumeration value="EVT08BIS" />
+			<xs:enumeration value="EVT08BIS_AB" />
+			<xs:enumeration value="EVT09" />
+			<xs:enumeration value="EVT09BIS" />
+			<xs:enumeration value="EVT10" />
+			<xs:enumeration value="EVT11" />
+			<xs:enumeration value="EVT12" />
+			<xs:enumeration value="EVT13" />
+			<xs:enumeration value="EVT13BIS" />
+			<xs:enumeration value="EVT13TER" />
+			<xs:enumeration value="EVT14" />
+			<xs:enumeration value="EVT14TER" />
+			<xs:enumeration value="EVT15" />
+			<xs:enumeration value="EVT17" />
+			<xs:enumeration value="EVT17BIS" />
+			<xs:enumeration value="EVT19" />
+			<xs:enumeration value="EVT20" />
+			<xs:enumeration value="EVT21" />
+			<xs:enumeration value="EVT22" />
+			<xs:enumeration value="EVT23" />
+			<xs:enumeration value="EVT23BIS" />
+			<xs:enumeration value="EVT23TER" />
+			<xs:enumeration value="EVT23QUATER" />
+			<xs:enumeration value="EVT23QUINQUIES" />
+			<xs:enumeration value="EVT24" />
+			<xs:enumeration value="EVT25" />
+			<xs:enumeration value="EVT25BIS" />
+			<xs:enumeration value="EVT26" />
+			<xs:enumeration value="EVT28" />
+			<xs:enumeration value="EVT29" />
+			<xs:enumeration value="EVT30" />
+			<xs:enumeration value="EVT31" />
+			<xs:enumeration value="EVT32" />
+			<xs:enumeration value="EVT34" />
+			<xs:enumeration value="EVT35" />
+			<xs:enumeration value="EVT36" />
+			<xs:enumeration value="EVT38" />
+			<xs:enumeration value="EVT39" />
+			<xs:enumeration value="EVT40" />
+			<xs:enumeration value="EVT41" />
+			<xs:enumeration value="EVT43" />
+			<xs:enumeration value="EVT43BIS" />
+			<xs:enumeration value="EVT44" />
+			<xs:enumeration value="EVT44TER" />
+			<xs:enumeration value="EVT45" />
+			<xs:enumeration value="EVT48" />
+			<xs:enumeration value="EVT49" />
+			<xs:enumeration value="EVT49-0" />
+			<xs:enumeration value="EVT51" />
+			<xs:enumeration value="EVT52" />
+			<xs:enumeration value="EVT53" />
+			<xs:enumeration value="EVT53-01" />
+			<xs:enumeration value="EVT53-02" />
+			<xs:enumeration value="EVT53-03" />
+			<xs:enumeration value="EVT53-04" />
+			<xs:enumeration value="EVT53-05" />
+			<xs:enumeration value="EVT53-06" />
+			<xs:enumeration value="EVT53-07" />
+			<xs:enumeration value="EVT53-08" />
+			<xs:enumeration value="EVT53-09" />
+			<xs:enumeration value="EVT53-10" />
+			<xs:enumeration value="EVT54" />
+			<xs:enumeration value="LEX-40" />
+			<xs:enumeration value="GENERIQUE" />
+			<xs:enumeration value="GENERIQUE01" />
+			<xs:enumeration value="GENERIQUE02" />
+			<xs:enumeration value="GENERIQUE03" />
+			<xs:enumeration value="GENERIQUE04" />
+			<xs:enumeration value="GENERIQUE05" />
+			<xs:enumeration value="GENERIQUE06" />
+			<xs:enumeration value="GENERIQUE07" />
+			<xs:enumeration value="GENERIQUE08" />
+			<xs:enumeration value="GENERIQUE09" />
+			<xs:enumeration value="GENERIQUE10" />
+			<xs:enumeration value="ALERTE" />
+			<xs:enumeration value="ALERTE01" />
+			<xs:enumeration value="ALERTE02" />
+			<xs:enumeration value="ALERTE03" />
+			<xs:enumeration value="ALERTE04" />
+			<xs:enumeration value="ALERTE05" />
+			<xs:enumeration value="ALERTE06" />
+			<xs:enumeration value="ALERTE07" />
+			<xs:enumeration value="ALERTE08" />
+			<xs:enumeration value="ALERTE09" />
+			<xs:enumeration value="ALERTE10" />
+			<xs:enumeration value="PG01" />
+			<xs:enumeration value="PG02" />
+			<xs:enumeration value="PG03" />
+			<xs:enumeration value="PG04" />
+			<xs:enumeration value="GENERIQUE11" />
+			<xs:enumeration value="ALERTE11" />
+			<xs:enumeration value="FUSION11" />
+			<xs:enumeration value="SD01" />
+			<xs:enumeration value="SD02" />
+			<xs:enumeration value="SD03" />
+			<xs:enumeration value="GENERIQUE12" />
+			<xs:enumeration value="ALERTE12" />
+			<xs:enumeration value="FUSION12" />
+			<xs:enumeration value="JSS01" />
+			<xs:enumeration value="JSS02" />
+			<xs:enumeration value="GENERIQUE13" />
+			<xs:enumeration value="ALERTE13" />
+			<xs:enumeration value="FUSION13" />
+			<xs:enumeration value="AUD01" />
+			<xs:enumeration value="AUD02" />
+			<xs:enumeration value="GENERIQUE14" />
+			<xs:enumeration value="ALERTE14" />
+			<xs:enumeration value="FUSION14" />
+			<xs:enumeration value="DOC01" />
+			<xs:enumeration value="GENERIQUE15" />
+			<xs:enumeration value="ALERTE15" />
+			<xs:enumeration value="FUSION15" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+
+	<xs:complexType name="EvtId">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" /> <!-- identifiant de l'évènement/communication -->
+			<xs:element name="version" type="Version" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvtContainer">
+		<xs:choice>
+			<!-- Procedure legislative -->
+			<xs:element name="evt01" type="EppEvt01" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt02" type="EppEvt02" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt03" type="EppEvt03" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt04bis" type="EppEvt04Bis" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt05" type="EppEvt05" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt06" type="EppEvt06" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt07" type="EppEvt07" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt07bis" type="EppEvt07Bis" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt08" type="EppEvt08" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt08bis" type="EppEvt08Bis" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt08bisAB" type="EppEvt08BisAB"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evt09" type="EppEvt09" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt09bis" type="EppEvt09Bis" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt10" type="EppEvt10" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt11" type="EppEvt11" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt12" type="EppEvt12" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt13" type="EppEvt13" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt13bis" type="EppEvt13Bis" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt13ter" type="EppEvt13Ter" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt14" type="EppEvt14" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt14ter" type="EppEvt14Ter" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt15" type="EppEvt15" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt17" type="EppEvt17" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt17bis" type="EppEvt17Bis" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt19" type="EppEvt19" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt20" type="EppEvt20" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt21" type="EppEvt21" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt22" type="EppEvt22" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt23" type="EppEvt23" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt23bis" type="EppEvt23Bis" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt23ter" type="EppEvt23Ter" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt23quater" type="EppEvt23Quater"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evt23quinquies" type="EppEvt23Quinquies"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evt24" type="EppEvt24" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt25" type="EppEvt25" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt25bis" type="EppEvt25Bis" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt26" type="EppEvt26" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt28" type="EppEvt28" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt29" type="EppEvt29" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt30" type="EppEvt30" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt31" type="EppEvt31" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt32" type="EppEvt32" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt34" type="EppEvt34" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt35" type="EppEvt35" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt36" type="EppEvt36" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt38" type="EppEvt38" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt39" type="EppEvt39" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt40" type="EppEvt40" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt41" type="EppEvt41" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt43" type="EppEvt43" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt43bis" type="EppEvt43Bis" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt44" type="EppEvt44" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt44ter" type="EppEvt44Ter" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt45" type="EppEvt45" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt48" type="EppEvt48" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt49" type="EppEvt49" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt49-0" type="EppEvt49-0" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt51" type="EppEvt51" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt52" type="EppEvt52" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt53" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt53-00" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt53-01" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt53-02" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt53-03" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt53-04" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt53-05" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt53-06" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt53-07" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt53-08" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt53-09" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="evt53-10" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+
+			<xs:element name="evt54" type="EppEvt54" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="lex-40" type="EppLex40" minOccurs="1"
+				maxOccurs="1" />
+
+			<!-- Autres -->
+			<xs:element name="evtGenerique" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtGenerique01" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtGenerique02" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtGenerique03" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtGenerique04" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtGenerique05" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtGenerique06" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtGenerique07" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtGenerique08" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtGenerique09" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtGenerique10" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+
+			<xs:element name="evtAlerte" type="EppEvtAlerte"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtAlerte01" type="EppEvtAlerte"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtAlerte02" type="EppEvtAlerte"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtAlerte03" type="EppEvtAlerte"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtAlerte04" type="EppEvtAlerte"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtAlerte05" type="EppEvtAlerte"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtAlerte06" type="EppEvtAlerte"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtAlerte07" type="EppEvtAlerte"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtAlerte08" type="EppEvtAlerte"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtAlerte09" type="EppEvtAlerte"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evtAlerte10" type="EppEvtAlerte"
+				minOccurs="1" maxOccurs="1" />
+
+			<!-- Nouvelles procedures -->
+			<xs:element name="PG01" type="EppPG01" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="PG02" type="EppPG02" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="PG03" type="EppPG03" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="PG04" type="EppPG04" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="GENERIQUE11" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="ALERTE11" type="EppEvtAlerte" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="FUSION11" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+
+			<xs:element name="SD01" type="EppSD01" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="SD02" type="EppSD02" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="SD03" type="EppSD03" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="GENERIQUE12" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="ALERTE12" type="EppEvtAlerte" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="FUSION12" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+
+			<xs:element name="JSS01" type="EppJSS01" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="JSS02" type="EppJSS02" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="GENERIQUE13" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="ALERTE13" type="EppEvtAlerte" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="FUSION13" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+
+			<xs:element name="AUD01" type="EppAUD01" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="AUD02" type="EppAUD02" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="GENERIQUE14" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="ALERTE14" type="EppEvtAlerte" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="FUSION14" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+
+			<xs:element name="DOC01" type="EppDOC01" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="GENERIQUE15" type="EppEvtGenerique"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="ALERTE15" type="EppEvtAlerte" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="FUSION15" type="EppEvt53" minOccurs="1"
+				maxOccurs="1" />
+
+		</xs:choice>
+		<xs:attribute name="type" type="EvenementType" use="required" />
+	</xs:complexType>
+
+
+
+	<xs:simpleType name="TypeLoi">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="LOI_CONSTITUTIONNELLE" />
+			<xs:enumeration value="LOI_REFERENDAIRE" />
+			<xs:enumeration value="LOI_ORGANIQUE" />
+			<xs:enumeration value="LOI_FINANCE" />
+			<xs:enumeration value="LOI_FINANCE_RECTIFICATIVE" />
+			<xs:enumeration value="LOI_REGLEMENT" />
+			<xs:enumeration value="LOI_FINANCEMENT_SECURITE_SOCIALE" />
+			<xs:enumeration value="LOI_FINANCEMENT_SECURITE_SOCIALE_RECTIFICATIVE" />
+			<xs:enumeration value="ART_53_CONST" />
+			<xs:enumeration value="LOI_PROGRAMMATION" />
+			<xs:enumeration value="LOI_ORIENTATION" />
+			<xs:enumeration value="LOI" />
+			<xs:enumeration value="LOI_CADRE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NatureLoi">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PROJET" />
+			<xs:enumeration value="PROPOSITION" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NatureRapport">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RAPPORT" />
+			<xs:enumeration value="AVIS" />
+			<xs:enumeration value="RAPPORT_SUPPLEMENTAIRE" />
+			<xs:enumeration value="AVIS_SUPPLEMENTAIRE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NiveauLectureCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AN" />
+			<xs:enumeration value="SENAT" />
+			<xs:enumeration value="CMP" />
+			<xs:enumeration value="NOUVELLE_LECTURE_AN" />
+			<xs:enumeration value="NOUVELLE_LECTURE_SENAT" />
+			<xs:enumeration value="LECTURE_DEFINITIVE" />
+			<xs:enumeration value="CONGRES" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="ModeCreationVersion">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BROUILLON_INIT" />
+			<xs:enumeration value="PUBLIE_INIT" />
+			<xs:enumeration value="BROUILLON_COMPLETION" />
+			<xs:enumeration value="PUBLIE_COMPLETION" />
+			<xs:enumeration value="BROUILLON_RECTIFICATION" />
+			<xs:enumeration value="PUBLIE_DEMANDE_RECTIFICATION" />
+			<xs:enumeration value="PUBLIE_DELTA_DEMANDE_RECTIFICATION" />
+			<xs:enumeration value="PUBLIE_VALIDATION_RECTIFICATION" />
+			<xs:enumeration value="PUBLIE_RECTIFICATION" />
+			<xs:enumeration value="PUBLIE_DEMANDE_ANNULATION" />
+			<xs:enumeration value="PUBLIE_VALIDATION_ANNULATION" />
+			<xs:enumeration value="PUBLIE_ANNULATION" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:complexType name="NiveauLecture">
+		<xs:attribute name="niveau" type="xs:int" use="optional" />
+		<xs:attribute name="code" type="NiveauLectureCode" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Version">
+		<xs:attribute name="majeur" type="xs:int" use="required" />
+		<xs:attribute name="mineur" type="xs:int" use="required" />
+		<xs:attribute name="etat" type="EtatVersion" use="optional" />
+		<xs:attribute name="horodatage" type="xs:dateTime" use="optional" />
+		<xs:attribute name="date_ar" type="xs:dateTime" use="optional" />
+		<xs:attribute name="modeCreation" type="ModeCreationVersion"
+			use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="Message">
+		<xs:sequence>
+			<xs:element name="etat_message" type="EtatMessage"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="id_evenement" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="etat_evenement" type="EtatEvenement"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="type_evenement" type="EvenementType"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="date_evenement" type="xs:dateTime"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="emetteur_evenement" type="eppco:Institution"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="destinataire_evenement" type="eppco:Institution"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="copie_evenement" type="eppco:Institution"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="presence_piece_jointe" type="xs:boolean"
+				maxOccurs="1" minOccurs="1" default="false" />
+			<xs:element name="objet" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="niveau_lecture" type="NiveauLecture"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="id_dossier" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="id_senat" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="etat_dossier" type="EtatDossier"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="numero_depot" type="eppco:Depot"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="interne" type="xs:string" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xs:element name="rubrique" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="commentaire" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:simpleType name="Action">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CREER_EVENEMENT" />
+			<xs:enumeration value="COMPLETER" />
+			<xs:enumeration value="RECTIFIER" />
+			<xs:enumeration value="ANNULER" />
+			<xs:enumeration value="MODIFIER" />
+			<xs:enumeration value="PUBLIER" />
+			<xs:enumeration value="ACCEPTER" />
+			<xs:enumeration value="REJETER" />
+			<xs:enumeration value="SUPPRIMER" />
+			<xs:enumeration value="VISUALISER_VERSION" />
+			<xs:enumeration value="TRANSMETTRE_MEL" />
+			<xs:enumeration value="CREER_ALERTE" />
+			<xs:enumeration value="LEVER_ALERTE" />
+			<xs:enumeration value="ABANDONNER" />
+			<xs:enumeration value="ACCUSER_RECEPTION" />
+			<xs:enumeration value="PASSAGE_MESSAGE_EN_COURS_DE_TRAITEMENT" />
+			<xs:enumeration value="MARQUAGE_MESSAGE_TRAITE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EtatDossier">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EN_INSTANCE" />
+			<xs:enumeration value="ALERTE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EtatEvenement">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BROUILLON" />
+			<xs:enumeration value="PUBLIE" />
+			<xs:enumeration value="EN_INSTANCE" />
+			<xs:enumeration value="EN_ATTENTE_DE_VALIDATION" />
+			<xs:enumeration value="ANNULE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EtatVersion">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BROUILLON" />
+			<xs:enumeration value="PUBLIE" />
+			<xs:enumeration value="EN_ATTENTE_VALIDATION" />
+			<xs:enumeration value="OBSOLETE" />
+			<xs:enumeration value="REJETE" />
+			<xs:enumeration value="ABANDONNE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EtatMessage">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NON_TRAITE" />
+			<xs:enumeration value="EN_COURS_TRAITEMENT" />
+			<xs:enumeration value="TRAITE" />
+
+			<xs:enumeration value="EN_COURS_REDACTION" />
+			<xs:enumeration value="EN_ATTENTE_AR" />
+			<xs:enumeration value="EMIS" />
+			<xs:enumeration value="AR_RECU" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TransitionEtatMessage">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="En_COURS_TRAITEMENT" />
+			<xs:enumeration value="TRAITE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TypeActe">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PROCEDURE_LEGISLATIVE" />
+			<xs:enumeration value="ORGANISATION_SESSION_EXTRAORDINAIRE" />
+			<xs:enumeration value="REVISION_CONSTITUTION" />
+			<xs:enumeration value="CONSULTATION_ASSEMBLEE_PROJET_NOMINATION" />
+			<xs:enumeration value="CONVOCATION_CONGRES" />
+			<xs:enumeration value="DEMANDE_PROLONGATION_AMNISTIE" />
+			<xs:enumeration value="ARRETE_MINISTERIEL" />
+			<xs:enumeration value="ARRETE_MINISTERIEL_INDIVIDUEL" />
+			<xs:enumeration value="ARRETE_INTERMINISTERIEL" />
+			<xs:enumeration value="ARRETE_INTERMINISTERIEL_INDIVIDUEL" />
+			<xs:enumeration value="ARRETE" />
+			<xs:enumeration value="ARRETE_PM" />
+			<xs:enumeration value="ARRETE_PM_INDIVIDUEL" />
+			<xs:enumeration value="ARRETE_PR" />
+			<xs:enumeration value="AVENANT" />
+			<xs:enumeration value="AVIS" />
+			<xs:enumeration value="CIRCULAIRE" />
+			<xs:enumeration value="CITATION" />
+			<xs:enumeration value="COMMUNIQUE" />
+			<xs:enumeration value="CONVENTION" />
+			<xs:enumeration value="DECISION" />
+			<xs:enumeration value="DECRET_CE_ART_37" />
+			<xs:enumeration value="DECRET_CE" />
+			<xs:enumeration value="DECRET_CE_INDIVIDUEL" />
+			<xs:enumeration value="DECRET_CE_CM" />
+			<xs:enumeration value="DECRET_CE_CM_INDIVIDUEL" />
+			<xs:enumeration value="DECRET_CM" />
+			<xs:enumeration value="DECRET_CM_INDIVIDUEL" />
+			<xs:enumeration value="DECRET_PR" />
+			<xs:enumeration value="ARRETE_PR_INDIVIDUEL" />
+			<xs:enumeration value="DECRET_SIMPLE" />
+			<xs:enumeration value="DECRET_SIMPLE_INDIVIDUEL" />
+			<xs:enumeration value="DECRET_PUBLICATION_TRAITE_OU_ACCORD" />
+			<xs:enumeration value="DELIBERATION" />
+			<xs:enumeration value="DEMANDE_AVIS_CE" />
+			<xs:enumeration value="DIVERS" />
+			<xs:enumeration value="EXEQUATUR" />
+			<xs:enumeration value="INSTRUCTION" />
+			<xs:enumeration value="LISTE" />
+			<xs:enumeration value="LOI" />
+			<xs:enumeration value="LOI_ART_53_CONSTITUTION" />
+			<xs:enumeration value="LOI_CONSTITUTIONNELLE" />
+			<xs:enumeration value="LOI_ORGANIQUE" />
+			<xs:enumeration value="NOTE" />
+			<xs:enumeration value="ORDONNANCE" />
+			<xs:enumeration value="RAPPORT" />
+			<xs:enumeration value="RECTIFICATIF" />
+			<xs:enumeration value="TABLEAU" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Nature">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ANNULEE" />
+			<xs:enumeration value="RECTIFIEE" />
+			<xs:enumeration value="COMPLETEE" />
+			<xs:enumeration value="ANNULATION_EN_COURS" />
+			<xs:enumeration value="RECTIFICATION_EN_COURS" />
+			<xs:enumeration value="ANNULATION_REJETEE" />
+			<xs:enumeration value="RECTIFICATION_REJETEE" />
+			<xs:enumeration value="ANNULATION_ABANDONNEE" />
+			<xs:enumeration value="RECTIFICATION_ABANDONNEE" />
+			<xs:enumeration value="VERSION_COURANTE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="EppBaseEvenement">
+		<xs:sequence>
+			<!-- metadonnees definis pour chaque evenement -->
+			<xs:element name="id_evenement" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="id_evenement_precedent" type="xs:string"
+				minOccurs="1" maxOccurs="1" /><!-- vide -->
+			<xs:element name="id_dossier" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="emetteur" type="eppco:Institution"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="destinataire" type="eppco:Institution"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="copie" type="eppco:Institution"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="horodatage" type="xs:dateTime"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="id_senat" type="xs:string" minOccurs="1"
+				maxOccurs="1" /><!-- vide -->
+			<xs:element name="niveau_lecture" type="NiveauLecture"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="date_ar" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="objet" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="commentaire" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="autres" type="eppco:PieceJointe"
+				minOccurs="0" maxOccurs="unbounded" />
+
+			<!-- métadonnées nécessaires pour les interfaces, entre autre -->
+			<xs:element name="version_courante" type="Version"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="version_disponible" type="Version"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="action_suivante" type="Action"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="evenement_suivant" type="EvenementType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="metadonnee_modifiee" type="xs:string"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="piece_jointe_supprimee" type="xs:string"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="piece_jointe_ajoutee" type="xs:string"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="nature" type="Nature" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="etat" type="EtatEvenement" use="required" />
+		<xs:attribute name="has_contenu_pj" type="xs:boolean"
+			use="required"></xs:attribute>
+	</xs:complexType>
+
+	<!-- Procedure legislative -->
+	<xs:complexType name="EppEvt01">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="nor" type="eppco:NorType" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="nature_loi" type="NatureLoi"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="type_loi" type="TypeLoi" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="auteur" type="epptdref:Mandat"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="co_auteur" type="epptdref:Mandat"
+						minOccurs="1" maxOccurs="unbounded" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="texte" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="expose_des_motifs" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="etude_impact" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="decret_presentation" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="traite" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="accord_international" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="EppEvt02">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="url_dossier_an" type="xs:string"
+						nillable="true" maxOccurs="1" />
+					<xs:element name="url_dossier_senat" type="xs:string"
+						nillable="true" maxOccurs="1" />
+					<xs:element name="nature_loi" type="NatureLoi"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="type_loi" type="TypeLoi" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="auteur" type="epptdref:Mandat"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="co_auteur" type="epptdref:Mandat"
+						nillable="true" maxOccurs="unbounded" />
+					<xs:element name="co_signataire_collectif" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="depot" type="eppco:Depot" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="commission" type="eppco:Commission"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="textes" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt03">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="url_dossier_an" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="url_dossier_senat" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="depot" type="eppco:Depot" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="commission" type="eppco:Commission"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="texte" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt04Bis">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_distribution" type="xs:date"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="nature_rapport" type="NatureRapport"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="rapporteur" type="epptdref:Mandat"
+						minOccurs="1" maxOccurs="unbounded" />
+					<xs:element name="titre" type="xs:string" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="depot_rapport" type="eppco:Depot"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="depot_texte" type="eppco:Depot"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="commission" type="eppco:Organisme"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="textes" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="rapports" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="avis" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="annexes" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="unbounded" />
+
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt05">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_refus" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="lettre" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="lettre_saisine_cc" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt06">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="libelle_annexes" type="xs:string"
+						minOccurs="1" maxOccurs="unbounded" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="annexe" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="liste_annexes" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt07">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="nor" type="eppco:NorType" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="auteur" type="epptdref:Mandat"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="co_auteur" type="epptdref:Mandat"
+						minOccurs="1" maxOccurs="unbounded" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="texte" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="expose_des_motifs" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="etude_impact" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt07Bis">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="depot_texte" type="eppco:Depot"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="commission" type="eppco:Commission"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="texte" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt08">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt08Bis">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="date_retrait" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt08BisAB">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_retrait" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt09">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="auteur" type="epptdref:Mandat"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="co_auteur" type="epptdref:Mandat"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="texte" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="expose_des_motifs" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="etude_impact" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_presentation" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="traite" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="accord_international" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt09Bis">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="url_dossier_an" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="url_dossier_senat" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="depot" type="eppco:Depot" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="commission" type="eppco:Commission"
+						minOccurs="0" maxOccurs="1" />
+
+					<xs:element name="texte" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt10">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_engagement_procedure" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt11">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_refus_an" type="xs:date"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="date_refus_senat" type="xs:date"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="date_refus_engagement_procedure" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="lettre" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt12">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="numero_texte_adopte" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="date_adoption" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="sort_adoption" type="eppco:SortAdoption"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="texte_adopte" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="travaux_preparatoires" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="coherent" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="petite_loi" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt13">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="numero_texte_adopte" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="date_adoption" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="sort_adoption" type="eppco:SortAdoption"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="lettre" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="texte_transmis" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="travaux_preparatoires" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt13Bis">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="url_dossier_an" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="url_dossier_senat" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="depot" type="eppco:Depot" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="numero_texte_adopte" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="date_adoption" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="sort_adoption" type="eppco:SortAdoption"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="commission" type="eppco:Commission"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="texte" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt13Ter">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="nature_loi" type="NatureLoi"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="type_loi" type="TypeLoi" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="auteur" type="epptdref:Mandat"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="co_auteur" type="epptdref:Mandat"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="texte_transmis" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="lettre" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="travaux_preparatoires" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt14">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="numero_texte_adopte" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="date_adoption" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="sort_adoption" type="eppco:SortAdoption"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="texte_adopte" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="travaux_preparatoires" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="coherent" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="petite_loi" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt14Ter">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="url_dossier_an" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="url_dossier_senat" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="depot" type="eppco:Depot" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="commission" type="eppco:Commission"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="redepot" type="xs:boolean" minOccurs="0"
+						maxOccurs="1" />
+
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt15">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="numero_depot" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt17">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="auteur" type="epptdref:Mandat"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="co_auteur" type="epptdref:Mandat"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="date" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="texte_motion" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt17Bis">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="texte_motion" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt19">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="lettre_pm_vers_an" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="lettre_pm_vers_senat" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt20">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="lettre_conjointe_presidents" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt21">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="dateCMP" type="xs:date" minOccurs="1"
+						maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt22">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="rapporteur" type="epptdref:Mandat"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="depot_texte" type="eppco:Depot"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="numero_depot_rapport" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="resultat_cmp" type="eppco:ResultatCMP"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="texte" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="rapport" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt23">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt23Bis">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="texte" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt23Ter">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="depot" type="eppco:Depot" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="commission" type="eppco:Commission"
+						minOccurs="0" maxOccurs="1" />
+
+					<xs:element name="texte" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt23Quater">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="texte" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt23Quinquies">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="depot" type="eppco:Depot" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="commission" type="eppco:Commission"
+						minOccurs="0" maxOccurs="1" />
+
+					<xs:element name="texte" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt24">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="numero_texte_adopte" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="date_adoption" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="sort_adoption" type="eppco:SortAdoption"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="texte_adopte" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="travaux_preparatoires" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="coherent" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="copies_3_lettres_transmission" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="petite_loi" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt25">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="auteur" type="epptdref:Mandat"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="co_auteur" type="epptdref:Mandat"
+						minOccurs="1" maxOccurs="unbounded" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="texte" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_president_republique" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+						
+					<xs:element name="nor" type="eppco:NorType" minOccurs="1"
+						maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt25Bis">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="nor" type="eppco:NorType" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="url_dossier_an" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="url_dossier_senat" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="depot" type="eppco:Depot" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="commission" type="eppco:Commission"
+						minOccurs="0" maxOccurs="1" />
+
+					<xs:element name="texte" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt26">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt28">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="titre" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="nor" type="eppco:NorType" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="date_promulgation" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="date_publication" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="numero_loi" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="numero_jo" type="xs:int" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="page_jo" type="xs:int" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="rectificatif" type="xs:boolean"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt29">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="type_acte" type="TypeActe" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="date_acte" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="numero_jo" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="annee_jo" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="date_jo" type="xs:date" minOccurs="0"
+						maxOccurs="1" />
+
+					<xs:element name="ampliation_decret" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt30">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="type_acte" type="TypeActe" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="date_acte" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="numero_jo" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="annee_jo" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="date_jo" type="xs:date" minOccurs="0"
+						maxOccurs="1" />
+
+					<xs:element name="ampliation_decret" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt31">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule_decret" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="type_acte" type="TypeActe" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="date_acte" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="date_convocation" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="numero_jo" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="annee_jo" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="date_jo" type="xs:date" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="identifiants_dossiers_legislatifs_concernes"
+						type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+
+					<xs:element name="ampliation_decret" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt32">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="echeance" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="date_acte" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="curriculum_vitae" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt34">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_avis" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="sens_avis" type="eppco:SensAvis"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="nombre_suffrage" type="xs:int"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="bulletin_blanc" type="xs:int"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="vote_pour" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="vote_contre" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="abstention" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="commission" type="eppco:Organisme"
+						minOccurs="0" maxOccurs="unbounded" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt35">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_congres" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="date_acte" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="numero_jo" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="annee_jo" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="date_jo" type="xs:date" minOccurs="0"
+						maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="ampliation_decret_president_republique"
+						type="eppco:PieceJointe" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt36">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="auteur" type="epptdref:Mandat"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="date" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="annexe" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt38">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="sens_avis" type="eppco:SensAvis"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="nombre_suffrage" type="xs:int"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="vote_pour" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="vote_contre" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="abstention" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="commission" type="eppco:Commission"
+						minOccurs="0" maxOccurs="1" />
+
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt39">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="url_dossier_an" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="url_dossier_senat" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="auteur" type="epptdref:Mandat"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="co_auteur" type="epptdref:Mandat"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="co_signataire_collectif" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="depot" type="eppco:Depot" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="textes" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="lettre" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt40">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_demande" type="xs:date"
+						minOccurs="0" maxOccurs="1" />
+
+					<xs:element name="lettre" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt41">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="motif_irrecevabilite" type="eppco:MotifIrrecevabilite"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="date_demande" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt43">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="numero_texte_adopte" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="date_adoption" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="sort_adoption" type="eppco:SortAdoption"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="petite_loi" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt43Bis">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="numero_texte_adopte" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="date_adoption" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="sort_adoption" type="eppco:SortAdoption"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="texte_adopte" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt44">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="rapport_parlement" type="eppco:RapportParlement"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="date" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="nor" type="eppco:NorType" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="annee_rapport" type="xs:int"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="url_base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="rapport" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt44Ter">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="nor" type="eppco:NorType" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="date" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="echeancier" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="lettre_transmission" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt45">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_publication_souhaite" type="xs:date"
+						minOccurs="0" maxOccurs="1" />
+
+					<xs:element name="insertion_jo-LD" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="rubrique" type="xs:string" minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt48">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_jo" type="xs:date" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="nor" type="eppco:NorType" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="page_jo" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="numero_rubrique" type="xs:int"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="url_publication" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="numero_jo" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt49-0">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="identifiantMetier" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="titulaires" type="epptdref:Mandat"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="suppleant" type="epptdref:Mandat"
+						minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt49">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="identifiantMetier" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="titulaires" type="epptdref:Mandat"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="suppleant" type="epptdref:Mandat"
+						minOccurs="0" maxOccurs="unbounded" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt51">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="identifiantMetier" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="titulaires" type="epptdref:Mandat"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="suppleant" type="epptdref:Mandat"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="date_designation" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="date_jo" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+
+					<xs:element name="lettre" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt52">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_caducite" type="xs:date"
+						minOccurs="0" maxOccurs="1" />
+
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt53">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="dossier_cible" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvt54">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppLex40">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_refus_assemblee1" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="date_conference_assemblee2" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decision_proc_acc" type="eppco:DecisionProcedureAcc"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="intitule" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="lettre" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvtGenerique">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppEvtAlerte">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="position_alerte" type="xs:boolean"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppPG01">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_presentation" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="date_lettre_pm" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppPG02">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_presentation" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="date_lettre_pm" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppPG03">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_presentation" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="date_lettre_pm" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppPG04">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_vote" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="sens_vote" type="eppco:SensAvis"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="nombre_suffrage" type="xs:int"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="vote_pour" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="vote_contre" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="abstention" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppSD01">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_demande" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="groupe_parlementaire" type="eppco:Organisme"
+						minOccurs="1" maxOccurs="unbounded" />
+
+					<xs:element name="demande_declaration" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppSD02">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_declaration" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="date_lettre_pm" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="demande_vote" type="xs:boolean"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="groupe_parlementaire" type="eppco:Organisme"
+						minOccurs="0" maxOccurs="unbounded" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppSD03">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_vote" type="xs:date" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="sens_vote" type="eppco:SensAvis"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="nombre_suffrage" type="xs:int"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="vote_pour" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="vote_contre" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="abstention" type="xs:int" minOccurs="0"
+						maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppJSS01">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_lettre_pm" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppJSS02">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="lettre" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppAUD01">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_lettre_pm" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="organisme" type="eppco:Organisme"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="personne" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="fonction" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="curriculum_vitae" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppAUD02">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_audition" type="xs:date"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="commission" type="eppco:Organisme"
+						minOccurs="1" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EppDOC01">
+		<xs:complexContent>
+			<xs:extension base="EppBaseEvenement">
+				<xs:sequence>
+					<xs:element name="date_lettre_pm" type="xs:date"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="commission" type="eppco:Organisme"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+
+					<xs:element name="lettre_pm" type="eppco:PieceJointe"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="documents" type="eppco:PieceJointe"
+						minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- -->
+
+	<xs:simpleType name="Order">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ASC" />
+			<xs:enumeration value="DESC" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="OrderField">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ID_DOSSIER" />
+			<xs:enumeration value="OBJET_DOSSIER" />
+			<xs:enumeration value="NIVEAU_LECTURE" />
+			<xs:enumeration value="EMETTEUR" />
+			<xs:enumeration value="DESTINATAIRE" />
+			<xs:enumeration value="COPIE" />
+			<xs:enumeration value="TYPE_EVENEMENT" />
+			<xs:enumeration value="VERSION" />
+			<xs:enumeration value="HORODATAGE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="OrderBy">
+		<xs:attribute name="field" type="OrderField" use="required" />
+		<xs:attribute name="order" type="Order" use="optional" />
+		<xs:attribute name="position" type="xs:int" use="optional" />
+	</xs:complexType>
+
+
+	<xs:complexType name="CritereRechercheEvenement">
+		<xs:sequence>
+			<xs:element name="id_corbeille" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+
+			<xs:element name="id_evenement" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="etat_evenement" type="EtatEvenement"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="type_evenement" type="EvenementType"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="date_evenement_min" type="xs:dateTime"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="date_evenement_max" type="xs:dateTime"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="emetteur" type="eppco:Institution"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="destinataire" type="eppco:Institution"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="copie" type="eppco:Institution"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="presence_piece_jointe" type="xs:boolean"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="objet" type="xs:string" minOccurs="0"
+				maxOccurs="1" /> <!-- possibilité de troncature -->
+			<xs:element name="niveau_lecture" type="NiveauLecture"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="id_dossier" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="id_senat" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="etat_dossier" type="EtatDossier"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="numero_depot" type="eppco:Depot"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="etat_message" type="EtatMessage"
+				minOccurs="0" maxOccurs="1" />
+
+			<xs:element name="orderBy" type="OrderBy" minOccurs="0"
+				maxOccurs="unbounded" />
+
+			<xs:sequence minOccurs="0" maxOccurs="1">
+				<xs:element name="etat_message_exclus" type="EtatMessage"
+					minOccurs="1" maxOccurs="unbounded" />
+				<xs:element name="anciennete_message_exclus" type="xs:int"
+					minOccurs="0" maxOccurs="1" />
+				<!-- nombre de jour / tous les messages 'traité' depuis plus de (>) [anciennete_message_exclus] 
+					jours ne sont pas retourné -->
+			</xs:sequence>
+
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="QueryRechercheEvenement">
+		<xs:sequence>
+			<!-- clause where referenceant les attributs des xsd -->
+			<xs:element name="whereClause" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+
+			<!-- Liste des paramètres de la requête -->
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="parametres" type="xs:anySimpleType"
+					minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

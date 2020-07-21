@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="page title">
+		<h:outputText
+			value="#{nuxeoApplicationName} - #{messages['title.create.document']}" />
+	</ui:define>
+
+	<ui:define name="body">
+		<div>
+			<h3>Création d'une nouvelle étape</h3>
+
+			<ui:include src="/incl/message_banner.xhtml" />
+
+			<h:form enctype="multipart/form-data" id="document_create">
+				<c:if test="#{!empty documentActions.changeableDocumentType.layout}">
+					<ui:include src="/incl/document_editor.xhtml">
+						<ui:param name="hideVersioningPanel" value="true" />
+					</ui:include>
+				</c:if>
+				<c:if test="#{empty documentActions.changeableDocumentType.layout}">
+					<c:choose>
+						<c:when test="#{changeableDocument.getType() == 'Dossier'}">
+							<nxl:documentLayout mode="create"
+								value="#{routingActions.newRouteStep()}" />
+						</c:when>
+						<c:otherwise>
+							<nxl:documentLayout mode="create" value="#{changeableDocument}" />
+						</c:otherwise>
+					</c:choose>
+				</c:if>
+				<p class="buttonsGadget">
+					<input type="hidden" name="parentDocumentPath"
+						value="#{currentDocument.pathAsString}" />
+					<h:commandButton class="button"
+						value="#{messages['command.create']}"
+						action="#{routingActions.saveRouteElement()}" id="button_create" />
+					<h:commandButton class="button"
+						value="#{messages['command.cancel']}"
+						action="#{routingActions.goBackToRouteFromCreate}"
+						immediate="true" />
+				</p>
+			</h:form>
+
+			<script>
+      var j = jQuery.noConflict();
+      var routingTaskTypeId = '[id$=routing_task_type]';
+      var validAutoCheckId = '[id$=nxw_routing_task_automatic_validation]';
+      var obligatoireSggId = '[id$=nxw_routing_task_obligatoire_sgg]';
+      var obligatoireMinistereId = '[id$=nxw_routing_task_obligatoire_ministere]';
+      
+      j(document).ready(function() {
+       
+        j(obligatoireSggId).click(function() {
+          if (j(this).is(':checked')) {
+            j(obligatoireMinistereId).attr('checked', false);
+          }
+        });
+        
+        j(obligatoireMinistereId).click(function() {
+          if (j(this).is(':checked')) {
+            j(obligatoireSggId).attr('checked', false);
+          }
+        });
+      });
+      </script>
+		</div>
+	</ui:define>
+
+</nxthemes:composition>

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:schema xmlns:s="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" xmlns:tns="http://www.dictao.com/DVS/Interface"
+	targetNamespace="http://www.dictao.com/DVS/Interface">
+
+
+	<s:element name="verifySignatureEx">
+		<s:complexType>
+			<s:sequence>
+				<s:element minOccurs="1" maxOccurs="1" name="requestId"
+					type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="transactionId"
+					type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="refreshCRLs"
+					type="s:int" />
+				<s:element minOccurs="0" maxOccurs="1" name="tag" type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="signature"
+					type="tns:dataType" />
+				<s:element minOccurs="0" maxOccurs="1" name="signedData"
+					type="tns:dataType" />
+				<s:element minOccurs="0" maxOccurs="1" name="signedDataHash"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="certificate"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="properties"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="pluginParameter"
+					type="tns:ArrayOfPluginParameterStruct" />
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:simpleType name="dataEncoding">
+		<s:restriction base="s:string">
+			<s:enumeration value="gzEnc" />
+			<s:enumeration value="b64Enc" />
+			<s:enumeration value="gzb64Enc" />
+		</s:restriction>
+	</s:simpleType>
+	<s:complexType name="dataType">
+		<s:choice>
+			<s:element name="value" type="tns:dataString" />
+			<s:element name="binaryValue" type="tns:dataBinary" />
+		</s:choice>
+	</s:complexType>
+	<s:complexType name="dataString">
+		<s:simpleContent>
+			<s:extension base="s:string">
+				<s:attribute name="dataFormat" type="tns:dataEncoding"
+					use="optional" />
+			</s:extension>
+		</s:simpleContent>
+	</s:complexType>
+	<s:complexType name="dataBinary">
+		<s:simpleContent>
+			<s:extension base="s:base64Binary">
+				<s:attribute name="dataFormat" type="tns:dataEncoding"
+					use="optional" />
+			</s:extension>
+		</s:simpleContent>
+	</s:complexType>
+	<s:complexType name="ArrayOfPluginParameterStruct">
+		<s:sequence>
+			<s:element minOccurs="0" maxOccurs="unbounded" name="PluginParameterStruct"
+				nillable="true" type="tns:PluginParameterStruct" />
+		</s:sequence>
+	</s:complexType>
+	<s:complexType name="PluginParameterStruct">
+		<s:sequence>
+			<s:element minOccurs="1" maxOccurs="1" name="Label" type="s:string" />
+			<s:element minOccurs="1" maxOccurs="1" name="Data" type="s:string" />
+		</s:sequence>
+	</s:complexType>
+	<s:element name="verifySignatureExResponse">
+		<s:complexType>
+			<s:sequence>
+				<s:element minOccurs="1" maxOccurs="1"
+					name="verifySignatureExResult" type="tns:DVSResponseEx" />
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:complexType name="DVSResponseEx">
+		<s:sequence>
+			<s:element minOccurs="1" maxOccurs="1" name="opStatus"
+				type="s:int" />
+			<s:element minOccurs="1" maxOccurs="1" name="DVSGlobalStatus"
+				type="s:int" />
+			<s:element minOccurs="1" maxOccurs="1" name="requestId"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="sessionId"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="challenge"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="keyContainerXmlB64"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="keyContainerBinB64"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="DVSArchiveId"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="DVSDetailedStatus"
+				type="tns:ArrayOfDVSDetailedStatusStruct" />
+			<s:element minOccurs="0" maxOccurs="1" name="DVSProof"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="ExtendedSignature"
+				type="tns:dataType" />
+			<s:element minOccurs="0" maxOccurs="1" name="pluginResponse"
+				type="tns:ArrayOfPluginResponseStruct" />
+		</s:sequence>
+	</s:complexType>
+	<s:complexType name="DVSArchiveResponseEx">
+		<s:sequence>
+			<s:element minOccurs="1" maxOccurs="1" name="opStatus"
+				type="s:int" />
+			<s:element minOccurs="1" maxOccurs="1" name="requestId"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="DVSProof"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="pluginResponse"
+				type="tns:ArrayOfPluginResponseStruct" />
+		</s:sequence>
+	</s:complexType>
+	<s:complexType name="ArrayOfDVSDetailedStatusStruct">
+		<s:sequence>
+			<s:element minOccurs="0" maxOccurs="unbounded"
+				name="DVSDetailedStatusStruct" nillable="true"
+				type="tns:DVSDetailedStatusStruct" />
+		</s:sequence>
+	</s:complexType>
+	<s:complexType name="DVSDetailedStatusStruct">
+		<s:sequence>
+			<s:element minOccurs="1" maxOccurs="1" name="Type" type="s:string" />
+			<s:element minOccurs="1" maxOccurs="1" name="SubjectName"
+				type="s:string" />
+			<s:element minOccurs="1" maxOccurs="1" name="DVSStatus"
+				type="s:unsignedLong" />
+			<s:element minOccurs="0" maxOccurs="1" name="ExtendedStatus"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="Certificate"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="SignedData"
+				type="s:string" />
+		</s:sequence>
+	</s:complexType>
+	<s:complexType name="ArrayOfPluginResponseStruct">
+		<s:sequence>
+			<s:element minOccurs="0" maxOccurs="unbounded" name="PluginResponseStruct"
+				nillable="true" type="tns:PluginResponseStruct" />
+		</s:sequence>
+	</s:complexType>
+	<s:complexType name="PluginResponseStruct">
+		<s:sequence>
+			<s:element minOccurs="1" maxOccurs="1" name="Label" type="s:string" />
+			<s:element minOccurs="1" maxOccurs="1" name="Response"
+				type="s:string" />
+		</s:sequence>
+	</s:complexType>
+	<s:element name="verifyCertificateEx">
+		<s:complexType>
+			<s:sequence>
+				<s:element minOccurs="1" maxOccurs="1" name="requestId"
+					type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="transactionId"
+					type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="refreshCRLs"
+					type="s:int" />
+				<s:element minOccurs="0" maxOccurs="1" name="tag" type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="certificate"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="pluginParameter"
+					type="tns:ArrayOfPluginParameterStruct" />
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="verifyCertificateExResponse">
+		<s:complexType>
+			<s:sequence>
+				<s:element minOccurs="1" maxOccurs="1"
+					name="verifyCertificateExResult" type="tns:DVSResponseEx" />
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="verifyAuthenticationEx">
+		<s:complexType>
+			<s:sequence>
+				<s:element minOccurs="1" maxOccurs="1" name="requestId"
+					type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="transactionId"
+					type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="refreshCRLs"
+					type="s:int" />
+				<s:element minOccurs="1" maxOccurs="1" name="tag" type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="authenticationFormat"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="authenticationType"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="sessionId"
+					type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="userIdentifier"
+					type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="token" type="tns:dataType" />
+				<s:element minOccurs="0" maxOccurs="1" name="userPassword"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="properties"
+					type="tns:dataType" />
+				<s:element minOccurs="0" maxOccurs="1" name="pluginParameter"
+					type="tns:ArrayOfPluginParameterStruct" />
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="verifyAuthenticationExResponse">
+		<s:complexType>
+			<s:sequence>
+				<s:element minOccurs="1" maxOccurs="1"
+					name="verifyAuthenticationExResult" type="tns:DVSResponseEx" />
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="getAuthenticationChallengeEx">
+		<s:complexType>
+			<s:sequence>
+				<s:element minOccurs="1" maxOccurs="1" name="requestId"
+					type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="transactionId"
+					type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="tag" type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="authenticationFormat"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="authenticationType"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="userIdentifier"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="properties"
+					type="tns:dataType" />
+				<s:element minOccurs="0" maxOccurs="1" name="pluginParameter"
+					type="tns:ArrayOfPluginParameterStruct" />
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="getAuthenticationChallengeExResponse">
+		<s:complexType>
+			<s:sequence>
+				<s:element minOccurs="1" maxOccurs="1"
+					name="getAuthenticationChallengeExResult" type="tns:DVSResponseEx" />
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="getArchiveEx">
+		<s:complexType>
+			<s:sequence>
+				<s:element minOccurs="1" maxOccurs="1" name="requestId"
+					type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="archiveId"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="pluginParameter"
+					type="tns:ArrayOfPluginParameterStruct" />
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="getArchiveExResponse">
+		<s:complexType>
+			<s:sequence>
+				<s:element minOccurs="1" maxOccurs="1" name="getArchiveExResult"
+					type="tns:DVSArchiveResponseEx" />
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="prepareAuthenticationRequestEx">
+		<s:complexType>
+			<s:sequence>
+				<s:element minOccurs="1" maxOccurs="1" name="requestId"
+					type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="transactionId"
+					type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="tag" type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="authenticationFormat"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="authenticationType"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="userIdentifier"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="properties"
+					type="tns:dataType" />
+				<s:element minOccurs="0" maxOccurs="1" name="pluginParameter"
+					type="tns:ArrayOfPluginParameterStruct" />
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="prepareAuthenticationRequestExResponse">
+		<s:complexType>
+			<s:sequence>
+				<s:element minOccurs="1" maxOccurs="1"
+					name="prepareAuthenticationRequestExResult" type="tns:DVSResponseEx" />
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="customizeTokenEx">
+		<s:complexType>
+			<s:sequence>
+				<s:element minOccurs="1" maxOccurs="1" name="requestId"
+					type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="transactionId"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="tag" type="s:string" />
+				<s:element minOccurs="1" maxOccurs="1" name="customizationFormat"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="customizationType"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="sessionId"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="userIdentifier"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="keyContainerXmlB64"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="challenge"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="challengeFormat"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="challengeType"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="properties"
+					type="s:string" />
+				<s:element minOccurs="0" maxOccurs="1" name="PINServer"
+					type="s:string" />
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="customizeTokenExResponse">
+		<s:complexType>
+			<s:sequence>
+				<s:element minOccurs="1" maxOccurs="1"
+					name="customizeTokenExResult" type="tns:DVSResponseEx" />
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+</s:schema>

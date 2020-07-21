@@ -1,0 +1,16 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util">
+	<nxu:set var="contentViewId" value="JOURNAL_DOSSIER">
+		<nxu:set var="contentViewName"
+			value="#{journalActions.contentViewName}">
+			<!-- signale que l'on est dans l'espace d'administration -->
+			<ui:decorate template="/incl/document_history_template.xhtml">
+
+			</ui:decorate>
+		</nxu:set>
+	</nxu:set>
+</div>

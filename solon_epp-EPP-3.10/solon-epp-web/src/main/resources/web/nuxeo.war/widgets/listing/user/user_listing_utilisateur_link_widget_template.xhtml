@@ -1,0 +1,11 @@
+<f:subview id="#{widget.id}" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<nxu:set var="userSchema" value="#{userManager.userSchemaName}">
+		<nxu:set var="userModel" value="#{field_0}" cache="true">
+			<h:commandLink value="#{userModel[userSchema].username}"
+				action="#{userManagerActions.viewCurrentUserFromRecherche(userModel)}" />
+		</nxu:set>
+	</nxu:set>
+</f:subview>

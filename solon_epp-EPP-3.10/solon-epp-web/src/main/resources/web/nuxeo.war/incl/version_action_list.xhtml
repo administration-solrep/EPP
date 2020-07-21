@@ -1,0 +1,39 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:nxh="http://nuxeo.org/nxweb/html">
+
+	<script>
+  	function confirmBeforeAccepter(event) {
+  	    return displayConfirm(event, "#{messages[versionActions.getConfirmMessageAccepter()]}");
+  	}
+  	function confirmBeforeRejeter(event) {
+  	    return displayConfirm(event, "#{messages[versionActions.getConfirmMessageRejeter()]}");
+  	}
+  	function confirmBeforeAnnuler(event) {
+  	    return displayConfirm(event, "#{messages['label.version.confirm.annuler']}");
+  	}
+  	function confirmBeforeAccuserReception(event) {
+  	    return displayConfirm(event, "#{messages['label.version.confirm.accuser.reception']}");
+  	}
+  	function confirmBeforeSupprimer(event) {
+        return displayConfirm(event, "#{messages['label.version.confirm.supprimer']}");
+    }	
+  	function confirmBeforeAbandonner(event) {
+  	    return displayConfirm(event, "#{messages[versionActions.getConfirmMessageAbandonner()]}");
+  	}
+  </script>
+
+	<ui:repeat id="actionListTable" value="#{versionActions.actionList}"
+		var="actionLink">
+		<nxh:commandButton class="button" value="#{actionLink.label}"
+			action="#{actionLink.getLink()}" onclick="#{actionLink.getConfirm()}" />
+	</ui:repeat>
+
+	<c:if test="#{evenementActions.showRemoveLockPopup == true}">
+		<ui:include src="/incl/remove_lock_popup.xhtml" />
+	</c:if>
+
+</div>

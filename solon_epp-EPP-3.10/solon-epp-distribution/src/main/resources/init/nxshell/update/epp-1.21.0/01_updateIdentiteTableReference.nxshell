@@ -1,0 +1,273 @@
+# Pour lancer ce script :
+# 1 - copier ce fichier dans /tmp/
+# 2 - Aller dans le répertoire contenant nxshell.sh
+# 3 - Taper la commande sh nxshell.sh -f /tmp/01_updateIdentiteTableReference.nxshell
+
+# connect to http://localhost:8080/solon-epp (obligatoire sinon Unknown command...) 
+connect -u Administrator -p 4ju7Ix662Eo1d77u http://localhost:8180/solon-epp/site/automation
+
+
+cd /case-management/table-reference-root/identite-root/Identite3562
+setp -xpath idt:dateFin  -value "2012-07-17T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3566
+setp -xpath idt:dateFin  -value "2012-07-23T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3569
+setp -xpath idt:dateFin  -value "2012-07-25T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3590
+setp -xpath idt:dateFin  -value "2012-07-26T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3594
+setp -xpath idt:dateFin  -value "2012-07-29T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3601
+setp -xpath idt:dateFin  -value "2012-07-31T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3604
+setp -xpath idt:dateFin  -value "2012-08-02T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3611
+setp -xpath idt:dateFin  -value "2012-08-09T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3630
+setp -xpath idt:dateFin  -value "2012-08-24T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3646
+setp -xpath idt:dateFin  -value "2012-09-04T22:00:00Z"
+
+
+#####################################################################################################
+
+cd /case-management/table-reference-root/identite-root/Identite3563
+setp -xpath idt:dateFin  -value "2012-07-15T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3564
+setp -xpath idt:dateFin  -value "2012-07-16T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3565
+setp -xpath idt:dateFin  -value "2012-07-18T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3567
+setp -xpath idt:dateFin  -value "2012-07-19T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3568
+setp -xpath idt:dateFin  -value "2012-08-03T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3615
+setp -xpath idt:dateFin  -value "2012-08-06T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3620
+setp -xpath idt:dateFin  -value "2012-08-08T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3626
+setp -xpath idt:dateFin  -value "2012-08-17T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3640
+setp -xpath idt:dateFin  -value "2012-08-24T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3647
+setp -xpath idt:dateFin  -value "2012-08-27T22:00:00Z"
+
+
+cd /case-management/table-reference-root/identite-root/Identite3651
+setp -xpath idt:dateFin  -value "2012-08-28T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3653
+setp -xpath idt:dateFin  -value "2012-08-31T22:00:00Z"
+
+#####################################################################################################
+
+
+cd /case-management/table-reference-root/identite-root/Identite3584
+setp -xpath idt:dateFin  -value "2012-07-25T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3589
+setp -xpath idt:dateFin  -value "2012-07-26T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3593
+setp -xpath idt:dateFin  -value "2012-07-27T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3596
+setp -xpath idt:dateFin  -value "2012-07-28T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3598
+setp -xpath idt:dateFin  -value "2012-07-29T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3600
+setp -xpath idt:dateFin  -value "2012-07-30T22:00:00Z"
+
+
+#####################################################################################################
+
+
+cd /case-management/table-reference-root/identite-root/Identite3603
+setp -xpath idt:dateFin  -value "2012-07-31T22:00:00Z"
+
+
+cd /case-management/table-reference-root/identite-root/Identite3606
+setp -xpath idt:dateFin  -value "2012-08-01T22:00:00Z"
+
+
+cd /case-management/table-reference-root/identite-root/Identite3610
+setp -xpath idt:dateFin  -value "2012-08-02T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3614
+setp -xpath idt:dateFin  -value "2012-08-03T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3617
+setp -xpath idt:dateFin  -value "2012-08-05T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3629
+setp -xpath idt:dateFin  -value "2012-08-09T22:00:00Z"
+
+	
+cd /case-management/table-reference-root/identite-root/Identite3633
+setp -xpath idt:dateFin  -value "2012-08-13T22:00:00Z"
+	
+cd /case-management/table-reference-root/identite-root/Identite3636
+setp -xpath idt:dateFin  -value "2012-08-14T22:00:00Z"
+
+
+cd /case-management/table-reference-root/identite-root/Identite3638
+setp -xpath idt:dateFin  -value "2012-08-16T22:00:00Z"
+
+
+cd /case-management/table-reference-root/identite-root/Identite3648
+setp -xpath idt:dateFin  -value "2012-08-25T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3652
+setp -xpath idt:dateFin  -value "2012-08-28T22:00:00Z"
+
+
+#######################################################################################
+
+	
+
+cd /case-management/table-reference-root/identite-root/Identite3585
+setp -xpath idt:dateFin  -value "2012-07-25T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3591
+setp -xpath idt:dateFin  -value "2012-07-26T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3595
+setp -xpath idt:dateFin  -value "2012-07-27T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3597
+setp -xpath idt:dateFin  -value "2012-07-28T22:00:00Z"
+	
+cd /case-management/table-reference-root/identite-root/Identite3599
+setp -xpath idt:dateFin  -value "2012-07-29T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3602
+setp -xpath idt:dateFin  -value "2012-07-30T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3603
+setp -xpath idt:dateFin  -value "2012-07-31T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3605
+setp -xpath idt:dateFin  -value "2012-08-01T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3608
+setp -xpath idt:dateFin  -value "2012-08-05T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3619
+setp -xpath idt:dateFin  -value "2012-08-06T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3622
+setp -xpath idt:dateFin  -value "2012-08-08T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3628
+setp -xpath idt:dateFin  -value "2012-08-13T22:00:00Z"
+
+
+#####################################################################################################
+
+
+cd /case-management/table-reference-root/identite-root/Identite3637
+setp -xpath idt:dateFin  -value "2012-08-19T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3642
+setp -xpath idt:dateFin  -value "2012-08-23T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3644
+setp -xpath idt:dateFin  -value "2012-08-26T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3649
+setp -xpath idt:dateFin  -value "2012-08-30T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3654
+setp -xpath idt:dateFin  -value "2012-09-03T22:00:00Z"
+
+
+
+#####################################################################################################
+
+
+
+cd /case-management/table-reference-root/identite-root/Identite3607
+setp -xpath idt:dateFin  -value "2012-08-02T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3612
+setp -xpath idt:dateFin  -value "2012-08-03T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3616
+setp -xpath idt:dateFin  -value "2012-08-05T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3618
+setp -xpath idt:dateFin  -value "2012-08-06T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3621
+setp -xpath idt:dateFin  -value "2012-08-07T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3624
+setp -xpath idt:dateFin  -value "2012-08-08T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3627
+setp -xpath idt:dateFin  -value "2012-08-09T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3631
+setp -xpath idt:dateFin  -value "2012-08-10T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3632
+setp -xpath idt:dateFin  -value "2012-08-13T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3634
+setp -xpath idt:dateFin  -value "2012-08-17T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3641
+setp -xpath idt:dateFin  -value "2012-08-21T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3643
+setp -xpath idt:dateFin  -value "2012-08-31T22:00:00Z"
+
+
+	
+#####################################################################################################
+
+cd /case-management/table-reference-root/identite-root/Identite3609
+setp -xpath idt:dateFin  -value "2012-08-02T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3613
+setp -xpath idt:dateFin  -value "2012-08-06T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3623
+setp -xpath idt:dateFin  -value "2012-08-07T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3625
+setp -xpath idt:dateFin  -value "2012-08-16T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3639
+setp -xpath idt:dateFin  -value "2012-08-23T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3645
+setp -xpath idt:dateFin  -value "2012-08-26T22:00:00Z"
+
+cd /case-management/table-reference-root/identite-root/Identite3650
+setp -xpath idt:dateFin  -value "2012-08-31T22:00:00Z"
+
+	
+	
+
+

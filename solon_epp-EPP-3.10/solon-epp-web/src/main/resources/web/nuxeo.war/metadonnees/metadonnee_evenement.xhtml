@@ -1,0 +1,135 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<h:form id="evenement_metadonnees" enctype="multipart/form-data">
+		<a4j:region id="documentViewRegion">
+
+			<a4j:outputPanel id="documentViewPanel">
+				<div style="clear: both;"></div>
+
+				<div class="foldableBox">
+					<h3 class="folded">
+						<a href="#nologo" onclick="return toggleBox(this)"> <h:outputText
+								value="Détails communication" />
+						</a>
+					</h3>
+					<div class="boxBody">
+						<table width="100%" style="border-collapse: collapse;">
+							<tr>
+								<td style="width: 80%;">
+									<!-- layout de metadonnées --> <nxu:set var="activeVersion"
+										value="#{corbeilleActions.getSelectedVersion()}" cache="true">
+										<h:outputText
+											value="#{metadonneesActions.getLabelNatureVersion()}"
+											style="color: red;"
+											rendered="#{metadonneesActions.getLabelNatureVersion() != null}" />
+										<nxl:layout value="#{currentDocument}" mode="view"
+											name="metadonnees_evenement" />
+										<nxl:layout value="#{activeVersion}" mode="view"
+											name="metadonnees_version" />
+									</nxu:set> <!-- Pieces jointe -->
+									<table class="dataInput">
+										<tbody>
+											<nxu:set var="typeList"
+												value="#{corbeilleActions.getListTypePieceJointe()}"
+												cache="true">
+												<c:forEach var="pieceJointeType" items="#{typeList}">
+													<tr>
+														<td class="labelColumn"><h:outputText
+																value="#{metadonneesActions.getPieceJointeType(pieceJointeType)}" />
+														</td>
+														<td>
+															<ui:include
+																src="/widgets/listing/metadonnees/piece_jointe_widget_template.xhtml" >
+																<ui:param name="displayUrl" value="#{descriptor.displayUrl()}" />
+																<ui:param name="displayTitle" value="#{descriptor.displayTitle()}" />
+															</ui:include>
+														</td>
+													</tr>
+												</c:forEach>
+											</nxu:set>
+										</tbody>
+									</table>
+									<div class="menuContextuelStyle">
+										<!-- Menu pour télécharger une piece jointe -->
+										<rich:contextMenu attached="false" id="menuPieceJointe"
+											submitMode="ajax">
+											<rich:menuItem ajaxSingle="true"
+												reRender="documentViewPanel,editFileOutPutPanel"
+												onmouseover="selected(this);">
+												<a href="{downloadFileLink}"><h:graphicImage
+														value="/img/icons/document_down_blue.png" />Téléchargement
+													fichier</a>
+											</rich:menuItem>
+										</rich:contextMenu>
+									</div>
+									<div>
+										<ui:include src="/incl/create_evenement_successif.xhtml" />
+										<ui:include src="/incl/version_action_list.xhtml" />
+									</div>
+								</td>
+								<td
+									style="width: 20%; vertical-align: top; border-left: 1px solid #F2F2DD; padding-left: 10px;">
+									<div style="border: 1px solid #F2F2DD; width: 50px;">
+										<!-- selection des versions -->
+										<nxu:set var="activeVersion"
+											value="#{corbeilleActions.getVisibleNumeroVersion()}"
+											cache="true">
+											<nxu:set var="idActiveVersion"
+												value="#{corbeilleActions.getIdCurrentVersion()}"
+												cache="true">
+												<c:forEach var="versionSelectionDTO"
+													items="#{activeVersion}" varStatus="status">
+													<c:choose>
+														<c:when
+															test="#{versionSelectionDTO.getId() eq idActiveVersion}">
+															<div class="dataRowOdd" style="padding-left: 10px;">
+																<nxh:commandLink
+																	action="#{corbeilleActions.setCurrentVersion(versionSelectionDTO)}"
+																	style="#{nxu:test(versionSelectionDTO.isEtatRejete(), 'text-decoration:line-through;', '')}"
+																	value="#{versionSelectionDTO.getTitle()}"
+																	id="version_metadonnees_#{status.index}"
+																	title="#{versionSelectionDTO.getDescription()}" />
+																<h:graphicImage value="/img/icons/check2_16.png"
+																	title="#{versionSelectionDTO.getDateArAsString()}"
+																	rendered="#{versionSelectionDTO.isAccuserReception()}" />
+															</div>
+														</c:when>
+														<c:otherwise>
+															<div style="padding-left: 10px;">
+																<nxh:commandLink
+																	action="#{corbeilleActions.setCurrentVersion(versionSelectionDTO)}"
+																	style="#{nxu:test(versionSelectionDTO.isEtatRejete(), 'text-decoration:line-through;', '')}"
+																	value="#{versionSelectionDTO.getTitle()}"
+																	id="version_metadonnees_#{status.index}"
+																	title="#{versionSelectionDTO.getDescription()}" />
+																<h:graphicImage value="/img/icons/check2_16.png"
+																	title="#{versionSelectionDTO.getDateArAsString()}"
+																	rendered="#{versionSelectionDTO.isAccuserReception()}" />
+															</div>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+											</nxu:set>
+										</nxu:set>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+			</a4j:outputPanel>
+		</a4j:region>
+
+	</h:form>
+
+</div>

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: Nuxeo classification test core
+Bundle-SymbolicName: org.nuxeo.ecm.platform.classification.test.core;singleton=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Nuxeo
+Require-Bundle: org.nuxeo.ecm.platform.classification.core
+Bundle-Category: stateful
+Nuxeo-Component: OSGI-INF/classification-classifiable-types-contrib.xml,
+ OSGI-INF/classification-classifiable-types-override-contrib.xml

@@ -1,0 +1,26 @@
+<widget name="NAME" type="incremental_smart_query_condition">
+	<labels>
+		<label mode="any">LABEL</label>
+	</labels>
+	<translated>true</translated>
+	<properties widgetMode="edit">
+		<property name="searchField">SEARCH_FIELD</property>
+		<property name="category">CATEGORY</property>
+		<propertyList name="availableOperators">
+			<value>IN</value>
+		</propertyList>
+	</properties>
+	<subWidgets>
+		<widget name="etapeDossierWidget" type="selectManyDirectory">
+			<translated>true</translated>
+			<fields>
+				<field>stringArrayValue</field>
+			</fields>
+			<properties mode="any">
+				<property name="notDisplayDefaultOption">true</property>
+				<property name="directoryName">DIRECTORY</property>
+				<property name="localize">true</property>
+			</properties>
+		</widget>
+	</subWidgets>
+</widget>

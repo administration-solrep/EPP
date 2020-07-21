@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="page title">
+		<h:outputText
+			value="#{nuxeoApplicationName} - #{messages['ss.feuilleRoute.routeStep.create.mass']}" />
+	</ui:define>
+
+	<ui:define name="body">
+		<div id="viewStep">
+			<h3>
+				<h:outputText
+					value="#{messages['ss.feuilleRoute.routeStep.create.mass']}" />
+			</h3>
+
+			<ui:include src="/incl/message_banner.xhtml" />
+
+			
+				<a4j:region id="etapeFDRViewRegion" >
+			    	<a4j:outputPanel id="etapeFDRViewPanel" >
+						<nxu:set var="layoutMode" value="create">
+						<nxu:set var="contentViewId" value="etape_feuille_de_route_mass">
+							<nxu:set var="contentViewName" value="etape_feuille_de_route_mass_content">
+								<ui:decorate template="/incl/editable_content_view_no_pagination.xhtml">
+									<ui:define name="content_view_header_after_selector"/>
+									<ui:define name="content_view_header_before_selector"/>
+								</ui:decorate>
+							</nxu:set>
+						</nxu:set>
+						</nxu:set>
+					</a4j:outputPanel>
+				</a4j:region>
+			
+            <script>
+      var j = jQuery.noConflict();
+      var routingTaskTypeId = '[id*=routing_task_type]';
+      var validAutoCheckId = '[id*=nxw_routing_task_validation_automatique_dto]';
+      var obligatoireSggId = '[id*=nxw_routing_task_obligatoire_sgg_dto]';
+      var obligatoireMinistereId = '[id*=nxw_routing_task_obligatoire_ministere_dto]';
+      
+      j(document).ready(function() {
+        bind();
+      });
+      
+      
+      function bind() {
+          
+          j(obligatoireSggId).click(function() {
+            if (j(this).is(':checked')) {
+              var lastChar = this.id.slice(-1);
+              if (lastChar=='o') {
+                j('[id$=nxw_routing_task_obligatoire_ministere_dto]').attr('checked', false);
+              } else {
+                j('[id$=nxw_routing_task_obligatoire_ministere_dto_'+lastChar+']').attr('checked', false);
+              } 
+            }
+          });
+          
+          j(obligatoireMinistereId).click(function() {
+            if (j(this).is(':checked')) {
+              var lastChar = this.id.slice(-1);
+              if (lastChar=='o') {
+                  j('[id$=nxw_routing_task_obligatoire_sgg_dto]').attr('checked', false);
+                } else {
+                  j('[id$=nxw_routing_task_obligatoire_sgg_dto_'+lastChar+']').attr('checked', false);
+                } 
+            }
+          });
+      }
+            </script>
+		</div>
+	</ui:define>
+
+</nxthemes:composition>

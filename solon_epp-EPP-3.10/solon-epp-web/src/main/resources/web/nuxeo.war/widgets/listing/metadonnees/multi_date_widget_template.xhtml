@@ -1,0 +1,50 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich" id="#{widget.id}">
+
+	<a4j:region renderRegionOnly="true" id="#{widget.id}_ajax_region">
+		<c:if test="#{widget.mode == 'edit'}">
+			<nxu:inputDateTime id="#{widget.id}_input" styleClass="dataInputText"
+				format="dd/MM/yyyy" />
+			<a4j:commandLink immediate="true" id="#{widget.id}_addL"
+				action="#{metadonneesActions.addDate(nxu:concat(widget.id, '_input'), layoutColumn.widgets[0].properties.schema, layoutColumn.widgets[0].properties.property)}"
+				reRender="#{widget.id}_listRegion, #{widget.id}_input">
+				<h:graphicImage id="#{widget.id}_addText"
+					value="/icons/action_add.gif" styleClass="add_icon" />
+			</a4j:commandLink>
+		</c:if>
+
+		<a4j:outputPanel ajaxRendered="false" id="#{widget.id}_listRegion">
+			<nxu:set var="dateList"
+				value="#{metadonneesActions.getListFromArray(field_0)}" cache="true">
+				<h:panelGroup id="#{widget.id}_listItem">
+					<h:panelGrid columns="1">
+
+						<c:forEach items="#{dateList}" var="model" varStatus="status">
+							<h:panelGroup>
+								<c:if test="#{widget.mode == 'edit'}">
+									<a4j:commandLink immediate="true"
+										action="#{metadonneesActions.removeDate(model, layoutColumn.widgets[0].properties.schema, layoutColumn.widgets[0].properties.property)}"
+										id="#{widget.id}_delete#{status.index}"
+										reRender="#{widget.id}_listRegion">
+										<h:graphicImage value="/icons/action_delete.gif" />
+									</a4j:commandLink>
+								</c:if>
+								<h:outputText
+									value="#{metadonneesActions.getFormattedDate(model)}" />
+							</h:panelGroup>
+						</c:forEach>
+
+					</h:panelGrid>
+				</h:panelGroup>
+			</nxu:set>
+			<h:message styleClass="errorMessage" for="#{widget.id}_list"
+				id="#{widget.id}_message" />
+
+		</a4j:outputPanel>
+	</a4j:region>
+</div>

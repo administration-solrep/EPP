@@ -1,0 +1,326 @@
+ID_ORGANIGRAMME,DATE_FIN,DATE_DEBUT,DATE_VERROU,LABEL,DELETED,UTILISATEUR_VERROU,ID_PARENT_ENTITE,ID_PARENT_UNITE,ID_PARENT_INSTITUTION,TYPE,FUNCTION_READ,NOR_DIRECTION
+50000615,null,2006-05-04 02:00:00.0,null,Secrétariat général du Gouvernement,0,null,50000607,null,null,UST,null,null
+50000619,null,2006-05-04 02:00:00.0,null,Chargés de mission au SGG,0,null,null,50000615,null,UST,null,null
+50000983,null,2006-05-04 02:00:00.0,null,Service législation et qualité du droit,0,null,null,50000615,null,UST,null,null
+50000624,null,2007-01-02 01:00:00.0,null,Département de l'activité normative,0,null,null,50000983,null,UST,null,null
+50000629,null,2006-05-04 02:00:00.0,null,Direction des journaux officiels,0,null,null,50000615,null,DIR,null,null
+50000631,null,2006-05-04 02:00:00.0,null,service de la rédaction DJO,0,null,null,50000629,null,UST,null,null
+50000634,null,2006-05-04 02:00:00.0,null,Section des finances,0,null,null,null,null,UST,null,null
+50000637,null,2006-05-04 02:00:00.0,null,Section de l'intérieur,0,null,null,null,null,UST,null,null
+50000638,null,2006-05-04 02:00:00.0,null,Section des travaux publics,0,null,null,null,null,UST,null,null
+50000639,null,2006-05-04 02:00:00.0,null,Section sociale,0,null,null,null,null,UST,null,null
+50000640,null,2006-05-04 02:00:00.0,null,Section CE (à préciser),0,null,null,null,null,UST,null,null
+50000646,null,2006-05-04 02:00:00.0,null,Direction du budget,0,null,50013998,null,null,DIR,null,null
+50000648,null,2006-05-04 02:00:00.0,null,DGME,0,null,50013998,null,null,UST,null,null
+50000653,null,2007-06-04 02:00:00.0,null,DGA  (MEDAD),0,null,50000976,null,null,UST,null,null
+50000655,null,2006-05-04 02:00:00.0,null,Bureau des Cabinets (Economie),0,null,50000507,null,null,UST,null,null
+50000657,null,2006-05-04 02:00:00.0,null,DPAEP (Economie),0,null,50000507,null,null,UST,null,null
+50000659,null,2006-05-04 02:00:00.0,null,DGTPE - lettre T (Economie),0,null,50000507,null,null,UST,null,null
+50000666,null,2006-05-04 02:00:00.0,null,Direction gale de la police nationale,0,null,50000632,null,null,DIR,null,null
+50000737,null,2006-05-10 02:00:00.0,null,Service de documentation,0,null,null,50000615,null,UST,null,null
+50000817,null,2007-06-04 02:00:00.0,null,DGEMP (MEDAD),0,null,50000976,null,null,UST,null,null
+50000832,null,2007-06-04 02:00:00.0,null,Direction de l'eau (MEDAD),0,null,50000976,null,null,DIR,null,null
+50000833,null,2007-06-04 02:00:00.0,null,Dir. préventions pollutions et risques,0,null,50000976,null,null,DIR,null,null
+50000834,null,2007-06-04 02:00:00.0,null,Direction nature et paysage (MEDAD),0,null,50000976,null,null,DIR,null,null
+50000835,null,2007-06-04 02:00:00.0,null,Dir. études éco et éval. env. (MEDAD),0,null,50000976,null,null,DIR,null,null
+50000836,null,2006-06-07 02:00:00.0,null,DGCCRF (Economie),0,null,50000507,null,null,UST,null,null
+50000837,null,2006-06-07 02:00:00.0,null,DGI,0,null,50013998,null,null,UST,null,null
+50000838,null,2006-06-07 02:00:00.0,null,DGCP,0,null,50013998,null,null,UST,null,null
+50000865,null,2006-05-04 02:00:00.0,null,Cabinet Intérieur,0,null,50000632,null,null,UST,null,null
+50000866,null,2006-05-04 02:00:00.0,null,Direction générale des Coll. Locales,0,null,50000632,null,null,DIR,null,null
+50000867,null,2006-05-04 02:00:00.0,null,Direction des Lib. Pub. et des Aff. Jur.,0,null,50000632,null,null,DIR,null,null
+50000868,null,2006-05-04 02:00:00.0,null,Direction de la Déf. et de la Séc. Civ.,0,null,50000632,null,null,DIR,null,null
+50000870,null,2006-05-04 02:00:00.0,null,Direction des sys. d'inf. et de com.,0,null,50000632,null,null,DIR,null,null
+50000871,null,2006-05-04 02:00:00.0,null,Inspection Gale de l'Admin. (Intérieur),0,null,50000632,null,null,UST,null,null
+50000872,null,2006-05-04 02:00:00.0,null,Délégation à l'inf. et la communication,0,null,50000632,null,null,UST,null,null
+50000889,null,2006-09-12 02:00:00.0,null,Secrétariat général (Economie),0,null,50000507,null,null,UST,null,null
+50000946,null,2007-02-09 01:00:00.0,null,Bureau du cabinet MAE,0,null,50000937,null,null,UST,null,null
+50000947,null,2007-02-09 01:00:00.0,null,Dir. générale de l'administration MAE,0,null,50000937,null,null,DIR,null,null
+50000948,null,2007-06-04 02:00:00.0,null,Dir. Fr étranger et étrangers en France,0,null,50000937,null,null,DIR,null,null
+50000949,null,2007-02-09 01:00:00.0,null,Direction des affaires juridiques MAE,0,null,50000937,null,null,DIR,null,null
+50000950,null,2007-02-09 01:00:00.0,null,Service du Protocole,0,null,50000937,null,null,UST,null,null
+50000951,null,2007-02-09 01:00:00.0,null,Haut Fonctionnaire Corr. de Déf et Séc.,0,null,50000937,null,null,UST,null,null
+50000952,null,2007-02-09 01:00:00.0,null,Dir. Gale de la Coop. Internat. et Dév.,0,null,50000937,null,null,DIR,null,null
+50000953,null,2007-02-09 01:00:00.0,null,Direction des Archives et de la Doc.,0,null,50000937,null,null,DIR,null,null
+50000954,null,2007-02-13 01:00:00.0,null,DGDDI,0,null,50013998,null,null,UST,null,null
+50000955,null,2007-02-13 01:00:00.0,null,Service des Pensions,0,null,50013998,null,null,UST,null,null
+50000962,null,2007-01-02 01:00:00.0,null,Mission DPDD,0,null,null,50000983,null,UST,null,null
+50000963,null,2007-01-02 01:00:00.0,null,Mission qualité de la norme,0,null,null,50000983,null,UST,null,null
+50000984,null,2007-02-08 01:00:00.0,null,Bureau du Cab. MEDAD,0,null,50000976,null,null,UST,null,null
+50000986,null,2007-02-08 01:00:00.0,null,Service de défense et de sécurité (SDS),0,null,50000976,null,null,UST,null,null
+50000987,null,2007-02-08 01:00:00.0,null,Conseil gal des ponts et chaussées,0,null,50000976,null,null,UST,null,null
+50000988,null,2007-02-08 01:00:00.0,null,DGPA (MEDAD),0,null,50000976,null,null,UST,null,null
+50000989,null,2007-02-08 01:00:00.0,null,Délégation à l'action foncière (DAF),0,null,50000976,null,null,UST,null,null
+50000990,null,2007-02-08 01:00:00.0,null,"BDC ""Grenelle""",0,null,50000969,null,null,UST,null,null
+50000991,null,2007-02-08 01:00:00.0,null,Secrétariat général MEDAD,0,null,50000976,null,null,UST,null,null
+50000992,null,2007-02-08 01:00:00.0,null,DGR (MEDAD),0,null,50000976,null,null,UST,null,null
+50000993,null,2007-02-08 01:00:00.0,null,DSCR (MEDAD),0,null,50000976,null,null,UST,null,null
+50000994,null,2007-02-08 01:00:00.0,null,DGAC (MEDAD),0,null,50000976,null,null,UST,null,null
+50000995,null,2007-02-08 01:00:00.0,null,"Dir. rech., aff. scien. et tech. (DRAST)",0,null,null,50000991,null,DIR,null,null
+50000608,null,2007-06-08 02:00:00.0,null,DGE (Economie),0,null,50000507,null,null,UST,null,null
+50000610,null,2006-05-04 02:00:00.0,null,Cabinet du Premier ministre,0,null,50000607,null,null,UST,null,null
+50000996,null,2007-02-08 01:00:00.0,null,Dir. des aff. éco. et internat. (DAEI),0,null,null,50000991,null,DIR,null,null
+50000997,null,2007-02-08 01:00:00.0,null,SG/SPA/M,0,null,null,50000991,null,UST,null,null
+50000998,null,2007-02-08 01:00:00.0,null,DGMT (MEDAD),0,null,50000976,null,null,UST,null,null
+50000999,null,2007-02-08 01:00:00.0,null,ENIM (MEDAD),0,null,50000976,null,null,UST,null,null
+50001000,null,2007-02-08 01:00:00.0,null,Inspections générales (IG hors CGPC),0,null,50000976,null,null,UST,null,null
+50001001,null,2007-02-08 01:00:00.0,null,Sec. gal au tunnel sous la Manche,0,null,50000976,null,null,UST,null,null
+50001002,null,2007-06-04 02:00:00.0,null,Direction du tourisme (Economie),0,null,50000507,null,null,DIR,null,null
+50001003,null,2007-02-08 01:00:00.0,null,Dir. de la régulation éco. (DRE),0,null,null,50000994,null,DIR,null,null
+50001004,null,2007-02-08 01:00:00.0,null,Dir. des aff. strat. et tech. (DAST),0,null,null,50000994,null,DIR,null,null
+50001005,null,2007-02-08 01:00:00.0,null,Dir. des prog. aéro. et de coopé. (DPAC),0,null,null,50000994,null,DIR,null,null
+50001006,null,2007-02-08 01:00:00.0,null,Dir. du contrôle et de la sécur. (DCS),0,null,null,50000994,null,DIR,null,null
+50001009,null,2007-02-09 01:00:00.0,null,Sec. Etat coopération et francophonie,0,null,50000937,null,null,DIR,null,null
+50001010,null,2007-02-12 01:00:00.0,null,Dir. ressources humaines MAE,0,null,null,50000947,null,DIR,null,null
+50001011,null,2007-02-12 01:00:00.0,null,Dir. affaires financières MAE,0,null,null,50000947,null,DIR,null,null
+50001012,null,2007-02-12 01:00:00.0,null,Serv. affaires juridiques internes MAE,0,null,null,50000947,null,UST,null,null
+50001021,null,2007-02-13 01:00:00.0,null,DAJ (Economie),0,null,50000507,null,null,UST,null,null
+50001022,null,2007-02-13 01:00:00.0,null,IGF (Economie),0,null,50000507,null,null,UST,null,null
+50001023,null,2007-02-13 01:00:00.0,null,INSEE (Economie),0,null,50000507,null,null,UST,null,null
+50001024,null,2007-02-13 01:00:00.0,null,Contrôle gal éco et financier (Economie),0,null,50000507,null,null,UST,null,null
+50001025,null,2007-02-13 01:00:00.0,null,Ht fonctionnaire défense (Economie),0,null,50000507,null,null,UST,null,null
+50001026,null,2007-06-07 02:00:00.0,null,BDC secrétariat Etat Outre-mer,0,null,50000632,null,null,UST,null,null
+50001032,null,2007-02-08 01:00:00.0,null,Secrétariat général DGAC,0,null,null,50000994,null,UST,null,null
+50001033,null,2007-02-08 01:00:00.0,null,Dir. des serv. de la navig. aér. (DSNA),0,null,null,50000994,null,DIR,null,null
+50001034,null,2007-02-08 01:00:00.0,null,Dir. des trans. ferrov. et coll. (DTFC),0,null,null,50000998,null,DIR,null,null
+50001035,null,2007-02-08 01:00:00.0,null,"Dir. trans. mar., rout. et fluv. (DTMRF)",0,null,null,50000998,null,DIR,null,null
+50001036,null,2007-02-08 01:00:00.0,null,Dir. des aff. maritimes (DAM),0,null,null,50000998,null,DIR,null,null
+50001043,null,2007-02-14 01:00:00.0,null,Cabinet du ministre (Min. SJS),0,null,50000975,null,null,UST,null,null
+50001044,null,2007-02-14 01:00:00.0,null,"Dir adm gén personnel, budg (Min. SJS)",0,null,50000975,null,null,DIR,null,null
+50001046,null,2007-02-14 01:00:00.0,null,Dir. gén. de la santé (Min. SJS),0,null,50000975,null,null,DIR,null,null
+50001047,null,2007-02-14 01:00:00.0,null,Dir. hospit. et org. soins (Min. SJS),0,null,50000975,null,null,DIR,null,null
+50001048,null,2007-02-14 01:00:00.0,null,Dir. de la sécurité sociale (Min. SJS),0,null,50000975,null,null,DIR,null,null
+50001049,null,2007-02-14 01:00:00.0,null,"Dir. rech, études, stats (Min. SJS)",0,null,50000975,null,null,DIR,null,null
+50001050,null,2007-02-14 01:00:00.0,null,Agce sécu. san prod santé (Min. SJS),0,null,50000975,null,null,UST,null,null
+50001051,null,2007-02-14 01:00:00.0,null,UNCAM (Min. SJS),0,null,50000975,null,null,UST,null,null
+50001052,null,2007-02-14 01:00:00.0,null,Autorité sûreté nucléaire (Min. SJS),0,null,50000975,null,null,UST,null,null
+50001053,null,2007-02-14 01:00:00.0,null,Etablissement frçs du sang (Min. SJS),0,null,50000975,null,null,UST,null,null
+50001054,null,2007-02-14 01:00:00.0,null,Agence biomédecine (Min. SJS),0,null,50000975,null,null,UST,null,null
+50001055,null,2007-02-14 01:00:00.0,null,Agence vétérinaire (Min. SJS),0,null,50000975,null,null,UST,null,null
+50001056,null,2007-06-04 02:00:00.0,null,Délég. interm famille (MTS),0,null,50000969,null,null,UST,null,null
+50001057,null,2007-06-04 02:00:00.0,null,CGIET (Economie),0,null,50000507,null,null,UST,null,null
+50001082,null,2007-06-04 02:00:00.0,null,Délég. interm pers. handic. (MTS),0,null,50000969,null,null,UST,null,null
+50001085,null,2007-06-07 02:00:00.0,null,DCASPL Obsolète,0,null,50000507,null,null,UST,null,null
+50001086,null,2007-02-20 01:00:00.0,null,Cabinet du garde des sceaux,0,null,50000972,null,null,UST,null,null
+50001087,null,2007-02-20 01:00:00.0,null,Direction des services judiciaires,0,null,50000972,null,null,DIR,null,null
+50001088,null,2007-02-20 01:00:00.0,null,Direction des aff. civiles et du sceau,0,null,50000972,null,null,DIR,null,null
+50001089,null,2007-02-20 01:00:00.0,null,Dir. des aff. criminelles et des grâces,0,null,50000972,null,null,DIR,null,null
+50001090,null,2007-02-20 01:00:00.0,null,Dir. protection jud. de la jeunesse,0,null,50000972,null,null,DIR,null,null
+50001091,null,2007-02-20 01:00:00.0,null,Dir. admin. gale et équipement,0,null,50000972,null,null,DIR,null,null
+50001092,null,2007-02-20 01:00:00.0,null,Ecole nationale de la magistrature,0,null,50000972,null,null,UST,null,null
+50001093,null,2007-02-20 01:00:00.0,null,Services aff. européennes et internat.,0,null,50000972,null,null,UST,null,null
+50001094,null,2007-02-20 01:00:00.0,null,Serv. accès droit et just. polit. ville,0,null,50000972,null,null,UST,null,null
+50001095,null,2007-02-20 01:00:00.0,null,Direction de l'admin. pénitentiaire,0,null,50000972,null,null,DIR,null,null
+50001096,null,2007-02-20 01:00:00.0,null,Décret changement de noms,0,null,50000972,null,null,UST,null,null
+50001103,null,2007-02-21 01:00:00.0,null,(vide) Délégation gale pour l'armement,0,null,50000967,null,null,UST,null,null
+50001104,null,2007-02-21 01:00:00.0,null,Bureau des officiers généraux,0,null,50000967,null,null,UST,null,null
+50001105,null,2007-02-21 01:00:00.0,null,(vide) Contrôle général des armées,0,null,50000967,null,null,UST,null,null
+50001106,null,2007-02-21 01:00:00.0,null,Dir. des affaires juridiques (Défense),0,null,50000967,null,null,DIR,null,null
+50001117,null,2007-06-07 02:00:00.0,null,(p. mémoire) Cab aménagt du territoire,0,null,50000976,null,null,UST,null,null
+50001118,null,2007-06-07 02:00:00.0,null,(p. mémoire) Cab coll territoriales,0,null,50000632,null,null,UST,null,null
+50001132,null,2007-02-21 01:00:00.0,null,(vide) Dir. affaires financières (DEF),0,null,50000967,null,null,DIR,null,null
+50001133,null,2007-06-08 02:00:00.0,null,(vide) Dir. gale de la gendarmerie nat.,0,null,50000967,null,null,DIR,null,null
+50001134,null,2007-02-21 01:00:00.0,null,Dir. des ressources humaines (Défense),0,null,50000967,null,null,DIR,null,null
+50001135,null,2007-02-21 01:00:00.0,null,Etat-major des armées,0,null,50000967,null,null,UST,null,null
+50001136,null,2007-02-21 01:00:00.0,null,Etat-major de l'armée de l'air,0,null,50000967,null,null,UST,null,null
+50001137,null,2007-08-13 02:00:00.0,null,Sous-dir. BDC (Défense),0,null,50000967,null,null,DIR,null,null
+50001138,null,2007-02-21 01:00:00.0,null,(vide) Etat-major de la marine,0,null,50000967,null,null,UST,null,null
+50001139,null,2007-02-21 01:00:00.0,null,"(vide) Dir mémoire, patrimoine, archives",0,null,50000967,null,null,DIR,null,null
+50001140,null,2007-02-21 01:00:00.0,null,(vide) Etat-major de l'armée de terre,0,null,50000967,null,null,UST,null,null
+50001147,null,2007-08-13 02:00:00.0,null,BDC Défense,0,null,null,50001137,null,UST,null,null
+50001153,null,2007-02-21 01:00:00.0,null,Ss-dir. droit public et privé (Défense),0,null,null,50001106,null,UST,null,null
+50001154,null,2007-02-21 01:00:00.0,null,Ss-dir droit internat et europ (Défense),0,null,null,50001106,null,UST,null,null
+50001155,null,2007-02-21 01:00:00.0,null,Division des affaires pénales militaires,0,null,null,50001106,null,UST,null,null
+50001163,null,2007-02-08 01:00:00.0,null,DGT,0,null,50000969,null,null,UST,null,null
+50001164,null,2007-02-08 01:00:00.0,null,DAGEMO,0,null,50000969,null,null,UST,null,null
+50001165,null,2007-02-08 01:00:00.0,null,DPM (MTS),0,null,50000969,null,null,UST,null,null
+50001166,null,2007-06-04 02:00:00.0,null,DGEFP (Economie),0,null,50000507,null,null,UST,null,null
+50001167,null,2007-02-08 01:00:00.0,null,IGAS (MTS),0,null,50000969,null,null,UST,null,null
+50001168,null,2007-06-07 02:00:00.0,null,DGUHC (Logement),0,null,50001886,null,null,UST,null,null
+50001169,null,2007-02-08 01:00:00.0,null,SDFE (MTS),0,null,50000969,null,null,UST,null,null
+50001170,null,2007-02-08 01:00:00.0,null,DAGPB (MTS),0,null,50000969,null,null,UST,null,null
+50001171,null,2007-06-07 02:00:00.0,null,DIV (Logement),0,null,50001886,null,null,UST,null,null
+50001172,null,2007-02-08 01:00:00.0,null,DIIESES (MTS),0,null,50000969,null,null,UST,null,null
+50001173,null,2007-02-08 01:00:00.0,null,DARES (MTS),0,null,50000969,null,null,UST,null,null
+50001174,null,2007-02-08 01:00:00.0,null,DILTI (MTS),0,null,50000969,null,null,UST,null,null
+50001175,null,2007-02-08 01:00:00.0,null,DAEI (MTS),0,null,50000969,null,null,UST,null,null
+50001211,null,2007-02-08 01:00:00.0,null,DGAS (MTS),0,null,50000969,null,null,UST,null,null
+50001248,null,2006-05-04 02:00:00.0,null,Bureau des Cabinets (Intérieur),0,null,50000632,null,null,UST,null,null
+50001249,null,2006-05-04 02:00:00.0,null,Secrétariat général (Intérieur),0,null,50000632,null,null,UST,null,null
+50001263,null,2007-02-27 01:00:00.0,null,Bureau Cab éducation (Min. Educ.),0,null,50000968,null,null,UST,null,null
+50001264,null,2007-02-27 01:00:00.0,null,Dir. gale de l'enseignement scolaire,0,null,50000968,null,null,DIR,null,null
+50001265,null,2007-06-04 02:00:00.0,null,Dir. gale de l'enseignement supérieur,0,null,50000940,null,null,DIR,null,null
+50001266,null,2007-06-04 02:00:00.0,null,Dir. gale recherche et  innovation,0,null,50000940,null,null,DIR,null,null
+50001267,null,2007-02-27 01:00:00.0,null,Secrétariat général (Min. Educ.),0,null,50000968,null,null,UST,null,null
+50001268,null,2007-02-27 01:00:00.0,null,Direction générale RH (Min. Educ.),0,null,50000968,null,null,DIR,null,null
+50001269,null,2007-02-27 01:00:00.0,null,Direction de l'encadrement (Min. Educ.),0,null,50000968,null,null,DIR,null,null
+50001270,null,2007-02-27 01:00:00.0,null,Dir. affaires financières (Min. Educ.),0,null,50000968,null,null,DIR,null,null
+50001271,null,2007-02-27 01:00:00.0,null,Dir. affaires juridiques (Min. Educ.),0,null,50000968,null,null,DIR,null,null
+50001283,null,2007-02-27 01:00:00.0,null,Cabinet Sécrétariat général,0,null,null,50001249,null,UST,null,null
+50001285,null,2007-02-27 01:00:00.0,null,Secrétariat général - DMAT,0,null,null,50001249,null,UST,null,null
+50001286,null,2007-02-27 01:00:00.0,null,Secrétariat général - DRH (A),0,null,null,50001249,null,UST,null,null
+50001287,null,2007-02-27 01:00:00.0,null,Secrétariat général - DEPAFI (F),0,null,null,50001249,null,UST,null,null
+50001288,null,2007-02-27 01:00:00.0,null,Secrétariat général - DSIC (G),0,null,null,50001249,null,UST,null,null
+50001306,null,2007-02-27 01:00:00.0,null,Sous-dir. élus locaux et fpt,0,null,null,50000866,null,UST,null,null
+50001307,null,2007-02-27 01:00:00.0,null,Sous-dir. finances locales et action éco,0,null,null,50000866,null,UST,null,null
+50001308,null,2007-02-27 01:00:00.0,null,Sous-dir. compétences et instit. loc.,0,null,null,50000866,null,UST,null,null
+50001309,null,2007-06-04 02:00:00.0,null,BDC sports,0,null,50000975,null,null,UST,null,null
+50001311,null,2007-06-04 02:00:00.0,null,"DRH, Adm. et coordination gale (SJS)",0,null,50000975,null,null,UST,null,null
+50001313,null,2007-06-05 02:00:00.0,null,Direction des sports,0,null,50000975,null,null,DIR,null,null
+50001315,null,2009-01-19 01:00:00.0,null,"Dir jeunesse, éduc pop et vie asso",0,null,50000607,null,null,DIR,null,null
+50001317,null,2007-06-04 02:00:00.0,null,"Dir. vie asso, emploi, formations",0,null,50000975,null,null,DIR,null,null
+50001332,null,2007-02-28 01:00:00.0,null,DGPN Cabinet,0,null,null,50000666,null,UST,null,null
+50001364,null,2007-02-28 01:00:00.0,null,DLPAJ Cabinet,0,null,null,50000867,null,UST,null,null
+50001365,null,2007-02-28 01:00:00.0,null,Sous-dir. des libertés publiques,0,null,null,50000867,null,UST,null,null
+50001367,null,2008-12-01 01:00:00.0,null,Sous-dir. circ. et sécurité routière,0,null,null,50001285,null,UST,null,null
+50001369,null,2007-03-01 01:00:00.0,null,DGUHC (MEDAD),0,null,50000976,null,null,UST,null,null
+50001386,null,2007-03-02 01:00:00.0,null,DDSC cabinet,0,null,null,50000868,null,UST,null,null
+50001387,null,2007-03-02 01:00:00.0,null,Sous-dir. gestion des risques,0,null,null,50000868,null,UST,null,null
+50001388,null,2007-03-02 01:00:00.0,null,Sous-dir. sapeurs pompiers et act. sec.,0,null,null,50000868,null,UST,null,null
+50001389,null,2007-03-02 01:00:00.0,null,Sous-dir. administration et logistique,0,null,null,50000868,null,UST,null,null
+50001395,null,2007-03-02 01:00:00.0,null,BDC Culture,0,null,50000966,null,null,UST,null,null
+50001396,null,2007-03-02 01:00:00.0,null,Dir. administration gale (Culture),0,null,50000966,null,null,DIR,null,null
+50001397,null,2007-03-02 01:00:00.0,null,Direction des archives de France,0,null,50000966,null,null,DIR,null,null
+50001398,null,2007-03-02 01:00:00.0,null,Direction du livre et de la lecture,0,null,50000966,null,null,DIR,null,null
+50001399,null,2007-03-02 01:00:00.0,null,Direction des musées de France,0,null,50000966,null,null,DIR,null,null
+50001400,null,2007-03-02 01:00:00.0,null,"Dir. musique, danse, théâtre et spect.",0,null,50000966,null,null,DIR,null,null
+50001401,null,2007-03-02 01:00:00.0,null,Délégation aux arts plastiques,0,null,50000966,null,null,UST,null,null
+50001402,null,2007-03-02 01:00:00.0,null,Centre national de la cinématographie,0,null,50000966,null,null,UST,null,null
+50001403,null,2007-03-02 01:00:00.0,null,Dir. de l'architecture et du patrimoine,0,null,50000966,null,null,DIR,null,null
+50001404,null,2007-03-02 01:00:00.0,null,Direction du développement des médias,0,null,50000966,null,null,DIR,null,null
+50001405,null,2007-03-02 01:00:00.0,null,Secrétariat gal de la défense nationale,0,null,50000607,null,null,UST,null,null
+50001442,null,2007-03-02 01:00:00.0,null,Dir gale de l'admin. et de la FP (DGAFP),0,null,50000607,null,null,DIR,null,null
+50001443,null,2007-03-09 01:00:00.0,null,BDC Agriculture,0,null,50000938,null,null,UST,null,null
+50001444,null,2007-03-09 01:00:00.0,null,Secrétariat général (AGR),0,null,50000938,null,null,UST,null,null
+50001445,null,2007-03-09 01:00:00.0,null,Dir. gale forêt et affaires rurales,0,null,50000938,null,null,DIR,null,null
+50001446,null,2007-03-09 01:00:00.0,null,"Dir. gale pol. éco., eur. et internat.",0,null,50000938,null,null,DIR,null,null
+50001447,null,2007-03-09 01:00:00.0,null,Dir. gale enseign. et recherche Agricult,0,null,50000938,null,null,DIR,null,null
+50001448,null,2007-03-09 01:00:00.0,null,Dir gale de l'alimentation (AGR),0,null,50000938,null,null,DIR,null,null
+50001449,null,2007-03-09 01:00:00.0,null,Dir. pêches marit. et aquaculture,0,null,50000938,null,null,DIR,null,null
+50001460,null,2007-03-12 01:00:00.0,null,Sous-dir. fonction militaire,0,null,null,50001134,null,UST,null,null
+50001461,null,2007-03-12 01:00:00.0,null,"Ss-dir rel. soc, statuts, filières (Déf)",0,null,null,50001134,null,UST,null,null
+50001462,null,2007-03-12 01:00:00.0,null,Ss-dir gestion collect. pers civil (Déf),0,null,null,50001134,null,UST,null,null
+50001545,null,2007-06-04 02:00:00.0,null,Bureau Cab recherche,0,null,50000940,null,null,UST,null,null
+50001559,null,2007-03-27 02:00:00.0,null,Dir. services admin et financiers (DSAF),0,null,50000607,null,null,DIR,null,null
+50001604,null,2007-03-29 02:00:00.0,null,DAPN,0,null,null,50000666,null,UST,null,null
+50001605,null,2007-03-29 02:00:00.0,null,DFPN,0,null,null,50000666,null,UST,null,null
+50001606,null,2007-03-29 02:00:00.0,null,DCPJ,0,null,null,50000666,null,UST,null,null
+50001607,null,2007-03-29 02:00:00.0,null,DCCRS,0,null,null,50000666,null,UST,null,null
+50001608,null,2007-03-29 02:00:00.0,null,IGPN,0,null,null,50000666,null,UST,null,null
+50001609,null,2007-03-29 02:00:00.0,null,SCTIP,0,null,null,50000666,null,UST,null,null
+50001610,null,2007-03-29 02:00:00.0,null,DCSP,0,null,null,50000666,null,UST,null,null
+50001611,null,2007-03-29 02:00:00.0,null,DCPAF,0,null,null,50000666,null,UST,null,null
+50001612,null,2007-03-29 02:00:00.0,null,Sous-dir admin. gale finances DAPN,0,null,null,50001604,null,UST,null,null
+50001613,null,2007-03-29 02:00:00.0,null,Sous-dir ressources humaines DAPN,0,null,null,50001604,null,UST,null,null
+50001620,null,2007-03-29 02:00:00.0,null,Secrétariat général (Culture),0,null,null,50001396,null,UST,null,null
+50001650,null,2007-03-29 02:00:00.0,null,Sous-dir affaires juridiques (Culture),0,null,null,50001396,null,UST,null,null
+50001651,null,2007-03-29 02:00:00.0,null,Sous-dir affaires financières (Culture),0,null,null,50001396,null,UST,null,null
+50001652,null,2007-03-29 02:00:00.0,null,"Service personnel, aff. soc. (Culture)",0,null,null,50001396,null,UST,null,null
+50001653,null,2007-03-29 02:00:00.0,null,Dél. au dév. et aff. internat. (Culture),0,null,null,50001396,null,UST,null,null
+50001681,null,2007-02-27 01:00:00.0,null,"Dir. éval, prospect et perf. (Min. Educ)",0,null,50000968,null,null,DIR,null,null
+50001682,null,2007-02-27 01:00:00.0,null,"D. relat. eur, internat, coop (Min Educ)",0,null,50000968,null,null,DIR,null,null
+50001683,null,2007-02-27 01:00:00.0,null,"Serv action admin., modernis. (Min Educ)",0,null,50000968,null,null,UST,null,null
+50001684,null,2007-02-27 01:00:00.0,null,IGEN/IGAENR (Min. Educ.),0,null,50000968,null,null,UST,null,null
+50001710,null,2007-02-08 01:00:00.0,null,Secrétariat général DGMT,0,null,null,50000998,null,UST,null,null
+50001732,null,2007-04-02 02:00:00.0,null,Cabinet Agriculture,0,null,50000938,null,null,UST,null,null
+50001734,null,2007-03-02 01:00:00.0,null,Dél. gale à la langue française (DGLF),0,null,50000966,null,null,UST,null,null
+50001741,null,2007-04-04 02:00:00.0,null,Comité entreprises assurances (CEA),0,null,null,50000659,null,UST,null,null
+50001742,null,2007-04-04 02:00:00.0,null,(CEA) Comité entreprises assurances,0,null,null,50001741,null,UST,null,null
+50001745,null,2007-04-04 02:00:00.0,null,Secrétariat général central (AGR),0,null,null,50001444,null,UST,null,null
+50001746,null,2007-04-04 02:00:00.0,null,Secrétariat gén - Aff juridiques (AGR),0,null,null,50001444,null,UST,null,null
+50001747,null,2007-04-04 02:00:00.0,null,Sec gén - Mobilité / carrières (AGR),0,null,null,50001444,null,UST,null,null
+50001748,null,2007-04-04 02:00:00.0,null,Sec gén - RH (AGR),0,null,null,50001444,null,UST,null,null
+50001813,null,2007-02-13 01:00:00.0,null,Conseil de la concurrence (Economie),0,null,50000507,null,null,UST,null,null
+50001814,null,2007-11-20 01:00:00.0,null,Conseil de la concurrence (Economie),0,null,null,null,null,UST,null,null
+50001828,null,2007-05-02 02:00:00.0,null,(CEA) Comité entreprises assurances,0,null,null,null,null,UST,null,null
+50001882,null,2007-02-14 01:00:00.0,null,Direction Santé (à préciser),0,null,50000975,null,null,DIR,null,null
+50001907,null,2007-05-29 02:00:00.0,null,Cabinet du ministère de l'immigration,0,null,50001885,null,null,UST,null,null
+50001912,null,2007-05-30 02:00:00.0,null,DGAFP,0,null,50013998,null,null,UST,null,null
+50001917,null,2007-05-30 02:00:00.0,null,Bureau des cabinets (BCF),0,null,50013998,null,null,UST,null,null
+50001923,null,2007-05-31 02:00:00.0,null,DCASPL PME (Economie),0,null,50000507,null,null,UST,null,null
+50001926,null,2006-05-04 02:00:00.0,null,DéGéOM (Outre-Mer),0,null,50000632,null,null,UST,null,null
+50001929,null,2007-06-01 02:00:00.0,null,DGTPE-EXT (Economie),0,null,50000507,null,null,UST,null,null
+50001932,null,2007-06-01 02:00:00.0,null,DGI - DLF (Economie),0,null,50000507,null,null,UST,null,null
+50001934,null,2007-02-13 01:00:00.0,null,AFNOR (Economie),0,null,50000507,null,null,UST,null,null
+50001946,null,2007-06-07 02:00:00.0,null,DREES (MTS),0,null,50000969,null,null,UST,null,null
+50001948,null,2007-06-07 02:00:00.0,null,DIACT (MEDAD),0,null,50000976,null,null,UST,null,null
+50001962,null,2007-06-08 02:00:00.0,null,DREES,0,null,50013998,null,null,UST,null,null
+50001963,null,2007-06-08 02:00:00.0,null,Secrétariat général (BCF),0,null,50013998,null,null,UST,null,null
+50001964,null,2007-06-08 02:00:00.0,null,IGF,0,null,50013998,null,null,UST,null,null
+50001965,null,2007-06-08 02:00:00.0,null,DPAEP,0,null,50013998,null,null,UST,null,null
+50001966,null,2007-06-08 02:00:00.0,null,DAJ (BCF),0,null,50013998,null,null,UST,null,null
+50001967,null,2007-06-08 02:00:00.0,null,Contrôle gal éco. et fin (BCF),0,null,50013998,null,null,UST,null,null
+50001968,null,2007-06-08 02:00:00.0,null,Haut fonctionnaire de défense (BCF),0,null,50013998,null,null,UST,null,null
+50001972,null,2007-06-08 02:00:00.0,null,DGE (MEDAD),0,null,50000976,null,null,UST,null,null
+50001973,null,2007-06-08 02:00:00.0,null,DARQSI (MEDAD),0,null,50000976,null,null,UST,null,null
+50001974,null,2007-06-08 02:00:00.0,null,DARES (Economie),0,null,50000507,null,null,UST,null,null
+50001975,null,2007-06-08 02:00:00.0,null,DIIESES (Economie),0,null,50000507,null,null,UST,null,null
+50001976,null,2007-06-08 02:00:00.0,null,DARQSI (Economie),0,null,50000507,null,null,UST,null,null
+50001977,null,2007-06-08 02:00:00.0,null,Dir. gale de la gendarmerie nationale,0,null,50000632,null,null,UST,DIR,null
+50001989,null,2007-06-08 02:00:00.0,null,DGAS (Logement),0,null,50001886,null,null,UST,null,null
+50001990,null,2007-06-08 02:00:00.0,null,Cabinet Logement,0,null,50001886,null,null,UST,null,null
+50001991,null,2007-06-08 02:00:00.0,null,IGAENR (ESR),0,null,50000940,null,null,UST,null,null
+50002010,null,2007-06-08 02:00:00.0,null,DSS (MTS),0,null,50000969,null,null,UST,null,null
+50002011,null,2007-06-08 02:00:00.0,null,Comité interminist. controle imi (IMI),0,null,50001885,null,null,UST,null,null
+50002013,null,2007-06-08 02:00:00.0,null,"Dir accueil, intégr, citoyenneté (IMI)",0,null,50001885,null,null,DIR,null,null
+50002014,null,2007-06-08 02:00:00.0,null,Sous-dir. étrangers et circ. transfront.,0,null,null,50002013,null,UST,null,null
+50002020,null,2007-06-08 02:00:00.0,null,Direction immigration (IMI),0,null,50001885,null,null,DIR,null,null
+50002027,null,2007-06-08 02:00:00.0,null,Service de l'asile (IMI),0,null,50001885,null,null,UST,null,null
+50002032,null,2007-06-14 02:00:00.0,null,Secrétariat général (Min ESR),0,null,50000940,null,null,UST,null,null
+50002033,null,2007-06-14 02:00:00.0,null,Direction générale RH (Min. ESR.),0,null,50000940,null,null,DIR,null,null
+50002037,null,2007-06-14 02:00:00.0,null,Direction de l'encadrement (Min. ESR),0,null,50000940,null,null,DIR,null,null
+50002040,null,2007-06-14 02:00:00.0,null,Dir. affaires financières (Min. ESR),0,null,50000940,null,null,DIR,null,null
+50002043,null,2007-06-14 02:00:00.0,null,Dir. affaires juridiques (Min. ESR),0,null,50000940,null,null,DIR,null,null
+50002046,null,2007-06-14 02:00:00.0,null,"Dir. éval, prospect et perf. (Min. ESR)",0,null,50000940,null,null,DIR,null,null
+50002050,null,2007-06-14 02:00:00.0,null,"D. relat. eur, internat, coop (Min ESR)",0,null,50000940,null,null,DIR,null,null
+50002053,null,2007-06-14 02:00:00.0,null,"Serv action admin., modernis. (Min ESR)",0,null,50000940,null,null,UST,null,null
+50002058,null,2007-06-19 02:00:00.0,null,Organismes de recherche (Min. ESR),0,null,null,50001266,null,UST,null,null
+50002082,null,2007-05-30 02:00:00.0,null,Dir. hospit. et org. soins (Min. BCF),0,null,50013998,null,null,DIR,null,null
+50002084,null,2007-05-30 02:00:00.0,null,Dir. de la sécurité sociale (Min. BCF),0,null,50013998,null,null,DIR,null,null
+50002160,null,2007-07-16 02:00:00.0,null,Sous-dir. corps préfectoral-SDCPAC,0,null,null,50001285,null,UST,null,null
+50002246,null,2007-08-08 02:00:00.0,null,DGPA-DAJIL,0,null,null,50000988,null,UST,null,null
+50002362,null,2007-08-23 02:00:00.0,null,Régulation de l'énergie,0,null,null,null,null,UST,null,null
+50002366,null,2007-08-24 02:00:00.0,null,Secr. général Min. Immigration,0,null,50001885,null,null,UST,null,null
+50002370,null,2007-08-24 02:00:00.0,null,Service opérateurs et ressources (ARCEP),0,null,null,null,null,UST,null,null
+50002383,null,2007-08-28 02:00:00.0,null,Coll. terr. de la Rép. (Département),0,null,null,null,null,UST,null,null
+50002384,null,2007-08-28 02:00:00.0,null,Coll. terr. de la Rép. (Région),0,null,null,null,null,UST,null,null
+50002385,null,2007-08-28 02:00:00.0,null,Coll. terr. de la Rép. (Autre),0,null,null,null,null,UST,null,null
+50002482,null,2007-10-08 02:00:00.0,null,Dir. circulation aérienne,0,null,null,50001136,null,DIR,null,null
+50002486,null,2007-10-17 02:00:00.0,null,Sous-direction du droit civil (Justice),0,null,null,50001088,null,UST,null,null
+50002487,null,2007-10-17 02:00:00.0,null,Sous-dir. prof. jud. et jurid. (Justice),0,null,null,50001088,null,UST,null,null
+50002508,null,2007-10-25 02:00:00.0,null,Direction CNIL,0,null,null,null,null,DIR,null,null
+50002510,null,2007-10-25 02:00:00.0,null,Direction Cour des comptes,0,null,null,null,null,DIR,null,null
+50002533,null,2007-11-06 01:00:00.0,null,Concours (DGAFP),0,null,null,50001912,null,UST,null,null
+50002534,null,2007-11-06 01:00:00.0,null,Mesures normatives (DGAFP),0,null,null,50001912,null,UST,null,null
+50002535,null,2007-11-06 01:00:00.0,null,Mesures individuelles (DGAFP),0,null,null,50001912,null,UST,null,null
+50002536,null,2007-11-06 01:00:00.0,null,Contrôle final textes (DGAFP),0,null,null,50001912,null,UST,null,null
+50002546,null,2007-11-06 01:00:00.0,null,Concours (DGAFP),0,null,null,50001442,null,UST,null,null
+50002547,null,2007-11-06 01:00:00.0,null,Mesures normatives (DGAFP),0,null,null,50001442,null,UST,null,null
+50002548,null,2007-11-06 01:00:00.0,null,Mesures individuelles (DGAFP),0,null,null,50001442,null,UST,null,null
+50002549,null,2007-11-06 01:00:00.0,null,Contrôle final textes (DGAFP),0,null,null,50001442,null,UST,null,null
+50002683,null,2008-01-10 01:00:00.0,null,Président CSA,0,null,null,null,null,UST,null,null
+50002684,null,2008-01-10 01:00:00.0,null,Collège CSA,0,null,null,null,null,UST,null,null
+50002757,null,2008-02-20 01:00:00.0,null,Décorations - Sanctions,0,null,null,null,null,UST,null,null
+50002833,null,2006-05-04 02:00:00.0,null,Section de l'administration,0,null,null,null,null,UST,null,null
+50003057,null,2007-02-14 01:00:00.0,null,Centre national de gestion (CNG),0,null,50000975,null,null,UST,null,null
+50003082,null,2008-05-27 02:00:00.0,null,Lois (Conseil constitutionnel),0,null,null,null,null,UST,null,null
+50003132,null,2007-06-01 02:00:00.0,null,Service commun laboratoires (Economie),0,null,50000507,null,null,UST,null,null
+50003157,null,2007-08-24 02:00:00.0,null,Service économie et prospective (ARCEP),0,null,null,null,null,UST,null,null
+50003158,null,2007-08-24 02:00:00.0,null,Serv. régulation marchés fixe et mobiles,0,null,null,null,null,UST,null,null
+50003159,null,2007-08-24 02:00:00.0,null,Serv. collect. rég. marchés haut débit,0,null,null,null,null,UST,null,null
+50003160,null,2007-08-24 02:00:00.0,null,Service juridique (ARCEP),0,null,null,null,null,UST,null,null
+50003161,null,2007-08-24 02:00:00.0,null,Service international (ARCEP),0,null,null,null,null,UST,null,null
+50003162,null,2007-08-24 02:00:00.0,null,Service du directeur gal ou du président,0,null,null,null,null,UST,null,null
+50003163,null,2007-08-24 02:00:00.0,null,Service régulation postale (ARCEP),0,null,null,null,null,UST,null,null
+50003164,null,2007-08-24 02:00:00.0,null,Serv admin ressources humaines (ARCEP),0,null,null,null,null,UST,null,null
+50003207,null,2008-09-01 02:00:00.0,null,Commission perm. publication du BOA,0,null,null,50001106,null,UST,null,null
+50003232,null,2008-09-04 02:00:00.0,null,Cabinet du SGG,0,null,null,50000615,null,UST,null,null
+50003282,null,2008-10-06 02:00:00.0,null,OFPRA,0,null,50001885,null,null,UST,null,null
+50003307,null,2008-10-08 02:00:00.0,null,ANAEM,0,null,50001885,null,null,UST,null,null
+50003357,null,2008-10-24 02:00:00.0,null,Sce Bulletins Officiels DJO,0,null,null,50000629,null,UST,null,null
+50003632,null,2007-06-07 02:00:00.0,null,Caisse des dépôts et consignations,0,null,50000507,null,null,UST,null,null
+50003707,null,2007-06-07 02:00:00.0,null,DIV (MTS),0,null,50000969,null,null,UST,null,null
+50003733,null,2009-03-02 01:00:00.0,null,Rapporteur Autorité de la concurrence,0,null,null,null,null,UST,null,null
+50003758,null,2009-03-02 01:00:00.0,null,Président Autorité de la concurrence,0,null,null,null,null,UST,null,null
+50003834,null,2009-11-09 01:00:00.0,null,BDC Outre-mer,0,null,50003832,null,null,UST,null,null
+50003836,null,2009-11-09 01:00:00.0,null,DéGéOM (Outre-Mer),0,null,50003832,null,null,UST,null,null

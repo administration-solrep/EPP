@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+
+<!-- Cet composant contribue les cycles de vie de l'application SOLON EPP. -->
+<component name="fr.dila.solonepp.core.lifecycle">
+
+	<required>fr.dila.st.core.lifecycle</required>
+
+	<extension target="org.nuxeo.ecm.core.lifecycle.LifeCycleService"
+		point="lifecycle">
+
+		<!-- Cycle de vie du dossier EPP -->
+		<lifecycle name="dossier" defaultInitial="instance">
+			<states>
+				<state name="instance" description="En cours" />
+			</states>
+		</lifecycle>
+
+		<!-- Cycle de vie d'un événement -->
+		<lifecycle name="evenement" defaultInitial="init">
+			<transitions>
+				<transition name="toBrouillonFromInit" destinationState="brouillon" />
+				<transition name="toPublieFromInit" destinationState="publie" />
+				<transition name="toPublie" destinationState="publie" />
+				<transition name="toInstance" destinationState="instance" />
+				<transition name="backToInstance" destinationState="instance" />
+				<transition name="toAttenteValidation" destinationState="attenteValidation" />
+				<transition name="toAnnule" destinationState="annule" />
+			</transitions>
+			<states>
+				<state name="init" description="Init">
+					<transition>toBrouillonFromInit</transition>
+					<transition>toPublieFromInit</transition>
+				</state>
+				<state name="brouillon" description="Brouillon">
+					<transition>toPublie</transition>
+				</state>
+				<state name="publie" description="Publié">
+					<transition>toInstance</transition>
+					<transition>toAnnule</transition>
+				</state>
+				<state name="instance" description="En Instance">
+					<transition>toAttenteValidation</transition>
+				</state>
+				<state name="attenteValidation" description="En attente de validation">
+					<transition>backToInstance</transition>
+					<transition>toAnnule</transition>
+				</state>
+				<state name="annule" description="Annulé" />
+			</states>
+		</lifecycle>
+
+		<!-- Cycle de vie d'une version d'un événement -->
+		<lifecycle name="version" defaultInitial="init">
+			<transitions>
+				<transition name="toBrouillonFromInit" destinationState="brouillon" />
+				<transition name="backToBrouillon" destinationState="brouillon" />
+				<transition name="toPublieFromInit" destinationState="publie" />
+				<transition name="toAttenteValidationFromInit"
+					destinationState="attenteValidation" />
+				<transition name="toPublie" destinationState="publie" />
+				<transition name="toBrouillonAttenteValidation"
+					destinationState="brouillonAttenteValidation" />
+				<transition name="toAttenteValidation" destinationState="attenteValidation" />
+				<transition name="toObsolete" destinationState="obsolete" />
+				<transition name="toRejete" destinationState="rejete" />
+				<transition name="toAbandonne" destinationState="abandonne" />
+			</transitions>
+			<states>
+				<state name="init" description="Init">
+					<transition>toBrouillonFromInit</transition>
+					<transition>toPublieFromInit</transition>
+					<transition>toAttenteValidationFromInit</transition>
+				</state>
+				<state name="brouillon" description="Brouillon">
+					<transition>toPublie</transition>
+					<transition>toAttenteValidation</transition>
+					<transition>toBrouillonAttenteValidation</transition>
+				</state>
+				<state name="brouillonAttenteValidation" description="Brouillon en attente de validation">
+					<transition>backToBrouillon</transition>
+				</state>
+				<state name="publie" description="Publié">
+					<transition>backToBrouillon</transition>
+					<transition>toObsolete</transition>
+				</state>
+				<state name="attenteValidation" description="En attente de validation">
+					<transition>toPublie</transition>
+					<transition>toRejete</transition>
+					<transition>toAbandonne</transition>
+				</state>
+				<state name="obsolete" description="Obsolète">
+					<transition>backToBrouillon</transition>
+				</state>
+				<state name="rejete" description="Rejeté" />
+				<state name="abandonne" description="Abandonné" />
+			</states>
+		</lifecycle>
+
+		<!-- Cycle de vie d'un message -->
+		<lifecycle name="message" defaultInitial="nontraite">
+			<transitions>
+				<transition name="toEnCours" destinationState="encours" />
+				<transition name="toTraite" destinationState="traite" />
+				<transition name="backToNonTraite" destinationState="nontraite" />
+			</transitions>
+			<states>
+				<state name="nontraite" description="Non traité">
+					<transition>toEnCours</transition>
+					<transition>toTraite</transition>
+				</state>
+				<state name="encours" description="En cours">
+					<transition>toTraite</transition>
+					<transition>backToNonTraite</transition>
+				</state>
+				<state name="traite" description="Traité">
+					<transition>backToNonTraite</transition>
+				</state>
+			</states>
+		</lifecycle>
+	</extension>
+</component>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.cm.service.documentType">
+
+  <extension target="fr.dila.cm.DocumentTypeService" point="documentType">
+
+    <documentType>
+      <envelopeDocType>Case</envelopeDocType>
+      <postDocType>CaseLink</postDocType>
+      <mailboxDocType>Mailbox</mailboxDocType>
+      <caseItemDocType>CaseItem</caseItemDocType>
+    </documentType>
+
+  </extension>
+
+</component>

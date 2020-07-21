@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wsevt:rechercherEvenementRequest
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:wsevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:eppco="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:eppevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt">
+
+	<wsevt:par_requete_xsd>
+		<whereClause>evt:id_evenement = ? AND (evt:id_evenement_precedent = ?
+			OR evt:id_dossier ILIKE ?) </whereClause>
+		<parametres xsi:type="xs:string">CCO%</parametres>
+		<parametres xsi:type="xs:string">CCO%</parametres>
+		<parametres xsi:type="xs:string">CCO%</parametres>
+	</wsevt:par_requete_xsd>
+</wsevt:rechercherEvenementRequest>

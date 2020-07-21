@@ -1,0 +1,33 @@
+<f:subview xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxp="http://nuxeo.org/nxweb/pdf"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util">
+	<c:choose>
+		<c:when test="#{widget.mode == 'edit'}">
+			<nxu:set var="values"
+				value="#{selectOneMenuActions.getValues(widget.properties.type)}">
+				<h:selectOneMenu id="#{widget.id}_selectOneMenu" value="#{field_0}">
+
+					<f:selectItem
+						itemLabel="#{widget.properties.defaultLabel == null ? messages['label.selectOneMenu.default'] : messages[widget.properties.defaultLabel]}"
+						itemValue="#{widget.properties.defaultValue == null ? '': widget.properties.defaultValue}" />
+
+					<c:forEach var="mode" items="#{values}" varStatus="status">
+						<f:selectItem
+							itemLabel="#{selectOneMenuActions.getItemLabel(widget.properties.type, mode)}"
+							itemValue="#{selectOneMenuActions.getItemValue(widget.properties.type, mode)}" />
+					</c:forEach>
+					<c:if test="#{widget.properties.rerender != null}">
+						<a4j:support event="onchange" reRender="#{widget.properties.rerender}"/>
+					</c:if>
+				</h:selectOneMenu>
+			</nxu:set>
+		</c:when>
+		<c:otherwise>
+			<h:outputText
+				value="#{selectOneMenuActions.getItemLabelFromId(widget.properties.type, field_0)}" />
+		</c:otherwise>
+	</c:choose>
+</f:subview>

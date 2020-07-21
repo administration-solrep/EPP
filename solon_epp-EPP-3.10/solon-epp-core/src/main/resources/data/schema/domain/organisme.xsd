@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://dila.fr/solonepp/schema/organisme/" xmlns:org="http://dila.fr/solonepp/schema/organisme/">
+
+	<!-- Identifiant technique de l'enregistrement -->
+	<xs:element name="identifiant" type="xs:string" />
+
+	<!-- Nom de l'organisme -->
+	<xs:element name="nom" type="xs:string" />
+
+	<!-- Type de l'organisme (OEP, Organe sénat, organe A.N., groupe sénat, 
+		groupe A.N.) -->
+	<xs:element name="typeOrganisme" type="xs:string" />
+
+	<!-- Propriétaire de l'organisme (GOUVERNEMENT, AN, SENAT) -->
+	<xs:element name="proprietaire" type="xs:string" />
+
+	<!-- Date de début -->
+	<xs:element name="dateDebut" type="xs:date" />
+
+	<!-- Date de fin -->
+	<xs:element name="dateFin" type="xs:date" />
+
+	<!-- Date de début -->
+	<xs:element name="idCommun" type="xs:string" />
+
+	<!-- Date de fin -->
+	<xs:element name="baseLegale" type="xs:string" />
+
+</xs:schema>

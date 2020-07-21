@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue le service d'audit des logs du socle transverse. -->
+<component name="fr.dila.st.core.service.STAuditEventsService">
+	<implementation class="fr.dila.st.core.service.STAuditEventsService" />
+
+	<service>
+		<provide interface="org.nuxeo.ecm.platform.audit.api.NXAuditEvents" />
+		<provide interface="org.nuxeo.ecm.platform.audit.api.AuditReader" />
+		<provide interface="org.nuxeo.ecm.platform.audit.api.AuditLogger" />
+		<provide interface="org.nuxeo.ecm.platform.audit.api.Logs" />
+	</service>
+
+	<extension-point name="event">
+		<documentation>
+			This service registers auditable events.
+			<p />
+			Registered events are dummy strings for now.
+			<p />
+			This service is used to filter auditable events from the JMS topic
+			based
+			on their names. The following XML snipset give figures out how the
+			default
+			event types are selected for auditing.
+
+			<programlisting>
+				<extension target="fr.dila.st.core.service.STAuditEventsService"
+					point="event">
+					<event name="documentCreated" />
+					<event name="documentCreatedByCopy" />
+					<event name="documentDuplicated" />
+					<event name="documentMoved" />
+					<event name="documentRemoved" />
+					<event name="documentModified" />
+					<event name="documentLocked" />
+					<event name="documentUnlocked" />
+					<event name="documentSecurityUpdated" />
+					<event name="lifecycle_transition_event" />
+				</extension>
+			</programlisting>
+		</documentation>
+
+		<object
+			class="org.nuxeo.ecm.platform.audit.service.extension.EventDescriptor" />
+
+	</extension-point>
+
+	<extension-point name="extendedInfo">
+
+		<documentation>
+			This service registered extended info mappings.
+
+			<p />
+			This service is used to evaluate EL expression using document as
+			context
+			regist:ering results into a map indexed by names.
+		</documentation>
+
+		<object
+			class="org.nuxeo.ecm.platform.audit.service.extension.ExtendedInfoDescriptor" />
+	</extension-point>
+
+	<extension-point name="adapter">
+
+		<documentation>
+			register the adapter that will be injected in EL context
+		</documentation>
+
+		<object
+			class="org.nuxeo.ecm.platform.audit.service.extension.AdapterDescriptor" />
+	</extension-point>
+
+	<extension target="fr.dila.st.core.service.STAuditEventsService"
+		point="event">
+		<event name="documentCreated" />
+		<event name="documentRemoved" />
+		<event name="documentModified" />
+		<event name="documentLocked" />
+		<event name="documentUnlocked" />
+		<event name="documentPublished" />
+		<event name="documentImported" />
+		<event name="documentSubmitedForPublication" />
+		<event name="afterCaseSentEvent" />
+		<event name="lifecycle_transition_event" />
+		<event name="versioningChangeCoreEvent" />
+		<event name="ajoutFondDossier" />
+		<event name="supprimerFondDossier" />
+		<event name="modifierFondDossier" />
+
+		<!-- events de la feuille de route -->
+		<event name="feuilleRouteStepMove" />
+		<event name="feuilleRouteStepDelete" />
+		<event name="feuilleRouteStepUpdate" />
+		<event name="feuilleRouteStepCreate" />
+		<event name="copieFdrDossier" />
+
+		<!-- events de validation de la feuille de route -->
+		<event name="afterCaseSentEvent" />
+		<event name="avisFavorable" />
+		<event name="avisDeFavorable" />
+		<event name="avisRectificatif" />
+		<event name="substituerFeuilleRoute" />
+
+		<!-- events des actions du dossier -->
+		<event name="envoiMailDossier" />
+		<event name="archivageDossier" />
+		<event name="preparationArchivageDossier" />
+		<event name="exportZipDossier" />
+
+		<!-- event de mise à jour du bordereau -->
+		<event name="bordereauUpdate" />
+
+		<!-- event de mise à jour du bordereau -->
+		<event name="traitementPapierUpdate" />
+
+		<!-- event du fond de dossier -->
+		<event name="creationDocumentFdd" />
+		<event name="modificationDocumentFdd" />
+
+		<event name="creationRepertoireFdd" />
+		<event name="modificationRepertoireFdd" />
+		<event name="suppressionRepertoireFdd" />
+
+		<!-- event du parapheur -->
+		<event name="creationDocumentParapheur" />
+		<event name="modificationDocumentParapheur" />
+		<event name="failGetFileInfoParapheur" />
+
+	</extension>
+</component>

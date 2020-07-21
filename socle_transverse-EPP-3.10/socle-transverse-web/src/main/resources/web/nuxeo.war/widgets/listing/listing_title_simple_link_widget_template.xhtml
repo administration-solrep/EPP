@@ -1,0 +1,22 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<div class="popupTarget" docRef="#{field_1}">
+
+		<h:commandLink value="#{nxd:titleOrId(row.data)}"
+			action="#{cmMailboxActions.openDraft(field_0.cmdoc.defaultCaseId)}"
+			rendered="#{field_0.hasFacet('CaseItem')}" />
+
+		<nxd:restDocumentLink document="#{field_0}"
+			rendered="#{not field_0.hasFacet('CaseItem')}">
+			<span id="title_#{field_1}" title="#{field_2}">
+				#{nxd:titleOrId(field_0)} </span>
+		</nxd:restDocumentLink>
+
+	</div>
+
+</f:subview>

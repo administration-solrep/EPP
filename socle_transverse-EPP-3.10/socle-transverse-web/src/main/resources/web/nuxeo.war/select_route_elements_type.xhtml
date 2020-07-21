@@ -1,0 +1,130 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:form id="selectRouteElementsTypeForCreationForm">
+		<a4j:region id="selectRouteElementsTypeForCreationRegion">
+
+			<h:inputHidden id="hiddenSourceDocId"
+				value="#{routingActions.hiddenSourceDocId}" />
+			<h:inputHidden id="hiddenDocOrder"
+				value="#{routingActions.hiddenDocOrder}" />
+
+			<rich:modalPanel id="selectRouteElementsTypePanel" autosized="true"
+				onmaskclick="Richfaces.hideModalPanel('selectRouteElementsTypePanel')">
+
+				<f:facet name="header">
+					<h:outputText
+						value="#{messages['st.feuilleRoute.addStepPopup.title']}" />
+				</f:facet>
+
+				<f:facet name="controls">
+					<h:panelGroup>
+						<h:graphicImage value="/icons/action_delete_mini.gif"
+							id="hideRouteElementsTypePanel" />
+						<rich:componentControl for="selectRouteElementsTypePanel"
+							attachTo="hideRouteElementsTypePanel" operation="hide"
+							event="onclick" />
+					</h:panelGroup>
+				</f:facet>
+
+				<table cellspacing="2">
+					<nxu:dataList var="typesList"
+						value="#{typesTool.getOrganizedTypeMapForDocumentType('FeuilleRoute').entrySet}"
+						id="selectRouteElementsTypeForCreationTable">
+						<td
+							style="vertical-align: top; width: 320px; padding: 0px 20px 0px 0px;">
+							<div>
+								<h3 class="documentTypes">
+									<h:outputText
+										value="#{messages['st.feuilleRoute.addStepPopup.category']}" />
+									<span
+										onmouseover="tooltip.show('#{messages['st.feuilleRoute.addStepPopup.message']}', 500);"
+										onmouseout="tooltip.hide();"> <h:graphicImage
+											value="/icons/lightbulb.png" />
+									</span>
+								</h3>
+								<table>
+									<tr>
+										<nxu:dataList value="#{typesList.value}" var="typeColumn"
+											id="selectRouteElementTypeForCreationCategory">
+											<td valign="top">
+												<!-- Création d'une étape --> <nxu:dataList
+													value="#{typeColumn}" var="type"
+													id="selectRouteElementsTypeForCreationCategoryTable">
+													<div class="documentType">
+														<h:commandLink id="createRouteElementImage"
+															action="#{routingActions.createRouteElement(type.id)}">
+															<h:graphicImage height="32" width="32"
+																value="#{type.bigIcon}"
+																rendered="#{!empty type.bigIcon}" />
+														</h:commandLink>
+														<h:commandLink id="createRouteElementLink"
+															class="documentTypeLink"
+															action="#{routingActions.createRouteElement(type.id)}">
+															<h:outputText
+																value="#{messages['st.feuilleRoute.addStepPopup.create.RouteStep']}" />
+														</h:commandLink>
+														<div style="clear: both;"></div>
+													</div>
+												</nxu:dataList> <!-- Création d'un ensemble de branches -->
+												<div class="documentType">
+													<h:commandLink id="createForkImage"
+														action="#{routingActions.createRouteElement('route_fork')}">
+														<h:graphicImage height="32" width="32"
+															value="/icons/fork_100.png" />
+													</h:commandLink>
+													<h:commandLink id="createForkLabel"
+														class="documentTypeLink"
+														action="#{routingActions.createRouteElement('route_fork')}">
+														<h:outputText
+															value="#{messages['st.feuilleRoute.addStepPopup.create.fork']}" />
+													</h:commandLink>
+													<div style="clear: both;"></div>
+												</div>
+												<div class="documentType">
+													<h:commandLink id="createForkImageMass"
+														action="#{routingActions.createRouteElement('route_fork_mass')}">
+														<h:graphicImage height="32" width="32"
+															value="/icons/fork_100.png" />
+													</h:commandLink>
+													<h:commandLink id="createForkLabelMass"
+														class="documentTypeLink"
+														action="#{routingActions.createRouteElement('route_fork_mass')}">
+														<h:outputText
+															value="#{messages['st.feuilleRoute.addStepPopup.create.fork.mass']}" />
+													</h:commandLink>
+													<div style="clear: both;"></div>
+												</div>
+												
+												<div class="documentType">
+													<h:commandLink id="createElementMass"
+														action="#{routingActions.createRouteElement('route_element_mass')}">
+														<h:graphicImage height="32" width="32"
+															value="/icons/generic_distribution_task_100.png" />
+													</h:commandLink>
+													<h:commandLink id="createElementLabelMass"
+														class="documentTypeLink"
+														action="#{routingActions.createRouteElement('route_element_mass')}">
+														<h:outputText
+															value="#{messages['st.feuilleRoute.addStepPopup.create.RouteStep.mass']}" />
+													</h:commandLink>
+													<div style="clear: both;"></div>
+												</div>
+											</td>
+										</nxu:dataList>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</nxu:dataList>
+				</table>
+			</rich:modalPanel>
+		</a4j:region>
+	</h:form>
+
+</div>

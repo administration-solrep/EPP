@@ -1,0 +1,160 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:nxh="http://nuxeo.org/nxweb/html" class="reponseToolBar">
+
+	<script type="text/javascript">
+    function openPrintView(defaultTheme) {
+        baseURL=window.location.href;
+        if (baseURL.indexOf("?") == -1){
+            baseURL+='?';
+        }
+        if (baseURL.indexOf("conversationId")==-1) {
+            baseURL+='currentConversationId='+currentConversationId;
+        }
+        if (defaultTheme.indexOf("/") != -1) {
+            //defaultTheme includes the default page
+            defaultTheme=defaultTheme.substr(0, defaultTheme.indexOf("/"));
+        }
+        window.open(baseURL+'&amp;theme='+ defaultTheme +'/print','_blank')
+     }
+     
+     function confirmBeforeValidation() {
+         return confirm("#{messages['label.epp.feuilleRoute.etape.confirm.validation']}");
+     }
+     
+  </script>
+
+	<h:form id="formFdr">
+		<nxu:set var="isLockOwner"
+			value="#{stLockActions.currentDocIsLockActionnableByCurrentUser()}"
+			cache="true">
+			<nxu:set var="isLocker"
+				value="#{stLockActions.isCurrentDocumentLockedByCurrentUser()}"
+				cache="true">
+				<table class="fdrActions" style="float: right;">
+					<tr>
+						<c:if
+							test="#{currentDocument.currentLifeCycleState == 'init' and isLocker}">
+							<td class="enabledButtonContainer"><nxh:commandLink
+									action="#{dossierDistributionActions.lancerDossier(currentDocument)}">
+									<h:graphicImage value="/img/icons/check.png"
+										title="#{messages['label.reponses.dossier.feuilleRoute.lancer']}" />
+								</nxh:commandLink></td>
+							<td class="enabledButtonContainer"><nxh:commandLink
+									action="#{dossierDistributionActions.norAttribue(currentDocument)}">
+									<h:graphicImage value="/img/icons/forbidden.png"
+										title="#{messages['label.reponses.dossier.feuilleRoute.norAttribue']}" />
+								</nxh:commandLink></td>
+						</c:if>
+
+						<nxu:set var="actions"
+							value="#{webActions.getActionsList('DOSSIER_TOPBAR_ACTIONS_PRINT')}"
+							cache="true">
+							<nxu:dataList id="dossierActionsPrintTable" layout="simple"
+								var="action" value="#{actions}" rowIndexVar="row"
+								rowCountVar="rowCount">
+
+								<f:subview
+									rendered="#{ (action.getId() == 'NICE_PRINT_DOSSIER') or (action.getId() == 'CSV_PRINT_DOSSIER')}">
+									<td class="disabledButtonContainer"><h:graphicImage
+											value="#{action.getIcon()}" alt="#{action.getLabel()}"
+											title="#{action.getLabel()}" /></td>
+								</f:subview>
+								<f:subview
+									rendered="#{ (action.getId() != 'NICE_PRINT_DOSSIER') and (action.getId() != 'CSV_PRINT_DOSSIER')}">
+									<td class="enabledButtonContainer"><a
+										href="#{action.getLink()}"> <h:graphicImage
+												value="#{action.getIcon()}" alt="#{action.getLabel()}"
+												title="#{action.getLabel()}"
+												rendered="#{action.id == 'PRINT_DOSSIER'}" />
+									</a> <nxh:commandLink action="#{action.getLink()}"
+											onclick="#{action.getConfirm()}">
+											<h:graphicImage value="#{action.getIcon()}"
+												alt="#{messages[action.getLabel()]}"
+												title="#{messages[action.getLabel()]}"
+												rendered="#{action.id != 'PRINT_DOSSIER'}" />
+										</nxh:commandLink></td>
+								</f:subview>
+							</nxu:dataList>
+						</nxu:set>
+
+						<nxu:set var="actions"
+							value="#{webActions.getActionsList('DOSSIER_TOPBAR_ACTIONS_FDR')}"
+							cache="true">
+							<nxu:dataList id="fdrActionsTable" layout="simple" var="action"
+								value="#{actions}">
+								<c:if test="#{not isInEdition}">
+									<td class="enabledButtonContainer"><nxu:set
+											var="buttonLabel"
+											value="#{dossierDistributionActions.getActionFeuilleRouteButtonLabel(action.getLabel())}">
+											<h:outputLink value="#" onclick="#{action.getLink()}"
+												rendered="#{!(fn:startsWith(action.link,'#'))}">
+												<h:graphicImage value="#{action.getIcon()}"
+													alt="#{buttonLabel}" title="#{buttonLabel}" />
+											</h:outputLink>
+											<nxh:commandButton action="#{action.getLink()}"
+												onclick="#{action.getConfirm()}"
+												rendered="#{fn:startsWith(action.link,'#')}"
+												image="#{action.getIcon()}" alt="#{buttonLabel}"
+												title="#{buttonLabel}" />
+										</nxu:set></td>
+								</c:if>
+							</nxu:dataList>
+						</nxu:set>
+					</tr>
+				</table>
+
+				<table class="dossierActions" style="margin-right: 60px;">
+					<tr>
+						<!-- Bouton de sauvegarde du bordereau -->
+						<c:if
+							test="#{webActions.currentTabAction eq 'TAB_DOSSIER_BORDEREAU' and dossierLockActions.getCanUnlockCurrentDossier()}">
+							<td class="enabledButtonContainer"><a href="#"
+								onclick="if(typeof jsfcljs == 'function'){jsfcljs(document.getElementById('bordereauForm'),{'bordereauForm:idSaveBordereauButton':'bordereauForm:idSaveBordereauButton'},'');}return false">
+									<h:graphicImage value="/img/icons/disk_blue.png"
+										title="Sauvegarder le bordereau" />
+							</a></td>
+						</c:if>
+
+						<!-- Bouton de sauvegarde du traitement papier -->
+						<c:if
+							test="#{webActions.currentTabAction eq 'TAB_PAPIER' and dossierLockActions.getCanUnlockCurrentDossier() and papierActions.canCurrentUserWrite()}">
+							<td class="enabledButtonContainer"><a href="#"
+								onclick="if(typeof jsfcljs == 'function'){jsfcljs(document.getElementById('papierForm'),{'papierForm:idSavePapierButton':'papierForm:idSavePapierButton'},'');}return false">
+									<h:graphicImage value="/img/icons/disk_blue.png"
+										title="#{messages['label.epp.papier.save.title']}" />
+							</a></td>
+						</c:if>
+
+						<!-- Actions sur le dossier -->
+						<nxu:set var="actions"
+							value="#{webActions.getActionsList('DOSSIER_TOPBAR_ACTIONS_LOCKS')}"
+							cache="true">
+							<nxu:dataList id="dossierActionsLockTable" layout="simple"
+								var="action" value="#{actions}" rowIndexVar="row"
+								rowCountVar="rowCount">
+								<td class="enabledButtonContainer"><nxh:commandLink
+										action="#{action.getLink()}" onclick="#{action.confirm}">
+										<h:graphicImage value="#{action.getIcon()}"
+											alt="#{messages[action.getLabel()]}"
+											title="#{messages[action.getLabel()]}" />
+									</nxh:commandLink></td>
+							</nxu:dataList>
+							<c:if test="#{stLockActions.getCurrentLockOwnerName() ne ''}">
+								<td><h:graphicImage value="/img/icons/lock_16.png" /> <h:outputText
+										value="Verrouillé le #{stLockActions.getCurrentLockTime()}, par #{stLockActions.getCurrentLockOwnerInfo()}" />
+								</td>
+							</c:if>
+						</nxu:set>
+					</tr>
+				</table>
+			</nxu:set>
+		</nxu:set>
+	</h:form>
+</div>

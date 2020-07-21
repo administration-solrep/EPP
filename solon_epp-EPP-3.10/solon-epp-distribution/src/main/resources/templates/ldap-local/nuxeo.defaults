@@ -1,0 +1,8 @@
+
+solrep.ldap.create-ldif=${nuxeo.home}/init/ldap/create-solonepp.ldif
+solrep.ldap.init-ldif=${nuxeo.home}/init/ldap/create-init.ldif
+solrep.ldap.init-dir=${nuxeo.home}/init/ldap
+solrep.ldap.base-dn=ou=SolonEpp,dc=dila,dc=fr
+solrep.ldap.reset=true
+solrep.ldap.bind-dn=cn=ldapadmin,dc=dila,dc=fr
+solrep.ldap.bind-password=changeme

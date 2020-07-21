@@ -1,0 +1,161 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd"
+	logicalFilePath="ddl-organigramme">
+
+	<changeSet id="epp-gouvernement" author="system" context="solonepp and (dev or qa)">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="GOUVERNEMENT" />
+			</not>
+		</preConditions>
+		<createTable tableName="GOUVERNEMENT">
+			<column name="ID" type="nvarchar2(36)">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="DATEDEBUT" type="timestamp" />
+			<column name="DATEFIN" type="timestamp" />
+			<column name="IDENTIFIANT" type="nvarchar2(2000)" />
+			<column name="APPELATION" type="nvarchar2(2000)" />
+
+			<column name="ID_ORGANIGRAMME" type="nvarchar2(255)" /> <!-- inutilisé -->
+			<column name="DATE_FIN" type="timestamp" /> <!-- inutilisé -->
+			<column name="DATE_DEBUT" type="timestamp" /> <!-- inutilisé -->
+			<column name="DATE_VERROU" type="timestamp" /> <!-- inutilisé -->
+			<column name="LABEL" type="nvarchar2(255)" /> <!-- inutilisé -->
+			<column name="DELETED" type="number(1)" /> <!-- inutilisé -->
+			<column name="UTILISATEUR_VERROU" type="nvarchar2(255)" /> <!-- inutilisé -->
+			<column name="FUNCTION_READ" type="nvarchar2(255)" /> <!-- inutilisé -->
+		</createTable>
+	</changeSet>
+
+	<!-- non utilisé dans solonepp -->
+	<changeSet id="gouvernement" author="system" context="(solonepg or reponses) and (dev or qa)">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="GOUVERNEMENT" />
+			</not>
+		</preConditions>
+		<createTable tableName="GOUVERNEMENT">
+			<column name="ID_ORGANIGRAMME" type="nvarchar2(255)">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="DATE_FIN" type="timestamp" />
+			<column name="DATE_DEBUT" type="timestamp" />
+			<column name="DATE_VERROU" type="timestamp" />
+			<column name="LABEL" type="nvarchar2(255)" />
+			<column name="DELETED" type="number(1)" />
+			<column name="UTILISATEUR_VERROU" type="nvarchar2(255)" />
+			<column name="FUNCTION_READ" type="nvarchar2(255)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet id="institution" author="system" context="dev or qa">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="INSTITUTION" />
+			</not>
+		</preConditions>
+		<createTable tableName="INSTITUTION">
+			<column name="ID_ORGANIGRAMME" type="nvarchar2(255)">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="DATE_FIN" type="timestamp" />
+			<column name="DATE_DEBUT" type="timestamp" />
+			<column name="DATE_VERROU" type="timestamp" />
+			<column name="LABEL" type="nvarchar2(255)" />
+			<column name="DELETED" type="number(1)" />
+			<column name="UTILISATEUR_VERROU" type="nvarchar2(255)" />
+			<column name="FUNCTION_READ" type="nvarchar2(255)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet id="entite" author="system" context="dev or qa">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="ENTITE" />
+			</not>
+		</preConditions>
+		<createTable tableName="ENTITE">
+			<column name="ID_ORGANIGRAMME" type="nvarchar2(255)">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="DATE_FIN" type="timestamp" />
+			<column name="DATE_DEBUT" type="timestamp" />
+			<column name="DATE_VERROU" type="timestamp" />
+			<column name="LABEL" type="nvarchar2(255)" />
+			<column name="DELETED" type="number(1)" />
+			<column name="UTILISATEUR_VERROU" type="nvarchar2(255)" />
+			<column name="ID_PARENT_GOUV" type="nvarchar2(255)" />
+			<column name="EDITION" type="nvarchar2(255)" />
+			<column name="FORMULE" type="nvarchar2(255)" />
+			<column name="CIVILITE_MINISTRE" type="nvarchar2(255)" />
+			<column name="NOM_MINISTRE" type="nvarchar2(255)" />
+			<column name="PRENOM_MINISTRE" type="nvarchar2(255)" />
+			<column name="ORDRE" type="number(19)" />
+			<column name="FUNCTION_READ" type="nvarchar2(255)" />
+			<column name="NOR_MINISTERE" type="varchar2(3500)" />
+			<column name="SUIVI_ACTIVITE_NORMATIVE" type="number(1)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet id="unite_structurelle" author="system" context="dev or qa">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="UNITE_STRUCTURELLE" />
+			</not>
+		</preConditions>
+		<createTable tableName="UNITE_STRUCTURELLE">
+			<column name="ID_ORGANIGRAMME" type="nvarchar2(255)">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="DATE_FIN" type="timestamp" />
+			<column name="DATE_DEBUT" type="timestamp" />
+			<column name="DATE_VERROU" type="timestamp" />
+			<column name="LABEL" type="nvarchar2(255)" />
+			<column name="DELETED" type="number(1)" />
+			<column name="UTILISATEUR_VERROU" type="nvarchar2(255)" />
+			<column name="ID_PARENT_ENTITE" type="varchar2(3500)" />
+			<column name="ID_PARENT_UNITE" type="varchar2(3500)" />
+			<column name="ID_PARENT_INSTITUTION" type="varchar2(3500)" />
+			<column name="TYPE" type="nvarchar2(255)" />
+			<column name="FUNCTION_READ" type="nvarchar2(255)" />
+			<column name="NOR_DIRECTION" type="varchar2(3500)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet id="poste" author="system" context="dev or qa">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="POSTE" />
+			</not>
+		</preConditions>
+		<createTable tableName="POSTE">
+			<column name="ID_ORGANIGRAMME" type="nvarchar2(255)">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="DATE_FIN" type="timestamp" />
+			<column name="DATE_DEBUT" type="timestamp" />
+			<column name="DATE_VERROU" type="timestamp" />
+			<column name="LABEL" type="nvarchar2(255)" />
+			<column name="DELETED" type="number(1)" />
+			<column name="UTILISATEUR_VERROU" type="nvarchar2(255)" />
+			<column name="ID_PARENT_ENTITE" type="varchar2(3500)" />
+			<column name="ID_PARENT_UNITE" type="varchar2(3500)" />
+			<column name="ID_PARENT_INSTITUTION" type="varchar2(3500)" />
+			<column name="CHARGE_MISSION_SGG" type="number(1)" />
+			<column name="POSTE_BDC" type="number(1)" />
+			<column name="SUPERVISEUR_SGG" type="number(1)" />
+			<column name="CONSEILLER_PM" type="number(1)" />
+			<column name="POSTE_WS" type="number(1)" />
+			<column name="WS_URL" type="nvarchar2(500)" />
+			<column name="WS_LOGIN" type="nvarchar2(255)" />
+			<column name="WS_MDP" type="nvarchar2(255)" />
+			<column name="WS_CLE" type="nvarchar2(255)" />
+			<column name="MEMBRES" type="varchar2(3500)" />
+			<column name="FUNCTION_READ" type="nvarchar2(255)" />
+		</createTable>
+	</changeSet>
+
+</databaseChangeLog>

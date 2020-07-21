@@ -1,0 +1,43 @@
+10
+
+dir
+20319
+http://lyon-cvs2/dila_solrep/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting
+http://lyon-cvs2/dila_solrep
+
+
+
+2011-05-27T13:32:34.876121Z
+3005
+mchahine
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+116afe93-f2e9-9a47-bd99-c77947f78288
+
+engine
+dir
+
+listener
+dir
+
+api
+dir
+
+datasource
+dir
+
+report
+dir
+

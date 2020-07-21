@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue les types ECM nécessaires au dossier SOLON EPP. -->
+<component name="fr.dila.solonepp.web.ecmtype.dossier">
+	<extension target="org.nuxeo.ecm.platform.types.TypeService"
+		point="types">
+
+		<!-- define Dossier (type Case) <type id="Dossier" coretype="Dossier"> 
+			<label>Dossier</label> <icon>/icons/case.png</icon> <bigIcon>/icons/case_100.png</bigIcon> 
+			<default-view>view_cm_case</default-view> <create-view>view_creation_dossier_100</create-view> 
+			<category>Documents disponibles :</category> <views> <view id="edit_case" 
+			value="edit_case" /> </views> <layouts mode="create"> <layout>creation_dossier_layout</layout> 
+			</layouts> <layouts mode="any"> <layout>dublincore</layout> <layout>question_saisie_layout</layout> 
+			</layouts> <layouts mode="summary"> <layout>summary_current_case_layout</layout> 
+			</layouts> </type> -->
+
+	</extension>
+</component>

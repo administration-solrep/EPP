@@ -1,0 +1,8 @@
+# Pour lancer ce script :
+
+# connect to http://localhost:8180/solon-epp (obligatoire sinon Unknown command...) 
+connect -u Administrator -p 4ju7Ix662Eo1d77u http://localhost:8180/solon-epp/site/automation
+
+mkdir NotificationsSuiviBatchs "/case-management/workspace-root/admin/notifications-suivi-batchs" -title "Notifications du suivi des Batchs"
+cd "/case-management/workspace-root/admin/notifications-suivi-batchs"
+setp -xpath "nsb:etat_notification" -value true

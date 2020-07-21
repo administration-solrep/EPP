@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:envoyerNotificationRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSnotification"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/notification"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSnotification ../../../../../../xsd/reponses/WSnotification.xsd ">
+	<p:type_notification>REPONSES_ATTRIBUTIONS</p:type_notification>
+	<p:jeton>0</p:jeton>
+</p:envoyerNotificationRequest>

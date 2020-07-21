@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<component name="fr.dila.st.core.adapterContrib">
+	<extension target="org.nuxeo.ecm.core.api.DocumentAdapterService"
+		point="adapters">
+
+		<!-- *********************************************************************** 
+			Adapteurs pour les données utilisateur *********************************************************************** -->
+		<!-- Adaptateur des utilisateurs -->
+		<adapter class="fr.dila.st.api.user.STUser" factory="fr.dila.st.core.adapter.STUserAdapterFactory" />
+
+		<!-- Adaptateur des profils -->
+		<adapter class="fr.dila.st.api.user.Profile" factory="fr.dila.st.core.adapter.ProfileAdapterFactory" />
+
+		<!-- Adaptateur des fonctions unitaires -->
+		<adapter class="fr.dila.st.api.user.BaseFunction"
+			factory="fr.dila.st.core.adapter.BaseFunctionAdapterFactory" />
+
+		<!-- Adaptateur des délégation -->
+		<adapter class="fr.dila.st.api.domain.user.Delegation"
+			factory="fr.dila.st.core.adapter.DelegationAdapterFactory" />
+
+		<!-- *********************************************************************** 
+			Adapteurs pour les jetons. *********************************************************************** -->
+		<!-- Adapter des jeton -->
+		<adapter class="fr.dila.st.api.jeton.JetonMaitre"
+			factory="fr.dila.st.core.adapter.JetonMaitreAdapterFactory" />
+
+		<!-- Adapter des liaisons jeton / document -->
+		<adapter class="fr.dila.st.api.jeton.JetonDoc"
+			factory="fr.dila.st.core.adapter.JetonDocAdapterFactory" />
+
+		<!-- Adapter des jeton lock -->
+		<adapter class="fr.dila.st.api.jeton.LockJetonMaitre"
+			factory="fr.dila.st.core.adapter.LockJetonMaitreAdapterFactory" />
+
+		<!-- *********************************************************************** 
+			Adapteurs pour les paramètres. *********************************************************************** -->
+		<adapter class="fr.dila.st.api.parametre.STParametre"
+			factory="fr.dila.st.core.adapter.ParametreAdapterFactory" />
+
+		<!-- *********************************************************************** 
+			Adapteurs pour le requeteur. *********************************************************************** -->
+		<adapter class="fr.dila.st.api.requeteur.RequeteExperte"
+			factory="fr.dila.st.core.adapter.RequeteExperteAdapterFactory" />
+
+		<!-- *********************************************************************** 
+			Adapteurs pour les alertes. *********************************************************************** -->
+		<adapter class="fr.dila.st.api.alert.Alert" factory="fr.dila.st.core.adapter.AlertAdapterFactory" />
+
+		<!-- *********************************************************************** 
+			Adapteurs pour les fichiers. *********************************************************************** -->
+		<adapter class="fr.dila.st.api.domain.file.File" factory="fr.dila.st.core.adapter.FileAdapterFactory" />
+
+		<!-- *********************************************************************** 
+			Adapteurs pour EtatApplication. *********************************************************************** -->
+		<adapter class="fr.dila.st.api.administration.EtatApplication"
+			factory="fr.dila.st.core.adapter.EtatApplicationAdapterFactory" />
+
+		<!-- *********************************************************************** 
+			Adapteurs pour NotificationsSuiviBatchs. *********************************************************************** -->
+		<adapter class="fr.dila.st.api.administration.NotificationsSuiviBatchs"
+			factory="fr.dila.st.core.adapter.NotificationsSuiviBatchsAdapterFactory" />
+
+		<!-- *********************************************************************** 
+			Adapteurs pour les ExportDocument. *********************************************************************** -->
+		<adapter class="fr.dila.st.api.domain.ExportDocument"
+			factory="fr.dila.st.core.adapter.ExportDocumentAdapterFactory" />
+
+		<!-- *********************************************************************** 
+			Adapteurs pour les STComment *********************************************************************** -->
+		<adapter class="fr.dila.st.api.domain.comment.STComment"
+			factory="fr.dila.st.core.adapter.STCommentAdapterFactory" />
+	</extension>
+</component>

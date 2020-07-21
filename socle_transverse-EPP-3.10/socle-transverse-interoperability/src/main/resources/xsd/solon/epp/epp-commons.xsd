@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:evt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:epptdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	elementFormDefault="qualified">
+
+	<xs:import schemaLocation="../../commons/commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons" />
+	<xs:import schemaLocation="epp-tableReference.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref" />
+	<xs:import schemaLocation="epp-evt.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt" />
+
+	<xs:complexType name="Pagination">
+		<xs:sequence>
+			<xs:element name="nombre_element_par_page" type="xs:int"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="numero_page" type="xs:int" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="AttributionCommission">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AU_FOND" />
+			<xs:enumeration value="POUR_AVIS" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SortAdoption">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ADOPTE" />
+			<xs:enumeration value="REJETE" />
+			<xs:enumeration value="RENVOI_EN_COMMISSION" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ResultatCMP">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ACCORD" />
+			<xs:enumeration value="DESACCORD" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DecisionProcedureAcc">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ACCEPTATION" />
+			<xs:enumeration value="REFUS" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SensAvis">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FAVORABLE" />
+			<xs:enumeration value="DEFAVORABLE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MotifIrrecevabilite">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="INJONCTION" />
+			<xs:enumeration value="MISE_EN_CAUSE_RESPONSABILITE_GOUVERNEMENT" />
+			<xs:enumeration value="REPETITION" />
+			<xs:enumeration value="AUTRES" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="RapportParlement">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RAPPORT_PERIODIQUE" />
+			<xs:enumeration value="RAPPORT_UNIQUE" />
+			<xs:enumeration value="RAPPORT_RELATIF_ARTICLE_67_LOI_N_2004-1343" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Institution">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GOUVERNEMENT" />
+			<xs:enumeration value="ASSEMBLEE_NATIONALE" />
+			<xs:enumeration value="SENAT" />
+			<xs:enumeration value="DILA" />
+			<xs:enumeration value="CMP" />
+			<xs:enumeration value="OFFICES_DELEGATIONS" />
+			<xs:enumeration value="CONGRES_PARLEMENT" />
+			<xs:enumeration value="GRP_AN_SENAT" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="PieceJointeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ACCORD_INTERNATIONAL" />
+			<xs:enumeration value="ANNEXE" />
+			<xs:enumeration value="AUTRE" />
+			<xs:enumeration value="AVIS" />
+			<xs:enumeration value="COHERENT" />
+			<xs:enumeration value="COPIES_3_LETTRES_TRANSMISSION" />
+			<xs:enumeration value="DECRET_PRESENTATION" />
+			<xs:enumeration value="DECRET_PRESIDENT_REPUBLIQUE" />
+			<xs:enumeration value="DEMANDE_DECLARATION" />
+			<xs:enumeration value="DOCUMENTS" />
+			<xs:enumeration value="ETUDE_IMPACT" />
+			<xs:enumeration value="EXPOSE_DES_MOTIFS" />
+			<xs:enumeration value="LETTRE" />
+			<xs:enumeration value="LETTRE_CONJOINTE_PRESIDENTS" />
+			<xs:enumeration value="LETTRE_SAISINE_CC" />
+			<xs:enumeration value="LETTRE_PM" />
+			<xs:enumeration value="LETTRE_PM_VERS_AN" />
+			<xs:enumeration value="LETTRE_PM_VERS_SENAT" />
+			<xs:enumeration value="LETTRE_TRANSMISSION" />
+			<xs:enumeration value="LISTE_ANNEXES" />
+			<xs:enumeration value="PETITE_LOI" />
+			<xs:enumeration value="RAPPORT" />
+			<xs:enumeration value="TEXTE" />
+			<xs:enumeration value="TEXTE_ADOPTE" />
+			<xs:enumeration value="TEXTE_MOTION" />
+			<xs:enumeration value="TEXTE_TRANSMIS" />
+			<xs:enumeration value="TRAITE" />
+			<xs:enumeration value="TRAVAUX_PREPARATOIRES" />
+			<xs:enumeration value="CURRICULUM_VITAE" />
+			<xs:enumeration value="AMPLIATION_DECRET" />
+			<xs:enumeration value="AMPLIATION_DECRET_PRESIDENT_REPUBLIQUE" />
+			<xs:enumeration value="ECHEANCIER" />
+			<xs:enumeration value="INSERTION_JOLD" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="PieceJointe">
+		<xs:sequence>
+			<xs:element name="id_interne_epp" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="type" type="PieceJointeType" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="url" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="libelle" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="fichier" type="ContenuFichier"
+				minOccurs="0" maxOccurs="unbounded" />
+			<!-- format pdf et word pour un meme document -->
+			<xs:element name="metadonnee_modifiee" type="xs:string"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="fichier_modifie" type="xs:string"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:simpleType name="CompressionFichier">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AUCUNE" />
+			<xs:enumeration value="ZIP" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:complexType name="ContenuFichier">
+		<xs:annotation>
+			<xs:documentation>
+				Modelisation d'un fichier
+				nom_fichier : nom complet du fichier (basename.ext)
+				sha512: digest sha512 du fichier non compresse
+				mime_type : mime_type du
+				fichier
+				contenu : version binaire de fichier encode en base64
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nom_fichier" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="sha512" type="xs:string" minOccurs="1"
+				maxOccurs="1" />	
+			<xs:element name="mime_type" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="compression" type="CompressionFichier"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="contenu" type="xs:base64Binary"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="a_du_contenu" type="xs:boolean" use="optional" />
+	</xs:complexType>
+
+
+
+	<xs:simpleType name="NorType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\w{4}\d{7}\w"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="Depot">
+		<xs:sequence>
+			<xs:element name="date" type="xs:date" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="numero" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="TypeOrganisme">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OEP" />
+			<xs:enumeration value="NOMINATION" />
+			<xs:enumeration value="ORGANE_SENAT" />
+			<xs:enumeration value="ORGANE_AN" />
+			<xs:enumeration value="GROUPE_SENAT" />
+			<xs:enumeration value="GROUPE_AN" />
+			<xs:enumeration value="AUDITION" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:complexType name="Organisme">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="type" type="TypeOrganisme" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="nom" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_debut" type="xs:date" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_fin" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="proprietaire" type="Institution"
+				minOccurs="1" maxOccurs="1" />
+			<!-- OEP -->
+			<xs:element name="id_commun" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="base_legale" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="Commission">
+		<xs:sequence>
+			<xs:element name="saisie_pour_avis" type="Organisme"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="saisie_au_fond" type="Organisme"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="Dossier">
+		<xs:sequence>
+			<xs:element name="fiche_dossier" type="FicheDossier"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="evenement" type="evt:EppEvtContainer"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FicheDossier">
+		<xs:annotation>
+			<xs:documentation>
+				TODO : A completer
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id_dossier" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="emetteur" type="Institution" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="destinataire" type="Institution"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="horodatage" type="xs:dateTime"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="id_senat" type="xs:string" minOccurs="0"
+				maxOccurs="1" /><!-- vide -->
+			<xs:element name="niveau_lecture" type="evt:NiveauLecture"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="date_ar" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="objet" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="nor" type="NorType" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="nature_loi" type="evt:NatureLoi"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="type_loi" type="evt:TypeLoi" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="auteur" type="epptdref:Mandat"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="co_auteur" type="epptdref:Mandat"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="intitule" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="url_dossier_an" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="url_dossier_senat" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="co_signataire_collectif" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="depot_texte" type="Depot" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="commission" type="Commission" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="date_distribution" type="xs:date"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="date_retrait" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="rapporteur" type="epptdref:Mandat"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="depot_rapport" type="Depot" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="titre" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="date_refus" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="libelle_annexes" type="xs:string"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="date_engagement_procedure" type="xs:date"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="date_refus_an" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="date_refus_senat" type="xs:date"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="date_refus_engagement_procedure" type="xs:date"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="numero_texte_adopte" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="date_adoption" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="sort_adoption" type="SortAdoption"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="redepot" type="xs:boolean" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="date_promulgation" type="xs:date"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="date_publication" type="xs:date"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="numero_loi" type="xs:int" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="numero_jo" type="xs:int" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="page_jo" type="xs:int" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="date" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="commissionSaisie" type="Organisme"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="dateCMP" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="echeance" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="date_acte" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="sens_avis" type="SensAvis" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="nombre_suffrage" type="xs:int"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="bulletin_blanc" type="xs:int" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="vote_pour" type="xs:int" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="vote_contre" type="xs:int" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="abstention" type="xs:int" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="commissions" type="Organisme" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xs:element name="date_refus_assemblee1" type="xs:date"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="date_conference_assemblee2" type="xs:date"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="decision_proc_acc" type="xs:date"
+				minOccurs="0" maxOccurs="1" />
+
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Section">
+		<xs:sequence>
+			<xs:element name="id_section" type="IdSection" minOccurs="1"
+				maxOccurs="1"></xs:element>
+			<xs:element name="nom" type="xs:string" minOccurs="1"
+				maxOccurs="1"></xs:element>
+			<xs:element name="corbeille" type="Corbeille" minOccurs="1"
+				maxOccurs="unbounded"></xs:element>
+			<xs:element name="description" type="xs:string" minOccurs="0"
+				maxOccurs="1"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Corbeille">
+		<xs:sequence>
+			<xs:element name="id_corbeille" type="IdCorbeille"
+				minOccurs="1" maxOccurs="1"></xs:element>
+			<xs:element name="nom" type="xs:string" minOccurs="1"
+				maxOccurs="1"></xs:element>
+			<xs:element name="nombre_evenement_courant" type="xs:int"
+				minOccurs="1" maxOccurs="1"></xs:element>
+			<xs:element name="description" type="xs:string" minOccurs="0"
+				maxOccurs="1"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="EtatVerrou">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="VERROUILLER" />
+			<xs:enumeration value="DEVERROUILLER" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="IdMessage">
+		<xs:restriction base="xs:string"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="IdEvenement">
+		<xs:restriction base="xs:string"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="IdDossier">
+		<xs:restriction base="xs:string"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="IdCorbeille">
+		<xs:restriction base="xs:string"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="IdSection">
+		<xs:restriction base="xs:string"></xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

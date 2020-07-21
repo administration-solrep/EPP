@@ -1,0 +1,10 @@
+<component name="fr.dila.ecm.platform.routing.chainsToType.contrib.test"
+  version="1.0">
+  <require>fr.dila.ecm.platform.routing.chainsToType.contrib</require>
+  <extension target="fr.dila.ecm.platform.routing.service"
+    point="chainsToType">
+    <mapping documentType="DocumentRouteStep" chainId="setWaiting"
+      undoChainIdFromRunning="setUndo" undoChainIdFromDone="setUndo" />
+  </extension>
+
+</component>

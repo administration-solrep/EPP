@@ -1,0 +1,31 @@
+<div xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout">
+
+	<ui:composition template="/admin/profile/view_profile_template.xhtml">
+		<ui:param name="currentProfileSubTab" value="edit" />
+
+		<ui:define name="mainContent">
+
+			<h:form id="editProfile"
+				rendered="#{profileManagerActions.allowEditProfile and notReadOnly}">
+				<nxl:layout name="profile" mode="edit"
+					value="#{profileManagerActions.selectedProfile}" />
+
+				<table class="dataInput">
+					<tbody>
+						<tr>
+							<td></td>
+							<td><h:commandButton value="#{messages['command.save']}"
+									action="#{profileManagerActions.updateProfile}" class="button" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</h:form>
+
+		</ui:define>
+
+	</ui:composition>
+
+</div>

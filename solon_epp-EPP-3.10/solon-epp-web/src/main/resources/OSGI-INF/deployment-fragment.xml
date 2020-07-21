@@ -1,0 +1,394 @@
+<?xml version="1.0"?>
+
+<fragment version="1">
+	<require>fr.dila.st.web</require>
+
+	<require>fr.dila.solonepp.core</require>
+
+	<require>org.nuxeo.runtime</require>
+	<require>org.nuxeo.theme.jsf</require>
+	<require>org.nuxeo.ecm.webapp.ui</require>
+	<require>org.nuxeo.ecm.platform.lang</require>
+	<require>org.nuxeo.ecm.actions</require>
+	<require>fr.dila.ecm.platform.routing.web</require>
+	<require>org.nuxeo.ecm.webapp.base</require>
+	<require>org.nuxeo.ecm.platform.smart.query.jsf</require>
+
+	<extension target="components#SEAM_CORE_MANAGER" mode="replace">
+		<!-- 30 min / NXP-9022 fix seam conversation timeout to 30m -->
+		<property name="conversationTimeout">1800000</property>
+		<!-- 2s, default value is 1s -->
+		<property name="concurrentRequestTimeout">60000</property>
+	</extension>
+
+	<extension target="pages#PAGES">
+		<page view-id="/getSyndicationNotification.xhtml" action="#{syndication.getSyndicationNotification}" />
+
+		<!-- Bind URL to the Document URL resolver -->
+		<page view-id="/searchEvent.xhtml"
+			action="#{rechercheDocumentaireActions.navigateToRechercheEventIdURL}" />
+
+	</extension>
+
+	<extension target="application#MODULE">
+		<module>
+			<ejb>${bundle.fileName}</ejb>
+		</module>
+	</extension>
+
+	<!-- Converter -->
+	<extension target="faces-config#CONVERTER">
+		<converter>
+			<converter-id>DocumentModelVocabularyConverter</converter-id>
+			<converter-class>
+				fr.dila.solonepp.web.converter.DocumentModelVocabularyConverter
+			</converter-class>
+		</converter>
+		<converter>
+			<converter-id>OrganigrammeMinIdToLabelConverter</converter-id>
+			<converter-class>
+				fr.dila.st.web.converter.OrganigrammeMinIdToLabelConverter
+			</converter-class>
+		</converter>
+		<converter>
+			<converter-id>OrganigrammeUSIdToLabelConverter</converter-id>
+			<converter-class>
+				fr.dila.st.web.converter.OrganigrammeUSIdToLabelConverter
+			</converter-class>
+		</converter>
+		<converter>
+			<converter-id>OrganigrammePosteIdToLabelConverter</converter-id>
+			<converter-class>
+				fr.dila.st.web.converter.OrganigrammePosteIdToLabelConverter
+			</converter-class>
+		</converter>
+	</extension>
+
+	<extension target="faces-config#NAVIGATION">
+
+		<!-- list des metadonnees evenements -->
+		<navigation-case>
+			<from-outcome>view_evtlist</from-outcome>
+			<to-view-id>/metadonnees/evtlist.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- *********************************************************************** 
+			Espaces des corbeilles *********************************************************************** -->
+
+		<!-- Espace corbeille -->
+		<navigation-case>
+			<from-outcome>view_corbeille</from-outcome>
+			<to-view-id>/corbeille/view_corbeille.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- vue de creation d'un evenement -->
+		<navigation-case>
+			<from-outcome>create_metadonnee_evenement</from-outcome>
+			<to-view-id>/metadonnees/create_metadonnee_evenement.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- vue rectifier un evenement -->
+		<navigation-case>
+			<from-outcome>rectifier_metadonnee_evenement</from-outcome>
+			<to-view-id>/metadonnees/rectifier_metadonnee_evenement.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- vue compléter un evenement -->
+		<navigation-case>
+			<from-outcome>completer_metadonnee_evenement</from-outcome>
+			<to-view-id>/metadonnees/completer_metadonnee_evenement.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- vue modifier un evenement -->
+		<navigation-case>
+			<from-outcome>modifier_metadonnee_evenement</from-outcome>
+			<to-view-id>/metadonnees/modifier_metadonnee_evenement.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- vue de creation d'un evenement successif -->
+		<navigation-case>
+			<from-outcome>create_metadonnee_evenement_successif</from-outcome>
+			<to-view-id>/metadonnees/create_metadonnee_evenement_successif.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- vue transmettre par mail evenement -->
+		<navigation-case>
+			<from-outcome>transmettre_mail_evenement</from-outcome>
+			<to-view-id>/evenement/transmettre_mail_evenement.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Espace de traitement -->
+		<navigation-case>
+			<from-outcome>view_espace_traitement</from-outcome>
+			<to-view-id>/espace_traitement/view_espace_traitement.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Espace de création -->
+		<navigation-case>
+			<from-outcome>view_espace_creation</from-outcome>
+			<to-view-id>/espace_creation/view_espace_creation.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Espace de suivi -->
+		<navigation-case>
+			<from-outcome>view_espace_suivi</from-outcome>
+			<to-view-id>/espace_suivi/view_espace_suivi.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Espace de suivi : dossier signalés -->
+		<navigation-case>
+			<from-outcome>view_espace_suivi_dossiers_signales</from-outcome>
+			<to-view-id>/espace_suivi/view_espace_suivi_dossier_signales.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Espace de suivi : mes alertes -->
+		<navigation-case>
+			<from-outcome>view_espace_suivi_mes_alertes</from-outcome>
+			<to-view-id>/espace_suivi/view_espace_suivi_mes_alertes.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Création d'une alerte -->
+		<navigation-case>
+			<from-outcome>create_alert</from-outcome>
+			<to-view-id>/alerte/create_alert.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>reset_current_user_password</from-outcome>
+			<to-view-id>/reset_current_user_password.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+
+
+		<!-- Création d'un dossier -->
+
+		<!-- *********************************************************************** 
+			Espace d'administration *********************************************************************** -->
+
+		<!-- Batchs -->
+		<navigation-case>
+			<from-outcome>view_suivi_batch</from-outcome>
+			<to-view-id>/batchs/view_suivi_batch.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>view_suivi_batch_planification</from-outcome>
+			<to-view-id>/batchs/view_suivi_batch_planification.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>view_suivi_batch_notification</from-outcome>
+			<to-view-id>/batchs/view_suivi_batch_notification.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Modèle de parapheur -->
+		<navigation-case>
+			<from-outcome>view_modeles_parapheur</from-outcome>
+			<to-view-id>/admin/modeleparapheur/view_modele_parapheur.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Modèle de fond de dossier -->
+		<navigation-case>
+			<from-outcome>view_modeles_fond_dossier</from-outcome>
+			<to-view-id>/admin/modelefonddossier/view_modele_fond_dossier.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Substitution en masse d'un poste dans un modèle de feuille de route -->
+		<navigation-case>
+			<from-outcome>admin_modele_feuille_route_mass_substituer_poste
+			</from-outcome>
+			<to-view-id>/admin/modelefeuilleroute/mass_substituer_poste.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- journal administration -->
+		<navigation-case>
+			<from-outcome>view_admin_journal</from-outcome>
+			<to-view-id>/admin/journal/view_admin_journal.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Organigramme -->
+		<navigation-case>
+			<from-outcome>manage_organigramme</from-outcome>
+			<to-view-id>/admin/organigramme/manage_organigramme.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>view_organigramme</from-outcome>
+			<to-view-id>/admin/organigramme/view_organigramme_template.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Liste des profils -->
+		<navigation-case>
+			<from-outcome>view_profiles</from-outcome>
+			<to-view-id>/admin/profile/view_profiles.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Détail d'un profil (lecture seule) -->
+		<navigation-case>
+			<from-outcome>view_profile</from-outcome>
+			<to-view-id>/admin/profile/view_profile.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Détail d'un profil (modification) -->
+		<navigation-case>
+			<from-outcome>edit_profile</from-outcome>
+			<to-view-id>/admin/profile/edit_profile.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Détail d'un profil (création) -->
+		<navigation-case>
+			<from-outcome>create_profile</from-outcome>
+			<to-view-id>/admin/profile/create_profile.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>create_entite_organigramme</from-outcome>
+			<to-view-id>/admin/organigramme/create_entite_organigramme.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>edit_entite_organigramme</from-outcome>
+			<to-view-id>/admin/organigramme/edit_entite_organigramme.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>create_poste_organigramme</from-outcome>
+			<to-view-id>/admin/organigramme/create_poste_organigramme.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>create_poste_ws_organigramme</from-outcome>
+			<to-view-id>/admin/organigramme/create_poste_ws_organigramme.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>edit_poste_organigramme</from-outcome>
+			<to-view-id>/admin/organigramme/edit_poste_organigramme.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>edit_poste_ws_organigramme</from-outcome>
+			<to-view-id>/admin/organigramme/edit_poste_ws_organigramme.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>create_unite_structurelle_organigramme</from-outcome>
+			<to-view-id>/admin/organigramme/create_unite_structurelle_organigramme.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>edit_unite_structurelle_organigramme</from-outcome>
+			<to-view-id>/admin/organigramme/edit_unite_structurelle_organigramme.xhtml
+			</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Gestion de l'accès -->
+		<navigation-case>
+			<from-outcome>edit_etat-application</from-outcome>
+			<to-view-id>/admin/acces/gestion_acces.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- *********************************************************************** 
+			Espace de Recherche *********************************************************************** -->
+		<!-- Vue de saisie des critères de recherche -->
+		<navigation-case>
+			<from-outcome>recherche_criteria</from-outcome>
+			<to-view-id>/recherche/recherche_criteria.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Vue de saisie de la recherche libre -->
+		<navigation-case>
+			<from-outcome>requete_libre</from-outcome>
+			<to-view-id>/recherche/requete_libre.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<!-- Vue de la liste des messages résultants de la recherche -->
+		<navigation-case>
+			<from-outcome>recherche_result</from-outcome>
+			<to-view-id>/recherche/recherche_result.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+	</extension>
+
+	<install>
+		<unzip from="${bundle.fileName}" to="/" prefix="web">
+			<include>web/nuxeo.war/**</include>
+		</unzip>
+
+		<!-- Traductions -->
+		<delete path="${bundle.fileName}.tmp" />
+		<mkdir path="${bundle.fileName}.tmp" />
+		<unzip from="${bundle.fileName}" to="${bundle.fileName}.tmp" />
+
+		<!-- Surcharge la locale FR car on force la locale à FR dans l'application -->
+		<append from="${bundle.fileName}.tmp/l10n/messages.properties"
+			to="nuxeo.war/WEB-INF/classes/messages_fr.properties" addNewLine="true" />
+		<!-- Surcharge la locale par défaut, au cas où <append from="${bundle.fileName}.tmp/l10n/messages.properties" 
+			to="nuxeo.war/WEB-INF/classes/messages.properties" addNewLine="true" /> -->
+
+		<delete path="${bundle.fileName}.tmp" />
+
+	</install>
+</fragment>
+
+

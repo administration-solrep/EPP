@@ -1,0 +1,15 @@
+<component name="fr.dila.ecm.platform.routing.operations" version="1.0">
+
+  <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
+    point="operations">
+    <operation
+      class="fr.dila.ecm.platform.routing.api.operation.ResumeStepOperation" />
+    <operation
+      class="fr.dila.ecm.platform.routing.api.operation.StepDoneOperation" />
+    <operation
+      class="fr.dila.ecm.platform.routing.api.operation.StepBackToReadyOperation" />
+    <operation
+      class="fr.dila.ecm.platform.routing.api.operation.UpdateCommentsInfoOnDocumentOperation" />  
+  </extension>
+
+</component>

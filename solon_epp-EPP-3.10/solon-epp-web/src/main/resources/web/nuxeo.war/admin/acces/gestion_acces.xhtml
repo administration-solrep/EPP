@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+	<ui:define name="page title">
+		<h:outputText value="#{nuxeoApplicationName}" />
+	</ui:define>
+
+	<ui:define name="body">
+		
+		<ui:include src="/incl/message_banner.xhtml" />
+
+		<div class="tabsContent">
+
+			<h:form id="editEtatApplicationForm">
+				<h:panelGroup>
+					<h1>
+						<h:outputText
+							value="#{etatApplicationActions.getBanniereInfoTitle()}" />
+					</h1>
+				</h:panelGroup>
+
+				<nxl:layout name="banniereInfoLayout" mode="edit"
+					value="#{changeableDocument}" cache="true" />
+
+				<table class="dataInput">
+					<tbody>
+						<tr>
+							<td></td>
+							<td><h:commandButton value="#{messages['command.save']}"
+									action="#{etatApplicationActions.updateDocument}"
+									styleClass="button" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</h:form>
+
+		</div>
+
+	</ui:define>
+
+</nxthemes:composition>

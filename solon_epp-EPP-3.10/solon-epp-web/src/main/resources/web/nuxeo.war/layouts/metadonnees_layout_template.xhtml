@@ -1,0 +1,208 @@
+<f:subview xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxh="http://nuxeo.org/nxweb/html" id="#{layout.id}">
+
+	<style>
+.modifiedValue {
+	border: 1px solid #f00;
+	min-height: 1em;
+}
+</style>
+
+	<script>
+  
+  	var j = jQuery.noConflict();
+	
+  	var evt = '#{evenementActions.getCurrentTypeEvenement()}';
+  	var evtSuc = '#{evenementActions.getCurrentTypeEvenementSuccessif()}';
+  	
+  	var natureLoiId = 'evenement_metadonnees\\:nxl_metadonnees_version\\:nxw_metadonnees_version_natureLoi';
+  	var natureLoiRowId = 'nxw_metadonnees_version_natureLoi_row';
+	var typeLoiId = 'evenement_metadonnees\\:nxl_metadonnees_version\\:nxw_metadonnees_version_typeLoi';
+	var objetId = 'evenement_metadonnees\\:nxl_metadonnees_version\\:nxw_metadonnees_version_objet';
+	var intituleId = 'evenement_metadonnees\\:nxl_metadonnees_version\\:nxw_metadonnees_version_intitule';
+	var dateCongresId = 'evenement_metadonnees\\:nxl_metadonnees_version\\:nxw_metadonnees_version_dateCongresInputDate';
+	var destinataireId = 'evenement_metadonnees\\:nxl_metadonnees_evenement\\:nxw_metadonnees_evenement_destinataire_nodeId';
+	var niveauLectureId = 'evenement_metadonnees\\:nxl_metadonnees_version\\:nxw_metadonnees_version_niveauLecture\\:nxw_metadonnees_version_niveauLecture_select_one_menu';
+	var niveauLectureCodeId = 'evenement_metadonnees\\:nxl_metadonnees_version\\:nxw_metadonnees_version_niveauLecture\\:nxw_metadonnees_version_niveauLecture_input';
+	
+	var previousDateValue;
+	var previousDestinataireValue;
+	
+    j(document).ready(function() {
+        if (evt == 'EVT01' || evt == 'EVT02') {
+          j("#" + natureLoiId).change(function() {
+              updateFields();
+          });
+    
+          j("#" + typeLoiId).change(function() {
+              updateFields();
+          });
+    
+          j("#" + objetId).change(function() {
+              updateFields();
+          });
+        }
+       
+        if (evt == 'EVT35') {
+          setInterval(function() {
+              if (previousDateValue != j("#" + dateCongresId).val()) {
+                  updateFields();
+                  previousDateValue = j("#" + dateCongresId).val();
+              }
+          }, 1000);
+        }
+        
+        if (evt == 'EVT39' || evt == 'EVT43BIS') {
+            j("#" + objetId).change(function() {
+                updateFields();
+            });
+        }
+         
+        if (evt == 'EVT45') {
+            updateObjetEvt45();
+        }
+        
+        if (evt == 'EVT01' || evtSuc == 'EVT09' || evtSuc == 'EVT10' || evtSuc == 'EVT23BIS' || evt == 'EVT25') {
+            setInterval(function() {
+                if (previousDestinataireValue != j("#" + destinataireId).val()) {
+                    updateNiveauLecture();
+                    previousDestinataireValue = j("#" + destinataireId).val();
+                }
+            }, 1000);
+        }
+        
+        
+    });
+
+    function updateFields() {
+        
+        if (evt == 'EVT01' || evt == 'EVT02') {
+            updateIntitule();
+        }
+        if (evt == 'EVT35') {
+            updateObjet();
+        }
+        if (evt == 'EVT39') {
+            updateIntituleWithObjet("Proposition de résolution, déposée en application de l'article 34-1 de la constitution, ");
+        }
+        if (evt == 'EVT43BIS') {
+            updateIntituleWithObjet("Résolution européenne ");
+        }
+        
+    }
+    
+    function updateIntitule() {
+        var natureLoi;
+        if (j("#" + natureLoiId).length > 0) {
+        	natureLoi = j("#" + natureLoiId + " option:selected").text();
+        	natureLoi = jQuery.trim(natureLoi);
+        } else {
+            natureLoi = j("#" + natureLoiRowId).text();
+            natureLoi = jQuery.trim(natureLoi);
+        }
+        var typeLoi = j("#" + typeLoiId + " option:selected").text();
+        var typeLoiValue = j("#" + typeLoiId + " option:selected").val();
+        var objet = j("#" + objetId).val();
+        
+        if("" == typeLoiValue){
+         	 j("#" + intituleId).val(natureLoi +" "+ objet);
+              }
+        else{
+        j("#" + intituleId).val(natureLoi + " de " + typeLoi.toLowerCase() + " " + objet);
+        }
+    }
+    
+    function updateObjet() {
+        var date = j("#" + dateCongresId).val();
+        j("#" + objetId).val("Convocation du congrès " + date);
+    }
+    
+    function updateObjetEvt45() {
+        var d = new Date();
+        var curr_date = d.getDate();
+        var curr_month = d.getMonth() + 1; //months are zero based
+        var curr_year = d.getFullYear();
+        var date = curr_date + "/" + curr_month + "/" + curr_year;
+        j("#" + objetId).val("Insertion du " + date);
+    }
+    
+    function updateIntituleWithObjet(value) {
+        var objet = j("#" + objetId).val();
+        j("#" + intituleId).val(value + objet);
+    }
+    
+    function updateNiveauLecture() {
+        
+        var destinataire = j("#" + destinataireId).val();
+        if (destinataire == 'ASSEMBLEE_NATIONALE') {
+            if ( evtSuc == 'EVT23BIS') {
+                j("#" + niveauLectureId).val("NOUVELLE_LECTURE_AN");
+            }
+            else {
+            	j("#" + niveauLectureId).val("AN");
+            }
+        } else if(destinataire == 'SENAT') {
+            if ( evtSuc == 'EVT23BIS') {
+                j("#" + niveauLectureId).val("NOUVELLE_LECTURE_SENAT");
+            }
+            else {
+            	j("#" + niveauLectureId).val("SENAT");
+            }
+        } 
+  
+    }
+  </script>
+
+	<table class="dataInput">
+		<tbody>
+			<c:set var="isEditMode" value="#{nxl:isBoundToEditMode(layout.mode)}" />
+			<nxl:layoutColumn>
+				<c:if
+					test="#{metadonneesActions.isColumnVisible(layoutColumn.widgets[0].properties.restriction)}">
+					<nxu:set var="valRequired"
+						value="#{metadonneesActions.isColumnRequired(layoutColumn.widgets[0].properties.restriction)}">
+						<tr>
+							<td class="labelColumn"><nxu:set var="customLabel"
+									value="#{metadonneesActions.getCutomWidgetLabel(layoutColumn.widgets[0].properties.restriction)}"
+									cache="true">
+									<h:outputText value="#{customLabel}"
+										rendered="#{customLabel != ''}"
+										styleClass="#{nxu:test(valRequired and isEditMode, 'required', '')}" />
+									<h:outputText value="#{layoutColumn.widgets[0].label}"
+										rendered="#{!layoutColumn.widgets[0].translated and customLabel == ''}"
+										styleClass="#{nxu:test(valRequired and isEditMode, 'required', '')}" />
+									<h:outputText
+										value="#{messages[layoutColumn.widgets[0].label]}"
+										rendered="#{layoutColumn.widgets[0].translated and customLabel == ''}"
+										styleClass="#{nxu:test(valRequired and isEditMode, 'required', '')}" />
+								</nxu:set></td>
+							<td id="#{layoutColumn.widgets[0].id}_row">
+								<div
+									class="#{nxu:test(metadonneesActions.notEqualsLastVersionPublieValue(layoutColumn.widgets[0].getProperty('modifiedField'), layout.mode),'modifiedValue','')}">
+									<nxl:layoutColumnWidget>
+										<nxu:set var="widgetField"
+											value="#{widget.getFieldDefinitions()[0].getPropertyName()}">
+											<nxl:widget widget="#{widget}" value="#{value}" />
+											<!-- affichage -->
+											<c:if
+												test="#{isEditMode and metadonneesActions.displayRequiredField(layout.name, widget.properties.restriction, evenementActions.enregistrerBrouillon)}">
+												<h:outputText value="Cette valeur est requise"
+													styleClass="errorMessage" />
+											</c:if>
+										</nxu:set>
+									</nxl:layoutColumnWidget>
+								</div>
+							</td>
+						</tr>
+					</nxu:set>
+				</c:if>
+			</nxl:layoutColumn>
+		</tbody>
+	</table>
+</f:subview>

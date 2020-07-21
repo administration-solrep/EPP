@@ -1,0 +1,142 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.org/rich">
+	<nxu:set var="contentView"
+		value="#{contentViewActions.getContentViewWithProvider(contentViewName, contentViewDocument, nxu:test(empty contentViewSortInfos, null, contentViewSortInfos), -1, -1)}"
+		cache="true">
+
+		<nxu:set var="selectedResultLayoutColumns"
+			value="#{nxu:test(selectedResultLayoutColumns == null, contentView.resultLayoutColumns, selectedResultLayoutColumns)}"
+			cache="true">
+
+			<c:set var="userSchema" value="#{userManager.userSchemaName}" />
+
+			<c:if test="#{contentView != null}">
+				<a4j:region id="contentViewAjaxRegion_#{contentViewId}">
+
+					<nxu:set var="provider" value="#{contentView.currentPageProvider}"
+						cache="true">
+        #{provider.setSelectedEntries(documentsListsManager.getWorkingList(contentView.selectionListName))}
+
+     <h:form id="journalForm">
+							<div style="padding: 20px 15px 5px 0px;">
+								<h:panelGrid columns="1">
+									<h:panelGroup id="journal_suggestionGroup">
+										<!-- filtre sur la date de debut et la date de fin-->
+										<div style="padding: 0px 5px 5px 5px; float: left;">
+											<h:panelGrid columns="1">
+												<h:panelGroup>
+													<h:outputText value="De " style="padding: 0px 5px 0px 0px;" />
+													<nxu:inputDateTime id="dateDebutJournal"
+														value="#{journalAdminActions.currentDateDebut}"
+														name="dateDebutCalendarJournal" showsTime="true"
+														format="#{nxu:basicDateFormater()}" />
+												</h:panelGroup>
+												<h:panelGroup>
+													<h:outputText value="à " style="padding: 0px 15px 0px 0px;" />
+													<nxu:inputDateTime id="dateFinJournal"
+														value="#{journalAdminActions.currentDateFin}"
+														showsTime="true" format="#{nxu:basicDateFormater()}" />
+												</h:panelGroup>
+											</h:panelGrid>
+										</div>
+										<!-- filtre sur la catégorie d'opération -->
+										<div style="padding: 0px 5px 5px 5px; float: left;">
+											<h:panelGrid columns="1">
+												<h:panelGroup>
+													<!-- filtre sur la catégorie -->
+													<h:outputLabel value="Catégorie d'opération : "
+														style="white-space: nowrap;" />
+													<h:selectOneMenu id="selectCategory"
+														value="#{journalAdminActions.currentCategory}">
+														<nxu:selectItems
+															value="#{journalAdminActions.categoryList}" var="column"
+															itemValue="#{column}" itemLabel="#{messages[column]}"
+															ordering="label" caseSensitive="true" />
+													</h:selectOneMenu>
+													<!-- filtre sur la référence du dossier -->
+													<h:outputLabel value="Dossier : "
+														style="white-space: nowrap;" />
+													<h:inputText id="dossierRefFiler"
+														value="#{journalAdminActions.currentDossierRef}" />
+												</h:panelGroup>
+												<h:panelGroup>
+													<!-- filtre sur l'utilisateur-->
+													<h:outputLabel value="Utilisateurs : "
+														style="white-space: nowrap;" />
+													<h:inputText id="journal_user_suggest"
+														onkeydown="if (event.keyCode == 13) {return false;}" />
+													<h:inputHidden id="userAction" />
+													<rich:suggestionbox id="journal_user_suggestionBox"
+														for="journal_user_suggest" tokens=""
+														suggestionAction="#{userSuggestionActions.getSuggestions}"
+														var="result"
+														fetchValue="#{nxu:userDisplayName(result.id, result.entry[userSchema].firstName, result.entry[userSchema].lastName)}"
+														nothingLabel="#{messages['label.suggestion.noSearchResults']}"
+														minChars="3" frequency="0" requestDelay="100">
+														<f:param name="userSuggestionSearchType" value="USER_TYPE" />
+														<f:param name="userSuggestionMaxSearchResults" value="20" />
+														<a4j:support event="onselect" focus="journal_user_suggest"
+															bypassUpdates="true" reRender="userAction"
+															id="journal_user_listRegion_select">
+															<f:setPropertyActionListener value="#{result.id}"
+																target="#{journalAdminActions.currentUtilisateur}" />
+														</a4j:support>
+														<h:column>
+															<f:subview>
+																<h:graphicImage value="/icons/user.gif" alt="user.gif" />
+																<h:outputText
+																	value="#{nxu:userDisplayName(result.id, result.entry[userSchema].firstName, result.entry[userSchema].lastName)}" />
+															</f:subview>
+														</h:column>
+													</rich:suggestionbox>
+													<h:outputLabel
+														value="#{nxu:userFullName(journalAdminActions.currentUtilisateur)}"
+														rendered="#{!empty journalAdminActions.currentUtilisateur}" />
+												</h:panelGroup>
+											</h:panelGrid>
+										</div>
+									</h:panelGroup>
+									<h:panelGroup>
+										<div style="padding: 0px 5px 5px 5px;">
+											<h:commandButton action="#{contentView.resetPageProvider()}"
+												value="Rechercher" />
+											<h:commandButton action="#{journalAdminActions.reset()}"
+												value="Annuler" />
+										</div>
+									</h:panelGroup>
+								</h:panelGrid>
+							</div>
+						</h:form>
+						<ui:decorate template="/incl/documents_layout_table.xhtml">
+							<ui:param name="documents" value="#{provider.currentSelectPage}" />
+							<ui:param name="listName"
+								value="#{contentView.selectionListName}" />
+							<ui:param name="layoutName"
+								value="#{contentView.currentResultLayout.name}" />
+
+							<ui:define name="empty_folder_label">
+								<h:outputText value="#{messages['label.content.emptyFolder']}"
+									rendered="#{documents.rowCount == 0 and not provider.hasError()}" />
+							</ui:define>
+
+							<ui:define name="error_message">
+								<c:if test="#{provider.hasError()}">
+              #{provider.errorMessage}
+            </c:if>
+							</ui:define>
+						</ui:decorate>
+					</nxu:set>
+				</a4j:region>
+			</c:if>
+		</nxu:set>
+	</nxu:set>
+</div>

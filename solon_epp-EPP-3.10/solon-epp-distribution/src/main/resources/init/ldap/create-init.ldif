@@ -1,0 +1,14 @@
+dn: dc=dila,dc=fr
+objectClass: top
+objectClass: organization
+objectClass: dcObject
+dc: dila
+o: dila.fr
+
+dn: cn=ldapadmin,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+cn: ldapadmin
+sn: Admin
+userPassword: changeme
+

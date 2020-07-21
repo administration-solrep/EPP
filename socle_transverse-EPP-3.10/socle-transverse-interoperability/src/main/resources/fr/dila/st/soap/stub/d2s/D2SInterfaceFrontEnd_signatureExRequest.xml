@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:signatureEx xmlns:tns="http://www.dictao.com/D2S/Interface"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dictao.com/D2S/Interface ../../../../../../wsdl/dictao/d2s/D2SInterfaceFrontEnd.xsd ">
+
+	<!-- Identifiant de la requête. Ce champ est spécifié par l’application 
+		appelante. D2S ne fait que reprendre cette valeur dans les archives et logs 
+		pour pouvoir tracer facilement une requête donnée. -->
+	<tns:requestId>REQUEST_ID_D2S_REPONSES_001</tns:requestId>
+
+	<!-- Identifiant de la transaction à utiliser. En fonction de l’identifiant 
+		passé, la politique de confiance adéquate est sélectionnée par D2S -->
+	<tns:transactionId>CreationSignature_DILA</tns:transactionId>
+
+	<!-- Champ libre d’usage -->
+	<tns:tag>TAG_ D2S_REPONSES_001</tns:tag>
+
+	<!-- Données à signer. XML XADES encodé en base64 -->
+	<tns:dataToSign>
+		<tns:binaryValue dataFormat="b64Enc">aGVsbG9Xb3JsZA==</tns:binaryValue>
+	</tns:dataToSign>
+
+	<!-- Toujours XADES -->
+	<tns:signatureFormat>XADES</tns:signatureFormat>
+
+	<!-- Toujours DETACHED -->
+	<tns:signatureType>DETACHED</tns:signatureType>
+
+
+
+	<tns:signatureParameter>
+<![CDATA[
+		<Parameters>
+			<Manifest>
+				<Reference>
+					<DigestValue>Condensé au format Base 64</DigestValue>
+					<DigestMethod>Algorithme du condensé</DigestMethod>
+					<URI>URI vers le fichier de données</URI>
+				</Reference>
+			</Manifest>
+		</Parameters>	
+]]>		
+	</tns:signatureParameter>
+
+</tns:signatureEx>

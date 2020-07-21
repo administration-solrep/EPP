@@ -1,0 +1,9 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<c:set var="selectionType"
+		value="#{nxu:test(!empty widget.properties.organigrammeSelectionType, widget.properties.organigrammeSelectionType, 'POSTE_TYPE')}" />
+	<h:outputText
+		value="#{organigrammeHelper.getOrganigrammeNodeLabel(selectionType, field_0)}"
+		escape="false" />
+</f:subview>

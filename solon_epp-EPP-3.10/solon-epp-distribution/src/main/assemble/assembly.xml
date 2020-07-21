@@ -1,0 +1,336 @@
+<project name="solonepp-assembly" default="build" xmlns:nx="urn:nuxeo-build"
+	xmlns:artifact="urn:nuxeo-artifact">
+
+	<taskdef resource="org/nuxeo/build/antlib.xml" uri="urn:nuxeo-build" />
+	<taskdef resource="org/nuxeo/build/artifact/antlib.xml" uri="urn:nuxeo-artifact" />
+
+	<filterset id="filter-resources">
+		<filter token="nuxeo.core.version" value="${nuxeo.core.version}" />
+	</filterset>
+
+	<tstamp>
+		<format property="TODAY" pattern="dd/MM/yyyy hh:mm" />
+	</tstamp>
+
+	<target name="init" unless="init.done">
+		<property name="outdir" value="${maven.project.build.directory}" />
+		<property name="stagedir" value="${outdir}/stage" />
+		<property name="finaltarget" value="../target" />
+
+		<!-- Sélection du template Nuxeo à appliquer. Construire avec mvn -Dtemplate=<dev|qa|intedila|intesword|prod>, 
+			valeur par défaut : dev -->
+		<condition property="template" value="${env.template}" else="dev">
+			<isset property="env.template" />
+		</condition>
+		<!-- Distinction pour les livrables internes par la variable environment.sword -->
+		<condition property="environment.sword" value="true">
+			<or>
+				<equals arg1="dev" arg2="${template}" />
+				<equals arg1="qaoracle" arg2="${template}" />
+				<equals arg1="intesword" arg2="${template}" />
+				<equals arg1="qaoraclemgpp" arg2="${template}" />
+			</or>
+		</condition>
+
+		<antcall target="expand" />
+		<property name="init.done" value="true" />
+	</target>
+
+	<target name="build">
+		<antcall target="cleanoutput" />
+		<antcall target="server" />
+	</target>
+
+	<target name="expand" unless="no.build">
+		<artifact:expand depth="5" />
+	</target>
+
+	<target name="cleanoutput">
+		<delete dir="${finaltarget}" />
+	</target>
+
+	<target name="server" depends="init" description="Server packaging">
+		<echo>solonepp-distribution server build (Tomcat)...</echo>
+		<echo>Using template ${template}</echo>
+
+		<mkdir dir="${stagedir}" />
+		<unzip dest="${stagedir}">
+			<artifact:resolveFile
+				key="fr.dila.cm:solrep-case-management-distribution:${nuxeo.cm.version}:zip"
+				classifier="tomcat-cmf" />
+		</unzip>
+		<property name="app.path"
+			value="${stagedir}/solonepp-server-${maven.project.version}" />
+
+		<nx:rename from="${stagedir}/nuxeo-*" to="${app.path}" />
+		<chmod dir="${app.path}" perm="750" includes="*.sh,bin/*.sh,bin/nuxeoctl" />
+
+		<!-- Suppression des plugins inutilisés de CMF -->
+		<delete failonerror="false" verbose="true">
+			<fileset dir="${app.path}/nxserver/bundles" includes="nuxeo-*-opensocial-*" />
+			<!--<fileset dir="${app.path}/nxserver/bundles" includes="nuxeo-*-wss-*"/> 
+				<fileset dir="${app.path}/nxserver/lib" includes="nuxeo-*-wss-*"/> <fileset 
+				dir="${app.path}/lib" includes="nuxeo-*-wss-*"/> -->
+			<fileset dir="${app.path}/nxserver/bundles" includes="nuxeo-user-center-*" />
+			<fileset dir="${app.path}/nxserver/bundles" includes="nuxeo-platform-oauth-*" />
+			<fileset dir="${app.path}/nxserver/bundles" includes="nuxeo-platform-*jbpm-*" />
+			<fileset dir="${app.path}/nxserver/bundles"
+				includes="nuxeo-platform-user-dashboard-compat-*.jar" />
+			<fileset dir="${app.path}/nxserver/bundles" includes="nuxeo-platform-forum-*" />
+			<fileset dir="${app.path}/nxserver/bundles" includes="nuxeo-webengine-blogs-*" />
+			<fileset dir="${app.path}/nxserver/bundles" includes="nuxeo-webengine-sites-*" />
+			<fileset dir="${app.path}/nxserver/bundles" includes="nuxeo-webengine-admin-*" />
+			<fileset dir="${app.path}/nxserver/bundles" includes="nuxeo-platform-imaging-*" />
+			<fileset dir="${app.path}/lib" includes="nuxeo-generic-wss-front-*" /><!-- 
+				<fileset dir="${app.path}/nxserver/bundles" includes="nuxeo-platform-comment-*"/> 
+				<fileset dir="${app.path}/nxserver/plugins" includes="nuxeo-platform-document-routing-*"/> -->
+		</delete>
+
+		<!-- Suppression des jars initiaux richfaces -->
+		<delete failonerror="false" verbose="true">
+			<fileset dir="${app.path}/nxserver/lib" includes="richfaces-impl-3*" />
+			<fileset dir="${app.path}/nxserver/lib" includes="richfaces-ui-3*" />
+		</delete>
+		
+		<!-- Installation des nouveaux jar richfaces patchés -->
+		<copy todir="${app.path}/nxserver/lib">
+			<artifact:resolveFile
+				key="org.richfaces:richfaces-impl-sword:3.3.1.GA-NX2-sword" />
+			<artifact:resolveFile
+							key="org.richfaces:richfaces-ui-sword:3.3.1.GA-NX2-sword" />
+		</copy>
+		
+		<!-- Ajout du module de compression/decompression apache -->
+		<copy todir="${app.path}/nxserver/lib">
+			<artifact:resolveFile key="org.apache.commons:commons-compress:1.8" />
+		</copy>
+
+		<!-- Suppression de quartz 1.5.2 -->
+		<delete failonerror="false" verbose="true">
+			<fileset dir="${app.path}/nxserver/lib" includes="quartz-*" />
+		</delete>
+
+		<!-- Copie des ajouts de Nuxeo par rapport à la distribution CMF -->
+		<copy todir="${app.path}/nxserver/plugins">
+			<artifact:resolveFile
+				key="org.nuxeo.ecm.platform:nuxeo-platform-smart-folder-core:${nuxeo.features.version}" />
+			<artifact:resolveFile
+				key="org.nuxeo.ecm.platform:nuxeo-platform-smart-folder-jsf:${nuxeo.features.version}" />
+			<artifact:resolveFile
+				key="org.nuxeo.ecm.platform:nuxeo-platform-smart-query-api:${nuxeo.features.version}" />
+			<artifact:resolveFile
+				key="org.nuxeo.ecm.platform:nuxeo-platform-smart-query-jsf:${nuxeo.features.version}" />
+		</copy>
+
+		<!-- Copie des plugins de correctifs Nuxeo -->
+		<copy todir="${app.path}/nxserver/plugins">
+			<fileset dir="src/main/resources/plugin" includes="*.jar" />
+		</copy>
+
+		<!-- Initialisation du context path Tomcat -->
+		<replace
+			file="${app.path}/templates/oracle/conf/Catalina/localhost/nuxeo.xml"
+			token='path="/nuxeo"' value='path="/solon-epp"' />
+		<replace
+			file="${app.path}/templates/default/conf/Catalina/localhost/nuxeo.xml"
+			token='path="/nuxeo"' value='path="/solon-epp"' />
+		<replace
+			file="${app.path}/templates/postgresql/conf/Catalina/localhost/nuxeo.xml"
+			token='path="/nuxeo"' value='path="/solon-epp"' />
+		<nx:rename
+			from="${app.path}/templates/oracle/conf/Catalina/localhost/nuxeo.xml"
+			to="${app.path}/templates/oracle/conf/Catalina/localhost/solon-epp.xml" />
+		<nx:rename
+			from="${app.path}/templates/default/conf/Catalina/localhost/nuxeo.xml"
+			to="${app.path}/templates/default/conf/Catalina/localhost/solon-epp.xml" />
+		<nx:rename
+			from="${app.path}/templates/postgresql/conf/Catalina/localhost/nuxeo.xml"
+			to="${app.path}/templates/postgresql/conf/Catalina/localhost/solon-epp.xml" />
+
+		<!-- Copie des jar system de correctifs Nuxeo -->
+		<!--<copy todir="${app.path}/nxserver/bundles">
+			<fileset dir="src/main/resources/system" includes="*.jar"
+				excludes="quartz-*" />
+		</copy>-->
+
+		<!-- Copie de quartz 2.1.3 -->
+		<copy todir="${app.path}/nxserver/lib/">
+			<fileset dir="src/main/resources/system" includes="quartz-*" />
+			<artifact:resolveFile
+				key="org.quartz-scheduler:quartz-oracle:${quartz.version}" />
+		</copy>
+
+		<!-- Déploiement des plugins Socle Transverse et Réponses -->
+		<copy todir="${app.path}/nxserver/plugins">
+			<artifact:set>
+				<includes>
+					<artifact groupId="fr.dila.ecm.platform" type="jar" />
+					<artifact groupId="fr.dila.cm" type="jar" />
+					<artifact groupId="fr.dila.st" type="jar" />
+					<artifact groupId="fr.dila.solonepp" type="jar" />
+				</includes>
+				<excludes>
+					<artifact artifactId="solon-epp-init" />
+					<artifact artifactId="socle-transverse-init" />
+				</excludes>
+			</artifact:set>
+		</copy>
+
+		<!-- Déploiement du dossier tools -->
+		<mkdir dir="${app.path}/tools" />
+		<copy todir="${app.path}/tools">
+			<fileset dir="src/main/resources/tools" includes="**/*" />
+		</copy>
+
+
+		<!-- Déploiement du dossier d'init. -->
+		<mkdir dir="${app.path}/init" />
+		<copy todir="${app.path}/init">
+			<fileset dir="src/main/resources/init" includes="**/*" />
+		</copy>
+
+
+		<!-- Inclusion de toutes les conf dans le repertoire init -->
+		<mkdir dir="${app.path}/init/conf" />
+		<copy todir="${app.path}/init/conf">
+			<fileset dir="src/main/resources/conf" includes="**/*" />
+		</copy>
+
+
+		<!-- Personalisation des Logs -->
+		<copy file="src/main/resources/conf/log4j.xml" todir="${app.path}/lib"
+			overwrite="true" />
+
+		<!-- Personalisation de la conf Nuxeo -->
+		<copy file="src/main/resources/conf/${template}/nuxeo.conf"
+			todir="${app.path}/bin" overwrite="true" />
+
+		<!-- Installation de tous les templates -->
+		<copy todir="${app.path}/templates/" overwrite="true">
+			<fileset dir="src/main/resources/templates" />
+		</copy>
+
+		<!-- Suppression des fichiers superflux -->
+		<delete
+			file="${app.path}/templates/common/config/default-sql-directories-bundle.xml" />
+		<delete
+			file="${app.path}/nxserver/plugins/solon-epp-distribution-${maven.project.version}.jar" />
+
+		<!-- Deploy custom nuxeo.properties -->
+		<replace
+			file="${app.path}/templates/cmf-solonepp/nxserver/config/solonepp.properties"
+			token="%%SNAPSHOT%%" value="${maven.project.version} ${TODAY}" />
+
+		<!-- Installation de jmyspell -->
+		<copy file="src/main/resources/lib/jmyspell-core-1.0.0-beta-2.jar"
+			todir="${app.path}/nxserver/lib/" />
+
+		<!-- Installation du driver JDBC Oracle -->
+		<copy file="src/main/resources/lib/ojdbc6.jar" todir="${app.path}/templates/oracle/lib/" />
+
+		<!-- Suppression du jar pdfbox -->
+		<delete failonerror="false" verbose="true">
+			<fileset dir="${app.path}/nxserver/lib" includes="pdfbox-*" />
+		</delete>
+
+		<!-- Installation du nouveau jar pdfbox 1.6 -->
+		<copy todir="${app.path}/nxserver/lib">
+			<fileset dir="src/main/resources/lib/" includes="pdfbox-*" />
+		</copy>
+
+		<!-- Suppression des jars poi -->
+		<delete failonerror="false" verbose="true">
+			<fileset dir="${app.path}/nxserver/lib" includes="poi-*" />
+		</delete>
+
+		<copy todir="${app.path}/nxserver/lib">
+			<artifact:resolveFile key="org.apache.poi:poi:3.13" />
+			<artifact:resolveFile key="org.apache.poi:poi-scratchpad:3.13" />
+			<artifact:resolveFile key="org.apache.poi:poi-ooxml:3.13" />
+		</copy>
+
+		<!-- Suppression du jar jboss-remoting -->
+		<delete failonerror="false" verbose="true">
+			<fileset dir="${app.path}/nxserver/lib" includes="jboss-seam-remoting-2.1.0.SP1.jar" />
+		</delete>
+
+		<!-- Installation du nouveau jar jboss-remoting -->
+		<!--<copy todir="${app.path}/nxserver/lib">
+			<fileset dir="src/main/resources/lib/" includes="jboss-seam-remoting-2.1.0.SP1-NX1.jar" />
+		</copy>-->
+
+		<!-- Suppression du jar nuxeo-generic-wss-handler -->
+		<delete failonerror="false" verbose="true">
+			<fileset dir="${app.path}/nxserver/lib" includes="nuxeo-generic-wss-handler-*" />
+		</delete>
+
+		<!-- Installation du nouveau jar nuxeo-generic-wss-handler -->
+		<copy todir="${app.path}/nxserver/lib">
+			<fileset dir="src/main/resources/lib/" includes="nuxeo-generic-wss-handler-*" />
+		</copy>
+
+		<!-- Mise à jour de nuxeo-core-storage-sql-extensions-SW-1.0.2.jar -->
+		<!--<copy
+			file="src/main/resources/lib/nuxeo-core-storage-sql-extensions-SW-1.0.2.jar"
+			todir="${app.path}/lib/" />-->
+
+		<!-- Suppression du jar nuxeo-launcher -->
+		<delete failonerror="false" verbose="true">
+			<fileset dir="${app.path}/bin" includes="nuxeo-launcher.jar" />
+		</delete>
+
+		<!-- Installation du nouveau jar nuxeo-launcher -->
+		<copy todir="${app.path}/bin">
+			<fileset dir="src/main/resources/bin/" includes="nuxeo-launcher.jar" />
+		</copy>
+
+		<!-- Activation des templates -->
+		<echo file="${app.path}/templates/common/nuxeo.defaults" append="yes"
+			message="${line.separator}#redefine common template to include our templates${line.separator}nuxeo.template.includes=cmf-solonepp,ldap-local" />
+
+		<!-- numero de version et template selectione -->
+		<echo file="${app.path}/init/version" message="${maven.project.version}" />
+		<echo file="${app.path}/init/template" message="${template}" />
+
+		<antcall target="third-party-libraries" />
+
+		<antcall target="solrep-tools" />
+
+		<!-- Construction du ZIP final -->
+		<antcall target="zip">
+			<param name="distribution" value="server" />
+		</antcall>
+	</target>
+
+	<target name="solrep-tools" if="environment.sword">
+		<copy tofile="${app.path}/liquibase/solon-epp-init-jar-with-dependencies.jar">
+			<artifact:set groupId="fr.dila.solonepp" artifactId="solon-epp-init" classifier="jar-with-dependencies" type="jar" />
+		</copy>
+		<copy tofile="${app.path}/tools/solrep-tools.jar">
+			<artifact:file groupId="fr.dila.st" artifactId="socle-transverse-init" classifier="jar-with-dependencies" type="jar" />
+		</copy>
+	</target>
+
+	<target name="zip">
+		<zip
+			destfile="${outdir}/${maven.project.artifactId}-${maven.project.version}-${distribution}.zip"
+			basedir="${stagedir}" />
+		<echo>Distribution built:
+			${outdir}/${maven.project.artifactId}-${maven.project.version}-${distribution}.zip</echo>
+		<artifact:attach
+			file="${outdir}/${maven.project.artifactId}-${maven.project.version}-${distribution}.zip"
+			classifier="${distribution}" type="zip"
+			target="${maven.project.groupId}:${maven.project.artifactId}" />
+	</target>
+	
+	<target name="third-party-libraries">
+		<copy todir="${app.path}/nxserver/lib" overwrite="false">
+			<artifact:set>
+				<includes>
+					<artifact artifactId="httpclient" />
+					<artifact artifactId="httpcore" />
+				</includes>
+			</artifact:set>
+		</copy>
+	</target>
+</project>

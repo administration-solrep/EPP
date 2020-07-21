@@ -1,0 +1,28 @@
+<p:document xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:p="http://jboss.com/products/seam/pdf"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxp="http://nuxeo.org/nxweb/pdf"
+	title=" #{messages['action.view.document.routing.elements']} - #{currentDocument.title}"
+	author="Reponse (#{currentNuxeoPrincipal.name})"
+	creator="Reponse (#{currentNuxeoPrincipal.name})"
+	orientation="landscape" disposition="attachement">
+
+	<f:facet name="header">
+		<p:font size="12">
+			<p:header borderWidthTop="0" borderColorTop="black"
+				borderWidthBottom="0" alignment="center">
+       Liste des Résultats
+      </p:header>
+		</p:font>
+	</f:facet>
+
+	<nxu:set var="contentView"
+		value="#{contentViewActions.getCurrentContentView()}" cache="true">
+		<c:if test="#{contentView.currentPageProvider != null}">
+			<ui:include src="/incl/export/content_view_pdf_template.xhtml" />
+		</c:if>
+	</nxu:set>
+</p:document>

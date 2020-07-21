@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxh="http://nuxeo.org/nxweb/html">
+
+	<ui:define name="page title">
+		<c:choose>
+			<c:when test="#{suiviBatchActions.isAccessAuthorized()}">
+				<h:outputText value="#{nuxeoApplicationName}" />
+			</c:when>
+			<c:otherwise>
+				<h:outputText
+					value="#{nuxeoApplicationName} - #{messages['command.espaceNonAutorise']}" />
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="body">
+		<c:if test="#{suiviBatchActions.isAccessAuthorized()}">
+
+			<h1>
+				<h:outputText value="#{messages['command.admin.batch.viewsuivi']}" />
+			</h1>
+			<br />
+
+			<ui:include src="/incl/message_banner.xhtml" />
+
+			<h:form id="updateSuiviBatchForm">
+				<!-- Parameter -->
+				<div style="padding: 20px 15px 5px 0px;">
+					<h:panelGrid columns="1">
+						<h:panelGroup id="suiviBatch_suggestionGroup">
+							<!-- filtre sur la date de debut et la date de fin-->
+							<div style="padding: 0px 5px 5px 5px; float: left;"
+								rendered="false">
+								<h:panelGrid columns="2">
+									<h:panelGroup>
+										<h:outputText value="Date de début "
+											style="padding: 0px 5px 0px 0px;" />
+										<nxu:inputDateTime showWeeksBar="false"
+											id="dateDebutSuiviBatch"
+											value="#{suiviBatchActions.currentDateDebut}"
+											name="dateDebutCalendarSuiviBatch" showsTime="true"
+											format="dd/MM/yyyy" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<h:outputText value="Date de fin "
+											style="padding: 0px 15px 0px 0px;" />
+										<nxu:inputDateTime showWeeksBar="false" id="dateFinSuiviBatch"
+											value="#{suiviBatchActions.currentDateFin}" showsTime="true"
+											format="dd/MM/yyyy" />
+									</h:panelGroup>
+								</h:panelGrid>
+							</div>
+						</h:panelGroup>
+						<h:panelGroup>
+							<div style="padding: 0px 5px 5px 5px;">
+								<h:commandButton action="#{suiviBatchActions.cleanCurrentLog()}"
+									value="Rechercher" class="button button2" />
+								<h:commandButton action="#{suiviBatchActions.reset()}"
+									value="Annuler" class="button button2" />
+							</div>
+						</h:panelGroup>
+					</h:panelGrid>
+				</div>
+
+				<!-- Batch View -->
+				<div name="containerTabDiv"
+					style="overflow-x: auto; overflow-y: hidden;">
+					<nxu:set var="batchLogList"
+						value="#{suiviBatchActions.getAllBatchLogger()}" cache="true">
+						<h:dataTable var="currentLog" value="#{batchLogList}"
+							class="dataOutput" rowClasses="dataRowEven,dataRowOdd"
+							rendered="#{!empty batchLogList}">
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Début" />
+								</f:facet>
+								<h:outputText value="#{currentLog.startTime.time}"
+									converter="DateTimeConverter" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Fin" />
+								</f:facet>
+								<h:outputText value="#{currentLog.endTime.time}"
+									converter="DateTimeConverter" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Batch" />
+								</f:facet>
+								<h:outputText value="#{currentLog.name}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Serveur" />
+								</f:facet>
+								<h:outputText value="#{currentLog.server}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Tomcat" />
+								</f:facet>
+								<h:outputText value="#{currentLog.tomcat}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Erreurs" />
+								</f:facet>
+								<h:outputText value="#{currentLog.errorCount}" rendered="#{not empty currentLog.endTime}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Actions" />
+								</f:facet>
+								<nxh:commandLink
+									action="#{suiviBatchActions.setCurrentLog(currentLog.idLog)}">
+									<h:outputText value="Voir le détail" />
+								</nxh:commandLink>
+							</h:column>
+
+						</h:dataTable>
+					</nxu:set>
+
+					<!-- ligne -->
+					<nxu:set var="batchLogResultList"
+						value="#{suiviBatchActions.getCurrentBatchResult()}" cache="true">
+						<h2>
+							<h:outputText value="Détail des Opérations"
+								rendered="#{!empty batchLogResultList}" />
+						</h2>
+						<h:commandButton class="button" value="Fermer les détails"
+							action="#{suiviBatchActions.cleanCurrentLog()}"
+							id="button_close_line" rendered="#{!empty batchLogResultList}" />
+						<h:dataTable var="currentLog" value="#{batchLogResultList}"
+							class="dataOutput" rowClasses="dataRowEven,dataRowOdd"
+							rendered="#{!empty batchLogResultList}">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Batch" />
+								</f:facet>
+								<h:outputText value="#{currentLog.name}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Type" />
+								</f:facet>
+								<h:outputText
+									value="#{suiviBatchActions.getTypeBatch(currentLog.type)}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Début du batch" />
+								</f:facet>
+								<h:outputText value="#{currentLog.startTime.time}"
+									converter="DateTimeConverter" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Fin du batch" />
+								</f:facet>
+								<h:outputText value="#{currentLog.endTime.time}"
+									converter="DateTimeConverter" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Durée de traitement (ms)" />
+								</f:facet>
+								<h:outputText value="#{currentLog.executionTime}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Erreurs" />
+								</f:facet>
+								<h:outputText value="#{currentLog.errorCount}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Résultat" />
+								</f:facet>
+								<h:outputText value="#{currentLog.executionResult}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Message" />
+								</f:facet>
+								<h:outputText value="#{currentLog.text}" />
+							</h:column>
+
+						</h:dataTable>
+					</nxu:set>
+					<script>
+						resize();
+					</script>
+				</div>
+
+			</h:form>
+
+			<script>
+				var j = jQuery.noConflict();
+				j(document).ready(function() {
+					window.onresize = resize;
+					resize();
+				});
+			</script>
+
+		</c:if>
+	</ui:define>
+</nxthemes:composition>

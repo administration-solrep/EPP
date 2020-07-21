@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="fr.dila.st.web.theme.fragments">
+	<documentation>
+		Contributions to Dila NXThemes Fragments.
+		Additional DILA Model and Fragment types are registered here.
+	</documentation>
+
+	<require>org.nuxeo.theme.core</require>
+	<require>org.nuxeo.theme.fragments</require>
+	<require>org.nuxeo.case-management.themes</require>
+
+	<!-- add new model type for DILA -->
+	<extension target="org.nuxeo.theme.services.ThemeService"
+		point="models">
+
+		<!-- note : DilaItem override AbstractModel -->
+		<model name="DilaItem">
+			<class>fr.dila.st.web.theme.models.DilaItem</class>
+		</model>
+
+	</extension>
+
+	<!-- add new fragment for DILA (use the new model type) -->
+	<extension target="org.nuxeo.theme.services.ThemeService"
+		point="fragments">
+
+		<!-- add specific DILA fragment type similar to genericFragment (override 
+			AbstractFragment) -->
+		<fragment name="DilaFragment">
+			<class>fr.dila.st.web.theme.fragments.DilaFragment</class>
+			<model-type>DilaItem</model-type>
+			<dynamic>false</dynamic>
+		</fragment>
+
+	</extension>
+</component>
+

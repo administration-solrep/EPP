@@ -1,0 +1,8 @@
+nuxeo.db.url=jdbc:h2:nuxeo;create=true;MVCC=true
+nuxeo.db.name=
+nuxeo.db.user=
+nuxeo.db.password=
+nuxeo.db.driver=org.h2.Driver
+nuxeo.db.classpath=
+
+solrep.db.liquibase.contexts=dev,solonepp

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<component name="org.nuxeo.ecm.classification.web.resultsproviders">
+
+  <extension target="org.nuxeo.ecm.webapp.pagination.ResultsProviderService"
+    point="model">
+
+    <resultsProvider name="CLASSIFICATION_ROOTS" farm="classificationActions" />
+    <resultsProvider name="CURRENT_DOCUMENT_CLASSIFICATIONS"
+      farm="classificationActions" />
+    <resultsProvider name="CURRENT_SELECTION_FOR_CLASSIFICATION_PROVIDER"
+      farm="classificationActions" />
+
+  </extension>
+
+</component>

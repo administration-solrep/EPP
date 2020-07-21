@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+
+<!-- Cet composant contribue les répertoires de l'organigramme de SOLON EPP. -->
+<component name="fr.dila.solonepp.organigramme">
+	<implementation class="org.nuxeo.ecm.directory.ldap.LDAPDirectoryDescriptor" />
+	<implementation class="org.nuxeo.ecm.directory.ldap.LDAPServerDescriptor" />
+
+	<require>org.nuxeo.ecm.directory.ldap.LDAPDirectoryFactory</require>
+	<require>org.nuxeo.ecm.directory.ldap.storage.users</require>
+	<require>fr.dila.solonepp.core.schema</require>
+
+	<extension target="org.nuxeo.ecm.directory.ldap.LDAPDirectoryFactory"
+		point="directories">
+
+		<!-- Répertoire institution -->
+		<directory name="institutionDirectory">
+
+			<!-- Reuse the default server configuration defined for userDirectory -->
+			<server>default</server>
+
+			<schema>institution</schema>
+
+			<idField>groupName</idField>
+
+			<searchBaseDn>ou=institution,ou=SolonEpp,dc=dila,dc=fr</searchBaseDn>
+			<searchFilter>(|(objectClass=institution)(objectClass=groupOfURLs))</searchFilter>
+			<searchScope>subtree</searchScope>
+
+			<readOnly>false</readOnly>
+
+			<!-- comment <cache* /> tags to disable the cache -->
+			<!-- cache timeout in seconds -->
+			<cacheTimeout>3600</cacheTimeout>
+
+			<!-- maximum number of cached entries before global invalidation -->
+			<cacheMaxSize>1000</cacheMaxSize>
+
+			<creationBaseDn>ou=institution,ou=SolonEpp,dc=dila,dc=fr</creationBaseDn>
+			<creationClass>top</creationClass>
+			<creationClass>groupOfUniqueNames</creationClass>
+			<creationClass>institution</creationClass>
+
+			<rdnAttribute>cn</rdnAttribute>
+			<fieldMapping name="groupName">cn</fieldMapping>
+			<fieldMapping name="fullPath">dn</fieldMapping>
+
+			<references>
+				<!-- LDAP reference resolve DNs embedded in uniqueMember attributes If 
+					the target directory has no specific filtering policy, it is most of the 
+					time not necessary to enable the 'forceDnConsistencyCheck' policy. Enabling 
+					this option will fetch each reference entry to ensure its existence in the 
+					target directory. -->
+
+				<ldapReference field="subUnitesStructurelles"
+					directory="uniteStructurelleDirectory" forceDnConsistencyCheck="false"
+					staticAttributeId="uniqueMember" />
+
+				<ldapReference field="subPostes" directory="posteDirectory"
+					forceDnConsistencyCheck="false" staticAttributeId="uniqueMember" />
+
+			</references>
+		</directory>
+
+		<!-- Répertoire unité structurelle -->
+		<directory name="uniteStructurelleDirectory">
+
+			<!-- Reuse the default server configuration defined for userDirectory -->
+			<server>default</server>
+
+			<schema>organigramme-unite-structurelle</schema>
+
+			<idField>groupName</idField>
+
+			<searchBaseDn>ou=uniteStructurelle,ou=SolonEpp,dc=dila,dc=fr</searchBaseDn>
+			<searchFilter>(|(objectClass=uniteStructurelle)(objectClass=groupOfURLs))</searchFilter>
+			<searchScope>subtree</searchScope>
+
+			<readOnly>false</readOnly>
+
+			<!-- comment <cache* /> tags to disable the cache -->
+			<!-- cache timeout in seconds -->
+			<cacheTimeout>3600</cacheTimeout>
+
+			<!-- maximum number of cached entries before global invalidation -->
+			<cacheMaxSize>1000</cacheMaxSize>
+
+			<creationBaseDn>ou=uniteStructurelle,ou=SolonEpp,dc=dila,dc=fr</creationBaseDn>
+			<creationClass>top</creationClass>
+			<creationClass>groupOfUniqueNames</creationClass>
+			<creationClass>uniteStructurelle</creationClass>
+
+			<rdnAttribute>cn</rdnAttribute>
+			<fieldMapping name="groupName">cn</fieldMapping>
+			<fieldMapping name="fullPath">dn</fieldMapping>
+			<fieldMapping name="dateDebut">dateDebut</fieldMapping>
+			<fieldMapping name="dateFin">dateFin</fieldMapping>
+			<fieldMapping name="type">type</fieldMapping>
+
+			<references>
+				<!-- LDAP reference resolve DNs embedded in uniqueMember attributes If 
+					the target directory has no specific filtering policy, it is most of the 
+					time not necessary to enable the 'forceDnConsistencyCheck' policy. Enabling 
+					this option will fetch each reference entry to ensure its existence in the 
+					target directory. -->
+
+				<!-- Référence inverse aux unités structurelles parentes -->
+				<ldapReference field="subUnitesStructurelles"
+					directory="uniteStructurelleDirectory" forceDnConsistencyCheck="false"
+					staticAttributeId="uniqueMember" />
+
+				<ldapReference field="subPostes" directory="posteDirectory"
+					forceDnConsistencyCheck="false" staticAttributeId="uniqueMember" />
+
+				<!-- Référence inverse aux unités structurelles parentes -->
+				<inverseReference field="parentUnitesStructurelles"
+					directory="uniteStructurelleDirectory" dualReferenceField="subUnitesStructurelles" />
+
+				<!-- Référence inverse aux institutions parentes -->
+				<inverseReference field="parentInstitutions"
+					directory="institutionDirectory" dualReferenceField="subUnitesStructurelles" />
+
+				<!-- LDAP tree reference resolves children following the ldap tree structure. 
+					Available scopes are "onelevel" (default), "subtree". Children with same 
+					id than parent will be filtered. Enabling this option will fetch each reference 
+					entry to ensure its existence in the target directory. WARNING: Edit is NOT 
+					IMPLEMENTED: modifications to this field will be ignored when saving the 
+					entry. -->
+
+
+			</references>
+		</directory>
+
+		<!-- Répertoire poste -->
+		<directory name="posteDirectory">
+
+			<!-- Reuse the default server configuration defined for userDirectory -->
+			<server>default</server>
+
+			<schema>organigramme-poste</schema>
+
+			<idField>groupName</idField>
+
+			<searchBaseDn>ou=poste,ou=SolonEpp,dc=dila,dc=fr</searchBaseDn>
+			<searchFilter>(|(objectClass=poste)(objectClass=groupOfURLs))</searchFilter>
+			<searchScope>subtree</searchScope>
+
+			<readOnly>false</readOnly>
+
+			<!-- comment <cache* /> tags to disable the cache -->
+			<!-- cache timeout in seconds -->
+			<cacheTimeout>3600</cacheTimeout>
+
+			<!-- maximum number of cached entries before global invalidation -->
+			<cacheMaxSize>1000</cacheMaxSize>
+
+			<creationBaseDn>ou=poste,ou=SolonEpp,dc=dila,dc=fr</creationBaseDn>
+			<creationClass>top</creationClass>
+			<creationClass>groupOfUniqueNames</creationClass>
+			<creationClass>poste</creationClass>
+
+			<rdnAttribute>cn</rdnAttribute>
+			<fieldMapping name="groupName">cn</fieldMapping>
+			<fieldMapping name="fullPath">dn</fieldMapping>
+			<fieldMapping name="dateDebut">dateDebut</fieldMapping>
+			<fieldMapping name="dateFin">dateFin</fieldMapping>
+			<fieldMapping name="wsUrl">wsUrl</fieldMapping>
+			<fieldMapping name="wsUser">wsUser</fieldMapping>
+			<fieldMapping name="wsPassword">wsPassword</fieldMapping>
+			<fieldMapping name="wsKeyAlias">dateFin</fieldMapping>
+
+			<references>
+
+				<!-- LDAP reference resolve DNs embedded in uniqueMember attributes If 
+					the target directory has no specific filtering policy, it is most of the 
+					time not necessary to enable the 'forceDnConsistencyCheck' policy. Enabling 
+					this option will fetch each reference entry to ensure its existence in the 
+					target directory. -->
+
+				<ldapReference field="members" directory="userLdapDirectory"
+					forceDnConsistencyCheck="false" staticAttributeId="uniqueMember" />
+
+				<!-- Référence inverse aux unités structurelles parentes -->
+				<inverseReference field="parentUnitesStructurelles"
+					directory="uniteStructurelleDirectory" dualReferenceField="subPostes" />
+
+				<!-- Référence inverse aux institutions parentes -->
+				<inverseReference field="parentInstitutions"
+					directory="institutionDirectory" dualReferenceField="subPostes" />
+			</references>
+		</directory>
+	</extension>
+</component>

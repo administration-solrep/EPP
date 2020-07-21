@@ -1,0 +1,46 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout">
+
+<style>
+	.comment_count {
+		background-color: #635A4D;
+		border-radius: 2px;
+		color: #fff;
+		padding: 0px 1px;
+		font-size: 10px;
+		position: absolute;
+		right: -2px;
+		top:1px;
+		font-weight: bold;
+	}
+</style>
+	
+	<c:if test="#{routeStepNoteActions.hasComment(field_0)}">
+		<c:choose>
+			<c:when test="#{param.theme != 'reponses/print'}">
+				<h:commandLink
+					action="#{routeStepNoteActions.viewRouteStepNote(field_0)}"
+					styleClass="ROUTE_STEP_NOTE_VIEW_ICON"
+					style="position:relative">
+					<h:graphicImage value="/img/icons/note_16.png"
+						alt="#{messages['st.feuilleRoute.etape.note.view.label']}"
+						title="#{messages['st.feuilleRoute.etape.note.view.label']}" />
+					<span class="comment_count">
+						#{routeStepNoteActions.getCommentNumber(field_0)}
+					</span>
+				</h:commandLink>
+			</c:when>
+			<c:otherwise>
+				<h:graphicImage value="/img/icons/note_16.png"
+					alt="#{messages['st.feuilleRoute.etape.note.view.label']}"
+					title="#{messages['st.feuilleRoute.etape.note.view.label']}" />
+			</c:otherwise>
+		</c:choose>
+	</c:if>
+</div>
+

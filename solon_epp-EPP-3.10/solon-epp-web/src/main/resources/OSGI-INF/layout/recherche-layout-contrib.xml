@@ -1,0 +1,83 @@
+<component name="fr.dila.solonepp.web.layout.recherche">
+	<require>fr.dila.solonepp.web.widget.recherche</require>
+
+	<!-- recherche layout -->
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="layouts">
+
+		<!-- layout recherche rapide -->
+		<layout name="recherche_rapide_layout">
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>recherche_type_evenement</widget>
+				</row>
+				<row>
+					<widget>recherche_objet_dossier</widget>
+					<widget>recherche_date_evenement</widget>
+					<widget>recherche_date_periode_evenement</widget>
+				</row>
+				<row>
+					<widget>recherche_id_evenement</widget>
+					<widget>recherche_id_dossier</widget>
+				</row>
+				<row>
+					<widget>recherche_emetteur</widget>
+					<widget>recherche_destinataire</widget>
+					<widget>recherche_copie</widget>
+				</row>
+			</rows>
+		</layout>
+
+		<layout name="recherche_documentaire_requete_libre_layout">
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>recherche_champ_libre</widget>
+				</row>
+			</rows>
+		</layout>
+
+		<!-- Layout des critères communs la recherche documentaire -->
+		<layout name="recherche_documentaire_critere_commun_layout">
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>recherche_type_evenement_par_categorie</widget>
+				</row>
+				<row>
+					<widget>recherche_objet_dossier</widget>
+					<widget>recherche_date_evenement</widget>
+					<widget>recherche_date_periode_evenement</widget>
+				</row>
+				<row>
+					<widget>recherche_id_evenement</widget>
+					<widget>recherche_id_dossier</widget>
+				</row>
+				<row>
+					<widget>recherche_emetteur</widget>
+					<widget>recherche_destinataire</widget>
+					<widget>recherche_copie</widget>
+				</row>
+			</rows>
+		</layout>
+
+		<!-- Layout des critères communs la recherche documentaire -->
+		<layout name="recherche_documentaire_critere_integral_layout">
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>recherche_piecejointefichier_fulltext</widget>
+				</row>
+			</rows>
+		</layout>
+	</extension>
+</component>

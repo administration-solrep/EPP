@@ -1,0 +1,44 @@
+<tr xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util">
+
+	<nxu:set var="prop" value="#{evtp.get(key)}" cache="true">
+		<td><h:outputText value="#{prop.getName()}" /></td>
+		<td><h:outputText value="#{prop.getType()}" /></td>
+		<td><h:graphicImage value="/icons/task.png" alt="Oui" title="Oui"
+				rendered="#{prop.isRenseignerEpp()}" /></td>
+		<td><h:graphicImage value="/icons/task.png" alt="Oui" title="Oui"
+				rendered="#{prop.isObligatoire()}" /></td>
+		<td><nxu:set var="defval" value="#{prop.getDefaultValue()}"
+				cache="true">
+				<c:if test="#{!empty defval}">
+					<table class="dataOutput">
+						<thead>
+							<tr>
+								<th><h:outputText value="Type" /></th>
+								<th><h:outputText value="Source" /></th>
+								<th><h:outputText value="Valeur" /></th>
+								<th><h:outputText value="Destination" /></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><h:outputText value="#{defval.getType()}" /></td>
+								<td><h:outputText value="#{defval.getSource()}" /></td>
+								<td><h:outputText value="#{defval.getValue()}" /></td>
+								<td><h:outputText value="#{defval.getDestination()}" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</c:if>
+			</nxu:set></td>
+		<td><h:graphicImage value="/icons/task.png" alt="Oui" title="Oui"
+				rendered="#{prop.isModifiable()}" /></td>
+		<td><h:graphicImage value="/icons/task.png" alt="Oui" title="Oui"
+				rendered="#{prop.isMultiValue()}" /></td>
+		<td><h:graphicImage value="/icons/task.png" alt="Oui" title="Oui"
+				rendered="#{prop.isFicheDossier()}" /></td>
+		<td><h:graphicImage value="/icons/task.png" alt="Oui" title="Oui"
+				rendered="#{prop.isVisibility()}" /></td>
+	</nxu:set>
+</tr>

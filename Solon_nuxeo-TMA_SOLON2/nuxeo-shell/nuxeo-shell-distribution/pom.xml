@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.nuxeo.shell</groupId>
+    <artifactId>nuxeo-shell-parent</artifactId>
+    <version>SW-1.0.7</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+  <artifactId>nuxeo-shell</artifactId>
+  <name>Nuxeo Shell</name>
+  <description>Meta project to build the all-in-one distribution of Nuxeo Shell.</description>
+  <!-- need jar packaging to have the shaded plugin working correctly -->
+  <packaging>jar</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.nuxeo.shell</groupId>
+      <artifactId>nuxeo-shell-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.shell</groupId>
+      <artifactId>nuxeo-shell-automation</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.shell</groupId>
+      <artifactId>nuxeo-shell-equinox</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.automation</groupId>
+      <artifactId>nuxeo-automation-client</artifactId>
+    </dependency>
+    <!-- dependencies needed by automation client -->
+    <dependency>
+      <groupId>net.sf.json-lib</groupId>
+      <artifactId>json-lib</artifactId>
+      <classifier>jdk15</classifier>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.sf.ezmorph</groupId>
+      <artifactId>ezmorph</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <!-- needed to add correct Implementation-Version -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <index>true</index>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <!-- needed for building the all in one JAR -->
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <!-- merge services files -->
+              <transformers>
+                <transformer
+                  implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+              </transformers>
+              <!--finalName>nuxeo-shell-${project.version}</finalName -->
+              <createSourcesJar>true</createSourcesJar>
+              <createDependencyReducedPom>false</createDependencyReducedPom>
+              <keepDependenciesWithProvidedScope>true</keepDependenciesWithProvidedScope>
+              <shadedArtifactAttached>false</shadedArtifactAttached>
+              <!--shadedClassifierName>all</shadedClassifierName -->
+              <artifactSet>
+                <excludes>
+                  <exclude>logkit:logkit</exclude>
+                  <exclude>avalon-framework</exclude>
+                  <exclude>org.nuxeo.common</exclude>
+                  <exclude>org.nuxeo.runtime</exclude>
+                  <exclude>junit:junit</exclude>
+                  <exclude>jmock:jmock</exclude>
+                  <exclude>org.slf4j:slf4j-nop</exclude>
+                  <exclude>org.slf4j:slf4j-jdk14</exclude>
+                  <exclude>org.apache.maven.wagon:wagon-webdav-jackrabbit</exclude>
+                </excludes>
+              </artifactSet>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-jarsigner-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <storetype>${keystore.type}</storetype>
+          <keystore>${keystore.path}</keystore>
+          <alias>${keystore.alias}</alias>
+          <storepass>${keystore.password}</storepass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

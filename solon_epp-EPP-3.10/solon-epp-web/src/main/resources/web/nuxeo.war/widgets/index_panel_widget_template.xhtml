@@ -1,0 +1,79 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
+	<nxu:set var="indexationZone"
+		value="#{widget.properties['indexationZone']}">
+		<a4j:outputPanel id="indexPanel_#{indexationZone}"
+			ajaxRendered="false">
+			<style type="text/css">
+<!--
+.TableRow1 {
+	background-color: #D0E6E0;
+}
+
+.TableRow2 {
+	background-color: #E8F7F1;
+}
+
+.TableColumn {
+	text-align: center
+}
+
+.TableClass {
+	color: #000000;
+	padding: 2;
+	border-style: solid;
+	border-width: 2px;
+}
+
+.TableHeader {
+	color: #000000;
+	background-color: #F1F1F1;
+	padding: 3;
+	text-align: center;
+	border: none;
+}
+
+.TableFooter {
+	background-color: #F1F1F1;
+}
+-->
+</style>
+			<!-- Peut-être dans un widget séparé ??? -->
+			<nxu:dataTable
+				value="#{indexActions.getListIndexByZone(indexationZone)}"
+				var="item"
+				rendered="#{not empty indexActions.getListIndexByZone(indexationZone)}"
+				bgcolor="#F1F1F1" first="0" rules="all" columnClasses="TableColumn"
+				styleClass="TableClass" headerClass="TableHeader"
+				footerClass="TableFooter">
+				<f:facet name="header">
+					<h:outputText value="#{indexationZone}" />
+				</f:facet>
+				<nxu:column style="color:green; font-weight:bold">
+					<f:facet name="header">
+						<h:outputText value="Catégorie" />
+					</f:facet>
+					<h:outputText value="#{messages[item[2]]}" />
+				</nxu:column>
+				<nxu:column style="color:green; font-weight:bold">
+					<f:facet name="header">
+						<h:outputText value="Label" />
+					</f:facet>
+					<h:outputText value="#{item[1]}" />
+				</nxu:column>
+				<nxu:column>
+					<a4j:commandLink id="#{widget.id}_removeIndex"
+						action="#{indexActions.removeIndex(item)}" immediate="true"
+						reRender="indexPanel_#{indexationZone}">
+						<h:graphicImage value="/icons/action_delete_mini.gif" />
+					</a4j:commandLink>
+				</nxu:column>
+			</nxu:dataTable>
+		</a4j:outputPanel>
+	</nxu:set>
+</div>

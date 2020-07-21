@@ -1,0 +1,92 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<style>
+.rich-tree-node-selected {
+	border-color: #FFFFFF;
+}
+
+.rich-tree-node-highlighted {
+	text-decoration: none;
+	color: #000000;
+}
+
+.add_icon {
+	padding-left: 3px;
+}
+
+.inactive {
+	color: #888888;
+}
+</style>
+
+	<h:form id="viewOrganigrammeForm">
+		<rich:tree id="organigrammeTree" style="width:300px" switchType="ajax"
+			ajaxSingle="true" iconExpanded="/icons/toggle_minus.png"
+			iconCollapsed="/icons/toggle_plus.png"
+			changeExpandListener="#{organigrammeTree.changeExpandListener}"
+			adviseNodeOpened="#{organigrammeTree.adviseNodeOpened}">
+
+			<rich:recursiveTreeNodesAdaptor id="node" var="item"
+				roots="#{organigrammeTree.organigramme}" nodes="#{item.children}">
+
+				<rich:treeNode rendered="#{item.typeValue == 'INS'}" id="ins"
+					iconLeaf="/img/icons/base_organigramme.png"
+					icon="/img/icons/base_organigramme.png">
+
+					<h:outputText value="#{item.label}" style="font-weight: bold;"
+						styleClass="#{item.isActive() == false ? 'inactive' : ''}" />
+					<rich:componentControl event="oncontextmenu" for="menuIns"
+						operation="show"
+						rendered="#{organigrammeManagerActions.allowUpdateOrganigramme(item.ministereId)}">
+						<f:param value="#{item.id}" name="id" />
+						<f:param value="#{item.typeValue}" name="type" />
+					</rich:componentControl>
+				</rich:treeNode>
+
+				<rich:treeNode rendered="#{item.typeValue == 'UST'}" id="ust"
+					iconLeaf="/img/icons/unite_structurelle.png"
+					icon="/img/icons/unite_structurelle.png">
+
+					<h:outputText value="#{item.label}"
+						styleClass="#{item.isActive() == false ? 'inactive' : ''}" />
+					<rich:componentControl event="oncontextmenu" for="menuUst"
+						operation="show"
+						rendered="#{organigrammeManagerActions.allowUpdateOrganigramme(item.ministereId)}">
+						<f:param value="#{item.id}" name="id" />
+						<f:param value="#{item.typeValue}" name="type" />
+						<f:param value="#{item.active}" name="active" />
+					</rich:componentControl>
+				</rich:treeNode>
+
+				<rich:treeNode rendered="#{item.typeValue == 'PST'}" id="pst"
+					iconLeaf="/img/icons/poste.png" icon="/img/icons/poste.png">
+
+					<h:outputText value="#{item.label}"
+						styleClass="#{item.isActive() == false ? 'inactive' : ''}" />
+					<rich:componentControl event="oncontextmenu" for="menuPoste"
+						operation="show"
+						rendered="#{organigrammeManagerActions.allowUpdateOrganigramme(item.ministereId)}">
+						<f:param value="#{item.id}" name="id" />
+						<f:param value="#{item.typeValue}" name="type" />
+						<f:param value="#{item.active}" name="active" />
+					</rich:componentControl>
+				</rich:treeNode>
+
+				<rich:treeNode rendered="#{item.typeValue == 'USR'}" id="usr"
+					iconLeaf="/img/icons/user_16.png" icon="/img/icons/user_16.png">
+
+					<h:outputText value="#{item.label}"
+						styleClass="#{item.isActive() == false ? 'inactive' : ''}" />
+				</rich:treeNode>
+
+			</rich:recursiveTreeNodesAdaptor>
+
+		</rich:tree>
+	</h:form>
+</div>

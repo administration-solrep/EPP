@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue les types de documents créés par les services 
+	de Nuxeo. -->
+<component name="fr.dila.solonepp.core.document.type">
+	<require>fr.dila.cm.service.documentType</require>
+	<extension target="fr.dila.cm.DocumentTypeService" point="documentType">
+		<documentType>
+			<envelopeDocType>Dossier</envelopeDocType>
+			<postDocType>DossierLink</postDocType>
+			<mailboxDocType>Mailbox</mailboxDocType>
+			<caseItemDocType>CaseItem</caseItemDocType>
+		</documentType>
+	</extension>
+</component>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:nxu="http://nuxeo.org/nxweb/util"
+  xmlns:nxthemes="http://nuxeo.org/nxthemes"
+  xmlns:nxd="http://nuxeo.org/nxweb/document">
+
+  <ui:define name="page title">
+    <h:outputText value="#{messages['title.search.results']}"/>
+  </ui:define>
+
+  <ui:define name="body">
+    <ui:include src="/incl/message_banner.xhtml"/>
+    <div id="content">
+
+      <ui:decorate template="/classification/mass_classification_request_template.xhtml">
+        <ui:define name="documents_to_classify">
+          <nxu:methodResult name="provider" value="#{resultsProvidersCache.get('CURRENT_SELECTION_FOR_CLASSIFICATION_PROVIDER')}" >
+            <ui:decorate template="/classification/classified_documents_table.xhtml">
+              <ui:param name="documents" value="#{currentSelectionEmailsSelection}" />
+              <ui:param name="showCheckboxes" value="true" />
+              <ui:param name="provider" value="#{provider}" />
+              <ui:param name="providerName" value="CURRENT_SELECTION_FOR_CLASSIFICATION_PROVIDER" />
+              <ui:param name="listName" value="CURRENT_SELECTION_FOR_CLASSIFICATION" />
+            </ui:decorate>
+          </nxu:methodResult>
+        </ui:define>
+        <ui:define name="cancel_button">
+          <h:commandButton type="button" class="button"
+            value="#{messages['command.cancel']}"
+            action="#{classificationActions.cancelCurrentSelectionClassificationForm}"
+            immediate="true" />
+        </ui:define>
+      </ui:decorate>
+    </div>
+  </ui:define>
+
+</nxthemes:composition>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant configure les batchs de l'application SOLON EPP. /!\ Attention 
+	à la syntaxe non standard de l'expression cron. Voir http://www.jarvana.com/jarvana/view/opensymphony/quartz/1.6.1/quartz-1.6.1-javadoc.jar!/org/quartz/CronExpression.html -->
+<component name="fr.dila.solonepp.core.scheduler">
+	<require>org.nuxeo.runtime.started</require>
+	<extension
+		target="org.nuxeo.ecm.platform.scheduler.core.service.SchedulerRegistryService"
+		point="schedule">
+		<!-- Batch de notification aux webservices des institutions -->
+		<schedule id="wsNotificationEvent">
+			<username>${nuxeo.batch.user}</username>
+			<password>${nuxeo.batch.password}</password>
+
+			<eventId>wsNotificationEvent</eventId>
+			<eventCategory>cmf</eventCategory>
+
+			<!-- Toutes les jours à 10 heures -->
+			<cronExpression>${nuxeo.batch.notificationBatchEvent}</cronExpression>
+		</schedule>
+
+		<!-- batch lanceur général -->
+		<schedule id="lanceurGeneralBatchEvent">
+			<username>${nuxeo.batch.user}</username>
+			<password>${nuxeo.batch.password}</password>
+
+			<eventId>lanceurGeneralBatchEvent</eventId>
+			<eventCategory>cmf</eventCategory>
+
+			<!-- Tous les jours à 22H par défaut -->
+			<cronExpression>${nuxeo.batch.lanceurGeneralEvent}</cronExpression>
+		</schedule>
+
+	</extension>
+</component>

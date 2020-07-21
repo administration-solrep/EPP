@@ -1,0 +1,21 @@
+<f:subview xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" id="#{widget.id}">
+
+	<c:choose>
+		<c:when test="#{widget.mode == 'create' or widget.mode == 'edit'}">
+			<h:inputText id="#{widget.id}_email" value="#{field_0}"
+				styleClass="#{widget.properties.styleClass}"
+				required="#{widget.properties.required}"
+				validator="#{userManagerActions.validateMail}" />
+			<h:message for="#{widget.id}_email" styleClass="errorMessage" />
+		</c:when>
+		<c:otherwise>
+			<a href="mailto:#{field_0}"><h:outputText value="#{field_0}" /></a>
+		</c:otherwise>
+	</c:choose>
+
+</f:subview>

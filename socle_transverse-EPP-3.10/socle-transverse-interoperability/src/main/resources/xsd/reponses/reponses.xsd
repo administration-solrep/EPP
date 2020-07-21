@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	elementFormDefault="qualified"
+
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:qn="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:repco="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons">
+
+	<!-- ====================================== -->
+	<!-- Imports -->
+	<!-- ====================================== -->
+	<xs:import schemaLocation="../commons/commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons" />
+	<xs:import schemaLocation="reponses-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons" />
+	<xs:import schemaLocation="questions.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions" />
+
+	<!-- ====================================== -->
+	<!-- Complex types -->
+	<!-- ====================================== -->
+
+	<xs:complexType name="ReponseQuestion">
+		<xs:sequence>
+			<xs:element name="id_questions" type="repco:QuestionId"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="reponse" type="Reponse" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Reponse">
+		<xs:sequence>
+			<xs:element name="ministre_reponse" type="repco:Ministre"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="texte_reponse" type="commons:CDataString"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="fichiers_joints" type="repco:Fichier"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReponsePubliee">
+		<xs:sequence>
+			<xs:element name="ministre_reponse" type="repco:Ministre"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="texte_reponse" type="commons:CDataString"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="date_jo" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="page_jo" type="xs:int" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="fichiers_joints" type="repco:Fichier"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="ControleReponses">
+		<xs:sequence>
+			<xs:element name="referencePublication" type="repco:ReferencePublication"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="ministre_jo" type="repco:MinistrePublication"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="texte_reponse" type="commons:CDataString" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="ControleErratumReponse">
+		<xs:annotation>
+			<xs:documentation>
+				Description d'un controle d'erratum de reponse
+				id_question : identifiant de la question
+				referencePublication : les
+				coordonnees dans le JO
+				text_erratum : Texte de l'erratum. Attention,
+				ce n'est pas le texte consolide
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id_question" type="repco:QuestionId"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="referencePublicationErratum" type="repco:ReferencePublication"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="texte_erratum" type="commons:CDataString"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>

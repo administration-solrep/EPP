@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<!-- Cet composant contribue les associations type de document / cycle de 
+	vie. -->
+<component name="fr.dila.st.core.lifecycletype">
+	<require>fr.dila.ecm.platform.routing.lifecycle.contrib</require>
+	<require>fr.dila.st.core.lifecycle</require>
+
+	<extension target="org.nuxeo.ecm.core.lifecycle.LifeCycleService"
+		point="types">
+		<types>
+			<type name="Alert">minimaliste</type>
+			<type name="SmartFolder">minimaliste</type>
+			<type name="ExportDocument">export</type>
+		</types>
+	</extension>
+</component>

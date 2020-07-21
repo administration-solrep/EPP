@@ -1,0 +1,13 @@
+<f:subview id="popup_open_#{field_1}"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<nxd:restDocumentLink document="#{field_0}">
+		<nxu:graphicImage value="/icons/view_doc.png" />
+		<h:outputText value=" #{messages['command.global.open']}" />
+	</nxd:restDocumentLink>
+</f:subview>

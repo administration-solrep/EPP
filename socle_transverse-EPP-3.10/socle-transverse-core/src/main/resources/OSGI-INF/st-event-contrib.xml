@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue les listeners du socle transverse. -->
+<component name="fr.dila.st.core.listener">
+	<require>com.nuxeo.case-management.eventContrib</require>
+	<require>DublinCoreStorageService</require>
+
+	<extension target="org.nuxeo.ecm.core.event.EventServiceComponent"
+		point="listener">
+
+		<!-- Batch de déverrouillage des documents -->
+		<listener name="DossierUnlockBatchListener" async="false"
+			postCommit="false" priority="180"
+			class="fr.dila.st.core.event.batch.DossierUnlockBatchListener">
+			<event>unlockBatchEvent</event>
+		</listener>
+		
+		<!-- desactivation du listener mailReceived de Nuxeo -->
+		<listener name="mailReceivedListener" enabled="false">
+		</listener>
+
+		<!-- override du listener dublincore de Nuxeo -->
+		<listener name="dclistener" enabled="false">
+		</listener>
+
+		<listener name="stdclistener" async="false" postCommit="false"
+			class="fr.dila.st.core.override.listener.DublinCoreListener"
+			priority="120">
+		</listener>
+
+		<!-- Invalidation des caches ldap -->
+		<listener name="ldapInvalidationListener" async="false"
+			postCommit="false" priority="200"
+			class="fr.dila.st.core.event.LdapInvalidationListener">
+			<event>ldapInvalidationEvent</event>
+		</listener>
+		
+		<!-- Batch journalier de dévérouillage de l'organigramme -->
+		<listener name="unlockOrganigrammeListener" async="false"
+			postCommit="false" priority="190"
+			class="fr.dila.st.core.event.batch.OrganigrammeUnlockBatchListener">
+			<event>unlockOrganigrammeBatchEvent</event>
+		</listener>
+
+	</extension>
+</component>

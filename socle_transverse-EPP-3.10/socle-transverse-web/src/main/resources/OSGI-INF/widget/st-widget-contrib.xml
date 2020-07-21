@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue les widgets du socle transverse. -->
+<component name="fr.dila.st.web.widget">
+	<require>fr.dila.st.web.widgettype</require>
+
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="widgets">
+
+		<!-- Widget permettant d'afficher une coche de sélection dans les listings -->
+		<widget name="listing_ajax_selection_box" type="listing_ajax_selection_box">
+			<labels>
+				<label mode="any"></label>
+			</labels>
+			<fields>
+				<field>selected</field>
+				<field>data.ref</field>
+			</fields>
+			<widgetModes>
+				<mode value="pdf">hidden</mode>
+				<mode value="csv">hidden</mode>
+				<mode value="edit">hidden</mode>
+			</widgetModes>
+		</widget>
+
+		<!-- Widget permettant d'afficher une icône de verrou dans les listings -->
+		<widget name="listing_lock_detail" type="listing_lock_detail">
+			<labels>
+				<label mode="any"></label>
+			</labels>
+			<fields>
+				<field>data</field>
+			</fields>
+		</widget>
+
+		<!-- Widget permettant d'afficher une case à cocher et de rafraichir une 
+			région en AJAX -->
+		<widget name="listing_ajax_checkbox" type="listing_ajax_checkbox">
+			<labels>
+				<label mode="any"></label>
+			</labels>
+			<fields>
+				<field>selected</field>
+				<field>data.ref</field>
+			</fields>
+		</widget>
+
+		<!-- Widgets d'alertes -->
+		<widget name="listingAlerteEtat" type="template">
+			<labels>
+				<label mode="any">alert.listing.etat</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">
+					/widgets/listing/alert_etat_widget_template.xhtml
+				</property>
+			</properties>
+		</widget>
+
+		<widget name="deleteListingAlerte" type="template">
+			<fields>
+				<field>data</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">
+					/widgets/listing/delete_alert_widget_template.xhtml
+				</property>
+			</properties>
+		</widget>
+
+		<widget name="listing_modification_date" type="datetime">
+			<labels>
+				<label mode="any">label.content.header.modified</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data.dc.modified</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="pattern">dd/MM/yyyy</property>
+				<property name="format">dd/MM/yyyy</property>
+			</properties>
+		</widget>
+
+		<widget name="listing_simple_title_link" type="template">
+			<labels>
+				<label mode="any">label.content.header.title</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data</field>
+				<field>data.ref</field>
+				<field>data.dc.description</field>
+				<field>data.file.content</field>
+				<field>data.file.filename</field>
+			</fields>
+			<properties mode="any">
+				<property name="file_property_name">file:content</property>
+				<property name="file_schema">file</property>
+				<property name="template">
+					/widgets/listing/listing_title_simple_link_widget_template.xhtml
+				</property>
+			</properties>
+		</widget>
+		
+		<widget name="listing_simple_title_link" type="template">
+			<labels>
+				<label mode="any">label.content.header.title</label>
+			</labels>
+			<translated>true</translated>
+			<fields>
+				<field>data</field>
+				<field>data.ref</field>
+				<field>data.dc.description</field>
+				<field>data.file.content</field>
+				<field>data.file.filename</field>
+			</fields>
+			<properties mode="any">
+				<property name="file_property_name">file:content</property>
+				<property name="file_schema">file</property>
+				<property name="template">
+					/widgets/listing/listing_title_simple_link_widget_template.xhtml
+				</property>
+			</properties>
+		</widget>
+
+	</extension>
+</component>

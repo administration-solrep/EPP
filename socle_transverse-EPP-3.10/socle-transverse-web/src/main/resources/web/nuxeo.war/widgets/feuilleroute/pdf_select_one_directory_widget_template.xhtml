@@ -1,0 +1,16 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:p="http://jboss.com/products/seam/pdf">
+
+	<c:set var="directoryName"
+		value="#{nxu:test(!empty widget.properties.directoryName, widget.properties.directoryName, '')}" />
+
+	<!-- récupération du label du vocabulaire donné à partir de l'id et du vocabulaire-->
+	<p:text
+		value="#{messages[vocabulary.getEntryLabel(directoryName,field_0)]}" />
+</f:subview>

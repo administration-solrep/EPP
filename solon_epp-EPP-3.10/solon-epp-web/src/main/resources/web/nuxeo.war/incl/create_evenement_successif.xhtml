@@ -1,0 +1,18 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+	<f:subview id="subviewCreateEvenementSucc"
+		rendered="#{versionActions.isActionPossible('CREER_EVENEMENT')}">
+		<h:selectOneMenu id="selectEvenementSuccessifTypeId"
+			value="#{evenementActions.currentTypeEvenementSuccessif}"
+			style="width:40%">
+			<f:selectItem itemLabel="Sélectionnez une valeur." itemValue="" />
+			<f:selectItems value="#{evenementTypeActions.evenementSuccessifList}" />
+		</h:selectOneMenu>
+		<h:commandButton id="createEvenementSuccSubmitButton" class="button"
+			value="#{messages['label.create.evenement.successif']}"
+			action="#{evenementActions.navigateToCreationCommunicationSuccessive()}" />
+	</f:subview>
+</div>

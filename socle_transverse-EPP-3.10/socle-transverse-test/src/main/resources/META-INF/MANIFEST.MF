@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: Socle transverse test
+Bundle-SymbolicName: fr.dila.st.test;singleton:=true
+Bundle-Version: 1.0.0
+Nuxeo-Require: 
+Nuxeo-Component: OSGI-INF/test-core-type-contrib.xml
+ 

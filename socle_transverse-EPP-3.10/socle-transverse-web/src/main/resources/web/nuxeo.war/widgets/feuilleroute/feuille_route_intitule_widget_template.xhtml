@@ -1,0 +1,37 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:outputLink id="titleref" class="#{field_1}_popupTarget_1"
+		value="return false;">
+		<h:outputText value="#{field_2}" />
+	</h:outputLink>
+
+	<div>
+		<c:set value="#{nxu:concat(field_1, '_menuPopup')}" var="popupId" />
+		<script type="text/javascript"> 
+        var options = {
+            bind: 'click',
+            useFilter: false,
+            anchor: '#popupReceiver'
+        };
+        setupContextMenu('a.#{field_1}_popupTarget_1','#{popupId}', options);
+    </script>
+
+		<div style="display: none;" class="contextMenu" id="#{popupId}">
+			<ul>
+				<li><ui:include
+						src="/widgets/listing/popup_open_widget_template.xhtml" /></li>
+				<c:if
+					test="#{modeleFeuilleRouteActions.canUserDeleteRoute(field_0)}">
+					<li><ui:include
+							src="/widgets/listing/popup_delete_widget_template.xhtml" /></li>
+				</c:if>
+				<li><ui:include
+						src="/widgets/listing/popup_duplicate_widget_template.xhtml" /></li>
+			</ul>
+		</div>
+	</div>
+
+</f:subview>

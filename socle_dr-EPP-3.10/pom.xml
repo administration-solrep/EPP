@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.nuxeo.ecm.platform</groupId>
+    <artifactId>nuxeo-features-parent</artifactId>
+    <version>SW-1.0.6</version>
+  </parent>
+
+  <version>EPP-3.10.2</version>
+  <groupId>fr.dila.ecm.platform</groupId>
+  <artifactId>solrep-platform-document-routing</artifactId>
+  <name>Document Routing Addon</name>
+  <packaging>pom</packaging>
+  <description>
+    The parent module for Document Routing Addon
+  </description>
+
+  <properties>
+    <nuxeo.routing.version>EPP-3.10.2</nuxeo.routing.version>
+    <!-- sonar properties -->
+    <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+    <sonar.surefire.reportsPath>${basedir}/target/surefire-reports</sonar.surefire.reportsPath>
+    <sonar.java.coveragePlugin>cobertura</sonar.java.coveragePlugin>
+    <sonar.cobertura.reportsPath>${basedir}/target/site/cobertura/coverage.xml</sonar.cobertura.reportsPath>
+  </properties>
+  <modules>
+    <module>solrep-platform-document-routing-api</module>
+    <module>solrep-platform-document-routing-core</module>
+    <module>solrep-platform-document-routing-web</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.nuxeo.ecm.distribution</groupId>
+        <artifactId>nuxeo-distribution-cap</artifactId>
+        <version>${nuxeo.features.version}</version>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>fr.dila.ecm.platform</groupId>
+        <artifactId>solrep-platform-document-routing-api</artifactId>
+        <version>${nuxeo.routing.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>fr.dila.ecm.platform</groupId>
+        <artifactId>solrep-platform-document-routing-core</artifactId>
+        <version>${nuxeo.routing.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>fr.dila.ecm.platform</groupId>
+        <artifactId>solrep-platform-document-routing-web</artifactId>
+        <version>${nuxeo.routing.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.nuxeo.ecm.automation</groupId>
+        <artifactId>nuxeo-automation-core</artifactId>
+        <version>${nuxeo.features.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.nuxeo.ecm.platform</groupId>
+        <artifactId>nuxeo-platform-userworkspace-api</artifactId>
+        <version>${nuxeo.features.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.nuxeo.ecm.platform</groupId>
+        <artifactId>nuxeo-platform-userworkspace-core</artifactId>
+        <version>${nuxeo.features.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.nuxeo.ecm.platform</groupId>
+        <artifactId>nuxeo-platform-userworkspace-types</artifactId>
+        <version>${nuxeo.features.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.nuxeo.ecm.platform</groupId>
+        <artifactId>nuxeo-platform-usermanager-api</artifactId>
+        <version>${nuxeo.features.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.seam</groupId>
+        <artifactId>jboss-seam-pdf</artifactId>
+        <version>2.0.3.CR1</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>    
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>1.0</version>
+          <configuration>
+            <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.4</version>
+        </plugin>
+        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+        <plugin>
+            <groupId>org.eclipse.m2e</groupId>
+            <artifactId>lifecycle-mapping</artifactId>
+            <version>1.0.0</version>
+            <configuration>
+                <lifecycleMappingMetadata>
+                    <pluginExecutions>
+                        <pluginExecution>
+                            <pluginExecutionFilter>
+                                <groupId>org.jvnet.maven.incrementalbuild</groupId>
+                                <artifactId>incremental-build-plugin</artifactId>
+                                <versionRange>[1.3,)</versionRange>
+                                <goals>
+                                    <goal>incremental-build</goal>
+                                </goals>
+                            </pluginExecutionFilter>
+                            <action>
+                                <ignore></ignore>
+                            </action>
+                        </pluginExecution>
+                        <pluginExecution>
+                            <pluginExecutionFilter>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-nuxeo-plugin</artifactId>
+                                <versionRange>[1.0.14,)</versionRange>
+                                <goals>
+                                    <goal>eclipse-version</goal>
+                                </goals>
+                            </pluginExecutionFilter>
+                            <action>
+                                <ignore></ignore>
+                            </action>
+                        </pluginExecution>
+                    </pluginExecutions>
+                </lifecycleMappingMetadata>
+            </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <distributionManagement>
+    <repository>
+      <id>nexus-standalone</id>
+      <name>Nexus standalone</name>
+      <url>http://idlv-nexus-standalone.lyon-dev2.local:8081/nexus/content/repositories/releases/</url>
+    </repository>
+
+    <snapshotRepository>
+      <id>snapshots</id>
+      <url>http://idlv-nexus-standalone.lyon-dev2.local:8081/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+</project>

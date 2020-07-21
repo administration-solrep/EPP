@@ -1,0 +1,44 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<h:form id="metadonnee_dossier" enctype="multipart/form-data">
+		<a4j:region id="documentViewRegion">
+
+			<a4j:outputPanel id="documentViewPanel">
+				<div style="clear: both;"></div>
+
+				<div class="foldableBox">
+					<h3 class="folded">
+						<a href="#nologo" onclick="return toggleBox(this)"> <h:outputText
+								value="Détail dossier" />
+						</a>
+					</h3>
+					<div class="boxBody">
+
+						<table width="100%" style="border-collapse: collapse;">
+							<tr>
+								<td style="width: 80%;">
+									<!-- layout de metadonnées --> <nxu:set var="currentDossier"
+										value="#{metadonneesActions.getCurrentDossier()}" cache="true">
+										<nxl:layout value="#{currentDossier}" mode="view"
+											name="metadonnees_dossier" />
+									</nxu:set>
+								</td>
+							</tr>
+						</table>
+
+					</div>
+				</div>
+			</a4j:outputPanel>
+		</a4j:region>
+	</h:form>
+
+</div>

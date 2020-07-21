@@ -1,0 +1,39 @@
+<f:subview id="popup_add_route_step_#{field_1}"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<c:if test="#{field_0.getType().equals('RouteStep')}">
+		<c:choose>
+			<c:when test="#{routeStepNoteActions.isEditableNote(field_0)}">
+				<li><h:commandLink
+						action="#{routeStepNoteActions.editRouteStepNote(field_0)}"
+						styleClass="ROUTE_STEP_NOTE_ADD">
+						<nxu:graphicImage value="/img/icons/note_16.png" />
+						<h:outputText
+							value="#{messages['st.feuilleRoute.etape.note.edit.label']}" />
+					</h:commandLink></li>
+			</c:when>
+			<c:otherwise>
+				<nxu:set var="commentList"
+					value="#{routeStepNoteActions.getCommentList(field_0)}"
+					cache="true">
+					<c:if test="#{commentList.size() > 0}">
+						<li><h:commandLink
+								action="#{routeStepNoteActions.viewRouteStepNote(field_0)}"
+								styleClass="ROUTE_STEP_NOTE_VIEW">
+								<nxu:graphicImage value="/img/icons/note_16.png" />
+								<h:outputText
+									value="#{messages['st.feuilleRoute.etape.note.view.label']}" />
+							</h:commandLink></li>
+					</c:if>
+				</nxu:set>
+			</c:otherwise>
+		</c:choose>
+	</c:if>
+
+</f:subview>

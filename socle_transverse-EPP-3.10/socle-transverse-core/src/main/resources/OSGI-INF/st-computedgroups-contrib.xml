@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<!-- Cet composant contribue le calculateur de groupes de l'application. 
+	Le calculateur permet d'injecter les groupes correspondant aux fonctions 
+	unitaires de l'utilisateur dans son Principal. -->
+<component name="fr.dila.st.core.computedgroups.contrib">
+
+	<require>fr.dila.cm.usermanager.computedgroups.contrib</require>
+
+	<!-- Calculateurs de groupes -->
+	<extension
+		target="org.nuxeo.ecm.platform.computedgroups.ComputedGroupsServiceImpl"
+		point="computer">
+		<!-- Injection des groupes correspondant aux fonctions unitaires -->
+		<groupComputer name="baseFunctionGroupComputer">
+			<computer>fr.dila.st.core.groupcomputer.BaseFunctionGroupComputer</computer>
+		</groupComputer>
+
+		<!-- Injection des groupes correspondant aux mailbox personnelles -->
+		<groupComputer name="personalMailboxGroupComputer">
+			<computer>fr.dila.st.core.groupcomputer.PersonalMailboxGroupComputer</computer>
+		</groupComputer>
+	</extension>
+</component>

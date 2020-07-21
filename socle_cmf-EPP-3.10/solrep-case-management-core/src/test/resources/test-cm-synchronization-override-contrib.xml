@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.cm.service.synchronization.override.test.contrib">
+
+  <extension target="fr.dila.cm.core.service.synchronization.MailboxSynchronizationService" point="directoryToMailbox">
+
+    <userToMailbox>
+      <titleGenerator>fr.dila.cm.core.service.synchronization.DefaultPersonalMailboxTitleGenerator</titleGenerator>
+    </userToMailbox>
+
+
+    <groupToMailbox enabled="false">
+      <titleGenerator>fr.dila.cm.core.service.synchronization.DefaultGroupMailboxTitleGenerator</titleGenerator>
+    </groupToMailbox>
+
+    <directoryToMailbox directoryName="uncompleteContrib" >
+      <directoryEntryIdField>fieldName</directoryEntryIdField>
+    </directoryToMailbox>
+  </extension>
+
+</component>

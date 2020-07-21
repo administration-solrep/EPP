@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:rechercherDossierResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:p4="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion ../../../../../../../xsd/reponses/WSquestion.xsd ">
+
+	<p:statut>OK</p:statut>
+
+
+	<p:dossier>
+		<p2:question>
+			<p2:id_question>
+				<p1:numero_question>1234</p1:numero_question>
+				<p1:type>QE</p1:type>
+				<p1:source>AN</p1:source>
+				<p1:legislature>13</p1:legislature>
+			</p2:id_question>
+
+			<p2:date_publication_jo>2011-01-01</p2:date_publication_jo>
+			<p2:page_jo>3</p2:page_jo>
+
+			<p2:ministre_depot id="1">
+				<p1:titre_jo>titre_jo ministre depot</p1:titre_jo>
+				<p1:intitule_min>intitule du ministre depot</p1:intitule_min>
+			</p2:ministre_depot>
+
+			<p2:ministre_attributaire id="1">
+				<p1:titre_jo>titre jo ministere attributaire</p1:titre_jo>
+				<p1:intitule_min>intitule du ministre attributaire</p1:intitule_min>
+			</p2:ministre_attributaire>
+
+			<p2:auteur id_mandat="2">
+				<p2:civilite>M.</p2:civilite>
+				<p2:prenom>prenomAuteur</p2:prenom>
+				<p2:nom>nomAuteur</p2:nom>
+				<p2:grp_pol>groupe politique</p2:grp_pol>
+				<p2:circonscription>circoncription</p2:circonscription>
+			</p2:auteur>
+
+			<p2:texte></p2:texte>
+
+			<p2:etat_question>EN_COURS</p2:etat_question>
+
+			<p2:rappel>
+				<p1:numero_question>123</p1:numero_question>
+				<p1:type>QE</p1:type>
+				<p1:source>AN</p1:source>
+				<p1:legislature>13</p1:legislature>
+			</p2:rappel>
+
+			<p2:indexation_an>
+				<p2:rubrique>rubrique</p2:rubrique>
+				<p2:rubrique_ta>rubrique_ta</p2:rubrique_ta>
+				<p2:analyse>analyse1</p2:analyse>
+				<p2:analyse>analyse2</p2:analyse>
+			</p2:indexation_an>
+
+		</p2:question>
+
+		<p2:reponse>
+			<p3:ministre_reponse id="1">
+				<p1:titre_jo>titre jo ministre reponse</p1:titre_jo>
+				<p1:intitule_min>intitule ministre reposne</p1:intitule_min>
+			</p3:ministre_reponse>
+			<p3:texte_reponse></p3:texte_reponse>
+		</p2:reponse>
+
+	</p:dossier>
+
+</p:rechercherDossierResponse>

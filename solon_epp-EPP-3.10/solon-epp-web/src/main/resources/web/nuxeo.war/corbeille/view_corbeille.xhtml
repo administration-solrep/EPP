@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="page title">
+		<h:outputText value="Corbeille" />
+	</ui:define>
+
+	<ui:define name="bookmark">
+		<link rel="bookmark"
+			href="#{navigationContext.currentDocumentFullUrl}" />
+	</ui:define>
+
+	<ui:define name="body">
+		<ui:include src="/incl/message_banner.xhtml" />
+		<style>
+div.titleBar .x-tool {
+	margin-top: 0px;
+	float: left;
+}
+
+.x-tool-collapse-north {
+	background-position: 0px -210px;
+}
+
+.x-tool-collapse-north:hover {
+	background-position: -15px -210px;
+}
+
+.x-tool-collapse-south {
+	background-position: 0px -195px;
+}
+
+.x-tool-collapse-south:hover {
+	background-position: -15px -195px;
+}
+</style>
+		<c:if test="#{navigationWebActions.upperRechercheRapidePanelIsOpened}">
+			<style>
+#rechercheRapideView {
+	display: block;
+}
+
+#openRechercheRapideButton {
+	display: none;
+}
+
+#closeRechercheRapideButton {
+	display: block;
+}
+</style>
+		</c:if>
+		<c:if
+			test="#{!navigationWebActions.upperRechercheRapidePanelIsOpened}">
+			<style>
+#rechercheRapideView {
+	display: none;
+}
+
+#openRechercheRapideButton {
+	display: block;
+}
+
+#closeRechercheRapideButton {
+	display: none;
+}
+</style>
+		</c:if>
+
+		<script>
+      function closeRechercheRapideView() {
+        document.getElementById('rechercheRapideView').style.display='none';
+        document.getElementById('openRechercheRapideButton').style.display='block';
+        document.getElementById('closeRechercheRapideButton').style.display='none';
+      }
+  
+      function openRechercheRapideView() {
+        document.getElementById('rechercheRapideView').style.display='block';
+        document.getElementById('openRechercheRapideButton').style.display='none';
+        document.getElementById('closeRechercheRapideButton').style.display='block';
+      }
+    </script>
+
+		<c:if test="#{corbeilleTree.currentItem != null}">
+
+			<!-- Notifications de modifications de la corbeille/communication courante -->
+			<a4j:region>
+				<h:form>
+					<a4j:poll id="notificationPoll" interval="30000" enabled="true"
+						reRender="notificationRegion" />
+				</h:form>
+			</a4j:region>
+			<a4j:outputPanel id="notificationRegion" ajaxRendered="true"
+				layout="block">
+				<nxu:set var="notificationDTO"
+					value="#{notificationActions.getNotificationDTO()}">
+					<c:if test="#{notificationDTO.isCorbeilleModified()}">
+						<script>jAlert("Le contenu de la corbeille a été modifié", "Notification", function() { document.getElementById('refreshForm:refreshBtn').click(); });</script>
+					</c:if>
+					<c:if test="#{notificationDTO.isEvenementModified()}">
+						<script>jAlert("La communication courante a été modifiée", "Notification", function() { document.getElementById('refreshForm:refreshBtn').click(); });</script>
+					</c:if>
+				</nxu:set>
+			</a4j:outputPanel>
+
+			<div style="display: none;">
+				<h:form id="refreshForm">
+					<h:commandLink action="#{corbeilleActions.refreshEvenement()}"
+						id="refreshBtn">Refresh</h:commandLink>
+				</h:form>
+			</div>
+
+			<!-- Recherche rapide -->
+			<a4j:region>
+				<div id="rechercheRapideTitleBar" class="titleBar foldableBox">
+					<div class="folded">
+						<h:form id="toggleRechercheRapideForm">
+							<div id="openRechercheRapideButton">
+								<a4j:commandLink immediate="true"
+									action="#{navigationWebActions.setUpperRechercheRapidePanelIsOpened(true)}"
+									id="openRechercheRapideButtonId"
+									styleClass="x-tool x-tool-toggle x-tool-collapse-south"
+									onclick="openRechercheRapideView()">
+								</a4j:commandLink>
+							</div>
+							<div id="closeRechercheRapideButton">
+								<a4j:commandLink immediate="true"
+									action="#{navigationWebActions.setUpperRechercheRapidePanelIsOpened(false)}"
+									id="closeRechercheRapideButtonId"
+									styleClass="x-tool x-tool-toggle x-tool-collapse-north"
+									onclick="closeRechercheRapideView()">
+								</a4j:commandLink>
+							</div>
+						</h:form>
+						<h3>
+							<h:outputText value="#{messages['label.recherche.rapide']}" />
+						</h3>
+						<div style="display: inline-block; width: 80%;"></div>
+						<div style="display: inline-block;">
+							<h:form>
+								<h:selectBooleanCheckbox id="extendMessageBox"
+									value="#{corbeilleActions.extendMessage}" />
+								<h:outputLabel for="extendMessageBox"
+									value="Etendre aux 20 derniers messages traités  " />
+								<a4j:commandLink action="#{corbeilleActions.navigateTo()}">
+									<h:graphicImage value="/img/icons/refresh.png" width="14"
+										height="14" />
+								</a4j:commandLink>
+							</h:form>
+						</div>
+
+					</div>
+					<div id="rechercheRapideView" class="boxBody">
+						<ui:include src="/recherche/recherche_rapide.xhtml" />
+					</div>
+				</div>
+			</a4j:region>
+
+			<div style="clear: both;"></div>
+		</c:if>
+
+		<div id="mailboxList">
+			<div id="upperContentView">
+				<div class="mailboxContent">
+					<c:if test="#{corbeilleTree.currentItem != null}">
+						<nxu:set var="contentViewId" value="0">
+							<nxu:set var="contentViewName" value="corbeille_message_list">
+								<ui:decorate template="/incl/content_view.xhtml">
+									<ui:define name="content_view_header_before_selector" />
+									<ui:define name="content_view_no_data">
+										<f:subview
+											rendered="#{documents.rowCount == 0 and not provider.hasError()}">
+											<div style="text-align: center;">
+												<b><h:outputText
+														value="#{messages['recherche.no_data']}" /></b><br />
+											</div>
+										</f:subview>
+									</ui:define>
+								</ui:decorate>
+							</nxu:set>
+						</nxu:set>
+					</c:if>
+
+					<!--<h:form>
+          <nxu:set var="actions" value="#//{webActions.getActionsList('ACTION_UNDER_LIST_CORBEILLE')}" cache="true">
+            <f:subview rendered="#//{!empty actions}">
+                <nxu:dataList layout="unorderedList" var="action" value="#//{actions}">
+                  <nxh:commandLink action="#//{action.getLink()}">
+                    #//{messages[action.label]}
+                  </nxh:commandLink>
+                </nxu:dataList>
+            </f:subview>
+          </nxu:set>
+        </h:form>
+        -->
+				</div>
+			</div>
+
+		</div>
+
+		<ui:include src="/incl/upper_panel_toggle.xhtml" />
+	</ui:define>
+
+	<ui:define name="subbody">
+		<div style="padding: 5px;" id="currentEvenementDisplayed">
+			<c:if test="#{currentDocument.getType() == 'Evenement'}">
+
+				<script>
+        var j = jQuery.noConflict();
+        j(document).ready(function() {
+        	j("html, body").scrollTop(j('#currentEvenementDisplayed').offset().top);
+        });
+        </script>
+
+				<h:panelGroup id="case_content">
+					<ui:insert name="case_content">
+						<div class="tabsBar">
+							<h:form>
+								<nxu:dataList layout="unorderedList" var="tab"
+									value="#{tabsActionsList}"
+									itemStyleClass="#{nxu:test(webActions.currentTabAction == tab, 'selected', '')}">
+									<nxd:restDocumentLink document="#{currentDocument}"
+										tab="#{tab.id}" view="view_corbeille">
+										<h:outputText value="#{messages[tab.label]}" />
+									</nxd:restDocumentLink>
+								</nxu:dataList>
+							</h:form>
+						</div>
+						<div style="clear: both" />
+						<div class="tabsContent">
+							<ui:include src="#{webActions.currentTabAction.link}" />
+						</div>
+					</ui:insert>
+				</h:panelGroup>
+			</c:if>
+		</div>
+	</ui:define>
+
+</nxthemes:composition>

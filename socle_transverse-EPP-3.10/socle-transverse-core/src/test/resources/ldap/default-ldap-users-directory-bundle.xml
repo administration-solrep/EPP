@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+
+<component name="org.nuxeo.ecm.directory.ldap.storage.users">
+	<implementation class="org.nuxeo.ecm.directory.ldap.LDAPDirectoryDescriptor" />
+	<require>org.nuxeo.ecm.directory.ldap.LDAPDirectoryFactory</require>
+
+	<!-- the groups SQL directories are required to make this bundle work <require>org.nuxeo.ecm.directory.sql.storage</require> -->
+
+	<extension target="org.nuxeo.ecm.directory.ldap.LDAPDirectoryFactory"
+		point="servers">
+
+		<!-- Configuration of a server connection A single server declaration can 
+			point to a cluster of replicated servers (using OpenLDAP's slapd + sluprd 
+			for instance). To leverage such a cluster and improve availibility, please 
+			provide one <ldapUrl/> tag for each replica of the cluster. -->
+		<server name="default">
+
+			<!-- The server connection is useless since with use an internal server -->
+			<ldapUrl></ldapUrl>
+			<!-- Optional servers from the same cluster <ldapUrl>ldap://server2:389</ldapUrl> 
+				<ldapUrl>ldap://server3:389</ldapUrl> -->
+
+			<!-- Credentials used by Nuxeo5 to browse the directory, create and modify 
+				entries Only the authentication of users (bind) use the credentials entered 
+				through the login form. -->
+			<bindDn>cn=nuxeo5,ou=SolonEpg,dc=dila,dc=fr</bindDn>
+			<bindPassword>changeme</bindPassword>
+		</server>
+
+	</extension>
+
+	<extension target="org.nuxeo.ecm.directory.ldap.LDAPDirectoryFactory"
+		point="directories">
+
+		<directory name="userLdapDirectory">
+			<server>default</server>
+			<schema>user</schema>
+			<idField>username</idField>
+			<passwordField>password</passwordField>
+
+			<searchBaseDn>ou=people,ou=SolonEpg</searchBaseDn>
+			<searchClass>person</searchClass>
+			<!-- To additionally restricte entries you can add an arbitrary search 
+				filter such as the following: <searchFilter>(&amp;(sn=toto*)(myCustomAttribute=somevalue))</searchFilter> 
+				Beware that "&" writes "&amp;" in XML. -->
+
+			<!-- use subtree if the people branch is nested -->
+			<searchScope>onelevel</searchScope>
+
+			<!-- using 'subany', search will match *toto*. use 'subfinal' to match 
+				*toto and 'subinitial' to match toto*. subinitial is the default behaviour -->
+			<substringMatchType>subany</substringMatchType>
+
+			<readOnly>false</readOnly>
+
+			<!-- comment <cache* /> tags to disable the cache -->
+			<!-- cache timeout in seconds -->
+			<cacheTimeout>3600</cacheTimeout>
+
+			<!-- maximum number of cached entries before global invalidation -->
+			<cacheMaxSize>1000</cacheMaxSize>
+
+			<creationBaseDn>ou=people,ou=SolonEpg,dc=dila,dc=fr</creationBaseDn>
+			<creationClass>top</creationClass>
+			<creationClass>person</creationClass>
+			<creationClass>organizationalPerson</creationClass>
+			<creationClass>inetOrgPerson</creationClass>
+
+			<rdnAttribute>uid</rdnAttribute>
+			<fieldMapping name="username">uid</fieldMapping>
+			<fieldMapping name="password">userPassword</fieldMapping>
+			<fieldMapping name="firstName">givenName</fieldMapping>
+			<fieldMapping name="lastName">sn</fieldMapping>
+			<fieldMapping name="company">o</fieldMapping>
+			<fieldMapping name="email">mail</fieldMapping>
+			<fieldMapping name="deleted">deleted</fieldMapping>
+
+			<references>
+
+				<!-- /!\ Les références inverses ne marchent pas dans les tests unitaires 
+					<inverseReference field="groups" directory="groupDirectory" dualReferenceField="members" 
+					/> -->
+
+			</references>
+
+		</directory>
+
+		<directory name="posteDirectory">
+			<!-- Reuse the default server configuration defined for userDirectory -->
+			<server>default</server>
+
+			<schema>organigramme-poste</schema>
+
+			<idField>groupName</idField>
+
+			<searchBaseDn>ou=poste,ou=SolonEpg</searchBaseDn>
+			<searchFilter>(|(objectClass=poste)(objectClass=groupOfURLs))</searchFilter>
+			<searchScope>onelevel</searchScope>
+
+			<readOnly>false</readOnly>
+
+			<!-- comment <cache* /> tags to disable the cache -->
+			<!-- cache timeout in seconds -->
+			<cacheTimeout>3600</cacheTimeout>
+
+			<!-- maximum number of cached entries before global invalidation -->
+			<cacheMaxSize>1000</cacheMaxSize>
+
+			<creationBaseDn>ou=poste,ou=SolonEpg,dc=dila,dc=fr</creationBaseDn>
+			<creationClass>top</creationClass>
+			<creationClass>groupOfUniqueNames</creationClass>
+			<creationClass>poste</creationClass>
+
+			<rdnAttribute>cn</rdnAttribute>
+			<fieldMapping name="groupName">cn</fieldMapping>
+			<fieldMapping name="fullPath">dn</fieldMapping>
+			<!-- <fieldMapping name="dateDebut">dateDebut</fieldMapping> <fieldMapping 
+				name="dateFin">dateFin</fieldMapping> <fieldMapping name="chargeMissionSGG">chargeMissionSGG</fieldMapping> 
+				<fieldMapping name="conseillerPM">conseillerPM</fieldMapping> <fieldMapping 
+				name="lockDate">lockDate</fieldMapping> <fieldMapping name="lockUserName">lockUserName</fieldMapping> -->
+
+			<references>
+
+				<!-- LDAP reference resolve DNs embedded in uniqueMember attributes If 
+					the target directory has no specific filtering policy, it is most of the 
+					time not necessary to enable the 'forceDnConsistencyCheck' policy. Enabling 
+					this option will fetch each reference entry to ensure its existence in the 
+					target directory. -->
+
+				<ldapReference field="members" directory="userLdapDirectory"
+					forceDnConsistencyCheck="false" staticAttributeId="uniqueMember"
+					dynamicAttributeId="memberURL" />
+
+				<inverseReference field="parentUnitesStructurelles"
+					directory="uniteStructurelleDirectory" dualReferenceField="subPostes" />
+
+				<inverseReference field="parentEntites" directory="entiteDirectory"
+					dualReferenceField="subPostes" />
+
+			</references>
+		</directory>
+
+	</extension>
+
+</component>

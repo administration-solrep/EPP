@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.cm.service.test.mailboxCreator">
+
+  <extension target="fr.dila.cm.service.mailboxManagement" point="mailboxCreator">
+
+    <contribution
+      class="fr.dila.cm.mock.MockPersonalMailboxCreator" />
+
+  </extension>
+
+</component>

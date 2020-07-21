@@ -1,0 +1,250 @@
+version: 1
+
+dn: dc=dila,dc=fr
+objectClass: top
+objectClass: organization
+objectClass: dcObject
+dc: example
+o: My Site
+
+dn: cn=ldapadmin,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+cn: ldapadmin
+sn: Admin
+userPassword:: Y2hhbmdlbWU=
+
+dn: ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: organizationalUnit
+ou: Reponses
+
+dn: cn=nuxeo5,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+cn: nuxeo5
+sn: nuxeo5
+userPassword:: Y2hhbmdlbWU=
+
+dn: ou=people,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: uid=Administrator,ou=people,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Administrator
+sn: Manager
+givenName: Administrator
+initials: A
+mail: ad@ad.com
+uid: Administrator
+userPassword:: QWRtaW5pc3RyYXRvcg==
+
+dn: uid=user1,ou=people,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User One
+sn: user1
+employeeType: Boss
+facsimileTelephoneNumber: 7160
+givenName: user1
+initials: UO
+mail: test.test@mail.com
+o: DIR
+ou: MOS
+preferredLanguage: FR
+roomNumber: OpenSpace
+telephoneNumber: 7160
+uid: user1
+userPassword:: dXNlcjE=
+
+dn: uid=user_gvt,ou=people,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User GVT
+sn: user_gvt
+employeeType: Boss
+facsimileTelephoneNumber: 7160
+givenName: user_gvt
+initials: UO
+mail: test.test@mail.com
+o: DIR
+ou: MOS
+preferredLanguage: FR
+roomNumber: OpenSpace
+telephoneNumber: 7160
+uid: user1
+userPassword:: dXNlcjE=
+
+dn: ou=SOLONEPP,dc=dila,dc=fr
+objectClass: organizationalUnit
+objectClass: top
+ou: SOLONEPP
+
+dn: cn=nuxeo5,ou=SOLONEPP,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+cn: nuxeo5
+sn: nuxeo5
+userPassword:: Y2hhbmdlbWU=
+
+dn: ou=groups,ou=SOLONEPP,dc=dila,dc=fr
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+dn: cn=administrators,ou=groups,ou=SOLONEPP,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: administrators
+uniqueMember: uid=Administrator,ou=people,dc=dila,dc=fr
+description: Group of users that have the Everything permissions by default
+
+dn: cn=members,ou=groups,ou=SOLONEPP,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: members
+uniqueMember: uid=Administrator,ou=people,dc=dila,dc=fr
+uniqueMember: uid=user1,ou=people,dc=dila,dc=fr
+description: Group of users that have the Read permissions by default
+
+dn: ou=people,ou=SOLONEPP,dc=dila,dc=fr
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: uid=Administrator,ou=people,ou=SOLONEPP,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Administrator
+sn: Manager
+givenName: Administrator
+initials: A
+uid: Administrator
+userPassword:: QWRtaW5pc3RyYXRvcg==
+
+dn: uid=user2,ou=people,ou=SOLONEPP,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: User One
+sn: One
+employeeType: Boss
+facsimileTelephoneNumber: 7160
+givenName: User
+initials: UO
+mail: test.test@mail.com
+o: DIR
+ou: MOS
+preferredLanguage: FR
+roomNumber: OpenSpace
+telephoneNumber: 7160
+uid: user2
+userPassword:: dXNlcjI=
+
+dn: ou=organigramme,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: organizationalUnit
+ou: organigramme
+
+dn: cn=Premier Ministre386,ou=organigramme,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: Premier Ministre386
+uniqueMember: cn=emptyRef
+
+dn: cn=Premier Ministre931,ou=organigramme,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: Premier Ministre931
+uniqueMember: cn=emptyRef
+
+dn: cn=Premier Ministre958,ou=organigramme,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: Premier Ministre958
+uniqueMember: cn=emptyRef
+
+dn: ou=groups,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+dn: cn=Administrateur Fonctionnel,ou=groups,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: Administrateur Fonctionnel
+uniqueMember: cn=emptyRef
+
+dn: cn=Super administrateur,ou=groups,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: Super administrateur
+uniqueMember: uid=user1,ou=people,ou=Reponses,dc=dila,dc=fr
+
+dn: cn=Administrateur SGG,ou=groups,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: Administrateur SGG
+uniqueMember: cn=routeManagers
+uniqueMember: cn=QuestionCreator
+uniqueMember: cn=QuestionUpdater
+uniqueMember: cn=QuestionReader
+uniqueMember: cn=QuestionDeleter
+uniqueMember: cn=UserCreator
+uniqueMember: cn=UserReader
+uniqueMember: cn=UserDeleter
+uniqueMember: cn=UserUpdater
+
+dn: uid=user2,ou=people,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn:: IA==
+sn:: IA==
+mail: user2@localhost
+uid: user2
+userPassword:: dXNlcjI=
+
+dn: uid=user3,ou=people,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn:: IA==
+sn:: IA==
+mail: user3@localhost
+uid: user3
+userPassword:: dXNlcjM=
+
+dn: uid=adminfonctionnel,ou=people,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn:: IA==
+sn:: IA==
+mail: Administrator
+uid: adminfonctionnel
+userPassword:: YWRtaW5mb25jdGlvbm5lbA==
+
+dn: cn=routeManagers,ou=groups,ou=Reponses,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: routeManagers
+uniqueMember: uid=Administrator,ou=people,ou=Reponses,dc=dila,dc=fr
+uniqueMember: uid=adminfonctionnel,ou=people,ou=Reponses,dc=dila,dc=fr
+uniqueMember: uid=user1,ou=people,ou=Reponses,dc=dila,dc=fr
+

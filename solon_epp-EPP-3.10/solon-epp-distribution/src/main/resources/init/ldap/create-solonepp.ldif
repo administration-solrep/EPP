@@ -1,0 +1,462 @@
+#version: 1
+
+dn: ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: organizationalUnit
+ou: SolonEpp
+
+dn: cn=nuxeo5,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+cn: nuxeo5
+sn: nuxeo5
+userPassword:: Y2hhbmdlbWU=
+
+dn: ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+dn: ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: organizationalUnit
+ou: fonctions
+
+##########################################
+# Fonctions unitaires
+##########################################
+
+dn: cn=EspaceCorbeilleReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: EspaceCorbeilleReader
+uniqueMember: cn=emptyRef
+description: Accès à l'espace corbeille
+
+dn: cn=EspaceRechercheReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: EspaceRechercheReader
+uniqueMember: cn=emptyRef
+description: Accès à l'espace de recherche
+
+dn: cn=EspaceAdministrationReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: EspaceAdministrationReader
+uniqueMember: cn=emptyRef
+description: Accès à l'espace d'administration
+
+dn: cn=OrganigrammeReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: OrganigrammeReader
+uniqueMember: cn=emptyRef
+description: Organigramme : lecture
+
+dn: cn=OrganigrammeUpdater,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: OrganigrammeUpdater
+uniqueMember: cn=emptyRef
+description:: T3JnYW5pZ3JhbW1lIDogbWlzZSDDoCBqb3Vy
+
+dn: cn=UtilisateurCreator,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: UtilisateurCreator
+uniqueMember: cn=emptyRef
+description:: R2VzdGlvbiBkZXMgdXRpbGlzYXRldXJzIDogY3LDqWF0aW9u
+
+dn: cn=UtilisateurDeleter,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: UtilisateurDeleter
+uniqueMember: cn=emptyRef
+description: Gestion des utilisateurs : suppression
+
+dn: cn=UtilisateurMinistereDeleter,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+uniqueMember: cn=emptyRef
+cn: UtilisateurMinistereDeleter
+description: Gestion des utilisateurs du ministère : suppression
+
+dn: cn=UtilisateurReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: UtilisateurReader
+uniqueMember: cn=emptyRef
+description: Gestion des utilisateurs : lecture
+
+dn: cn=UtilisateurUpdater,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: UtilisateurUpdater
+uniqueMember: cn=emptyRef
+description:: R2VzdGlvbiBkZXMgdXRpbGlzYXRldXJzIDogbWlzZSDDoCBqb3Vy
+
+dn: cn=TableReferenceReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: TableReferenceReader
+uniqueMember: cn=emptyRef
+description: Gestion des tables de références : lecture
+
+dn: cn=TableReferenceUpdater,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: TableReferenceUpdater
+uniqueMember: cn=emptyRef
+description: Gestion des tables de références : modification
+
+dn: cn=NotificationEmailRecipient,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: NotificationEmailRecipient
+uniqueMember: cn=emptyRef
+description: Flux de notification : Destinataire des mails de notification
+
+dn: cn=NotificationEmailErrorRecipient,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: NotificationEmailErrorRecipient
+uniqueMember: cn=emptyRef
+description: Flux de notification : Destinataire des mails d'erreur de notification
+
+dn: cn=BatchSuiviReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: BatchSuiviReader
+uniqueMember: cn=emptyRef
+description: Administration : suivi des batchs
+
+##########################################
+# Profils
+##########################################
+
+dn: cn=Super administrateur,ou=groups,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: Super administrateur
+uniqueMember: uid=Administrator,ou=people,ou=SolonEpp,dc=dila,dc=fr
+
+dn: cn=Administrateur fonctionnel,ou=groups,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: Administrateur fonctionnel
+uniqueMember: cn=EspaceCorbeilleReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=EspaceRechercheReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=EspaceAdministrationReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=OrganigrammeReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=OrganigrammeUpdater,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=UtilisateurCreator,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=UtilisateurReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=UtilisateurUpdater,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=UtilisateurDeleter,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=TableReferenceReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=TableReferenceUpdater,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=NotificationEmailRecipient,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=NotificationEmailErrorRecipient,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=BatchSuiviReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: uid=adminsgg,ou=people,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: uid=admingouvernement,ou=people,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: uid=adminan,ou=people,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: uid=adminsenat,ou=people,ou=SolonEpp,dc=dila,dc=fr
+
+dn: cn=Utilisateur,ou=groups,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: Utilisateur 
+uniqueMember: cn=EspaceCorbeilleReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=EspaceRechercheReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=TableReferenceReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: uid=bdc,ou=people,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: uid=contributeur,ou=people,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: uid=an,ou=people,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: uid=senat,ou=people,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: uid=usertest2,ou=people,ou=SolonEpp,dc=dila,dc=fr
+
+dn: cn=UtilisateurWS,ou=groups,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: UtilisateurWS 
+uniqueMember: cn=TableReferenceReader,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: cn=TableReferenceUpdater,ou=fonctions,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: uid=ws-gouvernement,ou=people,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: uid=ws-an,ou=people,ou=SolonEpp,dc=dila,dc=fr
+uniqueMember: uid=ws-senat,ou=people,ou=SolonEpp,dc=dila,dc=fr
+
+
+##########################################
+# Utilisateurs de test
+##########################################
+
+dn: uid=usertest2,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn:: IA==
+dateDebut: 20110613152618Z
+occasional: FALSE
+sn: Dupont
+deleted: FALSE
+temporary: FALSE
+givenName: Michel
+mail: usertest2@test.fr
+passwordReset: TRUE
+title: Monsieur
+uid: usertest2
+userPassword:: e1NTSEF9Q01uMUdEdmRGN2laZDlUQnNkcU50UWJBOTVqTVNNRnRrV0wzOFE9P
+ Q==
+
+dn: uid=Administrator,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn:: IA==
+dateDebut: 20101215230000Z
+deleted: FALSE
+occasional: FALSE
+sn: Administrateur
+temporary: FALSE
+mail: administrator@solon-epp.com
+uid: Administrator
+userPassword:: e1NTSEF9SFZTOFAwZnRYSFdkTGlRTWlwQ1ZSK25Pdml1S1VFMmFXUGpCZVE9P
+ Q==
+
+dn: uid=adminsgg,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: personne
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: adminsgg
+userPassword: adminsgg
+sn: Adminsgg
+cn: Adminsgg
+dateDebut: 20061201000000Z
+dateFin: 99991231000000Z
+deleted: FALSE
+occasional: FALSE
+temporary: FALSE
+
+dn: uid=bdc,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn:: IA==
+dateDebut: 20101215230000Z
+deleted: FALSE
+occasional: FALSE
+sn: Bdc
+temporary: FALSE
+mail: bdc@solon-epp.com
+uid: bdc
+userPassword:: e1NTSEF9dUw3Vncvb0VhSXJtMnRJYmxmbjQ5dW1xbS9ldVdnNU9zLzhqQVE9P
+ Q==
+
+dn: uid=contributeur,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn:: IA==
+dateDebut: 20101215230000Z
+deleted: FALSE
+occasional: FALSE
+sn: contributeur
+temporary: FALSE
+mail: contributeur@solon-epp.com
+uid: contributeur
+userPassword:: e1NTSEF9emhoa0w0Q2E3K0hGSWJoQi9wNFNVV3FMU0JCb3h2dmRqU1dsNUE9P
+ Q==
+
+dn: uid=ws-gouvernement,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn: ws-gouvernement
+dateDebut: 20101215230000Z
+deleted: FALSE
+occasional: FALSE
+temporary: FALSE
+sn: ws-gouvernement
+mail: ws-gouvernement@solon-epp.com
+uid: ws-gouvernement
+userPassword: ws-gouvernement
+
+dn: uid=ws-an,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn: ws-an
+dateDebut: 20101215230000Z
+deleted: FALSE
+occasional: FALSE
+temporary: FALSE
+sn: ws-an
+mail: ws-an@solon-epp.com
+uid: ws-an
+userPassword: ws-an
+
+dn: uid=ws-senat,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn: ws-senat
+dateDebut: 20101215230000Z
+deleted: FALSE
+occasional: FALSE
+temporary: FALSE
+sn: ws-senat
+mail: ws-senat@solon-epp.com
+uid: ws-senat
+userPassword: ws-senat
+
+dn: uid=ws-dila,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn: ws-dila
+dateDebut: 20101215230000Z
+deleted: FALSE
+occasional: FALSE
+temporary: FALSE
+sn: ws-dila
+mail: ws-dila@solon-epp.com
+uid: ws-dila
+userPassword: ws-dila
+
+dn: uid=admingouvernement,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn: admingouvernement
+dateDebut: 20101215230000Z
+deleted: FALSE
+occasional: FALSE
+temporary: FALSE
+sn: admingouvernement
+mail: admingouvernement@solon-epp.com
+uid: admingouvernement
+userPassword: admingouvernement
+
+dn: uid=adminan,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn: adminan
+dateDebut: 20101215230000Z
+deleted: FALSE
+occasional: FALSE
+temporary: FALSE
+sn: adminan
+mail: adminan@solon-epp.com
+uid: adminan
+userPassword: adminan
+
+dn: uid=adminsenat,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn: adminsenat
+dateDebut: 20101215230000Z
+deleted: FALSE
+occasional: FALSE
+temporary: FALSE
+sn: adminsenat
+mail: adminsenat@solon-epp.com
+uid: adminsenat
+userPassword: adminsenat
+
+dn: uid=admindila,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn: admindila
+dateDebut: 20101215230000Z
+deleted: FALSE
+occasional: FALSE
+temporary: FALSE
+sn: admindila
+mail: admindila@solon-epp.com
+uid: admindila
+userPassword: admindila
+
+dn: uid=an,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn: an
+dateDebut: 20101215230000Z
+deleted: FALSE
+occasional: FALSE
+temporary: FALSE
+sn: an
+mail: an@solon-epp.com
+uid: an
+userPassword: an
+
+dn: uid=senat,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn: senat
+dateDebut: 20101215230000Z
+deleted: FALSE
+occasional: FALSE
+temporary: FALSE
+sn: senat
+mail: senat@solon-epp.com
+uid: senat
+userPassword: senat
+
+dn: uid=dila,ou=people,ou=SolonEpp,dc=dila,dc=fr
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: personne
+cn: dila
+dateDebut: 20101215230000Z
+deleted: FALSE
+occasional: FALSE
+temporary: FALSE
+sn: dila
+mail: dila@solon-epp.com
+uid: dila
+userPassword: dila
+

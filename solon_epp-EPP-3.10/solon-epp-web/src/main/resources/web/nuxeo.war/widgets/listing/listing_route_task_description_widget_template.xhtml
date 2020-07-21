@@ -1,0 +1,34 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+
+	<a4j:commandLink
+		onclick="Richfaces.showModalPanel('#{widget.id}_showDescription'); return false;"
+		rendered="#{not empty field_0}">
+		<h:outputText
+			value="#{messages['label.listing.route.task.showDescirption']}" />
+	</a4j:commandLink>
+
+	<rich:modalPanel id="#{widget.id}_showDescription" width="350"
+		onmaskclick="Richfaces.hideModalPanel('#{widget.id}_showDescription')">
+		<f:facet name="header">
+			<h:outputText
+				value="#{messages['label.reponses.routing.task.description']}" />
+		</f:facet>
+		<f:facet name="controls">
+			<h:graphicImage styleClass="imgClose"
+				value="/icons/action_delete_mini.gif" style="cursor:pointer"
+				onclick="Richfaces.hideModalPanel('#{widget.id}_showDescription')" />
+		</f:facet>
+
+		<h:outputText value="#{field_0}" />
+	</rich:modalPanel>
+
+</f:subview>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue les types ECM du socle transverse. -->
+<component name="fr.dila.st.web.ecmtype">
+	<extension target="org.nuxeo.ecm.platform.types.TypeService"
+		point="types">
+
+		<type id="ParametreFolder">
+			<default-view>view_parametres</default-view>
+			<subtypes>
+				<type>Parametre</type>
+			</subtypes>
+			<layouts mode="listing">
+				<layout>parametre_listing</layout>
+			</layouts>
+		</type>
+
+		<type id="Parametre">
+			<default-view>view_parametre</default-view>
+			<edit-view>edit-parametre</edit-view>
+			<layouts mode="any">
+				<layout>parametreLayout</layout>
+			</layouts>
+			<layouts mode="view">
+				<layout>parametreLayout</layout>
+			</layouts>
+			<layouts mode="edit">
+				<layout>parametreLayout</layout>
+			</layouts>
+		</type>
+
+		<type id="EtatApplication">
+			<default-view>edit_document</default-view>
+			<edit-view>edit_document</edit-view>
+
+			<layouts mode="edit">
+				<layout>etatApplicationLayout</layout>
+			</layouts>
+
+		</type>
+
+	</extension>
+</component>

@@ -1,0 +1,5 @@
+ID_ORGANIGRAMME,DATE_FIN,DATE_DEBUT,DATE_VERROU,LABEL,DELETED,UTILISATEUR_VERROU,FUNCTION_READ
+ASSEMBLEE_NATIONALE,null,null,null,"Assemblée nationale",0,null,null
+DILA,null,null,null,"DILA",0,null,null
+GOUVERNEMENT,null,null,null,"Gouvernement",0,null,null
+SENAT,null,null,null,"Sénat",0,null,null

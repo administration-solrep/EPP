@@ -1,0 +1,64 @@
+<f:subview id="#{widget.id}" xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<nxu:set var="isEditableRouteElement"
+		value="#{routingActions.isEditableRouteElement(field_0)}" cache="true">
+		<nxu:set var="isEmptyFork"
+			value="#{routingActions.isEmptyFork(field_0)}" cache="true">
+			<nxu:set var="isRouteFolder"
+				value="#{routingActions.isRouteFolder(field_0)}" cache="true">
+				<nxu:set var="isEditableStep"
+					value="#{routingActions.isEditableStep(field_0)}" cache="true">
+					<nxu:set var="isEditableEtapeObligatoire"
+						value="#{routingActions.isEditableEtapeObligatoire(field_0)}"
+						cache="true">
+
+						<c:if
+							test="#{!isRouteFolder or (isEditableRouteElement and currentRouteLockedByCurrentUser and isEditableEtapeObligatoire)}">
+							<h:outputLink id="titleref" class="#{field_1}_popupTarget"
+								value="javascript:return false;">
+								<h:graphicImage styleClass="cellActionIcon"
+									value="/img/icons/list_action_16.png"
+									alt="#{messages['label.widget.document_routing_route_content.dr_listing_step_actions']}"
+									title="#{messages['label.widget.document_routing_route_content.dr_listing_step_actions']}" />
+							</h:outputLink>
+
+							<div>
+								<c:set value="#{nxu:concat(field_1, '_menuPopup')}"
+									var="popupId" />
+								<script type="text/javascript"> 
+			        var options = {
+			            bind: 'click',
+			            useFilter: false,
+			            anchor: '#popupReceiver'
+			        };
+			        setupContextMenu('a.#{field_1}_popupTarget','#{popupId}', options);
+			    </script>
+
+								<div style="display: none;" class="contextMenu" id="#{popupId}">
+									<ul>
+										<ui:include
+											src="/widgets/listing/add_step_widget_template.xhtml" />
+										<ui:include
+											src="/widgets/listing/paste_step_widget_template.xhtml" />
+										<ui:include
+											src="/widgets/listing/remove_step_widget_template.xhtml" />
+										<ui:include
+											src="/widgets/listing/listing_edit_document_route_element_widget_template.xhtml" />
+										<ui:include
+											src="/widgets/listing/popup_open_action_widget_template.xhtml" />
+										<ui:include
+											src="/widgets/listing/popup_add_route_step_note.xhtml" />
+									</ul>
+								</div>
+							</div>
+						</c:if>
+					</nxu:set>
+				</nxu:set>
+			</nxu:set>
+		</nxu:set>
+	</nxu:set>
+</f:subview>

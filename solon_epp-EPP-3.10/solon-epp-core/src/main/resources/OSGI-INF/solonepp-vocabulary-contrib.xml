@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Cet composant contribue les vocabulaires de l'application SOLON EPP. -->
+<component name="fr.dila.solonepp.core.vocabulary">
+	<require>org.nuxeo.runtime.started</require>
+	<require>fr.dila.solonepp.core.schema</require>
+
+	<extension target="org.nuxeo.ecm.directory.sql.SQLDirectoryFactory"
+		point="directories">
+		<!-- Attribution commission -->
+		<directory name="attribution_commission">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_ATTRIBUTION_COMMISSION</table>
+			<dataFile>data/vocabulary/attribution_commission.csv</dataFile>
+		</directory>
+
+		<!-- Catégorie d'événement -->
+		<directory name="categorie_evenement">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_CATEGORIE_EVENEMENT</table>
+			<dataFile>data/vocabulary/categorie_evenement.csv</dataFile>
+		</directory>
+
+		<!-- Motif d'irrecevabilité -->
+		<directory name="motif_irrecevabilite">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_MOTIF_IRRECEVABILITE</table>
+			<dataFile>data/vocabulary/motif_irrecevabilite.csv</dataFile>
+		</directory>
+
+		<!-- Nature de loi -->
+		<directory name="nature_loi">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_NATURE_LOI</table>
+			<dataFile>data/vocabulary/nature_loi.csv</dataFile>
+		</directory>
+
+		<!-- Nature de rapport -->
+		<directory name="nature_rapport">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_NATURE_RAPPORT</table>
+			<dataFile>data/vocabulary/nature_rapport.csv</dataFile>
+		</directory>
+
+		<!-- Niveau de lecture -->
+		<directory name="niveau_lecture">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_NIVEAU_LECTURE</table>
+			<dataFile>data/vocabulary/niveau_lecture.csv</dataFile>
+		</directory>
+
+		<!-- Rapport parlement -->
+		<directory name="rapport_parlement">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_RAPPORT_PARLEMENT</table>
+			<dataFile>data/vocabulary/rapport_parlement.csv</dataFile>
+		</directory>
+
+		<!-- Sens avis -->
+		<directory name="sens_avis">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_SENS_AVIS</table>
+			<dataFile>data/vocabulary/sens_avis.csv</dataFile>
+		</directory>
+
+		<!-- Sort adoption -->
+		<directory name="sort_adoption">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_SORT_ADOPTION</table>
+			<dataFile>data/vocabulary/sort_adoption.csv</dataFile>
+		</directory>
+
+		<!-- Type de loi -->
+		<directory name="type_loi">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_TYPE_LOI</table>
+			<dataFile>data/vocabulary/type_loi.csv</dataFile>
+		</directory>
+
+		<!-- resultat cmp -->
+		<directory name="resultat_cmp">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_RESULTAT_CMP</table>
+			<dataFile>data/vocabulary/resultat_cmp.csv</dataFile>
+		</directory>
+
+		<!-- Type de loi -->
+		<directory name="type_acte">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_TYPE_ACTE</table>
+			<dataFile>data/vocabulary/type_acte.csv</dataFile>
+		</directory>
+
+		<!-- Type de pièce jointe -->
+		<directory name="type_piece_jointe">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_TYPE_PJ</table>
+			<dataFile>data/vocabulary/type_piece_jointe.csv</dataFile>
+		</directory>
+
+		<!-- Type de décision pour la procédure accélérée -->
+		<directory name="decision_proc_acc">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_DEC_PROC_ACC</table>
+			<dataFile>data/vocabulary/decision_procedure_acc.csv</dataFile>
+		</directory>
+		
+		<!-- Rubriques -->
+		<directory name="rubriques">
+			<schema>vocabularyRubrique</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>VOC_RUBRIQUES</table>
+		</directory>
+
+		<!-- *********************************************************************** 
+			Vocabulaires user *********************************************************************** -->
+		<!-- Civilité -->
+		<directory name="title">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<table>VOC_TITLE</table>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<dataFile>data/vocabulary/title.csv</dataFile>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+		</directory>
+		<!-- Boolean Oui / Non -->
+		<directory name="boolean_voc">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<table>VOC_BOOLEAN</table>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<dataFile>data/vocabulary/boolean.csv</dataFile>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+		</directory>
+
+		<!-- Formats de fichiers autorisés <directory name="format_fichier_autorise"> 
+			<schema>vocabulary</schema> <dataSource>java:/nxsqldirectory</dataSource> 
+			<cacheTimeout>3600</cacheTimeout> <cacheMaxSize>1000</cacheMaxSize> <idField>id</idField> 
+			<autoincrementIdField>false</autoincrementIdField> <createTablePolicy>on_missing_columns</createTablePolicy> 
+			<table>VOC_FILE_FORMAT</table> <dataFile>data/vocabulary/format_fichier_autorise.csv</dataFile> 
+			</directory> -->
+	</extension>
+</component>

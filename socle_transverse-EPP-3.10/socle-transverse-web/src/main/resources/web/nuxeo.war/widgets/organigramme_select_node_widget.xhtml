@@ -1,0 +1,695 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<style>
+.dr-mpnl-pnl-b {
+	padding: 0px;
+}
+
+.rich-tree-node-selected {
+	border-color: #FFFFFF;
+}
+
+.rich-tree-node-highlighted {
+	text-decoration: none;
+	color: #000000;
+}
+
+.add_icon {
+	padding-left: 3px;
+}
+</style>
+
+	<c:set var="selectionType"
+		value="#{nxu:test(!empty widget.properties.organigrammeSelectionType, widget.properties.organigrammeSelectionType, 'POSTE_TYPE')}" />
+	<c:set var="selectionMode"
+		value="#{nxu:test(!empty widget.properties.organigrammeSelectionMode, widget.properties.organigrammeSelectionMode, 'LIST')}" />
+	<c:set var="activatePosteFilter"
+		value="#{nxu:test(!empty widget.properties.organigrammeActivatePosteFilter, widget.properties.organigrammeActivatePosteFilter, 'false')}" />
+	<c:set var="onlyPermanentUser"
+		value="#{nxu:test(!empty widget.properties.organigrammePermanentUserOnly, widget.properties.organigrammePermanentUserOnly, 'false')}" />
+
+	<c:if test="#{widget.mode == 'view'}">
+
+		<c:if test="#{selectionMode == 'LIST'}">
+			<h:dataTable value="#{field_0}" var="item"
+				rendered="#{not empty field_0}">
+				<h:column>
+					<!--<nxu:methodResult name="info" value="#//{profileSuggestionActions.getUserInfo(item)}">-->
+					<f:subview>
+						<c:choose>
+							<c:when test="#{selectionType == 'POSTE_TYPE'}">
+								<h:graphicImage value="/img/icons/poste.png" alt="poste.png" />
+							</c:when>
+							<c:when test="#{selectionType == 'GVT_TYPE'}">
+								<h:graphicImage value="/img/icons/base_organigramme.png"
+									alt="gouvernement" />
+							</c:when>
+							<c:otherwise>
+								<h:graphicImage value="/img/icons/unite_structurelle.png"
+									alt="unite_structurelle.png" />
+							</c:otherwise>
+						</c:choose>
+						<h:outputText value="#{item}"
+							converter="#{organigrammeManagerActions.getOrganigrammeConverter(selectionType)}" />
+					</f:subview>
+					<!-- </nxu:methodResult>-->
+				</h:column>
+			</h:dataTable>
+		</c:if>
+
+		<c:if test="#{selectionMode == 'SINGLE'}">
+			<h:outputText value="#{field_0}"
+				converter="#{organigrammeManagerActions.getOrganigrammeConverter(selectionType)}" />
+		</c:if>
+
+	</c:if>
+
+	<c:if test="#{widget.mode == 'edit' or widget.mode == 'create' }">
+
+		<a4j:outputPanel ajaxRendered="false" id="#{widget.id}_ajax_region">
+
+			<c:if test="#{organigrammeTree.isVisible()}">
+				<rich:modalPanel id="#{widget.id}_selectNodeOrganigrammePanel"
+					autosized="true">
+
+					<f:facet name="header">
+						<h:outputText value="#{messages['organigramme.name']}" />
+					</f:facet>
+					<f:facet name="controls">
+						<h:panelGroup>
+							<a4j:commandLink immediate="true"
+								actionListener="#{organigrammeTree.setVisible(false)}"
+								id="#{widget.id}_hideRouteElementsTypePanel"
+								reRender="#{widget.id}_ajax_region" bypassUpdates="true"
+								ajaxSingle="true" eventsQueue="ajax_events_queue">
+								<h:graphicImage value="/icons/action_delete_mini.gif">
+								</h:graphicImage>
+							</a4j:commandLink>
+						</h:panelGroup>
+					</f:facet>
+					<h:panelGroup layout="block"
+						style="width: 600px; height:500px; overflow: scroll;">
+						<div style="padding: 10px;">
+							<rich:tree id="#{widget.id}_tree" style="width:300px"
+								switchType="ajax" ajaxSingle="true"
+								eventsQueue="ajax_events_queue"
+								iconExpanded="/icons/toggle_minus.png"
+								iconCollapsed="/icons/toggle_plus.png"
+								changeExpandListener="#{organigrammeTree.changeExpandListener}"
+								adviseNodeOpened="#{organigrammeTree.adviseNodeOpened}">
+
+								<rich:recursiveTreeNodesAdaptor id="node" var="item"
+									roots="#{organigrammeTree.organigramme}"
+									nodes="#{item.children}">
+
+									<rich:treeNode rendered="#{item.typeValue == 'BASE'}" id="base"
+										iconLeaf="/img/icons/base_organigramme.png"
+										icon="/img/icons/base_organigramme.png">
+
+										<h:outputText value="#{messages[item.id]}" />
+
+									</rich:treeNode>
+
+									<rich:treeNode rendered="#{item.typeValue == 'GVT'}" id="gvt"
+										iconLeaf="/img/icons/base_organigramme.png"
+										icon="/img/icons/base_organigramme.png">
+
+										<h:outputText value="#{item.label}" />
+
+										<c:if test="#{selectionType=='GVT_TYPE'}">
+											<c:if test="#{selectionMode == 'SINGLE'}">
+												<a4j:commandLink id="addBtn" ajaxSingle="true"
+													eventsQueue="ajax_events_queue"
+													reRender="#{widget.id}_single_region, #{widget.id}_ajax_region">
+													<a4j:actionparam name="selectedNode" value="#{item.id}"
+														assignTo="#{field_0}" />
+													<f:setPropertyActionListener value="#{item.id}"
+														target="#{organigrammeManagerActions.selectedNodeId}" />													
+													<f:setPropertyActionListener value="#{item.typeValue}"
+															target="#{organigrammeManagerActions.organigrammePopupSelectionType}" />
+													<nxu:actionListenerMethod
+														value="#{organigrammeManagerActions.addSingleBoundSelection}" />
+													<f:param name="suggestionSelectionHiddenId"
+														value="#{widget.id}_nodeId" />
+													<f:param name="suggestionSelectionOutputId"
+														value="#{widget.id}_node" />
+													<f:param name="suggestionSelectionDeleteId"
+														value="#{widget.id}_selection_reset" />
+													<a4j:actionparam name="visible" value="false"
+														assignTo="#{organigrammeTree.visible}" />
+													<rich:componentControl
+														for="#{widget.id}_selectNodeOrganigrammePanel"
+														operation="hide" event="onclick" />
+													<h:graphicImage id="#{widget.id}_add_gvt"
+														value="icons/action_add.gif" styleClass="add_icon" />
+												</a4j:commandLink>
+											</c:if>
+											<c:if test="#{selectionMode == 'LIST'}">
+												<a4j:commandLink immediate="true" id="addBtnDir"
+													ajaxSingle="true" eventsQueue="ajax_events_queue">
+													<a4j:support event="onclick"
+														eventsQueue="ajax_events_queue" bypassUpdates="true"
+														reRender="#{widget.id}_listRegion, #{widget.id}_node, #{widget.id}_ajax_region"
+														id="#{widget.id}_listRegion_selectDir">
+														<f:setPropertyActionListener value="#{item.id}"
+															target="#{organigrammeManagerActions.selectedNodeId}" />
+														<f:setPropertyActionListener value="#{item.typeValue}"
+															target="#{organigrammeManagerActions.organigrammePopupSelectionType}" />
+														<nxu:actionListenerMethod
+															value="#{organigrammeManagerActions.addSelectionToList}" />
+														<f:param name="organigrammeSelectionListId"
+															value="#{widget.id}_list" />
+														<rich:componentControl
+															for="#{widget.id}_selectNodeOrganigrammePanel"
+															operation="hide" event="onclick" />
+													</a4j:support>
+													<h:graphicImage id="#{widget.id}_addDir"
+														value="icons/action_add.gif" styleClass="add_icon" />
+												</a4j:commandLink>
+											</c:if>
+										</c:if>
+									</rich:treeNode>
+
+									<rich:treeNode rendered="#{item.typeValue == 'MIN'}" id="min"
+										iconLeaf="/img/icons/unite_structurelle.png"
+										icon="/img/icons/unite_structurelle.png">
+
+										<h:outputText value="#{item.label}" style="font-weight: bold;" />
+
+										<c:if test="#{selectionType=='MIN_TYPE'}">
+											<c:if test="#{selectionMode == 'SINGLE'}">
+												<a4j:commandLink id="addBtn" ajaxSingle="true"
+													eventsQueue="ajax_events_queue"
+													reRender="#{widget.id}_single_region, #{widget.id}_ajax_region">
+													<a4j:actionparam name="selectedNode" value="#{item.id}"
+														assignTo="#{field_0}" />
+													<f:setPropertyActionListener value="#{item.id}"
+														target="#{organigrammeManagerActions.selectedNodeId}" />
+													<f:setPropertyActionListener value="#{item.typeValue}"
+															target="#{organigrammeManagerActions.organigrammePopupSelectionType}" />
+													<nxu:actionListenerMethod
+														value="#{organigrammeManagerActions.addSingleBoundSelection}" />
+													<f:param name="suggestionSelectionHiddenId"
+														value="#{widget.id}_nodeId" />
+													<f:param name="suggestionSelectionOutputId"
+														value="#{widget.id}_node" />
+													<f:param name="suggestionSelectionDeleteId"
+														value="#{widget.id}_selection_reset" />
+													<a4j:actionparam name="visible" value="false"
+														assignTo="#{organigrammeTree.visible}" />
+													<rich:componentControl
+														for="#{widget.id}_selectNodeOrganigrammePanel"
+														operation="hide" event="onclick" />
+													<h:graphicImage id="#{widget.id}_add_min"
+														value="icons/action_add.gif" styleClass="add_icon" />
+												</a4j:commandLink>
+											</c:if>
+											<c:if test="#{selectionMode == 'LIST'}">
+												<a4j:commandLink immediate="true" id="addBtnMin"
+													ajaxSingle="true" eventsQueue="ajax_events_queue">
+													<a4j:support event="onclick"
+														eventsQueue="ajax_events_queue" bypassUpdates="true"
+														reRender="#{widget.id}_listRegion, #{widget.id}_node, #{widget.id}_ajax_region"
+														id="#{widget.id}_listRegion_selectDir">
+														<f:setPropertyActionListener value="#{item.id}"
+															target="#{organigrammeManagerActions.selectedNodeId}" />															
+														<f:setPropertyActionListener value="#{item.typeValue}"
+															target="#{organigrammeManagerActions.organigrammePopupSelectionType}" />
+														<nxu:actionListenerMethod
+															value="#{organigrammeManagerActions.addSelectionToList}" />
+														<f:param name="organigrammeSelectionListId"
+															value="#{widget.id}_list" />
+														<rich:componentControl
+															for="#{widget.id}_selectNodeOrganigrammePanel"
+															operation="hide" event="onclick" />
+													</a4j:support>
+													<h:graphicImage id="#{widget.id}_addMin"
+														value="icons/action_add.gif" styleClass="add_icon" />
+												</a4j:commandLink>
+											</c:if>
+										</c:if>
+									</rich:treeNode>
+
+									<rich:treeNode rendered="#{item.typeValue == 'DIR'}" id="dir"
+										iconLeaf="/img/icons/unite_structurelle.png"
+										icon="/img/icons/unite_structurelle.png">
+
+										<h:outputText value="#{item.label}" />
+
+										<c:if
+											test="#{(selectionType=='DIR_TYPE') || (selectionType=='DIR_AND_UST_TYPE')}">
+											<c:if test="#{selectionMode == 'SINGLE'}">
+												<a4j:commandLink id="addBtnDir" ajaxSingle="true"
+													eventsQueue="ajax_events_queue"
+													reRender="#{widget.id}_single_region, #{widget.id}_ajax_region">
+													<a4j:actionparam name="selectedNode" value="#{item.id}"
+														assignTo="#{field_0}" />
+													<f:setPropertyActionListener value="#{item.id}"
+														target="#{organigrammeManagerActions.selectedNodeId}" />
+													<f:setPropertyActionListener value="#{item.typeValue}"
+															target="#{organigrammeManagerActions.organigrammePopupSelectionType}" />
+													<nxu:actionListenerMethod
+														value="#{organigrammeManagerActions.addSingleBoundSelection}" />
+													<f:param name="suggestionSelectionHiddenId"
+														value="#{widget.id}_nodeId" />
+													<f:param name="suggestionSelectionOutputId"
+														value="#{widget.id}_node" />
+													<f:param name="suggestionSelectionDeleteId"
+														value="#{widget.id}_selection_reset" />
+													<a4j:actionparam name="visible" value="false"
+														assignTo="#{organigrammeTree.visible}" />
+													<rich:componentControl
+														for="#{widget.id}_selectNodeOrganigrammePanel"
+														operation="hide" event="onclick" />
+													<h:graphicImage id="#{widget.id}_add_min"
+														value="icons/action_add.gif" styleClass="add_icon" />
+												</a4j:commandLink>
+											</c:if>
+											<c:if test="#{selectionMode == 'LIST'}">
+												<a4j:commandLink immediate="true" id="addBtnDir"
+													ajaxSingle="true" eventsQueue="ajax_events_queue">
+													<a4j:support event="onclick"
+														eventsQueue="ajax_events_queue" bypassUpdates="true"
+														reRender="#{widget.id}_listRegion, #{widget.id}_node, #{widget.id}_ajax_region"
+														id="#{widget.id}_listRegion_selectDir">
+														<f:setPropertyActionListener value="#{item.id}"
+															target="#{organigrammeManagerActions.selectedNodeId}" />														
+														<f:setPropertyActionListener value="#{item.typeValue}"
+															target="#{organigrammeManagerActions.organigrammePopupSelectionType}" />
+														<nxu:actionListenerMethod
+															value="#{organigrammeManagerActions.addSelectionToList}" />
+														<f:param name="organigrammeSelectionListId"
+															value="#{widget.id}_list" />
+														<rich:componentControl
+															for="#{widget.id}_selectNodeOrganigrammePanel"
+															operation="hide" event="onclick" />
+													</a4j:support>
+													<h:graphicImage id="#{widget.id}_addDir"
+														value="icons/action_add.gif" styleClass="add_icon" />
+												</a4j:commandLink>
+											</c:if>
+										</c:if>
+									</rich:treeNode>
+
+									<rich:treeNode rendered="#{item.typeValue == 'UST'}" id="us"
+										iconLeaf="/img/icons/unite_structurelle.png"
+										icon="/img/icons/unite_structurelle.png">
+
+										<h:outputText value="#{item.label}" />
+
+										<c:if
+											test="#{(selectionType=='UST_TYPE') || (selectionType=='DIR_AND_UST_TYPE')}">
+											<c:if test="#{selectionMode == 'SINGLE'}">
+												<a4j:commandLink id="addBtnUst" ajaxSingle="true"
+													eventsQueue="ajax_events_queue"
+													reRender="#{widget.id}_single_region, #{widget.id}_ajax_region">
+													<a4j:actionparam name="selectedNode" value="#{item.id}"
+														assignTo="#{field_0}" />
+													<f:setPropertyActionListener value="#{item.id}"
+														target="#{organigrammeManagerActions.selectedNodeId}" />
+													<f:setPropertyActionListener value="#{item.typeValue}"
+															target="#{organigrammeManagerActions.organigrammePopupSelectionType}" />
+													<nxu:actionListenerMethod
+														value="#{organigrammeManagerActions.addSingleBoundSelection}" />
+													<f:param name="suggestionSelectionHiddenId"
+														value="#{widget.id}_nodeId" />
+													<f:param name="suggestionSelectionOutputId"
+														value="#{widget.id}_node" />
+													<f:param name="suggestionSelectionDeleteId"
+														value="#{widget.id}_selection_reset" />
+													<a4j:actionparam name="visible" value="false"
+														assignTo="#{organigrammeTree.visible}" />
+													<rich:componentControl
+														for="#{widget.id}_selectNodeOrganigrammePanel"
+														operation="hide" event="onclick" />
+													<h:graphicImage id="#{widget.id}_add_min"
+														value="icons/action_add.gif" styleClass="add_icon" />
+												</a4j:commandLink>
+											</c:if>
+											<c:if test="#{selectionMode == 'LIST'}">
+												<a4j:commandLink immediate="true" id="addBtnUst"
+													ajaxSingle="true" eventsQueue="ajax_events_queue">
+													<a4j:support event="onclick"
+														eventsQueue="ajax_events_queue" bypassUpdates="true"
+														reRender="#{widget.id}_listRegion, #{widget.id}_node, #{widget.id}_ajax_region"
+														id="#{widget.id}_listRegion_selectUst">
+														<f:setPropertyActionListener value="#{item.id}"
+															target="#{organigrammeManagerActions.selectedNodeId}" />														
+														<f:setPropertyActionListener value="#{item.typeValue}"
+															target="#{organigrammeManagerActions.organigrammePopupSelectionType}" />
+														<nxu:actionListenerMethod
+															value="#{organigrammeManagerActions.addSelectionToList}" />
+														<f:param name="organigrammeSelectionListId"
+															value="#{widget.id}_list" />
+														<rich:componentControl
+															for="#{widget.id}_selectNodeOrganigrammePanel"
+															operation="hide" event="onclick" />
+													</a4j:support>
+													<h:graphicImage id="#{widget.id}_addUst"
+														value="icons/action_add.gif" styleClass="add_icon" />
+												</a4j:commandLink>
+											</c:if>
+										</c:if>
+									</rich:treeNode>
+
+									<rich:treeNode rendered="#{item.typeValue == 'PST'}" id="poste"
+										iconLeaf="/img/icons/poste.png" icon="/img/icons/poste.png">
+
+										<h:outputText value="#{item.label}" />
+										<c:if test="#{selectionType=='MAILBOX_TYPE'}">
+											<c:if test="#{selectionMode == 'SINGLE'}">
+												<a4j:commandLink id="addBtn" ajaxSingle="true"
+													eventsQueue="ajax_events_queue"
+													rendered="#{organigrammeManagerActions.allowAddPoste(item.ministereId) or activatePosteFilter eq 'false'}"
+													reRender="#{widget.id}_single_region, #{widget.id}_ajax_region">
+													<a4j:actionparam name="selectedNode"
+														value="#{organigrammeManagerActions.getMailboxIdFromPosteId(item.id)}"
+														assignTo="#{field_0}" />
+													<f:setPropertyActionListener
+														value="#{organigrammeManagerActions.getMailboxIdFromPosteId(item.id)}"
+														target="#{organigrammeManagerActions.selectedNodeId}" />
+													<nxu:actionListenerMethod
+														value="#{organigrammeManagerActions.addSingleBoundSelection}" />
+													<f:param name="suggestionSelectionHiddenId"
+														value="#{widget.id}_nodeId" />
+													<f:param name="suggestionSelectionOutputId"
+														value="#{widget.id}_node" />
+													<f:param name="suggestionSelectionDeleteId"
+														value="#{widget.id}_selection_reset" />
+													<a4j:actionparam name="visible" value="false"
+														assignTo="#{organigrammeTree.visible}" />
+													<rich:componentControl
+														for="#{widget.id}_selectNodeOrganigrammePanel"
+														operation="hide" event="onclick" />
+													<h:graphicImage id="#{widget.id}_add_min"
+														value="icons/action_add.gif" styleClass="add_icon" />
+												</a4j:commandLink>
+											</c:if>
+										</c:if>
+										<c:if test="#{selectionType=='POSTE_TYPE'}">
+											<c:if test="#{selectionMode == 'SINGLE'}">
+												<a4j:commandLink id="addBtn" ajaxSingle="true"
+													eventsQueue="ajax_events_queue"
+													rendered="#{organigrammeManagerActions.allowAddPoste(item.ministereId) or activatePosteFilter eq 'false'}"
+													reRender="#{widget.id}_single_region, #{widget.id}_ajax_region">
+													<a4j:actionparam name="selectedNode" value="#{item.id}"
+														assignTo="#{field_0}" />
+													<f:setPropertyActionListener value="#{item.id}"
+														target="#{organigrammeManagerActions.selectedNodeId}" />
+													<f:setPropertyActionListener value="#{item.typeValue}"
+															target="#{organigrammeManagerActions.organigrammePopupSelectionType}" />
+													<nxu:actionListenerMethod
+														value="#{organigrammeManagerActions.addSingleBoundSelection}" />
+													<f:param name="suggestionSelectionHiddenId"
+														value="#{widget.id}_nodeId" />
+													<f:param name="suggestionSelectionOutputId"
+														value="#{widget.id}_node" />
+													<f:param name="suggestionSelectionDeleteId"
+														value="#{widget.id}_selection_reset" />
+													<a4j:actionparam name="visible" value="false"
+														assignTo="#{organigrammeTree.visible}" />
+													<rich:componentControl
+														for="#{widget.id}_selectNodeOrganigrammePanel"
+														operation="hide" event="onclick" />
+													<h:graphicImage id="#{widget.id}_add_pst"
+														value="icons/action_add.gif" styleClass="add_icon" />
+												</a4j:commandLink>
+											</c:if>
+											<c:if test="#{selectionMode == 'LIST'}">
+												<a4j:commandLink immediate="true" ajaxSingle="true"
+													eventsQueue="ajax_events_queue" id="addBtn"
+													rendered="#{organigrammeManagerActions.allowAddPoste(item.ministereId) or activatePosteFilter eq 'false'}">
+													<a4j:support event="onclick"
+														eventsQueue="ajax_events_queue" bypassUpdates="true"
+														reRender="#{widget.id}_listRegion, #{widget.id}_node, #{widget.id}_ajax_region"
+														id="#{widget.id}_listRegion_select">
+														<f:setPropertyActionListener value="#{item.id}"
+															target="#{organigrammeManagerActions.selectedNodeId}" />
+														<f:setPropertyActionListener value="#{item.typeValue}"
+															target="#{organigrammeManagerActions.organigrammePopupSelectionType}" />
+														<nxu:actionListenerMethod
+															value="#{organigrammeManagerActions.addSelectionToList}" />
+														<f:param name="organigrammeSelectionListId"
+															value="#{widget.id}_list" />
+														<rich:componentControl
+															for="#{widget.id}_selectNodeOrganigrammePanel"
+															operation="hide" event="onclick" />
+													</a4j:support>
+													<h:graphicImage id="#{widget.id}_addPoste"
+														value="icons/action_add.gif" styleClass="add_icon" />
+												</a4j:commandLink>
+											</c:if>
+										</c:if>
+									</rich:treeNode>
+									<rich:treeNode rendered="#{(item.typeValue == 'USR')}"
+										id="user" iconLeaf="/img/icons/user_16.png"
+										icon="/img/icons/user_16.png">
+
+										<h:outputText value="#{item.label}" />
+
+										<c:if test="#{selectionType=='USER_TYPE'}">
+											<c:if test="#{selectionMode == 'SINGLE'}">
+												<a4j:commandLink id="addBtn" ajaxSingle="true"
+													eventsQueue="ajax_events_queue"
+													rendered="#{(!((onlyPermanentUser != 'false') and !item.isActive()))}"
+													reRender="#{widget.id}_single_region, #{widget.id}_ajax_region">
+													<a4j:actionparam name="selectedNode" value="#{item.id}"
+														assignTo="#{field_0}" />
+													<a4j:actionparam name="visible" value="false"
+														assignTo="#{organigrammeTree.visible}" />
+													<rich:componentControl
+														for="#{widget.id}_selectNodeOrganigrammePanel"
+														operation="hide" event="onclick" />
+													<h:graphicImage id="#{widget.id}_add_min"
+														value="icons/action_add.gif" styleClass="add_icon" />
+												</a4j:commandLink>
+											</c:if>
+											<c:if test="#{selectionMode == 'LIST'}">
+												<a4j:commandLink immediate="true" ajaxSingle="true"
+													eventsQueue="ajax_events_queue" id="addBtn"
+													rendered="#{(!((onlyPermanentUser != 'false') and !item.isActive()))}">
+													<a4j:support event="onclick"
+														eventsQueue="ajax_events_queue" bypassUpdates="true"
+														reRender="#{widget.id}_listRegion, #{widget.id}_node, #{widget.id}_ajax_region"
+														id="#{widget.id}_listRegion_select">
+														<f:setPropertyActionListener value="#{item.id}"
+															target="#{organigrammeManagerActions.selectedNodeId}" />							
+														<f:setPropertyActionListener value="#{selectionType}"
+															target="#{organigrammeManagerActions.organigrammePopupSelectionType}" />
+														<nxu:actionListenerMethod
+															value="#{organigrammeManagerActions.addSelectionToList}" />
+														<f:param name="organigrammeSelectionListId"
+															value="#{widget.id}_list" />
+														<rich:componentControl
+															for="#{widget.id}_selectNodeOrganigrammePanel"
+															operation="hide" event="onclick" />
+													</a4j:support>
+													<h:graphicImage id="#{widget.id}_addPoste"
+														value="icons/action_add.gif" styleClass="add_icon" />
+												</a4j:commandLink>
+											</c:if>
+										</c:if>
+									</rich:treeNode>
+
+								</rich:recursiveTreeNodesAdaptor>
+							</rich:tree>
+						</div>
+					</h:panelGroup>
+				</rich:modalPanel>
+			</c:if>
+		</a4j:outputPanel>
+
+		<h:panelGrid id="#{widget.id}_panel" columns="2">
+
+			<h:panelGroup>
+				<c:if test="#{selectionMode == 'SINGLE'}">
+					<span id="#{widget.id}_suggestDiv"> <h:inputText
+							id="#{widget.id}_suggest" style="width: 200px;"
+							onkeydown="if (event.keyCode == 13) {return false;}" />
+					</span>
+
+					<rich:suggestionbox id="#{widget.id}_suggestionBox"
+						for="#{widget.id}_suggest" tokens=""
+						suggestionAction="#{organigrammeSuggestionActions.getSuggestions}"
+						var="result" fetchValue=""
+						nothingLabel="#{messages['label.suggestion.noSearchResultsOrSearchOverflow']}"
+						minChars="3" frequency="0" requestDelay="100">
+						<f:param name="selectionType" value="#{selectionType}" />
+						<f:param name="activatePosteFilter" value="#{activatePosteFilter}" />
+						<a4j:support event="onselect" focus="#{widget.id}_suggest"
+							ajaxSingle="true" eventsQueue="ajax_events_queue"
+							reRender="#{widget.id}_single_region"
+							id="#{widget.id}_listRegion_select">
+							<f:setPropertyActionListener value="#{result.id}"
+								target="#{field_0}" />
+							<f:setPropertyActionListener value="#{result.id}"
+								target="#{organigrammeManagerActions.selectedNodeId}" />
+							<f:setPropertyActionListener value="#{selectionType}"
+									target="#{organigrammeManagerActions.organigrammePopupSelectionType}" />
+							<f:param name="selectionType" value="#{selectionType}" />
+							<f:param name="activatePosteFilter"
+								value="#{activatePosteFilter}" />
+							<nxu:actionListenerMethod
+								value="#{organigrammeManagerActions.addSingleBoundSelection}" />
+							<f:param name="suggestionSelectionHiddenId"
+								value="#{widget.id}_nodeId" />
+							<f:param name="suggestionSelectionOutputId"
+								value="#{widget.id}_node" />
+							<f:param name="suggestionSelectionDeleteId"
+								value="#{widget.id}_selection_reset" />
+						</a4j:support>
+						<h:column>
+							<h:outputText value="#{result.label}" />
+						</h:column>
+					</rich:suggestionbox>
+				</c:if>
+
+				<c:if test="#{selectionMode == 'LIST'}">
+					<span id="#{widget.id}_suggestDiv"> <h:inputText
+							id="#{widget.id}_suggest" style="width: 200px;"
+							onkeydown="if (event.keyCode == 13) {return false;}" />
+					</span>
+
+					<rich:suggestionbox id="#{widget.id}_suggestionBox"
+						for="#{widget.id}_suggest" tokens=""
+						suggestionAction="#{organigrammeSuggestionActions.getSuggestions}"
+						var="result" fetchValue=""
+						nothingLabel="#{messages['label.suggestion.noSearchResultsOrSearchOverflow']}"
+						minChars="3" frequency="0" requestDelay="100">
+						<f:param name="selectionType" value="#{selectionType}" />
+						<f:param name="activatePosteFilter" value="#{activatePosteFilter}" />
+						<a4j:support event="onselect" focus="#{widget.id}_suggest"
+							ajaxSingle="true" eventsQueue="ajax_events_queue"
+							reRender="#{widget.id}_single_region"
+							id="#{widget.id}_listRegion_select">
+							<f:setPropertyActionListener value="#{result.id}"
+								target="#{organigrammeManagerActions.selectedNodeId}" />							
+							<f:setPropertyActionListener value="#{selectionType}"
+									target="#{organigrammeManagerActions.organigrammePopupSelectionType}" />
+							<f:param name="selectionType" value="#{selectionType}" />
+							<f:param name="activatePosteFilter"
+								value="#{activatePosteFilter}" />
+							<nxu:actionListenerMethod
+								value="#{organigrammeManagerActions.addSelectionToList}" />
+							<f:param name="organigrammeSelectionListId"
+								value="#{widget.id}_list" />
+						</a4j:support>
+						<h:column>
+							<h:outputText value="#{result.label}" />
+						</h:column>
+					</rich:suggestionbox>
+				</c:if>
+			</h:panelGroup>
+
+			<a4j:commandLink immediate="true"
+				actionListener="#{organigrammeTree.setVisible(true)}"
+				ajaxSingle="true" eventsQueue="ajax_events_queue"
+				id="#{widget.id}_findButton" reRender="#{widget.id}_ajax_region"
+				bypassUpdates="true"
+				oncomplete="Richfaces.showModalPanel('#{widget.id}_selectNodeOrganigrammePanel'); return false;">
+				<h:graphicImage value="/img/icons/element_find.png">
+				</h:graphicImage>
+			</a4j:commandLink>
+
+		</h:panelGrid>
+
+		<c:if test="#{selectionMode == 'LIST'}">
+			<h:panelGroup>
+				<a4j:outputPanel ajaxRendered="true" id="#{widget.id}_listRegion">
+					<nxu:inputList id="#{widget.id}_list" value="#{field_0}"
+						model="model" required="#{widget.required}">
+						<h:panelGroup id="#{widget.id}_listItem">
+							<h:panelGrid columns="1">
+								<h:panelGroup>
+									<a4j:commandLink immediate="true"
+										actionListener="#{editableListBean.performAction}"
+										id="#{widget.id}_delete" reRender="#{widget.id}_listRegion"
+										ajaxSingle="true" eventsQueue="ajax_events_queue"
+										bypassUpdates="true">
+										<h:graphicImage value="/icons/action_delete.gif" />
+										<f:param name="for" value="#{widget.id}_list" />
+										<f:param name="index" value="#{model.rowIndex}" />
+										<f:param name="type" value="remove" />
+									</a4j:commandLink>
+									<c:choose>
+										<c:when test="#{selectionType == 'POSTE_TYPE'}">
+											<h:graphicImage value="/img/icons/poste.png" alt="poste.png" />
+										</c:when>
+										<c:when test="#{selectionType=='USER_TYPE'}">
+											<h:graphicImage value="/img/icons/user_16.png"
+												alt="user_16.png" />
+										</c:when>
+										<c:when test="#{selectionType == 'GVT_TYPE'}">
+											<h:graphicImage value="/img/icons/base_organigramme.png"
+												alt="gouvernement" />
+										</c:when>
+										<c:otherwise>
+											<h:graphicImage value="/img/icons/unite_structurelle.png"
+												alt="unite_structurelle.png" />
+										</c:otherwise>
+									</c:choose>
+									<h:outputText
+										value="#{organigrammeManagerActions.getOrganigrammeNodeLabel(selectionType, model.rowData)}" />
+								</h:panelGroup>
+							</h:panelGrid>
+						</h:panelGroup>
+					</nxu:inputList>
+					<h:message styleClass="errorMessage" for="#{widget.id}_list"
+						id="#{widget.id}_message" />
+				</a4j:outputPanel>
+			</h:panelGroup>
+		</c:if>
+
+		<c:if test="#{selectionMode == 'SINGLE'}">
+			<a4j:outputPanel ajaxRendered="true" id="#{widget.id}_single_region">
+				<a4j:commandLink id="#{widget.id}_selection_reset"
+					actionListener="#{organigrammeManagerActions.clearSingleSelection}"
+					reRender="#{widget.id}_single_region" ajaxSingle="true"
+					eventsQueue="ajax_events_queue" rendered="#{!empty field_0}">
+					<f:setPropertyActionListener value="" target="#{field_0}" />
+					<h:graphicImage id="#{widget.id}_delete"
+						value="/icons/action_delete.gif" />
+					<f:param name="suggestionSelectionHiddenId"
+						value="#{widget.id}_nodeId" />
+					<f:param name="suggestionSelectionOutputId"
+						value="#{widget.id}_node" />
+					<f:param name="suggestionSelectionDeleteId"
+						value="#{widget.id}_selection_reset" />
+				</a4j:commandLink>
+				<h:inputHidden id="#{widget.id}_nodeId" value="#{field_0}"
+					required="#{widget.required}" />
+
+				<c:choose>
+					<c:when test="#{selectionType == 'USER_TYPE'}">
+						<a4j:commandLink
+							onclick="Richfaces.showModalPanel('view_user_popup');"
+							immediate="true" reRender="view_user_popup_panel"
+							ajaxSingle="true" eventsQueue="ajax_events_queue">
+							<a4j:actionparam name="selectedNode" value="#{field_0}"
+								assignTo="#{userManagerActions.selectedUserId}" />
+							<h:outputText id="#{widget.id}_node" value="#{field_0}"
+								required="#{widget.required}"
+								converter="#{organigrammeManagerActions.getOrganigrammeConverter(selectionType)}" />
+						</a4j:commandLink>
+						<ui:include src="/view_user_popup.xhtml" />
+					</c:when>
+					<c:otherwise>
+						<h:outputText id="#{widget.id}_node" value="#{field_0}"
+							required="#{widget.required}"
+							converter="#{organigrammeManagerActions.getOrganigrammeConverter(selectionType)}" />
+					</c:otherwise>
+				</c:choose>
+				<h:message for="#{widget.id}_nodeId" styleClass="errorMessage" />
+			</a4j:outputPanel>
+		</c:if>
+
+	</c:if>
+
+</div>

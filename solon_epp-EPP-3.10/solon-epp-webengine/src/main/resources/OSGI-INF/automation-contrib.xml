@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.solonepp.automation.injection.contrib">
+
+	<require>org.nuxeo.ecm.core.operation.OperationServiceComponent</require>
+
+	<!-- <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" 
+		point="operations"> <operation class="fr.dila.solonepp.operation.injection.DossierCreation" 
+		/> </extension> -->
+</component>

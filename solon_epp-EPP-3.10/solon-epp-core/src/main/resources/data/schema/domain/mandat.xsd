@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://dila.fr/solonepp/schema/mandat/" xmlns:man="http://dila.fr/solonepp/schema/mandat/">
+
+	<!-- Identifiant technique de l'enregistrement -->
+	<xs:element name="identifiant" type="xs:string" />
+
+	<!-- Type de mandat (DEPUTE, SENATEUR, POUVOIR_EXECUTIF, PRESIDENCE_REPUBLIQUE, 
+		HAUT_COMMISSAIRE, SECRETARIAT_ETAT, MINISTERE) -->
+	<xs:element name="typeMandat" type="xs:string" />
+
+	<!-- Propriétaire de l'organisme (GOUVERNEMENT, AN, SENAT) -->
+	<xs:element name="proprietaire" type="xs:string" />
+
+	<!-- Date de début du mandat -->
+	<xs:element name="dateDebut" type="xs:date" />
+
+	<!-- Date de fin du mandat -->
+	<xs:element name="dateFin" type="xs:date" />
+
+	<!-- Ordre protocolaire (uniquement pour POUVOIR_EXECUTIF et sous-types) -->
+	<xs:element name="ordreProtocolaire" type="xs:long" />
+
+	<!-- Titre (uniquement pour POUVOIR_EXECUTIF et sous-types) -->
+	<xs:element name="titre" type="xs:string" />
+
+	<!-- Identifiant technique de l'identité -->
+	<xs:element name="identite" type="xs:string" />
+
+	<!-- Identifiant technique du ministère (uniquement pour POUVOIR_EXECUTIF 
+		et sous-types) -->
+	<xs:element name="ministere" type="xs:string" />
+
+	<!-- Identifiant technique de la circonscription (uniquement pour DEPUTE, 
+		SENATEUR) -->
+	<xs:element name="circonscription" type="xs:string" />
+
+	<!-- Appellation de l'identité -->
+	<xs:element name="appellation" type="xs:string" />
+
+	<!-- NOR associé au mandat -->
+	<xs:element name="nor" type="xs:string" />
+
+</xs:schema>

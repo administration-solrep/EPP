@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:envoyerRetourPERequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSSpe"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epg/spe-commons"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSSpe ../../../../../../../xsd/solon/epg/WSspe.xsd ">
+
+
+	<p:type>PUBLICATION_JO</p:type>
+
+	<p:retourPublicationJo>
+
+		<p1:gestion>
+			<p1:date_parution>2011-01-01</p1:date_parution>
+		</p1:gestion>
+
+		<p1:acte>
+			<p1:nor>AZER1234567A</p1:nor>
+			<p1:titre_officiel>Titre Officiel 1</p1:titre_officiel>
+			<p1:page>22</p1:page>
+		</p1:acte>
+
+
+		<p1:acte>
+			<p1:nor>CVFD8923467G</p1:nor>
+			<p1:titre_officiel>Titre Officiel 1</p1:titre_officiel>
+			<p1:numero_texte>101</p1:numero_texte>
+			<p1:page>5</p1:page>
+		</p1:acte>
+
+		<p1:acte>
+			<p1:nor>HGTE8923467G</p1:nor>
+			<p1:titre_officiel>Titre Officiel 1</p1:titre_officiel>
+			<p1:numero_texte>101</p1:numero_texte>
+			<p1:page>15</p1:page>
+		</p1:acte>
+
+	</p:retourPublicationJo>
+
+
+</p:envoyerRetourPERequest>

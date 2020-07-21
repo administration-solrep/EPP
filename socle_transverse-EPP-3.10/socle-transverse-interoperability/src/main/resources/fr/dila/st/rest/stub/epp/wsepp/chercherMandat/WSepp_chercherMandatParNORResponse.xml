@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chercherMandatParNORResponse
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp"
+	xmlns:ns2="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:ns3="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons">
+	<statut>OK</statut>
+	<objet_container type="MANDAT">
+		<ns2:mandat>
+			<ns2:type>PRESIDENCE_REPUBLIQUE</ns2:type>
+			<ns2:proprietaire>GOUVERNEMENT</ns2:proprietaire>
+			<ns2:id>MandatTest0</ns2:id>
+			<ns2:date_debut>2006-10-03+02:00</ns2:date_debut>
+			<ns2:ordre_protocolaire>1</ns2:ordre_protocolaire>
+			<ns2:titre>Ministre</ns2:titre>
+			<ns2:id_identite>IdentiteTest0</ns2:id_identite>
+			<ns2:identiteDenormalise>
+				<ns2:civilite>M.</ns2:civilite>
+				<ns2:nom>Fillon</ns2:nom>
+				<ns2:prenom>François</ns2:prenom>
+			</ns2:identiteDenormalise>
+			<ns2:id_ministere>MinistereTest0</ns2:id_ministere>
+			<ns2:id_circonscription>CirconscriptionTest0</ns2:id_circonscription>
+			<ns2:appellation>M François Fillon</ns2:appellation>
+			<ns2:nor>PRM</ns2:nor>
+		</ns2:mandat>
+	</objet_container>
+</chercherMandatParNORResponse>

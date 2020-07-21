@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<component name="fr.dila.solonepp.core.query.contrib" version="1.0.0">
+	<require>fr.dila.st.core.query.contrib</require>
+
+	<extension target="org.nuxeo.ecm.core.storage.sql.jdbc.QueryMakerService"
+		point="queryMaker">
+		<queryMaker name="FNXQL">fr.dila.solonepp.core.query.SolonEppFNXQLQueryMaker</queryMaker>
+	</extension>
+
+</component>

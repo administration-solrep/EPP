@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.nuxeo.ecm.automation</groupId>
+    <artifactId>nuxeo-automation-parent</artifactId>
+    <version>SW-1.0.7</version>
+  </parent>
+  <groupId>org.nuxeo.shell</groupId>
+  <artifactId>nuxeo-shell-parent</artifactId>
+  <version>SW-1.0.7</version>
+  <name>Nuxeo Shell</name>
+  <description>Nuxeo Shell is providing a command line interface to Nuxeo Servers</description>
+  <packaging>pom</packaging>
+  <modules>
+    <module>nuxeo-shell-core</module>
+    <module>nuxeo-shell-automation</module>
+    <module>nuxeo-shell-equinox</module>
+    <module>nuxeo-shell-distribution</module>
+  </modules>
+  <profiles>
+    <profile>
+      <id>release</id>
+      <properties>
+        <keystore.type>JKS</keystore.type>
+        <keystore.alias>nuxeocom</keystore.alias>
+      </properties>
+    </profile>
+    <profile>
+      <!-- development profile - do not use it in production mode -->
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <keystore.path>nuxeo-shell-dev.jks</keystore.path>
+        <keystore.type>JKS</keystore.type>
+        <keystore.alias>nuxeo-shell-dev</keystore.alias>
+        <keystore.password>nuxeodev</keystore.password>
+      </properties>
+    </profile>
+  </profiles>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.nuxeo.shell</groupId>
+        <artifactId>nuxeo-shell-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.nuxeo.shell</groupId>
+        <artifactId>nuxeo-shell-automation</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.nuxeo.shell</groupId>
+        <artifactId>nuxeo-shell-equinox</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <developers>
+    <developer>
+      <id>bstefanescu</id>
+      <name>Bogdan Stefanescu</name>
+      <email>bstefanescu@nuxeo.com</email>
+      <organization>Nuxeo</organization>
+      <organizationUrl>http://www.nuxeo.com</organizationUrl>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
+  <build>
+    <!-- include resources in src directory -->
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>META-INF/*.version</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+        <excludes>
+          <exclude>META-INF/*.version</exclude>
+        </excludes>
+      </resource>
+    </resources>
+  </build>
+
+<distributionManagement>
+    <repository>
+     	<id>releases</id>
+      	<url>http://idlv-nexus-standalone.lyon-dev2.local:8081/nexus/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      	<id>snapshots</id>
+	<name>public-snapshots</name>
+	<url>http://idlv-nexus-standalone.lyon-dev2.local:8081/nexus/content/repositories/snapshots</url>
+      	<uniqueVersion>true</uniqueVersion>
+    </snapshotRepository>
+</distributionManagement>
+</project>

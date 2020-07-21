@@ -1,0 +1,67 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:c="http://java.sun.com/jstl/core" 
+  xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+  xmlns:nxd="http://nuxeo.org/nxweb/document"
+  xmlns:nxh="http://nuxeo.org/nxweb/html"
+  xmlns:nxu="http://nuxeo.org/nxweb/util"
+  xmlns:rich="http://richfaces.org/rich"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  class="menu">
+  
+<a4j:region renderRegionOnly="true">
+  <a4j:outputPanel ajaxRendered="true">
+
+  <dl>
+    <dd class="classificationTree">
+      <h:panelGroup id="editableClassificationTree">
+  
+        <rich:tree
+          icon="#{nodeState.isExpanded(rowKey)?nxd:iconExpandedPath(node.document):nxd:iconPath(node.document)}"
+          iconLeaf="#{nxd:iconPath(node.document)}"
+          iconExpanded="/icons/toggle_minus.png"
+          iconCollapsed="/icons/toggle_plus.png"
+          rowKeyVar="rowKey"
+          stateVar="nodeState">
+          <rich:recursiveTreeNodesAdaptor
+            roots="#{classificationTree}"
+            nodes="#{node.children}"
+            var="node">
+            <rich:treeNode
+              highlightedClass="treeNodeHighlightedClass"
+              selectedClass="treeNodeSelectedClass">
+              <nxd:restDocumentLink document="#{node.document}"
+                styleClass="treeLink">
+                <h:outputText value="#{nxd:titleOrId(node.document)}" />
+              </nxd:restDocumentLink>
+              <f:subview rendered="#{node.document.hasSchema('classification')}">
+                <h:graphicImage value="/icons/arrow_class_here.gif"
+                  styleClass="iconImage classHereIcon" />
+                <ui:insert name="classification_command" />
+              </f:subview>
+            </rich:treeNode>
+          </rich:recursiveTreeNodesAdaptor>
+        </rich:tree>
+
+      </h:panelGroup>
+    </dd>
+  </dl>
+
+  <h:panelGroup id="classification_message">
+    <div class="facesStatusMessage">
+      <h:outputText value="#{messages['feedback.correctErrors']}"
+        rendered="#{facesContext.maximumSeverity.ordinal >= 3}"
+        class="errorFeedback" />
+    </div>
+    <div id="classificationStatusMessage" class="facesStatusMessage">
+      <h:messages globalOnly="true"
+        infoClass="infoFeedback"
+        warnClass="warningFeedback"
+        errorClass="errorFeedback"/>
+    </div>
+  </h:panelGroup>
+
+  </a4j:outputPanel>
+</a4j:region>
+
+</div>

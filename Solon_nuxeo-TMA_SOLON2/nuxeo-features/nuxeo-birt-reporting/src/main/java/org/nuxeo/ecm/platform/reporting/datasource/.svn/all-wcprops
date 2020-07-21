@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/datasource
+END
+DSHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/datasource/DSHelper.java
+END
+NuxeoDSConfig.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/datasource/NuxeoDSConfig.java
+END
+SupportedDBHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/dila_solrep/!svn/ver/2560/nuxeo/trunk/nuxeo-birt-reporting/src/main/java/org/nuxeo/ecm/platform/reporting/datasource/SupportedDBHelper.java
+END

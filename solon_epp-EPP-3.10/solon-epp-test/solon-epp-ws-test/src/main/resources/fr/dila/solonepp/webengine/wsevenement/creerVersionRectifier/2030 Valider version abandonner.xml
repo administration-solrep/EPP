@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evt:validerVersionRequest
+	xmlns:evt="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:eppevt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd "
+	modeValidation="ABANDONNER">
+
+	<evt:id_evenement>1234</evt:id_evenement>
+
+</evt:validerVersionRequest>

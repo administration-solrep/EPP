@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<nxthemes:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:nxthemes="http://nuxeo.org/nxthemes"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxh="http://nuxeo.org/nxweb/html">
+
+
+	<ui:define name="page title">
+		<h:outputText value="#{messages['organigramme.manage.title']}" />
+	</ui:define>
+
+	<ui:define name="body">
+		<ui:include src="/incl/message_banner.xhtml" />
+
+		<div class="menu">
+
+			<h1>
+				<h:outputText value="#{messages['organigramme.manage.title']}" />
+			</h1>
+
+			<br />
+			<h:form id="viewActivElement">
+
+				<h:selectOneRadio id="type"
+					value="#{organigrammeTree.showDeactivedNode}"
+					onclick="this.form.submit();" rerender="organigrammeTree">
+					<f:selectItem id="activElement"
+						itemLabel="#{messages['organigramme.view.activElement']}"
+						itemValue="false" />
+					<f:selectItem id="posteId"
+						itemLabel="#{messages['organigramme.view.activAndInactivElement']}"
+						itemValue="true" />
+				</h:selectOneRadio>
+			</h:form>
+			<br />
+
+			<ui:include src="/admin/organigramme/view_organigramme.xhtml" />
+
+			<h:form id="ctxMenu" styleClass="menuContextuelStyle">
+				<script type="text/javascript">
+        function confirmDelete() {
+          return confirm("#{messages['label.organigrammeManager.confirmDelete']}");
+        }
+      </script>
+				<rich:contextMenu attached="false" id="menuPoste" submitMode="ajax">
+					<rich:menuItem id="pst_edit" ajaxSingle="true"
+						action="#{organigrammeManagerActions.editNode()}"
+						icon="/icons/modify.png">
+						<h:outputText
+							value="#{messages['organigramme.manage.menu.modify']}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeId}"
+							name="SelectedNodeId" value="{id}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeType}"
+							name="SelectedNodeType" value="{type}" />
+					</rich:menuItem>
+					<rich:menuItem id="pst_delete" submitMode="ajax"
+						action="#{organigrammeManagerActions.deleteNode()}"
+						reRender="organigrammeTree" icon="/img/icons/delete.png"
+						onselect="if(!confirmDelete()) throw 'false';">
+						<h:outputText
+							value="#{messages['organigramme.manage.menu.delete']}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeId}"
+							name="SelectedNodeId" value="{id}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeType}"
+							name="SelectedNodeType" value="{type}" />
+					</rich:menuItem>
+					<rich:menuItem id="pst_enableOrDisable"
+						action="#{organigrammeManagerActions.enableOrDisableNode()}"
+						reRender="organigrammeTree"
+						rendered="#{organigrammeManagerActions.allowUpdateOrganigramme(null)}">
+						<h:outputText
+							value="{active ? '#{messages['organigramme.manage.menu.deactivate']}': '#{messages['organigramme.manage.menu.activate']}' }" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeId}"
+							name="SelectedNodeId" value="{id}" />						
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeType}"
+							name="SelectedNodeType" value="{type}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.nodeActive}"
+							name="nodeActive" value="{active}" />
+					</rich:menuItem>
+				</rich:contextMenu>
+
+				<rich:contextMenu attached="false" id="menuUst" submitMode="ajax">
+					<rich:menuItem id="ust_createUst" ajaxSingle="true"
+						action="#{organigrammeManagerActions.createUniteStructurelleView()}"
+						icon="/img/icons/unite_structurelle.png">
+						<h:outputText
+							value="#{messages['organigramme.manage.menu.create.uniteStructurelle']}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeId}"
+							name="SelectedNodeId" value="{id}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeType}"
+							name="SelectedNodeType" value="{type}" />
+					</rich:menuItem>
+					<rich:menuItem id="ust_createPst" ajaxSingle="true"
+						action="#{organigrammeManagerActions.createPosteView()}"
+						icon="/img/icons/poste.png">
+						<h:outputText
+							value="#{messages['organigramme.manage.menu.create.poste']}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeId}"
+							name="SelectedNodeId" value="{id}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeType}"
+							name="SelectedNodeType" value="{type}" />
+					</rich:menuItem>
+					<rich:menuItem id="ust_edit" ajaxSingle="true"
+						action="#{organigrammeManagerActions.editNode()}"
+						icon="/icons/modify.png">
+						<h:outputText
+							value="#{messages['organigramme.manage.menu.modify']}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeId}"
+							name="SelectedNodeId" value="{id}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeType}"
+							name="SelectedNodeType" value="{type}" />
+					</rich:menuItem>
+					<rich:menuItem id="ust_delete" submitMode="ajax"
+						action="#{organigrammeManagerActions.deleteNode()}"
+						reRender="organigrammeTree" icon="/img/icons/delete.png"
+						onselect="if(!confirmDelete()) throw 'false';">
+						<h:outputText
+							value="#{messages['organigramme.manage.menu.delete']}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeId}"
+							name="SelectedNodeId" value="{id}" />
+					</rich:menuItem>
+					<rich:menuItem id="ust_enableOrDisable"
+						action="#{organigrammeManagerActions.enableOrDisableNode()}"
+						reRender="organigrammeTree"
+						rendered="#{organigrammeManagerActions.allowUpdateOrganigramme(null)}">
+						<h:outputText
+							value="{active ? '#{messages['organigramme.manage.menu.deactivate']}': '#{messages['organigramme.manage.menu.activate']}' }" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeId}"
+							name="SelectedNodeId" value="{id}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeType}"
+							name="SelectedNodeType" value="{type}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.nodeActive}"
+							name="nodeActive" value="{active}" />
+					</rich:menuItem>
+				</rich:contextMenu>
+
+				<rich:contextMenu attached="false" id="menuIns" submitMode="ajax">
+					<rich:menuItem id="ins_createUst" ajaxSingle="true"
+						action="#{organigrammeManagerActions.createUniteStructurelleView()}"
+						icon="/img/icons/unite_structurelle.png"
+						reRender="createOrganigrammePanel">
+						<h:outputText
+							value="#{messages['organigramme.manage.menu.create.uniteStructurelle']}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeId}"
+							name="SelectedNodeId" value="{id}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeType}"
+							name="SelectedNodeType" value="{type}" />
+					</rich:menuItem>
+					<rich:menuItem id="ust_createPstWs" ajaxSingle="true"
+						action="#{organigrammeManagerActions.createPosteWsView()}"
+						icon="/img/icons/poste.png">
+						<h:outputText
+							value="#{messages['organigramme.manage.menu.create.postews']}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeId}"
+							name="SelectedNodeId" value="{id}" />
+						<a4j:actionparam
+							assignTo="#{organigrammeManagerActions.selectedNodeType}"
+							name="SelectedNodeType" value="{type}" />
+					</rich:menuItem>
+				</rich:contextMenu>
+			</h:form>
+
+		</div>
+	</ui:define>
+</nxthemes:composition>

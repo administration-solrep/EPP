@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<!-- Ce composant contribue le service de notification relatif au suivi des 
+	batchs du socle transverse -->
+<component name="fr.dila.st.core.service.NotificationsSuiviBatchsService">
+	<implementation
+		class="fr.dila.st.core.service.NotificationsSuiviBatchsServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.NotificationsSuiviBatchsService" />
+	</service>
+</component>

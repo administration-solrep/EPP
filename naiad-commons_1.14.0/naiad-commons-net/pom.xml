@@ -24,7 +24,7 @@
 	</description>
 
 	<properties>
-		<httpclient.version>4.0.3</httpclient.version>
+		<httpclient.version>4.5.13</httpclient.version>
 		<apache.commons.codec.version>1.4</apache.commons.codec.version>
 	</properties>
 

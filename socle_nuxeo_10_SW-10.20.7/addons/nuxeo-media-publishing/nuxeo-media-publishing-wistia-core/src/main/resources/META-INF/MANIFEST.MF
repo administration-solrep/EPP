@@ -1,0 +1,12 @@
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Manifest-Version: 1.0
+Bundle-Name: nuxeo-media-publishing-wistia-core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-Vendor: Nuxeo
+Bundle-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: nuxeo-media-publishing-wistia-core
+Nuxeo-Component: OSGI-INF/wistia-service.xml,
+ OSGI-INF/media-publishing-provider-contrib.xml,
+ OSGI-INF/wistia-config.xml

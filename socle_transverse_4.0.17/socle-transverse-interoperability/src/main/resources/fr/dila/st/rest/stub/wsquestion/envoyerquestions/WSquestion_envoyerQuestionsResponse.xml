@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:envoyerQuestionsResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:p4="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion ../../../../../../../xsd/reponses/WSquestion.xsd ">
+
+	<p:resultat_traitement>
+		<p4:id_question>
+			<p1:numero_question>771</p1:numero_question>
+			<p1:type>QE</p1:type>
+			<p1:source>AN</p1:source>
+			<p1:legislature>13</p1:legislature>
+		</p4:id_question>
+		<p4:statut>OK</p4:statut>
+	</p:resultat_traitement>
+</p:envoyerQuestionsResponse>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:exportFilesResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WScontrole"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p4="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WScontrole ../../../../../../xsd/reponses/WScontrole.xsd ">
+
+
+	<p:fichiersParQuestion>
+		<p:id_question>
+			<p3:numero_question>1234</p3:numero_question>
+			<p3:type>QC</p3:type>
+			<p3:source>AN</p3:source>
+			<p3:legislature>13</p3:legislature>
+		</p:id_question>
+
+		<p:fichier a_du_contenu="false" action="Aucun">
+			<p3:id_interne>12</p3:id_interne>
+			<p3:id_externe>34</p3:id_externe>
+			<p3:nom>nom</p3:nom>
+			<p3:mime_type>text/plain</p3:mime_type>
+			<p3:taille_fichier>23454</p3:taille_fichier>
+			<p3:contenu></p3:contenu>
+			<p3:visibilite>ALL</p3:visibilite>
+		</p:fichier>
+
+	</p:fichiersParQuestion>
+
+
+</p:exportFilesResponse>

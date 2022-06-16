@@ -1,0 +1,63 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page de la fiche profil',
+    title=${profil.id == null} ? #{admin.profil.ajouter} : #{admin.profil.modification} + ' ' + ${profil.id})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <input
+            type="hidden"
+            id="urlPreviousPage"
+            name="urlPreviousPage"
+            th:value="@{|${urlPreviousPage}#main_content|}"
+        />
+
+        <div th:replace="fragments/components/edit-buttons :: edit-buttons('boutons-profil')"></div>
+
+        <h1
+            class="m-t-6 m-b-6 base-title base-title--lvl-1"
+            th:if="${profil.id == null}"
+            th:text="#{admin.profil.ajouter}"
+        >
+            [[#{admin.profil.ajouter}]]
+        </h1>
+        <h1 class="m-t-6 m-b-6 base-title base-title--lvl-1" th:unless="${profil.id == null}">
+            [[#{admin.profil.modification}]] [[${profil.id}]]
+        </h1>
+
+        <form id="profil_form">
+            <th:block th:if="${profilCreation}">
+                <div class="grid__col--middle m-b-6 form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label class="form-label" id="profile_name_label" for="profil_label">
+                                [[#{profil.column.profil}]]
+                                <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-input__container">
+                        <input
+                            name="label"
+                            data-validation="required"
+                            class="form-input__field form-input__field--type-text"
+                            id="profil_label"
+                            required="required"
+                            type="text"
+                        />
+                    </div>
+                    <div class="form-input__footer" id="form_input_description"></div>
+                </div>
+            </th:block>
+            <th:block th:unless="${profilCreation}">
+                <input name="id" th:value="${profil.id}" id="profil_id" type="hidden" />
+            </th:block>
+            <div
+                th:replace="fragments/components/profil/fonctionsAttribueesList :: fonctionsAttribueesList(${profil}, ${fonctions}, ${lstColonnes}, false, ${fonctionsOfProfil})"
+            ></div>
+        </form>
+        <div th:replace="fragments/components/edit-buttons :: edit-buttons('boutons-profil')"></div>
+    </main>
+</html>

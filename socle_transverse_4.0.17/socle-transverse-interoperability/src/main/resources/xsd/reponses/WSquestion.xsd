@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion"
+	elementFormDefault="qualified"
+
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:qn="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:repco="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:ar="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar">
+
+	<!-- ====================================== -->
+	<!-- Imports -->
+	<!-- ====================================== -->
+	<xs:import schemaLocation="../commons/commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons" />
+	<xs:import schemaLocation="questions.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions" />
+	<xs:import schemaLocation="reponses-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons" />
+	<xs:import schemaLocation="ar.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar" />
+
+
+	<!-- ====================================== -->
+	<!-- Method chercherQuestions - Ministères -->
+	<!-- ====================================== -->
+	<xs:element name="chercherQuestionsRequest">
+		<xs:annotation>
+			<xs:documentation>
+				utilisé par les ministères interfacés pour récupérer leurs questions en
+				attente dans l’application REPONSES
+			</xs:documentation>
+		</xs:annotation>
+		<!-- ====================================== -->
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="jeton_questions" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="id_questions" type="repco:QuestionId"
+						minOccurs="1" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="chercherQuestionsResponse">
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="jeton_questions" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="dernier_renvoi" type="xs:boolean"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="statut" type="repco:TraitementStatut"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="questions" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="id_question" type="repco:QuestionId"
+									minOccurs="1" maxOccurs="1" />
+								<xs:element name="date_publication_jo" type="xs:date"
+									minOccurs="0" maxOccurs="1" />
+								<xs:element name="page_jo" type="xs:int" minOccurs="0"
+									maxOccurs="1" />
+								<xs:element name="ministre_attributaire" type="repco:Ministre"
+									minOccurs="1" maxOccurs="1" />
+								<xs:element name="ministre_depot" type="repco:Ministre"
+									minOccurs="1" maxOccurs="1" />
+								<xs:element name="auteur" type="qn:Auteur" minOccurs="1"
+									maxOccurs="1" />
+								<xs:element name="texte" type="commons:CDataString"
+									minOccurs="1" maxOccurs="1" />
+								<xs:element name="rappel" type="repco:QuestionId"
+									minOccurs="0" maxOccurs="1" />
+								<xs:element name="texte_joint" type="xs:string"
+									minOccurs="0" maxOccurs="1" />
+
+								<xs:choice>
+									<xs:sequence>
+										<xs:element name="indexation_an" type="qn:IndexationAn"
+											minOccurs="1" maxOccurs="1" />
+									</xs:sequence>
+									<xs:sequence>
+										<xs:element name="titre_senat" type="xs:string"
+											minOccurs="1" maxOccurs="1" />
+										<xs:element name="indexation_senat" type="qn:IndexationSenat"
+											minOccurs="1" maxOccurs="1" />
+									</xs:sequence>
+								</xs:choice>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ====================================== -->
+	<!-- Method chercherErrataQuestions - Ministères -->
+	<!-- ====================================== -->
+	<xs:element name="chercherErrataQuestionsRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Récupère les errata de questions émises par les assemblées
+			</xs:documentation>
+		</xs:annotation>
+		<!-- ====================================== -->
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="jeton_errata" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="id_questions" type="repco:QuestionId"
+						minOccurs="1" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="chercherErrataQuestionsResponse">
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="jeton_errata" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="dernier_renvoi" type="xs:boolean"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="statut" type="repco:TraitementStatut"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="errata" type="repco:ErratumQuestion"
+						minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- ====================================== -->
+	<!-- Method chercherChangementDEtatQuestions - Ministères -->
+	<!-- ====================================== -->
+	<xs:element name="chercherChangementDEtatQuestionsRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Récupère les changements d'état de questions émis par les assemblées
+			</xs:documentation>
+		</xs:annotation>
+		<!-- ====================================== -->
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="jeton_changements_etat" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="id_questions" type="repco:QuestionId"
+						minOccurs="1" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="chercherChangementDEtatQuestionsResponse">
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="jeton_changements_etat" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="dernier_renvoi" type="xs:boolean"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="statut" type="repco:TraitementStatut"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="changements_etat" type="repco:ChangementEtatQuestion"
+						minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+
+
+	<!-- ====================================== -->
+	<!-- Method envoyerQuestions - Assemblées -->
+	<!-- ====================================== -->
+	<xs:element name="envoyerQuestionsRequest">
+		<xs:annotation>
+			<xs:documentation>
+				envoyer des questions aux ministères
+			</xs:documentation>
+		</xs:annotation>
+		<!-- ====================================== -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="questionReponse" type="qn:QuestionReponse"
+					minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="envoyerQuestionsResponse">
+		<xs:annotation>
+			<xs:documentation>
+				En cas de réussite, l'accusé de réception contient la question créée.
+			</xs:documentation>
+		</xs:annotation>
+		<!-- ====================================== -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="resultat_traitement" type="ar:ResultatTraitement"
+					minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ====================================== -->
+	<!-- Method envoyerQuestionsErrata - Assemblées -->
+	<!-- ====================================== -->
+	<xs:element name="envoyerQuestionsErrataRequest">
+		<xs:annotation>
+			<xs:documentation>
+				envoyer des errata de questions aux ministères
+			</xs:documentation>
+		</xs:annotation>
+		<!-- ====================================== -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="erratum" type="repco:ErratumQuestion"
+					minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="envoyerQuestionsErrataResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="resultat_traitement" type="ar:ResultatTraitement"
+					minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- ====================================== -->
+	<!-- Method changerEtatQuestion - Assemblées -->
+	<!-- ====================================== -->
+	<xs:element name="changerEtatQuestionsRequest">
+		<xs:annotation>
+			<xs:documentation>
+				signaler un changement d'etat de question aux ministères
+			</xs:documentation>
+		</xs:annotation>
+		<!-- ====================================== -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="nouvel_etat" type="repco:ChangementEtatQuestion"
+					minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="changerEtatQuestionsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="resultat_traitement" type="ar:ResultatTraitement"
+					minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+
+	<!-- ====================================== -->
+	<!-- Methode rechercherDossier -->
+	<!-- ====================================== -->
+	<xs:element name="rechercherDossierRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Recherche d'un dossier : question + réponse sur la base d'une liste de
+				filtres
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="numero_question" type="xs:string"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="type" type="repco:QuestionType"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="source" type="repco:QuestionSource"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="legislature" type="xs:int" minOccurs="0"
+					maxOccurs="unbounded" />
+				<xs:element name="etat_question" type="repco:EtatQuestion"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="date_debut" type="xs:date" minOccurs="0"
+					maxOccurs="1" />
+				<xs:element name="date_fin" type="xs:date" minOccurs="0"
+					maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="rechercherDossierResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="repco:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="message_erreur" type="xs:string"
+							minOccurs="0" maxOccurs="1" />
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element name="dossier" type="qn:QuestionReponse"
+							minOccurs="0" maxOccurs="unbounded"></xs:element>
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+
+</xs:schema>

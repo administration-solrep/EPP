@@ -1,0 +1,24 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page des parametres', title=${title})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <div class="heading-complex m-b-6">
+            <div class="heading-complex__main">
+                <h1 class="base-title base-title--lvl-1" th:text="${title}">Titre</h1>
+                <p
+                    class="heading-complex__subtitle base-subtitle"
+                    th:text="' - '+#{parametres.table.nombre(${resultList.nbTotal})}"
+                ></p>
+            </div>
+            <div class="heading-complex__options"></div>
+        </div>
+
+        <div
+            th:replace="fragments/table/tableParametres :: tableParametres(${resultForm}, ${resultList}, ${paramContext})"
+        ></div>
+    </main>
+</html>

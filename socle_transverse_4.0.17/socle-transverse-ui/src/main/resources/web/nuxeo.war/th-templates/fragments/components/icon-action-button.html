@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="icon-action-button(action, isDisabled, appendedClass)" th:remove="tag">
+            <th:block th:if="${action.properties.actionType == 'modal'} ">
+                <button
+                    type="button"
+                    th:id="${action.id}"
+                    class="js-tooltip base-btn base-btn--button base-btn--default js-interstitial-trigger"
+                    th:classappend="|${appendedClass == null ? '' : appendedClass} ${not #strings.isEmpty(action.properties.specificClass)? action.properties.specificClass : ''}|"
+                    th:disabled="${ isDisabled or ((not #strings.isEmpty(action.properties.specificClass)) and (action.properties.specificClass == 'action-table-selection'))}? 'disabled'"
+                    th:data-controls="${action.properties.dataControls}"
+                    th:data-title="${not #strings.isEmpty(action.properties.title )? #messages.msg(action.properties.title) : #messages.msg('validation.popup.title')}"
+                    th:data-message="${not #strings.isEmpty(action.properties.message)? #messages.msgWithParams(action.properties.message, action.properties.messageParam) : #messages.msg('validation.popup.default.message') }"
+                    th:data-function="${action.properties.function}"
+                    th:data-init-js="__${action.properties.dataInitJs}__"
+                    th:data-parameters="${action.properties.parameters}"
+                    th:data-btn-confirm-label="${not #strings.isEmpty(action.properties.btnConfirmLabel) ? #messages.msg(action.properties.btnConfirmLabel) : null}"
+                    th:data-tippy-content="#{__${action.label}__}"
+                    aria-haspopup="dialog"
+                    onclick="doInitModal(this)"
+                >
+                    <span aria-hidden="true" class="icon" th:classappend="${action.icon}"></span>
+                    <span class="sr-only" th:text="#{__${action.label}__}"></span>
+                </button>
+            </th:block>
+            <th:block th:unless="${action.properties.actionType == 'modal'} ">
+                <button
+                    th:if="${#strings.startsWith(action.link, 'javascript:')}"
+                    type="button"
+                    th:id="${action.id}"
+                    class="js-tooltip table-action__item table-action__button base-btn base-btn--button base-btn--default base-btn--min"
+                    th:classappend="|${appendedClass == null ? '' : appendedClass} ${not #strings.isEmpty(action.properties.specificClass)? action.properties.specificClass : ''}|"
+                    th:disabled="${ isDisabled or ((not #strings.isEmpty(action.properties.specificClass)) and (action.properties.specificClass == 'action-table-selection'))}? 'disabled'"
+                    th:attr="onclick=|${action.link}|"
+                    th:data-tippy-content="#{__${action.label}__}"
+                >
+                    <span aria-hidden="true" class="icon" th:classappend="${action.icon}"></span>
+                    <span class="sr-only" th:text="#{__${action.label}__}"></span>
+                </button>
+                <a
+                    th:unless="${#strings.startsWith(action.link, 'javascript:')}"
+                    th:id="${action.id}"
+                    class="js-tooltip base-btn base-btn--button base-btn--default js-interstitial-trigger"
+                    th:classappend="|${appendedClass == null ? '' : appendedClass} ${not #strings.isEmpty(action.properties.specificClass)? action.properties.specificClass : ''}|"
+                    th:disabled="${ isDisabled or ((not #strings.isEmpty(action.properties.specificClass)) and (action.properties.specificClass == 'action-table-selection'))}? 'disabled'"
+                    th:href="@{__${action.link}__}"
+                    th:data-tippy-content="#{__${action.label}__}"
+                >
+                    <span aria-hidden="true" class="icon" th:classappend="${action.icon}"></span>
+                    <span class="sr-only" th:text="#{__${action.label}__}"></span>
+                </a>
+            </th:block>
+        </div>
+    </body>
+</html>

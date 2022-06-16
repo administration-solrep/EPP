@@ -1,0 +1,192 @@
+{
+	"lstWidgets": [
+		{
+			"label": "leftBlocks.creation.label.typeCommunication",
+			"typeChamp": "multiple-select",
+			"name": "typeCommunication",
+			"parametres": [
+				{
+					"name": "lstValues",
+					"value": [
+						{
+							"id": "EVT01",
+							"label": "LEX-01 : Pjl - Dépôt"
+						},
+						{
+							"id": "EVT02",
+							"label": "LEX-02 : PPL - Information du Gouvernement du dépôt"
+						},
+						{
+							"id": "EVT03",
+							"label": "LEX-03 : Pjl - Enregistrement du dépôt"
+						},
+						{
+							"id": "EVT04BIS",
+							"label": "LEX-04 : Dépôt de rapport, avis et texte de commission"
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Objet dossier",
+			"typeChamp": "simple-input",
+			"name": "objetDossier"
+		},
+		{
+			"label": "Identifiant dossier",
+			"typeChamp": "simple-input",
+			"name": "idDossier"
+		},
+		{
+			"label": "Identifiant communiation",
+			"typeChamp": "simple-input",
+			"name": "idCOmmunication"
+		},
+		{
+			"label": "rapidSearch.label.dateCommunication",
+			"typeChamp": "date-picker-range",
+			"name": "dateCommunication"
+		},
+		{
+			"label": "recherche.label.dateAccuseReception",
+			"typeChamp": "date-picker-range",
+			"name": "dateAccuseReception"
+		},
+		{
+			"label": "label.epp.metadonnee.emetteur",
+			"typeChamp": "multiple-select",
+			"name": "emetteur",
+			"parametres": [
+				{
+					"name": "lstValues",
+					"value": [
+						{
+							"id": "SENAT",
+							"label": "Sénat"
+						},
+						{
+							"id": "GOUVERNEMENT",
+							"label": "Gouvernement"
+						},
+						{
+							"id": "OFFICES_DELEGATIONS",
+							"label": "Offices et délégations"
+						},
+						{
+							"id": "CMP",
+							"label": "Commissions mixtes paritaires"
+						},
+						{
+							"id": "ASSEMBLEE_NATIONALE",
+							"label": "Assemblée Nationale"
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.destinataire",
+			"typeChamp": "multiple-select",
+			"name": "destinataire",
+			"parametres": [
+				{
+					"name": "lstValues",
+					"value": [
+						{
+							"id": "SENAT",
+							"label": "Sénat"
+						},
+						{
+							"id": "GOUVERNEMENT",
+							"label": "Gouvernement"
+						},
+						{
+							"id": "OFFICES_DELEGATIONS",
+							"label": "Offices et délégations"
+						},
+						{
+							"id": "CMP",
+							"label": "Commissions mixtes paritaires"
+						},
+						{
+							"id": "ASSEMBLEE_NATIONALE",
+							"label": "Assemblée Nationale"
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.copie",
+			"typeChamp": "multiple-select",
+			"name": "copie",
+			"parametres": [
+				{
+					"name": "lstValues",
+					"value": [
+						{
+							"id": "SENAT",
+							"label": "Sénat"
+						},
+						{
+							"id": "GOUVERNEMENT",
+							"label": "Gouvernement"
+						},
+						{
+							"id": "OFFICES_DELEGATIONS",
+							"label": "Offices et délégations"
+						},
+						{
+							"id": "CMP",
+							"label": "Commissions mixtes paritaires"
+						},
+						{
+							"id": "ASSEMBLEE_NATIONALE",
+							"label": "Assemblée Nationale"
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.typeLoi",
+			"typeChamp": "simple-select",
+			"name": "typeLoi",
+			"parametres": [
+				{
+					"name": "options",
+					"value": [
+						{
+							"id": "LOI",
+							"label": "Loi"
+						},
+						{
+							"id": "LOI_CADRE",
+							"label": "Loi cadre"
+						},
+						{
+							"id": "LOI_CONSTITUTIONNELLE",
+							"label": "Loi constitutionnelle"
+						},
+						{
+							"id": "LOI_FINANCEMENT_SECURITE_SOCIALE",
+							"label": "Loi de financement de la sécurité sociale"
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.auteur",
+			"typeChamp": "simple-input",
+			"name": "auteur",
+			"parametres": [
+				{
+					"name": "autocomplete",
+					"value": "true"
+				}
+			]
+		}
+	]
+}

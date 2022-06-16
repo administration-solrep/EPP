@@ -1,0 +1,40 @@
+<project name="business-days-management-mp-assembly"
+         default="build"
+         xmlns:nx="urn:nuxeo-build"
+         xmlns:artifact="urn:nuxeo-artifact">
+  <taskdef resource="org/nuxeo/build/antlib.xml" uri="urn:nuxeo-build" />
+  <taskdef resource="org/nuxeo/build/artifact/antlib.xml" uri="urn:nuxeo-artifact" />
+
+  <target name="init" unless="init.done">
+    <property name="outdir" value="${maven.project.build.directory}" />
+    <property name="marketplace" value="${outdir}/marketplace" />
+    <property name="init.done" value="true" />
+  </target>
+
+  <target name="build" depends="init" description="Build Nuxeo Business Days Management">
+    <echo level="info">Building Nuxeo Business Days Management Marketplace Package</echo>
+    <delete failonerror="false" dir="${marketplace}" />
+    <mkdir dir="${marketplace}" />
+
+    <copy todir="${marketplace}">
+      <fileset dir="src/main/resources" />
+      <filterset>
+        <filter token="VERSION" value="${maven.project.version}" />
+      </filterset>
+    </copy>
+
+    <artifact:nuxeo-expand includeTestScope="false" groupPrefixes="org.nuxeo.ecm.platform" />
+
+    <copy todir="${marketplace}/install/bundles" overwrite="true">
+      <artifact:set>
+        <includes>
+          <artifact groupId="org.nuxeo.ecm.platform" scope="!test" type="!pom" />
+        </includes>
+      </artifact:set>
+    </copy>
+
+    <zip destfile="${outdir}/${maven.project.artifactId}-${maven.project.version}.zip" basedir="${marketplace}" />
+    <artifact:attach file="${outdir}/${maven.project.artifactId}-${maven.project.version}.zip" type="zip" />
+  </target>
+
+</project>

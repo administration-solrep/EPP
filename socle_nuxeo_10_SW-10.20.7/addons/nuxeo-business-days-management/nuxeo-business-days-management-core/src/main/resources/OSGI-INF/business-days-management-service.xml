@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.business.days.management.BusinessDaysService">
+
+  <documentation>
+
+    Used to configure the Business Days Service.
+
+    @author
+    <a href="mailto:nu@nuxeo.com">Nicolas Ulrich</a>
+  </documentation>
+
+  <implementation
+    class="org.nuxeo.business.days.management.service.BusinessDaysServiceImpl" />
+
+  <service>
+    <provide interface="org.nuxeo.business.days.management.service.BusinessDaysService" />
+  </service>
+
+  <extension-point name="duration">
+
+    <documentation>
+
+      Used to register new durations.
+
+      <code>
+        <duration>
+          <label>mail</label>
+          <numberOfDays>5</numberOfDays>
+        </duration>
+      </code>
+
+    </documentation>
+
+    <object
+      class="org.nuxeo.business.days.management.service.DurationDescriptor" />
+
+  </extension-point>
+
+  <extension-point name="holidaysChecker">
+
+    <documentation>
+
+      Used to register Holiday Checker
+
+      <code>
+        <holidaysChecker
+          class="org.nuxeo.business.days.management.checker.CSVHolidaysChecker" />
+      </code>
+
+    </documentation>
+
+    <object
+      class="org.nuxeo.business.days.management.service.HolidaysCheckerDescriptor" />
+
+  </extension-point>
+
+</component>

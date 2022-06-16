@@ -1,0 +1,18 @@
+{
+    "etat": {
+        "label": "label.reponses.feuilleRoute.etape.valide.manuellement",
+        "icon": "icon--arrow-triangle-right-circle"
+    },
+    "notes": [],
+    "action": "Pour rédaction",
+    "ministere": "Aménagement du territoire, ruralité et collectivités territoriales",
+    "poste": "Chef SLR MATRCT",
+    "echeanceDate": null,
+    "traiteDate": null,
+    "isRequired": true,
+    "parent": null,
+    "actions": [],
+    "depth": 0,
+    "id": "line1",
+    "isStripped": false
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<!-- Cet composant contribue les calculateurs de groupes et la chaîne de 
+	calcul de l'application SOLON EPP. -->
+<component name="fr.dila.solonepp.core.computedgroups.contrib">
+
+	<require>fr.dila.st.core.computedgroups.contrib</require>
+
+	<!-- Calculateurs de groupes -->
+	<extension target="org.nuxeo.ecm.platform.computedgroups.ComputedGroupsServiceImpl" point="computer">
+		<!-- Calculateur des groupes correspondant aux institutions -->
+		<groupComputer name="institutionGroupComputer">
+			<computer>fr.dila.solonepp.core.groupcomputer.InstitutionGroupComputer</computer>
+		</groupComputer>
+
+		<!-- Calculateur des groupes spécifiques à SOLON EPP -->
+		<groupComputer name="solonEppGroupComputer">
+			<computer>fr.dila.solonepp.core.groupcomputer.SolonEppGroupComputer</computer>
+		</groupComputer>
+	</extension>
+
+	<!-- Chaîne de calcul de groupes -->
+	<extension target="org.nuxeo.ecm.platform.computedgroups.ComputedGroupsServiceImpl" point="computerChain">
+		<groupComputerChain>
+			<computers>
+				<computer>baseFunctionGroupComputer</computer>
+				<computer>institutionGroupComputer</computer>
+				<computer>solonEppGroupComputer</computer>
+			</computers>
+		</groupComputerChain>
+	</extension>
+</component>

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://cm.nuxeo.com/schemas/mailbox/"
+    xmlns:cmxs="http://cm.nuxeo.com/schemas/mailbox/"
+    xmlns:nxs="http://cm.nuxeo.com/schemas/base/"
+>
+
+  <xs:include schemaLocation="base.xsd" />
+
+  <xs:element name="mailbox_id" type="xs:string" />
+  <xs:element name="type" type="xs:string" />
+  <xs:element name="owner" type="xs:string" />
+  
+  <xs:element name="groups" type="cmxs:stringList" />
+
+</xs:schema>

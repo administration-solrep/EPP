@@ -1,0 +1,6 @@
+<component name="org.nuxeo.ecm.media.publishing.wistia.provider-contrib">
+  <extension target="org.nuxeo.ecm.media.publishing.MediaPublishingService"
+             point="providers">
+    <provider id="Wistia" enabled="true" service="org.nuxeo.ecm.media.publishing.wistia.WistiaService"/>
+  </extension>
+</component>

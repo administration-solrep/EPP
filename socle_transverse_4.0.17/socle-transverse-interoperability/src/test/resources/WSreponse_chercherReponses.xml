@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherReponsesRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSreponse"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSreponse WSreponse.xsd ">
+	<p:jeton>0</p:jeton>
+</p:chercherReponsesRequest>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:verifySignatureExResponse xmlns:tns="http://www.dictao.com/DVS/Interface"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dictao.com/DVS/Interface ../../../../../../wsdl/dictao/dvs/DVSInterfaceFrontEnd.xsd ">
+	<tns:verifySignatureExResult>
+		<tns:opStatus>0</tns:opStatus>
+		<tns:DVSGlobalStatus>0</tns:DVSGlobalStatus>
+		<tns:requestId>REQUEST_ID_D2S_REPONSES_001</tns:requestId>
+	</tns:verifySignatureExResult>
+</tns:verifySignatureExResponse>

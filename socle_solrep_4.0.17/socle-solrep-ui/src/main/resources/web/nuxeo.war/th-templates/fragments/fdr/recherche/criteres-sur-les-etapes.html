@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="criteresEtapes" id="criteresEtapes">
+            <div class="m-b-6 accordion">
+                <h2 class="accordion-title-lvl-2">
+                    <button
+                        type="button"
+                        aria-controls="accordion__content__accordion-criteres-etapes"
+                        aria-expanded="true"
+                        id="accordion__header__accordion-criteres-etapes"
+                        data-toggle="accordion__content"
+                        data-icon-opened="substract"
+                        data-icon-closed="add"
+                        class="accordion__header js-toggle accordion__header--default"
+                    >
+                        [[#{admin.modele.recherche.critereEtape.title}]]
+                        <span
+                            aria-hidden="true"
+                            class="icon icon--substract accordion__icon accordion__icon--default"
+                        ></span>
+                    </button>
+                </h2>
+                <div
+                    aria-hidden="false"
+                    id="accordion__content__accordion-criteres-etapes"
+                    class="accordion__content accordion__content--accordion--default accordion__content--is-opened accordion__content--has-background"
+                >
+                    <div
+                        role="group"
+                        aria-labelledby="accordion__header__accordion-criteres-etapes"
+                        class="p-l-4 p-r-4"
+                    >
+                        <div class="grid__row m-t-3 m-b-6">
+                            <div class="grid__col grid__col--middle">
+                                <div
+                                    th:replace="fragments/components/formblocks/simple-select :: simpleSelect('admin.modele.recherche.critereEtape.type.etape', 'typeEtape', '', ${typeEtape}, ${searchForm.typeEtape}, 'false', 'recherche.select.tous.toutes.label')"
+                                ></div>
+                            </div>
+                            <div class="grid__col grid__col--middle">
+                                <th:block
+                                    th:replace="fragments/components/organigrammeSelectAutocomplete ::organigrammeSelectAutocomplete(
+                                            'admin.modele.recherche.critereEtape.destinataire',
+                                            false,
+                                            'destinataire',
+                                            'destinataire-key',
+                                            'PST', 
+                                            ${searchForm.destinataire}, 
+                                            false,
+                                            false,
+                                            ${searchForm.mapDestinataire},
+                                            false)"
+                                >
+                                </th:block>
+                            </div>
+                        </div>
+                        <div class="grid__row m-t-3 m-b-6">
+                            <div class="grid__col grid__col--middle form-input">
+                                <div class="form-input__header">
+                                    <div class="form-input__header-top">
+                                        <label
+                                            for="echeanceIndicative"
+                                            id="form_etape_echeance_label"
+                                            class="form-label"
+                                            th:text="#{admin.modele.recherche.critereEtape.echeance.label}"
+                                        >
+                                            Echéance indicative
+                                        </label>
+                                    </div>
+                                    <div class="form-input__header-bottom">
+                                        <p
+                                            id="label_header_bottom_form_etape_echeance"
+                                            class="form-input__description form-input__description--default"
+                                            th:text="#{admin.modele.recherche.critereEtape.echeance.message}"
+                                        >
+                                            Saisir une valeur comprise entre 0 et 100
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-input__container">
+                                    <input
+                                        type="number"
+                                        name="echeanceIndicative"
+                                        min="0"
+                                        max="100"
+                                        id="echeanceIndicative"
+                                        data-validation="min(0), max(100)"
+                                        aria-describedby="label_header_bottom_form_etape_echeance"
+                                        class="form-input__field form-input__field--type-number"
+                                        th:value="${searchForm.echeanceIndicative}"
+                                    />
+                                </div>
+                                <div id="echeanceIndicative_description" class="form-input__footer"></div>
+                            </div>
+                            <div class="grid__col grid__col--middle form-optin">
+                                <th:block
+                                    th:replace="fragments/components/formblocks/input-oui-non :: ouiNon('admin.modele.recherche.critereEtape.franchissement', 'franchissementAutomatique', ${searchForm.franchissementAutomatique}, false)"
+                                ></th:block>
+                            </div>
+                        </div>
+                        <div class="grid__row m-b-6">
+                            <div class="grid__col grid__col--middle form-optin">
+                                <th:block
+                                    th:replace="fragments/components/formblocks/input-oui-non :: ouiNon('admin.modele.recherche.critereEtape.obligatoireSGG', 'obligatoireSGG', ${searchForm.obligatoireSGG}, false)"
+                                ></th:block>
+                            </div>
+                            <div class="grid__col grid__col--middle form-optin">
+                                <th:block
+                                    th:replace="fragments/components/formblocks/input-oui-non :: ouiNon('admin.modele.recherche.critereEtape.obligatoireMinistere', 'obligatoireMinistere', ${searchForm.obligatoireMinistere}, false)"
+                                ></th:block>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

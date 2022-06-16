@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="migrationDetail(migration, isRunning, index)">
+            <div
+                class="page-migration__element"
+                th:id="${'migration-' + index}"
+                th:data-index="${index}"
+                th:classappend="${migrationDto && migrationDto.status == 'EN_COURS'} ? 'migration-running' : ''"
+            >
+                <fieldset class="migration-fieldset" th:id="|migration-fieldset-${index}|">
+                    <h2
+                        class="p-b-3 base-title base-title--lvl-2 base-title--is-underlined"
+                        th:text="|#{migration.numero} ${index + 1}|"
+                    >
+                        Migration n° 1
+                    </h2>
+                    <div class="m-t-6" th:id="|migration-alert-${index}|">
+                        <div class="alert alert--success" th:if="${migration.status == 'TERMINEE'}">
+                            <div class="alerts--flex">
+                                <input type="hidden" name="targetId" th:value="|migration-alert-${index}|" />
+                                <span
+                                    aria-hidden="true"
+                                    class="icon icon--check bubble-icon alert__icon alert__icon--success"
+                                ></span
+                                ><span class="sr-only" th:text="#{label.alert.levelinfo.srhelp.SUCCESS}"
+                                    >Confirmation</span
+                                >
+                                <p class="alert__content" th:text="#{migration.success.message}">Message de succès</p>
+                            </div>
+                        </div>
+                        <div class="alert alert--danger" th:if="${migration.status == 'FAILED'}">
+                            <div class="alerts--flex">
+                                <input type="hidden" name="targetId" th:value="|migration-detail-${index}|" />
+                                <span
+                                    aria-hidden="true"
+                                    class="icon icon--exclamation-point bubble-icon alert__icon alert__icon--danger"
+                                ></span
+                                ><span class="sr-only" th:text="#{label.alert.levelinfo.srhelp.DANGER}">Erreur</span>
+                                <p class="alert__content" th:text="${migration.errorMessage}">Message d'erreur</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-layout__content--dark migration-detail position-relative m-y-6 p-a-5">
+                        <div class="overlay" th:id="|migration-overlay-${index}|" aria-live="polite">
+                            <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+                        </div>
+                        <div
+                            th:replace="fragments/components/formblocks/input-optin :: optin('migration.structure.a.migrer', |migrationType-${index}|, |migrationType-${index}|, ${migrationTypes}, ${migration.migrationType}, ${isRunning}, 'switchType(this)')"
+                        ></div>
+                        <div class="migration-structure m-t-6" th:id="${'structure-' + index}" th:data-index="${index}">
+                            <th:block th:if="${migration.migrationType}">
+                                <input type="hidden" th:id="|index-${index}|" name="index" th:value="${index}" />
+                                <div
+                                    th:replace="fragments/components/migration/migration-structure :: migrationStructure(${migration}, ${isRunning}, ${index})"
+                                ></div>
+                            </th:block>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="page-migration__element-delete m-b-6" th:if="${index > 0 && (!isRunning)}">
+                    <button
+                        type="button"
+                        class="base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--uppercased"
+                        th:onclick="|deleteMigration(${index})|"
+                        th:text="#{migration.supprimer}"
+                    >
+                        Supprimer la migration
+                    </button>
+                </div>
+            </div>
+        </th:block>
+    </body>
+</html>

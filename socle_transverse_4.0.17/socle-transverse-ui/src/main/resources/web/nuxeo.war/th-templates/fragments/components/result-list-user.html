@@ -1,0 +1,72 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html>
+    <body>
+        <th:block th:if="${displayTable}" th:fragment="resultListUser">
+            <div>
+                <h2 class="m-t-8 m-b-6 base-title base-title--lvl-2">
+                    [[#{table.resultat.recherche}]]
+                </h2>
+
+                <div class="page-usersearch__results-subtitle">
+                    <div class="search-table__heading">
+                        <h3 class="m-t-6 m-b-6 base-title base-title--lvl-3 base-title--is-underlined">
+                            [[|${nbResults} #{recherche.userSearch.nbResults}|]]
+                        </h3>
+                        <button
+                            th:if="${resultatList.size > 0}"
+                            type="button"
+                            class="js-tooltip base-btn base-btn--button base-btn--default base-btn--secondary base-btn--min base-btn--rounded"
+                            th:data-tippy-content="#{recherche.userSearch.button.email.tippy}"
+                            onclick="exportUserSearch()"
+                        >
+                            <span aria-hidden="true" class="icon icon--download icon--big"></span>
+                            <span class="sr-only" th:text="#{recherche.userSearch.export}">Export</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="focusResultat" tabindex="-1"></div>
+                <th:block
+                    th:if="${resultatList.size > 0}"
+                    th:with="tableCaption=#{table.resultat.recherche}+' | '+${nbResults}+' '+#{recherche.userSearch.nbResults}"
+                >
+                    <div class="row-actions">
+                        <div class="row-actions__left">
+                            <th:block th:each="action : ${userActionListLeft}">
+                                <div
+                                    th:replace="fragments/components/action-button-fixed :: action-button-fixed(${action}, false, '')"
+                                ></div>
+                            </th:block>
+                        </div>
+                        <div class="row-actions__right">
+                            <th:block th:each="action : ${userActionListRight}">
+                                <div
+                                    th:replace="fragments/components/label-action-button-fixed :: label-action-button-fixed(${action}, false, 'base-btn base-btn--submit base-btn--default base-btn--center')"
+                                ></div>
+                            </th:block>
+                        </div>
+                    </div>
+
+                    <div th:replace="fragments/table/tableUsers :: searchResults (true, false)"></div>
+
+                    <div class="row-actions">
+                        <div class="row-actions__left">
+                            <th:block th:each="action : ${userActionListLeft}">
+                                <div
+                                    th:replace="fragments/components/action-button-fixed :: action-button-fixed(${action}, false, '')"
+                                ></div>
+                            </th:block>
+                        </div>
+                        <div class="row-actions__right">
+                            <th:block th:each="action : ${userActionListRight}">
+                                <div
+                                    th:replace="fragments/components/label-action-button-fixed :: label-action-button-fixed(${action}, false, 'base-btn base-btn--submit base-btn--default base-btn--center')"
+                                ></div>
+                            </th:block>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+        </th:block>
+    </body>
+</html>

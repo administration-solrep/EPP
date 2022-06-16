@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nuxeo API Playground Tests</title>
+    <link rel="import" href="packages/polymer/polymer.html">
+    <link rel="import" href="packages/nuxeo_api_playground/app.html">
+    <link rel="import" href="packages/nuxeo_api_playground/components/nx_connection.html">
+    <script type="text/javascript" src="packages/unittest/test_controller.js"></script> 
+    <script src="packages/nuxeo_api_playground/javascript/jquery-2.0.3.min.js"></script>
+    <script src="packages/nuxeo_api_playground/javascript/semantic-0.15.4.min.js"></script>
+    <script src="packages/nuxeo_api_playground/javascript/highlight-8.0.pack.js"></script>
+  </head>
+  <body>
+    <nx-connection id="connection"></nx-connection>
+    <nx-sandbox-app id="app" connectionId="connection"></nx-sandbox-app>
+    <script type="application/dart" src="test.dart"></script>
+  </body>
+</html>

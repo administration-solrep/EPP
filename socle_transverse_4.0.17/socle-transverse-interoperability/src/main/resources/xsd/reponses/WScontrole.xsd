@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WScontrole"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WScontrole"
+	elementFormDefault="qualified"
+	xmlns:qn="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:ar="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:rep="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:repco="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons">
+
+	<!-- ====================================== -->
+	<!-- Imports -->
+	<!-- ====================================== -->
+	<xs:import schemaLocation="questions.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"></xs:import>
+	<xs:import schemaLocation="ar.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"></xs:import>
+	<xs:import schemaLocation="reponses.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"></xs:import>
+	<xs:import schemaLocation="reponses-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"></xs:import>
+
+
+	<!-- ====================================== -->
+	<!-- Methode controlePublication -->
+	<!-- ====================================== -->
+	<xs:element name="controlePublicationRequest">
+		<xs:annotation>
+			<xs:documentation>
+				la DILA envoie le flux de controle
+
+				@date_publication : date de la publication
+				@no_publication : le
+				numero de publication commun pour tous les elements
+				@source : la
+				source de controle, commun pour toutes les donnees et rappellee dans
+				chaque id_question
+				question [0..n] : les controles de question
+				publiees seules
+				questionReponse [0..n] : les controles de reponses
+				associees a une ou plusieurs questions
+				erratumQuestion [0..n] : les
+				erratum de questions
+				erratumReponse [0..n] : les erratum de reponses
+			</xs:documentation>
+		</xs:annotation>
+		<!-- ====================================== -->
+
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="question" type="qn:ControleQuestion"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="questionReponse" type="qn:ControleQuestionReponses"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="erratumQuestion" type="qn:ControleErratumQuestion"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="erratumReponse" type="rep:ControleErratumReponse"
+					minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="controlePublicationResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="resultatControleQuestion" type="ar:ResultatControlePublication"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="resultatControleQuestionReponse" type="ar:ResultatControlePublicationQR"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="resultatControleErratumQuestion" type="ar:ResultatControlePublication"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="resultatControleErratumReponse" type="ar:ResultatControlePublication"
+					minOccurs="0" maxOccurs="unbounded" />
+
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+
+
+	<!-- ====================================== -->
+	<!-- Method chercherRetourPublication -->
+	<!-- ====================================== -->
+	<xs:element name="chercherRetourPublicationRequest">
+		<xs:annotation>
+			<xs:documentation>
+				recherche des informations de retour de publication
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="id_question" type="repco:QuestionId"
+							minOccurs="1" maxOccurs="unbounded" />
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element name="jeton_retour_publication" type="xs:string"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="chercherRetourPublicationResponse">
+		<xs:annotation>
+			<xs:documentation>
+
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="jeton_retour_publication" type="xs:string"
+					minOccurs="0" maxOccurs="1" />
+				<xs:element name="dernier_renvoi" type="xs:boolean"
+					minOccurs="0" maxOccurs="1" />
+				<xs:element name="statut" type="repco:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="message_erreur" type="xs:string"
+					minOccurs="0" maxOccurs="1" />
+				<xs:element name="retour_publication" type="qn:RetourPublication"
+					minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

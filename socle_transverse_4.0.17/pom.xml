@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.nuxeo.ecm.platform</groupId>
+		<artifactId>nuxeo-features-parent</artifactId>
+		<version>SW-10.20.7</version>
+		<relativePath />
+	</parent>
+
+	<groupId>fr.dila.st</groupId>
+	<artifactId>socle-transverse-parent</artifactId>
+	<name>Socle transverse parent</name>
+	<version>4.0.17</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<distrib.nuxeodist.version>SW-10.20.7</distrib.nuxeodist.version>
+		<maven.test.failure.ignore>false</maven.test.failure.ignore>
+		<fr.dila.st.version>4.0.17</fr.dila.st.version>
+		<cobertura.phase>test</cobertura.phase> <!-- default cobertura phase -->
+		<!-- sonar properties -->
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.surefire.reportsPath>${basedir}/target/surefire-reports</sonar.surefire.reportsPath>
+		<sonar.java.coveragePlugin>cobertura</sonar.java.coveragePlugin>
+		<sonar.cobertura.reportsPath>${basedir}/target/site/cobertura/coverage.xml</sonar.cobertura.reportsPath>
+		<sonar.exclusions>fr/dila/st/core/query/ufnxql/parser/**/*.java,
+			fr/dila/st/test/**/*.java, fr/dila/st/webdriver/**/*.java</sonar.exclusions>
+		<naiad.nuxeo.addons.version>7.1.0</naiad.nuxeo.addons.version>
+		<project.build.encoding>UTF-8</project.build.encoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<quartz.version>2.3.2</quartz.version>
+		<tika.version>1.25</tika.version>
+		<!-- ajout mo utf8 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<file.encoding>UTF-8</file.encoding>
+
+	</properties>
+
+	<modules>
+		<module>socle-transverse-api</module>
+		<module>socle-transverse-core</module>
+		<module>socle-transverse-webengine</module>
+		<module>socle-transverse-ui</module>
+		<module>socle-transverse-interoperability</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<maven.javadoc.skip>true</maven.javadoc.skip>
+			</properties>
+		</profile>
+		<profile>
+			<id>disable-cobertura</id>
+			<activation>
+				<property>
+					<name>cobertura.skip</name>
+				</property>
+			</activation>
+			<properties>
+				<cobertura.phase>none</cobertura.phase> <!-- unbind cobertura execution if cobertura.skip -->
+			</properties>
+		</profile>
+	</profiles>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Dépendance à Nuxeo -->
+			<dependency>
+				<groupId>org.nuxeo.template.rendering</groupId>
+				<artifactId>nuxeo-template-rendering-api</artifactId>
+				<version>${distrib.nuxeodist.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nuxeo.template.rendering</groupId>
+				<artifactId>nuxeo-template-rendering-core</artifactId>
+				<version>${distrib.nuxeodist.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.nuxeo.template.rendering</groupId>
+				<artifactId>nuxeo-template-rendering-xdocreport</artifactId>
+				<version>${distrib.nuxeodist.version}</version>
+			</dependency>
+
+			<!-- Dépendance à naiad Nuxeo -->
+			<dependency>
+				<groupId>fr.sword.idl.naiad.nuxeo.addons</groupId>
+				<artifactId>naiad-nuxeo-ufnxql-core</artifactId>
+				<version>${naiad.nuxeo.addons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.sword.idl.naiad.nuxeo.addons</groupId>
+				<artifactId>naiad-nuxeo-commons-core</artifactId>
+				<version>${naiad.nuxeo.addons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.sword.idl.naiad.nuxeo.addons</groupId>
+				<artifactId>naiad-nuxeo-status-core</artifactId>
+				<version>${naiad.nuxeo.addons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.sword.idl.naiad.nuxeo.addons</groupId>
+				<artifactId>naiad-nuxeo-status-ws</artifactId>
+				<version>${naiad.nuxeo.addons.version}</version>
+			</dependency>
+
+			<!-- Dépendances au socle transverse -->
+			<dependency>
+				<groupId>fr.dila.st</groupId>
+				<artifactId>socle-transverse-api</artifactId>
+				<version>${fr.dila.st.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.dila.st</groupId>
+				<artifactId>socle-transverse-core</artifactId>
+				<version>${fr.dila.st.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.dila.st</groupId>
+				<artifactId>socle-transverse-core</artifactId>
+				<type>test-jar</type>
+				<scope>test</scope>
+				<version>${fr.dila.st.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.dila.st</groupId>
+				<artifactId>socle-transverse-ui</artifactId>
+				<version>${fr.dila.st.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.dila.st</groupId>
+				<artifactId>socle-transverse-ui</artifactId>
+				<type>test-jar</type>
+				<scope>test</scope>
+				<version>${fr.dila.st.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.dila.st</groupId>
+				<artifactId>socle-transverse-webengine</artifactId>
+				<version>${fr.dila.st.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.dila.st</groupId>
+				<artifactId>socle-transverse-interoperability</artifactId>
+				<version>${fr.dila.st.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.dila.st</groupId>
+				<artifactId>socle-transverse-test</artifactId>
+				<version>${fr.dila.st.version}</version>
+			</dependency>
+
+			<!-- Attention : Ne pas modifier la version powermock ! -->
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-module-junit4</artifactId>
+				<version>1.6.1</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-api-mockito</artifactId>
+				<version>1.6.1</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-module-junit4-rule-agent</artifactId>
+				<version>1.6.1</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.assertj</groupId>
+				<artifactId>assertj-core</artifactId>
+				<version>3.15.0</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.oracle.ojdbc</groupId>
+				<artifactId>ojdbc8</artifactId>
+				<version>19.3.0.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.tika</groupId>
+				<artifactId>tika-core</artifactId>
+				<version>${tika.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tika</groupId>
+				<artifactId>tika-parsers</artifactId>
+				<version>${tika.version}</version>
+			</dependency>
+			<!-- Dépendance Quartz -->
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz-oracle</artifactId>
+				<version>${quartz.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.owasp.esapi</groupId>
+				<artifactId>esapi</artifactId>
+				<version>2.1.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jsoup</groupId>
+				<artifactId>jsoup</artifactId>
+				<version>1.13.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.opencsv</groupId>
+				<artifactId>opencsv</artifactId>
+				<version>5.3</version>
+			</dependency>
+			<dependency>
+				 <groupId>org.apache.logging.log4j</groupId>
+		    	<artifactId>log4j</artifactId>
+		    	<version>2.15.0</version>
+		    </dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.5</version>
+				<executions>
+					<execution>
+						<id>pre-unit-test</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+							<!-- Sets the path to the file which contains the execution data. -->
+							<destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+							<!-- Sets the name of the property containing the settings CoCo execution
+								due to missing execution data file. for JaCoCo runtime agent. -->
+							<propertyName>surefireArgLine</propertyName>
+						</configuration>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<!-- Sets the path to the file which contains the execution data. -->
+							<dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+							<!-- Sets the output directory for the code coverage report. -->
+							<outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>pre-integration-test</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+							<!-- Sets the path to the file which contains the execution data. -->
+							<destFile>${project.build.directory}/coverage-reports/jacoco-it.exec</destFile>
+							<!-- Sets the name of the property containing the settings for JaCoCo
+								runtime agent. -->
+							<propertyName>failsafeArgLine</propertyName>
+						</configuration>
+					</execution>
+					<!-- Ensures that the code coverage report for integration tests after
+						integration tests have been run. -->
+					<execution>
+						<id>post-integration-test</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<!-- Sets the path to the file which contains the execution data. -->
+							<dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
+							<!-- Sets the output directory for the code coverage report. -->
+							<outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>create-merged-report</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report-aggregate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Remise de la rubrique 'plugin' issue du POM nuxeo-ecm -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<argLine
+                    >${surefireArgLine} -Xmx2G -XX:MaxPermSize=1024m -noverify -Dcom.sun.xml.bind.v2.runtime.reflect.opt.OptimizedAccessorFactory.noOptimization=true</argLine>
+					<systemPropertyVariables>
+						<net.sourceforge.cobertura.datafile>
+							${project.build.directory}/cobertura/cobertura.ser
+						</net.sourceforge.cobertura.datafile>
+						<!-- Used by org.nuxeo.ecm.core.storage.sql.DatabaseHelper -->
+						<nuxeo.test.vcs.db>${nuxeo.test.vcs.db}</nuxeo.test.vcs.db>
+						<nuxeo.test.vcs.url>${nuxeo.test.vcs.url}</nuxeo.test.vcs.url>
+						<nuxeo.test.vcs.server>
+							${nuxeo.test.vcs.server}
+						</nuxeo.test.vcs.server>
+						<nuxeo.test.vcs.port>${nuxeo.test.vcs.port}</nuxeo.test.vcs.port>
+						<nuxeo.test.vcs.database>
+							${nuxeo.test.vcs.database}
+						</nuxeo.test.vcs.database>
+						<nuxeo.test.vcs.user>${nuxeo.test.vcs.user}</nuxeo.test.vcs.user>
+						<nuxeo.test.vcs.password>
+							${nuxeo.test.vcs.password}
+						</nuxeo.test.vcs.password>
+					</systemPropertyVariables>
+					<includes>
+						<include>**/Test*.java</include>
+						<include>**/*Test.java</include>
+					</includes>
+					<excludes>
+						<!-- Inner classes -->
+						<exclude>**/*IntegrationTest.java</exclude>
+						<exclude>**/*IT.java</exclude>
+						<exclude>**/*Test*$*.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<!-- Ensures that both integration-test and verify goals of the Failsafe
+						Maven plugin are executed. -->
+					<execution>
+						<id>integration-tests</id>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+							<!-- Sets the VM argument line used when integration tests are run. -->
+							<argLine>${failsafeArgLine} -noverify </argLine>
+							<!-- Skips integration tests if the value of skip.integration.tests
+								property is true -->
+							<skipTests>${skip.integration.tests}</skipTests>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<preparationGoals>clean install</preparationGoals>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.0-beta-3</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<format>{0,date,yyyyMMdd-HHmmss}</format>
+					<items>
+						<item>timestamp</item>
+					</items>
+					<doCheck>false</doCheck>
+					<doUpdate>false</doUpdate>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestFile>
+							src/main/resources/META-INF/MANIFEST.MF
+						</manifestFile>
+						<manifestEntries>
+							<Bundle-Version>
+								${eclipseVersion}-t${buildNumber}
+							</Bundle-Version>
+							<Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.1.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jboss-packaging-maven-plugin</artifactId>
+				<version>2.1.1</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<aggregate>true</aggregate>
+					<linkJavadoc>true</linkJavadoc>
+				</configuration>
+			</plugin>
+			<!-- Fin de la rubrique 'plugin' issue de nuxeo-ecm -->
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<formats>
+						<format>xml</format>
+					</formats>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>${cobertura.phase}</phase>
+						<goals>
+							<goal>cobertura</goal>
+						</goals>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<additionalparam>-Xdoclint:-missing</additionalparam>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+  <distributionManagement>
+    <repository>
+      <id>releaseRepository</id>
+      <name>releaseRepository</name>
+      <url>${repository.release.url}</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshotRepository</id>
+      <name>snapshotRepository</name>
+      <url>${repository.snapshot.url}</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+	<organization>
+		<name>Sword</name>
+		<url>http://www.sword-group.com/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>fbarmes</id>
+			<name>Frederic Barmes</name>
+			<organization>Sword</organization>
+			<email>frederic.barmes@sword-group.com</email>
+			<organizationUrl>http://www.sword-group.com/</organizationUrl>
+		</developer>
+		<developer>
+			<id>fesposito</id>
+			<name>Fabio Esposito</name>
+			<organization>Sword</organization>
+			<email>fabio.esposito@sword-group.com</email>
+			<organizationUrl>http://www.sword-group.com/</organizationUrl>
+		</developer>
+		<developer>
+			<id>jgomez</id>
+			<name>Juan Gomez</name>
+			<organization>Sword</organization>
+			<email>juan.gomez@sword-group.com</email>
+			<organizationUrl>http://www.sword-group.com/</organizationUrl>
+		</developer>
+		<developer>
+			<id>arolin</id>
+			<name>Antoine Rolin</name>
+			<organization>Sword</organization>
+			<email>antoine.rolin@sword-group.com</email>
+			<organizationUrl>http://www.sword-group.com/</organizationUrl>
+		</developer>
+	</developers>
+</project>

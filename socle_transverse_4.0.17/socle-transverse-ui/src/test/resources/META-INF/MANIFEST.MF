@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: Socle transverse ui test
+Bundle-SymbolicName: fr.dila.st.ui.test;singleton:=true
+Bundle-Version: 1.0.0
+Nuxeo-Require: 
+Nuxeo-Component: OSGI-INF/test-st-actions-contrib.xml

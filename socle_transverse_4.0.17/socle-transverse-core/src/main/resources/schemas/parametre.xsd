@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://dila.fr/solon/schemas/parametre"
+    xmlns:jtd="http://dila.fr/solon/schemas/parametre"
+>
+
+	<!-- unité -->
+	<xs:element name="unit" type="xs:string" />
+	<!-- valeur -->
+	<xs:element name="value" type="xs:string" />
+    <xs:element name="type">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="archivage" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:element>
+
+</xs:schema>

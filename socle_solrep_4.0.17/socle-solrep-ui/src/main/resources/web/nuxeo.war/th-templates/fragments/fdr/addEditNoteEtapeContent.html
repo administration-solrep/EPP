@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="addEditNoteEtapeContent(noteDto)" id="addEditNoteEtapeContent">
+            <form class="qe-roadmap-stage-form">
+                <div
+                    th:replace="fragments/fdr/restriction-visibilite-note :: restriction-visibilite-note(${noteDto})"
+                ></div>
+                <div
+                    class="form-input form-input--full"
+                    th:with="content=${noteDto != null} ? ${noteDto.commentContent} : ''"
+                >
+                    <div
+                        th:replace="fragments/components/formblocks/textarea-input :: textArea ('fdr.modal.add.note.label', 'note-textarea', '', ${content}, 'false', 'required')"
+                    ></div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

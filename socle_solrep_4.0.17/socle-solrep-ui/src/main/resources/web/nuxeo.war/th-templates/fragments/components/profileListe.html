@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="profileListe(profils, lstColonnes)"
+            class="tableForm"
+            th:data-url="@{${dataUrl}}"
+            th:data-ajaxurl="@{${dataAjaxUrl}}"
+            id="listeProfiles"
+        >
+            <div class="overlay" th:id="result_overlay" th:text="#{layout.loading}">Chargement en cours</div>
+            <div class="table-wrapper">
+                <table class="custom-table">
+                    <caption class="sr-only" th:text="#{menu.admin.user.profils.title}">
+                        Tableau des profils
+                    </caption>
+                    <thead class="table-header custom-table__header">
+                        <tr class="table-header__line">
+                            <th:block th:if="${lstColonnes.size() == 1}">
+                                <th:block th:each="colonne : ${lstColonnes}">
+                                    <th:block th:if="${colonne.visible && colonne.sortable}">
+                                        <th
+                                            scope="col"
+                                            class="table-header__cell table-header__cell--with-filter-action th-border-header-one-col"
+                                            th:aria-sort="${colonne.sortValue == 'asc' ? 'ascending' : (colonne.sortValue== 'desc' ? 'descending' : '')}"
+                                        >
+                                            <button
+                                                type="button"
+                                                class="table-header__cell-button base-btn base-btn--button base-btn--default base-btn--light-inverted button-border-one-col"
+                                                onclick="simpleSortColumn(this)"
+                                                th:id="${colonne.sortId}"
+                                                th:data-value="${colonne.sortValue}"
+                                                th:data-field="${colonne.sortName}"
+                                                th:data-inverse="${colonne.inverseSort}"
+                                            >
+                                                Profil
+                                                <span
+                                                    th:if="${colonne.sortValue == 'asc'}"
+                                                    aria-hidden="true"
+                                                    class="table-header__cell-icon icon icon--down"
+                                                ></span>
+                                                <span
+                                                    th:if="${colonne.sortValue =='desc'}"
+                                                    aria-hidden="true"
+                                                    class="table-header__cell-icon icon icon--top"
+                                                ></span>
+                                                <span
+                                                    th:unless="${colonne.sortValue == 'desc' || colonne.sortValue == 'asc'}"
+                                                    aria-hidden="true"
+                                                    class="table-header__cell-icon icon icon--minus"
+                                                ></span>
+                                            </button>
+                                        </th>
+                                    </th:block>
+
+                                    <th:block th:if="${colonne.visible && !colonne.sortable}">
+                                        <th scope="col" class="table-header__cell th-border-header-one-col">
+                                            <span
+                                                th:if="${colonne.isLabelVisible}"
+                                                class="table-header__cell-inner"
+                                                th:text="${colonne.label !=null? #messages.msg(colonne.label) : ''}"
+                                            >
+                                                &nbsp;
+                                            </span>
+                                            <span
+                                                th:unless="${colonne.isLabelVisible}"
+                                                class="table-header__cell-inner"
+                                            >
+                                                <span class="sr-only" th:text="#{__${colonne.label}__}">Label</span>
+                                            </span>
+                                        </th>
+                                    </th:block>
+                                </th:block>
+                            </th:block>
+                            <th:block th:unless="${lstColonnes.size() == 1}">
+                                <th:block th:each="colonne : ${lstColonnes}">
+                                    <th:block th:if="${colonne.visible && colonne.sortable}">
+                                        <th
+                                            scope="col"
+                                            class="table-header__cell table-header__cell--with-filter-action"
+                                            th:aria-sort="${colonne.sortValue == 'asc' ? 'ascending' : (colonne.sortValue== 'desc' ? 'descending' : '')}"
+                                        >
+                                            <button
+                                                th:replace="fragments/table/sortableHeader :: sortableHeader (#{__${colonne.label}__},${colonne.sortValue},${colonne.sortName},${colonne.sortId},${colonne.inverseSort})"
+                                            ></button>
+                                        </th>
+                                    </th:block>
+
+                                    <th:block th:if="${colonne.visible && !colonne.sortable}">
+                                        <th scope="col" class="table-header__cell">
+                                            <span
+                                                th:if="${colonne.isLabelVisible}"
+                                                class="table-header__cell-inner"
+                                                th:text="${colonne.label !=null? #messages.msg(colonne.label) : ''}"
+                                            >
+                                                &nbsp;
+                                            </span>
+                                            <span
+                                                th:unless="${colonne.isLabelVisible}"
+                                                class="sr-only"
+                                                th:text="#{__${colonne.label}__}"
+                                            >
+                                                Label
+                                            </span>
+                                        </th>
+                                    </th:block>
+                                </th:block>
+                            </th:block>
+                        </tr>
+                    </thead>
+                    <tbody class="custom-table__body">
+                        <tr th:each="profil : ${profils}" class="custom-table__table-line table-line">
+                            <td class="table-line__cell">
+                                <a
+                                    class="link"
+                                    th:href="@{|/admin/profile/ficheProfil?id=${profil}#main_content|}"
+                                    th:text="${profil}"
+                                    >profil</a
+                                >
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<component name="fr.sword.idl.naiad.feuilleroute.core.operation.chains" version="1.0">
+
+  <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" point="chains">
+    <chain id="setDone">
+      <operation id="Feuille.Route.Step.Done" />
+    </chain>
+    <chain id="simpleValidate">
+      <operation id="Feuille.Route.Resume.Step" />
+    </chain>
+    <chain id="simpleRefuse">
+      <operation id="Feuille.Route.Resume.Step" />
+    </chain>
+    <chain id="simpleUndo">
+      <operation id="Feuille.Route.BackToReady" />
+    </chain>  
+  </extension>
+
+</component>

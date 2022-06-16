@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.services.actions.component.SSModeleFeuilleRouteActionComponent">
+  <implementation class="fr.dila.ss.ui.services.actions.component.SSModeleFeuilleRouteActionComponent" />
+
+  <service>
+    <provide interface="fr.dila.ss.ui.services.actions.ModeleFeuilleRouteActionService" />
+  </service>
+
+</component>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:notifierEvenementRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSnotification"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSnotification ../../../../../../../xsd/solon/epp/WSnotification.xsd ">
+
+	<p:notifications>
+		<p:type_notification>PUBLIER_INITIALE</p:type_notification>
+		<p:message>
+			<p2:etat_message>AR_RECU</p2:etat_message>
+			<p2:id_evenement></p2:id_evenement>
+			<p2:etat_evenement>PUBLIE</p2:etat_evenement>
+			<p2:type_evenement>EVT01</p2:type_evenement>
+			<p2:date_evenement>2012-02-01T10:00:00</p2:date_evenement>
+			<p2:emetteur_evenement>GOUVERNEMENT</p2:emetteur_evenement>
+			<p2:destinataire_evenement>ASSEMBLEE_NATIONALE</p2:destinataire_evenement>
+			<p2:copie_evenement>SENAT</p2:copie_evenement>
+			<p2:presence_piece_jointe></p2:presence_piece_jointe>
+			<p2:objet></p2:objet>
+			<p2:niveau_lecture code="AN" />
+			<p2:id_dossier></p2:id_dossier>
+			<p2:id_senat></p2:id_senat>
+			<p2:etat_dossier>EN_INSTANCE</p2:etat_dossier>
+			<p2:numero_depot>
+				<p1:date>2012-02-01</p1:date>
+				<p1:numero></p1:numero>
+			</p2:numero_depot>
+			<p2:interne></p2:interne>
+		</p:message>
+		<p:id_corbeille></p:id_corbeille>
+		<p:version majeur="1" mineur="0" />
+	</p:notifications>
+
+</p:notifierEvenementRequest>

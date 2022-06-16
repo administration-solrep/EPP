@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.solonepp.core.work.queue.contrib">
+    <extension point="queues" target="org.nuxeo.ecm.core.work.service">
+        <queue id="AfterNotificationCreatedEmailQueue">
+            <name>AfterNotificationCreatedEmailQueue</name>
+            <maxThreads>2</maxThreads>
+            <category>afterNotificationCreatedEmailListener</category>
+        </queue>
+
+        <queue id="AfterNotificationCreatedWsQueue">
+            <name>AfterNotificationCreatedWsQueue</name>
+            <maxThreads>2</maxThreads>
+            <category>afterNotificationCreatedWsListener</category>
+        </queue>
+    </extension>
+</component>

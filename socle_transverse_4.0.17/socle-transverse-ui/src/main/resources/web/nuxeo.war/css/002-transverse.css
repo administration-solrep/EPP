@@ -1,0 +1,363 @@
+/* Put SWORD transverse CSS here */
+
+.page-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+div.page-layout__container {
+    flex-grow: 1;
+    position: relative;
+}
+
+.tree-navigation__item--lvl-1 > .tree-navigation__toggle-wrapper .tree-navigation__text-not-bold {
+    font-weight: 400;
+}
+
+.tree-navigation__item .interstitial-overlay__trigger {
+    color: #3c3c3c;
+    padding: 0.5em 1em;
+    justify-content: left;
+}
+
+.header-lt__title {
+    text-transform: uppercase;
+}
+
+.tree-navigation__text-wrap {
+    overflow-wrap: anywhere;
+}
+
+.error-message {
+    color: #d51622;
+}
+
+.hide-element {
+    display: none;
+}
+
+.visibility-hidden {
+    visibility: hidden;
+}
+
+.form-select--simple .form-select-input__field {
+    height: calc(2.69143em - 4px * -1) !important;
+}
+
+.form-select-input__large {
+    width: 15em !important;
+}
+
+.grid__col--60 {
+    max-width: 60% !important;
+}
+
+.alert--fixed {
+    position: fixed;
+    bottom: 6em;
+    right: 1.56em;
+    min-width: 15em;
+    z-index: 1000;
+}
+
+.alert--fixed > div {
+    margin-bottom: 0.5em;
+}
+
+.alert--container > div.alert:first-child {
+    margin-top: 1em;
+}
+
+.alert--container > div.alert {
+    margin-top: 0.5em;
+}
+
+.alert--flex {
+    margin-right: 1em;
+}
+
+.flex-button-right {
+    margin-left: auto;
+}
+
+.bloc-search-inline {
+    width: 100%;
+    margin: 0 0 1.57em;
+}
+
+.swiper-container {
+    overflow: inherit;
+}
+
+@media screen and (min-width: 97em) {
+    .swiper-wrapper {
+        justify-content: center;
+        height: 2.7em;
+    }
+}
+
+@media screen and (max-width: 96.99em) {
+    .swiper-wrapper {
+        justify-content: flex-start;
+        height: 2.7em;
+    }
+}
+
+.search-input-header {
+    min-height: 0;
+}
+
+.m-t-1-1155 {
+    margin-top: 1.1155em;
+}
+
+.m-t-0-5em {
+    margin-top: 0.5em;
+}
+
+.align-start {
+    align-items: flex-start;
+}
+
+.base-btn--padded-lr {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.m-b-1-7857em {
+    margin-bottom: 1.7857em;
+}
+
+.m-r-0-5em {
+    margin-right: 0.5em;
+}
+
+.roadmap-table .table-line--selected .base-drop-down-item .link {
+    color: #3c3c3c;
+}
+
+.row-actions {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-top: 1.7857em;
+    margin-bottom: 1.7857em;
+}
+
+.row-actions__left {
+    display: initial;
+}
+
+.row-actions__left > button {
+    margin-right: 0.5em;
+}
+
+.row-actions__right {
+    float: right;
+}
+
+.row-actions__right > button {
+    margin-left: 0.5em;
+}
+
+.row-actions__right > a {
+    margin-left: 0.5em;
+}
+
+.colorize-blue {
+    filter: brightness(0.3) sepia(1) hue-rotate(-200deg) saturate(4);
+}
+
+.base-drop-down--light .base-drop-down__button.link:hover:not([disabled]) {
+    background: transparent;
+    text-decoration: underline;
+}
+
+.quick-access-dropdown {
+    display: flex;
+    align-items: center;
+}
+
+.fileInput {
+    width: inherit;
+}
+
+.form-input__field {
+    width: 100%;
+}
+
+.align-flex-start {
+    align-self: flex-start;
+}
+
+/* Important pour les organigramme select */
+.page-usersearch__autocomplete-wrap .form-input__icon-group {
+    padding-right: 1em;
+}
+
+.aria-autocomplete__wrapper--success {
+    border-color: #108425;
+}
+
+.aria-autocomplete__wrapper--error {
+    border-color: #d51622;
+    background-color: #fdf5f5;
+}
+
+.page-error {
+    display: inline-block;
+}
+
+.accordion-title-lvl-2 {
+    font-size: 1.285715rem;
+    line-height: 1.25;
+    font-weight: 600;
+    margin-right: 0.5em;
+}
+
+.interstitial-overlay.page-usersearch__tree-icon {
+    right: 0;
+    z-index: auto;
+}
+
+.flex-row-actions {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-top: 1.7857em;
+    margin-bottom: 1.7857em;
+}
+
+.flex-row-actions__left {
+    display: initial;
+}
+
+.flex-row-actions__right {
+    float: right;
+}
+
+.flex-row-actions__bottom {
+    margin-top: 25px;
+}
+
+.flex-row-actions__left > button {
+    margin-right: 0.5em;
+}
+
+.flex-row-actions__right > button {
+    margin-left: 0.5em;
+}
+
+#rapidSearchForm input:focus {
+    outline: solid 0.2em #fefefe;
+}
+
+.left-list-dropdown .base-drop-down__drop {
+    right: 1em;
+}
+
+#toast-container .alert__content {
+    margin-right: 0.5em;
+}
+
+button.base-drop-down__link {
+    width: 100%;
+}
+
+.organigramme-button-leaf {
+    display: inline-block;
+}
+
+.row-italic {
+    font-style: italic;
+}
+
+.row-bold {
+    font-weight: bold;
+}
+
+.row-red {
+    color: red;
+}
+
+.cell-crossed {
+    text-decoration: line-through;
+}
+
+.environment {
+    min-width: 11em;
+}
+
+/* A positionner sur un dropdown pour que la liste enfant s'affiche à gauche */
+.dropdown-fixed-right {
+    position: relative;
+}
+
+.dropdown-fixed-right > .base-drop-down__drop {
+    right: 0;
+}
+
+.organigramme-last-child {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#form-btn-submit {
+    border: solid 1px #2878e2;
+}
+
+.page-login .form-input__field:focus,
+#form-btn-submit:focus {
+    outline: solid 0.2em #fefefe;
+}
+
+.row-actions-user::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.form-file__label--dropzone.form-label {
+    width: auto;
+}
+
+.form-input-range__footer {
+    display: flex;
+    justify-content: flex-start;
+    position: inherit !important;
+}
+
+.pst-picto {
+    color: #4a5e81;
+    margin-right: 0.5714289em;
+}
+
+#loginForm .form-input__footer {
+    position: static;
+}
+
+.form-optin__container {
+    display: flex;
+    background-color: white;
+    align-items: center;
+}
+
+.normal {
+    font-weight: normal;
+}
+
+html {
+    background-color: #ffffff;
+}
+
+button.link.base-drop-down__button {
+    padding: 0;
+    color: #4a5e81;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 14px;
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="resultList">
+            <div class="m-t-6" id="listeCommunications" th:classappend="${titre != null ? '' : 'hide-element'}">
+                <h2 class="search-result-form__title base-title base-title--lvl-2" th:text="${titre}"></h2>
+
+                <div class="search-table">
+                    <div class="search-table__heading">
+                        <div class="heading-complex">
+                            <div class="heading-complex__main">
+                                <p class="base-title base-title--lvl-3" th:text="${sousTitre}"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <th:block th:if="${displayTable}">
+                        <div th:replace="fragments/table/tableCommunications :: searchResults(${corbeille})"></div>
+                    </th:block>
+                </div>
+            </div>
+        </th:block>
+    </body>
+</html>

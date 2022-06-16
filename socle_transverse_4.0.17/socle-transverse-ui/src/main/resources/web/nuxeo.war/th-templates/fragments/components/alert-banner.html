@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="alert-banner (message,target,type)">
+            <div th:class="|${type.getCssClass()}|" th:id="${type + '-' + target}" style="display: none;">
+                <th:block th:if="${message}">
+                    <input type="hidden" name="targetId" th:value="${target}" />
+                    <div th:role="${type.role}" class="alerts--flex">
+                        <span aria-hidden="true" th:class="${type.level.icon}"></span>
+                        <span th:text="${type.level.srOnly}" class="sr-only">Notification d’information</span>
+                        <th:block th:if="${message.size()}==1">
+                            <p class="alert__content">
+                                [[${message[0]==null || #messages.msgOrNull(message[0]) == null ? message[0] :
+                                #messages.msg(message[0])}]]
+                            </p>
+                        </th:block>
+                        <th:block th:if="${message.size()}!=1">
+                            <th:block th:if="${type.level.isOrdered}">
+                                <ol class="alert__content base-list base-list--ordered">
+                                    <th:block th:each="msg : ${message}">
+                                        <li class="list-item list-item--ordered">
+                                            [[${msg==null || #messages.msgOrNull(msg) == null ? msg :
+                                            #messages.msg(msg)}]]
+                                        </li>
+                                    </th:block>
+                                </ol>
+                            </th:block>
+                            <th:block th:unless="${type.level.isOrdered}">
+                                <ul class="alert__content base-list base-list--unordered">
+                                    <th:block th:each="msg : ${message}">
+                                        <li class="list-item list-item--unordered">
+                                            [[${msg==null || #messages.msgOrNull(msg) == null ? msg :
+                                            #messages.msg(msg)}]]
+                                        </li>
+                                    </th:block>
+                                </ul>
+                            </th:block>
+                        </th:block>
+                    </div>
+                    <button
+                        th:remove="${!type.hasCloseButton}?all"
+                        type="button"
+                        class="base-btn base-btn--button base-btn--default base-btn--icon-action-bg-primary base-btn--center base-btn--rounded js-alert-action alert__button"
+                        th:title="#{label.close.notification}"
+                    >
+                        <span aria-hidden="true" class="icon icon--cross-bold"></span>
+                        <span class="sr-only" th:text="#{label.close.notification}">Fermer</span>
+                    </button>
+                </th:block>
+            </div>
+        </th:block>
+    </body>
+</html>

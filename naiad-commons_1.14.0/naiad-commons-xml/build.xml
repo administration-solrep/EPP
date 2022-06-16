@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     May 28, 2012 17:35:00                                                        
+
+     naiad-commons-xml
+     naiad-commons-xml
+                   
+     fbarmes <frederic.barmes@sword-group.com>                                                                
+     ====================================================================== -->
+<project name="legis-export-core" default="default">
+	<description>
+    	Naiad commons xml - helper ant script
+    </description>
+
+
+	<property environment="env" />
+
+	<property name="dir.project.root" value="${basedir}" />
+
+	<property name="dir.project.target" value="${dir.project.root}/target" />
+	<property name="dir.project.target.src.main" value="${dir.project.target}/src/main/generated" />
+	<property name="dir.project.target.src.test" value="${dir.project.target}/src/test/generated" />
+	
+	
+	<property name="dir.project.main.resources" value="${dir.project.root}/src/main/resources" />
+	<property name="dir.project.main.xsd" value="${dir.project.resources}/xsd" />
+	<property name="dir.project.main.xjb" value="${dir.project.resources}/xjb" />
+	
+	<property name="dir.project.test.resources" value="${dir.project.root}/src/test/resources" />
+	<property name="dir.project.test.xsd" value="${dir.project.test.resources}/xsd" />
+	<property name="dir.project.test.xjb" value="${dir.project.test.resources}/xjb" />
+	
+	<property name="xjc.dir.bin" value="${env.JDK_HOME}/bin" />
+	<property name="xjc.exec" value="${xjc.dir.bin}/xjc" />
+
+	<echo message="JAVA_HOME = ${env.JAVA_HOME}" />
+	<echo message="JDK_HOME = ${env.JDK_HOME}" />
+	<echo message="JRE_HOME = ${env.JRE_HOME}" />
+	<echo message="xjc.dir.bin = ${xjc.dir.bin}" />
+
+
+	<!-- ================================= 
+          target: default              
+         ================================= -->
+	<target name="default" description="Legis export core">
+		<echo>Hello From default target</echo>
+	</target>
+
+
+	<!-- ================================= 
+          target: generate-sources              
+         ================================= -->
+	<target name="generate-sources" description="Generate sources">
+		<echo>Generate sources</echo>
+	</target>
+
+	<!-- ================================= 
+          target: generate-test-sources              
+         ================================= -->
+	<target name="generate-test-sources" description="Generate test sources">
+		<echo>Generate test sources</echo>
+		<mkdir dir="${dir.project.target.src.test}" />
+		
+		
+		<antcall target="-xjc2">
+
+			<param name="file" 
+					value="${dir.project.test.xsd}/hello/hello.xsd"/>
+			
+			<param name="bindings" 
+					value="	${dir.project.test.xjb}/global.xjb
+							${dir.project.test.xjb}/packages.xjb"/>
+
+			<param name="target" value="${dir.project.target.src.test}"/>
+		</antcall>
+			
+	</target>
+	
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+	          target: -xjc2
+	         - - - - - - - - - - - - - - - - - -->
+	<target name="-xjc2">
+		<fail unless="file" />
+		<fail unless="bindings" />
+		<fail unless="target" />
+
+		<echo>Running ${xjc.exec}</echo>
+		<exec executable="${xjc.exec}">
+			<arg line="-encoding &quot;UTF-8&quot;" />
+			<arg line="-d &quot;${target}&quot;" />
+			<arg line="-extension" />
+			<arg line="-b ${bindings}" />
+			<arg line="${file}" />
+			<arg line="-nv" />
+			<arg line="-npa" />
+		</exec>
+
+	</target>
+
+</project>

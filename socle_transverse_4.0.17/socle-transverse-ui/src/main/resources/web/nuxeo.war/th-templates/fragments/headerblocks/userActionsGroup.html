@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="userActionsGroup">
+        <th:block
+            th:with="extraDropDownUrl=@{/utilisateurs/compte#main_content},extraDropDownMessage=#{user.home.account},extraDropDownIcon='icon--user-2'"
+        >
+            <div th:replace="fragments/headerblocks/userActionsGroupDropDown :: userActionsGroupDropDown"></div>
+        </th:block>
+    </div>
+</html>

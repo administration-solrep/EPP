@@ -1,0 +1,74 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout :: layout (template=~{::main},templateClass='', description='Consultation de rapport birt', title=${birtReport.title})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <div id="overlay_statistiques" class="overlay" aria-live="polite">
+            <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+        </div>
+        <input type="hidden" id="urlPreviousPage" name="urlPreviousPage" th:value="@{${urlPreviousPage}}" />
+        <div class="page-layout__content-nav">
+            <button
+                type="button"
+                class="base-btn base-btn--button base-btn--default base-btn--light base-btn--bordered"
+                onclick="goPreviousPage()"
+                th:text="#{button.label.back}"
+            >
+                Retour
+            </button>
+        </div>
+
+        <div id="birt-title">
+            <div th:replace="fragments/statistiques/statTitle :: statTitle"></div>
+        </div>
+
+        <div
+            th:remove="${!displayOrganigrammeSelectMin && !displayOrganigrammeSelectDir && !displayOrganigrammeSelectPoste} ?all "
+            class="bloc-search-left-inline"
+        >
+            <form id="birtReportForm" class="page-reponses-report-birt-open__form m-t-6">
+                <th:block
+                    th:if="${displayOrganigrammeSelectMin}"
+                    th:with="selectIsRequired=true,selectDataValidation=required"
+                >
+                    <div
+                        th:replace="fragments/components/formblocks/simple-select :: simpleSelect('label.birt.select.ministere', 'ministereId', '',${listMinisteres}, '', 'false', 'birtreport.empty.select.input.label')"
+                    ></div>
+                </th:block>
+
+                <th:block th:if="${displayOrganigrammeSelectDir}">
+                    <div class="form-select">
+                        <div
+                            th:replace="fragments/components/organigrammeSelectAutocomplete :: organigrammeSelectAutocomplete('organigramme.unite.structurelle.us.rattachement.label', true, 'uniteId-key', 'uniteId-key', 'DIR_UST', 'unitesStructurelles', false, false, null, false)"
+                        ></div>
+                    </div>
+                </th:block>
+
+                <th:block th:if="${displayOrganigrammeSelectPoste}">
+                    <div class="form-select">
+                        <div
+                            th:replace="fragments/components/organigrammeSelectAutocomplete :: organigrammeSelectAutocomplete('mailbox.select.poste',true,'posteId-key','posteId-key','PST','',false,false,null, false)"
+                        ></div>
+                    </div>
+                </th:block>
+                <button
+                    type="button"
+                    th:onclick="generateBirtReport()"
+                    th:data-reportId="${birtReport.id}"
+                    id="btn-generate-stat"
+                    class="base-btn base-btn--submit base-btn--default base-btn--primary base-btn--center"
+                    th:text="#{label.birt.button.afficher}"
+                >
+                    Afficher la statistique
+                </button>
+            </form>
+        </div>
+
+        <div id="birt-fragment">
+            <div th:replace="fragments/statistiques/statDetail :: statDetail"></div>
+        </div>
+    </main>
+</html>

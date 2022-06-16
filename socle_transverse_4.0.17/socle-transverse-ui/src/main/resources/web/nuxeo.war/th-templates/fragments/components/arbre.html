@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="arbre( treeList, level, myID, togglerID, isOpen)">
+            <div class="overlay" th:if="${level == 1}" th:id="'overlay_'+${myID}" aria-live="polite">
+                <img width="29px" height="29px" th:src="@{/img/loader.svg}" alt="" />
+            </div>
+            <p th:if="${#lists.isEmpty(treeList) and level == 1}" th:text="#{mailbox.aucun.dossier}">
+                Aucun dossier en cours dans vos postes / corbeilles de travail
+            </p>
+            <ul
+                class="tree-navigation__list"
+                th:id="${myID}"
+                th:aria-labelledby="${togglerID}"
+                th:classappend="${(level &gt; 1 ? ' tree-navigation\_\_list--subtree ' : '') + (isOpen ? ' tree-navigation\_\_list--is-opened ' : ' tree-navigation\_\_list--is-closed ') }"
+                th:aria-hidden="${isOpen ? 'false' : 'true'}"
+                th:unless="${#lists.isEmpty(treeList)}"
+            >
+                <li
+                    th:each="item, status : ${treeList}"
+                    th:with="concat_index=${level + '_'+status.index}"
+                    class="tree-navigation__item tree-navigation__item--has-toggler"
+                    th:classappend="${(item.isOpen ? 'tree-navigation\_\_item--is-opened' : ' tree-navigation\_\_item--is-closed ') + (item.isLastLevel ? '' : ' tree-navigation\_\_item--lvl-'+level) + (item.key == mailboxListActivated ? ' tree-navigation\_\_item--active ' : '')}"
+                >
+                    <th:block th:if="${!item.isLastLevel or item.childs.size &gt; 0 }">
+                        <div class="tree-navigation__toggle-wrapper">
+                            <button
+                                th:aria-controls="'tree-navigation\_\_toggled\_\_'+${concat_index}"
+                                th:aria-expanded="${item.isOpen}"
+                                tabindex="0"
+                                th:id="'tree-navigation\_\_toggler\_\_'+${concat_index}"
+                                aria-selected="false"
+                                data-toggle="tree-navigation__item"
+                                class="tree-navigation__toggle js-toggle"
+                                type="button"
+                                data-icon-opened="minus"
+                                data-icon-closed="plus"
+                                th:attrappend="onclick=${item.action !=null ? item.action : null}"
+                                th:title="(${item.isOpen} ? #{arbre.replier.label} : #{arbre.derouler.label}) + ' ' + ${item.label} + ${item.isBold ? ' - (fait partie du ministère parent)' : ''}"
+                            >
+                                <span
+                                    aria-hidden="true"
+                                    class="tree-navigation__icon tree-navigation__icon--toggler icon bubble-icon bubble-icon--squared bubble-icon--small"
+                                    th:classappend="${(item.isOpen ? 'tree-navigation\_\_icon--opened icon--minus' : 'tree-navigation\_\_icon--closed icon--plus')}"
+                                ></span>
+                                <span
+                                    class="tree-navigation__text tree-navigation__text-wrap"
+                                    th:classappend="|${(item.isBold ? '' : 'tree-navigation\_\_text-not-bold')}|"
+                                    th:text="${item.label}"
+                                    >Niveau</span
+                                >
+                            </button>
+                        </div>
+                        <ul
+                            th:replace="fragments/components/arbre :: arbre (${item.childs}, ${level+1}, ${'tree-navigation\_\_toggled\_\_'+concat_index}, ${'tree-navigation\_\_toggler\_\_'+concat_index} , ${item.isOpen})"
+                        ></ul>
+                    </th:block>
+                    <th:block th:unless="${!item.isLastLevel or item.childs.size &gt; 0 }">
+                        <a
+                            th:href="@{${item.link} + '#main_content'}"
+                            class="tree-navigation__link link"
+                            tabindex="0"
+                            th:title="${item.label + (item.key == mailboxListActivated ? ' - actif' : '')}"
+                        >
+                            <span class="tree-navigation__text" th:text="${item.label}"> lien</span>
+                        </a>
+                    </th:block>
+                </li>
+            </ul>
+        </th:block>
+    </body>
+</html>

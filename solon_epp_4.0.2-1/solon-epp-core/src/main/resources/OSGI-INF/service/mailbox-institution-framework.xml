@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service de gestion des Mailbox des institutions. -->
+<component name="fr.dila.solonepp.core.service.MailboxInstitutionService">
+	<implementation class="fr.dila.solonepp.core.service.MailboxInstitutionServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.solonepp.api.service.MailboxInstitutionService" />
+	</service>
+</component>

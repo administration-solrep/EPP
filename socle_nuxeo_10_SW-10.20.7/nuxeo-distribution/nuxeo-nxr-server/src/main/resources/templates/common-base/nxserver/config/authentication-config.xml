@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.distrib.authentication">
+
+  <!-- replace auth chain -->
+  <require>org.nuxeo.ecm.platform.ui.web.auth.defaultConfig</require>
+  <require>org.nuxeo.ecm.platform.ui.web.auth.service.PluggableAuthenticationService</require>
+  <require>org.nuxeo.ecm.platform.ui.web.auth.WebEngineConfig</require>
+<require>org.nuxeo.ecm.login.token.authentication.contrib</require>
+  <extension
+    target="org.nuxeo.ecm.platform.ui.web.auth.service.PluggableAuthenticationService"
+    point="chain">
+
+    <authenticationChain>
+      <plugins>
+        <plugin>BASIC_AUTH</plugin>
+        <plugin>JWT_AUTH</plugin>
+        <plugin>WEBENGINE_FORM_AUTH</plugin>
+        <plugin>ANONYMOUS_AUTH</plugin>
+      </plugins>
+    </authenticationChain>
+  </extension>
+
+<extension point="specificChains" target="org.nuxeo.ecm.platform.ui.web.auth.service.PluggableAuthenticationService">
+
+    <documentation>
+      Override Automation specific authentication chain to
+      use token authentication just after basic one.
+    </documentation>
+
+    <specificAuthenticationChain name="Automation">
+
+      <urlPatterns>
+        <url>(.*)/automation.*</url>
+      </urlPatterns>
+      <replacementChain>
+        <plugin>AUTOMATION_BASIC_AUTH</plugin>
+        <plugin>JWT_AUTH</plugin>
+      </replacementChain>
+    </specificAuthenticationChain>
+
+    <specificAuthenticationChain name="RestAPI">
+      <urlPatterns>
+        <url>(.*)/api/v.*</url>
+      </urlPatterns>
+      <replacementChain>
+        <plugin>AUTOMATION_BASIC_AUTH</plugin>
+        <plugin>JWT_AUTH</plugin>
+      </replacementChain>
+    </specificAuthenticationChain>
+
+</extension>
+
+
+</component>

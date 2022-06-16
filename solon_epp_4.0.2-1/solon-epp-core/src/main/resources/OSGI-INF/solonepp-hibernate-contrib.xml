@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service d'organigramme du socle transverse. -->
+<component name="fr.dila.solonepp.core.hibernate.contrib">
+	<require>org.nuxeo.ecm.core.persistence.PersistenceComponent</require>
+
+	<extension target="org.nuxeo.ecm.core.persistence.PersistenceComponent" point="hibernate">
+
+		<hibernateConfiguration name="SWMIGRATIONLOGGER">
+			<datasource>sword-provider</datasource>
+			<properties>
+				<property name="hibernate.hbm2ddl.auto">update</property>
+			</properties>
+		</hibernateConfiguration>
+
+	</extension>
+
+</component>

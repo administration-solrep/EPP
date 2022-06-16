@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Nuxeo API Playground</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+
+    <style>
+      body {
+       background: #fafafa;
+       margin: 0;
+       padding: 0;
+       font-family: sans-serif;
+       /* sidebar transitions */
+       -webkit-transition: margin 0.2s ease, -webkit-transform 0.2s ease /*rtl:append:,padding 0.2s ease*/;
+       -moz-transition: margin 0.2s ease, -moz-transform 0.2s ease /*rtl:append:,padding 0.2s ease*/;
+       transition: margin 0.2s ease, transform 0.2s ease /*rtl:append:,padding 0.2s ease*/;
+        }
+
+        /* Semantic icons */
+        @font-face {
+          font-family: 'Icons';
+          src: url(fonts/icons.eot);
+          src: url(fonts/icons.eot?#iefix) format('embedded-opentype'), url(fonts/icons.svg#icons) format('svg'), url(fonts/icons.woff) format('woff'), url(fonts/icons.ttf) format('truetype');
+          font-style: normal;
+          font-weight: normal;
+          font-variant: normal;
+          text-decoration: inherit;
+          text-transform: none;
+        }
+        /* Add enough space for the header */
+        /* Note: Don't forget to update the sidebar */
+        body {
+          margin-top: 60px;
+        }
+
+        header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 1em 2em 0;
+        right: 0;
+        background-color: #fff;
+        z-index: 1000;
+        height: 60px;
+        box-sizing: border-box;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        }
+
+        #logo {
+        background:transparent url('images/nuxeo_logo.png') no-repeat;
+        background-size: cover;
+        display: inline-block;
+        height:30px;
+        width:160px;
+        }
+
+        header span {
+        color: #0066FF;
+        font-size: 1.8em;
+        vertical-align: top;
+        padding: 0 0 0 1em;
+        }
+    </style>
+
+    <!-- Load Polymer -->
+    <link rel="import" href="packages/polymer/polymer.html">
+    <link rel="import" href="packages/nuxeo_api_playground/app.html">
+    <link rel="import" href="packages/nuxeo_api_playground/components/nx_connection.html">
+
+    <script type="application/dart">export "package:polymer/init.dart";</script>
+    <script src="packages/nuxeo_api_playground/javascript/jquery-2.0.3.min.js"></script>
+    <script src="packages/nuxeo_api_playground/javascript/semantic-0.15.4.min.js"></script>
+    <script src="packages/nuxeo_api_playground/javascript/highlight-8.0.pack.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="packages/nuxeo_api_playground/app.html" id="logo"></a>
+      <span class="">API Playground</span>
+    </header>
+    <!-- Connection Area -->
+    <nx-connection id="connection"></nx-connection>
+    <!-- App -->
+    <nx-sandbox-app connectionId="connection"></nx-sandbox-app>
+  </body>
+</html>

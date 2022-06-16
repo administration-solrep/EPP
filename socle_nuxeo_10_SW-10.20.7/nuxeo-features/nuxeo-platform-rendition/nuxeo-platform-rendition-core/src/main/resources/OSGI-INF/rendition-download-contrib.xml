@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.platform.rendition.download.contrib">
+
+  <extension target="org.nuxeo.ecm.platform.rendition.service.RenditionService"
+    point="defaultRendition">
+    <defaultRendition reason="download">
+      <script language="JavaScript">
+        function run() {
+          if (Document.getType() == "File") {
+            return 'mainBlob';
+          } else if (Document.getType() == 'Picture') {
+            return 'mainBlob';
+          } else if (Document.getType() == 'Video') {
+            return 'mainBlob';
+          } else if (Document.getType() == 'Audio') {
+            return 'mainBlob';
+          } else if (Document.getType() == 'Note') {
+            return 'pdf';
+          } else if (Document.getFacets().contains("Collection")) {
+            return 'containerDefaultRendition';
+          } else if (Document.getFacets().contains("Folderish")) {
+            return 'containerDefaultRendition';
+          } else {
+            return 'xmlExport';
+          }
+        }
+      </script>
+    </defaultRendition>
+  </extension>
+
+</component>

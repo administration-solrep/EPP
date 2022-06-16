@@ -1,0 +1,42 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page de notification des batchs', title=#{batch.notif.label})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <form id="batchNotif_form" th:object="${batchNotif}" th:with="isCancelButton=true">
+            <div th:replace="fragments/components/edit-buttons :: edit-buttons('boutons-edit-notification')"></div>
+            <h1
+                class="m-t-6 m-b-6 p-b-3 base-title base-title--lvl-1 base-title--is-underlined"
+                th:text="#{batch.notif.label}"
+            >
+                Notifications
+            </h1>
+            <div
+                th:replace="fragments/components/formblocks/input-optin :: optin('batch.notif.etat.label', 'batch-notif-activee', 'activee', ${options}, ${batchNotif.activee}, false, null)"
+            ></div>
+
+            <br />
+
+            <div>
+                <div class="form-select">
+                    <div
+                        class="form-input"
+                        th:replace="fragments/components/formblocks/autocomplete-select :: autocompleteSelect('batch.notif.utilisateurs.label', 'batch-notif-users-autocomplete', 'listeUtilisateurs', 'form.description.charlimit', ${ {} }, ${batchNotif.mapUtilisateurs}, 'false', 
+                            @{/ajax/admin/users/suggestions?profil='Administrateur fonctionnel'},
+                            '3',
+                            'input',
+                            'key',
+                            'label',
+                             false,
+                             true,
+                             false)"
+                    ></div>
+                </div>
+            </div>
+            <div th:replace="fragments/components/edit-buttons :: edit-buttons('boutons-edit-notification')"></div>
+        </form>
+    </main>
+</html>

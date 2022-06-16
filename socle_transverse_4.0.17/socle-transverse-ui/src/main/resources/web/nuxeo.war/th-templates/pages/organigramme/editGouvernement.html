@@ -1,0 +1,141 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page de création de gouvernement', title=#{organigramme.gouvernement.add})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <input
+            type="hidden"
+            id="urlPreviousPage"
+            name="urlPreviousPage"
+            th:value="@{/admin/organigramme/consult#main_content}"
+        />
+
+        <form th:action="@{/admin/organigramme/gouvernement/sauvegarde}" th:object="${gouvernementForm}" method="POST">
+            <input type="hidden" name="csrf-token" th:value="${csrftoken}" />
+            <div>
+                <div class="m-b-6">
+                    <button
+                        type="button"
+                        th:attr="onclick=|'${gouvernementForm.id}' == 'null' ? goPreviousPage() : releaseLock('${gouvernementForm.id}', 'GVT')|"
+                        class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                        th:text="#{organigramme.cancel}"
+                    >
+                        Annuler
+                    </button>
+                    <input
+                        type="submit"
+                        th:value="#{button.label.save}"
+                        class="base-btn base-btn--button base-btn--default"
+                        style="float: right;"
+                    />
+                </div>
+                <h1
+                    th:if="${gouvernementForm.id == null}"
+                    class="base-title base-title--lvl-1 p-b-3 m-b-6 base-title--is-underlined"
+                    th:text="#{organigramme.gouvernement.add}"
+                >
+                    Créer gouvernement
+                </h1>
+                <h1
+                    th:unless="${gouvernementForm.id == null}"
+                    class="base-title base-title--lvl-1 p-b-3 m-b-6 base-title--is-underlined"
+                    th:text="#{organigramme.gouvernement.edit}"
+                >
+                    Éditer gouvernement
+                </h1>
+                <div class="form-input">
+                    <div class="form-input__container">
+                        <input type="hidden" name="id" id="id" th:value="${gouvernementForm.id}" />
+                    </div>
+                </div>
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label aria-disabled="false" for="appellation" id="appellation_label" class="form-label">
+                                <span th:text="#{organigramme.gouvernement.appelation}">Label</span>
+                                <span class="form-label__required-text" th:text="#{form.input.required}"
+                                    >(requis)</span
+                                ></label
+                            >
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                    </div>
+                    <div class="form-input__container">
+                        <input
+                            type="text"
+                            name="appellation"
+                            id="appellation"
+                            class="form-input__field form-input__field--type-text"
+                            data-validation="required"
+                            th:value="${gouvernementForm.appellation}"
+                        />
+                    </div>
+                    <div id="appellation_description" class="form-input__footer"></div>
+                </div>
+
+                <br />
+
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label for="dateDebut" id="dateDebut_label" class="form-label">
+                                <span th:text="#{organigramme.gouvernement.dateDebut}">Label</span>
+                                <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                            </label>
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                        <div class="form-input__header-bottom"></div>
+                    </div>
+                    <div class="form-input__container">
+                        <div
+                            th:replace="fragments/components/input-date-picker :: inputDatePicker('datepicker_description_form_input_date_debut', 'dateDebut', 'dateDebut', true, ${gouvernementForm.dateDebut}, false)"
+                        ></div>
+                    </div>
+                    <div id="form_input_datepicker_description" class="form-input__footer"></div>
+                </div>
+
+                <br />
+
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label for="dateFin" id="dateFin_label" class="form-label">
+                                <span th:text="#{organigramme.gouvernement.dateFin}">Label</span>
+                            </label>
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                        <div class="form-input__header-bottom"></div>
+                    </div>
+                    <div class="form-input__container">
+                        <div
+                            th:replace="fragments/components/input-date-picker :: inputDatePicker(spanId='datepicker_description_form_input_date_fin', inputName='dateFin', inputId='dateFin', required=false, value=${gouvernementForm.dateFin}, disabled=false, additionalValidation=', date_inferior_to(dateDebut)')"
+                        ></div>
+                    </div>
+                    <div id="form_input_datepicker_description" class="form-input__footer"></div>
+                </div>
+
+                <br />
+
+                <div class="m-t-6">
+                    <button
+                        type="button"
+                        th:attr="onclick=|'${gouvernementForm.id}' == 'null' ? goPreviousPage() : releaseLock('${gouvernementForm.id}', 'GVT')|"
+                        class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                        th:text="#{organigramme.cancel}"
+                    >
+                        Annuler
+                    </button>
+                    <input
+                        type="submit"
+                        th:value="#{button.label.save}"
+                        class="base-btn base-btn--button base-btn--default"
+                        style="float: right;"
+                    />
+                </div>
+            </div>
+        </form>
+    </main>
+</html>

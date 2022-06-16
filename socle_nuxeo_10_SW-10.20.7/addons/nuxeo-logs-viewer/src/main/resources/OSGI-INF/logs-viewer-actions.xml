@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.logs.viewer.actions">
+
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService"
+    point="actions">
+
+    <action id="LogsViewer" link="/incl/monitoring/logsViewer.xhtml"
+      label="tab.monitoring.logsViewer" order="60">
+      <category>Monitoring_sub_tab</category>
+      <filter-id>only_for_manager</filter-id>
+    </action>
+
+  </extension>
+</component>

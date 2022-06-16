@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!-- Cet composant contribue le calculateur de groupes de l'application. 
+	Le calculateur permet d'injecter les groupes correspondant aux postes et 
+	aux ministères de l'utilisateur dans son Principal. -->
+<component name="fr.dila.ss.core.computedgroups.contrib">
+
+	<require>fr.dila.st.core.computedgroups.contrib</require>
+
+	<!-- Calculateurs de groupes -->
+	<extension target="org.nuxeo.ecm.platform.computedgroups.ComputedGroupsServiceImpl" point="computer">
+		<!-- Calculateur des groupes correspondant aux mailbox postes -->
+		<groupComputer name="posteMailboxGroupComputer">
+			<computer>fr.dila.ss.core.groupcomputer.PosteMailboxGroupComputer</computer>
+		</groupComputer>
+
+		<!-- Calculateur des groupes correspondant aux ministères -->
+		<groupComputer name="ministereGroupComputer">
+			<computer>fr.dila.ss.core.groupcomputer.MinistereGroupComputer</computer>
+		</groupComputer>
+	</extension>
+</component>

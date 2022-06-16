@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.epp.ui.services.component.EPPOrganigrammeManagerComponent">
+	<implementation class="fr.dila.epp.ui.services.component.EPPOrganigrammeManagerComponent" />
+
+	<service>
+		<provide interface="fr.dila.st.ui.services.STOrganigrammeManagerService" />
+		<provide interface="fr.dila.epp.ui.services.EPPOrganigrammeManagerService" />
+	</service>
+
+</component>

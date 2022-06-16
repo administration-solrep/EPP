@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <!--/* bloc ajout piece joint en mode modification */-->
+        <th:block th:fragment="bloc-piece-jointe(piece, multiValue, isMgpp)">
+            <div
+                class="blcPjViergeAdd"
+                th:classappend="${piece != null && piece.isNew ? 'labellised-list__subitem--warning' : ''}"
+            >
+                <div class="form-input">
+                    <div
+                        class="form-input__container m-b-3"
+                        th:classappend="${piece != null && #lists.contains(piece.modifiedMetaList,'nom') ? 'labellised-list__subitem--warning' : ''}"
+                    >
+                        <label
+                            th:for="|${piece != null ? piece.pieceJointeId : widget}-titre|"
+                            class="form-label form-input__label"
+                            style="width: 10%;"
+                            th:text="#{pieceJointe.label.titre}"
+                        ></label>
+                        <input
+                            type="text"
+                            th:name="|${piece != null ? piece.pieceJointeId : widget}-titre|"
+                            th:aria-describedby="|${piece != null ? piece.pieceJointeId : widget}-titre-form_input|"
+                            class="form-input__field form-input__field--type-text"
+                            th:value="${piece != null ? piece.pieceJointeTitre : widgetLabel}"
+                        />
+                    </div>
+                </div>
+                <div class="form-input">
+                    <div
+                        class="form-input__container"
+                        th:classappend="${piece != null && #lists.contains(piece.modifiedMetaList,'url') ? 'labellised-list__subitem--warning' : ''}"
+                    >
+                        <label
+                            th:for="|${piece != null ? piece.pieceJointeId : widget}-url|"
+                            class="form-label form-input__label"
+                            style="width: 10%;"
+                            th:text="#{pieceJointe.label.url}"
+                        ></label>
+                        <input
+                            type="text"
+                            th:name="|${piece != null ? piece.pieceJointeId : widget}-url|"
+                            placeholder="url"
+                            th:aria-describedby="|${piece != null ? piece.pieceJointeId : widget}-url-form_input|"
+                            class="form-input__field form-input__field--type-text"
+                            th:value="${piece != null ? piece.pieceJointeUrl : ''}"
+                        />
+                    </div>
+                </div>
+                <a
+                    class="base-drop-down__link link js-interstitial-trigger"
+                    aria-haspopup="dialog"
+                    th:data-controls="|modal-add-files-${piece != null ? piece.pieceJointeId : widget}|"
+                    href="#"
+                >
+                    <span class="base-drop-down__link-icon icon icon--add" aria-hidden="true"></span>
+                    <th:block th:text="#{pieceJointe.label.ajoutFichiers}">label ajoutFichiers</th:block>
+                </a>
+                <button
+                    th:if="${idDossier != null && idDossier != 'null'}"
+                    th:data-controls="|modal-add-docs-from-dossier-${piece != null ? piece.pieceJointeId : widget}|"
+                    class="base-drop-down__link link js-interstitial-trigger"
+                    aria-haspopup="dialog"
+                    data-function="addDocsFromDossierToPJ()"
+                    onclick="doInitModal(this)"
+                    data-init-js="loadListeDocs"
+                    th:data-param-init-js="${piece != null ? piece.pieceJointeId : widget}"
+                >
+                    <span class="base-drop-down__link-icon icon icon--add" aria-hidden="true"></span>
+                    <th:block th:text="#{pieceJointe.label.ajoutFichiersDuDossier}"
+                        >label ajoutFichiersDuDossier</th:block
+                    >
+                </button>
+                <th:block th:if="${idDossier != null && idDossier != 'null'}">
+                    <th:block th:replace="fragments/components/modal-add-docs-from-dossier :: modalAddDocsFromDossier">
+                    </th:block>
+                </th:block>
+                <div
+                    th:id="|${piece != null ? piece.pieceJointeId : widget}-fromDossier-error|"
+                    class="form-input__footer form-input__field--error"
+                ></div>
+                <ul th:class="|list-item-file-${piece != null ? piece.pieceJointeId : widget}|">
+                    <th:block th:if="${piece != null}">
+                        <li
+                            th:each="fichier, status : ${piece.listPieceJointeFichier}"
+                            th:classappend="${#lists.contains(piece.modifiedFileList,fichier.nom) ? 'labellised-list__subitem--warning' : ''}"
+                        >
+                            <a
+                                th:href="@{${isMgpp}?|/mgpp/communication/downloadPJ?evenementId=${id}&typePJ=${piece.pieceJointeType}&nomPJ=${fichier.nom}|:|/${fichier.link}|}"
+                                th:download="${fichier.nom}"
+                                th:text="${fichier.nom}"
+                                >file name</a
+                            >
+                            <button
+                                type="button"
+                                th:attr="onclick=|$(this).closest('li').remove()|"
+                                class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent btnAddPieceJointe"
+                                th:aria-label="|#{pieceJointe.tooltip.supprimer.fichier} ${fichier.nom}|"
+                                th:data-tippy-content="|#{pieceJointe.tooltip.supprimer.fichier} ${fichier.nom}|"
+                            >
+                                <span aria-hidden="true" class="icon icon--bin link__icon link__icon--append"></span>
+                            </button>
+                            <input
+                                type="hidden"
+                                th:name="|${piece.pieceJointeId}-file${status.index}|"
+                                th:value="${fichier.id}"
+                            />
+                        </li>
+                    </th:block>
+                </ul>
+                <button
+                    type="button"
+                    th:attr="onclick=|removePJ(this,${multiValue}, '${piece != null ? widget.name : widgetName}')|"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent btnAddPieceJointe"
+                    th:text="#{pieceJointe.label.supprimer}"
+                >
+                    <span aria-hidden="true" class="icon icon--bin link__icon link__icon--append"></span>
+                </button>
+
+                <div
+                    class="interstitial-overlay__content"
+                    th:id="|modal-add-files-${piece != null ? piece.pieceJointeId : widget}|"
+                >
+                    <div
+                        class="interstitial interstitial interstitial--small"
+                        role="dialog"
+                        th:aria-labelledby="|dialogTitle-addFiles-${piece != null ? piece.pieceJointeId : widget}|"
+                        style="position: relative;"
+                    >
+                        <div class="interstitial__header">
+                            <h1 class="interstitial__title" th:text="#{pieceJointe.label.ajoutFichiers}"></h1>
+                            <button
+                                class="interstitial__close base-btn base-btn--button base-btn--default base-btn--discret"
+                                type="button"
+                            >
+                                <span class="icon icon--cross" aria-hidden="true"></span
+                                ><span class="sr-only" th:text="#{pieceJointe.label.fermer}"></span>
+                            </button>
+                        </div>
+                        <div class="interstitial__content">
+                            <div data-multiple="true" data-dropzone="true" class="form-file fileInput">
+                                <div class="form-file-drag-and-drop-input">
+                                    <input
+                                        th:id="|${piece != null ? piece.pieceJointeId : widget}-file|"
+                                        type="file"
+                                        accept=".png,.jpeg,.doc,.docx,.pdf,.rtf,.odt,.ods,.xls,.xlsx,.odp,.ppt,.pptx,.vsd,.zip"
+                                        class="form-file__input form-file__input--dropzone"
+                                        multiple
+                                    />
+                                    <label
+                                        th:for="|${piece != null ? piece.pieceJointeId : widget}-file|"
+                                        th:id="|${piece != null ? piece.pieceJointeId : widget}-file|"
+                                        class="form-file__label form-label form-file__label--dropzone form-file-drag-and-drop-input__label"
+                                    >
+                                        <span
+                                            aria-hidden="true"
+                                            class="form-file__drop-icon icon icon--download"
+                                        ></span>
+                                        <th:block th:text="#{file.upload.glisser.deposer.ouvrir.explorateur}"
+                                            >explorateur</th:block
+                                        >
+                                    </label>
+                                </div>
+                                <ul class="form-file__file-label-list" hidden="hidden">
+                                    <li class="form-file__file-label-item" hidden="hidden">
+                                        <div class="file-label">
+                                            <p class="file-label__content file-label__content--sm">
+                                                <input
+                                                    type="file"
+                                                    th:id="|form_input_file_drag_and_drop_multiple_with_text_${piece != null ? piece.pieceJointeId : widget}|"
+                                                    th:data-name="|${piece != null ? piece.pieceJointeId : widget}-file|"
+                                                    class="sr-only js-file-label-input"
+                                                /><input
+                                                    type="text"
+                                                    th:id="|form_input_file_drag_and_drop_multiple_with_text_newname_${piece != null ? piece.pieceJointeId : widget}|"
+                                                    th:data-name="|${piece != null ? piece.pieceJointeId : widget}_nom|"
+                                                    class="form-input__field form-input__field--type-text js-file-label-input-text"
+                                                /><span
+                                                    class="file-label__content-inner js-file-label-file-infos"
+                                                ></span>
+                                                <button
+                                                    type="button"
+                                                    class="file-label__button js-tooltip base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent"
+                                                    th:data-tippy-content="#{file.upload.supprimer.label}"
+                                                >
+                                                    <span
+                                                        aria-hidden="true"
+                                                        class="icon icon--times-circle icon--v-align icon--big"
+                                                    ></span
+                                                    ><span
+                                                        class="sr-only"
+                                                        th:text="#{file.upload.supprimer.label}"
+                                                    ></span>
+                                                </button>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="interstitial__footer">
+                            <button
+                                class="interstitial__button base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--full base-btn--transparent base-btn--bordered"
+                                type="button"
+                                th:text="#{pieceJointe.label.annuler}"
+                            ></button>
+                            <button
+                                class="interstitial__button base-btn base-btn--button base-btn--default base-btn--center base-btn--full"
+                                th:attr="onclick=|addFichiersToForm('${piece != null ? piece.pieceJointeId : widget}')|"
+                                th:id="|btn-confirm-add-doc-${piece != null ? piece.pieceJointeId : widget}|"
+                                type="button"
+                                th:text="#{pieceJointe.label.ajouter}"
+                            ></button>
+                        </div>
+                    </div>
+                    <div tabindex="-1" class="interstitial-overlay__tabindex"></div>
+                </div>
+            </div>
+        </th:block>
+    </body>
+</html>

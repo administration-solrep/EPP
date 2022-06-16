@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="detailCommunication" id="d_communication_content">
+            <input type="hidden" id="idMessage" name="id" th:value="${id}" />
+            <input type="hidden" id="idComm" name="idComm" th:value="${idComm}" />
+            <div class="flex items-center">
+                <div class="form-select form-select--simple form-select--inline">
+                    <div class="form-input form-input--inline">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label for="version-selector" id="form-select-default_label" class="form-label"
+                                    >[[#{corbeille.communication.table.header.version}]]</label
+                                >
+                            </div>
+                        </div>
+                        <div class="form-input__container">
+                            <div class="form-select__field-wrapper">
+                                <div class="form-select-input">
+                                    <select
+                                        name="form-select-default"
+                                        id="version-selector"
+                                        class="form-select-input__field form-select-input__field--simple"
+                                    >
+                                        <th:block th:each="version:${lstVersions}">
+                                            <option
+                                                th:value="${version.value}"
+                                                th:data-description="${version.getDescription()}"
+                                                th:classappend="${version.rejete}?'cell-crossed'"
+                                                th:selected="${curVersion.equals(version.text)}"
+                                                >[[${version.text}]]</option
+                                            >
+                                        </th:block>
+                                    </select>
+                                    <span aria-hidden="true" tabindex="-1"
+                                        ><span
+                                            aria-hidden="true"
+                                            class="icon icon--arrow-bottom form-select-input__arrow"
+                                        ></span
+                                    ></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    onclick="changeVersion()"
+                    id="change-version"
+                    class="m-l-4 base-btn base-btn--button base-btn--default base-btn--icon-action-blue base-btn--center base-btn--transparent"
+                >
+                    <span aria-hidden="true" class="icon icon--refresh"></span
+                    ><span class="sr-only">[[#{corbeille.communication.table.header.actualiser}]]</span>
+                </button>
+                <p class="m-b-0 m-l-4" id="version-message">[[${curDescription}]]</p>
+            </div>
+
+            <div th:if="${!#strings.isEmpty(natureVersion)}" class="alert__light m-y-5 alert alert--warning">
+                <input type="hidden" name="targetId" th:value="d_communication_content" />
+                <div class="alerts--flex">
+                    <span
+                        aria-hidden="true"
+                        class="icon icon--information bubble-icon alert__icon alert__icon--warning"
+                    ></span>
+                    <span class="sr-only">[[#{corbeille.communication.alerte}]]</span>
+                    <p class="alert__content">[[${natureVersion}]]</p>
+                </div>
+            </div>
+            <ul class="labellised-list">
+                <th:block th:each="widget : ${lstWidgets}">
+                    <li class="labellised-list__item">
+                        <th:block th:if="${widget.typeChamp == 'text'}">
+                            <th:block th:replace="fragments/components/widgets/text :: text(${widget})"></th:block>
+                        </th:block>
+                        <th:block th:if="${widget.typeChamp} == 'file'">
+                            <th:block th:replace="fragments/components/widgets/file :: file(${widget})"></th:block>
+                        </th:block>
+                        <th:block th:if="${widget.typeChamp} == 'file-multi'">
+                            <th:block
+                                th:replace="fragments/components/widgets/file-multi :: fileMulti(${widget})"
+                            ></th:block>
+                        </th:block>
+                        <th:block th:if="${widget.typeChamp} == 'url'">
+                            <th:block
+                                th:replace="fragments/components/widgets/text-url :: textUrl(${widget})"
+                            ></th:block>
+                        </th:block>
+                    </li>
+                </th:block>
+            </ul>
+
+            <th:block th:if="${displayComSuccessive == true}">
+                <th:block
+                    th:replace="fragments/components/bloc-communication-successive :: bloc-communication-successive(${comSuccessiveSelect})"
+                ></th:block>
+            </th:block>
+
+            <div class="row-actions">
+                <div class="row-actions__left" th:if="${baseActions !=null && not #lists.isEmpty(baseActions)}">
+                    <th:block th:each="action : ${baseActions}">
+                        <button
+                            th:replace="fragments/components/label-action-button :: label-action-button(${action}, false, ${action.type == 'secondary' ? 'base-btn--secondary' : action.type == 'tertiary' ? 'base-btn--light base-btn--transparent base-btn--bordered' : ''})"
+                        ></button>
+                    </th:block>
+                </div>
+                <div class="row-actions__right" th:if="${mainActions !=null && not #lists.isEmpty(mainActions)}">
+                    <th:block th:each="action : ${mainActions}">
+                        <button
+                            th:replace="fragments/components/label-action-button :: label-action-button(${action}, false, ${action.type == 'secondary' ? 'base-btn--secondary' : action.type == 'tertiary' ? 'base-btn--light base-btn--transparent base-btn--bordered' : ''})"
+                        ></button>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

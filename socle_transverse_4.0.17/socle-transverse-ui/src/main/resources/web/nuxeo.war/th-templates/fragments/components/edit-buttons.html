@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="edit-buttons(label)" th:aria-label="${label}">
+            <input
+                type="hidden"
+                id="urlPreviousPage"
+                name="urlPreviousPage"
+                th:value="@{|${urlPreviousPage}#main_content|}"
+            />
+            <div class="row-actions row-actions-user">
+                <div class="row-actions__left">
+                    <button
+                        type="button"
+                        class="base-btn base-btn--button base-btn--default base-btn--light base-btn--bordered base-btn--padded-lr"
+                        onclick="goPreviousPage()"
+                        th:unless="${cancelButtonSkipped}"
+                        th:text="${isCancelButton ? #messages.msg('button.label.cancel') : #messages.msg('button.label.back')}"
+                    >
+                        Retour
+                    </button>
+                </div>
+                <th:block th:each="action, index : ${editActions}">
+                    <div class="row-actions__right">
+                        <div
+                            th:replace="fragments/components/label-action-button-fixed :: label-action-button-fixed(${action}, ${action.properties['disabled'] == 'true'}, ${action.properties['classes']}+${index.index == 0 ? '' : ' base-btn--secondary'})"
+                        ></div>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </body>
+</html>

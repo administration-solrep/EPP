@@ -1,0 +1,1066 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component name="fr.dila.ecm.platform.routing.actions">
+
+	<extension point="actions" target="org.nuxeo.ecm.platform.actions.ActionService">
+		<!-- Action modifier modèle accessible depuis la liste des modèles -->
+		<action
+            id="MODELE_TAB_ACTION_MODIFIER"
+            enabled="true"
+            order="10"
+            label="admin.parametres.action.modifier"
+            link="|/admin/fdr/modele/modifier?id=${item.id}#main_content|"
+            icon="icon--pen-circle"
+        >
+			<category>MODELE_TAB_ACTION</category>
+			<filter-id>isAdminFonctionnelOrMinisteriel</filter-id>
+			<filter-id>isNotLockByAnotherUser</filter-id>
+			<filter-id>isModeleValidee</filter-id>
+		</action>
+
+		<!-- Action supprimer un modèle de fdr -->
+		<action
+            id="MODELE_TAB_ACTION_SUPPRIMER"
+            enabled="true"
+            order="20"
+            label="admin.modele.action.supprimer"
+            icon="icon--times-circle"
+        >
+			<category>MODELE_TAB_ACTION</category>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">validation-dialog-modal</property>
+				<property name="title">admin.modele.action.supprimer.title
+				</property>
+				<property name="message">admin.modele.action.supprimer.confirm.message
+				</property>
+				<property name="messageParam">##{intitule}</property>
+				<property name="function">doSupprimerModele()</property>
+				<property name="parameters">|idFdr=##{id}|</property>
+			</properties>
+			<filter id="canDeleteModeleFDR">
+				<rule grant="true">
+					<condition>#{canDeleteModeleFDR}</condition>
+				</rule>
+			</filter>
+		</action>
+
+		<!-- Action dupliquer un modèle de fdr -->
+		<action
+            id="MODELE_TAB_ACTION_DUPLIQUER"
+            link="|/admin/fdr/modele/dupliquer?id=${item.id}|"
+            enabled="true"
+            order="30"
+            label="admin.modele.action.dupliquer"
+            icon="icon--copy"
+        >
+			<filter-id>accessAdminFdrRecherche</filter-id>
+			<category>MODELE_TAB_ACTION</category>
+		</action>
+
+
+		<!-- Action retour à la liste des modèles / tertiaire -->
+		<action
+            id="MODELE_FICHE_ACTION_RETOUR"
+            enabled="true"
+            order="10"
+            label="admin.modele.action.retourListe"
+            type="tertiary"
+            icon=" "
+            link="javascript:doRetourList()"
+        >
+			<category>MODELE_FICHE_LEFT_ACTIONS</category>
+		</action>
+
+		<!-- Action libérer le verrou / primaire -->
+		<action
+            id="MODELE_FICHE_ACTION_UNLOCK"
+            enabled="true"
+            order="20"
+            label="admin.modele.action.unlock"
+            type="primary"
+            icon=" "
+            link="javascript:doUnlockModele()"
+        >
+			<category>MODELE_FICHE_RIGHT_ACTIONS</category>
+			<filter-id>isLockByOtherUser</filter-id>
+			<filter-id>isAdminFonctionnel</filter-id>
+		</action>
+
+		<!-- Action demander validation SGG / primaire -->
+		<action
+            id="MODELE_FICHE_ACTION_DEMANDE_VALIDATION"
+            enabled="true"
+            order="40"
+            label="admin.modele.action.demandeValidation"
+            type="primary"
+            icon=" "
+            link="javascript:doDemandeValidationModele()"
+        >
+			<category>MODELE_FICHE_RIGHT_ACTIONS</category>
+			<filter-id>isLockByCurrentUser</filter-id>
+			<filter-id>isAdminMinisteriel</filter-id>
+			<filter-id>isEtatBrouillon</filter-id>
+		</action>
+
+		<!-- Action annuler demande validation SGG / primaire -->
+		<action
+            id="MODELE_FICHE_ACTION_ANNULER_DEMANDE_VALIDATION"
+            enabled="true"
+            order="40"
+            label="admin.modele.action.demandeValidation.annuler"
+            type="primary"
+            icon=" "
+            link="javascript:doAnnulerDemandeValidationModele()"
+        >
+			<category>MODELE_FICHE_RIGHT_ACTIONS</category>
+			<filter-id>isEtatAttenteValidation</filter-id>
+			<filter-id>isAdminMinisteriel</filter-id>
+		</action>
+
+		<!-- Action refus validation SGG / secondaire -->
+		<action
+            id="MODELE_FICHE_ACTION_REFUS_VALIDATION"
+            enabled="true"
+            order="10"
+            label="admin.modele.action.demandeValidation.refus"
+            type="secondary"
+            icon=" "
+            link="javascript:doRefusValidationModele()"
+        >
+			<category>MODELE_FICHE_RIGHT_ACTIONS</category>
+			<filter-id>isAdminFonctionnel</filter-id>
+			<filter-id>isEtatAttenteValidation</filter-id>
+		</action>
+
+		<!-- Action valider modele / primaire -->
+		<action
+            id="MODELE_FICHE_ACTION_VALIDER"
+            enabled="true"
+            order="50"
+            label="admin.modele.action.valider"
+            type="primary"
+            icon=" "
+            link="javascript:doValiderModele()"
+        >
+			<category>MODELE_FICHE_RIGHT_ACTIONS</category>
+			<filter-id>isLockByCurrentUser</filter-id>
+			<filter-id>isAdminFonctionnel</filter-id>
+			<filter-id>isEtatBrouillon</filter-id>
+		</action>
+
+		<!-- Action valider modele / primaire -->
+		<action
+            id="MODELE_FICHE_ACTION_ACCEPTER_DEMANDE_VALIDATION"
+            enabled="true"
+            order="50"
+            label="admin.modele.action.valider"
+            type="primary"
+            icon=" "
+            link="javascript:doAccepterValidationModele()"
+        >
+			<category>MODELE_FICHE_RIGHT_ACTIONS</category>
+			<filter-id>isAdminFonctionnel</filter-id>
+			<filter-id>isEtatAttenteValidation</filter-id>
+		</action>
+
+
+		<!-- Action modifier modèle / primaire -->
+		<action
+            id="MODELE_FICHE_ACTION_MODIFIER"
+            enabled="true"
+            order="30"
+            label="admin.modele.action.modifier"
+            type="primary"
+            icon=" "
+            link="javascript:doModifierModele()"
+        >
+			<category>MODELE_FICHE_RIGHT_ACTIONS</category>
+			<filter-id>isEtatValidee</filter-id>
+			<filter-id>accessAdminFdrRecherche</filter-id>
+		</action>
+
+		<!-- Action créer modèle fdr / primaire -->
+		<action
+            id="MODELE_ACTION_CREER_MODELE"
+            enabled="true"
+            order="30"
+            label="admin.modele.action.list.creer"
+            type="primary"
+            icon="icon--add"
+            link="/admin/fdr/modele/creation#main_content"
+        >
+			<category>MODELE_LIST_ACTION</category>
+			<filter-id>isAdminFonctionnel</filter-id>
+		</action>
+
+		<!-- Etapes feuille de route (embranchement) -->
+		<action
+            id="REMOVE_STEP_BRANCH"
+            link="|javascript:doSupprimerStep('${elem.id}')|"
+            enabled="true"
+            order="4"
+            label="fdr.branch.remove.label"
+            icon="icon--times-circle"
+        >
+			<category>STEP_FOLDER_PARALLEL_ACTIONS_LIST</category>
+			<filter-id>isEditableStepFolder</filter-id>
+			<filter-id>folderDeletable</filter-id>
+			<filter-id>isNotRunning</filter-id>
+			<filter-id>isNotDone</filter-id>
+			<filter-id>isEditableRoute</filter-id>
+		</action>
+
+		<action
+            id="ADD_BRANCH"
+            link="javascript:void(0);"
+            enabled="true"
+            order="3"
+            label="fdr.branch.add.label"
+            icon="icon--add"
+        >
+			<category>STEP_FOLDER_PARALLEL_ACTIONS_LIST</category>
+			<filter-id>isEditableStepFolder</filter-id>
+			<filter-id>isNotRunning</filter-id>
+			<filter-id>isNotDone</filter-id>
+			<filter-id>isEditableRoute</filter-id>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">ajoutBranchFdr</property>
+				<property name="function">doSaveEtape()</property>
+				<property name="title">fdr.step.in.label</property>
+				<property name="parameters">|idBranch=${elem.id};actionLabel=#{fdr.step.in.label};typeRef=branch;typeCreation=parallele|
+				</property>
+			</properties>
+		</action>
+
+		<action
+            id="ADD_STEP_AFTER_BRANCH"
+            link="javascript:void(0);"
+            enabled="true"
+            order="2"
+            label="fdr.step.after.label"
+            icon="icon--plus-circle-bubble-triangle-left"
+        >
+			<category>STEP_FOLDER_PARALLEL_ACTIONS_LIST</category>
+			<filter-id>isEditableStepFolder</filter-id>
+			<filter-id>isEditableRoute</filter-id>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">ajoutEtapeFdr</property>
+				<property name="function">doSaveEtape()</property>
+				<property name="title">fdr.step.after.label</property>
+				<property name="parameters">|idBranch=${elem.id};actionLabel=#{fdr.step.after.label};typeRef=etape|
+				</property>
+			</properties>
+		</action>
+
+		<action
+            id="ADD_STEP_BEFORE_BRANCH"
+            link="javascript:void(0);"
+            enabled="true"
+            order="1"
+            label="fdr.step.before.label"
+            icon="icon--plus-circle-bubble-triangle-right"
+        >
+			<category>STEP_FOLDER_PARALLEL_ACTIONS_LIST</category>
+			<filter-id>isEditableStepFolder</filter-id>
+			<filter-id>isNotRunning</filter-id>
+			<filter-id>isNotDone</filter-id>
+			<filter-id>isEditableRoute</filter-id>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">ajoutEtapeFdr</property>
+				<property name="function">doSaveEtape()</property>
+				<property name="title">fdr.step.before.label</property>
+				<property name="parameters">|idBranch=${elem.id};actionLabel=#{fdr.step.before.label};typeRef=etape|
+				</property>
+			</properties>
+		</action>
+
+		<!-- Etapes feuille de route -->
+		<action
+            id="ADD_STEP_BEFORE"
+            label="fdr.step.before.label"
+            link="javascript:void(0);"
+            icon="icon--plus-circle-bubble-triangle-left"
+            order="1"
+        >
+			<category>STEP_ACTIONS_LIST</category>
+			<filter-id>isEditableStep</filter-id>
+			<filter-id>isNotRunning</filter-id>
+			<filter-id>isNotDone</filter-id>
+			<filter-id>isNotSerialStepFolder</filter-id>
+			<filter-id>isEditableRoute</filter-id>
+			<filter-id>isNotStepInit</filter-id>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">ajoutEtapeFdr</property>
+				<property name="title">fdr.step.before.label</property>
+				<property name="function">doSaveEtape()</property>
+				<property name="initJs">initEtape</property>
+				<property name="parameters">|idBranch=${line.id};actionLabel=#{fdr.step.before.label};typeRef=etape;typeActe=##{acte}|
+				</property>
+			</properties>
+		</action>
+
+		<action
+            id="ADD_STEP_AFTER"
+            label="fdr.step.after.label"
+            link="javascript:void(0);"
+            icon="icon--plus-circle-bubble-triangle-right"
+            order="2"
+        >
+			<category>STEP_ACTIONS_LIST</category>
+			<filter-id>isEditableStep</filter-id>
+			<filter-id>isNotSerialStepFolder</filter-id>
+			<filter-id>isEditableRoute</filter-id>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">ajoutEtapeFdr</property>
+				<property name="title">fdr.step.after.label</property>
+				<property name="function">doSaveEtape()</property>
+				<property name="initJs">initEtape</property>
+				<property name="parameters">|idBranch=${line.id};actionLabel=#{fdr.step.after.label};typeRef=etape|
+				</property>
+			</properties>
+		</action>
+
+		<action
+            id="PASTE_STEP_BEFORE"
+            label="fdr.paste.step.before.label"
+            link="|javascript:pasteStep('${line.id}', true)|"
+            icon="icon--plus-circle-bubble-triangle-left"
+            order="3"
+        >
+			<category>STEP_ACTIONS_LIST</category>
+			<filter-id>isEditableStep</filter-id>
+			<filter-id>isNotRunning</filter-id>
+			<filter-id>isNotDone</filter-id>
+			<filter-id>isEditableRoute</filter-id>
+			<filter-id>isStepCopied</filter-id>
+			<filter-id>isNotStepInit</filter-id>
+		</action>
+
+		<action
+            id="PASTE_STEP_AFTER"
+            label="fdr.paste.step.after.label"
+            link="|javascript:pasteStep('${line.id}', false)|"
+            icon="icon--plus-circle-bubble-triangle-right"
+            order="4"
+        >
+			<category>STEP_ACTIONS_LIST</category>
+			<filter-id>isEditableStep</filter-id>
+			<filter-id>isEditableRoute</filter-id>
+			<filter-id>isStepCopied</filter-id>
+		</action>
+
+		<action
+            id="REMOVE_STEP"
+            label="fdr.step.remove.label"
+            link="|javascript:doSupprimerStep('${line.id}')|"
+            icon="icon--times-circle"
+            order="5"
+        >
+			<category>STEP_ACTIONS_LIST</category>
+			<filter-id>isEditableStep</filter-id>
+			<filter-id>isNotRunning</filter-id>
+			<filter-id>isNotDone</filter-id>
+			<filter-id>isEditableRoute</filter-id>
+			<filter-id>stepDeletable</filter-id>
+			<filter-id>isNotStepInit</filter-id>
+			<filter id="isNotStepFolder">
+				<rule grant="false">
+					<type>StepFolder</type>
+				</rule>
+			</filter>
+		</action>
+
+		<action
+            id="MOVE_STEP_UP"
+            label="fdr.step.move.up.label"
+            link="|javascript:moveStep('${line.id}', 'up')|"
+            icon="icon--arrow-triangle-up-circle"
+            order="6"
+        >
+			<category>STEP_ACTIONS_LIST</category>
+			<filter-id>isEditableStep</filter-id>
+            <filter-id>canEditStep</filter-id>
+			<filter-id>isNotRunning</filter-id>
+			<filter-id>isNotDone</filter-id>
+			<filter-id>isEditableRoute</filter-id>
+			<filter-id>isNotStepInit</filter-id>
+		</action>
+
+		<action
+            id="MOVE_STEP_DOWN"
+            label="fdr.step.move.down.label"
+            link="|javascript:moveStep('${line.id}', 'down')|"
+            icon="icon--arrow-triangle-down-circle"
+            order="7"
+        >
+			<category>STEP_ACTIONS_LIST</category>
+			<filter-id>isEditableStep</filter-id>
+            <filter-id>canEditStep</filter-id>
+			<filter-id>isNotRunning</filter-id>
+			<filter-id>isNotDone</filter-id>
+			<filter-id>isEditableRoute</filter-id>
+			<filter-id>isNotStepInit</filter-id>
+		</action>
+
+		<action id="UPDATE_STEP" label="fdr.step.update.label" link="javascript:void(0);" icon="icon--pen-circle" order="8">
+			<category>STEP_ACTIONS_LIST</category>
+			<filter-id>isEditableStep</filter-id>
+            <filter-id>canEditStep</filter-id>
+			<filter-id>isNotRunning</filter-id>
+			<filter-id>isNotDone</filter-id>
+			<filter-id>isEditableRoute</filter-id>
+			<filter-id>isInstanceFdr</filter-id>
+			<filter-id>isNotStepInit</filter-id>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">editEtape</property>
+				<property name="initJs">loadStep</property>
+				<property name="function">doSaveEditEtape()</property>
+				<property name="paramInitJs">${line.id}</property>
+				<property
+                    name="parameters"
+                >|stepId=${line.id};totalNbLevel=${dto.table.totalNbLevel};lineIndex=${statusIndex};lineStepId=editStep|</property>
+			</properties>
+		</action>
+
+		<action
+            id="UPDATE_STEP_MODELE"
+            label="fdr.step.update.label"
+            link="javascript:void(0);"
+            icon="icon--pen-circle"
+            order="9"
+        >
+			<category>STEP_ACTIONS_LIST</category>
+			<filter-id>isEditableStep</filter-id>
+			<filter-id>isNotRunning</filter-id>
+			<filter-id>isNotDone</filter-id>
+			<filter-id>isEditableRoute</filter-id>
+			<filter-id>isModeleFdr</filter-id>
+			<filter-id>canEditStep</filter-id>
+			<filter-id>isNotStepInit</filter-id>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">editEtape</property>
+				<property name="initJs">loadStep</property>
+				<property name="function">doSaveEditEtape()</property>
+				<property name="paramInitJs">${line.id}</property>
+				<property
+                    name="parameters"
+                >|stepId=${line.id};totalNbLevel=${dto.table.totalNbLevel};lineIndex=${statusIndex};lineStepId=editStep;isModele=true|</property>
+			</properties>
+		</action>
+
+		<action
+            id="ROUTE_STEP_NOTE_ADD"
+            label="fdr.step.add.note.label"
+            link="javascript:void(0);"
+            icon="icon--note-bubble-plus"
+            order="10"
+        >
+			<category>STEP_ACTIONS_LIST</category>
+        	<filter-id>isNotDone</filter-id>
+			<filter-id>isEditableStep</filter-id>
+        	<filter-id>isInstanceFdr</filter-id>
+        	<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">add-edit-note-etape-modal</property>
+                <property name="title">fdr.step.add.note.label</property>
+                <property name="function">doCreateNoteEtape()</property>
+            	<property name="initJs">initAddEditNoteEtapeModale</property>
+				<property name="parameters">
+                |stepId=${line.id}|
+            </property>
+			</properties>
+		</action>
+
+        <!-- Dossier topbar -->
+
+        <action
+            id="ADD_NOTE_DOSSIER"
+            enabled="true"
+            order="50"
+            label="dossier.action.ajout.note"
+            icon="icon--note-bubble-plus"
+            link="javascript:doDossierSauvegardeModale(event,doInitModal,this)"
+        >
+            <category>DOSSIER_TOPBAR_ACTIONS_NOTE</category>
+            <filter-id>isDossier</filter-id>
+            <filter-id>dossierIsLocked</filter-id>
+            <filter-id>currentDocIsLockActionnableByCurrentUser</filter-id>
+            <filter-id>isEtapeEnCours</filter-id>
+            <properties>
+                <property name="actionType">callbackModal</property>
+                <property name="dataControls">add-edit-note-etape-modal</property>
+                <property name="title">fdr.step.add.note.label</property>
+                <property name="function">doCreateNoteEtapeEnCours()</property>
+                <property name="initJs">initAddEditNoteEtapeModale</property>
+            </properties>
+        </action>
+
+        <!-- Actions pour les notes d'étapes -->
+
+        <action id="ROUTE_STEP_NOTE_EDIT" label="fdr.note.edit.label" order="1">
+            <category>ROUTE_STEP_NOTE_ACTIONS</category>
+            <filter-id>isEditableStep</filter-id>
+            <filter-id>isInstanceFdr</filter-id>
+            <filter-id>isNoteAuthor</filter-id>
+            <properties>
+                <property name="actionType">modal</property>
+                <property name="dataControls">add-edit-note-etape-modal</property>
+                <property name="title">fdr.step.edit.note.label</property>
+                <property name="function">doEditNoteEtape()</property>
+                <property name="initJs">initAddEditNoteEtapeModale</property>
+                <property name="paramInitJs">${note.id}</property>
+                <property name="parameters">|stepId=${line.id};noteId=${note.id}|</property>
+            </properties>
+        </action>
+
+        <action id="ROUTE_STEP_NOTE_ANSWER" label="fdr.note.answer.label" order="2">
+            <category>ROUTE_STEP_NOTE_ACTIONS</category>
+            <filter-id>isEditableStep</filter-id>
+            <filter-id>isInstanceFdr</filter-id>
+            <filter-id>isNotNoteAuthor</filter-id>
+            <properties>
+                <property name="actionType">modal</property>
+                <property name="dataControls">add-edit-note-etape-modal</property>
+                <property name="title">fdr.step.answer.note.label</property>
+                <property name="function">doAnswerNoteEtape(this)</property>
+                <property name="parameters">|stepId=${line.id};noteId=${note.id}|</property>
+                <property name="initJs">initAddEditNoteEtapeModale</property>
+            </properties>
+        </action>
+
+         <action id="ROUTE_STEP_NOTE_REMOVE" enabled="true" order="3" label="fdr.note.remove.label">
+            <category>ROUTE_STEP_NOTE_ACTIONS</category>
+            <filter-id>dossierIsLocked</filter-id>
+            <filter-id>currentDocIsLockActionnableByCurrentUser</filter-id>
+            <filter-id>isNoteAuthorOrHasSamePoste</filter-id>
+            <properties>
+                <property name="actionType">modal</property>
+                <property name="dataControls">validation-dialog-modal</property>
+                <property name="title">fdr.step.remove.note.label
+                </property>
+                <property name="message">fdr.step.remove.note.confirm.message
+                </property>
+                <property name="initJs">initRemoveNoteEtapeModale</property>
+                <property name="function">doRemoveNoteEtape()</property>
+                <property name="parameters">|noteId=${note.id};stepId=${line.id}|</property>
+            </properties>
+        </action>
+        <!-- Actions pour la table FDR -->
+
+	   <action
+            id="ROUTE_STEP_SHARED_NOTE_ADD"
+            label="fdr.step.add.sharednote.label"
+            icon="icon--note-bubble-share"
+            order="3"
+        >
+            <category>FDR_STEP_ACTIONS</category>
+            <filter-id>dossierIsLocked</filter-id>
+            <filter-id>currentDocIsLockActionnableByCurrentUser</filter-id>
+            <properties>
+                <property name="specificClass">action-table-selection</property>
+                <property name="actionType">modal</property>
+                <property name="dataControls">add-edit-note-etape-modal</property>
+                <property name="title">fdr.step.add.sharednote.label</property>
+                <property name="function">doCreateSharedNoteEtape(this)</property>
+                <property name="initJs">checkSelectedSteps</property>
+            </properties>
+        </action>
+
+        <action
+            id="ROUTE_STEP_NOTE_HIDE_SHOW"
+            label="fdr.note.show.label"
+            type="primary"
+            icon="icon--note-bubble-eye"
+            link="javascript:toggleNotesVisibility(this)"
+            order="2"
+        >
+            <category>FDR_ACTIONS</category>
+        </action>
+
+		<!-- Action de copie d'étapes de fdr -->
+		<action
+            id="COPY_STEP_FDR"
+            label="fdr.copier.etape.label"
+            type="primary"
+            icon="icon--copy"
+            link="javascript:copySteps()"
+            order="1"
+        >
+			<category>FDR_STEP_ACTIONS</category>
+			<filter-id>dossierIsLocked</filter-id>
+			<properties>
+	                <property name="specificClass">action-table-selection</property>
+	       	</properties>
+		</action>
+
+        <!-- Action de copie d'étapes de modèles de fdr -->
+ 		<action
+            id="COPY_STEP_MODELE"
+            label="fdr.copier.etape.label"
+            type="primary"
+            icon="icon--copy"
+            link="javascript:copySteps()"
+            order="1"
+        >
+			<category>MODELE_FDR_STEP_ACTIONS</category>
+			<properties>
+	                <property name="specificClass">action-table-selection</property>
+	       	</properties>
+		</action>
+
+		<!-- Actions pour la gestion des Actualités -->
+        <action
+            id="CREATE_NEWS"
+            label="actualites.gestion.action.create"
+            link="/admin/actualites/creation#main_content"
+            icon="icon--plus-circle"
+            order="1"
+        >
+            <category>MANAGE_NEWS_CREATION</category>
+			<filter-id>accessAdminUserActualites</filter-id>
+        </action>
+
+        <action
+            id="REMOVE_NEWS"
+            label="actualites.gestion.action.delete"
+            link="javascript:void(0);"
+            icon="icon--bin"
+            order="1"
+        >
+            <category>MANAGE_NEWS_REMOVAL</category>
+			<properties>
+                <property name="specificClass">action-table-selection</property>
+                <property name="actionType">modal</property>
+                <property name="dataControls">validation-dialog-modal</property>
+                <property name="title">actualites.gestion.action.delete
+                </property>
+                <property name="message">actualites.gestion.action.delete.confirm
+                </property>
+                <property name="function">doRemoveActualites()</property>
+             </properties>
+        </action>
+		<action
+            id="REMOVE_SERIAL_BRANCH"
+            label="fdr.branch.serial.remove.label"
+            link="|javascript:doSupprimerStep('${line.id}')|"
+            icon="icon--times-circle"
+        >
+            <category>STEP_FOLDER_SERIAL_ACTIONS_LIST</category>
+            <filter-id>isEditableStepFolder</filter-id>
+            <filter-id>folderDeletable</filter-id>
+            <filter-id>isNotRunning</filter-id>
+            <filter-id>isNotDone</filter-id>
+            <filter-id>isEditableRoute</filter-id>
+            <filter id="isStepFolder">
+                <rule grant="true">
+                    <type>StepFolder</type>
+                </rule>
+            </filter>
+        </action>
+
+        <!-- Action pour substituer la fdr d'un dossier -->
+		<action
+            id="DOSSIER_SUBSTITUER_FDR"
+            label="fdr.substituer.action.label"
+            link="|/dossier/${idDossier}/substitution/liste#main_content|"
+            icon="icon--left-right"
+        >
+        	<filter-id>isSubstitutionPossible</filter-id>
+		</action>
+
+		<!-- Action pour substituer la fdr d'un dossier -->
+		<action id="DOSSIER_SUBSTITUER_FDR_RETOUR" label="button.label.back" link="javascript:goPreviousPage()">
+        	<category>SUBSTITUTION_ACTIONS_LEFT</category>
+		</action>
+
+		<!-- Action pour substituer la fdr d'un dossier -->
+		<action id="DOSSIER_SUBSTITUER_FDR_VALIDER" label="fdr.substituer.action.label" type="primary">
+        	<category>SUBSTITUTION_ACTIONS_RIGHT</category>
+        	<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">validation-dialog-modal</property>
+				<property name="title">fdr.substituer.action.label
+				</property>
+				<property name="message">fdr.substituer.action.message.modal
+				</property>
+				<property name="function">doSubstitution()</property>
+			</properties>
+		</action>
+
+        <!-- Actions générales pour la liste des dossiers de la corbeille -->
+        <!-- Ajout d'une note d'étape sur plusieurs dossiers -->
+        <action
+            id="AJOUT_NOTE_ETAPE_MULTI"
+            order="1"
+            label="fdr.step.add.note.multi.label"
+            icon="icon--note-bubble-plus"
+        >
+            <category>CORBEILLE_DOSSIERS_ACTIONS_NOTE</category>
+            <properties>
+                <property name="specificClass">action-table-selection</property>
+                <property name="actionType">modal</property>
+                <property name="title">fdr.step.add.note.label</property>
+                <property name="dataControls">add-edit-note-etape-modal</property>
+                <property name="function">doCreateNotesEtapesMultiDossiers(this)</property>
+                <property name="initJs">openAddNotesEtapesMultiDossier</property>
+            </properties>
+        </action>
+
+	</extension>
+
+	<extension target="org.nuxeo.ecm.platform.actions.ActionService" point="filters">
+
+		<!-- Retourne vrai si un modèle ou une instance de feuille de route est
+			éditable -->
+		<filter id="isEditableRoute">
+			<rule grant="true">
+				<condition>
+					document.getCurrentLifeCycleState().equals("draft") ||
+					document.getCurrentLifeCycleState().equals("ready")
+				</condition>
+				<type>FeuilleRoute</type>
+			</rule>
+			<rule grant="true">
+				<condition>#{etapeActions.isFeuilleRouteUpdatable}
+				</condition>
+				<type>RouteStep</type>
+			</rule>
+			<rule grant="true">
+				<condition>#{folderActions.isFeuilleRouteUpdatable}
+				</condition>
+				<type>StepFolder</type>
+			</rule>
+		</filter>
+
+		<filter id="isRoutable">
+			<rule grant="true">
+				<facet>Routable</facet>
+			</rule>
+		</filter>
+
+		<filter id="isRoute">
+			<rule grant="true">
+				<type>DocumentRoute</type>
+			</rule>
+		</filter>
+
+		<filter id="isNotRoute">
+			<rule grant="false">
+				<type>DocumentRoute</type>
+			</rule>
+		</filter>
+
+		<filter id="isDraftRouteModel">
+			<rule grant="true">
+				<condition>
+					document.getCurrentLifeCycleState().equals("draft")
+				</condition>
+				<type>DocumentRoute</type>
+			</rule>
+		</filter>
+
+
+		<filter id="isValidatedRouteModel">
+			<rule grant="true">
+				<condition>
+					document.getCurrentLifeCycleState().equals("validated")
+				</condition>
+				<type>DocumentRoute</type>
+			</rule>
+		</filter>
+
+		<!-- Conserve uniquement les documents qui ne sont pas à l'état done -->
+		<filter id="isNotDone">
+			<rule grant="false">
+				<condition>document.getCurrentLifeCycleState().equals("done")
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isNotSerialStepFolder">
+			<rule grant="false">
+				<condition>
+					#{etapeActions.isSerialStepFolder}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isNotRunning">
+			<rule grant="false">
+				<condition>
+					document.getCurrentLifeCycleState().equals("running")
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isEditableNote">
+			<rule grant="true">
+				<condition>
+					#{etapeActions.isEditableNote}
+				</condition>
+			</rule>
+		</filter>
+
+        <filter id="isEditableStepFolder">
+            <rule grant="true">
+                <condition>
+                    #{folderActions.isCurrentRouteLockedByCurrentUser and folderActions.isEditableRouteElement}
+                </condition>
+            </rule>
+        </filter>
+
+        <filter id="isNotStepInit">
+            <rule grant="false">
+                <condition>
+                    #{etapeActions.isStepPourInitialisation}
+                </condition>
+            </rule>
+        </filter>
+
+		<filter id="isEditableStep">
+			<rule grant="true">
+				<condition>
+					#{etapeActions.isRouteFolder or
+					(etapeActions.isCurrentRouteLockedByCurrentUser and
+					etapeActions.isEditableRouteElement and
+					etapeActions.isEditableEtapeObligatoire)}
+				</condition>
+			</rule>
+		</filter>
+
+        <!-- additional filter to use for certain actions on step docs -->
+        <filter id="canEditStep">
+            <rule grant="true">
+                <condition>
+                    #{etapeActions.isStepEditable}
+                </condition>
+            </rule>
+        </filter>
+
+		<filter id="isNotEditableStep">
+			<rule grant="false">
+				<condition>
+					#{etapeActions.isRouteFolder or
+					(etapeActions.isCurrentRouteLockedByCurrentUser and
+					etapeActions.isEditableRouteElement and
+					etapeActions.isEditableEtapeObligatoire)}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="stepDeletable">
+			<rule grant="true">
+				<condition>
+					#{etapeActions.isStepDeletable}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="folderDeletable">
+			<rule grant="true">
+				<condition>
+					#{folderActions.isFolderDeletable}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isModeleFdr">
+			<rule grant="true">
+				<condition>
+					#{etapeActions.isModeleFeuilleRoute}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isInstanceFdr">
+			<rule grant="true">
+				<condition>
+					#{etapeActions.isFeuilleRouteInstance}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="hasRelatedRouteStarted">
+			<rule grant="true">
+				<condition>#{routingActions.hasRelatedRoute}</condition>
+			</rule>
+		</filter>
+
+		<filter id="isLockByCurrentUser">
+			<rule grant="true">
+				<condition>#{modeleForm.isLockByCurrentUser}</condition>
+			</rule>
+		</filter>
+
+		<filter id="isNotLockByAnotherUser">
+			<rule grant="false">
+				<condition>#{isLockByAnotherUser}</condition>
+			</rule>
+		</filter>
+
+		<filter id="isLockByOtherUser">
+			<rule grant="true">
+				<condition>#{modeleForm.isLock and not
+					modeleForm.isLockByCurrentUser}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isNotLockByOtherUser">
+			<rule grant="false">
+				<condition>#{modeleForm.isLock and not
+					modeleForm.isLockByCurrentUser}
+				</condition>
+			</rule>
+		</filter>
+
+		<filter id="isNotLock">
+			<rule grant="false">
+				<condition>#{modeleForm.isLock}</condition>
+			</rule>
+		</filter>
+
+		<filter id="isAdminMinisteriel">
+			<rule grant="true">
+				<group>Administrateur ministériel</group>
+			</rule>
+		</filter>
+
+		<filter id="isEtatBrouillon">
+			<rule grant="true">
+				<condition>#{modeleForm.etat == 'BROUILLON'}</condition>
+			</rule>
+		</filter>
+
+		<filter id="isEtatValidee">
+			<rule grant="true">
+				<condition>#{modeleForm.etat == 'VALIDE'}</condition>
+			</rule>
+		</filter>
+
+		<filter id="isEtatAttenteValidation">
+			<rule grant="true">
+				<condition>#{modeleForm.etat == 'VALIDATION_DEMANDEE'}</condition>
+			</rule>
+		</filter>
+
+		<filter id="isNotEtatValidee">
+			<rule grant="false">
+				<condition>#{modeleForm.etat == 'VALIDE'}</condition>
+			</rule>
+		</filter>
+
+        <filter id="isModeleValidee">
+            <rule grant="true">
+                <condition>#{isModeleValide}</condition>
+            </rule>
+        </filter>
+
+        <!-- Vrai si la substitution de fdr est possible -->
+        <filter id="isSubstitutionPossible">
+            <rule grant="true">
+                <condition>#{canUserSubstituerFdr}</condition>
+            </rule>
+        </filter>
+
+        <!-- ***********************************************************************
+            Filtres sur les dossiers *********************************************************************** -->
+        <!-- Vrai si le document courant est un dossier -->
+        <filter id="isDossier">
+            <rule grant="true">
+                <type>Dossier</type>
+            </rule>
+        </filter>
+
+        <!-- Vrai si le document est verrouillé et que le verrou est n'est pas
+            actionnable par l'utilisateur -->
+        <filter id="currentDocIsNotLockActionnableByCurrentUser">
+            <rule grant="false">
+                <condition>#{stLockActions.currentDocIsLockActionnableByCurrentUser}
+                </condition>
+            </rule>
+        </filter>
+        <!-- Vrai si le document n'est pas verrouillé ou que le verrou est actionnable
+            par l'utilisateur -->
+        <filter id="currentDocIsLockActionnableByCurrentUser">
+            <rule grant="true">
+                <condition>#{stLockActions.currentDocIsLockActionnableByCurrentUser}
+                </condition>
+            </rule>
+        </filter>
+
+        <filter id="dossierIsLocked">
+            <rule grant="true">
+                <condition>#{dossierLockActions.canLockCurrentDossier ne true}
+                </condition>
+            </rule>
+        </filter>
+
+
+        <filter id="isDossierLinkLoaded">
+            <rule grant="true">
+                <condition>#{dossierDistributionActions.isDossierLinkLoaded}
+                </condition>
+            </rule>
+        </filter>
+
+         <filter id="isStepCopied">
+            <rule grant="true">
+                <condition>
+                    #{etapeActions.isStepCopied}
+                </condition>
+            </rule>
+        </filter>
+
+        <filter id="isNoteAuthorOrHasSamePoste">
+            <rule grant="true">
+                <condition>
+                    #{noteEtapeActions.isNoteAuthorOrHasSamePoste}
+                </condition>
+            </rule>
+        </filter>
+
+        <filter id="isNoteAuthor">
+            <rule grant="true">
+                <condition>
+                    #{noteEtapeActions.isNoteAuthor}
+                </condition>
+            </rule>
+        </filter>
+
+        <filter id="isNotNoteAuthor">
+            <rule grant="false">
+                <condition>
+                    #{noteEtapeActions.isNoteAuthor}
+                </condition>
+            </rule>
+        </filter>
+        <filter id="isNotNoteAuthorOrHasSamePoste">
+            <rule grant="false">
+                <condition>
+                    #{noteEtapeActions.isNoteAuthorOrHasSamePoste}
+                </condition>
+            </rule>
+        </filter>
+        <filter id="isEtapeEnCours">
+            <rule grant="true">
+                <condition>#{isInProgressStep}
+                </condition>
+            </rule>
+        </filter>
+
+        <filter id="isFeuilleRouteVisible">
+            <rule grant="true">
+                <condition>#{routingActions.isFeuilleRouteVisible}</condition>
+            </rule>
+        </filter>
+
+	</extension>
+</component>

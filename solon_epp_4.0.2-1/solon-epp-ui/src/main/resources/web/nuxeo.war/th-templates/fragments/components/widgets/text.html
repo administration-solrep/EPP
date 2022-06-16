@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="text(widget)">
+            <div class="labellised-list__label" th:for="${widget.name}">
+                <th:block th:text="#{${widget.label}}">label</th:block>
+                <span th:if="${widget.required}" class="form-label__required-text" th:text="#{form.input.required}"
+                    >requis</span
+                >
+            </div>
+            <div
+                th:id="|${widget.name}-text|"
+                class="labellised-list__description"
+                th:classappend="${widget.modifiedInCurVersion ? 'labellised-list__description--warning' : ''}"
+                th:text="${widget.getValueParamByName('valeur')}"
+            >
+                Valeur
+            </div>
+            <input
+                th:if="${widget.getValueParamByNameOrNull('institution') != null}"
+                th:id="${widget.name}"
+                th:attrappend="name=${widget.name == 'destinataireCopie' ? widget.name : null}"
+                type="hidden"
+                th:value="${widget.getValueParamByName('institution')}"
+            />
+        </th:block>
+    </body>
+</html>

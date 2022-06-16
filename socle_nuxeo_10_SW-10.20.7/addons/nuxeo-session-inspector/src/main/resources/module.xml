@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<module name="sessionInspector" root-type="sessionInspector"
+  path="/sessionInspector" extends="base">
+</module>

@@ -1,0 +1,60 @@
+#niveauLectureNumeroInput {
+    float: left;
+    display: flex;
+}
+
+#niveauLectureSelect {
+    display: flex;
+}
+
+.btnAddPieceJointe {
+    padding: 0;
+    font-weight: 400;
+}
+
+.blcPjViergeAdd {
+    padding: 5px 0;
+}
+
+.button-add-date {
+    margin-top: 1.4em;
+}
+
+.labellised-list__item {
+    max-width: 100%;
+}
+
+li.labellised-list__item div.form-input__header {
+    width: 40%;
+}
+
+li.labellised-list__item label.form-label {
+    width: 100%;
+    font-weight: normal;
+    color: #3c3c3c;
+    text-align: right;
+}
+
+li.labellised-list__item div.labellised-list-epp__description {
+    width: 40%;
+    border: 1px solid transparent;
+    padding: 0.25em 1em;
+    font-weight: 600;
+}
+
+.labellised-list__subitem {
+    margin-top: 0.25em;
+    padding: 0.25em 0.5em;
+}
+
+.labellised-list__subitem--warning {
+    border: 1px solid #ac5900;
+}
+
+.labellised-list__subitem--deleted {
+    border: 1px solid #5c5c5c;
+}
+
+.form-input__container {
+    display: block;
+}

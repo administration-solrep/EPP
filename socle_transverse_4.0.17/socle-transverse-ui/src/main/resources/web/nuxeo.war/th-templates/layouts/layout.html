@@ -1,0 +1,152 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    lang="fr"
+    class="no-js"
+    dir="ltr"
+    th:fragment="layout (template, templateClass, description, title)"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+>
+    <head th:replace="fragments/headFragment :: headFragment "></head>
+
+    <body>
+        <noscript>
+            <p class="js-off">Javascript est desactivé dans votre navigateur.</p>
+        </noscript>
+
+        <!--[if lt IE 8]>
+            <div class="browsehappy">
+                <div class="container">
+                    <p>Savez-vous que votre navigateur est obsolète ?</p>
+                    <p>
+                        Pour naviguer de la manière la plus satisfaisante sur le Web, nous vous recommandons de procéder
+                        à une
+                        <a href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie"
+                            >mise à jour de votre navigateur</a
+                        >. <br />Vous pouvez aussi
+                        <a href="http://browsehappy.com/">essayer d’autres navigateurs web populaires</a>.
+                    </p>
+                </div>
+            </div>
+        <![endif]-->
+        <div class="page-layout" th:classappend="${templateClass}">
+            <nav role="navigation" th:aria-label="#{acces.rapide}">
+                <ul class="blind-navigation">
+                    <li class="blind-navigation__item">
+                        <a href="#main_content" class="blind-navigation__link" th:text="#{skip.link.contenu}"
+                            >Aller au contenu</a
+                        >
+                    </li>
+                    <li class="blind-navigation__item">
+                        <a href="#sidebar" class="blind-navigation__link" th:text="#{skip.link.sidebar}"
+                            >Aller au menu contextuel</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+            <header th:if="${header_blocks != null}" th:replace="fragments/header :: header"></header>
+            <nav
+                th:if="${breadcrumbs_blocks != null}"
+                th:replace="fragments/breadcrumbs :: breadcrumbs"
+                role="navigation"
+            ></nav>
+            <div class="page-layout__container">
+                <div
+                    class="left-shortcuts"
+                    th:if="${left_blocks != null}"
+                    th:replace="fragments/leftBlock:: leftBlock"
+                ></div>
+                <th:block th:if="${template!=null}">
+                    <div id="alertMessages" role="alert" class="sr-only"></div>
+                    <div id="statusMessages" role="status" class="sr-only"></div>
+                    <div id="logMessages" role="log" class="sr-only"></div>
+
+                    <th:block
+                        th:if="${errorMessages != null && !errorMessages.isEmpty()}"
+                        th:each="message : ${errorMessages}"
+                    >
+                        <div
+                            th:replace="fragments/components/alert-banner :: alert-banner (${message.alertMessage},${message.alertOrigin},${message.alertType})"
+                        ></div>
+                    </th:block>
+
+                    <th:block
+                        th:if="${warnMessages != null  && !warnMessages.isEmpty()}"
+                        th:each="message : ${warnMessages}"
+                    >
+                        <div
+                            th:replace="fragments/components/alert-banner :: alert-banner (${message.alertMessage},${message.alertOrigin},${message.alertType})"
+                        ></div>
+                    </th:block>
+
+                    <th:block
+                        th:if="${successMessages != null  && !successMessages.isEmpty()}"
+                        th:each="message : ${successMessages}"
+                    >
+                        <div
+                            th:replace="fragments/components/alert-banner :: alert-banner (${message.alertMessage},${message.alertOrigin},${message.alertType})"
+                        ></div>
+                    </th:block>
+
+                    <th:block
+                        th:if="${infoMessages != null && !infoMessages.isEmpty()}"
+                        th:each="message : ${infoMessages}"
+                    >
+                        <div
+                            th:replace="fragments/components/alert-banner :: alert-banner (${message.alertMessage},${message.alertOrigin},${message.alertType})"
+                        ></div>
+                    </th:block>
+
+                    <!--/* Modale validation */-->
+                    <div th:replace="fragments/components/validation-dialog :: validation-dialog"></div>
+
+                    <!--/* Modale profil utilisateur */-->
+                    <div th:replace="fragments/components/modal-profil-utilisateur :: modal-user-profile"></div>
+
+                    <main role="main" id="main_content" class="main" th:replace="${template}"></main>
+                </th:block>
+                <input type="hidden" id="ajaxCallPath" th:value="@{/ajax}" />
+                <input type="hidden" id="basePath" th:value="@{/}" />
+                <input type="hidden" id="timeoutDelay" th:value="${sessionTimeout}" />
+                <input type="hidden" id="refreshEspaceTravailDelay" th:value="${refreshEspaceTravailDelay}" />
+                <div id="toast-container" class="alert--fixed"></div>
+                <div id="reload-loader" class="overlay" style="display: none';" aria-live="polite">
+                    <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+                </div>
+            </div>
+            <footer
+                role="contentinfo"
+                th:if="${footer_blocks != null}"
+                th:replace="fragments/footer :: footer"
+            ></footer>
+            <div class="back-to-top">
+                <button
+                    type="button"
+                    class="back-to-top__icon base-btn base-btn--button base-btn--default base-btn--discret"
+                >
+                    <span aria-hidden="true" class="icon icon--arrow-top"></span>
+                    <span class="sr-only">Retour en haut de page</span>
+                </button>
+            </div>
+        </div>
+
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script th:src="@{/scripts/external/jquery-3.6.0.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/external/bootstrap.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/external/popper.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/external/purify-2.2.9.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/external/tippy.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/external/tinymce/tinymce.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/external/swipper.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/external/dual-listbox.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/external/aria-autocomplete.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/transverse.js?r=__${buildVersion}__}"></script>
+        <th:block th:replace="fragments/requiredScripts :: requiredScripts"></th:block>
+        <script th:src="@{/scripts/specific.js?r=__${buildVersion}__}"></script>
+    </body>
+</html>

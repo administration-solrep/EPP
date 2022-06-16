@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<component name="fr.sword.idl.naiad.nuxeo.addons.status.config">
+
+    <require>fr.sword.idl.naiad.nuxeo.addons.status.core.services.StatusService</require>
+
+    <extension target="fr.sword.idl.naiad.nuxeo.addons.status.core.services.StatusService"
+        point="statusConfig"
+    >
+
+        <status enabled="true" name="application"
+            clazz="fr.sword.idl.naiad.nuxeo.addons.status.core.utils.ApplicationStatus" />
+        
+        <status enabled="true" name="system"
+            clazz="fr.sword.idl.naiad.nuxeo.addons.status.core.utils.SystemStatus" />
+        
+        <status enabled="true" name="java"
+            clazz="fr.sword.idl.naiad.nuxeo.addons.status.core.utils.JavaStatus" />
+        
+        <status enabled="true" name="database"
+            clazz="fr.sword.idl.naiad.nuxeo.addons.status.core.utils.DatabaseStatus" />
+            
+        <status enabled="true" name="userdirectory"
+            clazz="fr.sword.idl.naiad.nuxeo.addons.status.core.utils.UserDirectoryStatus" />
+
+        <status enabled="true" name="binary" params="repository.binary.store"
+            clazz="fr.sword.idl.naiad.nuxeo.addons.status.core.utils.fs.WriteFSStatus" />
+
+        <status enabled="true" name="tmp" params="nuxeo.tmp.dir"
+            clazz="fr.sword.idl.naiad.nuxeo.addons.status.core.utils.fs.WriteFSStatus" />
+            
+        <status enabled="true" name="log" params="nuxeo.log.dir"
+            clazz="fr.sword.idl.naiad.nuxeo.addons.status.core.utils.fs.WriteFSStatus" />
+            
+    </extension>
+
+
+</component>

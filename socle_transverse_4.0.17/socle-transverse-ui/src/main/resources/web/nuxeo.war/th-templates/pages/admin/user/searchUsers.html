@@ -1,0 +1,268 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page de la recherche utilisateurs', title=#{recherche.userSearch.title.label})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <input type="hidden" id="ajaxSearchEndpoint" value="/rechercher/resultats" />
+        <form id="searchUserForm">
+            <h1 class="m-t-6 m-b-6 base-title base-title--lvl-1" th:text="#{recherche.userSearch.title.label}">
+                userSearch title label
+            </h1>
+            <div class="page-layout__content--dark m-y-6 p-a-5">
+                <div class="grid__row m-b-6">
+                    <!--  Utilisateur -->
+                    <div class="form-input grid__col grid__col--middle">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label
+                                    for="utilisateur"
+                                    id="utilisateur_label"
+                                    class="form-label"
+                                    th:text="#{recherche.userSearch.utilisateur}"
+                                    >Label
+                                </label>
+                            </div>
+                            <div class="form-input__header-bottom"></div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="utilisateur"
+                                id="utilisateur"
+                                th:value="${searchUserForm.utilisateur}"
+                                autofocus
+                                class="form-input__field form-input__field--type-text"
+                            />
+                        </div>
+                        <div id="utilisateur_description" class="form-input__footer"></div>
+                    </div>
+                </div>
+
+                <div class="grid__row m-b-6">
+                    <!--  Prénom -->
+                    <div class="form-input grid__col grid__col--middle">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label
+                                    for="prenom"
+                                    id="prenom_label"
+                                    class="form-label"
+                                    th:text="#{recherche.userSearch.prenom}"
+                                    >Label
+                                </label>
+                            </div>
+                            <div class="form-input__header-bottom"></div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="prenom"
+                                id="prenom"
+                                th:value="${searchUserForm.prenom}"
+                                data-validation="query_param"
+                                autofocus
+                                class="form-input__field form-input__field--type-text"
+                            />
+                        </div>
+                        <div id="prenom_description" class="form-input__footer absolute"></div>
+                    </div>
+                    <!-- Nom -->
+                    <div class="form-input grid__col grid__col--middle">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label for="nom" id="nom_label" class="form-label" th:text="#{recherche.userSearch.nom}"
+                                    >Label
+                                </label>
+                            </div>
+                            <div class="form-input__header-bottom"></div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="nom"
+                                id="nom"
+                                th:value="${searchUserForm.nom}"
+                                data-validation="query_param"
+                                autofocus
+                                class="form-input__field form-input__field--type-text"
+                            />
+                        </div>
+                        <div id="nom_description" class="form-input__footer absolute"></div>
+                    </div>
+                </div>
+
+                <div class="grid__row m-b-6">
+                    <!-- Mél -->
+                    <div class="form-input grid__col grid__col--middle">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label for="mel" id="mel_label" class="form-label" th:text="#{recherche.userSearch.mel}"
+                                    >Label
+                                </label>
+                            </div>
+                            <div class="form-input__header-bottom"></div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="mel"
+                                id="mel"
+                                th:value="${searchUserForm.mel}"
+                                autofocus
+                                class="form-input__field form-input__field--type-text"
+                            />
+                        </div>
+                        <div id="mel_description" class="form-input__footer"></div>
+                    </div>
+                    <!-- Téléphone -->
+                    <div class="form-input grid__col grid__col--middle">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label
+                                    for="telephone"
+                                    id="telephone_label"
+                                    class="form-label"
+                                    th:text="#{recherche.userSearch.telephone}"
+                                    >Label
+                                </label>
+                            </div>
+                            <div class="form-input__header-bottom"></div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="telephone"
+                                id="telephone"
+                                th:value="${searchUserForm.telephone}"
+                                autofocus
+                                class="form-input__field form-input__field--type-text"
+                            />
+                        </div>
+                        <div id="telephone_description" class="form-input__footer"></div>
+                    </div>
+                </div>
+
+                <div class="grid__row m-b-6" th:with="treeIconClass='usersearch'">
+                    <!-- Ministère(s) rattaché(s) -->
+                    <div class="grid__col grid__col--middle align-flex-start">
+                        <th:block
+                            th:replace="fragments/components/organigrammeSelectAutocomplete ::organigrammeSelectAutocomplete(
+                    'recherche.userSearch.ministere.label',
+                    false,
+                     'ministeres',
+                     'ministeres',
+                     'MIN', 
+                     'ministeres', 
+                     false,
+                     true,
+                     ${searchUserForm.mapMinisteres},
+                     false)"
+                        ></th:block>
+                    </div>
+                    <!-- Direction(s) rattaché(s) -->
+                    <div class="grid__col grid__col--middle align-flex-start">
+                        <th:block
+                            th:replace="fragments/components/organigrammeSelectAutocomplete ::organigrammeSelectAutocomplete(
+                     'recherche.userSearch.direction.label',
+                     false,
+                     'unitesStructurelles',
+                     'unitesStructurelles',
+                     'DIR_UST', 
+                     'unitesStructurelles', 
+                     false,
+                     true,
+                     ${searchUserForm.mapUnitesStructurelles},
+                     false)"
+                        ></th:block>
+                    </div>
+                </div>
+
+                <div class="grid__row m-b-6" th:with="treeIconClass='usersearch'">
+                    <!-- Poste(s) rattaché(s) -->
+                    <div class="grid__col grid__col--middle align-flex-start">
+                        <th:block
+                            th:replace="fragments/components/organigrammeSelectAutocomplete ::organigrammeSelectAutocomplete(
+                     'recherche.userSearch.poste.label',
+                     false,
+                     'postes',
+                     'postes',
+                     'PST', 
+                     'postes',
+                     false,
+                     true,
+                     ${searchUserForm.mapPostes},
+                     false)"
+                        ></th:block>
+                    </div>
+                    <!--Profils) rattaché(s) -->
+                    <div class="grid__col grid__col--middle align-flex-start">
+                        <div
+                            th:replace="fragments/components/formblocks/autocomplete-select :: autocompleteSelect('recherche.userSearch.profils.label', 'profils', 'profils', 'form.description.nocharlimit', ${ {} }, ${searchUserForm.profils}, false,
+                             @{/ajax/recherche/suggestions?typeSelection=Profils&activateFilter=false},
+                            '0',
+                            'input',
+                            '',
+                            '',
+                             false,
+                             true,
+                             false)"
+                        ></div>
+                        <div id="profile_description" class="form-input__footer"></div>
+                    </div>
+                </div>
+
+                <div class="grid__row m-b-6">
+                    <!-- Date début  -->
+                    <div class="grid__col grid__col--middle align-flex-start">
+                        <div
+                            th:replace="fragments/components/formblocks/date-picker-range :: datepickerRange('recherche.userSearch.periodeDateDebutValidite', 'dateCreation', ${searchUserForm.dateCreationDebut}, ${searchUserForm.dateCreationFin}, false, false)"
+                        ></div>
+                    </div>
+
+                    <!-- Date de fin -->
+                    <div class="grid__col grid__col--middle align-flex-start">
+                        <div
+                            th:replace="fragments/components/formblocks/date-picker-range :: datepickerRange('recherche.userSearch.periodeDateFinValidite', 'dateExpiration', ${searchUserForm.dateExpirationDebut}, ${searchUserForm.dateExpirationFin}, false, false)"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between">
+                <button
+                    type="button"
+                    onclick="reinitSearch('/rechercher/reinit', hardReloadPage)"
+                    class="m-r-3 base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                    th:text="#{recherche.userSearch.reinit.label}"
+                >
+                    Réinitialiser
+                </button>
+                <div class="flex-row-actions__right">
+                    <th:block th:if="${addFavoriRechercheAction}">
+                        <button
+                            th:replace="fragments/components/label-action-button :: label-action-button(${addFavoriRechercheAction}, false, '')"
+                        ></button>
+                    </th:block>
+                    <button
+                        id="button_user_search"
+                        type="submit"
+                        class="base-btn base-btn--submit base-btn--default base-btn--center"
+                        th:text="#{recherche.userSearch.rechercher.label}"
+                    >
+                        Rechercher
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div id="resultList" class="alert--container">
+            <div th:replace="fragments/components/result-list-user :: resultListUser"></div>
+        </div>
+
+        <!-- Modal d'envoie de mail -->
+        <div th:replace="fragments/components/modal-send-mail :: modal-send-mail"></div>
+    </main>
+</html>

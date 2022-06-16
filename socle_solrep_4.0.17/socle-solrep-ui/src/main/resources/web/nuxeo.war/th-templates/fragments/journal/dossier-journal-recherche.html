@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <!-- Fragment formulaire recherche dans dossier/journal -->
+        <div th:fragment="dossier-journal-recherche(categories)" id="journalSearchForm">
+            <form id="searchForm">
+                <div class="grid__row m-t-3 m-b-6">
+                    <div
+                        th:replace="fragments/components/formblocks/date-picker-range :: datepickerRange('journal.label.periode', 'date', ${journalForm.dateDebut}, ${journalForm.dateFin}, false, false)"
+                    ></div>
+                </div>
+                <div class="grid__row m-b-6">
+                    <div class="form-input grid__col grid__col--middle">
+                        <div
+                            th:replace="fragments/components/formblocks/autocomplete-select :: autocompleteSelect('journal.label.utilisateur', 'utilisateur', 'utilisateur-key', 'form.description.nocharlimit', ${ {} }, ${journalForm.mapUtilisateur}, false, @{/ajax/organigramme/suggestions?typeSelection=USR}, '0', 'input', 'key', 'label', false, false, false)"
+                        ></div>
+                    </div>
+                    <div class="grid__col grid__col--middle form-select form-select--simple">
+                        <div
+                            th:replace="fragments/components/formblocks/simple-select ::simpleSelect('journal.label.content.header.categorie','categorie','',${categories}, ${journalForm.categorie},'','journal.label.choix.categorie')"
+                        ></div>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <button
+                        id="btn-reinitSearch"
+                        type="button"
+                        class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                        onclick="reinitJournalSearch()"
+                        th:text="#{journal.label.search.reinit}"
+                    >
+                        Réinitialiser
+                    </button>
+                    <button
+                        id="journalSearch"
+                        type="button"
+                        class="base-btn base-btn--submit base-btn--default base-btn--center"
+                        onclick="doJournalSearch()"
+                        th:text="#{journal.label.search}"
+                    >
+                        Rechercher
+                    </button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

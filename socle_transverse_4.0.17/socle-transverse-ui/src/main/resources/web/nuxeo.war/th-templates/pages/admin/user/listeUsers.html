@@ -1,0 +1,78 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page de la liste des utilisateurs', title=#{menu.admin.user.users.title})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <div th:if="${newUserAction}" class="flex justify-end m-t-6 m-b-6">
+            <button
+                class="base-btn base-btn--submit base-btn--default base-btn--center"
+                th:onclick="|window.location.href = '@{__${newUserAction.link}__}'|"
+                type="button"
+            >
+                <span
+                    aria-hidden="true"
+                    class="base-btn__icon base-btn__icon--vertical-center base-btn__icon--left icon icon--user-bubble-add"
+                ></span>
+                [[#{users.button.addUser}]]
+            </button>
+        </div>
+        <h1 class="m-t-6 m-b-6 p-b-3 base-title base-title--lvl-1 base-title--is-underlined" th:text="${title}"></h1>
+        <div class="search-bar bloc-search-inline">
+            <div class="form-input search-bar__form-input">
+                <div class="form-input__header">
+                    <div class="form-input__header-top search-input-header">
+                        <label for="search_user_field" id="search_user" class="form-label sr-only">
+                            [[#{admin.user.label.search}]]
+                        </label>
+                    </div>
+                    <div class="form-input__header-bottom"></div>
+                </div>
+                <div class="form-input__container">
+                    <input
+                        type="search"
+                        id="search_user_field"
+                        th:placeholder="#{admin.user.label.search}"
+                        name="recherche"
+                        class="form-input__field form-input__field--type-search form-input__field--with-icon"
+                        th:value="${searchUser}"
+                        data-validation="query_param"
+                    />
+                    <span aria-hidden="true" class="icon icon--search icon--v-align form-input__icon"></span>
+                </div>
+                <div id="search_input_description" class="form-input__footer absolute"></div>
+            </div>
+            <button
+                class="search-bar__button search-bar__submit-button base-btn base-btn--button base-btn--default"
+                type="button"
+                onclick="searchUser($('#search_user_field').val())"
+            >
+                [[#{admin.user.label.search.button}]]
+            </button>
+            <button
+                class="search-bar__button search-bar__reset-button base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--uppercased"
+                type="button"
+                onclick="searchUser()"
+            >
+                <span aria-hidden="true" class="search-bar__icon icon icon--cross-bold"></span>
+                <span class="search-bar__reset-button-text"> [[#{admin.user.label.reinit.button}]] </span>
+            </button>
+        </div>
+
+        <div th:replace="fragments/table/tableUsers :: searchResults(false, true)"></div>
+
+        <div th:if="${newUserAction}" class="flex justify-end m-t-6 m-b-6">
+            <a class="base-btn base-btn--button base-btn--default" th:href="@{__${newUserAction.link}__}">
+                <span
+                    aria-hidden="true"
+                    class="base-btn__icon base-btn__icon--vertical-center base-btn__icon--left icon icon--user-bubble-add"
+                ></span>
+                [[#{users.button.addUser}]]
+            </a>
+        </div>
+
+        <input id="data-url" type="hidden" th:value="${dataUrl}" />
+    </main>
+</html>

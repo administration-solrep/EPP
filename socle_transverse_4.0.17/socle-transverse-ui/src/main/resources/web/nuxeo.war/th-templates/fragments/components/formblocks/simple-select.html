@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="simpleSelect(label, id, description, options, value, disabled, emptyText)">
+            <div
+                class="form-select form-select--simple"
+                th:with="optionsKey=${simpleSelectKey} ?: 'id',optionsValue=${simpleSelectValue} ?: 'label',name=${name} ?: ${id}"
+            >
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label
+                                th:for="${id}"
+                                th:id="|${id}_label|"
+                                class="form-label"
+                                th:classappend="${disabled == 'true' ? 'form-label--disabled' : ''}"
+                                >[[${label != '' ? #messages.msgWithParams(label, msgParams) : ''}]]
+                                <span
+                                    th:if="${selectIsRequired}"
+                                    class="form-label__required-text"
+                                    th:text="#{form.input.required}"
+                                >
+                                    (Requis)</span
+                                >
+                            </label>
+                            <div role="status" class="form-input__icon-group"></div>
+                        </div>
+                        <div class="form-input__header-bottom"></div>
+                    </div>
+                    <div class="form-input__container">
+                        <div
+                            class="form-select__field-wrapper"
+                            th:classappend="${disabled == 'true' ? 'form-select__field-wrapper--disabled' : ''}"
+                        >
+                            <div class="form-select-input" th:classappend="${simpleSelectExtraClass}">
+                                <select
+                                    th:name="${name}"
+                                    th:id="${id}"
+                                    th:aria-describedby="|${id}_field_description ${id}_description|"
+                                    class="form-select-input__field form-select-input__field--simple"
+                                    th:attr="onchange=${simpleSelectClickFunction} != null ?|${simpleSelectClickFunction}(this)|"
+                                    th:classappend="${disabled == 'true' ? 'form-select-input__field--disabled' : ''}"
+                                    th:data-validation="${selectDataValidation}"
+                                >
+                                    <option
+                                        th:if="${emptyText and emptyText != ''}"
+                                        value=""
+                                        th:text="${#messages.msg(emptyText)}"
+                                        th:selected="${value == null}"
+                                    ></option>
+                                    <th:block th:each="option : ${options}">
+                                        <option
+                                            th:value="${option.__${optionsKey}__}"
+                                            th:text="${#messages.msgOrNull(option.__${optionsValue}__) != null ? #messages.msg(option.__${optionsValue}__) : option.__${optionsValue}__}"
+                                            th:selected="${value!= null && value == option.__${optionsKey}__}"
+                                        ></option>
+                                    </th:block>
+                                </select>
+                                <span aria-hidden="true" tabindex="-1"
+                                    ><span
+                                        aria-hidden="true"
+                                        class="form-select-input__arrow icon icon--arrow-bottom"
+                                    ></span
+                                ></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        th:id="|${id}_description|"
+                        class="form-input__footer"
+                        th:text="${description}"
+                        th:classappend="${disabled == 'true' ? 'form-input__footer--disabled' : ''}"
+                    ></div>
+                </div>
+            </div>
+        </th:block>
+    </body>
+</html>

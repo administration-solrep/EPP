@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="modal-import-gouvernement"
+            id="modal-import-gouvernement"
+            class="interstitial-overlay__content"
+        >
+            <div
+                class="interstitial"
+                role="dialog"
+                aria-labelledby="dialogTitle-importGouvernement"
+                style="position: relative;"
+            >
+                <div class="interstitial__header">
+                    <h1
+                        id="dialogTitle-importGouvernement"
+                        class="interstitial__title"
+                        th:text="#{gouvernement.import.popup.title}"
+                    >
+                        Importer un gouvernement
+                    </h1>
+                    <button
+                        type="button"
+                        class="interstitial__close base-btn base-btn--button base-btn--default base-btn--discret"
+                    >
+                        <span aria-hidden="true" class="icon icon--cross"></span
+                        ><span class="sr-only" th:text="#{gouvernement.import.popup.close}">Fermer</span>
+                    </button>
+                </div>
+                <form
+                    th:action="@{/admin/organigramme/gouvernement/import?csrf-token=__${csrftoken}__}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                >
+                    <input type="hidden" name="csrf-token" th:value="${csrftoken}" />
+                    <div class="interstitial__content">
+                        <h3 th:text="#{gouvernement.import.popup.excel}">Importer</h3>
+                        <th:block
+                            th:replace="fragments/components/formblocks/file-input :: fileInput('', 'gouvernementFile', 'gouvernementFile', false,  ${acceptedTypes}, false)"
+                        >
+                        </th:block>
+                    </div>
+                    <div class="interstitial__footer">
+                        <button
+                            type="button"
+                            class="interstitial__button base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                            th:text="#{organigramme.cancel}"
+                        >
+                            Annuler
+                        </button>
+                        <button
+                            type="submit"
+                            id="btn-confirm-add-doc"
+                            class="base-btn base-btn--button base-btn--default base-btn--center"
+                            th:text="#{gouvernement.import.popup.importer}"
+                        >
+                            Sauvegarder
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div tabindex="-1" class="interstitial-overlay__tabindex"></div>
+        </div>
+    </body>
+</html>

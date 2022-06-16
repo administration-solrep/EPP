@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: Socle SOLREP WebEngine
+Bundle-SymbolicName: fr.dila.ss.webengine;singleton:=true
+Bundle-Version: 1.0.0

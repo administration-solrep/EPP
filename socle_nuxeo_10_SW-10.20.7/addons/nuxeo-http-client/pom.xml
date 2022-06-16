@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.nuxeo</groupId>
+    <artifactId>nuxeo-addons-parent</artifactId>
+    <version>SW-10.20.7</version>
+  </parent>
+
+  <artifactId>nuxeo-http-client</artifactId>
+  <name>Nuxeo HTTP client</name>
+  <description>Nuxeo HTTP client is a simple helper library
+  to encapsulate Restlet calls to the Nuxeo platform.
+  This is not a Nuxeo addon to add to a Nuxeo server,
+  this is rather a Nuxeo client.
+  </description>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.restlet.jse</groupId>
+      <artifactId>org.restlet</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.restlet.jse</groupId>
+      <artifactId>org.restlet.ext.httpclient</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.dom4j</groupId>
+      <artifactId>dom4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>jaxen</groupId>
+      <artifactId>jaxen</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>**/RemoteTests.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>public</id>
+      <url>http://maven.nuxeo.org/nexus/content/groups/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>public-snapshot</id>
+      <url>http://maven.nuxeo.org/nexus/content/groups/public-snapshot</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <scm>
+    <connection>scm:git:git://github.com/nuxeo/nuxeo-http-client.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com:nuxeo/nuxeo-http-client.git</developerConnection>
+    <url>https://github.com/nuxeo/nuxeo-http-client</url>
+  </scm>
+
+</project>

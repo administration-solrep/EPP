@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service d'alerte du socle -->
+<component name="fr.dila.st.core.requete.recherchechamp.RechercheChampService">
+  <implementation class="fr.dila.st.core.requete.recherchechamp.RechercheChampServiceImpl" />
+
+  <service>
+    <provide interface="fr.dila.st.core.requete.recherchechamp.RechercheChampService" />
+  </service>
+
+  <extension-point name="champs">
+
+    <documentation>
+      TODO description champ
+
+      Le champ contient:
+
+      - name: nom du champ.
+      - label: label du champ.
+      - field: field du champ
+      - typeChamp: type du champ
+      - parametres: liste de parametres du champ
+      - champParameter: une classe qui implémente l'interface ChampParameter
+    </documentation>
+
+    <object class="fr.dila.st.core.requete.recherchechamp.descriptor.ChampDescriptor" />
+  </extension-point>
+
+</component>

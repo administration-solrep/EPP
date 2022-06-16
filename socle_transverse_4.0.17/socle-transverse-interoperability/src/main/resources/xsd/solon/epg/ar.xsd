@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/ar"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epg/ar"
+	elementFormDefault="qualified"
+
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:solco="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons">
+
+	<!-- ====================================== -->
+	<!-- Imports -->
+	<!-- ====================================== -->
+	<xs:import schemaLocation="../../commons/commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons" />
+	<xs:import schemaLocation="solon-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons" />
+
+
+	<!-- ====================================== -->
+	<!-- AR : simple types -->
+	<!-- ====================================== -->
+	<xs:simpleType name="CodeErreur">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DOSSIER_INTROUVABLE" />
+			<xs:enumeration value="DROIT_ACCESS_INSUFFISANT" />
+			<xs:enumeration value="ENTITE_INCONNUE" />
+			<xs:enumeration value="DIRECTION_INCONNUE" />
+			<xs:enumeration value="AUTRE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- ====================================== -->
+	<!-- AR : Accuse de reception recherche infructueuse -->
+	<!-- ====================================== -->
+	<xs:complexType name="ResultatRechercheInfructueuse">
+		<xs:annotation>
+			<xs:documentation>
+				Resultat d'une requete qui n'a pas aboutie
+				- nor :
+				l'identifiant du dossier concerne
+				- statut : le resultat de la
+				recherche (toujours KO)
+				- message_erreur : la raison de l'erreur
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nor" type="solco:NorType" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="statut" type="commons:TraitementStatut"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="message_erreur" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- ====================================== -->
+	<!-- AR : Accuse de reception de traitement -->
+	<!-- ====================================== -->
+	<xs:complexType name="ResultatTraitement">
+		<xs:sequence>
+			<xs:element name="statut" type="commons:TraitementStatut"
+				minOccurs="1" maxOccurs="1"></xs:element>
+			<xs:element name="message_erreur" type="xs:string"
+				minOccurs="0" maxOccurs="1"></xs:element>
+			<xs:element name="code_erreur" type="CodeErreur"
+				minOccurs="0" maxOccurs="1"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

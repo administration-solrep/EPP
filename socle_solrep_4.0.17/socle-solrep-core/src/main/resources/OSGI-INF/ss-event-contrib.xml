@@ -1,0 +1,198 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue les listeners du socle transverse. -->
+<component name="fr.dila.ss.core.listener">
+	<require>com.nuxeo.case-management.eventContrib</require>
+	<require>fr.dila.st.core.listener</require>
+
+	<extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener">
+
+		<!-- Listener qui permet de générer un nouveau numéro de séquence pour 
+			les documents créés par copie -->
+		<listener
+            name="docCopyGeneratorListener"
+            async="false"
+            postCommit="false"
+            class="fr.dila.ss.core.event.DocCopyGeneratorListener"
+            priority="20"
+        >
+			<event>documentCreatedByCopy</event>
+		</listener>
+
+		<listener
+            name="MailNotificationListener"
+            async="true"
+            postCommit="true"
+            class="fr.dila.ss.core.event.MailNotificationListener"
+            priority="30"
+        >
+			<event>sendMailNotification</event>
+		</listener>
+
+		<!-- Gestionnaire d'événement permettant de renseigner le nom d'une étape 
+			à sa création -->
+		<listener
+            name="routeStepAboutToCreateListener"
+            async="false"
+            postCommit="false"
+            class="fr.dila.ss.core.event.RouteStepAboutToCreateListener"
+            priority="170"
+        >
+			<event>aboutToCreate</event>
+		</listener>
+		
+		<!-- Listener permettant de créer les mailbox à la création des postes -->
+		<listener
+            name="posteCreatedListener"
+            async="false"
+            postCommit="false"
+            class="fr.dila.cm.core.event.PosteCreatedListener"
+            priority="140"
+        >
+			<event>posteCreated</event>
+		</listener>
+
+		<!-- Listener permettant de mettre à jour les mailbox à la maj des postes -->
+		<listener
+            name="PosteUpdatedListener"
+            async="false"
+            postCommit="false"
+            class="fr.dila.ss.core.event.PosteUpdatedListener"
+            priority="100"
+        >
+			<event>posteUpdated</event>
+		</listener>
+
+		<!-- Listener pour envoyer le résultat d'une recherche utilisateur par mail -->
+		<listener
+            name="SendSearchResultsUsersListener"
+            async="true"
+            postCommit="true"
+            priority="200"
+            class="fr.dila.ss.core.event.SSSendSearchUsersResultsListener"
+        >
+			<event>sendSearchUsersResults</event>
+		</listener>
+
+		<!-- Batch de nettoyage des RouteStep/StepFolder supprimés -->
+		<listener
+            name="CleanDeletedStepBatchListener"
+            async="true"
+            postCommit="true"
+            priority="190"
+            class="fr.dila.ss.core.event.batch.CleanDeletedStepBatchListener"
+        >
+			<event>cleanDeletedStep</event>
+		</listener>
+
+		<!-- Batch de validation automatique des dossierslinks -->
+		<listener
+            name="dossierLinkValidatorBatchListener"
+            async="false"
+            postCommit="false"
+            priority="190"
+            class="fr.dila.ss.core.event.batch.DossierLinkValidatorBatchListener"
+        >
+			<event>validateCaseLink</event>
+		</listener>
+
+		<!-- Batch de nettoyage des documents requete supprimés -->
+		<listener
+            name="cleanDeletedRequeteListener"
+            async="false"
+            postCommit="false"
+            priority="190"
+            class="fr.dila.ss.core.event.batch.CleanDeletedRequeteBatchListener"
+        >
+			<event>cleanDeletedRequeteEvent</event>
+		</listener>
+
+		<!-- Batch de nettoyage des alertes supprimées -->
+		<listener
+            name="cleanDeletedAlertBatchListener"
+            async="false"
+            postCommit="false"
+            priority="190"
+            class="fr.dila.ss.core.event.batch.CleanDeletedAlertBatchListener"
+        >
+			<event>cleanDeletedAlertEvent</event>
+		</listener>
+
+		<!-- Batch d'envoi des mails d'alerte -->
+		<listener
+            name="sendAlertsListener"
+            async="false"
+            postCommit="false"
+            priority="190"
+            class="fr.dila.ss.core.event.batch.SendAlertsBatchListener"
+        >
+			<event>sendAlertEvent</event>
+		</listener>
+
+		<!-- Batch de nettoyage des DossierLink supprimés -->
+		<listener
+            name="cleanDeletedDossierLinkBatchListener"
+            async="false"
+            postCommit="false"
+            priority="190"
+            class="fr.dila.ss.core.event.batch.CleanDeletedDossierLinkBatchListener"
+        >
+			<event>cleanDeletedDossierLinkEvent</event>
+		</listener>
+
+		<!-- Batch de la suppression utilisateurs -->
+		<listener
+            name="userDeletionBatchListener"
+            async="false"
+            postCommit="false"
+            priority="190"
+            class="fr.dila.ss.core.event.batch.UserDeletionBatchListener"
+        >
+			<event>userDeletionBatch</event>
+		</listener>
+
+		<!-- Batch de nettoyage des documents fichier de FondDeDossier supprimés -->
+		<listener
+            name="cleanDeletedFddFileEvent"
+            async="false"
+            postCommit="false"
+            priority="190"
+            class="fr.dila.ss.core.event.batch.CleanDeletedFddFichierBatchListener"
+        >
+			<event>cleanDeletedFddFileEvent</event>
+		</listener>
+
+		<!-- Batch de nettoyage des documents fichier de parapheur supprimés -->
+		<listener
+            name="cleanDeletedParapheurFileEvent"
+            async="false"
+            postCommit="false"
+            priority="190"
+            class="fr.dila.ss.core.event.batch.CleanDeletedParapheurFichierBatchListener"
+        >
+			<event>cleanDeletedParapheurFileEvent</event>
+		</listener>
+
+		<!-- Déconnexion de l'utilisateur -->
+		<listener
+            name="ssLogoutListener"
+            async="true"
+            postCommit="true"
+            priority="200"
+            class="fr.dila.ss.core.event.LogoutListener"
+        >
+			<event>logout</event>
+		</listener>
+
+		<!-- Batch de "déconnexion" des utilisateurs -->
+		<listener
+            name="closeUsersConnectionsBatchListener"
+            async="false"
+            postCommit="false"
+            priority="200"
+            class="fr.dila.ss.core.event.batch.CloseUsersConnectionsBatchListener"
+        >
+			<event>closeUsersConnectionsEvent</event>
+		</listener>
+
+	</extension>
+</component>

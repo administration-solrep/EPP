@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service d'organigramme (partie entités) du
+	socle solrep. -->
+<component name="fr.dila.ss.core.service.SSMinisteresService">
+    <implementation class="fr.dila.ss.core.component.SSMinisteresComponent" />
+
+    <service>
+        <provide interface="fr.dila.ss.api.service.SSMinisteresService" />
+    </service>
+</component>

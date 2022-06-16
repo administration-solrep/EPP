@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div class="header__left" th:fragment="headerLeft">
+            <div class="header-menu header__menu" th:replace="fragments/headerblocks/topMenu :: topMenu"></div>
+            <div class="header-lt" th:replace="fragments/headerblocks/appPresentation :: appPresentation"></div>
+        </div>
+    </body>
+</html>

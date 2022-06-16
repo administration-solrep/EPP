@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="requeteExperteTable(requetes)">
+            <div class="overlay" th:id="table_requete_overlay" aria-live="polite">
+                <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+            </div>
+            <a
+                href="#skip_link_action-table_prev"
+                id="skip_link_action-table_next"
+                class="skip-link"
+                th:text="#{skip.link.table.prev(#{suivi.requete.table.caption})}"
+            >
+                Aller après le tableau
+            </a>
+            <div class="table-wrapper">
+                <table
+                    class="custom-table m-t-6"
+                    id="requeteTable"
+                    th:classappend="${#lists.isEmpty(requetes) ? 'hide-element' : ''}"
+                >
+                    <caption class="sr-only" th:text="#{suivi.requete.table.caption}">
+                        Tableau des critères de recherche
+                    </caption>
+                    <thead class="table-header custom-table__header">
+                        <tr class="table-header__line">
+                            <th scope="col" class="table-header__cell">
+                                <span class="table-header__cell-inner" th:text="#{suivi.requete.champ.label}"></span>
+                            </th>
+                            <th scope="col" class="table-header__cell">
+                                <span
+                                    class="table-header__cell-inner"
+                                    th:text="#{suivi.requete.operateur.label}"
+                                ></span>
+                            </th>
+                            <th scope="col" class="table-header__cell">
+                                <span class="table-header__cell-inner" th:text="#{suivi.requete.valeur.label}"></span>
+                            </th>
+                            <th scope="col" class="table-header__cell">
+                                <span class="table-header__cell-inner" th:text="#{suivi.requete.et.ou.label}"></span>
+                            </th>
+                            <th scope="col" class="table-header__cell">
+                                <span
+                                    class="table-header__cell-inner sr-only"
+                                    th:text="#{suivi.requete.action.label}"
+                                ></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="custom-table__body">
+                        <tr class="custom-table__table-line table-line" th:each="requete, status : ${requetes}">
+                            <td class="table-line__cell" th:text="#{${requete.champ.label}}"></td>
+                            <td class="table-line__cell" th:text="${#messages.msg(requete.operator.label)}"></td>
+                            <td
+                                class="table-line__cell"
+                                th:if="${#strings.startsWith(requete.champ.typeChamp, 'ORGANIGRAMME') || requete.champ.typeChamp == 'MULTIPLE_SELECT' || #strings.startsWith(requete.champ.typeChamp, 'SIMPLE_SELECT') || requete.champ.typeChamp == 'TEXT_AUTOCOMPLETE'}"
+                                th:text="${#strings.listJoin(requete.displayValue, ', ')}"
+                            ></td>
+                            <td class="table-line__cell" th:if="${requete.champ.typeChamp == 'DATES'}">
+                                <th:block
+                                    th:if="${requete.operator.display == 'displayOne'}"
+                                    th:text="${requete.value[0]}"
+                                >
+                                </th:block>
+                                <th:block
+                                    th:unless="${requete.operator.display == 'displayOne'}"
+                                    th:text="${#strings.listJoin(requete.value, ' et ')}"
+                                >
+                                </th:block>
+                            </td>
+                            <td
+                                class="table-line__cell"
+                                th:unless="${#strings.startsWith(requete.champ.typeChamp, 'ORGANIGRAMME') || requete.champ.typeChamp == 'MULTIPLE_SELECT' || #strings.startsWith(requete.champ.typeChamp, 'SIMPLE_SELECT') || requete.champ.typeChamp == 'TEXT_AUTOCOMPLETE' || requete.champ.typeChamp == 'DATES'}"
+                                th:text="${#strings.listJoin(requete.value, ', ')}"
+                            ></td>
+                            <td class="table-line__cell" th:text="${requete.andOr}"></td>
+                            <td class="table-line__cell table-line__action-column table-line__action-column-right">
+                                <button
+                                    type="button"
+                                    th:data-tippy-content="#{ligne.supprimer.label}"
+                                    class="tree-navigation__button-add base-btn base-btn--button base-btn--default base-btn--icon-action base-btn--transparent"
+                                    th:data-order="${status.index}"
+                                    onclick="removeLineToRequete(this.getAttribute('data-order'))"
+                                >
+                                    <span
+                                        aria-hidden="true"
+                                        class="icon icon--times-circle icon--v-align icon--big"
+                                    ></span>
+                                    <span class="sr-only" th:text="#{ligne.supprimer.label}">Supprimer</span>
+                                </button>
+                                <button
+                                    type="button"
+                                    th:if="${status.size > 1 and !status.first}"
+                                    th:data-tippy-content="#{ligne.remonter.label}"
+                                    class="tree-navigation__button-add base-btn base-btn--button base-btn--default base-btn--icon-action base-btn--transparent"
+                                    th:data-order="${status.index}"
+                                    onclick="moveRequeteLine(this.getAttribute('data-order'), -1)"
+                                >
+                                    <span aria-hidden="true" class="icon icon--top icon--v-align icon--big"></span>
+                                    <span class="sr-only" th:text="#{ligne.remonter.label}">Remonter la ligne</span>
+                                </button>
+                                <button
+                                    type="button"
+                                    th:if="${status.size > 1 and !status.last}"
+                                    th:data-tippy-content="#{ligne.descendre.label}"
+                                    class="tree-navigation__button-add base-btn base-btn--button base-btn--default base-btn--icon-action base-btn--transparent"
+                                    th:data-order="${status.index}"
+                                    onclick="moveRequeteLine(this.getAttribute('data-order'), 1)"
+                                >
+                                    <span aria-hidden="true" class="icon icon--down icon--v-align icon--big"></span>
+                                    <span class="sr-only" th:text="#{ligne.descendre.label}">Descendre la ligne</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a
+                href="#skip_link_action-table_next"
+                id="skip_link_action-table_prev"
+                class="skip-link"
+                th:text="#{skip.link.table.next(#{suivi.requete.table.caption})}"
+            >
+                Aller avant le tableau
+            </a>
+        </th:block>
+    </body>
+</html>

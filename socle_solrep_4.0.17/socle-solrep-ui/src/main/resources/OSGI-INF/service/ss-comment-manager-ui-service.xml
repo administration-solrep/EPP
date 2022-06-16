@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.services.comment.SSCommentManagerUIService">
+
+  <implementation class="fr.dila.ss.ui.services.comment.SSCommentManagerUIComponent" />
+  
+  <service>
+    <provide interface="fr.dila.ss.ui.services.comment.SSCommentManagerUIService" />
+  </service>
+  
+
+</component>

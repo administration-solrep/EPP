@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="multipleSortIcon()"
+            class="table-action__group table-action__group--filter js-interstitial-trigger"
+            th:data-controls="${modalId} ?: 'modal-multiple-sort'"
+        >
+            <button
+                type="button"
+                class="table-action__filter base-btn base-btn--button base-btn--default base-btn--tertiary base-btn--center base-btn--min"
+                th:data-tippy-content="#{multipleSort.button.tippy-content}"
+            >
+                <span aria-hidden="true" class="table-action__icon icon icon--order icon--big"></span>
+                <span class="sr-only" th:text="#{multipleSort.button.tippy-content}">Classer</span>
+            </button>
+        </div>
+    </body>
+</html>

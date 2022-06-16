@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<component name="fr.sword.naiad.nuxeo.ufnxql.core.operation.contrib">
+  <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
+    point="operations">
+
+    <operation
+      class="fr.sword.naiad.nuxeo.ufnxql.core.operation.QueryFNXQLOperation" />
+
+  </extension>
+</component>

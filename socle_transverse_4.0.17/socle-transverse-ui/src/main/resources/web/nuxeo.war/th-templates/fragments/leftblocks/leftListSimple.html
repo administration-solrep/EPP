@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <nav
+            th:fragment="leftListSimple( listItem, title )"
+            role="navigation"
+            th:aria-label="#{acces.rapides(${title})}"
+            class="quick-access"
+        >
+            <ul class="quick-access__list">
+                <li class="quick-access__item" th:each="item: ${listItem}">
+                    <a class="quick-access__link link" th:href="@{__${item.link}__}">
+                        <span
+                            aria-hidden="true"
+                            class="icon icon--arrow-right link__icon link__icon--prepend link__icon--small"
+                        >
+                        </span>
+                        [[${item.label==null || #messages.msgOrNull(item.label) == null ? item.label :
+                        #messages.msg(item.label)}]]
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </body>
+</html>

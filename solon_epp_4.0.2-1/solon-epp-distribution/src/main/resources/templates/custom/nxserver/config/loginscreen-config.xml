@@ -1,0 +1,13 @@
+<component name="fr.dila.epp.distrib.loginscreen">
+
+  <extension point="loginScreen" target="org.nuxeo.ecm.platform.ui.web.auth.service.PluggableAuthenticationService">
+    <loginScreenConfig>
+      <startupPages>
+        <startupPage id="app-ui" priority="100">
+          <path>site/app-ui/</path>
+        </startupPage>
+      </startupPages>
+    </loginScreenConfig>
+  </extension>
+
+</component>

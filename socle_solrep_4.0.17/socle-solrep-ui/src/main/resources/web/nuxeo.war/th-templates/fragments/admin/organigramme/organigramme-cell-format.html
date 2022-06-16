@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="organigramme-cell-format(injection)">
+            <p class="table-line__cell-content" th:text="${injection.libelleLong}"></p>
+            <p class="table-line__cell-content" th:text="${injection.formule}"></p>
+            <p class="table-line__cell-content">
+                <span th:text="${injection.civilite} "></span>
+                <span th:text="${injection.prenomNom}"></span>
+            </p>
+            <p class="table-line__cell-content" th:text="${#dates.format(injection.dateDeDebut, 'dd/MMM/yyyy')}"></p>
+        </th:block>
+    </body>
+</html>

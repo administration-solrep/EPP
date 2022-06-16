@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://dila.fr/solon/schemas/jeton_doc"
+    xmlns:jtd="http://dila.fr/solon/schemas/jeton_doc"
+>
+
+	<xs:include schemaLocation="base.xsd" />
+	
+	<!-- UUID du document associé -->
+	<xs:element name="id_doc" type="xs:string" />
+
+	<!-- UUID du jeton maitre -->
+	<xs:element name="id_jeton" type="xs:long" />
+
+	<!-- Type de webservice pour lequel ce jeton est dédié -->
+	<xs:element name="type_webservice" type="xs:string" />
+
+	<!-- Identifiant du proprietaire pour lequel ce jeton est dédié (ID d'un 
+		noeud de l'organigramme) -->
+	<xs:element name="id_owner" type="xs:string" />
+
+	<!-- Date de création de la notification -->
+	<xs:element name="created" type="xs:date" />
+	
+	<!-- Type de modification pour lequel ce jeton est dédié -->
+	<xs:element name="type_modification" type="xs:string" />
+	
+	<!-- Ids complementaires liés au jeton. Permet par exemple de renseigner des ids de fichiers pour la transmission de pièces complémentaires-->
+	<xs:element name="ids_complementaires" type="jtd:stringList" />
+</xs:schema>

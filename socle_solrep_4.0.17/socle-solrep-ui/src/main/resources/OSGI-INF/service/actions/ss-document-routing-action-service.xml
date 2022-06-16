@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.services.actions.component.SSDocumentRoutingActionComponent">
+    <require>fr.dila.ss.ui.services.actions.impl.RelatedRouteActionServiceImpl</require>
+    
+    <implementation class="fr.dila.ss.ui.services.actions.component.SSDocumentRoutingActionComponent" />
+
+    <service>
+        <provide interface="fr.dila.ss.ui.services.actions.SSDocumentRoutingActionService" />
+    </service>
+
+</component>

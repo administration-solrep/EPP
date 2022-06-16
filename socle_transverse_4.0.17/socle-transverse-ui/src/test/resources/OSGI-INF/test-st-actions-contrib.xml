@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component name="fr.dila.st.ui.test.actions">
+
+   <extension point="actions" target="org.nuxeo.ecm.platform.actions.ActionService">
+  
+    <!-- MAIN MENU -->
+    <action id="main_admin" label="menu.admin.title" order="90" link="/admin" type="link">
+      <category>MAIN_MENU</category>
+    </action>
+   
+   
+    <!-- LIST WITH filter -->
+    <action id="main_admin_filter" label="menu.admin.title" order="90" link="/adminFiltered" type="link">
+      <category>FILTERED_ACTIONS</category>
+      <filter-id>actionIsGranted</filter-id>
+    </action>
+   
+      
+  </extension>
+  
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService" point="filters">
+        <filter id="actionIsGranted">
+           <rule grant="true">
+               <condition>#{monAction.isGranted}</condition>
+           </rule>
+       </filter>
+  </extension>
+  
+</component>

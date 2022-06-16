@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.solonepp.core.ufnxql.contrib">
+
+  <extension target="fr.sword.naiad.nuxeo.ufnxql.core.service.fnxqlconfigservice.contrib" point="schemaTypes">
+
+    <!-- Dossier -->
+    <typeSchema type="Dossier" schema="dossier" />
+   
+    <typeSchema type="Evenement" schema="evenement" />
+
+    <typeSchema type="Version" schema="version" />
+
+    <typeSchema type="Message" schema="case_link" />
+
+    <!-- schema Mailbox -->
+    <typeSchema type="Mailbox" schema="mailbox" />
+
+    <!-- Identite -->
+    <typeSchema type="Identite" schema="identite" />
+
+    <!-- Mandat -->
+    <typeSchema type="Mandat" schema="mandat" />
+
+    <!-- Organisme -->
+    <typeSchema type="Organisme" schema="organisme" />
+
+  </extension>
+
+</component>

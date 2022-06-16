@@ -1,0 +1,339 @@
+{
+	"lstWidgets": [
+		{
+			"label": "Identifiant communication",
+			"typeChamp": "text",
+			"name": "idCommunication",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "TESTaudion_00000"
+				}
+			]
+		},
+		{
+			"label": "Identifiant dossier",
+			"typeChamp": "text",
+			"name": "idDossier",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "TESTaudion"
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.emetteur",
+			"typeChamp": "multiple-input-text",
+			"name" : "emetteur",
+			"parametres": [
+				{
+					"name": "values",
+					"value": [
+						"Gouvernement"
+					]
+				},
+				{
+					"name": "autocomplete",
+					"value": "true"
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.destinataire",
+			"typeChamp": "multiple-input-text",
+			"name" : "destinataire",
+			"parametres": [
+				{
+					"name": "values",
+					"value": [
+						"Assemblée nationale"
+					]
+				},
+				{
+					"name": "autocomplete",
+					"value": "true"
+				}
+			]
+		},
+		{
+			"label": "Horodatage",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "24/09/2020 12:05:02"
+				}
+			]
+		},
+		{
+			"label": "Organisme",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "Autorité de contrôle prudentiel et de résolution (ACPR)"
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.baseLegale",
+			"typeChamp": "input-text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "la valeur de base légale"
+				}
+			],
+			"name": "baseLegale",
+			"required": true
+		},
+		{
+			"label": "label.epp.metadonnee.auteur",
+			"typeChamp": "input-text",
+			"parametres": [
+				{
+					"name": "values",
+					"value": [
+						"M. Broussard"
+					]
+				},
+				{
+					"name": "autocomplete",
+					"value": "true"
+				},
+				{
+					"name": "labelInclure",
+					"value": "Inclure les mandats inactifs"
+				}
+			],
+			"name": "auteur",
+			"required": true
+		},
+		{
+			"label": "label.epp.metadonnee.coauteur",
+			"typeChamp": "multiple-input-text",
+			"parametres": [
+				{
+					"name": "autocomplete",
+					"value": "true"
+				},
+				{
+					"name": "labelInclure",
+					"value": "Inclure les mandats inactifs"
+				},
+				{
+					"name": "values",
+					"value": []
+				}
+			],
+			"name": "coAuteur"
+		},
+		{
+			"label": "Fonction",
+			"name": "fonction",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "Responsable"
+				}
+			]
+		},
+		{
+			"label": "Commentaire",
+			"typeChamp": "textarea",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": ""
+				}
+			],
+			"name": "commentaire"
+		},
+		{
+			"label": "Date de promulgation",
+			"typeChamp": "date",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": ""
+				}
+			],
+			"name": "datePromulgation"
+		},
+		{
+			"label": "Rectification",
+			"typeChamp": "radio",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": false
+				}
+			],
+			"name": "rectification"
+		},
+		{
+			"label": "Niveau de lecture",
+			"typeChamp": "niveau-lecture",
+			"parametres": [
+				{
+					"name": "niveauLectureNumero",
+					"value": ""
+				},
+				{
+					"name": "lstNiveauLecture",
+					"value": [
+						{
+							"id": "AN",
+							"label": "Assemblée nationale"
+						},
+						{
+							"id": "SENAT",
+							"label": "Sénat"
+						},
+						{
+							"id": "CMP",
+							"label": "Commission mixte paritaire"
+						},
+						{
+							"id": "NOUVELLE_LECTURE_AN",
+							"label": "Nouvelle lecture AN"
+						},
+						{
+							"id": "NOUVELLE_LECTURE_SENAT",
+							"label": "Nouvelle lecture sénat"
+						},
+						{
+							"id": "LECTURE_DEFINITIVE",
+							"label": "Lecture définitive"
+						},
+						{
+							"id": "CposteFormONGRES",
+							"label": "Congrès"
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Type loi",
+			"typeChamp": "select",
+			"parametres": [
+				{
+					"name": "lstValues",
+					"value": [
+						{
+							"id": "LOI",
+							"label": "Loi"
+						},
+						{
+							"id": "ART_53_CONST",
+							"label": "Loi autorisant la ratification ou l'approbation de traités ou accords internationaux"
+						},
+						{
+							"id": "LOI_CADRE",
+							"label": "Loi cadre"
+						},
+						{
+							"id": "LOI_CONSTITUTIONNELLE",
+							"label": "Loi constitutionnelle"
+						}
+					]
+				}
+			],
+			"name": "typeLoi"
+		},
+		{
+			"label": "Exposé des motifs",
+			"typeChamp": "piece-jointe",
+			"parametres": [
+				{
+					"name": "titre",
+					"value": "Exposé des motifs"
+				},
+				{
+					"name": "url",
+					"value": ""
+				}
+			],
+			"name": "exposeMotifs",
+			"pjMultiValue": false
+		},
+		{
+			"label": "Exposé deux",
+			"typeChamp": "piece-jointe",
+			"parametres": [
+				{
+					"name": "titre",
+					"value": "Exposé deux"
+				},
+				{
+					"name": "url",
+					"value": "www.url.com"
+				}
+			],
+			"name": "exposeDeux",
+			"lstPieces": [
+				{
+					"pieceJointeId": "idPieceDeux",
+					"pieceJointeTitre": "titrePeceDeux",
+					"pieceJointeUrl": "wwwmonurl.com",
+					"listPieceJointeFichier": [
+						{
+							"id": "XFILE001",
+							"nom": "monfichierExistant",
+							"extension": "pdf",
+							"link": "www.google.com/monfichierExistant.pdf"
+						}
+					]
+				}
+			],
+			"pjMultiValue": false
+		},
+		{
+			"label": "Autres",
+			"typeChamp": "piece-jointe",
+			"parametres": [
+				{
+					"name": "titre",
+					"value": "Autres"
+				},
+				{
+					"name": "url",
+					"value": ""
+				}
+			],
+			"name": "autres",
+			"pjMultiValue": true
+		},
+		{
+			"label": "label.epp.metadonnee.libelleAnnexe",
+			"typeChamp": "multiple-input-text",
+			"parametres": [
+				{
+					"name": "lstValeurs",
+					"value": [
+						"Liste des annexes PLFSS 2020"
+					]
+				}
+			],
+			"name": "libelleAnnexe[]",
+			"required": true
+		},
+		{
+			"label": "label.epp.metadonnee.dateList",
+			"typeChamp": "multiple-date",
+			"parametres": [
+				{
+					"name": "lstValeurs",
+					"value": [
+						"10/12/2020"
+					]
+				}
+			],
+			"name": "date[]",
+			"required": true
+		}
+	]
+}

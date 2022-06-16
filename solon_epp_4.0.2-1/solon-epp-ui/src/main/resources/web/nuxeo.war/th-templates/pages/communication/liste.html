@@ -1,0 +1,16 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout :: layout (template=~{::main},templateClass='', description='page liste des communications',title=${titre})}"
+>
+    <main role="main" id="main_content" class="page-layout__content notif-corbeille">
+        <h1 class="m-b-10 base-title base-title--lvl-1" th:text="${titre}">Titre</h1>
+
+        <th:block th:unless="${#lists.isEmpty(resultList.liste)}">
+            <div th:replace="fragments/components/rapid-search :: rapidSearch"></div>
+        </th:block>
+        <div th:replace="fragments/table/tableCommunications :: searchResults(${corbeille})"></div>
+    </main>
+</html>

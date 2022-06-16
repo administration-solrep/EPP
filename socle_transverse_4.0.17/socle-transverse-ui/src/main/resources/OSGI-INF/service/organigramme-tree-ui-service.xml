@@ -1,0 +1,10 @@
+<component name="fr.dila.st.ui.OrganigrammeTreeUIService">
+
+  <implementation class="fr.dila.st.ui.services.component.OrganigrammeTreeUIComponent" />
+  
+  <service>
+    <provide interface="fr.dila.st.ui.services.OrganigrammeTreeUIService" />
+  </service>
+  
+
+</component>

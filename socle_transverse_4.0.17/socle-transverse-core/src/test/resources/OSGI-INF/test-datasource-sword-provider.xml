@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.core.test.datasourceContrib.swordprovider">
+
+  <extension target="org.nuxeo.runtime.datasource" point="datasources">
+  
+    <datasource name="jdbc/sword-provider" driverClassName="${nuxeo.test.vcs.driver}" maxPoolSize="20" minPoolSize="5">
+      <property name="url">${nuxeo.test.vcs.url}</property>
+      <property name="username">${nuxeo.test.vcs.user}</property>
+      <property name="password">${nuxeo.test.vcs.password}</property>
+    </datasource>
+    
+   <datasource name="jdbc/bruteforce-infos" driverClassName="${nuxeo.test.vcs.driver}" maxPoolSize="20" minPoolSize="5">
+      <property name="url">${nuxeo.test.vcs.url}</property>
+      <property name="username">${nuxeo.test.vcs.user}</property>
+      <property name="password">${nuxeo.test.vcs.password}</property>
+    </datasource>
+    
+  </extension>
+
+</component>

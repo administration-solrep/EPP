@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="ficheUtilisateur" aria-label="fiche-utilisateur">
+            <div th:replace="fragments/components/edit-buttons :: edit-buttons('boutons-utilisateur')"></div>
+            <h1 class="m-t-6 m-b-6 p-b-3 base-title base-title--lvl-1 base-title--is-underlined">
+                [[${ficheUser.nom}]] [[${ficheUser.prenom}]] ([[${ficheUser.utilisateur}]])
+            </h1>
+
+            <div class="table-wrapper">
+                <table class="folder-detail__table" role="presentation">
+                    <tbody>
+                        <tr class="folder-detail__table-line">
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.identifier}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                                [[${ficheUser.utilisateur}]]
+                            </td>
+                        </tr>
+                        <tr class="folder-detail__table-line">
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.civility}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                                [[${ficheUser.civilite}]]
+                            </td>
+                        </tr>
+                        <tr class="folder-detail__table-line">
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.surname}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                                [[${ficheUser.prenom}]]
+                            </td>
+                        </tr>
+                        <tr class="folder-detail__table-line">
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.name}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                                [[${ficheUser.nom}]]
+                            </td>
+                        </tr>
+                        <tr class="folder-detail__table-line">
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.function}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                                [[${ficheUser.fonction}]]
+                            </td>
+                        </tr>
+                        <tr class="folder-detail__table-line">
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.temporaryUser}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                                [[${ficheUser.temporaire}]]
+                            </td>
+                        </tr>
+                        <tr class="folder-detail__table-line">
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.beginDate}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                                [[${ficheUser.dateDebut}]]
+                            </td>
+                        </tr>
+                        <tr class="folder-detail__table-line">
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.endDate}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                                [[${ficheUser.dateFin}]]
+                            </td>
+                        </tr>
+                        <tr class="folder-detail__table-line">
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.adress}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                                [[${ficheUser.adresse}]]
+                            </td>
+                        </tr>
+                        <tr class="folder-detail__table-line">
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.postalCode}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                                [[${ficheUser.codePostal}]]
+                            </td>
+                        </tr>
+                        <tr class="folder-detail__table-line">
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.city}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                                [[${ficheUser.ville}]]
+                            </td>
+                        </tr>
+                        <tr class="folder-detail__table-line">
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.phone}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                                [[${ficheUser.telephone}]]
+                            </td>
+                        </tr>
+                        <tr class="folder-detail__table-line">
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.mail}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                                [[${ficheUser.mel}]]
+                            </td>
+                        </tr>
+
+                        <tr
+                            class="folder-detail__table-line"
+                            th:if="${ficheUser.profils==null || #lists.isEmpty(ficheUser.profils)}"
+                        >
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.profiles}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value"></td>
+                        </tr>
+                        <tr
+                            class="folder-detail__table-line"
+                            th:if="${ficheUser.profils!=null && !#lists.isEmpty(ficheUser.profils)}"
+                            th:each="profil,iterStat: ${ficheUser.profils}"
+                        >
+                            <td
+                                class="folder-detail__table-cell folder-detail__table-cell--label"
+                                th:text="${iterStat.count==1}? #{admin.user.label.profiles}"
+                            >
+                                Profil
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">[[${profil}]]</td>
+                        </tr>
+
+                        <tr
+                            class="folder-detail__table-line"
+                            th:if="${ficheUser.postes==null || #lists.isEmpty(ficheUser.postes)}"
+                        >
+                            <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                                [[#{admin.user.label.roles}]]
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value"></td>
+                        </tr>
+                        <tr
+                            class="folder-detail__table-line"
+                            th:if="${ficheUser.postes!=null && !#lists.isEmpty(ficheUser.postes)}"
+                            th:each="poste,iterStat: ${ficheUser.postes}"
+                        >
+                            <td
+                                class="folder-detail__table-cell folder-detail__table-cell--label"
+                                th:text="${iterStat.count==1}? #{admin.user.label.roles}"
+                            >
+                                Role
+                            </td>
+                            <td class="folder-detail__table-cell folder-detail__table-cell--value">[[${poste}]]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:replace="fragments/components/edit-buttons :: edit-buttons('boutons-utilisateur')"></div>
+        </div>
+    </body>
+</html>

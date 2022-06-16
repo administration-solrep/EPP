@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="ellipser (text, myID)">
+            <th:block th:if="${text!=null && #strings.length(text) > 95}">
+                <div class="ellipsed-content">
+                    <div th:id="${myID}+'-ellipsed-content-content'" class="ellipsed-content__content">
+                        <div class="ellipsed-content__toggle">
+                            <button
+                                type="button"
+                                class="ellipsed-content__content-button base-btn base-btn--button base-btn--default base-btn--discret"
+                                aria-expanded="true"
+                                th:aria-controls="${myID}+'-ellipsed-content-full-content'"
+                            >
+                                <span class="link" th:text="#{label.see.more}">Voir plus</span>
+                                <span
+                                    aria-hidden="true"
+                                    class="ellipsed-content__toggle-icon icon icon--arrow-bottom"
+                                ></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div
+                        th:id="${myID}+'-ellipsed-content-full-content'"
+                        hidden="hidden"
+                        class="ellipsed-content__full-content"
+                    >
+                        <p th:utext="${text}">Texte</p>
+                        <div class="ellipsed-content__toggle ellipsed-content__toggle--no-stuck">
+                            <button
+                                type="button"
+                                class="ellipsed-content__full-content-button base-btn base-btn--button base-btn--default base-btn--discret"
+                                th:aria-controls="${myID}+'-ellipsed-content-content'"
+                                aria-expanded="false"
+                            >
+                                <span class="link" th:text="#{label.see.less}">Voir moins</span>
+                                <span
+                                    aria-hidden="true"
+                                    class="ellipsed-content__toggle-icon icon icon--arrow-top"
+                                ></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+            <th:block th:if="${text!=null && #strings.length(text) <= 95}" th:utext="${text}"> </th:block>
+        </th:block>
+    </body>
+</html>

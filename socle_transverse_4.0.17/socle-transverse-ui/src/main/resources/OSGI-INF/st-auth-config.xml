@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.ui.openurl-contrib">
+
+  <extension target="org.nuxeo.ecm.platform.ui.web.auth.service.PluggableAuthenticationService" point="openUrl">
+
+    <openUrl name="generalStatut">
+      <grantPattern>${org.nuxeo.ecm.contextPath}/site/statut</grantPattern>
+    </openUrl>
+    <openUrl name="fullStatut">
+      <grantPattern>${org.nuxeo.ecm.contextPath}/site/statut/full</grantPattern>
+    </openUrl>
+
+  </extension>
+
+</component>

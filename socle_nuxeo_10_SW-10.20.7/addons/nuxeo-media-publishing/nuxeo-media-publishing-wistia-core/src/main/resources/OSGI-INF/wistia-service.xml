@@ -1,0 +1,13 @@
+<component name="org.nuxeo.ecm.media.publishing.wistia.WistiaService">
+
+  <documentation>
+    Wistia Service
+  </documentation>
+
+  <implementation class="org.nuxeo.ecm.media.publishing.wistia.WistiaService" />
+
+  <service>
+    <provide interface="org.nuxeo.ecm.media.publishing.wistia.WistiaService" />
+  </service>
+
+</component>

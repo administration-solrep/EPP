@@ -1,0 +1,14 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:nxl="http://nuxeo.org/nxforms/layout">
+
+  <div>
+    <a4j:region id="documentViewRegion">
+      <a4j:outputPanel id="documentViewPanel" layout="block">
+        <nxl:layout name="publish_layout" mode="view" value="#{currentDocument}" />
+      </a4j:outputPanel>
+    </a4j:region>
+  </div>
+</ui:composition>

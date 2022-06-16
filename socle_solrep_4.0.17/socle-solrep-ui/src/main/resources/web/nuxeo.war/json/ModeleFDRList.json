@@ -1,0 +1,34 @@
+{
+  "liste": [
+    {
+      "id": "eeff112-0010210",
+      "etat": "BROUILLON",
+      "intitule": "Europe et affaires étrangères (modèle SGG)",
+      "auteur": "Sihem KALEM",
+      "ministere": "Sports",
+      "derniereModif": "08/07/2020",
+      "lock": true
+    },
+    {
+      "id": "ee1166-2010202-ffsrrrq",
+      "etat": "BROUILLON",
+      "intitule": "A - Éducation nationale (DGESCO)",
+      "auteur": "Valérie WOLFARTH",
+      "ministere": "Sports",
+      "derniereModif": "09/07/2020",
+      "lock": true
+    },
+    {
+      "id": "ee1166-2010202-ffsrg3q",
+      "etat": "BROUILLON",
+      "intitule": "A - Éducation nationale (DGESCO)",
+      "auteur": "Valérie WOLFARTH",
+      "ministere": "Sports",
+      "derniereModif": "19/07/2020",
+      "lock": true
+    }
+  ],
+  "nbTotal": 10,
+  "titre": "",
+  "sousTitre": ""
+}

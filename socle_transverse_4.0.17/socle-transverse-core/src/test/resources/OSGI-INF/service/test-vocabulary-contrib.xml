@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.core.vocabulary.tests">
+
+	<!-- directory -->
+	<extension target="org.nuxeo.ecm.directory.sql.SQLDirectoryFactory" point="directories">
+
+		<directory name="TA_rubrique_test">
+			<dbDriver>org.hsqldb.jdbcDriver</dbDriver>
+			<dbUrl>jdbc:hsqldb:mem:memid</dbUrl>
+			<dbUser>sa</dbUser>
+			<dbPassword />
+
+			<schema>xvocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<parentDirectory>table_AN_rubrique_test</parentDirectory>
+			<table>table_TA_rubrique_test</table>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<dataFile>vocabulaire/TA_rubrique_test.csv</dataFile>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+		</directory>
+	</extension>
+
+</component>

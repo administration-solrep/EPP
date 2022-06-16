@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="textarea(widget)">
+            <div class="labellised-list__label" th:for="|form_textarea-${widget.name}|">
+                <th:block th:text="#{${widget.label}}">label</th:block>
+                <span th:if="${widget.required}" class="form-label__required-text" th:text="#{form.input.required}"
+                    >requis</span
+                >
+            </div>
+
+            <div
+                class="form-input labellised-list__description"
+                th:classappend="${widget.modifiedInCurVersion ? 'labellised-list__description--warning' : ''}"
+            >
+                <div class="form-input__container">
+                    <textarea
+                        th:name="${widget.name}"
+                        th:id="|form_textarea-${widget.name}|"
+                        cols="30"
+                        rows="3"
+                        aria-describedby="form_textarea_description "
+                        class="form-input__field"
+                        th:value="${widget.getValueParamByName('valeur')}"
+                        th:text="${widget.getValueParamByName('valeur')}"
+                    >
+parameter value</textarea
+                    >
+                </div>
+                <div id="form_textarea_description" class="form-input__footer"></div>
+            </div>
+        </th:block>
+    </body>
+</html>

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component name="fr.dila.st.ui.actions">
+
+	<extension point="actions" target="org.nuxeo.ecm.platform.actions.ActionService">
+
+		<!-- MAIN MENU -->
+		<action id="MAIN_ADMIN" label="menu.admin.title" order="90" link="/admin#sidebar" type="link">
+			<category>MAIN_MENU</category>
+			<filter-id>accessMenuAdmin</filter-id>
+		</action>
+
+		<action
+            id="MAIN_RECHERCHE"
+            label="menu.recherche.title"
+            order="12"
+            type="link"
+            link="/recherche/rechercher#main_content"
+        >
+            <category>MAIN_MENU</category>
+        </action>
+
+		<!-- ADMIN MENU -->
+		<action id="ADMIN_USER" label="menu.admin.user.title" order="10" type="menuSection">
+			<category>ADMIN_MENU</category>
+			<filter-id>accessAdminUser</filter-id>
+			<properties>
+				<property name="submenu">ADMIN_MENU_USER</property>
+			</properties>
+		</action>
+		<action id="ADMIN_BATCH" label="menu.admin.batch.title" order="60" type="menuSection">
+			<category>ADMIN_MENU</category>
+			<filter-id>accessAdminBatch</filter-id>
+			<properties>
+				<property name="submenu">ADMIN_MENU_BATCH</property>
+			</properties>
+		</action>
+
+		<!-- ADMIN MENU : USERS -->
+		<action
+            id="ADMIN_USER_RECHERCHE"
+            label="menu.admin.user.recherche.title"
+            order="10"
+            link="/admin/user/rechercher#main_content"
+            type="link"
+        >
+			<category>ADMIN_MENU_USER</category>
+			<filter-id>accessAdminUserRecherche</filter-id>
+		</action>
+		
+		<action
+            id="ADMIN_USER_ORGANIGRAMME"
+            label="menu.admin.user.organigramme.title"
+            order="20"
+            link="/admin/organigramme/consult#main_content"
+            type="link"
+        >
+			<category>ADMIN_MENU_USER</category>
+			<filter-id>accessAdminUserOrganigramme</filter-id>
+		</action>
+		<action
+            id="ADMIN_USER_UTILISATEURS"
+            label="menu.admin.user.users.title"
+            order="30"
+            link="/admin/users/liste#main_content"
+            type="link"
+        >
+			<category>ADMIN_MENU_USER</category>
+			<filter-id>accessAdminUserUsers</filter-id>
+		</action>
+		<action
+            id="ADMIN_USER_ACCES"
+            label="menu.admin.user.acces.title"
+            order="70"
+            link="/admin/user/acces#main_content"
+            type="link"
+        >
+			<category>ADMIN_MENU_USER</category>
+			<filter-id>isAdminFonctionnel</filter-id>
+		</action>
+
+		<!-- ADMIN MENU : BATCH -->
+		<action
+            id="ADMIN_BATCH_SUIVI"
+            label="menu.admin.batch.suivi.title"
+            order="10"
+            link="/admin/batch/suivi#main_content"
+            type="link"
+        >
+			<category>ADMIN_MENU_BATCH</category>
+			<filter-id>accessAdminBatch</filter-id>
+		</action>
+		<action
+            id="ADMIN_BATCH_PLANIF"
+            label="menu.admin.batch.planif.title"
+            order="20"
+            link="/admin/batch/planif#main_content"
+            type="link"
+        >
+			<category>ADMIN_MENU_BATCH</category>
+			<filter-id>accessAdminBatch</filter-id>
+		</action>
+		<action
+            id="ADMIN_BATCH_NOTIF"
+            label="menu.admin.batch.notif.title"
+            order="30"
+            link="/admin/batch/notif#main_content"
+            type="link"
+        >
+			<category>ADMIN_MENU_BATCH</category>
+			<filter-id>accessAdminBatch</filter-id>
+		</action>
+		
+		<action
+            id="ADMIN_BATCH_SAVE_NOTIFICATION"
+            label="button.label.save"
+            order="40"
+            link="javascript:updateFormSubmit('batchNotif_form', '/ajax/admin/batch/notif/modifier', reloadPage)"
+        >
+			<filter-id>accessAdminBatch</filter-id>
+		</action>
+				
+		<!-- ADMIN MENU : RESEARCH USER -->
+        <action
+            id="ADMIN_RESEARCH_DELETE_USER"
+            label="recherche.userSearch.button.supprimer"
+            icon="icon--bin"
+            order="10"
+        >
+        	<category>USER_ACTION_LIST_LEFT</category>
+			<filter-id>deleteUsers</filter-id>
+			<properties>
+                <property name="actionType">modal</property>
+                <property name="dataControls">validation-dialog-modal</property>
+                <property name="title">recherche.userSearch.delete.title</property>
+                <property name="message">recherche.userSearch.delete.message</property>
+                <property name="function">doSearchDeleteUser()</property>
+                <property name="specificClass">action-table-selection</property>
+                <property name="btnConfirmLabel">button.label.supprimer</property>
+            </properties>
+        </action>
+        
+        <action id="ADMIN_RESEARCH_SEND_MAIL" label="recherche.userSearch.button.email">
+			<filter-id>accessAdminUserRecherche</filter-id>
+			<category>USER_ACTION_LIST_RIGHT</category>
+            <properties>
+                <property name="actionType">modal</property>
+                <property name="dataControls">modal-send-mail</property>
+                <property name="specificClass">action-table-selection</property>
+                <property name="dataInitJs">loadMailContentUserSearch</property>
+            </properties>
+        </action>
+
+
+        <!-- ADMIN MENU : NEW USER -->
+        <action
+            id="ADMIN_USER_NEW_USER"
+            label="users.button.addUser"
+            link="|/admin/user/newUser#main_content|"
+            type="link"
+            order="0"
+        >
+            <category>ADMIN_MENU_NEW_USER</category>
+            <filter-id>createUser</filter-id>
+        </action>
+    
+		<!-- ADMIN MENU : USER_EDIT -->
+		<action
+            id="ADMIN_USER_EDIT_MODIFY"
+            label="admin.user.button.modifier"
+            link="|/admin/user/${ficheUser.utilisateur}/edit#main_content|"
+            type="link"
+            order="0"
+        >
+			<properties>
+				<property name="classes">base-btn--padded-lr
+				</property>
+			</properties>
+			<category>ADMIN_MENU_USER_EDIT</category>
+			<filter-id>editUser</filter-id>
+		</action>
+		<action
+            id="ADMIN_USER_EDIT_PASSWORD_CHANGE"
+            label="admin.user.button.changermdp"
+            link="|/admin/user/${ficheUser.utilisateur}/passwordChange#main_content|"
+            order="5"
+        >
+			<properties>
+				<property name="classes">base-btn--secondary base-btn--padded-lr
+				</property>
+			</properties>
+			<category>ADMIN_MENU_USER_EDIT</category>
+			<filter-id>editUser</filter-id>
+		</action>
+		<action
+            id="ADMIN_USER_EDIT_DELETE"
+            label="admin.user.button.supprimer"
+            link="javascript:alert('Supprimer l'utilisateur')"
+            order="10"
+        >
+			<properties>
+				<property name="classes">base-btn--secondary base-btn--padded-lr
+				</property>
+				<property name="actionType">modal</property>
+                <property name="dataControls">validation-dialog-modal</property>
+                <property name="title">admin.user.delete</property>
+                <property name="message">admin.user.delete.message</property>
+                <property name="function">doDeleteUser()</property>
+                <property name="parameters">idUser=##{USER_ID}</property>
+                <property name="btnConfirmLabel">button.label.supprimer</property>
+			</properties>
+			<category>ADMIN_MENU_USER_EDIT</category>
+			<filter-id>deleteUser</filter-id>
+		</action>
+        
+		<!-- USER MENU : USER_EDIT -->
+		<action
+            id="USER_EDIT_MODIFY"
+            label="admin.user.button.modifier"
+            link="|/utilisateurs/compte/edit|"
+            type="link"
+            order="0"
+        >
+			<properties>
+                <property name="classes">base-btn--padded-lr
+                </property>
+            </properties>
+			<category>USER_MENU_USER_EDIT</category>
+		</action>
+		<action
+            id="USER_EDIT_PASSWORD_CHANGE"
+            label="admin.user.button.changermdp"
+            link="|/utilisateurs/compte/passwordChange|"
+            order="5"
+        >
+			<properties>
+                <property name="classes">base-btn--secondary base-btn--padded-lr
+                </property>
+            </properties>
+			<category>USER_MENU_USER_EDIT</category>
+			<filter-id>editUser</filter-id>
+		</action>
+
+	</extension>
+
+	<extension target="org.nuxeo.ecm.platform.actions.ActionService" point="filters">
+
+		<!-- *********************************************************************** 
+			Filtres sur les utilisateurs / groupes *********************************************************************** -->
+
+		<filter id="isAdministrator">
+			<rule grant="true">
+				<group>administrators</group>
+			</rule>
+		</filter>
+
+		<filter id="isAdminFonctionnel">
+			<rule grant="true">
+				<group>Administrateur fonctionnel</group>
+			</rule>
+		</filter>
+		
+		<filter id="isAdminFonctionnelOrMinisteriel">
+			<rule grant="true">
+				<group>EspaceAdministrationReader</group>
+			</rule>
+		</filter>
+		
+		<filter id="accessMenuAdmin">
+			<rule grant="true">
+				<group>EspaceAdministrationReader</group>
+			</rule>
+		</filter>
+
+		<filter id="accessAdminUser">
+			<rule grant="true">
+				<group>UtilisateurReader</group>
+				<group>OrganigrammeReader</group>
+				<group>ProfilReader</group>
+			</rule>
+		</filter>
+
+		<filter id="accessAdminBatch">
+			<rule grant="true">
+				<group>BatchSuiviReader</group>
+			</rule>
+		</filter>
+
+		<filter id="accessAdminUserOrganigramme">
+			<rule grant="true">
+				<group>OrganigrammeReader</group>
+			</rule>
+		</filter>
+
+		<filter id="accessAdminUserUsers">
+			<rule grant="true">
+				<group>UtilisateurReader</group>
+			</rule>
+		</filter>
+		
+		<filter id="accessAdminUserUnrestricted">
+			<rule grant="true">
+				<group>AdminAccessUnrestricted</group>
+			</rule>
+		</filter>
+        
+        <filter id="createUser">
+            <rule grant="true">
+                <condition>#{USER_ACTIONS.isCreateUserAllowed}</condition>
+            </rule>
+        </filter>
+		
+		<filter id="editUser">
+			<rule grant="true">
+				<condition>#{USER_ACTIONS.isEditUserAllowed}</condition>
+			</rule>
+		</filter>
+
+		<filter id="deleteUser">
+			<rule grant="true">
+				<condition>#{USER_ACTIONS.isDeleteUserAllowed}</condition>
+			</rule>
+		</filter>
+		<filter id="deleteUsers">
+			<rule grant="true">
+				<group>UtilisateurDeleter</group>
+				<group>UtilisateurMinistereDeleter</group>
+			</rule>
+		</filter>
+
+	</extension>
+
+
+</component>

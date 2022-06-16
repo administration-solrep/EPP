@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://cm.nuxeo.com/schemas/caselink/"
+    xmlns:cmxs="http://case-management.nuxeo.com/schemas/caselink/"
+    xmlns:nxs="http://case-management.nuxeo.com/schemas/base/"
+>
+
+  
+  <xs:element name="isActionable" type="xs:boolean" default="false" />
+  <xs:element name="dateFieldDebutValidation" type="xs:date" />
+  <xs:element name="comment" type="xs:string" />
+  <xs:element name="date" type="xs:date" />
+  <xs:element name="caseDocumentId" type="xs:string" />
+  
+  <xs:element name="isRead" type="xs:boolean" default="false" />
+  
+  <xs:element name="sender" type="xs:string" />
+  
+  
+  <xs:element name="senderMailboxId" type="xs:string" />
+
+</xs:schema>

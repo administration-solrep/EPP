@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="modal-communication-verrou"
+            id="modal-communication-verrou"
+            class="interstitial-overlay__content"
+        >
+            <div
+                class="interstitial"
+                role="dialog"
+                aria-labelledby="dialogTitle-verrouCommunication"
+                style="position: relative;"
+            >
+                <div class="interstitial__header">
+                    <h1
+                        id="dialogTitle-verrouCommunication"
+                        class="interstitial__title"
+                        th:text="#{evenement.modale.verrou.communication}"
+                    ></h1>
+                    <button
+                        type="button"
+                        class="interstitial__close base-btn base-btn--button base-btn--default base-btn--discret"
+                    >
+                        <span aria-hidden="true" class="icon icon--cross"></span
+                        ><span class="sr-only" th:text="#{modal.close}"></span>
+                    </button>
+                </div>
+                <div class="interstitial__content"></div>
+                <input type="hidden" id="communication-verrou-url" data-url-success="" data-is-function="" data-skip-relock="" />
+
+                <div class="interstitial__footer">
+                    <button
+                        type="button"
+                        class="interstitial__button base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                        th:text="#{button.label.cancel}"
+                    ></button>
+                    <button
+                        type="button"
+                        onclick="doForceUnlockCommunication()"
+                        id="btn-confirm-deletion-doc"
+                        class="base-btn base-btn--button base-btn--default base-btn--center"
+                        th:text="#{evenement.modale.verrou.communication.valider}"
+                    ></button>
+                </div>
+            </div>
+            <div tabindex="-1" class="interstitial-overlay__tabindex"></div>
+        </div>
+    </body>
+</html>

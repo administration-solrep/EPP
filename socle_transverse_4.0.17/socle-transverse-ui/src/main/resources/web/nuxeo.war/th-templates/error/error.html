@@ -1,0 +1,36 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{${layoutFile} :: layout (template=~{::main},templateClass='', description='page erreur', title=${#messages.msgOrNull('error.'+httpCode+'.title') != null ? #messages.msg('error.'+httpCode+'.title'):#messages.msg('error.title')} )}"
+>
+    <main id="main_content" class="page-layout__content">
+        <div class="page-error">
+            <h1 class="base-title base-title--lvl-1 m-b-4" th:text="#{error.occured}">Une erreur s'est produite</h1>
+            <span class="base-title base-title--lvl-2 base-title--important" th:text="${httpCode}">403</span>
+            <span
+                class="base-title base-title--lvl-1 base-title--important"
+                th:text="| - ${#messages.msgOrNull('error.'+httpCode+'.shortmessage') != null ? #messages.msg('error.'+httpCode+'.shortmessage'):#messages.msg('error.shortmessage')}|"
+                >Accès non autorisé</span
+            >
+            <br /><br />
+            <p>
+                <span
+                    th:text="${#messages.msgOrNull('error.'+httpCode+'.longmessage') != null ? #messages.msg('error.'+httpCode+'.longmessage'):#messages.msg('error.longmessage')}"
+                    >403</span
+                >
+                <br />Nous nous excusons pour la gêne occasionnée. <br />Vous pouvez :
+            </p>
+            <ul class="base-list base-list--unordered">
+                <li class="list-item list-item--unordered">
+                    <a href="javascript:history.go(-1)" th:text="#{error.goback}">Revenir à la page précédente</a>
+                </li>
+                <li class="list-item list-item--unordered"><a th:href="@{/logout}">Changer d'utilisateur</a></li>
+            </ul>
+            <a th:href="@{/home}" class="base-btn base-btn--button base-btn--default base-btn--center base-btn--full"
+                >Revenir à l'accueil</a
+            >
+        </div>
+    </main>
+</html>

@@ -1,0 +1,7 @@
+<component name="fr.dila.st.ui.services.CSRFService">
+    <implementation class="fr.dila.st.ui.services.component.CSRFComponent" />
+
+    <service>
+        <provide interface="fr.dila.st.ui.services.CSRFService" />
+    </service>
+</component>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<component name="org.nuxeo.business.days.management.test">
+
+  <extension target="org.nuxeo.business.days.management.BusinessDaysService"
+    point="duration">
+
+    <duration>
+      <label>courriel</label>
+      <numberOfDays>5</numberOfDays>
+    </duration>
+
+  </extension>
+
+  <extension target="org.nuxeo.business.days.management.checker.csv"
+    point="configuration">
+
+    <csvFile>
+      <path>holidays.csv</path>
+      <embedded>true</embedded>
+    </csvFile>
+
+  </extension>
+
+</component>

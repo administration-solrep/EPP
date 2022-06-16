@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <button
+            th:fragment="sortableHeader(label, formField, dataField, id, isInverse)"
+            type="button"
+            class="table-header__cell-button base-btn base-btn--button base-btn--default base-btn--light-inverted"
+            onclick="simpleSortColumn(this)"
+            th:id="${id}"
+            th:data-value="${formField}"
+            th:data-field="${dataField}"
+            th:data-inverse="${isInverse}"
+            th:data-order="${order}"
+            th:data-label="${label}"
+            th:data-sort-asc-label="#{sort.label.ascendant.applied}"
+            th:data-sort-desc-label="#{sort.label.descendant.applied}"
+            th:data-sort-null-label="#{sort.label.none.applied}"
+            th:with="typeTri=${formField == 'asc' ? 'ascendant' : (formField == 'desc' ? 'descendant' : 'none')}"
+        >
+            [[${label}]]
+            <div th:if="${formField == 'asc'}" th:data-tippy-content="#{sort.label.ascendant.applied}">
+                <span aria-hidden="true" class="table-header__cell-icon icon icon--top"></span>
+                <span class="sr-only">[[#{sort.label.ascendant.applied}]]</span>
+            </div>
+            <div th:if="${formField =='desc'}" th:data-tippy-content="#{sort.label.descendant.applied}">
+                <span aria-hidden="true" class="table-header__cell-icon icon icon--down"></span>
+                <span class="sr-only">[[#{sort.label.descendant.applied}]]</span>
+            </div>
+            <div
+                th:unless="${formField == 'desc' || formField == 'asc'}"
+                th:data-tippy-content="#{sort.label.none.applied}"
+            >
+                <span aria-hidden="true" class="table-header__cell-icon icon icon--minus"></span>
+                <span class="sr-only">[[#{sort.label.none.applied}]]</span>
+            </div>
+            <span th:unless="${order == null}" class="sr-only">[[#{sort.label.order}]]</span>
+            <span
+                th:if="${order != null && not #strings.isEmpty(formField)}"
+                th:text="${order}"
+                class="table-header__cell-icon-suffix"
+                >1</span
+            >
+        </button>
+    </body>
+</html>

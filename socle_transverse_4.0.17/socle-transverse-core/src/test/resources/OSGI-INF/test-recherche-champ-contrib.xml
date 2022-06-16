@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.core.test.rechercheChampContrib">
+
+    <extension target="fr.dila.st.core.requete.recherchechamp.RechercheChampService" point="champs">
+
+        <champ
+            name="date_caducite"
+            label="label.requeteur.question_condition_date_caducite"
+            typeChamp="dates"
+            field="q.qu:dateCaduciteQuestion"
+        />
+
+        <champ
+            name="auteur"
+            label="label.requeteur.question_condition_auteur"
+            typeChamp="text"
+            field="q.qu:nomCompletAuteur"
+        >
+            <parametres>
+                <parametre name="autocomplete" value="auteur" />
+            </parametres>
+        </champ>
+
+        <champ
+            name="etat_etape"
+            label="label.requeteur.fdr_condition_etat_etape"
+            typeChamp="multiple_select"
+            field="q.qu:dateCaduciteQuestion"
+            champParameter="fr.dila.st.core.recherche.champ.parameter.ChampParameterTestImpl"
+        />
+
+    </extension>
+
+</component>

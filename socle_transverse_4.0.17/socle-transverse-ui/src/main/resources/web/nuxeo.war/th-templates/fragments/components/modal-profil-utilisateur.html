@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="modal-user-profile" id="modal-user-profile" class="interstitial-overlay__content">
+            <div
+                id="modal-user-profile-dialog"
+                role="dialog"
+                aria-labelledby="dialogTitle-modal-user-profile"
+                class="interstitial interstitial--large"
+            >
+                <div class="interstitial__header">
+                    <h1 id="dialogTitle-modal-user-profile" class="interstitial__title">
+                        [[#{param.profil.utilisateur}]]
+                    </h1>
+                    <button
+                        type="button"
+                        class="interstitial__close base-btn base-btn--button base-btn--default base-btn--discret"
+                    >
+                        <span aria-hidden="true" class="icon icon--cross"></span>
+                        <span class="sr-only" th:text="#{param.profil.utilisateur.fermer.modale}">Fermer</span>
+                    </button>
+                </div>
+                <div class="interstitial__content" id="modal-user-profile-content">
+                    <!--/* Content load by Ajax */-->
+                </div>
+                <div class="interstitial__footer">
+                    <button
+                        type="button"
+                        class="interstitial__button base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                        th:text="#{button.label.cancel}"
+                    >
+                        Annuler
+                    </button>
+                    <button
+                        type="button"
+                        id="btn-confirm-modal-user-profile"
+                        class="base-btn base-btn--button base-btn--default base-btn--center"
+                        th:text="#{button.label.valider}"
+                    >
+                        Valider
+                    </button>
+                </div>
+            </div>
+            <div tabindex="-1" class="interstitial-overlay__tabindex"></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="migrationProgress(label, progress)">
+            <span class="m-r-2" th:text="#{${label}}"></span>
+            <span class="base-paragraph base-paragraph--info">
+                <th:block th:if="${progress.status == 'EN_COURS'}">
+                    <img width="20" height="20" th:src="@{/img/loader.svg}" alt="" class="colorize-blue" />
+                </th:block>
+                [[${progress.nbCurrent}]] / [[${progress.nbTotal}]]
+                <th:block th:if="${progress.status == 'TERMINEE'}">
+                    <span aria-hidden="true" class="icon icon--check-circle finished-progress"></span>
+                </th:block>
+            </span>
+        </th:block>
+    </body>
+</html>

@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Premain-Class: org.nuxeo.runtime.javaagent.NuxeoAgent
+Agent-Class: org.nuxeo.runtime.javaagent.NuxeoAgent
+

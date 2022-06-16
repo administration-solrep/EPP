@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="listeModeleFdr"
+            id="listeModeleFdr"
+            th:with="tableCaption=#{admin.modele.rechercher.resultats.title}+' - '+#{admin.modele.rechercher.resultats.nombre(${nbResults})}"
+        >
+            <h2
+                class="m-t-8 m-b-6 base-title base-title--lvl-2"
+                th:text="#{admin.modele.rechercher.resultats.title}"
+            ></h2>
+            <div class="search-table m-b-6">
+                <div class="search-table__heading">
+                    <div class="heading-complex">
+                        <div class="heading-complex__main">
+                            <h3
+                                class="base-title base-title--lvl-3"
+                                th:text="#{admin.modele.rechercher.resultats.nombre(${nbResults})}"
+                            ></h3>
+                        </div>
+                        <th:block th:if="${exportActions}">
+                            <div
+                                th:replace="fragments/components/action-button :: action-button(${exportActions}, false, 'base-btn--secondary base-btn--min base-btn--rounded')"
+                            ></div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+            <div id="focusResultat" tabindex="-1"></div>
+            <div th:replace="fragments/table/tableModelesFDR :: searchResults(${tableCaption})"></div>
+        </div>
+    </body>
+</html>

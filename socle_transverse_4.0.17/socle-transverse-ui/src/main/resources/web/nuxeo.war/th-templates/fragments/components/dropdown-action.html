@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block
+            th:fragment="dropdown-action(id, listActions, icon, hasindicator, tooltip, appendedClass, isDisabled, divClass)"
+            th:with="dropClass=${dropClass} ?: 'actions-bar\_\_item table-line__drop-down base-drop-down base-drop-down--md-icon'"
+        >
+            <div
+                data-drop-group
+                th:class="${dropClass}"
+                th:classappend="|${hasindicator ? 'base-drop-down--has-indicator' : ''} ${dropdownRight ? 'table-line__drop-down--ellipse' : ''} ${divClass}|"
+            >
+                <button
+                    type="button"
+                    class="base-btn base-btn--button base-btn--default base-btn--default base-btn--center base-drop-down__button base-tooltip js-tooltip"
+                    th:classappend="${appendedClass == null ? '' : appendedClass}"
+                    th:aria-controls="'down-drop-'+${id}"
+                    th:disabled="${ isDisabled }? 'disabled'"
+                    th:attrappend="data-tippy-content=${tooltip != null} ? #{__${tooltip}__}"
+                >
+                    <span class="sr-only" th:text="#{__${tooltip}__ ?: dropdown.element.srhelp}">
+                        Bouton permettant d'afficher la liste déroulant
+                    </span>
+                    <span aria-hidden="true" class="base-drop-down__icon icon" th:classappend="${icon}"></span>
+                    <span
+                        th:if="${hasindicator}"
+                        aria-hidden="true"
+                        class="base-drop-down__indicator icon icon--arrow-bottom"
+                    ></span>
+                </button>
+                <div
+                    th:id="'down-drop-'+${id}"
+                    class="base-drop-down__drop"
+                    style="min-width: 65px; width: max-content;"
+                >
+                    <ul class="base-drop-down__drop-list">
+                        <li th:each="action : ${listActions}" class="base-drop-down-item">
+                            <div
+                                th:replace="fragments/components/action-link :: 
+                            action-link(${action},'base-drop-down\_\_link link','base-drop-down\_\_link-icon icon')"
+                            ></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </th:block>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div class="leftmenu" th:fragment="leftMenu">
+            <div class="accordion accordion--aside">
+                <th:block th:each="menu, nb : ${leftMenuList}">
+                    <div
+                        class="accordion__header js-toggle accordion__header--aside"
+                        th:classappend="${nb.count gt 1 ? 'm-t-6' : ''}"
+                    >
+                        <h2 class="accordion-title-lvl-2">[[#{__${menu.titleKey}__}]]</h2>
+                        <button
+                            type="button"
+                            th:if="${menu.childs != null}"
+                            th:aria-controls="'admin_menu_'+${nb.count}"
+                            aria-expanded="true"
+                            th:id="'admin_menu_'+${nb.count}+'_button'"
+                            data-toggle="accordion__content"
+                            data-icon-opened="substract-without-background"
+                            data-icon-closed="add-without-background"
+                            class="js-toggle accordion__header__button"
+                            th:aria-label="#{__${menu.titleKey}__}"
+                        >
+                            <span
+                                aria-hidden="true"
+                                class="icon bubble-icon bubble-icon--neutral accordion__icon accordion__icon--aside icon--substract-without-background"
+                            ></span>
+                        </button>
+                    </div>
+
+                    <div
+                        aria-hidden="false"
+                        th:id="'admin_menu_'+${nb.count}"
+                        class="accordion__content accordion__content--aside accordion__content--is-opened accordion__content--has-background"
+                    >
+                        <div th:aria-label="#{acces.rapides(#{__${menu.titleKey}__})}" class="quick-access">
+                            <ul class="quick-access__list">
+                                <li th:each="child : ${menu.childs}" class="quick-access__item">
+                                    <a th:href="@{${child.url}}" class="quick-access__link link"
+                                        ><span
+                                            aria-hidden="true"
+                                            class="icon icon--arrow-right link__icon link__icon--prepend link__icon--small"
+                                        ></span
+                                        >[[#{__${child.titleKey}__}]]
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </body>
+</html>

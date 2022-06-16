@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/spe-commons"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epg/spe-commons"
+	elementFormDefault="qualified">
+
+
+	<xs:simpleType name="PEstatut">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OK" />
+			<xs:enumeration value="KO" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="PEDemandeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PUBLICATION_BO"></xs:enumeration>
+			<xs:enumeration value="PUBLICATION_JO"></xs:enumeration>
+			<xs:enumeration value="EPREUVAGE"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PEActeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EXTRAIT"></xs:enumeration>
+			<xs:enumeration value="INTEGRAL"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PEActeCategorie">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="REGLEMENTAIRE"></xs:enumeration>
+			<xs:enumeration value="NON_REGLEMENTAIRE"></xs:enumeration>
+			<xs:enumeration value="CONVENTION_COLLECTIVE"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PEModeParution">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MIXTE"></xs:enumeration>
+			<xs:enumeration value="ELECTRONIQUE"></xs:enumeration>
+			<xs:enumeration value="PAPIER"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PEDelaiPublication">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A_DATE_PRECISEE"></xs:enumeration>
+			<xs:enumeration value="AUCUN"></xs:enumeration>
+			<xs:enumeration value="DE_RIGUEUR"></xs:enumeration>
+			<xs:enumeration value="SANS_TARDER"></xs:enumeration>
+			<xs:enumeration value="SOUS_EMBARGO"></xs:enumeration>
+			<xs:enumeration value="URGENT"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="PEBordereau"><!-- A faire pour publication/epreuvage -->
+		<xs:annotation>
+			<xs:documentation>
+				Bordereau pour une demande de publication/epreuvage
+				nor : le nor de l'acte
+				TODO : lister les metadonnees
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nor" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="meta1" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="meta2" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="meta3" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<xs:complexType name="PEParapheur">
+		<xs:annotation>
+			<xs:documentation>
+				parapheur pour une demande de publication/epreuvage
+				acte : l'acte qui fait l'objet de la demande
+				annexes : une liste ordonnee de fichiers qui contituent les annexes
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="acte" type="PEActeDemande"></xs:element>
+			<xs:element name="annexes" type="PEListeFichiers"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="PEActeDemande">
+		<xs:annotation>
+			<xs:documentation>
+				Acte concerne par une demande de publication epreuvage
+				@type : type de l'acte EXTRAIT ou INTEGRAL
+				fichier : contenu de l'acte
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fichier" type="PEFichier" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="type" type="PEActeType" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="PEActeRetourJo">
+		<xs:annotation>
+			<xs:documentation>
+				informations sur l'acte concerne par un retour de publication JO
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nor" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="numero_texte" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="numero_sommaire" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="titre_officiel" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PEActeRetourBo">
+		<xs:annotation>
+			<xs:documentation>
+				informations sur l'acte concerne par un retour de publication BO
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nor" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="numero_texte" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="page" type="xs:int" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PERetourGestion">
+		<xs:annotation>
+			<xs:documentation>
+				Informations communes a tous les elements d'un retour de publication
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:sequence>
+			<xs:element name="date_parution" type="xs:date" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+
+	</xs:complexType>
+
+	<xs:complexType name="PEListeFichiers">
+		<xs:annotation>
+			<xs:documentation>
+				Annexes de la demande de publication/epreuvage.
+				Essentiellement il s'agit d'une liste ordonnee de fichiers. Les fichiers sont
+				ordonnes
+				par l'attribut ordre des tags fichiers
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fichier" type="PEFichier" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="PEFichier">
+		<xs:annotation>
+			<xs:documentation>
+				Fichier d'une demande de publication/epreuvage
+				nom : le nom du fichier
+				content : le contenu du fichier encode en Base64.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nom" type="xs:string" />
+			<xs:element name="content" type="xs:base64Binary" />
+		</xs:sequence>
+		<xs:attribute name="ordre" type="xs:int" use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="PERetourPublicationBo">
+		<xs:annotation>
+			<xs:documentation>
+				retour de publication Bo
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="gestion" type="PERetourGestion"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="acte" type="PEActeRetourBo" minOccurs="1"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PERetourPublicationJo">
+		<xs:annotation>
+			<xs:documentation>
+				retour de publication Jo
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="gestion" type="PERetourGestion"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="acte" type="PEActeRetourJo" minOccurs="1"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PERetourEpreuvage">
+		<xs:annotation>
+			<xs:documentation>
+				retour d'epreuvage
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nor" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="epreuve" type="PEFichier" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="compare" type="PEFichier" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

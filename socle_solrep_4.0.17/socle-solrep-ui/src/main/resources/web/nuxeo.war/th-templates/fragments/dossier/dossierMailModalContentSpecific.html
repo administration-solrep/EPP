@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="dossierMailModalContentSpecific" class="grid__row m-b-6">
+            <div class="grid__col form-input">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label
+                            for="autres"
+                            id="autres_label"
+                            class="form-label"
+                            th:text="#{dossier.mail.autres.destinataires}"
+                        >
+                        </label>
+                        <div
+                            th:data-tippy-content="#{dossier.mail.autres.destinataires.infos}"
+                            tabindex="0"
+                            class="base-tooltip js-tooltip"
+                        >
+                            <span
+                                aria-hidden="true"
+                                class="icon icon--information bubble-icon bubble-icon--info"
+                            ></span>
+                            <span class="sr-only" th:text="#{dossier.mail.autres.destinataires.infos}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-input__container">
+                    <input
+                        type="text"
+                        name="autres"
+                        id="autres"
+                        th:value="${dossierMailForm.autresDestinataires}"
+                        class="form-input__field form-input__field--type-text"
+                    />
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

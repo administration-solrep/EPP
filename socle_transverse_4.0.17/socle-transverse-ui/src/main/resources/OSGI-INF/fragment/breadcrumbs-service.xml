@@ -1,0 +1,10 @@
+<component name="fr.dila.st.ui.breadcrumbsservice">
+
+  <implementation class="fr.dila.st.ui.services.impl.BreadcrumbsServiceImpl" />
+  
+  <service>
+    <provide interface="fr.dila.st.ui.services.BreadcrumbsService" />
+  </service>
+  
+
+</component>

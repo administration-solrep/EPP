@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.services.organigramme.SSOrganigrammeManagerService">
+
+  <implementation class="fr.dila.ss.ui.services.organigramme.SSMigrationManagerUIComponent" />
+  
+  <service>
+    <provide interface="fr.dila.ss.ui.services.organigramme.SSMigrationManagerUIService" />
+  </service>
+  
+</component>

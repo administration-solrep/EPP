@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service parametre du socle transverse. -->
+<component name="fr.dila.st.core.service.STParametreService">
+	<implementation class="fr.dila.st.core.component.STParametreComponent" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.STParametreService" />
+	</service>
+</component>

@@ -1,0 +1,96 @@
+<!--
+@license
+(C) Copyright Nuxeo Corp. (http://nuxeo.com/)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!--
+`nuxeo-vocabulary-edit-layout`
+@group Nuxeo UI
+@element nuxeo-vocabulary-edit-layout
+-->
+<dom-module id="nuxeo-vocabulary-edit-layout">
+  <template>
+    <style>
+      *[role=widget] {
+        margin-bottom: 16px;
+      }
+
+      label {
+        @apply --nuxeo-label;
+      }
+    </style>
+
+    <nuxeo-input role="widget"
+                 label="[[i18n('vocabularyManagement.edit.id')]]"
+                 name="id"
+                 value="{{entry.properties.id::change}}"
+                 required
+                 readonly$="[[!new]]">
+    </nuxeo-input>
+
+    <nuxeo-input role="widget"
+                 label="[[i18n('vocabularyManagement.edit.label')]]"
+                 name="label"
+                 value="{{entry.properties.label::change}}">
+    </nuxeo-input>
+
+    <div role="widget">
+      <label>[[i18n('vocabularyManagement.edit.obsolete')]]</label>
+      <paper-toggle-button checked$="[[_isObsolete(entry.properties.obsolete)]]"
+                           on-change="_obsoleteChanged"
+                           noink>
+      </paper-toggle-button>
+    </div>
+
+    <nuxeo-input role="widget"
+                 label="[[i18n('vocabularyManagement.edit.ordering')]]"
+                 name="ordering"
+                 type="number"
+                 value="{{entry.properties.ordering::change}}">
+    </nuxeo-input>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nuxeo-vocabulary-edit-layout',
+      behaviors: [Nuxeo.I18nBehavior],
+      properties: {
+
+        entry: {
+          type: Object,
+          observer: '_entryChanged'
+        },
+
+        new: {
+          type: Boolean,
+          value: false
+        }
+      },
+
+      _entryChanged: function() {
+        this.entry.properties.obsolete = this.entry.properties.obsolete ? 1 : 0;
+      },
+
+      _isObsolete: function(obsolete) {
+        return obsolete === 1;
+      },
+
+      _obsoleteChanged: function() {
+        this.entry.properties.obsolete = this.entry.properties.obsolete > 0 ? 0 : 1;
+      }
+
+    });
+  </script>
+</dom-module>

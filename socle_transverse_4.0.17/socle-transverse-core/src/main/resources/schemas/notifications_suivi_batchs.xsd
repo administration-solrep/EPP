@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://dila.fr/solon/schemas/notifications_suivi_batchs"
+    xmlns:eta="http://dila.fr/solon/schemas/notifications_suivi_batchs"
+>
+
+	<!-- restriction de l'accès aux admin -->
+	<xs:element name="etat_notification" type="xs:boolean" default="true" />
+
+	<!-- Liste des identifiants -->
+	<xs:element name="receiverMailList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="userName" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

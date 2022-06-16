@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>[[#{login.page.title}]]</title>
+        <link rel="icon" type="image/png" th:href="@{/icons/favicon.png?r=__${buildVersion}__}" />
+        <link rel="shortcut icon" th:href="@{/icons/favicon.ico?r=__${buildVersion}__}" type="image/x-icon" />
+
+        <link rel="stylesheet" type="text/css" th:href="@{/css/external/roboto.css?r=__${buildVersion}__}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/external/sourcesanspro.css?r=__${buildVersion}__}" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            th:href="@{/css/external/tippy.js/animations/scale.css?r=__${buildVersion}__}"
+        />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/external/datepicker.css?r=__${buildVersion}__}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/external/swipper.min.css?r=__${buildVersion}__}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/transverse.css?r=__${buildVersion}__}" />
+        <th:block th:replace="fragments/requiredCSS :: requiredCSS"></th:block>
+    </head>
+
+    <body>
+        <div class="page-layout page-login">
+            <nav role="navigation" th:aria-label="#{acces.rapide}">
+                <ul class="blind-navigation">
+                    <li class="blind-navigation__item">
+                        <a href="#main_content" class="blind-navigation__link" th:text="#{skip.link.contenu}">
+                            Aller au contenu
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="page-login__inner">
+                <header role="banner" class="page-login__header p-y-6 p-x-4">
+                    <div class="page-login__header__inner flex items-start">
+                        <div class="page-login__header__logo">
+                            <img
+                                th:src="@{/img/logopm.png}"
+                                th:alt="#{application.logo.label}"
+                                width="100"
+                                height="110"
+                            />
+                        </div>
+                        <div class="page-login__header__text m-t-1 m-l-3">
+                            <p class="base-title base-title--lvl-1 m-b-4" th:utext="${config.name}">Nom application</p>
+                            <p th:text="#{application.presentation.texte}">Présentation</p>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="page-layout__container">
+                    <aside id="sidebar" class="sidebar sidebar--is-opened" role="complementary">
+                        <div id="sidebar__content" aria-hidden="false" class="sidebar__content">
+                            <div class="page-layout__content--dark p-a-5 m-x-4">
+                                <div th:replace="fragments/stats :: stats"></div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <main id="main_content" class="page-layout__content p-x-6" role="main">
+                        <div class="page-login__content">
+                            <div
+                                role="complementary"
+                                class="page-login__alert m-y-12 p-a-6"
+                                th:if="${AFFICHAGE_BANNIERE !=null && AFFICHAGE_BANNIERE }"
+                            >
+                                <p class="page-login__alert__title m-b-6 base-title base-title--lvl-3">
+                                    <span
+                                        aria-hidden="true"
+                                        class="m-r-2 icon icon--info-circle-2 icon--v-align"
+                                    ></span>
+                                    [[#{login.messageInfo}]]
+                                </p>
+                                <div class="page-login__alert__content" th:utext="${BANNIERE_INFO}"></div>
+                            </div>
+
+                            <div th:replace="fragments/login-form :: loginform"></div>
+                        </div>
+                    </main>
+                </div>
+                <footer th:replace="fragments/login-footer :: login-footer"></footer>
+                <div class="back-to-top">
+                    <button
+                        type="button"
+                        class="back-to-top__icon base-btn base-btn--button base-btn--default base-btn--discret"
+                    >
+                        <span aria-hidden="true" class="icon icon--arrow-top"></span
+                        ><span class="sr-only">[[#{login.retourHautPage}]]</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script th:src="@{/scripts/external/jquery-3.6.0.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/external/bootstrap.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/external/popper.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/external/purify-2.2.9.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/external/tippy.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/external/tinymce/tinymce.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/external/swipper.min.js?r=__${buildVersion}__}"></script>
+        <script th:src="@{/scripts/transverse.js?r=__${buildVersion}__}"></script>
+        <th:block th:replace="fragments/requiredScripts :: requiredScripts"></th:block>
+    </body>
+</html>

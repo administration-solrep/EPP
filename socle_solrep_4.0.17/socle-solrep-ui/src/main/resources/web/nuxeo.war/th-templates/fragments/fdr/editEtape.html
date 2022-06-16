@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <!--/*
+				Popup d'edition d'une étape feuille de route 
+ 		*/-->
+        <div th:fragment="editEtape" th:with="id='editEtape'" th:id="${id}" class="interstitial-overlay__content">
+            <div
+                role="dialog"
+                aria-labelledby="dialogTitle"
+                class="interstitial interstitial--large interstitial--tall modal-etape--small"
+            >
+                <div class="interstitial__header">
+                    <h1 id="dialogTitle" class="interstitial__title" th:text="#{fdr.step.edit.label}">Modifier</h1>
+                    <button
+                        type="button"
+                        class="interstitial__close base-btn base-btn--button base-btn--default base-btn--discret"
+                    >
+                        <span aria-hidden="true" class="icon icon--cross"></span>
+                        <span class="sr-only" th:text="#{validation.popup.close.label}">Fermer</span>
+                    </button>
+                </div>
+                <div class="interstitial__content modal-flex" id="contentEditEtapeFdr">
+                    <form class="qe-roadmap-stage-form">
+                        <div id="etapeFdrContainer">
+                            <fieldset
+                                th:replace="fragments/fdr/etapeFdr :: etapeFdr('editStep', false, ${profil})"
+                            ></fieldset>
+                        </div>
+                    </form>
+                </div>
+                <div class="interstitial__footer">
+                    <button
+                        class="interstitial__button base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                        th:text="#{organigramme.edit.cancel}"
+                    >
+                        Annuler
+                    </button>
+                    <button
+                        class="base-btn base-btn--submit base-btn--default"
+                        th:id="|btn-confirm-${id}|"
+                        onclick="doSaveEditEtape()"
+                        th:text="#{button.label.save}"
+                    >
+                        Sauvegarder
+                    </button>
+                </div>
+            </div>
+            <div tabindex="-1" class="interstitial-overlay__tabindex"></div>
+        </div>
+    </body>
+</html>

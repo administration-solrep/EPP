@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes"
+	elementFormDefault="qualified"
+
+	xmlns:solco="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"
+	xmlns:speco="http://www.dila.premier-ministre.gouv.fr/solon/epg/spe-commons">
+
+	<!-- ====================================== -->
+	<!-- Imports -->
+	<!-- ====================================== -->
+	<xs:import schemaLocation="solon-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"></xs:import>
+	<xs:import schemaLocation="spe-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/spe-commons"></xs:import>
+
+	<!-- ====================================== -->
+	<!-- Simple types -->
+	<!-- ====================================== -->
+	<xs:simpleType name="ActeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AMNISTIE" />
+			<xs:enumeration value="ARRETE_MINISTERIEL" />
+			<xs:enumeration value="ARRETE_INTERMINISTERIEL" />
+			<xs:enumeration value="ARRETE_PM" />
+			<xs:enumeration value="ARRETE_PR" />
+			<xs:enumeration value="ARRETE_CE" />
+			<xs:enumeration value="AVENANT" />
+			<xs:enumeration value="AVIS" />
+			<xs:enumeration value="CIRCULAIRE" />
+			<xs:enumeration value="CITATION" />
+			<xs:enumeration value="COMMUNIQUE" />
+			<xs:enumeration value="CONVENTION" />
+			<xs:enumeration value="DECISION" />
+			<xs:enumeration value="DECRET_CE_ART_37" />
+			<xs:enumeration value="DECRET_CE" />
+			<xs:enumeration value="DECRET_CE_CM" />
+			<xs:enumeration value="DECRET_CM" />
+			<xs:enumeration value="DECRET_PR" />
+			<xs:enumeration value="DECRET_SIMPLE" />
+			<xs:enumeration value="DECRET_PR_CE" />
+			<xs:enumeration value="DECRET_PUBLICATION_TRAITE_OU_ACCORD" />
+			<xs:enumeration value="DELIBERATION" />
+			<xs:enumeration value="DEMANDE_AVIS_CE" />
+			<xs:enumeration value="DIVERS" />
+			<xs:enumeration value="EXEQUATUR" />
+			<xs:enumeration value="INSTRUCTION" />
+			<xs:enumeration value="LISTE" />
+			<xs:enumeration value="LOI" />
+			<xs:enumeration value="LOI_ART_53_CONSTITUTION" />
+			<xs:enumeration value="LOI_CONSTITUTIONNELLE" />
+			<xs:enumeration value="LOI_ORGANIQUE" />
+			<xs:enumeration value="NOTE" />
+			<xs:enumeration value="ORDONNANCE" />
+			<xs:enumeration value="RAPPORT" />
+			<xs:enumeration value="RECTIFICATIF" />
+			<xs:enumeration value="TABLEAU" />
+			<xs:enumeration value="ARRETE_MINISTERIEL_INDIVIDUEL" />
+			<xs:enumeration value="ARRETE_INTERMINISTERIEL_INDIVIDUEL" />
+			<xs:enumeration value="ARRETE_PM_INDIVIDUEL" />
+			<xs:enumeration value="ARRETE_PR_INDIVIDUEL" />
+			<xs:enumeration value="DECRET_CE_INDIVIDUEL" />
+			<xs:enumeration value="DECRET_CE_CM_INDIVIDUEL" />
+			<xs:enumeration value="DECRET_CM_INDIVIDUEL" />
+			<xs:enumeration value="DECRET_PR_INDIVIDUEL" />
+			<xs:enumeration value="DECRET_SIMPLE_INDIVIDUEL" />
+			<xs:enumeration value="INFORMATIONS_PARLEMENTAIRES" />
+			<xs:enumeration value="ACCORD_COLLECTIF" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PublicationIntOuExtType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EXTRAIT" />
+			<xs:enumeration value="IN_EXTENSO" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- ====================================== -->
+	<!-- Actes -->
+	<!-- ====================================== -->
+
+	<xs:complexType name="Amnistie">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="Arrete">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="entreprise"
+						type="xs:boolean" minOccurs="0" maxOccurs="1" />
+					<xs:element name="date_effet" type="xs:date"
+						minOccurs="0" maxOccurs="unbounded" />	
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+					<xs:element name="transposition_directive_europeenne"
+						type="TranspositionDirectiveEuropeenne" minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ArreteMinisteriel">
+		<xs:complexContent>
+			<xs:extension base="Arrete">
+				<xs:sequence>
+					<xs:element name="section" type="xs:string" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="section_ce" type="SectionCe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ArreteMinisterielIndividuel">
+		<xs:complexContent>
+			<xs:extension base="Arrete" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ArreteInterministeriel">
+		<xs:complexContent>
+			<xs:extension base="Arrete" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ArreteInterministerielIndividuel">
+		<xs:complexContent>
+			<xs:extension base="Arrete" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ArretePM">
+		<xs:complexContent>
+			<xs:extension base="Arrete" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ArretePMIndividuel">
+		<xs:complexContent>
+			<xs:extension base="Arrete" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ArretePR">
+		<xs:complexContent>
+			<xs:extension base="Arrete" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ArretePRIndividuel">
+		<xs:complexContent>
+			<xs:extension base="Arrete" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ArreteCE">
+		<xs:complexContent>
+			<xs:extension base="Arrete">
+				<xs:sequence>
+					<xs:element name="section" type="xs:string" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="section_ce" type="SectionCe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="Avenant">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Avis">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Circulaire">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Citation">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Communique">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Convention">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Decision">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="Decret">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="entreprise"
+						type="xs:boolean" minOccurs="0" maxOccurs="1" />
+					<xs:element name="date_effet" type="xs:date"
+						minOccurs="0" maxOccurs="unbounded" />						
+					<xs:element name="publication_rapport_presentation"
+						type="xs:boolean" minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_numerote" type="xs:boolean"
+						minOccurs="0" maxOccurs="1" />
+
+					<xs:element name="mesure_application_loi" type="MesureApplicationLoi"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="transposition_ordonnance" type="TranspositionOrdonnance"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="transposition_directive_europeenne"
+						type="TranspositionDirectiveEuropeenne" minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="DecretCEart37">
+		<xs:complexContent>
+			<xs:extension base="Decret">
+				<xs:sequence>
+					<xs:element name="section" type="xs:string" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="section_ce" type="SectionCe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="DecretCE">
+		<xs:complexContent>
+			<xs:extension base="Decret">
+				<xs:sequence>
+					<xs:element name="section" type="xs:string" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="section_ce" type="SectionCe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="DecretCEIndividuel">
+		<xs:complexContent>
+			<xs:extension base="Decret">
+				<xs:sequence>
+					<xs:element name="section" type="xs:string" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="section_ce" type="SectionCe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="DecretCECM">
+		<xs:complexContent>
+			<xs:extension base="Decret">
+				<xs:sequence>
+					<xs:element name="section" type="xs:string" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="section_ce" type="SectionCe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="DecretCECMIndividuel">
+		<xs:complexContent>
+			<xs:extension base="Decret">
+				<xs:sequence>
+					<xs:element name="section" type="xs:string" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="section_ce" type="SectionCe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="DecretCM">
+		<xs:complexContent>
+			<xs:extension base="Decret" />
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="DecretCMIndividuel">
+		<xs:complexContent>
+			<xs:extension base="Decret" />
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="DecretPR">
+		<xs:complexContent>
+			<xs:extension base="Decret" />
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="DecretPRIndividuel">
+		<xs:complexContent>
+			<xs:extension base="Decret" />
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="DecretPublicationDeTraiteOuAccord">
+		<xs:complexContent>
+			<xs:extension base="Decret" />
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="DecretSimple">
+		<xs:complexContent>
+			<xs:extension base="Decret" />
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="DecretSimpleIndividuel">
+		<xs:complexContent>
+			<xs:extension base="Decret" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DecretPRCE">
+		<xs:complexContent>
+			<xs:extension base="Decret">
+				<xs:sequence>
+					<xs:element name="section" type="xs:string" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="section_ce" type="SectionCe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="Deliberation">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+
+	<xs:complexType name="DemandeAvisCE">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="section" type="xs:string" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="section_ce" type="SectionCe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Divers">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Exequatur">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Instruction">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Liste">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Loi">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="section" type="xs:string" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="section_ce" type="SectionCe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="transposition_directive_europeenne"
+						type="TranspositionDirectiveEuropeenne" minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="LoiArt53Constitution">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="section" type="xs:string" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="section_ce" type="SectionCe"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="LoiConstitutionnelle">
+		<xs:complexContent>
+			<xs:extension base="Loi" />
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="LoiOrganique">
+		<xs:complexContent>
+			<xs:extension base="Loi" />
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Note">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Ordonnance">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="entreprise"
+						type="xs:boolean" minOccurs="0" maxOccurs="1" />
+					<xs:element name="date_effet" type="xs:date"
+						minOccurs="0" maxOccurs="unbounded" />						
+					<xs:element name="publication_rapport_presentation"
+						type="xs:boolean" minOccurs="1" maxOccurs="1" />
+					<xs:element name="section" type="xs:string" minOccurs="0"
+						maxOccurs="1" />
+					<xs:element name="section_ce" type="SectionCe"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+
+					<xs:element name="transposition_directive_europeenne"
+						type="TranspositionDirectiveEuropeenne" minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="disposition_habilitation" type="Art38_disposition_habilitation"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Rapport">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Rectificatif">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="1" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="Tableau">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="base_legale" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="InformationsParlementaires">
+		<xs:complexContent>
+			<xs:extension base="Acte">
+				<xs:sequence>
+					<xs:element name="emetteur" type="xs:string" minOccurs="1" maxOccurs="1" />
+					<xs:element name="rubrique" type="xs:string" minOccurs="1" maxOccurs="1" />
+					<xs:element name="commentaire" type="xs:string" minOccurs="0" maxOccurs="1" />
+					<xs:element name="publication_integrale_ou_extrait"
+						type="PublicationIntOuExtType" minOccurs="0" maxOccurs="1" />
+					<xs:element name="typeDemande" type="xs:string" minOccurs="0" maxOccurs="1" />
+					<xs:element name="idEvenement" type="xs:string" minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="AccordCollectif">
+		<xs:complexContent>
+			<xs:extension base="Decret" />
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<!-- ====================================== -->
+	<!-- Complex Types -->
+	<!-- ====================================== -->
+
+	<!-- note : seuls les champs obligatoires a  la creation d'un dossier ont 
+		minOccurs="1" -->
+	<!-- On doit creer un attribut pour la DILA qui indique si le bordereau 
+		et l'acte portent les memes donnees -->
+
+	<xs:complexType name="Acte">
+		<xs:sequence>
+			<xs:element name="statut_acte" type="solco:StatutActe"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="type_acte" type="ActeType" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="nor" type="solco:NorType" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="titre_acte" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="entite_responsable" type="xs:string"
+				minOccurs="1" maxOccurs="1" /><!-- affiche le titre long -->
+			<xs:element name="direction_responsable" type="xs:string"
+				minOccurs="1" maxOccurs="1" /><!-- affiche le titre long -->
+			<xs:element name="ministere_rattachement" type="xs:string"
+				minOccurs="1" maxOccurs="1" /><!-- affiche le titre long -->
+			<xs:element name="direction_rattachement" type="xs:string"
+				minOccurs="1" maxOccurs="1" /><!-- affiche le titre long -->
+			<xs:element name="createur" type="xs:string" minOccurs="1"
+				maxOccurs="1" /><!-- affiche le nom et le prenom de l'utilisateur -->
+			<xs:element name="responsable" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nom_reponsable" type="xs:string"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="prenom_responsable" type="xs:string"
+							minOccurs="0" maxOccurs="1" />
+						<xs:element name="qualite_responsable" type="xs:string"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="telephone_responsable" type="xs:string"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="mail_responsable" type="xs:string"
+							minOccurs="0" maxOccurs="1" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="categorie_acte" type="speco:PEActeCategorie"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="date_publication_souhaitee" type="xs:date"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="charge_de_mission" type="xs:string"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="conseiller_pm" type="xs:string"
+				minOccurs="0" maxOccurs="unbounded" />
+			<!-- note : il n'y a qu'une date de signature dans le dossier : on ne 
+				différence pas les différents types de signature (normal, pm,pr) -->
+			<xs:element name="date_signature" type="xs:dateTime"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="pour_fourniture_epreuve" type="xs:dateTime"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="vecteur_de_publication" type="xs:string"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="publication_conjointe" type="solco:NorType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="mode_parution" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="delai_publication" type="speco:PEDelaiPublication"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="publication_date_precisee" type="xs:dateTime"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="parution_JORF" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="date_jorf" type="xs:dateTime"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="numero_texte_jo" type="xs:string"
+							minOccurs="0" maxOccurs="1" />
+						<xs:element name="page_jo" type="xs:int" minOccurs="1"
+							maxOccurs="1" />
+						<xs:element name="titre_officiel" type="xs:string"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="parution_bo" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="date_bo" type="xs:dateTime"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="numero_texte_bo" type="xs:string"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="page_bo" type="xs:int" minOccurs="1"
+							maxOccurs="1" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="commentaire_sgg_dila" type="xs:string"
+				minOccurs="0" maxOccurs="1" /><!-- information réservé au SGG, le CE 
+				ne doit pas le recuperer -->
+			<xs:element name="isInformationActeCoherentAvecBordereau"
+				type="solco:Boolean" minOccurs="0" maxOccurs="1" /><!-- information réservé 
+				à la Dila ou au SGG -->
+			<xs:element name="indexation" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="rubriques" type="xs:string"
+							minOccurs="1" maxOccurs="unbounded" />
+						<xs:element name="mots_cles" type="xs:string"
+							minOccurs="0" maxOccurs="unbounded" />
+						<xs:element name="champ_libre" type="xs:string"
+							minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SectionCe">
+		<xs:sequence>
+			<xs:element name="section_ce" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="rapporteur" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="date_transmission_section_ce" type="xs:dateTime" minOccurs="0" maxOccurs="1" />
+			<xs:element name="date_section_ce" type="xs:dateTime" minOccurs="0" maxOccurs="1" />
+			<xs:element name="date_ag_ce" type="xs:dateTime" minOccurs="0" maxOccurs="1" />
+			<xs:element name="numero_isa" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="priorite" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MesureApplicationLoi">
+		<xs:sequence>
+			<xs:element name="reference_loi" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="titre_loi" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="numeros_articles" type="xs:string"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="reference_mesure" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="commentaire" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TranspositionOrdonnance">
+		<xs:sequence>
+			<xs:element name="reference_ordonnance" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="titre_ordonnance" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="numeros_articles" type="xs:string"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="commentaire" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="TranspositionDirectiveEuropeenne">
+		<xs:sequence>
+			<xs:element name="reference_directive" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="titre_directive" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="numeros_articles" type="xs:string"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="commentaire" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Art38_disposition_habilitation">
+		<xs:sequence>
+			<xs:element name="reference_loi" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="numero_article" type="xs:string"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="commentaire" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

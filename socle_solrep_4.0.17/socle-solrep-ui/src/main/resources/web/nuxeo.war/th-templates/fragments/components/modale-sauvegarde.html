@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="modale-sauvegarde(id, saveFunction, initFunction, checkFunction)"
+            th:id="|modale-sauvegarde-${id}|"
+            class="interstitial-overlay__content"
+            th:data-save-function="${saveFunction}"
+            th:data-init-function="${initFunction}"
+            th:data-check-function="${checkFunction}"
+            th:name="${id}"
+        >
+            <div
+                class="interstitial"
+                role="dialog"
+                th:aria-labelledby="|dialogTitle-modale-sauvegarde-${id}|"
+                style="position: relative;"
+            >
+                <div class="interstitial__header">
+                    <h1
+                        th:id="|dialogTitle-modale-sauvegarde-${id}|"
+                        class="interstitial__title"
+                        th:text="#{modale.sauvegarde.titre}"
+                    >
+                        Sauvegarder
+                    </h1>
+                </div>
+                <div class="interstitial__content" th:utext="#{modale.sauvegarde.contenu}">Contenu</div>
+                <div class="interstitial__footer">
+                    <div class="flex-row-actions__left">
+                        <button
+                            type="button"
+                            onclick="annulerNavigationModaleSauvegarde(this)"
+                            class="interstitial__button base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                            th:text="#{modale.sauvegarde.annuler}"
+                        >
+                            Annuler
+                        </button>
+                    </div>
+                    <div class="flex-row-actions__right">
+                        <button
+                            type="button"
+                            onclick="poursuivreNavigationModaleSauvegarde(this, false)"
+                            class="base-btn base-btn--button base-btn--default base-btn--secondary"
+                            th:text="#{modale.sauvegarde.abandonner}"
+                        >
+                            Abandonner
+                        </button>
+                        <button
+                            type="button"
+                            onclick="poursuivreNavigationModaleSauvegarde(this, true)"
+                            class="base-btn base-btn--button base-btn--default base-btn--primary"
+                            th:text="#{modale.sauvegarde.sauvegarder}"
+                        >
+                            Sauvegarder
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div tabindex="-1" class="interstitial-overlay__tabindex"></div>
+        </div>
+    </body>
+</html>

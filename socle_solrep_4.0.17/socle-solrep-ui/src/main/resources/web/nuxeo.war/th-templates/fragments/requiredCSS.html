@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="requiredCSS">
+            <link rel="stylesheet" type="text/css" th:href="@{/css/solrep.css?r=__${buildVersion}__}" />
+        </th:block>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="modal-dossier-send-mail(fonction)"
+            id="modal-dossier-send-mail"
+            class="interstitial-overlay__content"
+        >
+            <div role="dialog" aria-labelledby="dialogTitle-sendMail" class="interstitial">
+                <div class="interstitial__header">
+                    <h3 id="dialogTitle-sendMail" class="interstitial__title" th:text="#{mail.dialog.title}">
+                        Envoyer un mail
+                    </h3>
+                    <button
+                        type="button"
+                        class="interstitial__close base-btn base-btn--button base-btn--default base-btn--discret"
+                    >
+                        <span aria-hidden="true" class="icon icon--cross"></span>
+                        <span class="sr-only" th:text="#{validation.popup.close.label}">Fermer</span>
+                    </button>
+                </div>
+
+                <div class="interstitial__content" id="modal-dossier-mail-content">
+                    <!--/* Contenu chargé par ajax */-->
+                </div>
+
+                <div class="interstitial__footer">
+                    <button
+                        type="button"
+                        class="interstitial__button base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                        th:text="#{button.label.cancel}"
+                    >
+                        Annuler
+                    </button>
+                    <button
+                        type="button"
+                        class="base-btn base-btn--button base-btn--default base-btn--center"
+                        th:attr="onclick=|${fonction}(event)|"
+                        th:text="#{button.confirmer}"
+                    >
+                        Confirmer
+                    </button>
+                </div>
+            </div>
+
+            <div tabindex="-1" class="interstitial-overlay__tabindex"></div>
+        </div>
+    </body>
+</html>

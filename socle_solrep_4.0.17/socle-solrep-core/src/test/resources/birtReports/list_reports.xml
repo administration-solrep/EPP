@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<!-- Liste des rapports Birt disponibles -->
+<reports>
+	<report
+        id="stat01"
+        title="MIN11. Taux de réponse du Gouvernement aux questions écrites, depuis le début de la législature"
+        file="MIN11_txGlobal.rptdesign"
+    />
+
+	<report
+        id="stat07"
+        title="SGG03. Variations mensuelles du nombre de réponses publiées et du taux de réponse par ministère"
+        file="SGG03_variationNbReponsePublie.rptdesign"
+    >
+		<properties>
+			<property type="right" name="droitVisibiliteRestraintSGG" />
+		</properties>
+	</report>
+
+	<report
+        id="stat17"
+        title="SGG02. Questions écrites en cours de traitement (suivi par date)"
+        file="SGG02_QEEnCoursSuiviDates.rptdesign"
+    >
+		<properties>
+			<property type="scalar_organigrammeSelect_MIN" name="parameterValue" />
+			<property type="scalar_value" name="parameterType" value="MIN" />
+		</properties>
+	</report>
+</reports>

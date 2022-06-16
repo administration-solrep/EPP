@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            data-drop-group
+            class="base-drop-down base-drop-down--has-indicator base-drop-down--light"
+            th:fragment="dropdown( itemDrop)"
+        >
+            <a
+                class="link base-drop-down__button"
+                href="javascript:void(0);"
+                th:aria-controls="${itemDrop.dossierId}+'_drop'"
+                th:aria-labelledby="${itemDrop.dossierId}+'_label'"
+            >
+                <span class="sr-only" th:id="${itemDrop.dossierId}+'_label'" th:text="#{dropdown.element.srhelp}"
+                    >Elément d'aide</span
+                >
+                <th:block th:if="${jscopyPrefix != null}">
+                    <span
+                        th:id="|${jscopyPrefix}${#strings.replace(itemDrop.getSourceNumeroQuestion(), ' ', '_')}_${itemDrop.dossierId}|"
+                        class="base-drop-down__button-label"
+                        th:text="${itemDrop.getSourceNumeroQuestion()}"
+                    >
+                        label
+                    </span>
+                </th:block>
+                <th:block th:unless="${jscopyPrefix != null}">
+                    <span class="base-drop-down__button-label" th:text="${itemDrop.getSourceNumeroQuestion()}">
+                        label
+                    </span>
+                </th:block>
+                <th:block th:each="it : ${itemDrop.getExposantIhm()}">
+                    <sup th:text="${it}"></sup>
+                </th:block>
+            </a>
+            <div
+                role="listbox"
+                th:aria-expanded="false"
+                th:id="${itemDrop.dossierId}+'_drop'"
+                th:aria-labelledby="${itemDrop.dossierId}+'_list'"
+                class="base-drop-down__drop"
+            >
+                <span th:id="${itemDrop.dossierId}+'_list'" class="sr-only" th:text="#{dropdown.liste.srhelp}"
+                    >Liste d'aide</span
+                >
+                <ul class="base-drop-down__drop-list" th:each="item : ${itemDrop.caseLinkIdsLabels}">
+                    <li
+                        class="base-drop-down-item"
+                        th:with="label=${item.label != null ? item.label : 'label.non.renseigne'}"
+                    >
+                        <a th:href="@{${item.url}}" class="base-drop-down__link link">
+                            <th:block th:if="${item.icon!=null}">
+                                <span
+                                    aria-hidden="true"
+                                    class="base-drop-down__link-icon icon"
+                                    th:attrappend="class=${' ' + item.icon}"
+                                ></span>
+                            </th:block>
+                            <th:block th:text="${#messages.msgOrNull(label) != null ? #messages.msg(label) : label}"
+                                >item label</th:block
+                            >
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

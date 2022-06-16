@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.core.datasources.contrib">
+
+  <extension target="org.nuxeo.runtime.datasource" point="datasources">
+    <link name="jdbc/organigramme-provider" global="jdbc/nuxeo" type="javax.sql.DataSource" />
+    <link name="jdbc/sword-provider" global="jdbc/nuxeo" type="javax.sql.DataSource" />
+  </extension>
+
+</component>

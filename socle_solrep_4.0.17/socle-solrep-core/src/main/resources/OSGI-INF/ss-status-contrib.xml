@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component name="fr.dila.ss.status.config" version="1.0.0">
+
+    <require>fr.sword.idl.naiad.nuxeo.addons.status.core.services.StatusService</require>
+
+    <extension target="fr.sword.idl.naiad.nuxeo.addons.status.core.services.StatusService" point="statusConfig">
+
+        <status enabled="true" name="birt" params="birtapp" clazz="fr.dila.ss.core.status.BirtStatus" />
+
+    </extension>
+
+</component>

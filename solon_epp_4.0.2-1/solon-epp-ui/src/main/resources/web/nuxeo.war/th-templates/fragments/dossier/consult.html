@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="consult" id="monDossier">
+            <div class="overlay">Rechargement</div>
+            <th:block th:if="${monDossier !=null}">
+                <h2>Mon dossier</h2>
+                <h3>[[${monDossier.title}]]</h3>
+                <p>[[#{dossier.legislature}]] : [[${monDossier.legislature}]]</p>
+                <p>Date : [[${#dates.format(monDossier.date, 'dd/MM/yyyy')}]]</p>
+                <p>Auteur : [[${monDossier.auteur}]]</p>
+            </th:block>
+        </div>
+    </body>
+</html>

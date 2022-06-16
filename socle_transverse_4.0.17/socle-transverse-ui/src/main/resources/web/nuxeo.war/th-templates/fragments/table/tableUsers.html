@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="searchResults(isCheckbox, isPaginationVisible)"
+            class="tableForm"
+            th:data-url="@{${dataUrl}}"
+            th:data-ajaxurl="@{${dataAjaxUrl}}"
+            id="listeUsers"
+            style="position: relative; clear: both;"
+            th:with="tableCaption=${tableCaption} ? ${tableCaption} : #{menu.admin.user.users.title}"
+        >
+            <div class="overlay" th:id="|result_overlay${id}|" aria-live="polite">
+                <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+            </div>
+            <th:block th:each="parameter : ${otherParameter}">
+                <input
+                    th:unless="${parameter.value ==null}"
+                    th:name="${parameter.key}"
+                    th:value="${parameter.value}"
+                    type="hidden"
+                    aria-hidden="true"
+                    data-isForm="true"
+                />
+            </th:block>
+
+            <th:block th:unless="${!hasPagination || resultForm.defaultSize >= resultList.nbTotal}">
+                <div
+                    th:replace="fragments/components/nombre-document-page :: documentParPage(${resultForm}, 'user_haut')"
+                ></div>
+                <div class="table-action">
+                    <div class="table-action__action-container table-action__action-container--right">
+                        <th:block th:unless="${resultList.liste.size == resultList.nbTotal}">
+                            <nav
+                                th:replace="fragments/table/pagination :: pagination (${resultForm}, ${resultForm.page},'user_haut',${resultList.nbTotal})"
+                            ></nav>
+                        </th:block>
+                    </div>
+                </div>
+            </th:block>
+
+            <th:block th:if="${isPaginationVisible}">
+                <div th:replace="fragments/table/paginationLetter :: pagination (${index}, ${lstLettres})"></div>
+            </th:block>
+
+            <br />
+            <a
+                href="#skip_link_action-table_prev"
+                id="skip_link_action-table_next"
+                class="skip-link"
+                th:text="#{skip.link.table.prev(${tableCaption})}"
+            ></a>
+            <div class="table-action">
+                <div class="table-action__action-container table-action__action-container--left">
+                    <div class="table-action">
+                        <div class="table-action__action-container">
+                            <div class="table-action__group">
+                                <th:block th:each="action : ${generaleActions}">
+                                    <button
+                                        th:replace="fragments/components/action-button-fixed  :: action-button-fixed(${action}, false, '')"
+                                    ></button>
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table id="table-users" class="custom-table">
+                    <caption class="sr-only" th:text="${tableCaption}">
+                        Tableau des utilisateurs
+                    </caption>
+                    <thead class="table-header custom-table__header">
+                        <tr class="table-header__line">
+                            <th:block th:if="${isCheckbox}">
+                                <th scope="col" class="table-header__cell table-header__cell--check">
+                                    <div class="form-choice-input">
+                                        <input
+                                            type="checkbox"
+                                            name="checkboxSelectAllUser"
+                                            onclick="selectAllCheckBox(this);"
+                                            class="form-choice-input__input js-custom-table-header-check"
+                                            id="selectAllUser"
+                                            autocomplete="off"
+                                        />
+                                        <label
+                                            for="selectAllUser"
+                                            th:title="#{recherche.userSearch.selectAll}"
+                                            th:data-select-label="#{recherche.userSearch.selectAll}"
+                                            th:data-deselect-label="#{recherche.userSearch.deselectAll}"
+                                            class="form-label form-choice-input__label form-choice-input__label--checkbox form-choice-input__label--hidden-label"
+                                        >
+                                            <span th:text="#{recherche.userSearch.selectAll}">Sélectionner tout</span>
+                                        </label>
+                                    </div>
+                                </th>
+                            </th:block>
+                            <th:block th:each="colonne : ${lstColonnes}">
+                                <th:block th:if="${colonne.visible && colonne.sortable}">
+                                    <th
+                                        scope="col"
+                                        class="table-header__cell table-header__cell--with-filter-action"
+                                        th:aria-sort="${colonne.sortValue == 'asc' ? 'ascending' : (colonne.sortValue== 'desc' ? 'descending' : '')}"
+                                    >
+                                        <button
+                                            th:replace="fragments/table/sortableHeader :: sortableHeader (#{__${colonne.label}__},${colonne.sortValue},${colonne.sortName},${colonne.sortId},${colonne.inverseSort})"
+                                        ></button>
+                                    </th>
+                                </th:block>
+
+                                <th:block th:if="${colonne.visible && !colonne.sortable}">
+                                    <th scope="col" class="table-header__cell">
+                                        <span
+                                            class="table-header__cell-inner"
+                                            th:text="${colonne.label !=null? #messages.msg(colonne.label) : ''}"
+                                        >
+                                            &nbsp;
+                                        </span>
+                                    </th>
+                                </th:block>
+                            </th:block>
+                        </tr>
+                    </thead>
+                    <tbody class="custom-table__body">
+                        <th:block th:unless="${#lists.isEmpty(resultatList)}">
+                            <tr
+                                class="custom-table__table-line table-line table-line--complex-line"
+                                th:each="item, nb : ${resultatList}"
+                                th:data-id="${item.utilisateur}"
+                            >
+                                <th:block th:if="${isCheckbox}">
+                                    <td class="table-line__cell table-line__cell--check">
+                                        <div class="form-choice-input">
+                                            <input
+                                                th:id="|select-${item.utilisateur}|"
+                                                type="checkbox"
+                                                th:name="${'checkbox-'+nb.count}"
+                                                onclick="selectTableCheckbox(this)"
+                                                class="form-choice-input__input js-custom-table-line-check"
+                                                autocomplete="off"
+                                            />
+                                            <label
+                                                th:for="|select-${item.utilisateur}|"
+                                                th:title="#{recherche.userSearch.selectOne(${item.utilisateur})}"
+                                                th:data-select-label="#{recherche.userSearch.selectOne(${item.utilisateur})}"
+                                                th:data-deselect-label="#{recherche.userSearch.deselectOne(${item.utilisateur})}"
+                                                class="form-label form-choice-input__label form-choice-input__label--checkbox form-choice-input__label--hidden-label"
+                                            >
+                                                <span th:text="#{recherche.userSearch.selectOne(${item.utilisateur})}"
+                                                    >Utilisateur</span
+                                                >
+                                            </label>
+                                        </div>
+                                    </td>
+                                </th:block>
+                                <td class="table-line__cell">
+                                    <th:block th:with="basePath=${baseUrl} ?: '/admin/user'">
+                                        <a
+                                            class="link"
+                                            th:href="@{|${basePath}/${item.utilisateur}#main_content|}"
+                                            th:target="${#strings.equals('/ajax/recherche/derniers/resultats/consultes', dataAjaxUrl)} ? '_blank' : '_self'"
+                                            th:text="${item.nom}"
+                                        ></a>
+                                    </th:block>
+                                </td>
+                                <td class="table-line__cell" th:text="${item.prenom}"></td>
+                                <td class="table-line__cell" th:text="${item.utilisateur}"></td>
+                                <td class="table-line__cell" th:text="${item.ministeres}"></td>
+                                <td class="table-line__cell" th:text="${item.mel}"></td>
+                                <td class="table-line__cell" th:text="${item.dateDebut}"></td>
+                                <th:block th:if="${showDateConnexion}">
+                                    <td
+                                        class="table-line__cell"
+                                        th:text="${#calendars.format(item.dateConnexion,'dd/MM/yyyy')}"
+                                    ></td>
+                                </th:block>
+                            </tr>
+                        </th:block>
+                        <th:block th:if="${#lists.isEmpty(resultatList)}">
+                            <td colspan="5" th:text="#{label.user.nombre(0)}"></td>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-action">
+                <div class="table-action__action-container table-action__action-container--left">
+                    <div class="table-action">
+                        <div class="table-action__action-container">
+                            <div class="table-action__group">
+                                <th:block th:each="action : ${generaleActions}">
+                                    <button
+                                        th:replace="fragments/components/action-button-fixed  :: action-button-fixed(${action}, false, '')"
+                                    ></button>
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <th:block th:unless="${!hasPagination || resultForm.defaultSize >= resultList.nbTotal}">
+                <div
+                    th:replace="fragments/components/nombre-document-page :: documentParPage(${resultForm}, 'user_bas')"
+                ></div>
+                <div class="table-action">
+                    <div class="table-action__action-container table-action__action-container--right">
+                        <th:block th:unless="${resultList.liste.size == resultList.nbTotal}">
+                            <nav
+                                th:replace="fragments/table/pagination :: pagination (${resultForm}, ${resultForm.page},'user_haut',${resultList.nbTotal})"
+                            ></nav>
+                        </th:block>
+                    </div>
+                </div>
+            </th:block>
+
+            <a
+                href="#skip_link_action-table_next"
+                id="skip_link_action-table_prev"
+                class="skip-link"
+                th:text="#{skip.link.table.next(${tableCaption})}"
+            ></a>
+        </div>
+    </body>
+</html>

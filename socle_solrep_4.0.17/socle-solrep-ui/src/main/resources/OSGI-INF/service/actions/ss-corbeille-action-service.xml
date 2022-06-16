@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.services.actions.impl.SSCorbeilleActionServiceImpl">
+	<implementation class="fr.dila.ss.ui.services.actions.component.SSCorbeilleActionComponent" />
+
+	<service>
+		<provide interface="fr.dila.ss.ui.services.actions.SSCorbeilleActionService" />
+		<provide interface="fr.dila.st.ui.services.actions.STCorbeilleActionService" />
+	</service>
+
+</component>

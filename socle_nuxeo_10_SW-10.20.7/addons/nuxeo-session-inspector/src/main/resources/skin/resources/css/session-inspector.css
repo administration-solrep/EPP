@@ -1,0 +1,18 @@
+table th.size,table td.size,table th.depth,table td.depth,th.index,table td.index
+  {
+  text-align: right;
+  padding: 0px 20px !important;
+}
+
+table.info {
+  border-spacing: 10px;
+  border-collapse: separate;
+}
+
+table.info td {
+  padding: 2px;
+}
+
+table.info td.labelColumn {
+  font-weight: bold;
+}

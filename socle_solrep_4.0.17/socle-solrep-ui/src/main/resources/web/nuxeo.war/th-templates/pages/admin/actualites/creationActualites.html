@@ -1,0 +1,230 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page de création des actualités', title=#{actualites.creation.title})}"
+>
+    <main id="main_content" class="page-layout__content">
+        <input
+            type="hidden"
+            id="urlPreviousPage"
+            name="urlPreviousPage"
+            th:value="@{|${urlPreviousPage}#main_content|}"
+        />
+        <form id="creation-actualite-form">
+            <div class="flex justify-between m-t-6 m-b-6">
+                <button
+                    type="button"
+                    class="m-r-3 base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                    onclick="goPreviousPage()"
+                >
+                    [[#{button.label.cancel}]]
+                </button>
+                <button
+                    type="button"
+                    class="base-btn base-btn--submit base-btn--default base-btn--center"
+                    onclick="saveActualite(event)"
+                >
+                    [[#{button.label.save}]]
+                </button>
+            </div>
+
+            <h1 class="p-b-3 m-b-6 base-title base-title--lvl-1 base-title--is-underlined">
+                [[#{actualites.creation.title}]]
+            </h1>
+
+            <div class="grid__row align-start m-b-6">
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label for="dateEmission" id="dateEmission_label" class="form-label">
+                                    <span th:text="#{actualites.date.emission.label}">Date d'émission</span>
+                                    <span class="form-label__required-text" th:text="#{form.input.required}"
+                                        >(requis)</span
+                                    >
+                                    <!---->
+                                </label>
+                                <div class="form-input__icon-group"></div>
+                            </div>
+                            <div class="form-input__header-bottom"></div>
+                        </div>
+                        <div class="form-input__container">
+                            <div
+                                th:replace="fragments/components/input-date-picker :: inputDatePicker(
+                                    'datepicker_description_form_input_date_debut', 
+                                    'dateEmission', 
+                                    'dateEmission', 
+                                    true, 
+                                    ${actualiteCreationDTO.dateEmission} != null ? ${actualiteCreationDTO.dateEmission} : ${#dates.format(#dates.createNow(), 'dd/MM/yyyy')}, 
+                                    false)"
+                            ></div>
+                        </div>
+                        <div id="dateEmission_description" class="form-input__footer">
+                            <!---->
+                        </div>
+                    </div>
+                </div>
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label for="dateValidite" id="dateValidite_label" class="form-label">
+                                    <span th:text="#{actualites.date.fin.validite.label}">Date de fin de validité</span>
+                                    <span class="form-label__required-text" th:text="#{form.input.required}"
+                                        >(requis)</span
+                                    >
+                                    <!---->
+                                </label>
+                                <div class="form-input__icon-group"></div>
+                            </div>
+                            <div class="form-input__header-bottom"></div>
+                        </div>
+                        <div class="form-input__container">
+                            <div
+                                th:replace="fragments/components/input-date-picker :: inputDatePicker(
+	                               spanId='datepicker_description_form_input_date_fin',
+	                               inputName='dateValidite',
+	                               inputId='dateValidite',
+	                               required=true,
+	                               value=${actualiteCreationDTO.dateValidite},
+	                               disabled=false,
+	                               additionalValidation=', date_inferior_or_equal_to(dateEmission)')"
+                            ></div>
+                        </div>
+                        <div id="dateValidite_description" class="form-input__footer">
+                            <!---->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid__row m-b-6">
+                <div class="grid__col grid__col--full-witdh form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label for="objet" id="objet_label" class="form-label">
+                                <span th:text="#{actualites.objet}">Objet</span>
+                                <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                            </label>
+                        </div>
+                        <div class="form-input__header-bottom">
+                            <p
+                                id="label_header_bottom_form_objet"
+                                class="form-input__description form-input__description--default"
+                            >
+                                [[#{actualites.objet.description}]]
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-input__container">
+                        <input
+                            type="text"
+                            name="objet"
+                            id="objet"
+                            aria-describedby="objet_description label_header_bottom_form_objet"
+                            class="form-input__field form-input__field--type-text"
+                            data-validation="required"
+                            th:value="${actualiteCreationDTO.objet}"
+                        />
+                    </div>
+                    <div id="objet_description" class="form-input__footer"></div>
+                </div>
+            </div>
+            <div class="grid__row m-b-6">
+                <div class="grid__col grid__col--middle">
+                    <div class="form-optin">
+                        <fieldset class="form-optin__fieldset">
+                            <legend class="form-label">
+                                <span th:text="#{actualites.statut.actualite}">Statut</span>
+                                <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                                <!---->
+                            </legend>
+                            <div class="form-optin__optins">
+                                <div class="form-optin__container">
+                                    <input
+                                        type="radio"
+                                        id="statut_archivee"
+                                        name="statut"
+                                        value="ARCHIVEE"
+                                        class="form-optin__checkbox"
+                                        th:checked="${actualiteCreationDTO.statut == 'ARCHIVEE' || actualiteCreationDTO.statut == null}"
+                                        autocomplete="off"
+                                    />
+                                    <label for="statut_archivee" id="statut_archivee_label" class="form-optin__label">
+                                        [[#{actualites.statut.actualite.archivee}]]
+                                    </label>
+                                </div>
+                                <div class="form-optin__container">
+                                    <input
+                                        type="radio"
+                                        id="statut_non_archivee"
+                                        name="statut"
+                                        value="NON_ARCHIVEE"
+                                        class="form-optin__checkbox"
+                                        th:checked="${actualiteCreationDTO.statut == 'NON_ARCHIVEE'}"
+                                        autocomplete="off"
+                                    />
+                                    <label
+                                        for="statut_non_archivee"
+                                        id="statut_non_archivee_label"
+                                        class="form-optin__label"
+                                    >
+                                        [[#{actualites.statut.actualite.non.archivee}]]
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <!---->
+                        <!---->
+                    </div>
+                </div>
+            </div>
+            <div class="grid__row m-b-6">
+                <div class="grid__col">
+                    <label for="mce" id="objet_label" class="form-label">
+                        <span th:text="#{actualites.contenu}">Objet</span>
+                        <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                    </label>
+                    <div class="form-rich-text-field">
+                        <textarea
+                            name="contenu"
+                            id="mce"
+                            cols="30"
+                            rows="3"
+                            aria-describedby="label_header_bottom_form_textarea form_textarea_description"
+                            class="form-input__field form-rich-text-field__field textarea-tinymce"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="grid__row">
+                <div class="grid__col">
+                    <p class="form-label">[[#{actualites.pieces.jointes.label}]]</p>
+                    <th:block
+                        th:replace="fragments/components/formblocks/file-input :: fileInput(null, 'documentFileAdd', 'documentFileAdd', true, null, false)"
+                    >
+                    </th:block>
+                </div>
+            </div>
+            <div class="flex justify-between m-t-6 m-b-3">
+                <button
+                    type="button"
+                    class="m-r-3 base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                    onclick="goPreviousPage()"
+                >
+                    [[#{button.label.cancel}]]
+                </button>
+                <button
+                    id="btn-save-actualite"
+                    type="button"
+                    class="base-btn base-btn--submit base-btn--default base-btn--center"
+                    onclick="saveActualite(event)"
+                >
+                    [[#{button.label.save}]]
+                </button>
+            </div>
+        </form>
+    </main>
+</html>

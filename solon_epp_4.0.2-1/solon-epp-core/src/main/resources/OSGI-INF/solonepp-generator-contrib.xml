@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue les générateurs de séquences de SOLON EPP. -->
+<component name="fr.dila.solonepp.core.generator">
+	<extension target="org.nuxeo.ecm.platform.uidgen.service.UIDGeneratorService" point="generators">
+		<!-- Numéro de séquence des feuilles de route <generator name="feuilleRouteNumeroGenerator" 
+			class="fr.dila.st.core.generator.SequenceGenerator"> <propertyName>fdr:numero</propertyName> 
+			<docType>FeuilleRoute</docType> </generator> -->
+	</extension>
+</component>

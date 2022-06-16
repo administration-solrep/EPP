@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.nuxeo</groupId>
+    <artifactId>nuxeo-addons-parent</artifactId>
+    <version>SW-10.20.7</version>
+  </parent>
+
+  <groupId>org.nuxeo.ecm.media.publishing</groupId>
+  <artifactId>nuxeo-media-publishing</artifactId>
+  <name>Nuxeo Media Publishing Parent</name>
+  <description>Nuxeo Media Publishing Parent</description>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>nuxeo-media-publishing-core</module>
+    <module>nuxeo-media-publishing-jsf</module>
+    <module>nuxeo-media-publishing-wistia-core</module>
+    <module>nuxeo-media-publishing-wistia-jsf</module>
+    <module>nuxeo-media-publishing-youtube-core</module>
+    <module>nuxeo-media-publishing-youtube-jsf</module>
+  </modules>
+
+  <repositories>
+    <repository>
+      <id>public</id>
+      <url>http://maven.nuxeo.org/nexus/content/groups/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>public-snapshot</id>
+      <url>http://maven.nuxeo.org/nexus/content/groups/public-snapshot</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <scm>
+    <connection>scm:git:git://github.com/nuxeo/nuxeo-media-publishing.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com:nuxeo/nuxeo-media-publishing.git</developerConnection>
+    <url>https://github.com/nuxeo/nuxeo-media-publishing</url>
+  </scm>
+
+</project>

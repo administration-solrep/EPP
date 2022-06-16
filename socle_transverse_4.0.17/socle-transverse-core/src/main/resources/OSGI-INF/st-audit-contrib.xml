@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service d'audit des logs du socle transverse. -->
+<component name="fr.dila.st.core.st-audit-contrib">
+
+	<require>org.nuxeo.ecm.platform.audit.service.NXAuditEventsService</require>
+
+	<extension target="org.nuxeo.ecm.platform.audit.service.NXAuditEventsService" point="backend">
+		<backend class="fr.dila.st.core.audit.STAuditBackend" />
+	</extension>
+
+	<extension target="org.nuxeo.ecm.platform.audit.service.NXAuditEventsService" point="storage">
+		<storage id="STAuditStorage" class="fr.dila.st.core.audit.STAuditBackend" />
+	</extension>
+	
+	<extension target="org.nuxeo.ecm.platform.audit.service.NXAuditEventsService" point="event">
+
+		<event name="documentPublished" />
+		<event name="documentImported" />
+		<event name="documentSubmitedForPublication" />
+		<event name="afterCaseSentEvent" />
+		<event name="versioningChangeCoreEvent" />
+		<event name="ajoutFondDossier" />
+		<event name="supprimerFondDossier" />
+		<event name="modifierFondDossier" />
+
+		<!-- events de la feuille de route -->
+		<event name="feuilleRouteStepMove" />
+		<event name="feuilleRouteStepDelete" />
+		<event name="feuilleRouteStepUpdate" />
+		<event name="feuilleRouteStepCreate" />
+		<event name="copieFdrDossier" />
+		<event name="feuilleRouteRestart" />
+
+		<!-- events de validation de la feuille de route -->
+		<event name="afterCaseSentEvent" />
+		<event name="avisFavorable" />
+		<event name="avisDeFavorable" />
+		<event name="avisRectificatif" />
+		<event name="substituerFeuilleRoute" />
+
+		<!-- events des actions du dossier -->
+		<event name="envoiMailDossier" />
+		<event name="archivageDossier" />
+		<event name="preparationArchivageDossier" />
+		<event name="exportZipDossier" />
+
+		<!-- event de mise à jour du bordereau -->
+		<event name="bordereauUpdate" />
+
+		<!-- event de mise à jour du bordereau -->
+		<event name="traitementPapierUpdate" />
+
+		<!-- event du fond de dossier -->
+		<event name="creationDocumentFdd" />
+		<event name="modificationDocumentFdd" />
+
+		<event name="creationRepertoireFdd" />
+		<event name="modificationRepertoireFdd" />
+		<event name="suppressionRepertoireFdd" />
+
+		<!-- event du parapheur -->
+		<event name="creationDocumentParapheur" />
+		<event name="modificationDocumentParapheur" />
+		<event name="failGetFileInfoParapheur" />
+
+		<!-- event de l'envoi de mél -->
+		<event name="envoiMailGeneralEvent" />
+
+	</extension>
+</component>

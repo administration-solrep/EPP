@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="addEditNoteEtape()"
+            th:with="id='add-edit-note-etape-modal'"
+            th:id="${id}"
+            class="interstitial-overlay__content"
+        >
+            <div
+                role="dialog"
+                th:id="${id}"
+                aria-labelledby="dialogTitle"
+                class="interstitial interstitial--large interstitial--tall"
+            >
+                <div class="interstitial__header">
+                    <h1 th:id="|dialogTitle-${id}|" class="interstitial__title" th:text="#{fdr.step.add.note.label}">
+                        Modifier une note d'étape
+                    </h1>
+                    <button
+                        type="button"
+                        class="interstitial__close base-btn base-btn--button base-btn--default base-btn--discret"
+                    >
+                        <span aria-hidden="true" class="icon icon--cross"></span>
+                        <span class="sr-only" th:text="#{validation.popup.close.label}">Fermer</span>
+                    </button>
+                </div>
+                <div class="interstitial__content">
+                    <div th:replace="fragments/fdr/modaleInfo :: modaleInfo "></div>
+                    <div th:replace="fragments/fdr/addEditNoteEtapeContent :: addEditNoteEtapeContent(null)"></div>
+                </div>
+                <div class="interstitial__footer">
+                    <button
+                        class="interstitial__button base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                        th:text="#{organigramme.edit.cancel}"
+                    >
+                        Annuler
+                    </button>
+                    <button
+                        class="base-btn base-btn--submit base-btn--default"
+                        th:id="|btn-confirm-${id}|"
+                        th:text="#{button.label.save}"
+                    >
+                        Sauvegarder
+                    </button>
+                </div>
+            </div>
+            <div tabindex="-1" class="interstitial-overlay__tabindex"></div>
+        </div>
+    </body>
+</html>

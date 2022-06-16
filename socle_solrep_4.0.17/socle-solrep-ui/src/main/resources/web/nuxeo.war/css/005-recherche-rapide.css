@@ -1,0 +1,13 @@
+.rapidSearch-form--inverted .form-date-picker-input__form-input--error,
+.rapidSearch-form--inverted .form-input__field--error {
+    background: #fdf5f5;
+}
+
+.rapidSearch-form--inverted .form-input-group__description--error,
+.rapidSearch-form--inverted .form-input__description--error {
+    padding: 0 0.5em;
+    background: #d51622;
+    color: #fefefe;
+    border-radius: 0.313em;
+    position: absolute;
+}

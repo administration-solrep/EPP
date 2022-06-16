@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service de birt du socle SOLREP. -->
+<component name="fr.dila.ss.core.service.SSBirtService">
+	<implementation class="fr.dila.ss.core.component.SSBirtComponent" />
+
+	<service>
+		<provide interface="fr.dila.ss.api.service.SSBirtService" />
+	</service>
+</component>

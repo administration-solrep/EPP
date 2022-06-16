@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="tableSupervisionUtilisateurs(title,idTable)"
+            class="tableForm"
+            th:data-url="@{${dataUrl}}"
+            th:data-ajaxurl="@{${dataAjaxUrl}}"
+            th:id="${idTable}"
+        >
+            <h2 class="m-t-2 p-b-2 base-title base-title--lvl-3 base-title--is-underlined" th:text="${title}">
+                Titre
+            </h2>
+            <div class="overlay" th:id="|result_overlay_${idTable}|" aria-live="polite">
+                <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+            </div>
+            <input
+                th:unless="${dateConnexion == null}"
+                th:name="dateConnexion"
+                th:value="${dateConnexion}"
+                type="hidden"
+                aria-hidden="true"
+                data-isForm="true"
+            />
+            <a
+                href="#skip_link_user-logged-table_prev"
+                id="skip_link_user-logged-table_next"
+                class="skip-link"
+                th:text="#{skip.link.table.prev(#{supervision.onglet.utilisateurs.table})}"
+            >
+                Passer le tableau pour arriver après
+            </a>
+            <div class="table-action">
+                <div class="table-action__action-container table-action__action-container--left">
+                    <div class="table-action__group">
+                        <div th:replace="fragments/supervision/toolbar-supervision :: toolbar-supervision"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="custom-table">
+                    <caption class="sr-only" th:text="#{supervision.title}">
+                        Supervision
+                    </caption>
+                    <thead class="table-header custom-table__header">
+                        <tr class="table-header__line">
+                            <th:block th:each="colonne : ${lstColonnes}">
+                                <th:block th:if="${colonne.visible && colonne.sortable}">
+                                    <th
+                                        th:aria-sort="${colonne.sortValue == 'asc' ? 'ascending' : (colonne.sortValue== 'desc' ? 'descending' : '')}"
+                                        scope="col"
+                                        class="table-header__cell table-header__cell--with-filter-action"
+                                    >
+                                        <button
+                                            th:replace="fragments/table/sortableHeader :: sortableHeader (#{__${colonne.label}__},${colonne.sortValue},${colonne.sortName},${colonne.sortId},${colonne.inverseSort})"
+                                        ></button>
+                                    </th>
+                                </th:block>
+                            </th:block>
+                        </tr>
+                    </thead>
+
+                    <tbody class="custom-table__body">
+                        <th:block th:unless="${#lists.isEmpty(resultList)}">
+                            <tr
+                                class="custom-table table-line"
+                                th:each="item : ${resultList}"
+                                th:data-id="${item.utilisateur}"
+                            >
+                                <td class="table-line__cell">
+                                    <a
+                                        class="link"
+                                        th:href="@{|/admin/user/${item.utilisateur}#main_content|}"
+                                        th:text="${item.nom}"
+                                        >Nom</a
+                                    >
+                                </td>
+                                <td class="table-line__cell" th:text="${item.prenom}">Prénom</td>
+                                <td class="table-line__cell" th:text="${item.utilisateur}">Utilisateur</td>
+                                <td
+                                    class="table-line__cell"
+                                    th:text="${#calendars.format(item.dateConnexion, 'dd/MM/yyyy HH:mm')}"
+                                >
+                                    Date connexion
+                                </td>
+                            </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-action">
+                <div class="table-action__action-container table-action__action-container--left">
+                    <div class="table-action__group">
+                        <div th:replace="fragments/supervision/toolbar-supervision :: toolbar-supervision"></div>
+                    </div>
+                </div>
+            </div>
+            <a
+                href="#skip_link_user-logged-table_next"
+                id="skip_link_user-logged-table_prev"
+                class="skip-link"
+                th:text="#{skip.link.table.next(#{supervision.onglet.utilisateurs.table})}"
+                >Passer le tableau pour arriver avant
+            </a>
+        </div>
+    </body>
+</html>

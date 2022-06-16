@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service de gestion des actions possibles sur 
+	les versions. -->
+<component name="fr.dila.solonepp.core.service.VersionActionService">
+	<implementation class="fr.dila.solonepp.core.service.VersionActionServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.solonepp.api.service.VersionActionService" />
+	</service>
+
+</component>

@@ -1,0 +1,26 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="adminButtons(firstButton, secondButton)" th:remove="tag">
+            <div class="flex justify-between m-t-6 m-b-6">
+                <button
+                    th:id="${firstButton[0]}"
+                    type="button"
+                    th:attr="onclick=|${firstButton[1]}|"
+                    class="m-r-3 base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                >
+                    [[#{${firstButton[2]}}]]
+                </button>
+                <button
+                    th:id="${secondButton[0]}"
+                    type="submit"
+                    th:attr="onclick=|${secondButton[1]}|"
+                    class="base-btn base-btn--submit base-btn--default base-btn--center"
+                >
+                    [[#{${secondButton[2]}}]]
+                </button>
+            </div>
+        </div>
+    </body>
+</html>

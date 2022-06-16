@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service de vocabulaire du socle transverse. -->
+<component name="fr.dila.st.core.service.VocabularyService">
+	<implementation class="fr.dila.st.core.component.VocabularyComponent" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.VocabularyService" />
+	</service>
+</component>

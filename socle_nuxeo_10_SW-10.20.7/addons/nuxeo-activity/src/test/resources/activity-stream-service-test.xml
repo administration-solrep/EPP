@@ -1,0 +1,66 @@
+<component name="org.nuxeo.ecm.activity.test">
+
+  <extension target="org.nuxeo.runtime.datasource" point="datasources">
+    <datasource name="jdbc/nxactivities"  xaDataSource="org.h2.jdbcx.JdbcDataSource"
+      maxPoolSize="20" minPoolSize="5">
+      <property name="URL">jdbc:h2:mem:activity;DB_CLOSE_DELAY=-1</property>
+      <property name="user">sa</property>
+      <property name="password"></property>
+    </datasource>
+  </extension>
+
+
+  <extension target="org.nuxeo.ecm.core.persistence.PersistenceComponent" point="hibernate">
+    <hibernateConfiguration name="nxactivities">
+      <datasource>nxactivities</datasource>
+      <properties>
+       <property name="hibernate.hbm2ddl.auto">update</property>
+      </properties>
+      <classes>
+        <class>org.nuxeo.ecm.activity.TweetActivity</class>
+      </classes>
+    </hibernateConfiguration>
+  </extension>
+
+  <extension target="org.nuxeo.ecm.activity.ActivityStreamService"
+    point="activityStreamFilters">
+    <activityStreamFilter class="org.nuxeo.ecm.activity.DummyActivityStreamFilter" />
+    <activityStreamFilter class="org.nuxeo.ecm.activity.TweetActivityStreamFilter" />
+  </extension>
+
+  <extension target="org.nuxeo.ecm.activity.ActivityStreamService"
+    point="activityStreams">
+    <activityStream name="userActivityStream">
+      <verbs>
+        <verb>documentCreated</verb>
+        <verb>documentModified</verb>
+        <verb>circle</verb>
+      </verbs>
+    </activityStream>
+    <activityStream name="anotherStream">
+      <verbs append="true">
+        <verb>documentDeleted</verb>
+      </verbs>
+    </activityStream>
+  </extension>
+
+  <extension target="org.nuxeo.ecm.activity.ActivityStreamService"
+    point="activityLinkBuilders">
+
+    <activityLinkBuilder name="dummy"
+      class="org.nuxeo.ecm.activity.DummyActivityLinkBuilder" />
+
+  </extension>
+
+  <extension target="org.nuxeo.ecm.activity.ActivityStreamService"
+    point="activityUpgraders">
+
+    <activityUpgrader name="dummyUpgrader"
+      class="org.nuxeo.ecm.activity.DummyActivityUpgrader" order="10" />
+
+    <activityUpgrader name="anotherDummyUpgrader"
+      class="org.nuxeo.ecm.activity.DummyActivityUpgrader" order="5" />
+
+  </extension>
+
+</component>

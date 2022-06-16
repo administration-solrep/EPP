@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	xmlns:xad="http://uri.etsi.org/01903/v1.3.2#" Id="TAO_1_Signature">
+	<ds:SignedInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+		<ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+		<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+		<ds:Reference URI="#TAO_1_SignedManifest"
+			Type="http://www.w3.org/2000/09/xmldsig#Manifest">
+			<ds:Transforms>
+				<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+			</ds:Transforms>
+			<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+			<ds:DigestValue>
+				PjohSE2gycgs/qpVM3b/1c7aOFs=
+			</ds:DigestValue>
+		</ds:Reference>
+		<ds:Reference xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+			Type="http://uri.etsi.org/01903#SignedProperties" URI="#TAO_1_SignedProperties">
+			<ds:Transforms>
+				<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+			</ds:Transforms>
+			<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+			<ds:DigestValue>8znVHrS5XlSdE
+				Vv1Xe785bBn+jU=</ds:DigestValue>
+		</ds:Reference>
+	</ds:SignedInfo>
+	<ds:SignatureValue Id="TAO_1_SignatureValue">XWnOsKTN5xxzKkZjtOgh8esAEbATlTQbf4F+WoYI+zh7y9y5Y7T3gwwLNIvSg6hi
+		JBTfFiw7SFZmi3lrRyNF+DSdFz4WYTrjnkybWwzHB/xndQPVL/2XSYovlC6txCNe
+		Kcik/61Rp/LLY/KZyGE0OAWHuueemN/25/rTu1OqjCg=</ds:SignatureValue>
+	<ds:KeyInfo>
+		<ds:X509Data>
+			<ds:X509Certificate>
+				MIIDyzCCArOgAwIBAgICBEcwDQYJKoZIhvcNAQEFBQAwgYsxCzAJBgNVBAYTAkZSMRMwEQYDVQQIEwpTb21lLVN0YXRlMQ
+				4wDAYDVQQHEwVQYXJpczESMBAGA1UEChMJRGljdGFvIFNBMRAwDgYDVQQLEwdBbnlTaWduMTEwLwYDVQQDEyhBdXRvcml0ZSBkZSBjZXJ0aWZpY2F0aW9uIERpY3RhbyBBbnlTaWduMB4XDTA4MDczMTE0MzEwNVoXDTE4MDcyOTE0MzEwNVowYjELMAkGA1UEBhMCRlIxD
+				DAKBgNVBAgTA0lERjEOMAwGA1UEBxMFUGFyaXMxFzAVBgNVBAoTDkRlbW8gRGljdGFvIFNBMRwwGgYDVQQDExNEZW1vIER4UyBDb25maWdTaWduMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDEC9Wf7ORyi6r7pW0Kio8mrR2ApIU+Ok7GykKGoJtQp4tDlF8v2UT/
+				zW4XidVtQUr+5UqSkQ8dnB2qc71MQjPZZfPuP9nT8uwWZgF9xgf4SN0n8D9k31TO8SRlshmVP1zb95pU2bZzQFKlDNBlxgaOe2/y8i5HUf88/HnIRoP2AwIDAQABo4HkMIHhMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgbAMBEGCWCGSAGG+EIBAQQEAwIFoDA4BglghkgBhvh
+				CAQ0EKxYpSW50ZXJuYWwgRGljdGFvIFBLSSBHZW5lcmF0ZWQgQ2VydGlmaWNhdGUwOgYDVR0fBDMwMTAvoC2gK4YpaHR0cDovL3d3dy5kaWN0YW8uY29tL0FueVNpZ24vQW55U2lnbi5jcmwwHQYDVR0OBBYEFMnuLZdSTu+Y3RgpoOVpzwxVdUbTMB8GA1UdIwQYMBaAFG
+				5A+yGyJRPskStEjjsWZTKrJwFIMA0GCSqGSIb3DQEBBQUAA4IBAQAy0Tgz1/JiMu65TPMDOgcpFLTpiq3dx/PNgonuGoVea2ZDvQD0cZxQf+w5U6th6JQkhHtEMBjjbgOsg4f+X/pd9fY6Gle/do2M4+q9XgPbw9lixHC4d21L/GocgtvC5Zdhb6Nj+9qgVUu6RTKxgD6Am
+				QqdVWvCaf0aFI/T7tJ6Z93Nqwhpoh8x3th8rIz9SEATJ1NOIExcb7SjkwsFQqVYD1IwiVB5VLBXrLg+d8yAOB4cyTEEOqNwhX4G64TemmZGQZIZCDM92B8CezgITwENR4ZhCrUmQkV6U+OfYEvA9mPajo1XJeM0Z0pmW3rE6pzsdtgOXoUAZ9Fvh2sLBfbW
+			</ds:X509Certificate>
+		</ds:X509Data>
+	</ds:KeyInfo>
+	<ds:Object>
+		<ds:Manifest Id="TAO_1_SignedManifest">
+			<ds:Reference URI="file://exemple_teleactes_2007_25Mo.xml">
+				<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
+				<ds:DigestValue>47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=</ds:DigestValue>
+			</ds:Reference>
+		</ds:Manifest>
+	</ds:Object>
+	<ds:Object xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+		<xad:QualifyingProperties xmlns:xad="http://uri.etsi.org/01903/v1.3.2#"
+			Target="#TAO_1_Signature">
+			<xad:SignedProperties Id="TAO_1_SignedProperties">
+				<xad:SignedSignatureProperties>
+					<xad:SigningTime>
+						2011-02-28T13:21:34Z
+					</xad:SigningTime>
+					<xad:SigningCertificate>
+						<xad:Cert>
+							<xad:CertDigest>
+								<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+								<ds:DigestValue>5x+/3B25KO3x3dbHrcyS4Lj6RsQ=</ds:DigestValue>
+							</xad:CertDigest>
+							<xad:IssuerSerial>
+								<ds:X509IssuerName>CN=Autorite de certification Dictao
+									AnySign,OU=AnySign,O=Dictao SA,L=Paris,ST=Some-State,C=FR</ds:X509IssuerName>
+								<ds:X509SerialNumber>
+									1095
+								</ds:X509SerialNumber>
+							</xad:IssuerSerial>
+						</xad:Cert>
+					</xad:SigningCertificate>
+				</xad:SignedSignatureProperties>
+			</xad:SignedProperties>
+		</xad:QualifyingProperties>
+	</ds:Object>
+</ds:Signature>

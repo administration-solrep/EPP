@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="requiredScripts">
+            <script th:src="@{/scripts/specific.js?r=__${buildVersion}__}"></script>
+        </th:block>
+    </body>
+</html>

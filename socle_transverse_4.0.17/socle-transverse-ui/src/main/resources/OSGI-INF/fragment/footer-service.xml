@@ -1,0 +1,11 @@
+<component name="fr.dila.st.ui.FooterService">
+
+    <require>fr.dila.st.core.service.ConfigService</require>
+
+  <implementation class="fr.dila.st.ui.services.impl.FooterServiceImpl" />
+
+  <service>
+    <provide interface="fr.dila.st.ui.services.FooterService" />
+  </service>
+
+</component>

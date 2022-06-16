@@ -1,0 +1,20 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Journal Technique', title=#{journal.technique.titre})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <h1
+            class="m-t-6 m-b-6 base-title base-title--lvl-1 base-title--is-underlined"
+            th:text="#{journal.technique.titre}"
+        >
+            Journal technique
+        </h1>
+        <div th:replace="fragments/journal/journal-technique-recherche ::journal-technique-recherche"></div>
+        <div id="resultList">
+            <div th:replace="fragments/table/tableJournalTechnique :: searchResults"></div>
+        </div>
+    </main>
+</html>

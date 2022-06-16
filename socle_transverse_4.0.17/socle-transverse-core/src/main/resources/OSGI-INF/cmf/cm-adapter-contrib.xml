@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<component name="com.nuxeo.case-management.adapterContrib">
+
+  <extension target="org.nuxeo.ecm.core.api.DocumentAdapterService" point="adapters">
+    <adapter class="fr.dila.cm.mailbox.Mailbox" factory="fr.dila.cm.core.adapter.MailboxAdapterFactory" />
+  </extension>
+
+</component>

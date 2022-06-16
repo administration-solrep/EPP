@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="pagination(index, lstLettres)"
+            th:aria-label="#{admin.user.label.nav.sronly}"
+            class="letter-index-slider"
+        >
+            <div
+                class="letter-index-slider__container js-letter-index-slider swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-autoheight"
+            >
+                <div class="letter-index-slider__swiper-wrapper swiper-wrapper">
+                    <th:block th:each="item : ${lstLettres}">
+                        <div
+                            aria-hidden="false"
+                            class="letter-index-slider__swiper-slide swiper-slide"
+                            th:classappend="${#strings.equals(index, item)} ? 'swiper-slide-active' : ''"
+                        >
+                            <button
+                                class="base-btn base-btn--button base-btn--default base-btn--secondary-transparent base-btn--center letter-index-slider__letter-button"
+                                th:aria-current="${#strings.equals(index, item)}?'page'"
+                                th:data-value="${item}"
+                                onclick="goToLetter($(this).data('value'))"
+                                th:classappend="${#strings.equals(index, item)} ? 'letter-index-slider__letter-button--active' : ''"
+                            >
+                                <span class="pagination__sr-only">[[#{admin.user.label.page}]] </span>
+                                <span th:text="${#strings.toUpperCase(item)}"></span>
+                            </button>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+            <button
+                type="button"
+                class="letter-index-slider__pagination-button letter-index-slider__pagination-button--prev js-letter-index-slider-button-prev base-btn base-btn--button base-btn--default base-btn--secondary base-btn--center base-btn--rounded base-btn--with-icon letter-index-slider__pagination-button--disabled"
+            >
+                <span class="sr-only">[[#{admin.user.label.prevLetter}]]</span>
+                <span aria-hidden="true" class="base-btn__icon icon icon--right"></span>
+            </button>
+            <button
+                type="button"
+                class="letter-index-slider__pagination-button letter-index-slider__pagination-button--next js-letter-index-slider-button-next base-btn base-btn--button base-btn--default base-btn--secondary base-btn--center base-btn--rounded base-btn--with-icon"
+            >
+                <span class="sr-only">[[#{admin.user.label.nextLetter}]]</span>
+                <span aria-hidden="true" class="base-btn__icon icon icon--right"></span>
+            </button>
+        </div>
+    </body>
+</html>

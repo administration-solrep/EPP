@@ -1,0 +1,65 @@
+/* Put SWORD solrep specific CSS for appli here */
+.note-detail-container {
+    display: flex;
+    padding-right: 1.7142857143rem;
+}
+
+ul.note-detail-list .note-detail-list {
+    padding-left: 3rem;
+}
+
+.base-drop-down__link-interstitial {
+    color: #3c3c3c;
+    padding: 0.5em 1em;
+    justify-content: normal;
+}
+
+#overlay_journalSearchResult {
+    width: 29px;
+    height: 29px;
+    background: grey;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.form-input__field--type-number {
+    max-width: 6.625em;
+}
+
+.interstitial-overlay.page-routesearch__tree-icon {
+    right: 0;
+    z-index: auto;
+}
+
+.grid__row.aligned {
+    align-items: normal !important;
+}
+
+.icon-green {
+    color: #118827;
+}
+
+#btn-reset-sup .icon {
+    font-size: 0.5em;
+    padding-top: 0.5em;
+    margin-right: 1em;
+    display: inline-block;
+}
+
+.wrap-cells td {
+    word-wrap: break-word;
+}
+
+.infos-etapes {
+    align-items: baseline;
+}
+
+.infos-etapes > strong > span {
+    display: block;
+}
+
+.color-white {
+    color: #fefefe;
+}

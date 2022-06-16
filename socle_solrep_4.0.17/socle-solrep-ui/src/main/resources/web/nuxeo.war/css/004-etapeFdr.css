@@ -1,0 +1,20 @@
+.modal-etape {
+    min-height: 35em;
+}
+
+.modal-etape .form-input__description,
+.modal-etape--small .form-input__description {
+    max-width: 15em;
+}
+
+.modal-flex {
+    flex: 1;
+}
+
+.modal-organigramme-footer {
+    position: absolute;
+}
+
+fieldset + fieldset {
+    border-top: 1px solid #d8d8d8;
+}

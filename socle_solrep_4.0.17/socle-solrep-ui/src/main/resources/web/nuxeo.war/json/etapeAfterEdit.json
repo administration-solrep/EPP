@@ -1,0 +1,29 @@
+{
+    "etat": {
+        "label": "label.reponses.feuilleRoute.etape.pour.visa",
+        "icon": "icon--previous-circle"
+    },
+    "notes": [],
+    "action": "Pour visa",
+    "ministere": "BDC Europe et affaires étrangères",
+    "poste": "Chef SLR MATRCT",
+    "echeanceDate": null,
+    "traiteDate": null,
+    "isRequired": true,
+    "parent": null,
+    "actions": [
+        {
+            "label": "Action 1",
+            "link": "javascript:alert('action1')",
+            "enabled": true
+        },
+        {
+            "label": "Action2",
+            "link": "javascript:alert('action2')",
+            "enabled": true
+        }
+    ],
+    "depth": 0,
+    "id": "line1",
+    "isStripped": false
+}

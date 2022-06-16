@@ -1,0 +1,31 @@
+{
+    "id": "test",
+    "dateEmission": "01/02/2020",
+    "dateValidite": "01/03/2020",
+    "objet": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy",
+    "contenu": " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed id semper risus in. Diam sollicitudin tempor id eu nisl. Viverra mauris in aliquam sem fringilla ut morbi tincidunt augue. Sit amet cursus sit amet dictum. Dis parturient montes nascetur ridiculus mus mauris. \n Massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin. Aliquam nulla facilisi cras fermentum odio. Augue lacus viverra vitae congue eu consequat ac felis. Neque vitae tempus quam pellentesque nec nam aliquam. Rhoncus dolor purus non enim praesent elementum facilisis leo vel. Justo donec enim diam vulputate ut pharetra sit amet aliquam. Non sodales neque sodales ut etiam. Egestas diam in arcu cursus. Pellentesque dignissim enim sit amet venenatis urna cursus eget. \n Nulla facilisi morbi tempus iaculis urna id volutpat.\n Magna eget est lorem ipsum dolor sit amet consectetur adipiscing.Quis hendrerit dolor magna eget est lorem. Faucibus purus in massa tempor nec feugiat nisl pretium fusce. Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis. Ornare quam viverra orci sagittis eu. Blandit turpis cursus in hac habitasse. ",
+    "isInHistorique": true,
+    "piecesJointesIds": ["12345", "12346"],
+    "piecesJointes": [
+        {
+            "id": "12345",
+            "nom": "Rapport",
+            "auteur": "Jerome",
+            "entite": "Ministere",
+            "date": "01/01/2020",
+            "version": "1",
+            "link": "link.to.file",
+            "extension": ".pdf"
+        },
+        {
+            "id": "12346",
+            "nom": "Fiche",
+            "auteur": "Jerome",
+            "entite": "Ministere",
+            "date": "02/01/2020",
+            "version": "1",
+            "link": "link.to.file2",
+            "extension": ".word"
+        }
+    ]
+}

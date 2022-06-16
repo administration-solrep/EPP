@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<component name="com.nuxeo.casemanagement.querymodel">
+  
+  <extension point="providers" target="org.nuxeo.ecm.platform.query.api.PageProviderService">
+  
+    <coreQueryPageProvider name="GET_MAILBOX_FROM_ID">
+      <pattern escapeParameters="true" quoteParameters="true">
+        SELECT * FROM Document WHERE mlbx:mailbox_id=?
+        AND ecm:isTrashed = 0 AND ecm:mixinType = 'Mailbox'
+      </pattern>
+      <sort ascending="true" column="dc:title" />
+      <pageSize>20</pageSize>
+    </coreQueryPageProvider>
+    
+    <coreQueryPageProvider name="GET_ALL_MAILBOX">
+      <pattern escapeParameters="true" quoteParameters="false">
+         SELECT * FROM Document WHERE ecm:isTrashed = 0
+         AND ecm:mixinType = 'Mailbox'
+      </pattern>
+      <sort ascending="true" column="dc:title" />
+      <pageSize>20</pageSize>
+    </coreQueryPageProvider>
+  
+  </extension>
+  
+  </component>

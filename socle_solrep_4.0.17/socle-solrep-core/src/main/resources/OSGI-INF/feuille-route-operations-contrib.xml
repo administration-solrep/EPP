@@ -1,0 +1,13 @@
+<component name="fr.sword.idl.naiad.feuilleroute.core.operations" version="1.0">
+
+  <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" point="operations">
+    
+    <operation class="fr.sword.idl.naiad.nuxeo.feuilleroute.core.operation.ResumeStepOperation" />
+    <operation class="fr.sword.idl.naiad.nuxeo.feuilleroute.core.operation.StepDoneOperation" />
+    <operation class="fr.sword.idl.naiad.nuxeo.feuilleroute.core.operation.StepBackToReadyOperation" />
+      
+      
+    <operation class="fr.sword.idl.naiad.nuxeo.feuilleroute.core.operation.FeuilleRouteTableOperation" />
+  </extension>
+
+</component>

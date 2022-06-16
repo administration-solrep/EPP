@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-Vendor: Nuxeo
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: naiad-nuxeo-status-ws
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: naiad-nuxeo-status-ws
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Nuxeo-WebModule: org.nuxeo.ecm.webengine.app.WebEngineModule;name=NaiadStatusRoot;package=fr/sword/idl/naiad/nuxeo/addons/status/ws/management
+Nuxeo-Component: OSGI-INF/openurl-contrib.xml
+

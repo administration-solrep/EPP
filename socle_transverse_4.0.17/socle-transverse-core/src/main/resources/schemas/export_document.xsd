@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://dila.fr/solon/schemas/exportDocument/"
+    xmlns:expdoc="http://dila.fr/solon/schemas/exportDocument/"
+>
+
+	<xs:include schemaLocation="core-types.xsd" />
+
+	<xs:element name="owner" type="xs:string" />
+	<xs:element name="dateRequest" type="xs:date" />
+	<xs:element name="content" type="expdoc:content" />
+
+</xs:schema>

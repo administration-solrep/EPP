@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service des types de corbeilles de l'application 
+	SOLON EPP. -->
+<component name="fr.dila.solonepp.core.service.CorbeilleTypeService">
+	<implementation class="fr.dila.solonepp.core.service.CorbeilleTypeServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.solonepp.api.service.CorbeilleTypeService" />
+	</service>
+
+	<extension-point name="corbeilleType">
+		<documentation>
+			Cette extension permet de déclarer les types de corbeilles pour
+			chaque institution.
+
+			- Element : "corbeilleInstitution" : ajoute une arborescene de
+			corbeilles pour une institution.
+			- Attribut "institution" : Nom de l'institution (GOUVERNEMENT,
+			ASSEMBLEE_NATIONALE ou SENAT ou DILA)
+
+			- Element : "corbeilleNode" : ajoute un noeud dans l'arborescence des
+			corbeilles. Un noeud est soit
+			une section (c'est à dire une collection de corbeille), soit une
+			corbeille.
+			L'ordre des noeuds ajoutés est conservé.
+			- Attribut "type" : Type de noeud (SECTION ou CORBEILLE).
+			- Attribut "name" : Identifiant technique
+			- Attribut "label" : Libellé
+			- Attribut "description" : Description longue
+
+			- Element : "messageGroup" : Définit les message que peut contenir la
+			corbeille. Un messageGroup
+			est une conjonction (ET) de types de messages et de types d'événements.
+			Par exemple : tous les
+			messages des événements EVT01 ou EVT02 dont je suis émetteur ou destinataire.
+
+			- Element "messageType" : disjonction (OU) de types de message.
+			- Attribut "name" : type de message (EMETTEUR, DESTINATAIRE ou
+			CORBEILLE)
+
+			- Element "evenementType" : disjonction (OU) de types de message.
+			- Attribut "name" : type de message (EVT01, EVT02...) voir
+			evenement-type-framework.xml
+
+			Exemple de déclaration:
+
+			<code>
+				<corbeilleInstitution institution="SENAT">
+					<corbeilleNode
+                        type="SECTION"
+                        name="SECTION_SENAT_DEPOT"
+                        label="Dépôt"
+                        description="Section regroupant les messages reçus et émis concernant les procédures législatives"
+                    >
+						<corbeilleNode
+                            type="CORBEILLE"
+                            name="CORBEILLE_SENAT_DEPOT_RECU"
+                            label="Reçu"
+                            description="Regroupe les messages des évènements devant donner lieu à un dépôt sur le bureau du Sénat."
+                        >
+							<messageGroup>
+								<messageTypes>
+									<messageType name="EMETTEUR" />
+								</messageTypes>
+								<evenementTypes>
+									<evenementType name="EVT01" />
+								</evenementTypes>
+							</messageGroup>
+							<messageGroup>
+								<messageTypes>
+									<messageType name="DESTINATAIRE" />
+								</messageTypes>
+								<evenementTypes>
+									<evenementType name="EVT01" />
+									<evenementType name="EVT02" />
+								</evenementTypes>
+							</messageGroup>
+						</corbeilleNode>
+					</corbeilleNode>
+				</corbeilleInstitution>
+			</code>
+		</documentation>
+
+		<object class="fr.dila.solonepp.core.descriptor.corbeilletype.CorbeilleInstitutionDescriptor" />
+	</extension-point>
+</component>

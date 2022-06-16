@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- ================================================== -->
+	<!-- Parent description -->
+	<!-- ================================================== -->
+	<parent>
+		<groupId>fr.sword.idl.naiad.nuxeo.addons</groupId>
+		<artifactId>naiad-nuxeo-parent</artifactId>
+		<version>7.1.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<!-- ================================================== -->
+	<!-- Project coordinates -->
+	<!-- ================================================== -->
+	<artifactId>naiad-nuxeo-status-parent</artifactId>
+	<packaging>pom</packaging>
+
+
+	<!-- ================================================== -->
+	<!-- More Project description -->
+	<!-- ================================================== -->
+	<name>naiad-nuxeo-status-parent</name>
+
+	<!-- ================================================== -->
+	<!-- Properties -->
+	<!-- ================================================== -->
+	<properties>
+		<naiad.common.version>1.14.0</naiad.common.version>
+	</properties>
+
+	<!-- ================================================== -->
+	<!-- Dependencies Management -->
+	<!-- ================================================== -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>fr.sword.idl.naiad.nuxeo.addons</groupId>
+				<artifactId>naiad-nuxeo-status-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.sword.idl.naiad.nuxeo.addons</groupId>
+				<artifactId>naiad-nuxeo-status-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.sword.idl.naiad.nuxeo.addons</groupId>
+				<artifactId>naiad-nuxeo-status-ws</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.sword.idl.naiad.commons</groupId>
+				<artifactId>naiad-commons-net</artifactId>
+				<version>${naiad.common.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- ================================================== -->
+	<!-- Modules -->
+	<!-- ================================================== -->
+	<modules>
+		<module>naiad-nuxeo-status-api</module>
+		<module>naiad-nuxeo-status-core</module>
+		<module>naiad-nuxeo-status-ws</module>
+	</modules>
+
+</project>

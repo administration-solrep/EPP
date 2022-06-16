@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="select(widget)">
+            <div class="labellised-list__label" th:for="${widget.name}">
+                <th:block th:text="#{${widget.label}}">label widget</th:block>
+                <span th:if="${widget.required}" class="form-label__required-text" th:text="#{form.input.required}"
+                    >requis</span
+                >
+            </div>
+            <div
+                class="form-input labellised-list__description"
+                th:classappend="${widget.modifiedInCurVersion ? 'labellised-list__description--warning' : ''}"
+            >
+                <div class="form-select form-select--simple" th:id="|${widget.name}Select|">
+                    <div class="form-select__field-wrapper">
+                        <div class="form-select-input">
+                            <select
+                                th:id="${widget.name}"
+                                th:name="${widget.name}"
+                                class="form-select-input__field form-select-input__field--simple"
+                            >
+                                <option value="" th:text="#{communicationSuccessive.select.default}"
+                                    >default value</option
+                                >
+                                <option
+                                    th:each="item : ${widget.getValueParamByName('lstValues')}"
+                                    th:value="${item.id}"
+                                    th:text="${item.label}"
+                                    th:selected="${widget.getValueParamByName('valeur') == item.id}"
+                                ></option>
+                            </select>
+                            <span aria-hidden="true" tabindex="-1">
+                                <span
+                                    aria-hidden="true"
+                                    class="form-select-input__arrow icon icon--arrow-bottom"
+                                ></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page de détail du batchs', title=${#messages.msg('batch.suivi.detail.label', batch.nom)})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <input type="hidden" id="urlPreviousPage" name="urlPreviousPage" th:value="@{${urlPreviousPage}}" />
+        <div class="row-actions grid__row">
+            <div class="row-actions__left">
+                <button
+                    type="button"
+                    onClick="goPreviousPage()"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                    th:text="#{button.label.back}"
+                >
+                    Retour
+                </button>
+            </div>
+        </div>
+        <h1
+            class="m-t-6 m-b-6 p-b-3 base-title base-title--lvl-1 base-title--is-underlined"
+            th:text="${#messages.msg('batch.suivi.detail.label', batch.nom)}"
+        >
+            Détail batch
+        </h1>
+        <a href="#skip_link_action-table_prev" id="skip_link_action-table_next" class="skip-link"
+            >[[ #{skip.link.table.prev(${#messages.msg('batch.suivi.detail.label', batch.nom)})} ]]</a
+        >
+        <div class="table-wrapper">
+            <table class="custom-table">
+                <caption class="sr-only" th:text="${#messages.msg('batch.suivi.detail.label', batch.nom)}">
+                    Tableau des utilisateurs
+                </caption>
+                <thead class="table-header custom-table__header">
+                    <tr class="table-header__line">
+                        <th:block th:each="colonne : ${lstColonnes}">
+                            <th
+                                scope="col"
+                                class="table-header__cell"
+                                th:text="${colonne.label !=null? #messages.msg(colonne.label) : ''}"
+                            >
+                                &nbsp;
+                            </th>
+                        </th:block>
+                    </tr>
+                </thead>
+                <tbody class="custom-table__body">
+                    <th:block th:unless="${#lists.isEmpty(batch.liste)}">
+                        <tr
+                            class="custom-table__table-line table-line table-line--complex-line"
+                            th:each="batchDetail : ${batch.liste}"
+                        >
+                            <td class="table-line__cell" th:text="${batchDetail.nom}"></td>
+                            <td class="table-line__cell" th:text="${batchDetail.type}"></td>
+                            <td
+                                class="table-line__cell"
+                                th:text="${#dates.format(batchDetail.debut, 'dd/MM/yyyy HH:mm')}"
+                            ></td>
+                            <td
+                                class="table-line__cell"
+                                th:text="${#dates.format(batchDetail.fin, 'dd/MM/yyyy HH:mm')}"
+                            ></td>
+                            <td class="table-line__cell" th:text="${batchDetail.duree}"></td>
+                            <td class="table-line__cell" th:text="${batchDetail.erreurs}"></td>
+                            <td class="table-line__cell" th:text="${batchDetail.resultat}"></td>
+                            <td class="table-line__cell" th:text="${batchDetail.message}"></td>
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
+        </div>
+        <a href="#skip_link_action-table_next" id="skip_link_action-table_prev" class="skip-link"
+            >[[ #{skip.link.table.next(${#messages.msg('batch.suivi.detail.label', batch.nom)})} ]]</a
+        >
+        <div class="row-actions grid__row">
+            <div class="row-actions__left">
+                <button
+                    type="button"
+                    onClick="goPreviousPage()"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                    th:text="#{button.label.back}"
+                >
+                    Retour
+                </button>
+            </div>
+        </div>
+    </main>
+</html>

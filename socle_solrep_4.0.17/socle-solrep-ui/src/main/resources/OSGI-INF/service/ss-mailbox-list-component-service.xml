@@ -1,0 +1,9 @@
+<component name="fr.dila.ss.ui.services.component.SSMailboxListComponentComponent">
+
+  <implementation class="fr.dila.ss.ui.services.component.SSMailboxListComponentComponent" />
+  
+  <service>
+    <provide interface="fr.dila.ss.ui.services.SSMailboxListComponentService" />
+  </service>
+
+</component>

@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.cm.service.mailboxManagement">
+
+  <implementation class="fr.dila.cm.core.service.CaseManagementComponent" />
+
+  <service>
+    <provide interface="fr.dila.cm.service.CaseDistributionService" />
+  </service>
+
+</component>

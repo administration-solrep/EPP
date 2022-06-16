@@ -1,0 +1,104 @@
+{
+	"lstWidgets": [
+		{
+			"label": "label.epp.metadonnee.dossier",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "ANAT1802904L"
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.emetteur",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "Assemblée nationale"
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.destinataire",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "Gouvernement"
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.horodatage",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "25/06/2020"
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.niveauLecture",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "2 - Sénat"
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.objet",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "visant à créer le statut de citoyen sauveteur, lutter contre l’arrêt cardiaque et sensibiliser aux gestes qui sauvent"
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.typeLoi",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "Loi"
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.dateAdoption",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "28/09/2016"
+				}
+			]
+		},
+		{
+			"label": "label.epp.metadonnee.urlDossierAn",
+			"typeChamp": "url",
+			"url": "http://www.assemblee-nationale.fr/15/dossiers/lutte_mort_subite.asp"
+		},
+		{
+			"label": "label.epp.metadonnee.urlDossierSenat",
+			"typeChamp": "url",
+			"url": "http://www.senat.fr/dossier-legislatif/ppl18-331.html"
+		},
+		{
+			"label": "label.epp.metadonnee.redepot",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "Non"
+				}
+			]
+		}
+	]
+}

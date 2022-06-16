@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.epp.ui.services.component.EppUserManagerUIComponent">
+
+	<require>fr.dila.st.ui.services.component.STUserManagerUIComponent</require>
+
+  <implementation class="fr.dila.epp.ui.services.component.EppUserManagerUIComponent" />
+  
+  <service>
+    <provide interface="fr.dila.st.ui.services.STUserManagerUIService" />
+  </service>
+
+</component>

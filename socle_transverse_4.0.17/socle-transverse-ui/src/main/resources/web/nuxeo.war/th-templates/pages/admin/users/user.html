@@ -1,0 +1,11 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page de la fiche utilisateur', title=${ficheUser.nom} + ' ' + ${ficheUser.prenom} + ' (' + ${ficheUser.utilisateur} + ')')}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <div th:replace="fragments/userDetails :: ficheUtilisateur"></div>
+    </main>
+</html>

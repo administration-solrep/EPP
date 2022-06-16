@@ -1,0 +1,74 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Migrations de gouvernement', title=#{migration.organigramme.titre})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <h1 class="m-t-6 m-b-6 base-title base-title--lvl-1" th:text="#{migration.organigramme.titre}">
+            Migration d'éléments de l'organigramme
+        </h1>
+
+        <form id="migration-form">
+            <input type="hidden" id="urlPreviousPage" name="urlPreviousPage" th:value="@{${urlPreviousPage}}" />
+            <div id="migration-list" class="migrations">
+                <th:block
+                    th:replace="fragments/components/migration/migration-list :: migrationList(${migration}, ${migrationDto.isRunning}, ${index})"
+                ></th:block>
+            </div>
+
+            <div class="page-migration__bottom">
+                <button
+                    type="button"
+                    id="migration-add-button"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--uppercased"
+                    th:if="${!migrationDto.isRunning}"
+                    onclick="addMigration()"
+                >
+                    <span
+                        aria-hidden="true"
+                        class="base-btn__icon base-btn__icon--vertical-center base-btn__icon--left icon icon--plus"
+                    ></span>
+                    [[#{button.label.ajouter}]]
+                </button>
+                <div class="m-t-6 flex flex-row justify-between">
+                    <div>
+                        <button
+                            type="button"
+                            id="migration-cancel-button"
+                            class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                            th:text="#{button.label.cancel}"
+                            onclick="goPreviousPage()"
+                            th:disabled="${migrationDto.enCours}"
+                        >
+                            Annuler
+                        </button>
+                    </div>
+                    <div>
+                        <button
+                            type="button"
+                            id="migration-reinit-button"
+                            class="m-r-3 base-btn base-btn--button base-btn--default base-btn--secondary base-btn--center"
+                            th:text="#{migration.reinitialiser}"
+                            onclick="reinitMigrations()"
+                            th:disabled="${migrationDto.enCours}"
+                        >
+                            Réinitiliser
+                        </button>
+                        <button
+                            type="submit"
+                            id="migration-launch-button"
+                            class="base-btn base-btn--submit base-btn--default base-btn--center"
+                            th:text="#{migration.lancer}"
+                            onclick="launchMigration()"
+                            th:disabled="${migrationDto.isRunning}"
+                        >
+                            Lancer la migration
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+</html>

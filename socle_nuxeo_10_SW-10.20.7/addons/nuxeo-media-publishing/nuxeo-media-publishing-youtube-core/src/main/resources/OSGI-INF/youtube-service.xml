@@ -1,0 +1,13 @@
+<component name="org.nuxeo.ecm.media.publishing.youtube.YouTubeService">
+
+  <documentation>
+    YouTube Service
+  </documentation>
+
+  <implementation class="org.nuxeo.ecm.media.publishing.youtube.YouTubeService" />
+
+  <service>
+    <provide interface="org.nuxeo.ecm.media.publishing.youtube.YouTubeService" />
+  </service>
+
+</component>

@@ -1,0 +1,39 @@
+name: 'nuxeo_api_playground'
+description: Nuxeo API Playground
+environment:
+  sdk: '>=1.0.0 <1.24.0'
+dependencies:
+  browser: '>=0.10.0 <1.0.0'
+  js: '>=0.3.0 <1.0.0'
+  nuxeo_client: '0.3.2'
+  polymer: '>=0.16.0 <1.0.0'
+  polymer_expressions: '>=0.13.0 <1.0.0'
+  route_hierarchical: '>=0.6.0 <1.0.0'
+dev_dependencies:
+  unittest: '>=0.11.0 <1.0.0'
+transformers:
+- polymer:
+    entry_points:
+    - web/index.html
+    - test/test.html
+    inline_stylesheets:
+      lib/css/style.css: true
+      lib/semantic/collections/breadcrumb.min.css: true
+      lib/semantic/collections/grid.min.css: true
+      lib/semantic/collections/form.min.css: true
+      lib/semantic/collections/menu.min.css: true
+      lib/semantic/collections/message.min.css: true
+      lib/semantic/collections/table.min.css: true
+      lib/semantic/elements/button.min.css: true
+      lib/semantic/elements/header.min.css: true
+      lib/semantic/elements/icon.min.css: true
+      lib/semantic/elements/image.min.css: true
+      lib/semantic/elements/input.min.css: true
+      lib/semantic/elements/label.min.css: true
+      lib/semantic/elements/segment.min.css: true
+      lib/semantic/modules/accordion.min.css: true
+      lib/semantic/modules/dimmer.min.css: true
+      lib/semantic/modules/dropdown.min.css: true
+      lib/semantic/modules/modal.min.css: true
+      lib/semantic/modules/transition.min.css: true
+      lib/semantic/views/list.min.css: true

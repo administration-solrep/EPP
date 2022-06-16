@@ -1,0 +1,157 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page de gestion', title=#{admin.acces.label})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <div
+            th:replace="fragments/components/adminButtons :: adminButtons(${ {'btn-reinitialiser','reinitGestionAcces()','admin.acces.reset.label'} }, ${ {'btn-save-gestion-acces','saveGestionAcces()','admin.acces.save.label'} })"
+        ></div>
+
+        <h1
+            class="m-t-6 m-b-6 p-b-3 base-title base-title--lvl-1 base-title--is-underlined"
+            th:text="#{admin.acces.label}"
+        >
+            Gestion de l'accès
+        </h1>
+
+        <h2 class="m-t-6 m-b-6 base-title base-title--lvl-2" th:text="#{admin.acces.banniereInfo}">
+            Bannière d'information
+        </h2>
+
+        <div class="grid__row m-b-6">
+            <div class="form-optin">
+                <fieldset class="form-optin__fieldset">
+                    <legend class="form-optin__legend">
+                        <span th:text="#{admin.acces.banniereInfo.affichage}"
+                            >Affichage de la bannière d'information
+                        </span>
+                        <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                    </legend>
+                    <div class="form-optin__optins">
+                        <div class="form-optin__container">
+                            <input
+                                type="radio"
+                                id="banniere_oui"
+                                name="affichageBanniere"
+                                value="true"
+                                class="form-optin__checkbox"
+                                th:checked="${gestionAccesDto.affichageBanniere}"
+                                autocomplete="off"
+                            />
+                            <label for="banniere_oui" id="banniere_oui_label" class="form-optin__label">
+                                [[#{admin.acces.oui}]]
+                            </label>
+                        </div>
+                        <div class="form-optin__container">
+                            <input
+                                type="radio"
+                                id="banniere_non"
+                                name="affichageBanniere"
+                                value="false"
+                                class="form-optin__checkbox"
+                                th:checked="${!gestionAccesDto.affichageBanniere}"
+                                autocomplete="off"
+                            />
+                            <label for="banniere_non" id="banniere_non_label" class="form-optin__label">
+                                [[#{admin.acces.non}]]
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="grid__row m-b-6">
+            <div class="grid__col">
+                <label for="mce" id="objet_label" class="form-label" th:text="#{admin.acces.banniereInfo.message}"
+                    >Message de la bannière
+                </label>
+                <div class="form-rich-text-field">
+                    <textarea
+                        name="messageBanniere"
+                        id="mce"
+                        cols="30"
+                        rows="3"
+                        aria-describedby="label_header_bottom_form_textarea form_textarea_description"
+                        class="form-input__field form-rich-text-field__field textarea-tinymce"
+                        th:text="${gestionAccesDto.messageBanniere}"
+                    ></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid__row m-b-6">
+            <div class="p-r-0 form-select form-select--simple" no-status-description="">
+                <div id="message_banniere_format" class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label
+                                for="format"
+                                th:id="format_label"
+                                class="form-label"
+                                th:text="#{admin.acces.banniereInfo.format}"
+                            ></label>
+                        </div>
+                        <div class="form-input__header-bottom"></div>
+                    </div>
+                    <div class="form-input__container">
+                        <div class="form-select__field-wrapper">
+                            <div class="form-select-input form-select-input__large">
+                                <select
+                                    name="format"
+                                    id="format"
+                                    aria-describedby="format_description"
+                                    class="form-select-input__field form-select-input__field--simple form-select--inline-large"
+                                    onChange="changeEditorType(this.value)"
+                                >
+                                    <th:block th:each="option : ${formatListValues}">
+                                        <option
+                                            th:value="${option.id}"
+                                            th:text="${option.label}"
+                                            th:selected="${format == option.id}"
+                                        ></option>
+                                    </th:block>
+                                </select>
+                                <span
+                                    aria-hidden="true"
+                                    class="form-select-input__arrow icon icon--arrow-bottom"
+                                ></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="format_description" class="form-input__footer"></div>
+                </div>
+            </div>
+            <button
+                type="button"
+                class="base-btn base-btn--button base-btn--default base-btn--light base-btn--min base-btn--transparent"
+                th:data-tippy-content="#{admin.acces.format.actualiser}"
+            >
+                <span aria-hidden="true" class="icon icon--refresh icon--big"></span
+                ><span class="sr-only">[[#{admin.acces.format.actualiser}]]</span>
+            </button>
+        </div>
+
+        <div class="flex justify-between">
+            <button
+                id="btn-reinitialiser"
+                type="button"
+                onclick="reinitGestionAcces()"
+                class="m-r-3 base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+            >
+                [[#{admin.acces.reset.label}]]
+            </button>
+            <button
+                id="btn-save-gestion-acces"
+                type="submit"
+                onclick="saveGestionAcces()"
+                class="base-btn base-btn--submit base-btn--default base-btn--center"
+            >
+                [[#{admin.acces.save.label}]]
+            </button>
+        </div>
+    </main>
+</html>

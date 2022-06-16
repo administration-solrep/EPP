@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="organigrammeArbre(organigrammeTree, level, currentID, isOpen)">
+            <div id="overlay_organigramme_tree" class="overlay" th:if="${level == 1}" aria-live="polite">
+                <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+            </div>
+            <ul
+                class="tree-navigation__list"
+                th:id="|toggled-${currentID}|"
+                th:classappend="${(level &gt; 1 ? ' tree-navigation\_\_list--subtree ' : '') + (isOpen ? ' tree-navigation\_\_list--is-opened ' : ' tree-navigation\_\_list--is-closed ') }"
+                th:aria-hidden="${isOpen ? 'false' : 'true'}"
+            >
+                <li
+                    th:each="item, status : ${organigrammeTree}"
+                    class="tree-navigation__item tree-navigation__item--has-toggler"
+                    th:classappend="${(item.isOpen ? 'tree-navigation\_\_item--is-opened' : ' tree-navigation\_\_item--is-closed ') + (' tree-navigation\_\_item--lvl-'+level)}"
+                >
+                    <th:block th:if="${!item.isLastLevel}">
+                        <div class="tree-navigation__toggle-wrapper">
+                            <button
+                                th:aria-controls="|toggled-${currentID}-${status.index}|"
+                                th:aria-expanded="${item.isOpen ? 'true' : 'false'}"
+                                th:id="|toggler-${currentID}-${status.index}|"
+                                data-toggle="tree-navigation__list"
+                                class="tree-navigation__toggle js-toggle"
+                                th:attrappend="onclick=|onOpenOrganigrammeNode('${item.completeKey}')|"
+                                data-icon-opened="minus"
+                                data-icon-closed="plus"
+                            >
+                                <span
+                                    class="tree-navigation__icon tree-navigation__icon--toggler icon bubble-icon bubble-icon--squared bubble-icon--small"
+                                    th:classappend="${(item.isOpen ? 'tree-navigation\_\_icon--opened icon--minus' : 'tree-navigation\_\_icon--closed icon--plus')}"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    th:if="${item.type=='PST'}"
+                                    aria-hidden="true"
+                                    class="icon icon--pm-2 pst-picto"
+                                ></span>
+                                <span
+                                    class="tree-navigation__text"
+                                    th:text="${item.label} + ${item.isActive ? '' : ' (inactif)'}"
+                                    th:classappend="${item.isActive ? '' : 'tree-navigation\_\_text-not-active'}"
+                                    >Niveau</span
+                                >
+                            </button>
+
+                            <th:block th:if="${item.lockDate == null}">
+                                <div
+                                    data-drop-group=""
+                                    class="tree-navigation__button-edit base-drop-down base-drop-down--icon-action-primary"
+                                >
+                                    <button
+                                        type="button"
+                                        class="base-btn base-btn--button base-btn--default base-btn--icon-action-primary base-btn--center base-btn--transparent base-drop-down__button"
+                                        aria-controls="organigramme_actions_drop"
+                                        aria-expanded="false"
+                                        th:if="${item.actions !=null && !item.actions.isEmpty()}"
+                                        th:data-tippy-content="#{dossier.divers.dropdown.tooltip}"
+                                    >
+                                        <span
+                                            id="organigramme_actions_label"
+                                            class="sr-only"
+                                            th:text="#{dossier.divers.dropdown.tooltip}"
+                                        >
+                                            Afficher les options </span
+                                        ><span
+                                            aria-hidden="true"
+                                            class="icon icon--pen-circle base-drop-down__icon"
+                                        ></span>
+                                    </button>
+                                    <div
+                                        class="table-action__group"
+                                        th:if="${item.actions !=null && !item.actions.isEmpty()}"
+                                    >
+                                        <div
+                                            th:replace="fragments/components/organigramme-dropdown-action :: organigramme-dropdown-action('node-actions' ,${item.actions}, 'icon--pencil', false, null, ${item})"
+                                        ></div>
+                                    </div>
+                                </div>
+                            </th:block>
+                            <th:block th:unless="${item.lockDate == null}">
+                                <div
+                                    data-drop-group=""
+                                    class="table-line__drop-down base-drop-down base-drop-down--light organigramme-button-branch"
+                                >
+                                    <span
+                                        th:if="${#lists.isEmpty(item.actions)}"
+                                        aria-hidden="true"
+                                        class="icon icon--lock base-drop-down__icon"
+                                    ></span>
+
+                                    <button
+                                        th:unless="${#lists.isEmpty(item.actions)}"
+                                        type="button"
+                                        class="base-btn base-btn--button base-btn--default base-btn--icon-action-primary base-btn--center base-btn--transparent base-drop-down__button"
+                                        aria-controls="organigramme_actions_drop"
+                                        th:data-tippy-content="${#messages.msgWithParams('organigramme.element.verrouille', item.lockUserName)}"
+                                    >
+                                        <span
+                                            class="sr-only"
+                                            th:text="${#messages.msgWithParams('organigramme.element.verrouille', item.lockUserName)}"
+                                        ></span
+                                        ><span aria-hidden="true" class="icon icon--lock base-drop-down__icon"></span>
+                                    </button>
+                                    <div
+                                        class="table-action__group"
+                                        th:if="${item.actions !=null && !item.actions.isEmpty()}"
+                                    >
+                                        <div id="organigramme_unlock_action_drop" class="base-drop-down__drop">
+                                            <span class="sr-only" th:text="#{organigramme.manage.menu.unlock}"
+                                                >Déverrouiller</span
+                                            >
+                                            <ul class="base-drop-down__drop-list">
+                                                <li class="base-drop-down-item">
+                                                    <button
+                                                        class="base-drop-down__link link"
+                                                        th:data-nodeId="${item.organigrammeNode.getId()}"
+                                                        th:data-type="${item.type}"
+                                                        th:data-min="${item.ministereId}"
+                                                        onclick="javascript:releaseLock(this.getAttribute('data-nodeId'), this.getAttribute('data-type'), this.getAttribute('data-min'))"
+                                                    >
+                                                        [[#{organigramme.manage.menu.unlock}]]
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th:block>
+                        </div>
+                        <ul
+                            th:replace="fragments/components/organigrammeArbre :: organigrammeArbre(${item.childs}, ${level+1}, |${currentID}-${status.index}|, ${item.isOpen})"
+                        ></ul>
+                    </th:block>
+                    <th:block th:unless="${!item.isLastLevel}">
+                        <div class="tree-navigation__toggle-wrapper">
+                            <button class="tree-navigation__toggle">
+                                <span
+                                    th:if="${item.type=='PST' && item.parent.type!='MIN'}"
+                                    aria-hidden="true"
+                                    class="icon icon--pm-2 pst-picto"
+                                ></span>
+                                <span
+                                    class="tree-navigation__text normal"
+                                    th:text="${item.label} + ${item.isActive ? '' : ' (inactif)'}"
+                                    >Niveau</span
+                                >
+                                <button
+                                    type="button"
+                                    class="m-l-2 tree-navigation__button-add base-btn--icon-action-primary base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-drop-down__button"
+                                    aria-controls="organigramme_actions_drop"
+                                    aria-expanded="false"
+                                    th:if="${item.actions !=null && !item.actions.isEmpty()}"
+                                    th:data-tippy-content="#{organigramme.edit}"
+                                >
+                                    <span
+                                        id="organigramme_actions_label"
+                                        class="sr-only"
+                                        th:text="#{organigramme.edit}"
+                                    ></span
+                                    ><span aria-hidden="true" class="icon icon--pen-circle base-drop-down__icon"></span>
+                                </button>
+                                <div
+                                    class="table-action__group"
+                                    th:if="${item.actions !=null && !item.actions.isEmpty()}"
+                                >
+                                    <div
+                                        th:replace="fragments/components/organigramme-dropdown-action :: organigramme-dropdown-action('node-actions' ,${item.actions}, 'icon--pencil', false, null, ${item})"
+                                    ></div>
+                                </div>
+                            </button>
+                        </div>
+                    </th:block>
+                </li>
+            </ul>
+        </th:block>
+    </body>
+</html>

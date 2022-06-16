@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	elementFormDefault="qualified"
+	xmlns:repco="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:qu="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:rep="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses">
+
+	<!-- ====================================== -->
+	<!-- Imports -->
+	<!-- ====================================== -->
+	<xs:import schemaLocation="reponses-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons" />
+	<xs:import schemaLocation="questions.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions" />
+	<xs:import schemaLocation="reponses.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses" />
+
+	<!-- ====================================== -->
+	<!-- Complex types -->
+	<!-- ====================================== -->
+
+	<!-- ====================================== -->
+	<!-- AR : Accuse de reception d'integration de question : -->
+	<!-- * Integration de nouvelles questions (Flux 1) -->
+	<!-- ====================================== -->
+	<xs:complexType name="ResultatTraitement">
+		<xs:annotation>
+			<xs:documentation>
+				ResultatTraitement est inclut dans un accuse de reception, et comporte differentes
+				informations
+				en fonction du webservice auquel l'accuse de reception repond.
+				- envoyerQuestion : la question
+				- envoyerReponse : la reponse
+				- changerEtatQuestion : l'EtatQuestion
+				- envoyerQuestionsErrata : erratumQuestion
+				- envoyerReponsesErrata : erratumReponse
+				- importFiles/exportFiles : le nom des fichiers manipules (en erreur)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id_question" type="repco:QuestionId"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="statut" type="repco:TraitementStatut"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="message_erreur" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- ====================================== -->
+	<!-- AR : Accuse de reception du flux de controle de publication -->
+	<!-- * Changement de la liste des memebres du gouvernement (Flux 5b) -->
+	<!-- ====================================== -->
+
+	<xs:complexType name="ResultatControlePublication">
+		<xs:sequence>
+			<xs:element name="statut" type="repco:TraitementStatut"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="id_question" type="repco:QuestionId"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="message_erreur" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ResultatControlePublicationQR">
+		<xs:sequence>
+			<xs:element name="statut" type="repco:TraitementStatut"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="id_question" type="repco:QuestionId"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="message_erreur" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+</xs:schema>

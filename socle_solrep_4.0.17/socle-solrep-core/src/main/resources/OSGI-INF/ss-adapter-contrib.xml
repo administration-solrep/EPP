@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.core.adapterContrib">
+	<require>fr.dila.st.core.adapterContrib</require>
+	<require>fr.sword.idl.naiad.feuilleroute.adapter</require>
+
+	<extension target="org.nuxeo.ecm.core.api.DocumentAdapterService" point="adapters">
+
+        <adapter
+            class="fr.dila.cm.caselink.ActionableCaseLink"
+            facet="CaseLink"
+            factory="fr.dila.cm.core.adapter.CaseLinkAdapterFactory"
+        />
+
+		<!-- *********************************************************************** 
+			Adapteurs pour les feuilles de route. *********************************************************************** -->
+		<adapter
+            class="fr.dila.ss.api.domain.feuilleroute.StepFolder"
+            factory="fr.dila.ss.core.adapter.StepFolderAdapterFactory"
+        />
+
+		<!-- *********************************************************************** 
+			Adapteurs pour les documents arborescence *********************************************************************** -->
+		<adapter class="fr.dila.ss.api.tree.SSTreeNode" factory="fr.dila.ss.core.adapter.SSTreeNodeAdapterFactory" />
+
+		<adapter class="fr.dila.ss.api.tree.SSTreeFile" factory="fr.dila.ss.core.adapter.SSTreeFileAdapterFactory" />
+
+		<adapter class="fr.dila.ss.api.tree.SSTreeFolder" factory="fr.dila.ss.core.adapter.SSTreeFolderAdapterFactory" />
+
+
+		<adapter
+            class="fr.dila.ss.api.fondDeDossier.SSFondDeDossierFolder"
+            factory="fr.dila.ss.core.adapter.SSFondDeDossierFolderAdapterFactory"
+        />
+
+		<adapter
+            class="fr.dila.ss.api.fondDeDossier.SSFondDeDossierFile"
+            factory="fr.dila.ss.core.adapter.SSFondDeDossierFileAdapterFactory"
+        />
+        
+        <adapter class="fr.dila.ss.api.actualite.Actualite" factory="fr.dila.ss.core.adapter.ActualiteAdapterFactory" />
+        <adapter
+            class="fr.dila.ss.api.actualite.ActualiteRequete"
+            factory="fr.dila.ss.core.adapter.ActualiteRequeteAdapterFactory"
+        />
+
+	</extension>
+</component>

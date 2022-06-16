@@ -1,0 +1,137 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:c="http://java.sun.com/jstl/core"
+     xmlns:nxl="http://nuxeo.org/nxforms/layout"
+     xmlns:a4j="http://richfaces.org/a4j"
+     xmlns:nxu="http://nuxeo.org/nxweb/util"
+     xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+  <h:form>
+    <a4j:region>
+      <a4j:poll id="poll" interval="10000" enabled="true" render="poll,providers"/>
+    </a4j:region>
+
+    <a4j:jsFunction name="clearAccount" render="providers">
+      <a4j:param name="account" value="" assignTo="#{mediaPublishing.selectedAccount}"/>
+    </a4j:jsFunction>
+  </h:form>
+
+  <a4j:outputPanel id="providers" ajaxRendered="false">
+    <c:set var="doc" value="#{mediaPublishing.currentDoc}" scope="request"/>
+    <c:forEach var="provider" items="#{mediaPublishing.getAvailableServices(doc)}">
+      <c:set var="uploadStatus" value="#{mediaPublishing.getUploadStatus(doc, provider)}"/>
+
+      <a4j:outputPanel id="#{provider}_container" style="margin-bottom: 10px" layout="block">
+        <h:outputText value="#{provider}" styleClass="labelColumn" style="display: inline-block; width: 125px"/>
+
+        <h:panelGroup p:title="#{messages['error.mediaPublishing.providerDisabled']}"
+                      rendered="#{not mediaPublishing.canPublish(provider)}"
+                      styleClass="tipsyShow tipsyGravityS">
+          <h:graphicImage value="/icons/warning.gif" style="margin-left: 5px;"/>
+        </h:panelGroup>
+
+        <c:if test="#{not empty uploadStatus}">
+          <h:outputText value="#{mediaPublishing.getStatusMessageFor(uploadStatus)}"/>
+        </c:if>
+
+        <c:if test="#{empty uploadStatus and mediaPublishing.canPublish(provider)}">
+          <c:set var="providerAccounts" value="#{oauthUserTokens.getProviderAccounts(provider, true)}"/>
+
+          <c:if test="#{not empty providerAccounts}">
+            <h:form style="display: inline-block;">
+              <h:outputLink value="##{provider}_media_publish_popup"
+                            styleClass="button smallButton media_publishing_openPopup">
+                <h:outputText value="#{messages['action.mediaPublishing.republish']}" rendered="#{mediaPublishing.isPublished(doc, provider)}"/>
+                <h:outputText value="#{messages['action.mediaPublishing.publish']}" rendered="#{not mediaPublishing.isPublished(doc, provider)}"/>
+              </h:outputLink>
+
+              <a4j:region>
+                <a4j:commandButton value="#{messages['action.mediaPublishing.unpublish']}"
+                                   action="#{mediaPublishing.unpublish(provider)}"
+                                   class="button smallButton"
+                                   onclick="this.disabled=true"
+                                   rendered="#{mediaPublishing.isPublished(doc, provider)}"
+                                   render="providers"
+                                   style="vertical-align: top">
+                </a4j:commandButton>
+                <a4j:status startText="Unpublishing..."
+                            startStyle="position: inherit; background-color: inherit;"/>
+              </a4j:region>
+            </h:form>
+
+            <div style="display:none">
+              <div id="#{provider}_media_publish_popup">
+                <h:form enctype="multipart/form-data" ajaxSubmit="true">
+                  <h3>
+                    <h:outputText value="#{messages['label.widget.mediaPublishing.upload']} #{provider}"/>
+                  </h3>
+
+                  <h:outputLabel style="margin: 5px 0; display: block">
+                    #{messages['label.widget.mediaPublishing.account']}:
+                  </h:outputLabel>
+
+                  <h:selectOneMenu value="#{mediaPublishing.selectedAccount}" required="true"
+                                   requiredMessage="#{messages['label.mediaPublishing.error.accountPicker']}">
+                    <f:selectItem itemLabel="#{messages['label.mediaPublishing.accountPicker']}" itemValue="#{null}"/>
+                    <f:selectItems var="entry"
+                                   value="#{providerAccounts}"
+                                   itemLabel="#{entry.oauth2Token.nuxeoLogin} - #{entry.oauth2Token.serviceLogin}"
+                                   itemValue="#{entry.oauth2Token.serviceLogin}"/>
+                    <a4j:ajax event="change" execute="@this" render="#{provider}_optionsPanel"/>
+                  </h:selectOneMenu>
+
+                  <nxu:set var="providerOptionsWidgets"
+                           value="#{mediaPublishing.getProviderOptionsWidgets(provider)}"
+                           cache="true">
+
+                    <a4j:outputPanel id="#{provider}_optionsPanel" layout="block" ajaxRendered="true">
+                      <c:forEach var="optionWidget" items="#{providerOptionsWidgets}">
+                        <nxl:widget mode="any" name="#{optionWidget.properties.widgetName}"
+                                    value="#{mediaPublishing.options}"/>
+                      </c:forEach>
+                    </a4j:outputPanel>
+                  </nxu:set>
+
+                  <h:commandButton value="#{messages['action.mediaPublishing.publish']}"
+                                   action="#{mediaPublishing.publish(provider)}"
+                                   class="button smallButton"
+                                   style="display: block">
+                    <a4j:ajax execute="@form" render="@form" oncomplete="jQuery.fancybox.close();"/>
+                  </h:commandButton>
+                </h:form>
+              </div>
+            </div>
+          </c:if>
+
+          <h:panelGroup p:title=" #{messages['error.mediaPublishing.emptyAccounts']}"
+                        rendered="#{empty providerAccounts}"
+                        styleClass="tipsyShow tipsyGravityS">
+            <h:graphicImage value="/icons/warning.gif" style="margin-left: 5px;"/>
+          </h:panelGroup>
+        </c:if>
+      </a4j:outputPanel>
+    </c:forEach>
+
+    <script type="text/javascript">
+      jQuery(document).ready(function () {
+
+        function clearSelectedAccount() {
+          clearAccount();
+        }
+
+        var config = {
+          'autoScale': true,
+          'autoDimensions': true,
+          'transitionIn': 'none',
+          'transitionOut': 'none',
+          'type': 'inline',
+          'enableEscapeButton': true,
+          'centerOnScroll': true,
+          'onClosed': clearSelectedAccount
+        };
+        jQuery(".media_publishing_openPopup").fancybox(config);
+      });
+    </script>
+
+  </a4j:outputPanel>
+</div>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="profilUtilisateurModalContent(dto)">
+            <form id="profilUtilisateurForm" method="POST">
+                <input type="hidden" name="csrf-token" th:value="${csrftoken}" />
+                <div class="grid__row">
+                    <div class="grid__col">
+                        <div class="form-choice-input">
+                            <input
+                                name="notif"
+                                id="notif"
+                                class="form-choice-input__input"
+                                type="checkbox"
+                                th:checked="${dto.mailNotification}?'checked'"
+                                value="true"
+                                autocomplete="off"
+                            />
+                            <label
+                                class="form-label form-choice-input__label form-choice-input__label--checkbox"
+                                for="notif"
+                                id="notif_label"
+                                aria-disabled="false"
+                                ><span th:text="#{profil.label.mailnotif}"> </span
+                            ></label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

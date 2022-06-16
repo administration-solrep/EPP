@@ -1,0 +1,273 @@
+<!--
+@license
+(C) Copyright Nuxeo Corp. (http://nuxeo.com/)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!--
+`nuxeo-tasks`
+@group Nuxeo UI
+@element nuxeo-tasks
+-->
+
+<dom-module id="nuxeo-tasks">
+  <template>
+    <style include="nuxeo-styles iron-flex iron-flex-factors">
+      :host {
+        display: block;
+      }
+
+      .task-item {
+        cursor: pointer;
+        background: #fff;
+        margin-bottom: 1em;
+      }
+
+      .task-item:hover {
+        @apply --nuxeo-block-hover;
+      }
+
+      .task-box {
+        padding: 1em;
+        border: 1px solid var(--nuxeo-border);
+      }
+
+      .task-info {
+        margin-left: .5em;
+      }
+
+      .task-name {
+        font-weight: bold;
+        margin-bottom: 0;
+        text-transform: uppercase;
+      }
+
+      .task-property {
+        opacity: .5;
+        margin-right: .5rem;
+      }
+
+      .task-document {
+        color: var(--primary-text-color);
+      }
+
+      .task-document iron-icon {
+        height: 16px;
+        width: 16px;
+        margin: -.3em 0 0 -.3em;
+      }
+
+      iron-icon.task-name-icon {
+        --iron-icon-height: .9em;
+        --iron-icon-width: .9em;
+        border-radius: 50px;
+        background-color: var(--dark-primary-color);
+        color: white;
+        padding: .4em;
+        margin-right: 1em;
+      }
+
+      .date {
+        color: var(--nuxeo-warn-text);
+      }
+
+      nuxeo-document-task,
+      nuxeo-document-view {
+        width: 100%;
+      }
+
+      .task-header {
+        background-color: var(--nuxeo-box);
+        box-shadow: 0 3px 5px rgba(0,0,0,0.04);
+        margin-bottom: 16px;
+        padding: .5em;
+      }
+
+      .prev-button,
+      .next-button {
+        height: 64px;
+        width: 64px;
+      }
+
+      .header {
+        text-transform: none;
+        padding-right: 64px;
+      }
+
+      .task-view,
+      .document-view {
+        width: 100%;
+      }
+
+      @media (min-width: 1024px) {
+        .task-view {
+          flex: 1;
+        }
+        .document-view {
+          margin-left: 1.3rem;
+          flex: 2;
+          overflow: hidden;
+        }
+      }
+    </style>
+
+    <nuxeo-document id="currentTaskDoc"
+                    doc-id="[[_docId(current)]]"
+                    enrichers="preview, breadcrumb"
+                    headers='{"X-NXfetch.document": "properties", "X-NXtranslate.directoryEntry": "label", "X-NXfetch-directoryEntry": "parent"}'
+                    response="{{currentTaskDocument}}"></nuxeo-document>
+
+    <nuxeo-page>
+      <div class="header" slot="header">
+        <template is="dom-if" if="[[_hasCurrent(current)]]">
+          <nuxeo-breadcrumb document="[[currentTaskDocument]]"></nuxeo-breadcrumb>
+        </template>
+        <template is="dom-if" if="[[!_hasCurrent(current)]]">
+          <span class="flex">[[i18n('tasks.label')]]</span>
+        </template>
+      </div>
+
+      <div class="content">
+        <template is="dom-if" if="[[_hasCurrent(current)]]">
+          <div class="layout horizontal wrap">
+            <div class="task-view">
+              <nuxeo-card>
+                <nuxeo-document-task task="[[current]]"></nuxeo-document-task>
+              </nuxeo-card>
+            </div>
+            <template is="dom-if" if="[[_docId(current)]]">
+              <div class="vertical layout document-view">
+                <nuxeo-document-view document="[[currentTaskDocument]]"></nuxeo-document-view>
+              </div>
+            </template>
+          </div>
+        </template>
+
+        <template is="dom-if" if="[[!_hasCurrent(current)]]">
+          <div class="task-list layout vertical">
+            <template is="dom-repeat" items="[[tasks]]" as="task">
+              <div class="task-item task-box layout horizontal" on-tap="_process">
+                <div class="layout horizontal flex">
+                  <iron-icon icon="icons:content-paste" class="task-name-icon"></iron-icon>
+                  <div class="task-info layout vertical">
+                    <span class="task-name">[[i18n(task.name)]]</span>
+                    <span class="task-directive">[[i18n(task.directive)]]</span>
+                    <span class="workflow-name">[[i18n(task.workflowModelName)]]</span>
+                  </div>
+                </div>
+                <div class="layout vertical flex">
+                  <div>
+                    <div class="taskDoc">
+                      <span class="task-property">[[i18n('tasksList.on')]]</span>
+                      <span class="doc-title">[[task.targetDocumentIds.0.title]]</span>
+                    </div>
+                    <div class="taskPath">
+                      <span class="task-property">[[i18n('tasksList.in')]]</span>
+                      <span class="doc-title">[[_getPath(task.targetDocumentIds.0.path)]]</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="vertical layout">
+                  <span class="task-property">[[i18n('tasksList.dueDate')]]</span>
+                  <span class="date"><nuxeo-date datetime="[[task.dueDate]]" format="relative"></nuxeo-date></span>
+                </div>
+              </div>
+            </template>
+            <template is="dom-if" if="[[_empty(tasks)]]">
+              <div class="task-box">[[i18n('tasks.noTasks')]]</div>
+            </template>
+          </div>
+        </template>
+
+      </div>
+    </nuxeo-page>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nuxeo-tasks',
+      behaviors: [Nuxeo.RoutingBehavior, Nuxeo.I18nBehavior],
+      properties: {
+        tasks: {
+          type: Array
+        },
+
+        current: {
+          type: Object,
+          value: null,
+          observer: '_currentChanged'
+        },
+
+        currentTaskDocument: Object
+      },
+
+      _process: function(e) {
+        this.navigateTo('tasks', e.model.task.id);
+      },
+
+      _currentChanged: function() {
+        if (this.current) {
+          this.$.currentTaskDoc.get();
+        }
+      },
+
+      _hasCurrent: function() {
+        return this.current ? true : false;
+      },
+
+      _href: function(doc) {
+        if (doc) {
+          return this.urlFor('browse', doc.path);
+        }
+      },
+
+      _getPath: function(path){
+        return path.substr(0, path.lastIndexOf("/"));
+      },
+
+      _date: function(date) {
+        return moment(date).format('MMMM D, YYYY');
+      },
+
+      _count: function() {
+        if (this.tasks) {
+          return this.tasks.length;
+        }
+      },
+
+      _docId: function() {
+        if (this.current && this.current.targetDocumentIds && this.current.targetDocumentIds[0]  ) {
+          return this.current.targetDocumentIds[0].uid;
+        }
+      },
+
+      _empty: function(tasks) {
+        return tasks && tasks.length === 0;
+      },
+
+      get currenIndex() {
+        if (this.tasks && this.current) {
+          for (var i = 0; i < this.tasks.length; i++) {
+            if (this.tasks[i].id === this.current.id) {
+              return i;
+            }
+          }
+        }
+        return -1;
+      }
+
+    });
+  </script>
+</dom-module>

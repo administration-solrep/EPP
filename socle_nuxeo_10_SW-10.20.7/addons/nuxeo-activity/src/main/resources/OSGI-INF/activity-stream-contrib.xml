@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.activity.contrib">
+
+  <extension target="org.nuxeo.ecm.activity.ActivityStreamService"
+    point="activityVerbs">
+
+    <activityVerb verb="documentCreated"
+      labelKey="label.activity.documentCreated"
+      icon="/icons/activity_document_creation.png" />
+    <activityVerb verb="documentModified"
+      labelKey="label.activity.documentUpdated"
+      icon="/icons/activity_document_edition.png" />
+    <activityVerb verb="documentRemoved"
+      labelKey="label.activity.documentRemoved"
+      icon="/icons/activity_document_deletion.png"/>
+
+  </extension>
+
+  <extension target="org.nuxeo.ecm.activity.ActivityStreamService"
+    point="activityLinkBuilders">
+
+    <activityLinkBuilder name="default"
+      class="org.nuxeo.ecm.activity.DefaultActivityLinkBuilder"
+      default="true" />
+
+  </extension>
+
+</component>

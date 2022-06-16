@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.epp.ui.services.component.MetadonneesUIComponent">
+	<implementation class="fr.dila.epp.ui.services.component.MetadonneesUIComponent" />
+
+	<service>
+		<provide interface="fr.dila.epp.ui.services.MetadonneesUIService" />
+	</service>
+
+</component>

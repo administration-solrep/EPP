@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<fragment version="1">
+
+	<require>org.nuxeo.runtime</require>
+	<require>org.nuxeo.ecm.core</require>
+	<require>org.nuxeo.ecm.core.api</require>
+	<require>org.nuxeo.ecm.core.schema</require>
+	<require>org.nuxeo.ecm.platform.audit</require>
+	<require>org.nuxeo.ecm.platform.usermanager</require>
+	<require>org.nuxeo.ecm.directory.types.contrib</require>
+
+	<require>org.nuxeo.ecm.platform.web.common</require>
+
+	<extension target="application#MODULE">
+		<module>
+			<ejb>${bundle.fileName}</ejb>
+		</module>
+	</extension>
+
+  <extension target="web#AUTH-FILTER" mode="replace">
+
+    <listener>
+      <listener-class>org.nuxeo.ecm.platform.web.common.session.NuxeoSessionListener</listener-class>
+    </listener>
+
+    <filter>
+      <display-name>Nuxeo Request Controller Filter</display-name>
+      <filter-name>NuxeoRequestController</filter-name>
+      <filter-class>
+        org.nuxeo.ecm.platform.web.common.requestcontroller.filter.NuxeoRequestControllerFilter
+      </filter-class>
+    </filter>
+
+    <filter>
+      <display-name>Nuxeo Authentication Filter</display-name>
+      <filter-name>NuxeoAuthenticationFilter</filter-name>
+      <filter-class>
+        fr.dila.st.core.override.auth.STAuthenticationFilter
+      </filter-class>
+    </filter>
+
+  </extension>
+
+</fragment>

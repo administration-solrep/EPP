@@ -1,0 +1,62 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page des planifications des batchs', title=#{batch.planification.label})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <h1
+            class="m-t-6 m-b-6 base-title base-title--lvl-1 base-title--is-underlined"
+            th:text="#{batch.planification.label}"
+        >
+            planification des batchs
+        </h1>
+        <a href="#skip_link_action-table_prev" id="skip_link_action-table_next" class="skip-link"
+            >[[ #{skip.link.table.prev(#{batch.planification.label})} ]]</a
+        >
+        <div class="table-wrapper">
+            <table class="custom-table">
+                <caption class="sr-only" th:text="#{batch.planification.label}">
+                    Tableau des utilisateurs
+                </caption>
+                <thead class="table-header custom-table__header">
+                    <tr class="table-header__line">
+                        <th:block th:each="colonne : ${planification.listeColonnes}">
+                            <th
+                                scope="col"
+                                class="table-header__cell"
+                                th:text="${colonne.label !=null? #messages.msg(colonne.label) : ''}"
+                            >
+                                &nbsp;
+                            </th>
+                        </th:block>
+                    </tr>
+                </thead>
+                <tbody class="custom-table__body">
+                    <th:block th:unless="${#lists.isEmpty(planification.liste)}">
+                        <tr
+                            class="custom-table__table-line table-line table-line--complex-line"
+                            th:each="batch : ${planification.liste}"
+                        >
+                            <td class="table-line__cell" th:text="${batch.nom}"></td>
+
+                            <td
+                                class="table-line__cell"
+                                th:text="${#dates.format(batch.dateDernierDeclenchement, 'dd/MM/yyyy HH:mm')}"
+                            ></td>
+                            <td
+                                class="table-line__cell"
+                                th:text="${#dates.format(batch.dateProchainDeclenchement, 'dd/MM/yyyy HH:mm')}"
+                            ></td>
+                            <td class="table-line__cell" th:text="${batch.periodicite}"></td>
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
+        </div>
+        <a href="#skip_link_action-table_next" id="skip_link_action-table_prev" class="skip-link"
+            >[[ #{skip.link.table.next(#{batch.planification.label})} ]]</a
+        >
+    </main>
+</html>

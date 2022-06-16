@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="organigramme-dropdown-action(id, listActions, icon, hasindicator,tooltip, node)"
+            class="base-tooltip js-tooltip"
+            th:attrappend="data-tippy-content=${tooltip != null} ? #{__${tooltip}__}"
+            th:with="nodeId=${node.organigrammeNode.id},nodeType=${node.type},curMin=${node.ministereId}"
+        >
+            <input type="hidden" name="nodeType" th:value="${node.type}" />
+            <input type="hidden" name="nodeId" th:value="${node.organigrammeNode.id}" />
+            <input type="hidden" name="curMin" th:value="${node.ministereId}" />
+            <div
+                data-drop-group
+                class="table-action__item base-drop-down base-drop-down--light base-drop-down--md-icon"
+                th:classappend="${hasindicator ? 'base-drop-down--has-indicator' : ''}"
+            >
+                <div
+                    aria-expanded="false"
+                    th:id="'down-drop-'+${id}"
+                    th:aria-labelledby="'down-drop-'+${id}+'-list'"
+                    class="base-drop-down__drop"
+                    style="min-width: 65px; width: max-content;"
+                >
+                    <div th:id="'down-drop-'+${id}+'-list'" class="sr-only" th:text="#{dropdown.liste.srhelp}">
+                        Liste déroulante
+                    </div>
+                    <ul class="base-drop-down__drop-list">
+                        <li th:each="action : ${listActions}" class="base-drop-down-item">
+                            <th:block th:if="${action.properties.actionType == 'modalOrganigramme'} ">
+                                <button
+                                    type="button"
+                                    th:data-controls="${action.properties.dataControls}"
+                                    th:data-parameters="|nodeId=${node.organigrammeNode.id};nodeType=${node.type};curMin=${node.ministereId}|"
+                                    class="base-drop-down__link link interstitial-overlay__trigger"
+                                    aria-haspopup="dialog"
+                                    th:data-id="${action.properties.dataId}"
+                                >
+                                    <span
+                                        aria-hidden="true"
+                                        class="base-drop-down__link-icon icon"
+                                        th:classappend="${action.icon}"
+                                    >
+                                    </span>
+                                    [[#{__${action.label}__}]]
+                                </button>
+                            </th:block>
+                            <th:block th:unless="${action.properties.actionType == 'modalOrganigramme'} ">
+                                <a
+                                    th:href="${#strings.startsWith(action.link,'javascript:')} ? 'javascript:void(0)' : @{__${action.link}__}"
+                                    th:attr="onclick=${#strings.startsWith(action.link,'javascript:')} ? |${action.link}|"
+                                    class="base-drop-down__link link"
+                                >
+                                    <span
+                                        aria-hidden="true"
+                                        class="base-drop-down__link-icon icon"
+                                        th:classappend="${action.icon}"
+                                    >
+                                    </span>
+                                    [[#{__${action.label}__}]]
+                                </a>
+                            </th:block>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

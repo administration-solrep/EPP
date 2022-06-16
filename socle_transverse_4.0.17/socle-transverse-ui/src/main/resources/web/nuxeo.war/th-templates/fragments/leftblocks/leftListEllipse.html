@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <nav
+            th:fragment="leftListEllipse( listItem, listActions, title)"
+            role="navigation"
+            th:aria-label="#{acces.rapides(${title})}"
+            class="quick-access"
+        >
+            <ul class="quick-access__list">
+                <li
+                    class="quick-access__item quick-access-dropdown"
+                    th:each="item: ${listItem}"
+                    th:with="actions=${listActions != null ? listActions : item.properties['actions']}"
+                >
+                    <input type="hidden" name="id" th:value="${item.properties['id']}" />
+                    <a class="quick-access__link link" th:href="@{__${item.link}__}">
+                        <span
+                            aria-hidden="true"
+                            class="icon icon--arrow-right link__icon link__icon--prepend link__icon--small"
+                        >
+                        </span>
+                        [[${item.label==null || #messages.msgOrNull(item.label) == null ? item.label :
+                        #messages.msg(item.label)}]]
+                        <th:block th:if="${item.properties['isActivated'] != null}">
+                            <span
+                                class="icon link__icon"
+                                th:classappend="${item.properties['isActivated'] ? 'icon--arrow-triangle-right-circle' : 'icon--pause-circle'}"
+                            ></span>
+                        </th:block>
+                    </a>
+                    <div class="left-list-dropdown">
+                        <div
+                            th:replace="fragments/components/dropdown-action :: dropdown-action(
+                            ${item.link}, 
+                            ${actions}, 
+                            'icon--ellipsis', 
+                            false, 
+                            null, 
+                            'base-btn--transparent base-btn--light base-btn--md-icon', 
+                            false, 
+                            'base-drop-down--light'
+                            )"
+                        ></div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </body>
+</html>

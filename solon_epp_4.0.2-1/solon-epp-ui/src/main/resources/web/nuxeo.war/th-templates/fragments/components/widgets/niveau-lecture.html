@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="niveauLecture(widget)">
+            <th:block th:if="${categorie == null}">
+                <div class="labellised-list__label" th:id="|${widget.name}-label|">
+                    <th:block th:text="#{${widget.label}}">label</th:block>
+                    <span th:if="${widget.required}" class="form-label__required-text" th:text="#{form.input.required}"
+                        >requis</span
+                    >
+                </div>
+
+                <div
+                    class="form-input labellised-list__description"
+                    th:classappend="${widget.modifiedInCurVersion ? 'labellised-list__description--warning' : ''}"
+                >
+                    <div id="niveauLectureNumeroInput">
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="niveauLectureNumero"
+                                id="niveauLectureNumero"
+                                th:aria-labelledby="|${widget.name}-label|"
+                                class="form-input__field form-input__field--type-text"
+                                th:value="${widget.getValueParamByName('niveauLectureNumero')}"
+                            />
+                        </div>
+                        <div id="form_input_description" class="form-input__footer"></div>
+                    </div>
+
+                    <div class="form-select form-select--simple" id="niveauLectureSelect">
+                        <div class="form-select__field-wrapper">
+                            <div class="form-select-input">
+                                <select
+                                    name="niveauLecture"
+                                    id="niveauLecture"
+                                    th:aria-labelledby="|${widget.name}-label|"
+                                    class="form-select-input__field form-select-input__field--simple"
+                                    onchange="showHideNiveauLecture(this.value)"
+                                >
+                                    <option value="">[[#{communicationSuccessive.select.default}]]</option>
+                                    <option
+                                        th:each="item : ${widget.getValueParamByName('lstNiveauLecture')}"
+                                        th:value="${item.id}"
+                                        th:text="${item.label}"
+                                        th:selected="${widget.getValueParamByName('valeur') == item.id}"
+                                    ></option>
+                                </select>
+                                <span aria-hidden="true" tabindex="-1">
+                                    <span
+                                        aria-hidden="true"
+                                        class="form-select-input__arrow icon icon--arrow-bottom"
+                                    ></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+            <th:block th:unless="${categorie == null}">
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label
+                                th:id="|${widget.name}-label|"
+                                class="form-label"
+                                th:text="#{${widget.label}}"
+                            ></label>
+                        </div>
+                        <div class="form-input__header-bottom"></div>
+                    </div>
+                    <div class="form-input">
+                        <div id="niveauLectureNumeroInput">
+                            <div class="form-input__container">
+                                <input
+                                    type="text"
+                                    name="niveauLectureNumero"
+                                    id="niveauLectureNumero"
+                                    th:aria-labelledby="|${widget.name}-label|"
+                                    aria-describedby="form_input_description"
+                                    class="form-input__field form-input__field--type-text"
+                                    th:value="${widget.getValueParamByName('niveauLectureNumero')}"
+                                />
+                            </div>
+                            <div id="form_input_description" class="form-input__footer"></div>
+                        </div>
+
+                        <div class="form-select form-select--simple" id="niveauLectureSelect">
+                            <div class="form-select__field-wrapper">
+                                <div class="form-select-input">
+                                    <select
+                                        name="niveauLecture"
+                                        id="niveauLecture"
+                                        class="form-select-input__field form-select-input__field--simple"
+                                        onchange="showHideNiveauLecture(this.value)"
+                                        th:aria-labelledby="|${widget.name}-label|"
+                                    >
+                                        <option value="" th:text="#{communicationSuccessive.select.default}"
+                                            >default value</option
+                                        >
+                                        <option
+                                            th:each="item : ${widget.getValueParamByName('lstNiveauLecture')}"
+                                            th:value="${item.id}"
+                                            th:text="${item.label}"
+                                            th:selected="${widget.getValueParamByName('valeur') == item.id}"
+                                        ></option>
+                                    </select>
+                                    <span aria-hidden="true" tabindex="-1">
+                                        <span
+                                            aria-hidden="true"
+                                            class="form-select-input__arrow icon icon--arrow-bottom"
+                                        ></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+        </th:block>
+    </body>
+</html>

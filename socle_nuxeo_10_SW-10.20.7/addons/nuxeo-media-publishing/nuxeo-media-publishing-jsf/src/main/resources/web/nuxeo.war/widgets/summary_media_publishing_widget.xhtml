@@ -1,0 +1,114 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:c="http://java.sun.com/jstl/core"
+     xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+     class="content_block">
+
+  <h3 class="summaryTitle">#{messages['heading.mediaPublishing']}</h3>
+
+  <c:forEach var="provider" items="#{mediaPublishing.getAvailableServices(value)}" varStatus="status">
+
+    <c:set var="isMediaAvailable" value="#{mediaPublishing.isMediaAvailable(value, provider)}"/>
+    <c:set var="isMediaPublished" value="#{mediaPublishing.isPublished(value, provider)}"/>
+    <c:if test="#{isMediaPublished}">
+      <c:set var="mediaUrl" value="#{mediaPublishing.getPublishedURL(value, provider)}"/>
+      <c:set var="mediaEmbedCode" value="#{mediaPublishing.getEmbedCode(value, provider)}"/>
+      <c:set var="mediaStats" value="#{mediaPublishing.getStats(value, provider)}"/>
+    </c:if>
+
+    <div class="clear" style="margin: 15px auto">
+      <h:panelGroup layout="block" styleClass="labelColumn" style="float: left;">
+        #{provider}
+
+        <h:panelGroup p:title="#{provider} #{messages['error.mediaPublishing.noDetails']}"
+                      rendered="#{isMediaPublished and not isMediaAvailable}"
+                      styleClass="tipsyShow tipsyGravityS"
+                      style="display: inline;">
+          <h:graphicImage value="/icons/warning.gif" style="vertical-align: sub" />
+        </h:panelGroup>
+
+      </h:panelGroup>
+        <span>
+          <c:choose>
+            <c:when test="#{isMediaPublished}">
+              #{messages['label.widget.mediaPublishing.published']}
+
+              <h:panelGroup styleClass="actionsColumn"
+                            style="float:right"
+                            rendered="#{isMediaAvailable}">
+                  <h:outputLink value="#"
+                                styleClass="button smallButton"
+                                rendered="#{not empty mediaUrl}"
+                                onclick="toggleUrl('#{provider}'); return false;">
+                    #{messages['action.mediaPublishing.externalLink']}
+                  </h:outputLink>
+
+                  <h:outputLink value="#"
+                                styleClass="button smallButton"
+                                rendered="#{not empty mediaEmbedCode}"
+                                onclick="toggleEmbedCode('#{provider}'); return false;">
+                    #{messages['action.mediaPublishing.embedCode']}
+                  </h:outputLink>
+
+                  <h:outputLink value="#"
+                                styleClass="button smallButton"
+                                rendered="#{not empty mediaStats}"
+                                onclick="toggleStats('#{provider}'); return false;">
+                    #{messages['action.mediaPublishing.stats']}
+                  </h:outputLink>
+              </h:panelGroup>
+            </c:when>
+            <c:otherwise>
+              <div style="margin-bottom: 15px">
+                #{messages['label.widget.mediaPublishing.notpublished']}
+              </div>
+            </c:otherwise>
+          </c:choose>
+        </span>
+    </div>
+    <c:if test="#{isMediaPublished and isMediaAvailable}">
+      <div>
+        <h:inputText class="#{provider}_externalUrl"
+                     value="#{mediaUrl}"
+                     readonly="true" onclick="javascript:this.focus();this.select();" size="120"
+                     style="display: none; border-style: dashed; font-family: Courier; font-size: 12px; line-height: 1.4em;"/>
+
+        <h:inputTextarea class="#{provider}_embedCode"
+                         value="#{mediaEmbedCode}"
+                         readonly="true" onclick="javascript:this.focus();this.select();" cols="120" rows="5"
+                         style="display: none; border-style: dashed; font-family: Courier; font-size: 12px; line-height: 1.4em; resize: vertical"/>
+
+        <c:if test="#{not empty mediaStats}">
+          <div class="#{provider}_stats"
+               style="display:none; border: 1px dashed #c6c6c6;clear: both;background: #fff;padding: 5px;font-size: 12px;">
+            <table width="100%" cellspacing="0" style="text-align: center">
+              <tbody>
+              <tr>
+                <c:forEach items="#{mediaStats}" var="entry">
+                  <td>
+                    <span style="display: block"><b>#{messages[entry.key]}</b></span>
+                    <span>#{entry.value}</span>
+                  </td>
+                </c:forEach>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </c:if>
+      </div>
+    </c:if>
+  </c:forEach>
+
+  <script type="text/javascript">
+    function toggleUrl(provider) {
+      jQuery("." + provider + "_externalUrl").toggle();
+    }
+
+    function toggleEmbedCode(provider) {
+      jQuery("." + provider + "_embedCode").toggle();
+    }
+
+    function toggleStats(provider) {
+      jQuery("." + provider + "_stats").toggle();
+    }
+  </script>
+</div>

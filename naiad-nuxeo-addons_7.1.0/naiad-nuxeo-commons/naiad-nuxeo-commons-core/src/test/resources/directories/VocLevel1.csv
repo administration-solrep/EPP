@@ -1,0 +1,7 @@
+"id","parent","label","obsolete","ordering"
+"level1_level0_id1_1","level0_id1",level0_id1_level1_label_zzz,"0","1"
+"level1_level0_id1_2","level0_id1",level0_id1_level1_label_yyy,"0","2"
+"level1_level0_id1_3","level0_id1",level0_id1_level1_label_xxx,"0","3"
+"level1_level0_id2_4","level0_id2",level0_id2_level1_label_zzz,"0","9"
+"level1_level0_id2_5","level0_id2",level0_id2_level1_label_yyy,"0","8"
+"level1_level0_id1_6","level0_id3",level0_id3_level1_label_xxx,"0","7"

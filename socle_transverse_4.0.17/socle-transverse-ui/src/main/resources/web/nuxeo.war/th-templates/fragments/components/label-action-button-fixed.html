@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="label-action-button-fixed(action, isDisabled, appendedClass)">
+            <th:block th:if="${action!=null && action.properties.actionType == 'modal'}">
+                <button
+                    type="button"
+                    class="js-tooltip base-btn base-btn--button base-btn--default js-interstitial-trigger"
+                    th:classappend="|ACTION_${action.id} ${appendedClass == null ? '' : appendedClass} ${not #strings.isEmpty(action.properties.specificClass)? action.properties.specificClass : ''}|"
+                    th:disabled="${ isDisabled or ((not #strings.isEmpty(action.properties.specificClass)) and (action.properties.specificClass == 'action-table-selection'))}? 'disabled'"
+                    th:data-controls="${action.properties.dataControls}"
+                    th:data-title="${not #strings.isEmpty(action.properties.title )? #messages.msg(action.properties.title) : #messages.msg('validation.popup.title')}"
+                    th:data-message="${not #strings.isEmpty(action.properties.message)? #messages.msgWithParams(action.properties.message, action.properties.messageParam) : #messages.msg('validation.popup.default.message') }"
+                    th:data-function="${action.properties.function}"
+                    th:data-init-js="__${action.properties.dataInitJs}__"
+                    th:data-parameters="${action.properties.parameters}"
+                    th:data-btn-confirm-label="${not #strings.isEmpty(action.properties.btnConfirmLabel) ? #messages.msg(action.properties.btnConfirmLabel) : null}"
+                    aria-haspopup="dialog"
+                    onclick="doInitModal(this)"
+                >
+                    <th:block th:if="${not #strings.isEmpty(action.icon) &&  action.properties.positionIcon=='gauche'}">
+                        <span
+                            aria-hidden="true"
+                            class="table-action__icon icon"
+                            th:classappend="|${action.icon} ${notIconBig != null && notIconBig ? '' : 'icon--big'}|"
+                        ></span>
+                    </th:block>
+                    <span th:text="#{__${action.label}__}"></span>
+                    <th:block th:if="${not #strings.isEmpty(action.icon) && action.properties.positionIcon=='droite'}">
+                        <span
+                            aria-hidden="true"
+                            class="table-action__icon icon"
+                            th:classappend="|${action.icon} ${notIconBig != null && notIconBig ? '' : 'icon--big'}|"
+                        ></span>
+                    </th:block>
+                </button>
+            </th:block>
+            <th:block th:unless="${action==null || action.properties.actionType == 'modal'}">
+                <button
+                    th:if="${#strings.startsWith(action.link, 'javascript:')}"
+                    type="button"
+                    class="js-tooltip base-btn base-btn--button base-btn--default"
+                    th:classappend="|ACTION_${action.id} ${appendedClass == null ? '' : appendedClass} ${not #strings.isEmpty(action.properties.specificClass)? action.properties.specificClass : ''}|"
+                    th:disabled="${ isDisabled or ((not #strings.isEmpty(action.properties.specificClass)) and (action.properties.specificClass == 'action-table-selection'))}? 'disabled'"
+                    th:attr="onclick=|${action.link}|"
+                >
+                    <th:block th:if="${not #strings.isEmpty(action.icon) && action.properties.positionIcon=='gauche'}">
+                        <span
+                            aria-hidden="true"
+                            class="base-btn__icon base-btn__icon--vertical-center base-btn__icon--left icon"
+                            th:classappend="|${action.icon}  ${notIconBig != null && notIconBig ? '' : 'icon--big'}|"
+                        ></span>
+                    </th:block>
+                    <span th:text="#{__${action.label}__}"></span>
+                    <th:block th:if="${not #strings.isEmpty(action.icon) && action.properties.positionIcon=='droite'}">
+                        <span
+                            aria-hidden="true"
+                            class="base-btn__icon base-btn__icon--vertical-center base-btn__icon--right icon"
+                            th:classappend="|${action.icon}  ${notIconBig != null && notIconBig ? '' : 'icon--big'}|"
+                        ></span>
+                    </th:block>
+                </button>
+                <a
+                    th:unless="${#strings.startsWith(action.link, 'javascript:')}"
+                    class="js-tooltip base-btn base-btn--button base-btn--default base-btn--default"
+                    th:classappend="|ACTION_${action.id} ${appendedClass == null ? '' : appendedClass} ${not #strings.isEmpty(action.properties.specificClass)? action.properties.specificClass : ''}|"
+                    th:disabled="${ isDisabled or ((not #strings.isEmpty(action.properties.specificClass)) and (action.properties.specificClass == 'action-table-selection'))}? 'disabled'"
+                    th:href="@{__${action.link}__}"
+                >
+                    <th:block
+                        th:if="${not #strings.isEmpty(action.icon) && (action.properties.positionIcon == null || action.properties.positionIcon=='gauche') }"
+                    >
+                        <span
+                            aria-hidden="true"
+                            class="base-btn__icon base-btn__icon--vertical-center base-btn__icon--left icon"
+                            th:classappend="|${action.icon}  ${notIconBig != null && notIconBig ? '' : 'icon--big'}|"
+                        ></span>
+                    </th:block>
+                    <span th:text="#{__${action.label}__}"></span>
+                    <th:block th:if="${not #strings.isEmpty(action.icon) && action.properties.positionIcon=='droite'}">
+                        <span
+                            aria-hidden="true"
+                            class="base-btn__icon base-btn__icon--vertical-center base-btn__icon--right icon"
+                            th:classappend="|${action.icon}  ${notIconBig != null && notIconBig ? '' : 'icon--big'}|"
+                        ></span>
+                    </th:block>
+                </a>
+            </th:block>
+        </th:block>
+    </body>
+</html>

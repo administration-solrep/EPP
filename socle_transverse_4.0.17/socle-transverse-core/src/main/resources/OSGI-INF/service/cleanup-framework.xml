@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.core.service.CleanupService">
+	<implementation class="fr.dila.st.core.component.CleanupComponent" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.CleanupService" />
+	</service>
+</component>

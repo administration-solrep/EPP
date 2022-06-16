@@ -1,0 +1,10 @@
+<component name="fr.dila.st.ui.headerservice">
+
+  <implementation class="fr.dila.st.ui.services.impl.HeaderServiceImpl" />
+  
+  <service>
+    <provide interface="fr.dila.st.ui.services.HeaderService" />
+  </service>
+  
+
+</component>

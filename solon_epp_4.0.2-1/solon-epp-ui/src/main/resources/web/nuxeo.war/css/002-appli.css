@@ -1,0 +1,9 @@
+/* Put SWORD specific CSS for appli here */
+
+.main-content-wrapper {
+    margin-top: 150px;
+}
+
+#listeCommunications {
+    position: relative;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="modaleInfo" id="modaleInfo">
+            <div id="selectedStepsInfo" class="m-b-6" style="display: none;">
+                <span class="icon icon--information bubble-icon alert__icon alert__icon--warning"> </span>
+                <p
+                    id="infoContent"
+                    class="alert__content"
+                    style="display: inline;"
+                    th:text="#{fdr.note.sharednote.allStepsDone}"
+                >
+                    Toutes les étapes sont effectuées
+                </p>
+            </div>
+            <div id="selectedStepsWarning" style="display: none;">
+                <span class="icon icon--information bubble-icon alert__icon alert__icon--warning"> </span>
+                <p
+                    id="infoContent"
+                    class="alert__content"
+                    style="display: inline;"
+                    th:text="#{fdr.note.sharednote.atLeastOneStepDone}"
+                ></p>
+            </div>
+            <th:block th:each="dossier : ${idDossiers}">
+                <input
+                    th:id="|${dossier}|"
+                    th:name="${dossier}"
+                    th:value="${dossier}"
+                    type="hidden"
+                    aria-hidden="true"
+                />
+            </th:block>
+            <th:block
+                th:if="${routingTaskTypes!= null and #lists.size(routingTaskTypes) > 1}"
+                th:text="#{fdr.note.addmulti.manyRoutingTypes}"
+            >
+                La demande d'ajout de notes d'étape porte sur des actions différentes :
+            </th:block>
+            <ul>
+                <li th:each="taskType : ${routingTaskTypes}" th:text="${taskType}">
+                    Tâche
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

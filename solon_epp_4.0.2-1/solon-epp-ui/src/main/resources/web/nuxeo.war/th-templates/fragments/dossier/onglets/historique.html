@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="historique" id="historique_content">
+            <ul class="tree-navigation__list tree-navigation__list--is-opened">
+                <th:block th:each="version : ${lstVersions}">
+                    <li class="tree-navigation__item tree-navigation__item--lvl-1">
+                        <a
+                            th:title="${version.communicationLabel + (version.courant ? ' - courante' : '') + (version.annule ? ' - annulée' : '')}"
+                            th:href="@{|/dossier/${version.communicationId}/detailCommunication|}"
+                            class="tree-navigation__link tree-navigation__link--has-icon link link--no-line"
+                            th:classappend="${version.courant ? ' tree-navigation__item--active width-100' : ''}"
+                            style="width: 100%;"
+                            ><span
+                                aria-hidden="true"
+                                class="icon link__icon link__icon--prepend link__icon--large"
+                                th:classappend="${#lists.isEmpty(version.lstChilds) ? 'icon--file' : 'icon--folder'}"
+                            ></span
+                            ><span
+                                class="tree-navigation__text"
+                                th:classappend="${version.annule ? ' cell-crossed' : ''}"
+                                >[[${version.communicationLabel}]]</span
+                            ></a
+                        >
+                        <th:block th:unless="${#lists.isEmpty(version.lstChilds)}">
+                            <th:block
+                                th:replace="fragments/components/line-historique-dossier :: line-historique-dossier(${version})"
+                            ></th:block>
+                        </th:block>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+    </body>
+</html>

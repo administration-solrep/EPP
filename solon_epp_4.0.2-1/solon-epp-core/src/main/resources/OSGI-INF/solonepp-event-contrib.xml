@@ -1,0 +1,182 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue les listeners de l'application SOLON EPP. -->
+<component name="fr.dila.solonepp.core.event">
+<!-- 	<require>fr.dila.cm.core.routing.listeners</require> -->
+	<require>com.nuxeo.case-management.eventContrib</require>
+	<require>org.nuxeo.ecm.platform.htmlsanitizer.HtmlSanitizerService</require>
+
+	<extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener">
+    
+    
+		<!-- *********************************************************************** 
+			Listeners transverses de SOLON EPP *********************************************************************** -->
+
+		<!-- Désactive la mise à jour automatique des icones des fichiers uploadés -->
+		<listener name="mimetypeIconUpdater" enabled="false" />
+
+		<!-- Désactive le htmlsanitizer qui plante -->
+		<listener name="htmlsanitizerlistener" enabled="false" />
+
+		<!-- Désactive le nettoyage du repository -->
+        <listener name="cleanBinaryStoreListener" enabled="false" />
+
+		<!-- Batch général qui lance les autres batchs -->
+		<listener
+            name="LanceurGeneralListener"
+            async="false"
+            postCommit="false"
+            priority="100"
+            class="fr.dila.solonepp.core.event.batch.LanceurGeneralBatchListener"
+        >
+			<event>lanceurGeneralBatchEvent</event>
+		</listener>
+
+		<!-- Listener permettant de tracer les événements dans le journal d'audit -->
+		<listener
+            name="auditLoggerListener"
+            async="true"
+            postCommit="true"
+            class="fr.dila.solonepp.core.logger.NotificationAuditEventLogger"
+        />
+
+		<!-- *********************************************************************** 
+			Listeners des événements *********************************************************************** -->
+		<!-- Listener permettant de retirer les messages d'un événement lorsque 
+			l'événement est supprimé -->
+		<listener
+            name="afterEvenementRemovedListener"
+            async="false"
+            postCommit="true"
+            priority="160"
+            class="fr.dila.solonepp.core.event.AfterEvenementRemovedListener"
+        >
+			<event>documentRemoved</event>
+		</listener>
+
+		<!-- Listener permettant de retirer les fichiers de pièces jointes lorsque 
+			la pièces jointe est supprimée -->
+		<listener
+            name="afterPieceJointeRemovedListener"
+            async="false"
+            postCommit="true"
+            priority="161"
+            class="fr.dila.solonepp.core.event.AfterPieceJointeRemovedListener"
+        >
+			<event>aboutToRemove</event>
+		</listener>
+
+		<!-- Listener qui permet de mettre a jour la fiche dossier au passage à 
+			l'état publié d'une version -->
+		<listener
+            name="afterVersionPublishedListener"
+            async="false"
+            postCommit="true"
+            priority="162"
+            class="fr.dila.solonepp.core.event.AfterVersionPublishedListener"
+        >
+			<event>lifecycle_transition_event</event>
+		</listener>
+
+		<!-- *********************************************************************** 
+			Listeners des messages *********************************************************************** -->
+		<!-- Listener qui permet de mettre a jour l'état du message -->
+		<listener
+            name="afterMessageModifiedListener"
+            async="false"
+            postCommit="true"
+            priority="99"
+            class="fr.dila.solonepp.core.event.AfterMessageModifiedListener"
+        >
+			<event>documentCreated</event>
+			<event>documentModified</event>
+			<event>lifecycle_transition_event</event>
+		</listener>
+
+		<listener
+            name="afterVersionModifiedListener"
+            async="false"
+            postCommit="true"
+            priority="100"
+            class="fr.dila.solonepp.core.event.DenormalisationVersionListener"
+        >
+			<event>documentCreated</event>
+			<event>documentModified</event>
+		</listener>
+
+
+		<!-- *********************************************************************** 
+			Listeners de la notification *********************************************************************** -->
+		<!-- Listener qui permet de créer une notification lors du passage d'un 
+			événement à l'état en instance -->
+		<listener
+            name="afterEvenementEnInstanceListener"
+            async="false"
+            postCommit="true"
+            priority="163"
+            class="fr.dila.solonepp.core.event.AfterEvenementEnInstanceListener"
+        >
+			<event>lifecycle_transition_event</event>
+		</listener>
+
+		<!-- Listener qui permet d'envoyer un mail après la création d'une notification -->
+		<listener
+            name="afterNotificationCreatedEmailListener"
+            async="true"
+            postCommit="true"
+            priority="200"
+            class="fr.dila.solonepp.core.event.AfterNotificationCreatedEmailListener"
+        >
+			<event>documentCreated</event>
+		</listener>
+
+		<!-- Listener qui permet de notifier les WS des institutions après la création 
+			d'une notification -->
+		<listener
+            name="afterNotificationCreatedWsListener"
+            async="true"
+            postCommit="true"
+            priority="201"
+            class="fr.dila.solonepp.core.event.AfterNotificationCreatedWsListener"
+        >
+			<event>documentCreated</event>
+		</listener>
+
+		<!-- *********************************************************************** 
+			Listeners des traitements par lot *********************************************************************** -->
+		<!-- Batch de notification aux webservices -->
+		<listener
+            name="notificationBatchListener"
+            async="false"
+            postCommit="false"
+            priority="202"
+            class="fr.dila.solonepp.core.event.batch.NotificationBatchListener"
+        >
+			<event>wsNotificationEvent</event>
+		</listener>
+
+		<!-- Batch journalier d'envoi de prévenance de renouvellement de mot de 
+			passe -->
+		<listener
+            name="dailyRemindChangePasswordListener"
+            async="false"
+            postCommit="false"
+            priority="190"
+            class="fr.dila.solonepp.core.event.batch.DailyReminderChangePasswordListener"
+        >
+			<event>dailyReminderChangePassEvent</event>
+		</listener>
+		
+		<!-- Batch de purge de la table tentatives de connexion -->
+		<listener
+            name="purgeTentativesConnexionBatchEventListener"
+            async="false"
+            postCommit="false"
+            priority="190"
+            class="fr.dila.st.core.event.batch.PurgeTentativesConnexionBatchEventListener"
+        >
+			<event>purgeTentativesConnexionEvent</event>
+		</listener>
+
+	</extension>
+
+</component>

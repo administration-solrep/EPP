@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://dila.fr/solon/schemas/lock_jeton_maitre"
+    xmlns:ljtm="http://dila.fr/solon/schemas/lock_jeton_maitre"
+>
+
+	<!-- Identifiant du jeton maitre -->
+	<xs:element name="id_jeton_maitre" type="xs:string" />
+
+	<!-- Identifiant du proprietaire pour lequel ce jeton est dédié (ID d'un 
+		noeud de l'organigramme) -->
+	<xs:element name="id_proprietaire" type="xs:string" />
+
+	<!-- Type de webservice pour lequel ce jeton est dédié -->
+	<xs:element name="type_webservice" type="xs:string" />
+
+	<!-- Numéro de séquence du jeton -->
+	<xs:element name="numero_jeton" type="xs:long" />
+
+</xs:schema>

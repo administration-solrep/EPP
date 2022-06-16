@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            class="link-copy folder-selected__link"
+            th:fragment="dernierElement(label, id, categorie, caseLinkIdsLabels, exposant)"
+        >
+            <th:block th:if="${#arrays.length(caseLinkIdsLabels) <= 1}">
+                <a
+                    th:with="currentLink=${#arrays.length(caseLinkIdsLabels) == 1 ? caseLinkIdsLabels[0].getId() : ''}"
+                    th:href="@{/dossier/{dossierId}/{categorie}(dossierId=${id},dossierLinkId=${currentLink},categorie=${categorie})} + '#main_content'"
+                    class="link-copy__link link"
+                    ><span th:id="|link-copy__link-${#strings.replace(label, ' ', '_')}_${id}|" th:text="${label}"
+                        >AN 13021919</span
+                    ><sup th:if="${not #strings.isEmpty(exposant)}" th:text="${exposant}">Exp</sup></a
+                ></th:block
+            >
+            <th:block th:if="${#arrays.length(caseLinkIdsLabels) > 1}" th:with="jscopyPrefix='link-copy__link-'">
+                <div
+                    th:replace="fragments/components/textualDropDown :: dropdown (${label}, ${id} , ${caseLinkIdsLabels})"
+                ></div>
+            </th:block>
+            <button
+                type="button"
+                class="js-copy link-copy__button js-tooltip base-btn base-btn--button base-btn--default base-btn--icon-action-blue base-btn--center base-btn--transparent"
+                th:data-copy="|link-copy__link-${#strings.replace(label, ' ', '_')}_${id}|"
+                th:data-tippy-content="#{label.copy.num.clic}"
+                th:data-tippy-default-content="#{label.copy.num.clic}"
+                data-tippy-trigger="mouseenter focus click"
+            >
+                <span class="sr-only" th:text="#{label.copy.num.clic}">Copier le numéro</span
+                ><span aria-hidden="true" class="link-copy__icon icon icon--copy"></span>
+            </button>
+        </div>
+    </body>
+</html>

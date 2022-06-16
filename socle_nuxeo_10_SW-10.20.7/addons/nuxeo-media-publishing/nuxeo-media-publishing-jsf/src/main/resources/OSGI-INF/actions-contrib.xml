@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.media.publishing.web.actions">
+
+    <require>org.nuxeo.ecm.platform.actions</require>
+    <require>org.nuxeo.ecm.platform.forms.layouts.webapp.summary</require>
+    <require>org.nuxeo.ecm.platform.video.layouts</require>
+    
+    <extension point="filters" target="org.nuxeo.ecm.platform.actions.ActionService">
+
+        <filter id="isPublishableMedia">
+            <rule grant="true">
+                <facet>PublishableMedia</facet>
+            </rule>
+        </filter>
+
+    </extension>
+
+    <extension target="org.nuxeo.ecm.platform.actions.ActionService" point="actions">
+
+        <!-- add default publishing widget to publish tab layout -->
+        <action id="tree_widget_publish" type="widget" order="10">
+            <category>PUBLISH_PANEL_TOP</category>
+            <properties>
+                <property name="widgetName">publish_tree_widget</property>
+            </properties>
+        </action>
+
+        <!-- add media publishing widget to publish tab layout -->
+        <action id="media_widget_publish" type="widget" order="20">
+            <category>PUBLISH_PANEL_TOP</category>
+            <properties>
+                <property name="widgetName">publish_media_widget</property>
+            </properties>
+            <filter-id>isPublishableMedia</filter-id>
+        </action>
+
+        <!-- add media publishing widget to summary layout -->
+        <action id="media_widget_summary" type="widget" order="400">
+            <category>SUMMARY_PANEL_LEFT</category>
+            <properties>
+                <property name="widgetName">summary_media_publishing_widget</property>
+            </properties>
+            <filter-id>isPublishableMedia</filter-id>
+        </action>
+
+    </extension>
+
+</component>

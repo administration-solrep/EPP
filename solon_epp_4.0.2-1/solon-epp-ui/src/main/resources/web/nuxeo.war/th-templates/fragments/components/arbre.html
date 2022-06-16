@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="arbre(corbeilles,index,isOpen)">
+            <ul
+                th:id="'tree-navigation\_\_toggled\_\_'+${index}"
+                class="tree-navigation__list"
+                th:classappend="${(isOpen ? ' tree-navigation\_\_list--is-opened ' : ' tree-navigation\_\_list--is-closed ' )}"
+                th:aria-hidden="${isOpen ? 'false' : 'true'}"
+            >
+                <li
+                    th:each="item, status : ${corbeilles}"
+                    class="tree-navigation__item tree-navigation__item--has-toggler"
+                    th:classappend="${(item.opened ? 'tree-navigation\_\_item--is-opened' : ' tree-navigation\_\_item--is-closed ') + (item.name == corbeilleActivated ? ' tree-navigation\_\_item--active ' : '')}"
+                >
+                    <th:block th:if="${item.type == 'SECTION'}">
+                        <div class="tree-navigation__toggle-wrapper">
+                            <button
+                                th:aria-controls="'tree-navigation\_\_toggled\_\_'+${status.index}"
+                                th:aria-expanded="${item.opened}"
+                                tabindex="0"
+                                th:id="'tree-navigation\_\_toggler\_\_'+${status.index}"
+                                aria-selected="false"
+                                data-toggle="tree-navigation__list"
+                                class="tree-navigation__toggle js-toggle"
+                                toggle=""
+                                data-icon-opened="minus"
+                                data-icon-closed="plus"
+                            >
+                                <span
+                                    class="tree-navigation__icon tree-navigation__icon--toggler icon bubble-icon bubble-icon--squared bubble-icon--small"
+                                    th:classappend="${(item.opened ? 'tree-navigation\_\_icon--opened icon--minus' : 'tree-navigation\_\_icon--closed icon--plus')}"
+                                    th:aria-describedby="'button\_\_tree-navigation\_\_toggler\_\_'+${status.index}"
+                                ></span>
+                                <span
+                                    th:id="'button__tree-navigation\_\_toggler\_\_'+${status.index}"
+                                    class="sr-only"
+                                ></span>
+                                <span class="tree-navigation__text tree-navigation__text-wrap" th:text="${item.label}"
+                                    >Niveau</span
+                                >
+                            </button>
+                        </div>
+                        <ul
+                            th:replace="fragments/components/arbre :: arbre (${item.corbeilleNodeList},${status.index},${item.opened})"
+                        ></ul>
+                    </th:block>
+                    <th:block th:unless="${item.type == 'SECTION'}">
+                        <a
+                            th:attrappend="title=${item.name == corbeilleActivated} ? ${item.label} + ' (' + ${item.count} + ') - actif'"
+                            th:href="@{|/corbeille/consulter?id=${item.name}|}"
+                            class="tree-navigation__link link"
+                        >
+                            <span class="tree-navigation__text" th:text="|${item.label} (${item.count})|"> lien</span>
+                        </a>
+                    </th:block>
+                </li>
+            </ul>
+        </th:block>
+    </body>
+</html>

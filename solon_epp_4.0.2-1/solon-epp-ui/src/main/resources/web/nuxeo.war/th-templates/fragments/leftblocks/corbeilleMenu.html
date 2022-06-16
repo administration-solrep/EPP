@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div class="leftmenu" th:fragment="leftMenu">
+            <div class="accordion accordion--aside accordion--is-opened">
+                <div class="accordion__header accordion__header--action accordion__header--aside">
+                    <h2 class="accordion-title-lvl-2">[[#{leftBLocks.corbeille.menu.title}]]</h2>
+                    <button
+                        class="js-toggle accordion__header__button"
+                        id="accordion__header__trash"
+                        aria-expanded="true"
+                        aria-controls="mailbox_list_content"
+                        th:aria-label="#{leftBLocks.corbeille.menu.title}"
+                        type="button"
+                        data-icon-closed="add-without-background"
+                        data-icon-opened="substract-without-background"
+                        data-toggle="accordion__content"
+                    >
+                        <span
+                            class="icon bubble-icon bubble-icon--neutral accordion__icon accordion__icon--aside icon--substract-without-background"
+                            aria-hidden="true"
+                        ></span>
+                    </button>
+                </div>
+
+                <div
+                    class="accordion__content accordion__content--aside accordion__content--is-opened"
+                    id="mailbox_list_content"
+                    role="region"
+                    aria-hidden="false"
+                    theme="aside"
+                >
+                    <div class="page-reponses__sidebar-content">
+                        <ul th:replace="fragments/components/arbre :: arbre (${corbeilles},'',true)"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-b-7 accordion accordion--aside">
+                <span class="accordion__header js-toggle accordion__header--aside">
+                    <h2 class="accordion-title-lvl-2">[[#{leftBlocks.creation.label}]]</h2>
+                    <button
+                        aria-controls="accordion__content__creation"
+                        aria-expanded="true"
+                        id="accordion__header__creation"
+                        data-toggle="accordion__content"
+                        data-icon-opened="substract-without-background"
+                        data-icon-closed="add-without-background"
+                        th:data-title-opened="#{leftBlocks.creation.label.reduire}"
+                        th:data-title-closed="#{leftBlocks.creation.label.agrandir}"
+                        class="js-toggle accordion__header__button"
+                    >
+                        <span class="sr-only">[[#{leftBlocks.creation.label.reduire}]]</span
+                        ><span
+                            aria-hidden="true"
+                            class="icon icon--substract-without-background bubble-icon bubble-icon--neutral accordion__icon accordion__icon--aside"
+                        ></span>
+                    </button>
+                </span>
+                <div
+                    aria-hidden="false"
+                    id="accordion__content__creation"
+                    class="accordion__content accordion__content--aside accordion__content--is-opened accordion__content--has-background"
+                >
+                    <div class="m-x-4">
+                        <div class="m-b-5 form-select form-select--simple">
+                            <div class="form-input">
+                                <div class="form-input__header">
+                                    <div class="form-input__header-top">
+                                        <label for="select-evenement" class="form-label" label-as-id="true">
+                                            [[#{leftBlocks.creation.label.typeCommunication}]]</label
+                                        >
+                                    </div>
+                                    <div class="form-input__header-bottom"></div>
+                                </div>
+                                <div class="form-input__container">
+                                    <div class="form-select__field-wrapper">
+                                        <div class="form-select-input">
+                                            <select
+                                                name="select-evenement"
+                                                id="select-evenement"
+                                                class="form-select-input__field form-select-input__field--simple"
+                                            >
+                                                <th:block th:each="option : ${evenementTypes}">
+                                                    <option
+                                                        th:value="${option.id}"
+                                                        th:text="${option.label}"
+                                                        th:selected="AUD01 == ${option.id}"
+                                                    ></option>
+                                                </th:block> </select
+                                            ><span aria-hidden="true" tabindex="-1"
+                                                ><span
+                                                    aria-hidden="true"
+                                                    class="form-select-input__arrow icon icon--arrow-bottom"
+                                                ></span
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="communication-type_description" class="form-input__footer"></div>
+                            </div>
+                        </div>
+                        <button
+                            type="button"
+                            th:onclick="goToCreationCommunication()"
+                            class="base-btn base-btn--button base-btn--default base-btn--center base-btn--full"
+                        >
+                            [[#{leftBlocks.corbeille.menu.button.communication.create}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

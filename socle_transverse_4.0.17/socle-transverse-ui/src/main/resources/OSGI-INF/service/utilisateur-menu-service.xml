@@ -1,0 +1,10 @@
+<component name="fr.dila.st.ui.UtilisateurMenuService">
+
+  <implementation class="fr.dila.st.ui.services.component.UtilisateurMenuComponent" />
+  
+  <service>
+    <provide interface="fr.dila.st.ui.services.UtilisateurMenuService" />
+  </service>
+  
+
+</component>

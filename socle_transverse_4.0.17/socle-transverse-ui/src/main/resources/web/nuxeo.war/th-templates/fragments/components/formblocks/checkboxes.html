@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="alignedCheckboxes(label, id, options, value, description, disabled, visible)">
+            <div
+                class="form-input-group form-input-group--row"
+                th:classappend="${disabled == 'true' ? 'form-input-group--disabled' : ''}"
+            >
+                <th:block th:replace="fragments/components/formblocks/checkboxes :: checkboxesFieldset"></th:block>
+            </div>
+        </th:block>
+
+        <th:block th:fragment="columnCheckboxes(label, id, options, value, description, disabled)">
+            <div
+                class="form-input-group form-input-group--column"
+                th:classappend="${disabled == 'true' ? 'form-input-group--disabled' : ''}"
+            >
+                <th:block th:replace="fragments/components/formblocks/checkboxes :: checkboxesFieldset"></th:block>
+            </div>
+        </th:block>
+
+        <th:block th:fragment="checkboxesFieldset">
+            <fieldset class="form-input__fieldset">
+                <legend
+                    class="form-input-group__label"
+                    th:text="${label != '' ? #messages.msg(label) : ''}"
+                    th:classappend="${!visible ? 'sr-only' : ''}"
+                ></legend>
+                <div th:aria-describedby="|${id}_description|" class="form-input-group__icon-group"></div>
+                <span th:id="|${id}_description|" class="sr-only" th:text="${description}"></span>
+                <div class="form-input-group__list">
+                    <div class="form-choice-input" th:each="option : ${options}">
+                        <input
+                            type="checkbox"
+                            th:id="|${id}_${option.key}|"
+                            th:value="${option.key}"
+                            th:name="${id}"
+                            class="form-choice-input__input"
+                            th:checked="${!#lists.isEmpty(value) and #lists.contains(value, option.key)}"
+                            autocomplete="off"
+                        />
+                        <label
+                            th:for="|${id}_${option.key}|"
+                            th:id="|${id}_${option.key}_label|"
+                            class="form-label form-choice-input__label form-choice-input__label--checkbox"
+                            th:classappend="${disabled == 'true' ? 'form-label--disabled' : ''}"
+                        >
+                            <span th:text="${option.value}"></span>
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+        </th:block>
+    </body>
+</html>

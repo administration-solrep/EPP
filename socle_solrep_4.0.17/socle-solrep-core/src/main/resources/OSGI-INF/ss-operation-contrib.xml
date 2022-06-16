@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!-- Ce composant permet de contribuer les opérations du socle SOLREP. -->
+<component name="fr.dila.ss.core.operation">
+
+	<extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" point="operations">
+		<!-- Opérations de distribution des dossiers -->
+		<operation class="fr.dila.ss.core.operation.distribution.STCreateCaseLinkOperation" />
+		<operation class="fr.dila.ss.core.operation.distribution.STStepToCaseLinkMappingOperation" />
+		<operation class="fr.dila.ss.core.operation.distribution.STStepMailNotificationOperation" />
+		<operation class="fr.dila.ss.core.operation.distribution.ValidationAutomatiqueOperation" />
+		<operation class="fr.dila.ss.core.operation.distribution.CreateActualiteRootOperation" />
+		<operation class="fr.dila.ss.core.operation.livraison.DeleteFdrInstanceReady" />
+		<operation class="fr.dila.ss.core.operation.livraison.SSCreateParametresOperation" />
+        <operation class="fr.dila.ss.core.operation.livraison.ResetUsersLogoutStatusOperation" />
+	</extension>
+
+ 	<extension point="bindings" target="org.nuxeo.ecm.automation.server.AutomationServer">
+	   <binding name="Users.Status.Logout.Reset">
+	       <administrator>true</administrator>
+	   </binding>
+	</extension>
+
+</component>

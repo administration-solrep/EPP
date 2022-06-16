@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="statTitle">
+            <div class="page-reponses-report-birt-open__heading">
+                <div class="heading-complex">
+                    <div class="heading-complex__main" id="statTitle" tabindex="-1">
+                        <h1 class="base-title base-title--lvl-1" style="flex: 1;">
+                            [[ ${birtReport.title} ]]
+                            <a
+                                id="hrefReportUrl"
+                                th:title="#{birtreport.link.title(${birtReport.title})}"
+                                th:href="@{${reportUrl} + '#statTitle'}"
+                                class="link"
+                            >
+                                <span class="sr-only" th:text="#{lien.permanent}">Lien permanent</span>
+                                <span
+                                    aria-hidden="true"
+                                    class="icon icon--link link__icon link__icon--append link__icon--large"
+                                ></span>
+                            </a>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </body>
+</html>

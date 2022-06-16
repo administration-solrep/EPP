@@ -1,0 +1,18 @@
+<component name="fr.sword.idl.naiad.feuilleroute.adapter" version="1.0">
+
+  <extension target="org.nuxeo.ecm.core.api.DocumentAdapterService" point="adapters">
+    <adapter
+            class="fr.sword.idl.naiad.nuxeo.feuilleroute.api.adapter.FeuilleRoute"
+            factory="fr.sword.idl.naiad.nuxeo.feuilleroute.core.adapter.FeuilleRouteAdapterFactory"
+        />
+    <adapter
+            class="fr.sword.idl.naiad.nuxeo.feuilleroute.api.adapter.FeuilleRouteStep"
+            factory="fr.sword.idl.naiad.nuxeo.feuilleroute.core.adapter.FeuilleRouteAdapterFactory"
+        />
+    <adapter
+            class="fr.sword.idl.naiad.nuxeo.feuilleroute.api.adapter.FeuilleRouteElement"
+            factory="fr.sword.idl.naiad.nuxeo.feuilleroute.core.adapter.FeuilleRouteAdapterFactory"
+        />
+  </extension>
+
+</component>

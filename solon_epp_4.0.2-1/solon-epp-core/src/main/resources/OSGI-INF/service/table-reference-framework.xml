@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service de gestion des versions des tables 
+	de références. -->
+<component name="fr.dila.solonepp.core.service.TableReferenceService">
+	<implementation class="fr.dila.solonepp.core.service.TableReferenceServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.solonepp.api.service.TableReferenceService" />
+	</service>
+
+</component>

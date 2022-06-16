@@ -1,0 +1,390 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='page de creation ministere', title=${entiteForm.identifiant == null} ? #{organigramme.add.ministere} : #{organigramme.edit.ministere})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <input
+            type="hidden"
+            id="urlPreviousPage"
+            name="urlPreviousPage"
+            th:value="@{/admin/organigramme/consult#main_content}"
+        />
+
+        <form th:action="@{/admin/organigramme/ministere/sauvegarde}" th:object="${entiteForm}" method="POST">
+            <input type="hidden" name="csrf-token" th:value="${csrftoken}" />
+            <div class="m-b-6">
+                <button
+                    id="edit-MIN-cancel-top"
+                    type="button"
+                    th:attr="onclick=|${entiteForm.identifiant} == null ? goPreviousPage() : releaseLock('${entiteForm.identifiant}', 'MIN')|"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                    th:text="#{organigramme.cancel}"
+                >
+                    Annuler
+                </button>
+                <input
+                    type="submit"
+                    th:value="#{button.label.save}"
+                    class="base-btn base-btn--button base-btn--default"
+                    style="float: right;"
+                />
+            </div>
+            <h1
+                class="base-title base-title--lvl-1 p-b-3 m-b-6 base-title--is-underlined"
+                th:if="${entiteForm.identifiant == null}"
+                th:text="#{organigramme.add.ministere}"
+            >
+                Créer ministère
+            </h1>
+            <h1
+                class="base-title base-title--lvl-1 p-b-3 m-b-6 base-title--is-underlined"
+                th:unless="${entiteForm.identifiant == null}"
+                th:text="#{organigramme.edit.ministere}"
+            >
+                Editer ministère
+            </h1>
+            <div class="form-input m-b-6">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label aria-disabled="false" for="identifiant" id="identifiant_label" class="form-label">
+                            <span th:text="#{organigramme.ministere.identifiant}">Label</span>
+                            <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                        </label>
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                </div>
+                <div class="form-input__container">
+                    <input
+                        type="text"
+                        name="identifiant"
+                        id="identifiant"
+                        class="form-input__field form-input__field--type-text"
+                        th:value="${entiteForm.identifiant}"
+                        readonly
+                    />
+                </div>
+                <div id="identifiant_description" class="form-input__footer"></div>
+            </div>
+
+            <div class="form-input m-b-6">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label aria-disabled="false" for="appellation" id="appellation_label" class="form-label">
+                            <span th:text="#{organigramme.ministere.appellation}">Label</span>
+                            <span class="form-label__required-text" th:text="#{form.input.required}"
+                                >(requis)</span
+                            ></label
+                        >
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                </div>
+                <div class="form-input__container">
+                    <input
+                        type="text"
+                        name="appellation"
+                        id="appellation"
+                        class="form-input__field form-input__field--type-text"
+                        data-validation="required, maxlength(254)"
+                        th:value="${entiteForm.appellation}"
+                    />
+                </div>
+                <div id="appellation_description" class="form-input__footer"></div>
+            </div>
+
+            <div class="form-input m-b-6">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label aria-disabled="false" for="edition" id="edition_label" class="form-label">
+                            <span th:text="#{organigramme.ministere.edition}">Label</span>
+                            <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                        </label>
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                </div>
+                <div class="form-input__container">
+                    <input
+                        type="text"
+                        name="edition"
+                        id="edition"
+                        class="form-input__field form-input__field--type-text"
+                        data-validation="required, maxlength(254)"
+                        th:value="${entiteForm.edition}"
+                    />
+                </div>
+                <div id="edition_description" class="form-input__footer"></div>
+            </div>
+
+            <div class="form-input m-b-6">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label for="dateDebut" id="dateDebut_label" class="form-label">
+                            <span th:text="#{organigramme.ministere.date.debut}">Label</span>
+                            <span
+                                th:if="${entiteForm.identifiant == null}"
+                                class="form-label__required-text"
+                                th:text="#{form.input.required}"
+                                >(requis)</span
+                            >
+                            <!---->
+                        </label>
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                    <div class="form-input__header-bottom"></div>
+                </div>
+                <div class="form-input__container">
+                    <div
+                        th:replace="fragments/components/input-date-picker :: inputDatePicker('datepicker_description_form_input_date_debut', 'dateDebut', 'dateDebut', true, ${entiteForm.dateDebut}, false)"
+                    ></div>
+                </div>
+                <div id="dateDebut_description" class="form-input__footer">
+                    <!---->
+                </div>
+            </div>
+
+            <div class="form-input m-b-6">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label for="dateFin" id="dateFin_label" class="form-label">
+                            <span th:text="#{organigramme.ministere.date.fin}">Label</span>
+                            <!---->
+                        </label>
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                    <div class="form-input__header-bottom"></div>
+                </div>
+                <div class="form-input__container">
+                    <div
+                        th:replace="fragments/components/input-date-picker :: inputDatePicker('datepicker_description_form_input_date_fin', 'dateFin', 'dateDeFin', false, ${entiteForm.dateFin}, ${entiteForm.dateFin == null})"
+                    ></div>
+                </div>
+                <div id="dateFin_description" class="form-input__footer">
+                    <!---->
+                </div>
+            </div>
+
+            <div class="form-input m-b-6">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label
+                            aria-disabled="false"
+                            for="idGouvernement"
+                            id="idGouvernement_label"
+                            class="form-label"
+                            th:text="#{organigramme.ministere.gouvernement}"
+                            >Label
+                        </label>
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                </div>
+                <div class="form-input__container">
+                    <input
+                        type="text"
+                        id="idGouvernement"
+                        class="form-input__field form-input__field--type-text"
+                        disabled="disabled"
+                        th:value="${entiteForm.gouvernement.label}"
+                    />
+                    <!-- Astuce permettant de setter l'id du gouvernement lors du POST -->
+                    <input
+                        type="hidden"
+                        name="idGouvernement"
+                        id="idGouvernement"
+                        th:value="${entiteForm.gouvernement.key}"
+                    />
+                </div>
+                <div id="gouvernement_description" class="form-input__footer"></div>
+            </div>
+
+            <th:block th:if="${hasNor!=null && hasNor}">
+                <div class="form-input m-b-6">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label aria-disabled="false" for="nor" id="nor_label" class="form-label">
+                                <span th:text="#{organigramme.ministere.nor}">Label</span>
+                                <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                            </label>
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                        <div class="form-input__header-bottom">
+                            <p
+                                id="label_header_bottom_form_input"
+                                class="form-input__description form-input__description--default"
+                                th:text="#{organigramme.ministere.form.nor.explain}"
+                            >
+                                Le nor
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-input__container">
+                        <input
+                            type="text"
+                            name="nor"
+                            id="nor"
+                            class="form-input__field form-input__field--type-text"
+                            data-validation="required, alpha, maxlength(3), minlength(3)"
+                            th:disabled="${not #strings.isEmpty(entiteForm.nor)}"
+                            maxlength="3"
+                            th:value="${entiteForm.nor}"
+                        />
+                    </div>
+                    <div id="nor_description" class="form-input__footer"></div>
+                </div>
+            </th:block>
+
+            <div class="form-input m-b-6">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label
+                            aria-disabled="false"
+                            for="ordreProtocolaire"
+                            id="ordreProtocolaire_label"
+                            class="form-label"
+                        >
+                            <span th:text="#{organigramme.ministere.ordre.protocolaire}">Label</span>
+                            <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                        </label>
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                    <div class="form-input__header-bottom">
+                        <p
+                            id="label_header_bottom_form_input"
+                            class="form-input__description form-input__description--default"
+                            th:text="#{organigramme.ministere.form.ordre.explain}"
+                        >
+                            L'ordre doit être un nombre. Exemple : 99
+                        </p>
+                    </div>
+                </div>
+                <div class="form-input__container">
+                    <input
+                        type="text"
+                        name="ordreProtocolaire"
+                        id="ordreProtocolaire"
+                        class="form-input__field form-input__field--type-text"
+                        data-validation="required, integer"
+                        th:value="${entiteForm.ordreProtocolaire}"
+                    />
+                </div>
+                <div id="ordreProtocolaire_description" class="form-input__footer"></div>
+            </div>
+
+            <div class="form-input m-b-6">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label for="formulesEntetes" id="formulesEntetes_label" class="form-label">
+                            <span th:text="#{organigramme.ministere.formule.entetes}">Label</span>
+                            <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                            <!---->
+                        </label>
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                </div>
+                <div class="form-input__container">
+                    <textarea
+                        name="formulesEntetes"
+                        id="formulesEntetes"
+                        cols="30"
+                        rows="3"
+                        class="form-input__field"
+                        data-validation="required, maxlength(254)"
+                        th:text="${entiteForm.formulesEntetes}"
+                    ></textarea>
+                </div>
+                <div id="formulesEntetes_description" class="form-input__footer">
+                    <!---->
+                </div>
+            </div>
+
+            <div class="form-input m-b-6">
+                <div
+                    th:replace="fragments/components/formblocks/input-optin :: 
+                    		optin('organigramme.ministere.membre.gouvernement.civilite', 'civilite', 'civilite', ${civiliteOptions}, ${entiteForm.civilite}, false, null)"
+                ></div>
+            </div>
+
+            <div class="form-input m-b-6">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label
+                            aria-disabled="false"
+                            for="membreGouvernementPrenom"
+                            id="membreGouvernementPrenom_label"
+                            class="form-label"
+                        >
+                            <span th:text="#{organigramme.ministere.membre.gouvernement.prenom}">Label</span>
+                            <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                        </label>
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                </div>
+                <div class="form-input__container">
+                    <input
+                        type="text"
+                        name="membreGouvernementPrenom"
+                        id="membreGouvernementPrenom"
+                        class="form-input__field form-input__field--type-text"
+                        data-validation="required"
+                        th:value="${entiteForm.membreGouvernementPrenom}"
+                    />
+                </div>
+                <div id="membreGouvernementPrenom_description" class="form-input__footer"></div>
+            </div>
+
+            <div class="form-input m-b-6">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label
+                            aria-disabled="false"
+                            for="membreGouvernementNom"
+                            id="membreGouvernementNom_label"
+                            class="form-label"
+                        >
+                            <span th:text="#{organigramme.ministere.membre.gouvernement.nom}">Label</span>
+                            <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                        </label>
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                </div>
+                <div class="form-input__container">
+                    <input
+                        type="text"
+                        name="membreGouvernementNom"
+                        id="membreGouvernementNom"
+                        class="form-input__field form-input__field--type-text"
+                        data-validation="required"
+                        th:value="${entiteForm.membreGouvernementNom}"
+                    />
+                </div>
+                <div id="membreGouvernementPrenom_description" class="form-input__footer"></div>
+            </div>
+
+            <div class="form-input m-b-6" th:if="${suiviAN != null && suiviAN}">
+                <div
+                    th:replace="fragments/components/formblocks/input-oui-non :: 
+                    		ouiNon('organigramme.ministere.suiviAN', 'suiviAN', ${entiteForm.suiviAN}, false)"
+                ></div>
+            </div>
+
+            <div class="m-t-6">
+                <button
+                    id="edit-MIN-cancel-bottom"
+                    type="button"
+                    th:attr="onclick=|${entiteForm.identifiant} == null ? goPreviousPage() : releaseLock('${entiteForm.identifiant}', 'MIN')|"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                    th:text="#{organigramme.cancel}"
+                >
+                    Annuler
+                </button>
+                <input
+                    type="submit"
+                    th:value="#{button.label.save}"
+                    class="base-btn base-btn--button base-btn--default"
+                    style="float: right;"
+                />
+            </div>
+        </form>
+    </main>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service d'organigramme (partie unités structurelles) 
+	du ST. -->
+<component name="fr.dila.st.core.service.STUsAndDirectionService">
+	<implementation class="fr.dila.st.core.component.STUsAndDirectionComponent" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.organigramme.STUsAndDirectionService" />
+	</service>
+</component>

@@ -1,0 +1,120 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Edition d\'un modèle de feuille de route', title=#{modeleForm.intitule})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <input type="hidden" id="urlPreviousPage" name="urlPreviousPage" th:value="@{${urlPreviousPage}}" />
+        <input type="hidden" id="idModele" name="idModele" th:value="${modeleForm.id}" />
+
+        <h1 class="base-title base-title--lvl-1" th:text="${modeleForm.intitule}">titre</h1>
+
+        <div class="bggrey m-t-6">
+            <table role="presentation" class="folder-detail__table">
+                <tbody>
+                    <tr class="folder-detail__table-line">
+                        <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                            [[#{modeleFDR.form.libelle.intitule}]]
+                        </td>
+                        <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                            [[${modeleForm.intitule}]]
+                        </td>
+                    </tr>
+                    <tr class="folder-detail__table-line">
+                        <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                            [[#{modeleFDR.form.libelle.ministere}]]
+                        </td>
+                        <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                            [[${modeleForm.libelleMinistere}]]
+                        </td>
+                    </tr>
+                    <tr class="folder-detail__table-line">
+                        <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                            [[#{modeleFDR.form.libelle.modeleParDefaut}]]
+                        </td>
+                        <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                            <th:block th:if="${modeleForm.modeleParDefaut}"> [[#{ModeleFDR.label.oui}]] </th:block>
+                            <th:block th:unless="${modeleForm.modeleParDefaut}"> [[#{ModeleFDR.label.non}]] </th:block>
+                        </td>
+                    </tr>
+                    <tr class="folder-detail__table-line">
+                        <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                            [[#{modeleFDR.form.libelle.titreQuestion}]]
+                        </td>
+                        <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                            [[${modeleForm.titreQuestion}]]
+                        </td>
+                    </tr>
+                    <tr class="folder-detail__table-line">
+                        <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                            [[#{modeleFDR.form.libelle.description}]]
+                        </td>
+                        <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                            [[${modeleForm.description}]]
+                        </td>
+                    </tr>
+                    <tr class="folder-detail__table-line">
+                        <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                            [[#{modeleFDR.form.libelle.directionPilote}]]
+                        </td>
+                        <td class="folder-detail__table-cell folder-detail__table-cell--value">
+                            [[${modeleForm.LibelleDirection}]]
+                        </td>
+                    </tr>
+                    <tr class="folder-detail__table-line">
+                        <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                            [[#{modeleFDR.form.libelle.an}]]
+                        </td>
+                        <td>
+                            <th:block
+                                th:replace="fragments/components/indexation :: indexation('AN', #{bordereau.indexation.label} + ' - ' + #{bordereau.an.label}, ${modeleForm.indexationDto.indexationAN}, ${modeleForm.indexationDto.directoriesAN}, true, 'view')"
+                            ></th:block>
+                        </td>
+                    </tr>
+                    <tr class="folder-detail__table-line">
+                        <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                            [[#{modeleFDR.form.libelle.senat}]]
+                        </td>
+                        <td>
+                            <th:block
+                                th:replace="fragments/components/indexation :: indexation('SENAT', #{bordereau.indexation.label} + ' - ' + #{bordereau.an.label}, ${modeleForm.indexationDto.indexationSENAT}, ${modeleForm.indexationDto.directoriesSENAT}, true, 'view')"
+                            ></th:block>
+                        </td>
+                    </tr>
+                    <tr class="folder-detail__table-line">
+                        <td class="folder-detail__table-cell folder-detail__table-cell--label">
+                            [[#{modeleFDR.form.libelle.ministere}]]
+                        </td>
+                        <td>
+                            <th:block
+                                th:replace="fragments/components/indexation :: indexation('Ministere', #{bordereau.indexation.label} + ' - ' + #{bordereau.ministeres.label}, ${modeleForm.indexationDto.indexationMinistere}, ${modeleForm.indexationDto.directoriesMinistere}, true, 'view')"
+                            ></th:block>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="roadmap-table">
+            <table
+                th:unless="${#lists.isEmpty(modeleForm.fdrDto.table.lines)}"
+                th:replace="fragments/modele/tableModeleFdr :: tableModeleFdr(${modeleForm.fdrDto})"
+            ></table>
+        </div>
+
+        <div class="page-layout__content-nav" th:if="${not #strings.isEmpty(urlPreviousPage)}">
+            <button
+                type="button"
+                style="margin-bottom: 1.7857em; padding-left: 2em; padding-right: 2em;"
+                class="base-btn base-btn--button base-btn--default base-btn--light base-btn--bordered"
+                onclick="goPreviousPage()"
+                th:text="#{button.label.back}"
+                th:if="${not #strings.isEmpty(urlPreviousPage)}"
+            >
+                Retour
+            </button>
+        </div>
+    </main>
+</html>

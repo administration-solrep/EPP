@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service de jointure de l'application Réponses. -->
+<component name="fr.dila.st.core.service.STJointureService">
+	<implementation class="fr.dila.st.core.service.STJointureServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.JointureService" />
+	</service>
+
+	<extension-point name="queryassembler">
+		<object class="fr.dila.st.core.jointure.QueryAssemblerDescriptor" />
+	</extension-point>
+
+	<extension-point name="correspondences">
+		<object class="fr.dila.st.core.jointure.CorrespondenceDescriptor" />
+	</extension-point>
+
+	<extension-point name="dependencies">
+		<object class="fr.dila.st.core.jointure.DependencyDescriptor" />
+	</extension-point>
+
+</component>

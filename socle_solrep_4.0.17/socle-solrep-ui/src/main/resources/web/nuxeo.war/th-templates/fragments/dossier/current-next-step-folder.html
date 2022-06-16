@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="current-next-step-folder(monDossier)">
+            <th:block th:unless="${monDossier.isDone}">
+                <p class="m-y-0 base-paragraph">
+                    <th:block th:text="#{dossier.consult.step.actual}"></th:block>
+                </p>
+                <p class="m-y-0 m-l-1 base-paragraph infos-etapes">
+                    <strong><span th:each="label: ${monDossier.actualStepLabel}" th:text="${label}"></span></strong>
+                </p>
+                <p class="m-y-0 m-l-4 base-paragraph">
+                    <th:block th:text="#{dossier.consult.step.next}"></th:block>
+                </p>
+                <p class="m-y-0 m-l-1 base-paragraph infos-etapes">
+                    <strong><span th:each="label: ${monDossier.nextStepLabel}" th:text="${label}"></span></strong>
+                </p>
+            </th:block>
+
+            <p class="m-y-0 base-paragraph" th:if="${monDossier.isDone and monDossier.dateLastStep != null}">
+                <th:block th:text="#{dossier.consult.lastStepDate}"></th:block>
+                <strong th:text="${#dates.format(monDossier.dateLastStep, 'dd/MM/yyyy')}"></strong>
+            </p>
+        </th:block>
+    </body>
+</html>

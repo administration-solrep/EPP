@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://dila.fr/solon/schemas/actualiteRequete/">
+
+	<xs:include schemaLocation="base.xsd" />
+
+	<xs:element name="dateEmissionDebut" type="xs:date" />
+	<xs:element name="dateEmissionFin" type="xs:date" />
+    <xs:element name="dateValiditeDebut" type="xs:date" />
+    <xs:element name="dateValiditeFin" type="xs:date" />
+	<xs:element name="objet" type="xs:string" />
+    <xs:element name="dansHistorique" type="xs:boolean" />
+    <xs:element name="hasPj" type="xs:boolean" />
+</xs:schema>

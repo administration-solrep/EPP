@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.ui.contentview.parametre">
+
+	<require>org.nuxeo.ecm.platform.query.api.PageProviderService</require>
+
+	<extension target="org.nuxeo.ecm.platform.query.api.PageProviderService" point="providers">
+
+		<genericPageProvider class="fr.dila.st.ui.contentview.PaginatedPageDocumentProvider" name="parametrePageProvider">
+			<pattern quoteParameters="false" escapeParameters="false">
+				SELECT * FROM Parametre WHERE ecm:parentId = '?' AND ecm:isProxy = 0 AND prm:type is null
+			</pattern>
+			<sort column="dc:title" ascending="true" />
+		</genericPageProvider>
+
+		<genericPageProvider
+            class="fr.dila.st.ui.contentview.PaginatedPageDocumentProvider"
+            name="parametreArchivagePageProvider"
+        >
+			<pattern quoteParameters="false" escapeParameters="false">
+				SELECT * FROM Parametre WHERE ecm:parentId = '?' AND ecm:isProxy = 0 AND prm:type = 'archivage'
+			</pattern>
+			<sort column="dc:title" ascending="true" />
+		</genericPageProvider>
+
+	</extension>
+
+</component>

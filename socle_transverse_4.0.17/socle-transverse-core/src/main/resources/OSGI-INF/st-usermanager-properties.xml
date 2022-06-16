@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<component name="org.nuxeo.ecm.platform.usermanager.properties.override">
+
+  <require>org.nuxeo.ecm.platform.usermanager.properties</require>
+
+  <!-- The configuration extension point allows to define named properties. Properties can be marked as list and if defined many times, values will be appended as comma separated values. You can override existing list property with the override attribute. Example: <code> <property name="nuxeo.jsf.enableDoubleClickShield">true</property> <property name="nuxeo.jsf.useAjaxTabs">false</property> <property list="true" name="nuxeo.list.value">foo</property> <property name="nuxeo.list.value">bar</property> <property name="nuxeo.list.value" override="true">I'd like to make sure value is not foo,bar anymore</property> </code> -->
+  <extension target="org.nuxeo.runtime.ConfigurationService" point="configuration">
+    <property name="nuxeo.usermanager.check.password">false</property>
+  </extension>
+
+</component>

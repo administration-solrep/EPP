@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.media.publishing.youtube.layouts">
+
+  <extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+             point="widgets">
+
+    <widget name="youtube_options_widget" type="template">
+      <handlingLabels>true</handlingLabels>
+      <labels>
+        <label mode="any"></label>
+      </labels>
+      <properties widgetMode="any">
+        <property name="template">/widgets/youtube_options_widget.xhtml</property>
+      </properties>
+    </widget>
+
+  </extension>
+
+</component>

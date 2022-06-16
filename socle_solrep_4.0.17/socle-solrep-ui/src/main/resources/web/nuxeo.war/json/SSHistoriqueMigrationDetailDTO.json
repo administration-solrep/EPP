@@ -1,0 +1,24 @@
+{
+    "id": "1",
+    "label": "libellé migration 1",
+    "lignes": [
+        {
+            "message": "message 1 ",
+            "dateDebut": "2020-01-01",
+            "dateFin": "2020-01-01",
+            "status": "OK"
+        },
+        {
+            "message": "message 2 ",
+            "dateDebut": "2020-01-02",
+            "dateFin": "2020-01-03",
+            "status": "OK"
+        },
+        {
+            "message": "message 3 ",
+            "dateDebut": "2020-01-04",
+            "dateFin": "2020-01-04",
+            "status": "KO"
+        }
+    ]
+}

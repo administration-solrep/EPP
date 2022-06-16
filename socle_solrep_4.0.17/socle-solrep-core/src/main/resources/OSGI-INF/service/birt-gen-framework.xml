@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service de génération de birt. -->
+<component name="fr.dila.ss.core.birt.BirtGenerationService">
+	<implementation class="fr.dila.ss.core.component.BirtGenerationComponent" />
+
+	<service>
+		<provide interface="fr.dila.ss.api.birt.BirtGenerationService" />
+	</service>
+</component>

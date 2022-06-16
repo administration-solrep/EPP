@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service de distribution des événements. -->
+<component name="fr.dila.solonepp.core.service.EvenementDistributionService">
+	<implementation class="fr.dila.solonepp.core.service.EvenementDistributionServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.solonepp.api.service.EvenementDistributionService" />
+	</service>
+
+</component>

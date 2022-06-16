@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue les content view de l'application SOLON EPP -->
+<component name="fr.dila.solonepg.requete.contentviews.contrib">
+
+	<require>org.nuxeo.ecm.platform.query.api.PageProviderService</require>
+
+	<extension target="org.nuxeo.ecm.platform.query.api.PageProviderService" point="providers">
+
+		<!-- Content view de la liste des messages dans une corbeille -->
+		<genericPageProvider class="fr.dila.epp.ui.contentview.CorbeillePageProvider" name="corbeillePageProvider">
+			<pattern quoteParameters="false" escapeParameters="false">
+				?
+			</pattern>
+			<sort column="m.cslk:date" ascending="false" />
+			<pageSize>20</pageSize>
+		</genericPageProvider>
+
+	</extension>
+</component>

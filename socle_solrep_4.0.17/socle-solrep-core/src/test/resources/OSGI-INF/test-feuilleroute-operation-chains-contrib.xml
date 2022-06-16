@@ -1,0 +1,13 @@
+<component name="fr.sword.idl.naiad.feuilleroute.core.test.operation.chains" version="1.0">
+
+  <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" point="chains">
+    <chain id="setWaiting">
+      <operation id="Feuille.Route.Test.Step.Waiting" />
+    </chain>
+    <chain id="setUndo">
+      <operation id="Feuille.Route.BackToReady" />
+      <operation id="Feuille.Route.Test.Step.Undo" />
+    </chain>
+  </extension>
+
+</component>

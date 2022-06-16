@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <!--/*Composant permettant de définir le nombre de documents par pages*/-->
+
+        <div th:fragment="documentParPage(resultForm, id)" class="table-filters flex justify-end m-b-4">
+            <div class="form-select form-select--inline form-select--simple">
+                <div class="form-input form-input--inline">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label for="document-page" class="form-label" th:text="#{nombre.document.page}">
+                                Documents / page
+                            </label>
+                        </div>
+                        <div class="form-input__header-bottom"></div>
+                    </div>
+                    <div class="form-input__container">
+                        <div class="form-select__field-wrapper form-select__field-wrapper--default">
+                            <div class="form-select-input">
+                                <select
+                                    name="size"
+                                    id="document-page"
+                                    aria-describedby="document-page_field_description document-page_description"
+                                    class="form-select-input__field"
+                                    data-isform="true"
+                                    th:data-value="${resultForm.size}"
+                                >
+                                    <option value="10" th:selected="${10 == resultForm.size}">10</option>
+                                    <option value="20" th:selected="${20 == resultForm.size}">20</option>
+                                    <option value="50" th:selected="${50 == resultForm.size}">50</option>
+                                </select>
+                                <span aria-hidden="true" tabindex="-1">
+                                    <span
+                                        aria-hidden="true"
+                                        class="form-select-input__arrow icon icon--arrow-bottom"
+                                    ></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="document-page_description" class="form-input__footer"></div>
+                </div>
+            </div>
+
+            <button
+                th:id="|${id}_documents_page|"
+                type="button"
+                class="base-btn base-btn--button base-btn--default base-btn--icon-action-blue base-btn--center base-btn--transparent base-btn--rounded"
+                onclick="onDocPerPageChange(this)"
+            >
+                <span aria-hidden="true" class="page-reponses__refresh-icon icon icon--refresh"></span
+                ><span class="sr-only" th:text="#{nombre.document.page.rafraichir}">Rafraichir</span>
+            </button>
+        </div>
+    </body>
+</html>

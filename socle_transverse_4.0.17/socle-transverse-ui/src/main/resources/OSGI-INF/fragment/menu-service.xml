@@ -1,0 +1,12 @@
+<component name="fr.dila.st.ui.MenuService">
+
+    <require>fr.dila.st.core.service.ConfigService</require>
+
+  <implementation class="fr.dila.st.ui.services.impl.MenuServiceImpl" />
+  
+  <service>
+    <provide interface="fr.dila.st.ui.services.MenuService" />
+  </service>
+  
+
+</component>

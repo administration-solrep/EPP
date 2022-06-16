@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="criteresModele" id="criteresModele">
+            <div class="m-b-6 accordion">
+                <h2 class="accordion-title-lvl-2">
+                    <button
+                        type="button"
+                        aria-controls="accordion__content__accordion-criteres-modele"
+                        aria-expanded="true"
+                        id="accordion__header__accordion-criteres-modele"
+                        data-toggle="accordion__content"
+                        data-icon-opened="substract"
+                        data-icon-closed="add"
+                        class="accordion__header js-toggle accordion__header--default"
+                    >
+                        [[#{admin.modele.recherche.critereModele.title}]]
+                        <span
+                            aria-hidden="true"
+                            class="icon accordion__icon accordion__icon--default icon--substract"
+                        ></span>
+                    </button>
+                </h2>
+                <div
+                    aria-hidden="false"
+                    id="accordion__content__accordion-criteres-modele"
+                    class="accordion__content accordion__content--accordion--default accordion__content--has-background accordion__content--is-opened"
+                >
+                    <div
+                        role="group"
+                        aria-labelledby="accordion__header__accordion-criteres-modele"
+                        class="p-l-4 p-r-4"
+                    >
+                        <div
+                            th:replace="fragments/fdr/recherche/modele-fdr-search-general-input :: modeleFdrSearchGeneralInput(${searchForm}, ${typeActe})"
+                        ></div>
+                        <div class="grid__row m-b-6">
+                            <div class="grid__col grid__col--middle">
+                                <div
+                                    th:replace="fragments/components/organigrammeSelectAutocomplete :: organigrammeSelectAutocomplete(
+							'admin.modele.recherche.critereModele.utilisateurCreateur',
+							false,
+							'utilisateurCreateur',
+							'utilisateurCreateur-key',
+							'USR',
+							${searchForm.utilisateurCreateur},
+							false,
+							false,
+							${searchForm.mapUtilisateurCreateur}, 
+							false)"
+                                ></div>
+                            </div>
+                        </div>
+                        <div class="grid__row m-b-6">
+                            <div class="grid__col grid__col--middle form-input">
+                                <div
+                                    th:replace="fragments/components/formblocks/date-picker-range :: datepickerRange(
+                                    'admin.modele.recherche.critereModele.dateCreation',
+                                    'dateCreation', 
+                                    ${#calendars.format(searchForm.dateCreationStart,'dd/MM/yyyy')},
+                                    ${#calendars.format(searchForm.dateCreationEnd,'dd/MM/yyyy')}, 
+                                    false, 
+                                    false)"
+                                ></div>
+                            </div>
+                            <div class="grid__col grid__col--middle form-optin">
+                                <th:block
+                                    th:replace="fragments/components/formblocks/input-optin :: optin('admin.modele.recherche.critereModele.statut', 'statut', 'statut', ${statutModeleFDROptin}, ${searchForm.statut ? searchForm.statut.name() : ''}, false, null)"
+                                ></th:block>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

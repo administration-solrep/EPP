@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<component name="fr.sword.naiad.nuxeo.ufnxql.core.service.fnxqlconfigservice.contrib">
+  <implementation
+    class="fr.sword.naiad.nuxeo.ufnxql.core.service.FNXQLConfigComponent" />
+
+  <service>
+    <provide interface="fr.sword.naiad.nuxeo.ufnxql.core.service.FNXQLConfigService" />
+  </service>
+  
+  <extension-point name="globalMixinTypes">
+    <documentation>
+      Permet de définir des facets utilisé de facon globale et non par instance de document
+
+      Exemple :
+      <code>
+        <extension target="fr.sword.naiad.nuxeo.ufnxql.core.service.fnxqlconfigservice.contrib"
+          point="globalMixinTypes">
+          <mixinType name="ma_facette"/>
+        </extension>
+      </code>
+    </documentation>
+    
+    <object class="fr.sword.naiad.nuxeo.ufnxql.core.descriptor.MixinTypeDescriptor" />
+    
+  </extension-point>
+  
+   <extension-point name="schemaTypes">
+    <documentation>
+      Permet d'associer un schema à un type documentaire
+
+      Exemple :
+      <code>
+        <extension target="fr.sword.naiad.nuxeo.ufnxql.core.service.fnxqlconfigservice.contrib"
+          point="schemaTypes">
+          <typeSchema type="doc_type" schema="schema_name"/>
+        </extension>
+      </code>
+      Si doc_type est vide ou null, l'entrée est ignoré.
+      Si une correspondance existe deja pour un type donné, l'entrée est écrasée.
+      Si schema_name est vide ou null, le type est supprimé de la map (si il y est présent). 
+      
+    </documentation>
+    
+    <object class="fr.sword.naiad.nuxeo.ufnxql.core.descriptor.TypeSchemaDescriptor" />
+    
+  </extension-point>
+  
+  <extension-point name="functions">
+    <documentation>
+        Permet d'étendre le langage avec de nouvelle fonction
+        Exemple : 
+        <code>
+          <extension target="fr.sword.naiad.nuxeo.ufnxql.core.service.fnxqlconfigservice.contrib"
+            point="functions">
+            <function class="xxx.yyy.zzz.UfnxqlFunctionImplementation" enabled="true"/>
+          </extension>
+        </code>
+        
+        La class doit etre une implemenatiob de fr.sword.naiad.nuxeo.ufnxql.core.query.ufnxql.functions.UfnxqlFunction
+    
+    </documentation>
+    <object class="fr.sword.naiad.nuxeo.ufnxql.core.descriptor.FunctionDescriptor"/>
+  </extension-point>
+  
+  
+
+</component>

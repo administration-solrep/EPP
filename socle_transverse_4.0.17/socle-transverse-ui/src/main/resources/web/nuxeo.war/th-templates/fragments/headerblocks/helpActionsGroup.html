@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            data-drop-group="header-right"
+            th:fragment="helpActionsGroup"
+            class="dropdown-fixed-right header__right-item base-drop-down base-drop-down--has-indicator base-drop-down--bordered base-drop-down--light-inverted"
+        >
+            <button
+                type="button"
+                aria-controls="drop-down-header_drop"
+                class="base-btn base-btn--button base-btn--default base-btn--light-inverted base-btn--center base-btn--transparent base-btn--bordered base-drop-down__button"
+            >
+                <span class="base-drop-down__button-label" th:text="#{shortcut.help.label}">Aide</span>
+                <span aria-hidden="true" class="base-drop-down__indicator icon icon--arrow-bottom"></span>
+            </button>
+            <div id="drop-down-header_drop" class="base-drop-down__drop">
+                <ul class="base-drop-down__drop-list">
+                    <li class="base-drop-down-item">
+                        <a
+                            th:href="@{/manuel}"
+                            class="base-drop-down__link link"
+                            th:text="#{shortcut.help.didactitiel.label}"
+                            target="_blank"
+                        >
+                        </a>
+                    </li>
+                    <th:block th:replace="fragments/headerblocks/helpActionsSpecific :: helpActionsSpecific"></th:block>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

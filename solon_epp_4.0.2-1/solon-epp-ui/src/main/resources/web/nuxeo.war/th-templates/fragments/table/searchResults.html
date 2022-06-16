@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="searchResults"
+            id="searchResultsTable"
+            class="tableForm"
+            data-url="/solon-epp/site/app-ui/page/recherche/resultats"
+            data-ajaxurl="/solon-epp/site/app-ui/ajax/recherche/resultats"
+        >
+            <div class="overlay">Rechargement</div>
+            <table class="dataOutput">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <input
+                                type="checkbox"
+                                name="checkbox"
+                                onclick="selectAllCheckBox(this);"
+                                title="Tout sélectionner / désélectionner"
+                            />
+                        </th>
+                        <th scope="col">
+                            <a
+                                href="javascript:void(0)"
+                                onclick="sortColumn(this)"
+                                id="questionHeader"
+                                th:data-value="${resultForm.question}"
+                                data-field="question"
+                                >Questions <span th:text='${"- " + resultForm.question}'></span
+                            ></a>
+                        </th>
+                        <th scope="col">Législature</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Auteur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <th:block th:if="${resultList.liste.size > 0}">
+                        <tr class="dataRowEven" th:each="item, nb : ${resultList.liste}" th:data-id="${item.id}">
+                            <td class="iconColumn">
+                                <input
+                                    type="checkbox"
+                                    th:name="${'checkbox-'+nb.count}"
+                                    onclick="selectDossier(this)"
+                                />
+                            </td>
+                            <td class="">
+                                <a href="javascript:void(0)" onclick="afficheDossier(this)">[[${item.title}]]</a>
+                            </td>
+                            <td class="">[[${item.legislature}]]</td>
+                            <td th:text="${#dates.format(item.date, 'dd/MM/yyyy')}">date</td>
+                            <td class="">[[${item.auteur}]]</td>
+                        </tr>
+                    </th:block>
+                    <th:block th:unless="${resultList.liste.size > 0}">
+                        <td colspan="5">Aucun résultat</td>
+                    </th:block>
+                </tbody>
+            </table>
+            <button type="button" onclick="previousPage(this)">&lt;</button>
+            <input type="text" name="page" data-isForm="true" th:value="${resultForm.page}" />
+            <button type="button" onclick="nextPage(this)">&gt;</button>
+        </div>
+    </body>
+</html>

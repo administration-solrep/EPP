@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <!-- fragment pour dossier/journal: afficher le resultat de la recherche -->
+    <body>
+        <div
+            th:fragment="searchResults"
+            class="tableForm"
+            th:data-url="@{${dataUrl}}"
+            th:data-ajaxurl="@{${dataAjaxUrl}}"
+            th:with="nestingLevel=${nestingLevel} ?: 1"
+            id="journalResults"
+        >
+            <input type="hidden" id="dataAjaxExportUrl" th:value="${dataAjaxExportUrl}" />
+            <div class="overlay" th:id="result_overlay" aria-live="polite">
+                <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+            </div>
+            <th:block th:if="${nestingLevel == 1}">
+                <h2 class="m-y-6 base-title base-title--lvl-2" th:text="#{journal.technique.listeActions}">
+                    Liste des actions
+                </h2>
+                <div class="heading-complex">
+                    <div class="heading-complex__main">
+                        <h3
+                            class="m-t-6 m-b-3 p-b-2 base-title base-title--lvl-3"
+                            th:text="#{journal.technique.resultats.nombre(${nbResults})}"
+                        >
+                            n résultats
+                        </h3>
+                    </div>
+                    <th:block th:if="${exportAction}">
+                        <div class="heading-complex__options">
+                            <div
+                                th:replace="fragments/components/action-button-fixed :: action-button-fixed(${exportAction}, ${nbResults > exportLimit}, 'base-btn--secondary base-btn--min base-btn--rounded color-white')"
+                            ></div>
+                        </div>
+                    </th:block>
+                </div>
+            </th:block>
+            <th:block th:unless="${nestingLevel == 1}">
+                <h3 class="m-y-6 base-title base-title--lvl-3" th:text="#{journal.technique.listeActions}">
+                    Liste des actions
+                </h3>
+                <div class="heading-complex">
+                    <div class="heading-complex__main">
+                        <h4
+                            class="m-t-6 m-b-3 p-b-2 base-title base-title--lvl-4"
+                            th:text="#{journal.technique.resultats.nombre(${nbResults})}"
+                        >
+                            n résultats
+                        </h4>
+                    </div>
+                    <th:block th:if="${exportAction}">
+                        <div class="heading-complex__options">
+                            <div
+                                th:replace="fragments/components/action-button-fixed :: action-button-fixed(${exportAction}, false, 'base-btn--secondary base-btn--min base-btn--rounded color-white')"
+                            ></div>
+                        </div>
+                    </th:block>
+                </div>
+            </th:block>
+
+            <div class="action-table m-t-6">
+                <th:block th:unless="${resultForm.defaultSize >= resultList.nbTotal}">
+                    <div
+                        th:replace="fragments/components/nombre-document-page :: documentParPage(${resultForm}, 'journal_haut')"
+                    ></div>
+                </th:block>
+                <a href="#skip_link_action-table_prev" id="skip_link_action-table_next" class="skip-link"
+                    >[[ #{skip.link.table.prev(#{journal.technique.listeActions}+' -
+                    '+#{journal.technique.resultats.nombre(${nbResults})})} ]]</a
+                >
+                <div class="table-action">
+                    <div class="table-action__action-container table-action__action-container--disabled"></div>
+                    <div class="table-action__action-container table-action__action-container--right">
+                        <th:block th:unless="${resultList.liste.size == resultList.nbTotal}">
+                            <div
+                                th:replace="fragments/table/pagination :: pagination (${resultForm}, ${resultForm.page},'journal_haut',${resultList.nbTotal})"
+                            ></div>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table class="custom-table wrap-cells">
+                        <caption
+                            class="sr-only"
+                            th:text="#{journal.technique.listeActions}+' - '+#{journal.technique.resultats.nombre(${nbResults})}"
+                        >
+                            Tableau des actions
+                        </caption>
+                        <!---->
+                        <thead class="table-header custom-table__header">
+                            <tr class="table-header__line">
+                                <th:block th:each="colonne : ${lstColonnes}">
+                                    <th:block th:if="${colonne.visible && colonne.sortable}">
+                                        <th
+                                            th:aria-sort="${colonne.sortValue == 'asc' ? 'ascending' : (colonne.sortValue== 'desc' ? 'descending' : '')}"
+                                            scope="col"
+                                            class="table-header__cell table-header__cell--with-filter-action"
+                                        >
+                                            <button
+                                                th:replace="fragments/table/sortableHeader :: sortableHeader (#{__${colonne.label}__},${colonne.sortValue},${colonne.sortName},${colonne.sortId},${colonne.inverseSort})"
+                                            ></button>
+                                        </th>
+                                    </th:block>
+                                </th:block>
+                            </tr>
+                        </thead>
+                        <tbody class="custom-table__body">
+                            <th:block th:unless="${#lists.isEmpty(resultList.liste)}">
+                                <tr
+                                    class="custom-table__table-line table-line"
+                                    th:each="item, compt : ${resultList.liste}"
+                                >
+                                    <td class="table-line__cell" th:text="${item.date}">
+                                        Date
+                                    </td>
+                                    <td class="table-line__cell" th:text="${item.utilisateur}">
+                                        Utilisateur
+                                    </td>
+                                    <td class="table-line__cell">
+                                        <div
+                                            th:replace="fragments/components/longText :: ellipser(${item.poste},'jnEllipser-' + ${compt.index})"
+                                        ></div>
+                                    </td>
+                                    <td class="table-line__cell" th:text="${item.categorie}">
+                                        Catégorie
+                                    </td>
+                                    <td class="table-line__cell">
+                                        <div
+                                            th:replace="fragments/components/longText :: ellipser(${item.commentaire},'jnEllipser-' + ${compt.index})"
+                                        ></div>
+                                    </td>
+                                    <td class="table-line__cell" th:text="${item.referenceDossier}">
+                                        Référence dossier
+                                    </td>
+                                </tr>
+                            </th:block>
+                            <th:block th:if="${#lists.isEmpty(resultList.liste)}">
+                                <td colspan="5">[[#{label.message.nombre(0)}]]</td>
+                            </th:block>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-action">
+                    <div class="table-action__action-container table-action__action-container--disabled"></div>
+                    <div class="table-action__action-container table-action__action-container--right">
+                        <th:block th:unless="${resultList.liste.size == resultList.nbTotal}">
+                            <div
+                                th:replace="fragments/table/pagination :: pagination (${resultForm}, ${resultForm.page},'journal_bas',${resultList.nbTotal})"
+                            ></div>
+                        </th:block>
+                    </div>
+                </div>
+                <a href="#skip_link_action-table_next" id="skip_link_action-table_prev" class="skip-link"
+                    >[[ #{skip.link.table.next(#{journal.technique.listeActions}+' -
+                    '+#{journal.technique.resultats.nombre(${nbResults})})} ]]</a
+                >
+            </div>
+        </div>
+    </body>
+</html>

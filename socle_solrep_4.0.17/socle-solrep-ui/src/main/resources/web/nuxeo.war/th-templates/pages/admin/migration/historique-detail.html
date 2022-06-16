@@ -1,0 +1,102 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Historique des migrations de gouvernement', title=${migration.label})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <input
+            type="hidden"
+            id="urlPreviousPage"
+            name="urlPreviousPage"
+            th:value="@{|${urlPreviousPage}#main_content|}"
+        />
+
+        <button
+            type="button"
+            class="m-t-4 base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+            onclick="goPreviousPage()"
+            th:text="#{historique.retour.bouton}"
+        >
+            Retour
+        </button>
+        <div class="page-migration-history__title">
+            <h1
+                class="m-t-6 m-b-6 p-b-2 base-title base-title--lvl-1 base-title--is-underlined"
+                th:text="${migration.label}"
+            >
+                Titre de la migration
+            </h1>
+            <button
+                type="button"
+                class="js-tooltip base-btn base-btn--button base-btn--default base-btn--secondary base-btn--min base-btn--rounded"
+                th:data-tippy-content="#{historique.exporter.resultats}"
+                th:onclick="|exportHistorique(__${migration.id}__)|"
+            >
+                <span aria-hidden="true" class="icon icon--download icon--big"></span
+                ><span class="sr-only" th:text="#{historique.exporter.resultats}"
+                    >Exporter les résultats sous format électronique</span
+                >
+            </button>
+        </div>
+
+        <a href="#skip_link_action-table_prev" id="skip_link_action-table_next" class="skip-link"
+            >[[ #{skip.link.table.prev(#{historique.tableau.migration})} ]]</a
+        >
+
+        <div class="action-table table-wrapper">
+            <table class="simple-table custom-table full-width">
+                <caption class="sr-only" th:text="#{historique.tableau.migration}">
+                    Tableau des migrations
+                </caption>
+                <thead class="table-header simple-table__header">
+                    <tr class="table-header__line">
+                        <th scope="col" class="table-header__cell" th:text="#{historique.message}">Message</th>
+                        <th scope="col" class="table-header__cell" th:text="#{historique.date.debut}">Date de début</th>
+                        <th scope="col" class="table-header__cell" th:text="#{historique.date.fin}">Date de fin</th>
+                        <th scope="col" class="table-header__cell" th:text="#{historique.statut}">Statut</th>
+                    </tr>
+                </thead>
+                <tbody class="simple-table__body">
+                    <tr class="simple-table__table-line table-line" th:each="ligne : ${migration.lignes}">
+                        <td class="table-line__cell">
+                            <p class="table-line__cell-content" th:text="${ligne.message}">Message</p>
+                        </td>
+                        <td class="table-line__cell">
+                            <p
+                                class="table-line__cell-content"
+                                th:text="${#calendars.format(ligne.dateDebut,'dd/MM/yyyy HH:mm')}"
+                            >
+                                28/09/2020 14:08
+                            </p>
+                        </td>
+                        <td class="table-line__cell">
+                            <p
+                                class="table-line__cell-content"
+                                th:text="${#calendars.format(ligne.dateFin,'dd/MM/yyyy HH:mm')}"
+                            >
+                                10/10/2020 17:30
+                            </p>
+                        </td>
+                        <td class="table-line__cell">
+                            <p class="table-line__cell-content" th:text="${ligne.status}">OK</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <a href="#skip_link_action-table_next" id="skip_link_action-table_prev" class="skip-link"
+            >[[ #{skip.link.table.next(#{historique.tableau.migration})} ]]</a
+        >
+        <button
+            type="button"
+            class="m-t-4 base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+            onclick="goPreviousPage()"
+            th:text="#{historique.retour.bouton}"
+        >
+            Retour
+        </button>
+    </main>
+</html>

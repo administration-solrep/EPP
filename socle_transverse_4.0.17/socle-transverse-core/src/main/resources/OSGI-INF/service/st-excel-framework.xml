@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.core.component.STExcelServiceComponent">
+
+    <implementation class="fr.dila.st.core.component.STExcelServiceComponent" />
+
+    <service>
+        <provide interface="fr.dila.st.api.service.STExcelService" />
+    </service>
+</component>

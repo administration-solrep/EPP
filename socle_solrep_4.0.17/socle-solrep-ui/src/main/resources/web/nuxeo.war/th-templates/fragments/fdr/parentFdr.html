@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="parentFdr(elem)">
+            <th:block th:if="${elem.parent != null}">
+                <th th:replace="fragments/fdr/parentFdr :: parentFdr(${elem.parent})"></th>
+            </th:block>
+
+            <th
+                th:id="|branch-${elem.id}|"
+                th:rowspan="${elem.nbChilds}"
+                class="table-line__cell table-line__cell--roadmap"
+            >
+                <div
+                    th:replace="fragments/components/dropdown-action :: dropdown-action(
+                        ${elem.id}, 
+                        ${elem.actions}, 
+                        ${elem.isParallel} ? 'icon--dual-arrow' : 'icon--arrow-down-right', 
+                        true, 
+                        ${elem.isParallel} ? 'fdr.branch.label.parallele' : 'fdr.branch.label.serie', 
+                        'base-btn--transparent base-btn--light', 
+                        false, 
+                        'base-drop-down--light'
+                        )"
+                ></div>
+            </th>
+        </th:block>
+    </body>
+</html>

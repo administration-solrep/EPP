@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="ajoutEtapeFdr"
+            th:with="id='ajoutEtapeFdr'"
+            th:id="${id}"
+            class="interstitial-overlay__content"
+        >
+            <div
+                role="dialog"
+                aria-labelledby="dialogTitle"
+                class="interstitial interstitial--large interstitial--tall modal-flex modal-etape"
+            >
+                <div class="interstitial__header">
+                    <h1 id="dialogTitle-ajoutEtapeFdr" class="interstitial__title" th:text="#{fdr.step.add.note.label}">
+                        Ajouter une note d'étape
+                    </h1>
+                    <button
+                        type="button"
+                        class="interstitial__close base-btn base-btn--button base-btn--default base-btn--discret"
+                    >
+                        <span aria-hidden="true" class="icon icon--cross"></span>
+                        <span class="sr-only" th:text="#{validation.popup.close.label}">Fermer</span>
+                    </button>
+                </div>
+                <div class="interstitial__content modal-flex" id="contentAjoutEtapeFdr">
+                    <form class="qe-roadmap-stage-form">
+                        <div class="form-optin--big form-optin">
+                            <fieldset class="form-optin__fieldset">
+                                <legend class="form-optin__legend">
+                                    [[#{dossier.fdr.ajout.etape.creer}]]
+                                    <span class="form-label__required-text" th:text="#{form.required.label}"> </span>
+                                </legend>
+                                <div class="form-optin__optins">
+                                    <div class="form-optin__container">
+                                        <input
+                                            type="radio"
+                                            value="serie"
+                                            id="type-creation_serie"
+                                            name="type-creation"
+                                            class="form-optin__checkbox default_check"
+                                            onchange="changeTypeCreation(this.value)"
+                                            autocomplete="off"
+                                            checked
+                                        />
+                                        <label
+                                            for="type-creation_serie"
+                                            class="form-optin__label"
+                                            th:text="#{dossier.fdr.ajout.etape.serie}"
+                                        >
+                                        </label>
+                                    </div>
+                                    <div class="form-optin__container">
+                                        <input
+                                            type="radio"
+                                            value="parallele"
+                                            id="type-creation_parallele"
+                                            name="type-creation"
+                                            class="form-optin__checkbox"
+                                            onchange="changeTypeCreation(this.value)"
+                                            autocomplete="off"
+                                        />
+                                        <label
+                                            for="type-creation_parallele"
+                                            class="form-optin__label"
+                                            th:text="#{dossier.fdr.ajout.etape.parallele}"
+                                        >
+                                        </label>
+                                    </div>
+                                    <div
+                                        th:replace="fragments/fdr/specific-ajout-etape-options :: specific-ajout-etape-options"
+                                    ></div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div id="etapeFdrContainer-etape">
+                            <fieldset th:replace="fragments/fdr/etapeFdr :: etapeFdr(1, false, ${profil})"></fieldset>
+                        </div>
+                        <button
+                            type="button"
+                            class="m-t-6 base-btn base-btn--button base-btn--default base-btn--light base-btn--with-icon base-btn--prepend-icon base-btn--uppercased"
+                            id="add-etape-button"
+                            onclick="doAddEtape()"
+                        >
+                            <span aria-hidden="true" class="base-btn__icon icon icon--add"></span>
+                            [[#{dossier.fdr.ajout.etape}]]
+                        </button>
+                    </form>
+                </div>
+                <div class="interstitial__footer">
+                    <button
+                        class="interstitial__button base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                        th:text="#{organigramme.edit.cancel}"
+                    >
+                        Annuler
+                    </button>
+                    <button
+                        th:id="|btn-confirm-${id}|"
+                        class="base-btn base-btn--submit base-btn--default"
+                        th:text="#{button.label.save}"
+                    >
+                        Sauvegarder
+                    </button>
+                </div>
+            </div>
+            <div tabindex="-1" class="interstitial-overlay__tabindex"></div>
+        </div>
+    </body>
+</html>

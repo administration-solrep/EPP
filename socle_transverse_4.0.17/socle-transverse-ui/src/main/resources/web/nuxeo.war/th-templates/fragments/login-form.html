@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <form class="page-login__form login-form--inverted" th:fragment="loginform" method="POST" action="@@login">
+            <input type="hidden" name="csrf-token" th:value="${csrftoken}" />
+            <div role="alert" class="alert alert--danger" th:if="${loginFailed !=null && loginFailed}">
+                <span
+                    aria-hidden="true"
+                    class="icon icon--exclamation-point bubble-icon alert__icon alert__icon--danger"
+                ></span>
+                <p class="alert__content" th:text="${loginMessage}">
+                    Erreur : Utilisateur ou mot de passe incorrect
+                </p>
+            </div>
+            <div role="alert" class="alert alert--danger" th:if="${loginWait !=null && loginWait}">
+                <span
+                    aria-hidden="true"
+                    class="icon icon--exclamation-point bubble-icon alert__icon alert__icon--danger"
+                ></span>
+                <p class="alert__content" th:text="#{login.auth.blocked(${loginMessage})}">
+                    Identifiant bloqué suite à plusieurs tentatives de connexion
+                </p>
+            </div>
+            <div role="alert" class="alert__light alert alert--success" th:if="${resetPwd !=null && resetPwd}">
+                <span aria-hidden="true" class="icon icon--check bubble-icon alert__icon alert__icon--success"></span>
+                <p class="alert__content" th:text="#{login.resetpwd.success}">
+                    Un mot de passe temporaire vous a été transmis par mail
+                </p>
+            </div>
+
+            <fieldset>
+                <legend class="sr-only">[[#{login.legend}]]</legend>
+
+                <h1
+                    class="page-login__form__title m-b-6 base-title base-title--lvl-1"
+                    th:text="#{login.fieldset.legend}"
+                >
+                    Connectez-vous
+                </h1>
+
+                <div
+                    class="alert__light m-b-6 alert alert--warning"
+                    th:if="${RESTRICTION_ACCESS !=null && RESTRICTION_ACCESS}"
+                >
+                    <input type="hidden" name="targetId" value="undivquinexistepas" />
+
+                    <div class="alerts--flex">
+                        <span
+                            aria-hidden="true"
+                            class="icon icon--information bubble-icon alert__icon alert__icon--warning"
+                        ></span
+                        ><span class="sr-only" th:text="#{login.alerte}">login alerte</span>
+                        <div
+                            class="alert__content"
+                            style="white-space: pre-line;"
+                            th:text="${RESTRICTION_DESCRIPTION}"
+                        ></div>
+                    </div>
+                </div>
+
+                <div id="loginForm">
+                    <div class="m-b-6 form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label for="username" id="username_label" class="form-label">
+                                    <th:block th:text="#{login.username.label}">userrname label</th:block>
+                                    <span class="form-label__required-text" th:text="#{form.required.label}"
+                                        >(requis)</span
+                                    >
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="username"
+                                id="username"
+                                th:placeholder="#{login.username.placeholder}"
+                                data-validation="required"
+                                autocomplete="username"
+                                class="form-input__field form-input__field--type-text"
+                                required
+                            />
+                        </div>
+                        <div id="username-error" class="form-input__footer"></div>
+                    </div>
+
+                    <div th:replace="fragments/components/password-form-input :: passwordFormInput(false, true)"></div>
+                </div>
+
+                <button
+                    type="submit"
+                    class="base-btn base-btn--submit base-btn--default base-btn--primary-inverted base-btn--center base-btn--full"
+                    name="form-btn-submit"
+                    id="form-btn-submit"
+                    th:text="#{login.button.label}"
+                >
+                    Connexion
+                </button>
+                <div class="text-center m-t-3">
+                    <a
+                        th:title="#{login.ask.password.title}"
+                        th:href="@{reinitMdp}"
+                        class="link link--invert"
+                        th:text="#{login.ask.password.text}"
+                    >
+                        Mot de passe oublié ?
+                    </a>
+                </div>
+            </fieldset>
+        </form>
+    </body>
+</html>

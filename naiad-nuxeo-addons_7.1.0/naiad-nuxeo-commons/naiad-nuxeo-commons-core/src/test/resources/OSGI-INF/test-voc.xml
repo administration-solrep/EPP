@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<component name="fr.sword.naiad.nuxeo.commons.core.voc.contrib.test">
+
+  <extension target="org.nuxeo.ecm.directory.sql.SQLDirectoryFactory" point="directories">
+    <directory name="VocTest">
+      <schema>vocabulary</schema>
+      <dataSource>java:/nxsqldirectory</dataSource>
+      
+      <cacheTimeout>3600</cacheTimeout>
+      <cacheMaxSize>1000</cacheMaxSize>
+      <idField>id</idField>
+      <autoincrementIdField>false</autoincrementIdField>
+      <createTablePolicy>on_missing_columns</createTablePolicy>
+      <table>vocabulary_VocTest</table>
+      <dataFile>directories/VocTest.csv</dataFile>
+    </directory>
+    
+    <directory name="VocLevel0">
+      <schema>vocabulary</schema>
+       <dataSource>java:/nxsqldirectory</dataSource>
+      
+      <cacheTimeout>3600</cacheTimeout>
+      <cacheMaxSize>1000</cacheMaxSize>
+      <idField>id</idField>
+      <autoincrementIdField>false</autoincrementIdField>
+      <createTablePolicy>on_missing_columns</createTablePolicy>
+      <table>vocabulary_VocLevel0</table>
+      <dataFile>directories/VocLevel0.csv</dataFile>
+    </directory>
+    
+    <directory name="VocLevel1">
+      <schema>xvocabulary</schema>
+      <dataSource>java:/nxsqldirectory</dataSource>
+      
+      <cacheTimeout>3600</cacheTimeout>
+      <cacheMaxSize>1000</cacheMaxSize>
+      <idField>id</idField>
+      <autoincrementIdField>false</autoincrementIdField>
+      <createTablePolicy>on_missing_columns</createTablePolicy>
+      <table>vocabulary_VocLevel1</table>
+      <dataFile>directories/VocLevel1.csv</dataFile>
+    </directory>
+    
+     
+
+  </extension>
+
+</component>

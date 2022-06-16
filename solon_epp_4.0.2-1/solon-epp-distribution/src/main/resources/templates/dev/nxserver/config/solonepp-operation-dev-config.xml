@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!-- Ce composant permet de contribuer les opérations de l'application Réponses. -->
+<component name="fr.dila.epp.core.operation.dev">
+
+	<extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" point="operations">
+		<operation class="fr.dila.solonepp.core.operation.DataInjectionOperation" />
+	</extension>
+
+</component>

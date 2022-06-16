@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<component name="fr.sword.idl.naiad.nuxeo.addons.status.ws.openurl-contrib">
+
+  <extension target="org.nuxeo.ecm.platform.ui.web.auth.service.PluggableAuthenticationService" point="openUrl">
+
+    <openUrl name="status">
+      <grantPattern>${org.nuxeo.ecm.contextPath}/site/status</grantPattern>
+    </openUrl>
+
+
+  </extension>
+
+</component>

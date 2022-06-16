@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:eppco="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	elementFormDefault="qualified">
+
+
+	<xs:import schemaLocation="epp-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons" />
+
+	<xs:simpleType name="ObjetType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="IDENTITE" />
+			<xs:enumeration value="ACTEUR" />
+			<xs:enumeration value="MANDAT" />
+			<xs:enumeration value="ORGANISME" />
+			<xs:enumeration value="GOUVERNEMENT" />
+			<xs:enumeration value="MINISTERE" />
+			<xs:enumeration value="CIRCONSCRIPTION" />
+			<xs:enumeration value="PERIODE" />
+			<xs:enumeration value="MEMBRE_GROUPE" />
+
+			<!-- Listes fermées non modifiable -->
+			<xs:enumeration value="ATTRIBUTION_COMMISSION" />
+			<xs:enumeration value="NATURE_LOI" />
+			<xs:enumeration value="NATURE_RAPPORT" />
+			<xs:enumeration value="TYPE_LOI" />
+			<xs:enumeration value="SORT_ADOPTION" />
+			<xs:enumeration value="MOTIF_IRRECEVABILITE" />
+			<xs:enumeration value="SENS_AVIS" />
+
+			<xs:enumeration value="NIVEAU_LECTURE_CODE" />
+			<xs:enumeration value="RAPPORT_PARLEMENT" />
+			<xs:enumeration value="RESULTAT_CMP" />
+			<xs:enumeration value="TYPE_FUSION" />
+			<xs:enumeration value="INSTITUTION" />
+			<xs:enumeration value="TYPE_ACTE" />
+
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ActionObjetReference">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AJOUTER" />
+			<xs:enumeration value="MODIFIER" />
+			<xs:enumeration value="RENOUVELER" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="ObjetContainer">
+		<xs:choice>
+			<xs:element name="identite" type="Identite" minOccurs="1"
+				maxOccurs="unbounded" />
+			<xs:element name="acteur" type="Acteur" minOccurs="1"
+				maxOccurs="unbounded" />
+			<xs:element name="mandat" type="Mandat" minOccurs="1"
+				maxOccurs="unbounded" />
+			<xs:element name="circonscription" type="Circonscription"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="gouvernement" type="Gouvernement"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="membre_groupe" type="MembreGroupe"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="ministere" type="Ministere" minOccurs="1"
+				maxOccurs="unbounded" />
+			<xs:element name="organisme" type="eppco:Organisme"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="periode" type="Periode" minOccurs="1"
+				maxOccurs="unbounded" />
+			<xs:element name="nature_loi" type="NatureLoiReference"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="nature_rapport" type="NatureRapportReference"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="motif_irrecevabilite" type="MotifIrrecevabiliteReference"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="attribution_commission" type="AttributionCommissionReference"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="type_loi" type="TypeLoiReference"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="sort_adoption" type="SortAdoptionReference"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="sens_avis" type="SensAvisReference"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="niveau_lecture_code" type="NiveauLectureCodeReference"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="rapport_parlement" type="RapportParlementReference"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="resultat_cmp" type="ResultatCmpReference"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="type_fusion" type="TypeFusionReference"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="institution" type="InstitutionReference"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="type_acte" type="TypeActeReference"
+				minOccurs="1" maxOccurs="unbounded" />
+
+		</xs:choice>
+		<xs:attribute name="type" type="ObjetType" use="required" />
+	</xs:complexType>
+
+	<xs:simpleType name="Civilite">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="M." />
+			<xs:enumeration value="Mme" />
+			<xs:enumeration value="Mlle" />
+			<xs:enumeration value="NON_RENSEIGNE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="Identite">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="civilite" type="Civilite" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="nom" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="prenom" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_debut" type="xs:date" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_fin" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="date_naissance" type="xs:date"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="lieu_naissance" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="dept_naissance" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="pays_naissance" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="id_acteur" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="proprietaire" type="eppco:Institution"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="IdentiteDenormalise">
+		<xs:sequence>
+			<xs:element name="civilite" type="Civilite" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="nom" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="prenom" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Acteur">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="TypeMandat">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DEPUTE" />
+			<xs:enumeration value="SENATEUR" />
+			<xs:enumeration value="POUVOIR_EXECUTIF" />
+			<xs:enumeration value="PRESIDENCE_REPUBLIQUE" />
+			<xs:enumeration value="HAUT_COMMISSAIRE" />
+			<xs:enumeration value="SECRETARIAT_ETAT" />
+			<xs:enumeration value="MINISTERE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:complexType name="Mandat">
+		<xs:sequence>
+			<xs:element name="type" type="TypeMandat" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="proprietaire" type="eppco:Institution"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_debut" type="xs:date" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_fin" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="ordre_protocolaire" type="xs:int"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="titre" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="id_identite" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="identiteDenormalise" type="IdentiteDenormalise"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="id_ministere" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="id_circonscription" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="appellation" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="nor" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="Gouvernement">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="appellation" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_debut" type="xs:date" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_fin" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="ministere_attache" type="xs:boolean"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Ministere">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="nom" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="libelle" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="edition" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="appellation" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_debut" type="xs:date" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_fin" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="idGouvernement" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="mandat_attache" type="xs:boolean"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Circonscription">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="nom" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="proprietaire" type="eppco:Institution"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="date_debut" type="xs:date" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_fin" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="TypePeriode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PERIODE" />
+			<xs:enumeration value="LEGISLATURE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="Periode">
+		<xs:sequence>
+			<xs:element name="type" type="TypePeriode" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="proprietaire" type="eppco:Institution"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="numero" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_debut" type="xs:date" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_fin" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MembreGroupe">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="id_organisme" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="date_debut" type="xs:date" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_fin" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="id_mandat" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AttributionCommissionReference">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="label" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MotifIrrecevabiliteReference">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="label" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="NatureLoiReference">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="label" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="NatureRapportReference">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="label" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SensAvisReference">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="label" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TypeLoiReference">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="label" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SortAdoptionReference">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="label" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="NiveauLectureCodeReference">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="label" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="RapportParlementReference">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="label" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ResultatCmpReference">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="label" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TypeFusionReference">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="label" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InstitutionReference">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="label" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TypeActeReference">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="label" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:remove="tag">
+    <body th:remove="tag">
+        <table th:remove="tag">
+            <th:block th:fragment="ligneTableFdr(statusIndex)">
+                <tr
+                    class="table-line table-line--with-borders"
+                    th:id="${line.id}"
+                    th:terminee="${line.traiteDate != null ? true : false}"
+                    th:classappend="|${line.isStripped ? 'table-line--stripped' : 'table-line--light'} ${line.etat.label == 'label.reponses.feuilleRoute.etape.running' ? 'table-line--selected' : ''}|"
+                >
+                    <th:block th:if="${line.parent != null}">
+                        <th th:replace="fragments/fdr/parentFdr :: parentFdr(${line.parent})"></th>
+                    </th:block>
+                    <th:block th:if="${line.depth &lt; dto.table.totalNbLevel}">
+                        <td
+                            th:colspan="${dto.table.totalNbLevel-line.depth}"
+                            class="table-line__cell"
+                            aria-hidden="true"
+                        ></td>
+                    </th:block>
+                    <td th:replace="fragments/fdr/colInfoEtapeFdr:: colInfoEtapeFdr(${statusIndex})"></td>
+                </tr>
+
+                <tr
+                    th:if="${line.notes != null && line.notes.size() &gt; 0}"
+                    class="table-line table-line--with-borders table-line--light table-line--notes"
+                    th:classappend="${line.isStripped ? 'table-line--stripped' : 'table-line--light'}"
+                >
+                    <th
+                        th:colspan="${dto.table.totalNbLevel-line.depth+2}"
+                        class="table-line__cell hide-element"
+                        headers="fdr-header-1"
+                        th:id="|id-note-${statusIndex}|"
+                    >
+                        <span class="sr-only">Etape [[${statusIndex + 1}]]</span>
+                    </th>
+                    <td
+                        th:colspan="${dto.listeColonnes.size() + dto.table.totalNbLevel-line.depth+2}"
+                        class="table-line__cell hide-element"
+                        th:headers="|fdr-header-1 id-note-${statusIndex}|"
+                    >
+                        <ul class="note-detail-list">
+                            <th:block th:each="maNote : ${line.notes}">
+                                <li th:replace="fragments/fdr/noteEtape :: noteEtape(${maNote})"></li>
+                            </th:block>
+                        </ul>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+    </body>
+</html>

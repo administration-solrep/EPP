@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div class="leftmenu" th:fragment="leftMenuUtilisateur">
+            <div th:aria-label="#{acces.rapides('utilisateurs')}" class="quick-access">
+                <ul class="quick-access__list">
+                    <li th:each="menu, nb : ${leftMenuList}" class="quick-access__item">
+                        <a th:href="@{${menu.url}}" class="quick-access__link link"
+                            ><span
+                                aria-hidden="true"
+                                class="icon icon--arrow-right link__icon link__icon--prepend link__icon--small"
+                            ></span
+                            >[[#{__${menu.titleKey}__}]]
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

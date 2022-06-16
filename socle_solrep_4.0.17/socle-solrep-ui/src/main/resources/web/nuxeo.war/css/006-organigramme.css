@@ -1,0 +1,13 @@
+#modal-import-gouvernement .interstitial__content {
+    display: inherit;
+    margin: auto;
+    height: auto;
+}
+
+#importGouv .base-title {
+    margin-bottom: 1.7857rem;
+}
+
+#importGouv .form-input {
+    max-width: 100% !important;
+}

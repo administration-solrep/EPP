@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:controlePublicationRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WScontrole"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p4="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:p5="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WScontrole ../../../../../../../xsd/reponses/WScontrole.xsd ">
+
+	<!-- Controle des publication de questions seules -->
+	<p:question>
+		<p1:id_question>
+			<p3:numero_question>1234</p3:numero_question>
+			<p3:type>QE</p3:type>
+			<p3:source>AN</p3:source>
+			<p3:legislature>13</p3:legislature>
+		</p1:id_question>
+
+		<p1:referencePublication>
+			<p3:page_jo>34</p3:page_jo>
+			<p3:date_publication>2011-01-01</p3:date_publication>
+			<p3:no_publication>5</p3:no_publication>
+		</p1:referencePublication>
+
+		<p1:ministre_jo id="1234">
+			<p3:titre_jo>Logement Enseignement superieur et recherche</p3:titre_jo>
+			<p3:intitule_min>Mr le ministre de l'enseignement et de la recherche</p3:intitule_min>
+		</p1:ministre_jo>
+
+	</p:question>
+
+
+
+	<!-- Controle d'une question ecrite avec sa reponse -->
+	<p:questionReponse>
+
+		<p1:question>
+			<p1:id_question>
+				<p3:numero_question>1188</p3:numero_question>
+				<p3:type>QE</p3:type>
+				<p3:source>AN</p3:source>
+				<p3:legislature>13</p3:legislature>
+			</p1:id_question>
+
+			<p1:referencePublication>
+				<p3:page_jo>34</p3:page_jo>
+				<p3:date_publication>2011-01-01</p3:date_publication>
+				<p3:no_publication>5</p3:no_publication>
+			</p1:referencePublication>
+
+			<p1:ministre_jo id="1234">
+				<p3:titre_jo>Logement Enseignement superieur et recherche</p3:titre_jo>
+				<p3:intitule_min>Mr le ministre de l'enseignement et de la recherche</p3:intitule_min>
+			</p1:ministre_jo>
+
+			<p1:texte_question><![CDATA[
+			M. Stéphane Demilly attire l'attention de Mme la ministre 
+			de l'économie, des finances et de l'emploi sur les problèmes 
+			de compétitivité de l'industrie européenne engendrés par 
+			l'actuelle parité euro/dollar. La faiblesse durable du 
+			dollar face à l'euro avantage, en effet, les entreprises 
+			américaines et celles des pays dont la monnaie est fortement 
+			liée au dollar, comme les pays asiatiques, au détriment 
+			des entreprises européennes. Ces dernières sont en effet 
+			doublement pénalisées en fabriquant, achetant la plupart 
+			de leurs matières premières et payant les salaires de 
+			leurs employés en euro fort, tout en vendant leur production 
+			à l'international en dollar faible, le dollar étant 
+			la monnaie de base pour les négociations des prix au 
+			plan mondial. La victime type de cette situation, 
+			mais elle est loin d'être la seule, est l'industrie 
+			aéronautique européenne, et notamment Airbus : quand le 
+			dollar baisse de 10 centimes, cela coûte un milliard d'euros 
+			à Airbus ! Or le dollar a baissé de 40 % depuis le lancement 
+			du programme A 380 ! Cette situation est l'une des raisons 
+			des difficultés actuelles d'Airbus. Malheureusement, 
+			la banque centrale européenne ne semble pas avoir pris 
+			conscience des effets dévastateurs de cette évolution 
+			pénalisante des taux de change, dont les conséquences 
+			sont pourtant très concrètes : perte de parts de marché, dégradation 
+			de la situation financière des entreprises ou encore 
+			purement et simplement incitation à délocaliser tout ou 
+			partie de la production en zone dollar. Il souhaite donc 
+			savoir quelles initiatives le Gouvernement entend prendre 
+			sur le plan européen pour apporter des réponses à ce problème 
+			économique stratégique. ]]></p1:texte_question>
+		</p1:question>
+
+
+		<p1:reponses>
+			<p2:referencePublication>
+				<p3:page_jo>34</p3:page_jo>
+				<p3:date_publication>2011-01-01</p3:date_publication>
+				<p3:no_publication>5</p3:no_publication>
+			</p2:referencePublication>
+
+			<p2:ministre_jo>
+				<p3:titre_jo>Logement Enseignement superieur et recherche</p3:titre_jo>
+				<p3:intitule_min>Mr le ministre de l'enseignement et de la recherche</p3:intitule_min>
+			</p2:ministre_jo>
+
+			<p2:texte_reponse><![CDATA[
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+			Ut accumsan vulputate lacus eget elementum. Nulla porta 
+			lectus in odio vehicula et consequat arcu sodales. Donec 
+			ornare tempor lectus a lobortis. Nulla consequat elementum 
+			volutpat. Curabitur sagittis interdum ligula, a pharetra nibh 
+			ultricies in. Etiam ut urna ut ante tempus ornare id sit 
+			amet sem. Nam ultrices varius porttitor. Fusce vel purus et 
+			elit adipiscing convallis sed in urna. Maecenas ac nunc 
+			et velit vehicula bibendum. Pellentesque a magna sit amet 
+			nibh tempus lobortis et quis sem. Curabitur rutrum ligula 
+			leo, quis luctus odio. Nulla adipiscing sodales ipsum eget 
+			aliquet. Curabitur dictum faucibus gravida. Duis lorem urna,
+			 sollicitudin a adipiscing accumsan, elementum feugiat mi. 
+			 Cras scelerisque dolor sit amet quam placerat sed dignissim 
+			 ante iaculis. Class aptent taciti sociosqu ad litora 
+			 torquent per conubia nostra, per inceptos himenaeos.
+			 ]]></p2:texte_reponse>
+		</p1:reponses>
+
+	</p:questionReponse>
+
+
+	<!-- Controle de deux questions groupếes avec une réponse unique -->
+	<p:questionReponse>
+
+		<p1:question>
+			<p1:id_question>
+				<p3:numero_question>669</p3:numero_question>
+				<p3:type>QE</p3:type>
+				<p3:source>AN</p3:source>
+				<p3:legislature>13</p3:legislature>
+			</p1:id_question>
+
+			<p1:referencePublication>
+				<p3:page_jo>3</p3:page_jo>
+				<p3:date_publication>2011-03-25</p3:date_publication>
+				<p3:no_publication>2</p3:no_publication>
+			</p1:referencePublication>
+
+			<p1:ministre_jo id="1234">
+				<p3:titre_jo>Logement Enseignement superieur et recherche</p3:titre_jo>
+				<p3:intitule_min>Mr le ministre de l'enseignement et de la recherche</p3:intitule_min>
+			</p1:ministre_jo>
+
+
+			<p1:texte_question><![CDATA[
+			M. Stéphane Demilly attire l'attention de Mme la ministre 
+			de l'économie, des finances et de l'emploi sur les problèmes 
+			de compétitivité de l'industrie européenne engendrés par 
+			l'actuelle parité euro/dollar. La faiblesse durable du 
+			dollar face à l'euro avantage, en effet, les entreprises 
+			américaines et celles des pays dont la monnaie est fortement 
+			liée au dollar, comme les pays asiatiques, au détriment 
+			des entreprises européennes. Ces dernières sont en effet 
+			doublement pénalisées en fabriquant, achetant la plupart 
+			de leurs matières premières et payant les salaires de 
+			leurs employés en euro fort, tout en vendant leur production 
+			à l'international en dollar faible, le dollar étant 
+			la monnaie de base pour les négociations des prix au 
+			plan mondial. La victime type de cette situation, 
+			mais elle est loin d'être la seule, est l'industrie 
+			aéronautique européenne, et notamment Airbus : quand le 
+			dollar baisse de 10 centimes, cela coûte un milliard d'euros 
+			à Airbus ! Or le dollar a baissé de 40 % depuis le lancement 
+			du programme A 380 ! Cette situation est l'une des raisons 
+			des difficultés actuelles d'Airbus. Malheureusement, 
+			la banque centrale européenne ne semble pas avoir pris 
+			conscience des effets dévastateurs de cette évolution 
+			pénalisante des taux de change, dont les conséquences 
+			sont pourtant très concrètes : perte de parts de marché, dégradation 
+			de la situation financière des entreprises ou encore 
+			purement et simplement incitation à délocaliser tout ou 
+			partie de la production en zone dollar. Il souhaite donc 
+			savoir quelles initiatives le Gouvernement entend prendre 
+			sur le plan européen pour apporter des réponses à ce problème 
+			économique stratégique. ]]></p1:texte_question>
+		</p1:question>
+
+		<p1:reponses>
+			<p2:referencePublication>
+				<p3:page_jo>34</p3:page_jo>
+				<p3:date_publication>2011-01-01</p3:date_publication>
+				<p3:no_publication>5</p3:no_publication>
+			</p2:referencePublication>
+
+
+			<p2:ministre_jo id="1234">
+				<p3:titre_jo>Logement Enseignement superieur et recherche</p3:titre_jo>
+				<p3:intitule_min>Mr le ministre de l'enseignement et de la recherche</p3:intitule_min>
+			</p2:ministre_jo>
+
+
+			<p2:texte_reponse><![CDATA[
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+			Ut accumsan vulputate lacus eget elementum. Nulla porta 
+			lectus in odio vehicula et consequat arcu sodales. Donec 
+			ornare tempor lectus a lobortis. Nulla consequat elementum 
+			volutpat. Curabitur sagittis interdum ligula, a pharetra nibh 
+			ultricies in. Etiam ut urna ut ante tempus ornare id sit 
+			amet sem. Nam ultrices varius porttitor. Fusce vel purus et 
+			elit adipiscing convallis sed in urna. Maecenas ac nunc 
+			et velit vehicula bibendum. Pellentesque a magna sit amet 
+			nibh tempus lobortis et quis sem. Curabitur rutrum ligula 
+			leo, quis luctus odio. Nulla adipiscing sodales ipsum eget 
+			aliquet. Curabitur dictum faucibus gravida. Duis lorem urna,
+			 sollicitudin a adipiscing accumsan, elementum feugiat mi. 
+			 Cras scelerisque dolor sit amet quam placerat sed dignissim 
+			 ante iaculis. Class aptent taciti sociosqu ad litora 
+			 torquent per conubia nostra, per inceptos himenaeos.
+			 ]]></p2:texte_reponse>
+		</p1:reponses>
+
+	</p:questionReponse>
+
+	<!-- Controle d'un erratum de question -->
+	<p:erratumQuestion>
+		<p1:id_question>
+			<p3:numero_question>1385</p3:numero_question>
+			<p3:type>QE</p3:type>
+			<p3:source>AN</p3:source>
+			<p3:legislature>13</p3:legislature>
+		</p1:id_question>
+
+
+
+		<p1:referencePublicationErratum>
+			<p3:page_jo>34</p3:page_jo>
+			<p3:date_publication>2011-01-01</p3:date_publication>
+			<p3:no_publication>5</p3:no_publication>
+		</p1:referencePublicationErratum>
+
+		<p1:texte_erratum><![CDATA[
+		Proin sodales sapien ultrices sapien auctor ut congue augue semper. 
+		Fusce faucibus ultricies laoreet. Integer sed dui in nisi congue 
+		convallis eget eget erat. Etiam felis magna, condimentum eget 
+		pretium eget,
+		]]></p1:texte_erratum>
+
+	</p:erratumQuestion>
+
+
+
+	<!-- controle d'un erratum de reponse -->
+	<p:erratumReponse>
+		<p2:id_question>
+			<p3:numero_question>1390</p3:numero_question>
+			<p3:type>QE</p3:type>
+			<p3:source>AN</p3:source>
+			<p3:legislature>13</p3:legislature>
+		</p2:id_question>
+
+		<p2:referencePublicationErratum>
+			<p3:page_jo>34</p3:page_jo>
+			<p3:date_publication>2011-01-01</p3:date_publication>
+			<p3:no_publication>5</p3:no_publication>
+		</p2:referencePublicationErratum>
+
+		<p2:texte_erratum><![CDATA[
+		Proin malesuada augue ut nunc condimentum aliquam. 
+		Vestibulum gravida ullamcorper magna, non tristique 
+		ligula pharetra nec. 
+		Proin malesuada turpis a lorem consequat pellentesque. 
+		]]></p2:texte_erratum>
+
+	</p:erratumReponse>
+
+
+</p:controlePublicationRequest>

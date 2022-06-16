@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="validation-dialog"
+            th:with="id='validation-dialog-modal'"
+            th:id="${id}"
+            class="interstitial-overlay__content"
+        >
+            <div
+                class="interstitial"
+                role="dialog"
+                th:aria-labelledby="|dialogTitle-${id}|"
+                style="position: relative;"
+            >
+                <div class="interstitial__header">
+                    <h1 th:id="|dialogTitle-${id}|" class="interstitial__title" th:text="#{validation.popup.title}">
+                        Titre
+                    </h1>
+                    <button
+                        type="button"
+                        class="interstitial__close base-btn base-btn--button base-btn--default base-btn--discret"
+                    >
+                        <span aria-hidden="true" class="icon icon--cross"></span
+                        ><span class="sr-only" th:text="#{validation.popup.close.label}"
+                            >Fermer la fenêtre de dialogue</span
+                        >
+                    </button>
+                </div>
+                <div class="interstitial__content">
+                    <p th:id="|message-${id}|" class="base-paragraph"></p>
+                </div>
+                <div class="interstitial__footer">
+                    <button
+                        type="button"
+                        class="interstitial__button base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                    >
+                        [[#{button.label.cancel}]]
+                    </button>
+                    <button
+                        type="button"
+                        th:id="|btn-confirm-${id}|"
+                        class="base-btn base-btn--button base-btn--default base-btn--center interstitial__close"
+                    >
+                        [[#{button.label.valider}]]
+                    </button>
+                </div>
+            </div>
+            <div tabindex="-1" class="interstitial-overlay__tabindex"></div>
+        </div>
+    </body>
+</html>

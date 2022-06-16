@@ -1,0 +1,388 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page de la fiche utilisateur',
+        title=${userForm.utilisateur == null} ? #{admin.user.create} : ${userForm.nom} + ' ' + ${userForm.prenom} + ' (' + ${userForm.utilisateur} + ')')}"
+>
+    <main
+        role="main"
+        id="main_content"
+        class="page-layout__content"
+        th:with="saveFunction=${userCreation ? 'createUserFormSubmit()' : 'updateFormSubmit(\'user_form\', \'/admin/user/modify\')'}, labelAction=${userCreation ? 'button.label.creer' : 'button.label.save'}"
+    >
+        <div
+            th:replace="fragments/components/adminButtons :: adminButtons(${ {'btn-cancel','goPreviousPage()','button.label.cancel'} }, ${ {'btn-save', saveFunction,labelAction} })"
+        ></div>
+        <h1
+            class="m-t-6 m-b-6 p-b-3 base-title base-title--lvl-1 base-title--is-underlined"
+            th:if="${userForm.utilisateur == null}"
+            th:text="#{admin.user.create}"
+        >
+            Créer utilisateur
+        </h1>
+        <h1
+            class="m-t-6 m-b-6 p-b-3 base-title base-title--lvl-1 base-title--is-underlined"
+            th:unless="${userForm.utilisateur == null}"
+        >
+            [[${userForm.nom}]] [[${userForm.prenom}]] ([[${userForm.utilisateur}]])
+        </h1>
+
+        <form id="user_form" th:object="${userForm}">
+            <input
+                type="hidden"
+                id="urlPreviousPage"
+                name="urlPreviousPage"
+                th:value="@{|${urlPreviousPage}#main_content|}"
+            />
+
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label
+                                    aria-disabled="false"
+                                    for="utilisateur"
+                                    id="utilisateur_label"
+                                    class="form-label"
+                                    th:classappend="${!userCreation ? 'form-label--disabled' : ''}"
+                                >
+                                    <span th:text="#{admin.user.label.identifier}">Identifiant</span>
+                                    <span class="form-label__required-text" th:text="#{form.input.required}"
+                                        >(requis)</span
+                                    >
+                                </label>
+                                <div class="form-input__icon-group"></div>
+                            </div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="utilisateur"
+                                id="utilisateur"
+                                class="form-input__field form-input__field--type-text"
+                                th:classappend="${!userCreation ? 'form-input__field-disabled' : ''}"
+                                data-validation="required, user_name"
+                                th:value="${userForm.utilisateur}"
+                                th:readonly="${!userCreation}"
+                            />
+                        </div>
+                        <div id="utilisateur_description" class="form-input__footer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input">
+                        <div
+                            th:replace="fragments/components/formblocks/input-optin ::
+                            optin('admin.user.label.civility', 'civilite', 'civilite', ${civiliteOptions}, ${userForm.civilite}, false, null)"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid__row align-start m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label aria-disabled="false" for="nom" id="nom_label" class="form-label">
+                                    <span th:text="#{admin.user.label.name}">Nom</span>
+                                    <span class="form-label__required-text" th:text="#{form.input.required}"
+                                        >(requis)</span
+                                    >
+                                </label>
+                                <div class="form-input__icon-group"></div>
+                            </div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="nom"
+                                id="nom"
+                                class="form-input__field form-input__field--type-text"
+                                data-validation="required"
+                                th:value="${userForm.nom}"
+                            />
+                        </div>
+                        <div id="nom_description" class="form-input__footer"></div>
+                    </div>
+                </div>
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label aria-disabled="false" for="prenom" id="prenom_label" class="form-label">
+                                    <span th:text="#{admin.user.label.surname}">Prénom</span>
+                                    <span class="form-label__required-text" th:text="#{form.input.required}"
+                                        >(requis)</span
+                                    >
+                                </label>
+                                <div class="form-input__icon-group"></div>
+                            </div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="prenom"
+                                id="prenom"
+                                class="form-input__field form-input__field--type-text"
+                                th:value="${userForm.prenom}"
+                                data-validation="required"
+                            />
+                        </div>
+                        <div id="prenom_description" class="form-input__footer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label
+                                    aria-disabled="false"
+                                    for="fonction"
+                                    id="fonction_label"
+                                    class="form-label"
+                                    th:text="#{admin.user.label.function}"
+                                    >Fonction
+                                </label>
+                                <div class="form-input__icon-group"></div>
+                            </div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="fonction"
+                                id="fonction"
+                                class="form-input__field form-input__field--type-text"
+                                th:value="${userForm.fonction}"
+                            />
+                        </div>
+                        <div id="fonction_description" class="form-input__footer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div
+                        class="form-optin"
+                        th:classappend="${userEdit ? 'form-optin--disabled' : ''}"
+                        th:with="onClickOptin='refreshDateInputActivation()', name='temporaire'"
+                    >
+                        <div
+                            th:replace="fragments/components/formblocks/input-optin ::
+                            optin('admin.user.label.temporaryUser', 'temporaire', 'temporaire', ${temporaireOptions}, ${userForm.temporaire}, ${userEdit}, null)"
+                        ></div>
+
+                        <input
+                            th:if="${userEdit}"
+                            type="hidden"
+                            name="temporaire"
+                            id="temporaire"
+                            th:value="${userForm.temporaire}"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid__row align-start m-t-6">
+                <div
+                    class="grid__col grid__col--middle"
+                    th:with="disableStartDatePickerRange=true, disableEndDatePickerRange=${userForm.temporaire == 'non'}"
+                >
+                    <div
+                        th:replace="fragments/components/formblocks/date-picker-range :: datepickerRange('admin.user.label.periode', 'date', ${userForm.dateDebut} ? ${userForm.dateDebut} : ${#dates.format(#dates.createNow(), 'dd/MM/yyyy')}, ${userForm.dateFin}, true, false)"
+                    ></div>
+                </div>
+            </div>
+
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label
+                                    aria-disabled="false"
+                                    for="adresse"
+                                    id="adresse_label"
+                                    class="form-label"
+                                    th:text="#{admin.user.label.adress}"
+                                    >Adresse
+                                </label>
+                                <div class="form-input__icon-group"></div>
+                            </div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="adresse"
+                                id="adresse"
+                                class="form-input__field form-input__field--type-text"
+                                th:value="${userForm.adresse}"
+                            />
+                        </div>
+                        <div id="adresse_description" class="form-input__footer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid__row align-start m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label
+                                    aria-disabled="false"
+                                    for="codePostal"
+                                    id="codePostal_label"
+                                    class="form-label"
+                                    th:text="#{admin.user.label.postalCode}"
+                                    >Code postal
+                                </label>
+                                <div class="form-input__icon-group"></div>
+                            </div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="codePostal"
+                                id="codePostal"
+                                class="form-input__field form-input__field--type-text"
+                                th:value="${userForm.codePostal}"
+                            />
+                        </div>
+                        <div id="codePostal_description" class="form-input__footer"></div>
+                    </div>
+                </div>
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label
+                                    aria-disabled="false"
+                                    for="ville"
+                                    id="ville_label"
+                                    class="form-label"
+                                    th:text="#{admin.user.label.city}"
+                                    >Ville
+                                </label>
+                                <div class="form-input__icon-group"></div>
+                            </div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="ville"
+                                id="ville"
+                                class="form-input__field form-input__field--type-text"
+                                th:value="${userForm.ville}"
+                            />
+                        </div>
+                        <div id="ville_description" class="form-input__footer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid__row align-start m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label aria-disabled="false" for="telephone" id="telephone_label" class="form-label">
+                                    <span th:text="#{admin.user.label.phone}">Téléphone</span>
+                                    <span class="form-label__required-text" th:text="#{form.input.required}"
+                                        >(requis)</span
+                                    >
+                                </label>
+                                <div class="form-input__icon-group"></div>
+                            </div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="telephone"
+                                id="telephone"
+                                class="form-input__field form-input__field--type-text"
+                                th:value="${userForm.telephone}"
+                                data-validation="required, phone_number"
+                            />
+                        </div>
+                        <div id="telephone_description" class="form-input__footer"></div>
+                    </div>
+                </div>
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label aria-disabled="false" for="mel" id="mel_label" class="form-label">
+                                    <span th:text="#{admin.user.label.mail}">Mél.</span>
+                                    <span class="form-label__required-text" th:text="#{form.input.required}"
+                                        >(requis)</span
+                                    >
+                                </label>
+                                <div class="form-input__icon-group"></div>
+                            </div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="mel"
+                                id="mel"
+                                class="form-input__field form-input__field--type-text"
+                                data-validation="required, email"
+                                th:value="${userForm.mel}"
+                            />
+                        </div>
+                        <div id="mel_description" class="form-input__footer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div
+                        th:replace="fragments/components/formblocks/autocomplete-select :: autocompleteSelect('admin.user.label.profiles', 'profils', 'profils', 'form.description.nocharlimit', ${ {} }, ${userForm.profils}, ${userEdit},
+                         @{/ajax/recherche/suggestions?typeSelection=Profils&activateFilter=true},
+                        '0',
+                        'input',
+                        '',
+                        '',
+                         true,
+                         true,
+                         false)"
+                    ></div>
+                </div>
+            </div>
+
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <th:block
+                        th:replace="fragments/components/organigrammeSelectAutocomplete ::organigrammeSelectAutocomplete(
+            'admin.user.label.roles',
+            true,
+            'postes',
+            'postes',
+            'PST', 
+            'postes', 
+            true,
+            true,
+            ${userForm.mapPostes},
+            ${userEdit})"
+                    ></th:block>
+                </div>
+            </div>
+        </form>
+
+        <div
+            th:replace="fragments/components/adminButtons :: adminButtons(${ {'btn-cancel','goPreviousPage()','button.label.cancel'} }, ${ {'btn-save', saveFunction,labelAction} })"
+        ></div>
+    </main>
+</html>

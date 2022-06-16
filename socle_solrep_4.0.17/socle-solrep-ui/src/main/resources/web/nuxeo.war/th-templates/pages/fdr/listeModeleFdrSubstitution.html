@@ -1,0 +1,48 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout :: layout (template=~{::main},templateClass='', description='page substitution de feuille de route', title=${#messages.msgWithParams('fdr.substituer.liste.title', intitule)})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <input type="hidden" id="urlPreviousPage" name="urlPreviousPage" th:value="@{${urlPreviousPage}}" />
+        <input type="hidden" id="dossierId" name="dossierId" th:value="${idDossier}" />
+
+        <div class="page-layout__content-nav" th:if="${not #strings.isEmpty(urlPreviousPage)}">
+            <button
+                type="button"
+                style="margin-bottom: 1.7857em; padding-left: 2em; padding-right: 2em;"
+                class="base-btn base-btn--button base-btn--default base-btn--light base-btn--bordered"
+                onclick="goPreviousPage()"
+                th:text="#{button.label.back}"
+                th:if="${not #strings.isEmpty(urlPreviousPage)}"
+            >
+                Retour
+            </button>
+        </div>
+
+        <div class="page-reponses__table-heading">
+            <h1
+                class="base-title base-title--lvl-1"
+                th:unless="${isMassSubstitution != null && isMassSubstitution}"
+                th:text="${#messages.msgWithParams('fdr.substituer.liste.title', intitule)}"
+            ></h1>
+            <h1
+                class="base-title base-title--lvl-1"
+                th:if="${isMassSubstitution != null && isMassSubstitution}"
+                th:text="#{fdr.substituer.mass.liste.title}"
+            ></h1>
+        </div>
+
+        <th:block th:if="${hasFilter != null && hasFilter}">
+            <div th:replace="fragments/fdr/substitutionFdrFilter :: substitutionFdrFilter()"></div>
+        </th:block>
+
+        <form id="searchForm">
+            <div
+                th:replace="fragments/table/tableModelesFDR :: searchResults(#{fdr.substituer.liste.title.navigation})"
+            ></div>
+        </form>
+    </main>
+</html>

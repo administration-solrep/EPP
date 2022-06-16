@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="multipleSortColumn(lstSortableColumn, selectedValue, sortValue, id, index, selectKey, isMessage)"
+            th:id="|column-${index}|"
+            class="flex align-center justify-start modal-multiple-sort__line"
+        >
+            <div
+                class="grid__col--middle form-select form-select--simple"
+                th:with="simpleSelectKey=${selectKey}, msgParams=${index}"
+            >
+                <th:block
+                    th:replace="fragments/components/formblocks/simple-select :: simpleSelect('multipleSort.select.label', 'column_select-' + ${index}, '', ${lstSortableColumn}, ${selectedValue}, 'false', false)"
+                >
+                </th:block>
+            </div>
+            <div class="form-optin" th:name="|array_sort_col${index}_order|">
+                <fieldset class="form-optin__fieldset">
+                    <legend class="form-optin__legend form-optin__legend--like-label" th:text="#{sort.label.legend}">
+                        Sens de tri
+                    </legend>
+                    <div class="form-optin__optins">
+                        <div class="form-optin__container" th:data-tippy-content="#{sort.label.ascendant}">
+                            <input
+                                type="radio"
+                                th:id="|optin-cb-${id}-${index}-asc|"
+                                th:name="|optin-name-${id}-${index}|"
+                                class="form-optin__checkbox"
+                                value="asc"
+                                th:attrappend="checked=${sortValue == 'asc'} ? 'checked'"
+                                autocomplete="off"
+                            />
+
+                            <label th:for="|optin-cb-${id}-${index}-asc|" class="form-optin__label js-tooltip">
+                                <span aria-hidden="true" class="base-btn__icon icon icon--top"></span>
+                                <span class="sr-only">[[#{sort.label.ascendant}]]</span>
+                            </label>
+                            <div class="tooltip-wrapper"></div>
+                        </div>
+                        <div class="form-optin__container" th:data-tippy-content="#{sort.label.descendant}">
+                            <input
+                                type="radio"
+                                th:id="|optin-cb-${id}-${index}-desc|"
+                                th:name="|optin-name-${id}-${index}|"
+                                class="form-optin__checkbox"
+                                value="desc"
+                                th:attrappend="checked=${sortValue == 'desc'} ? 'checked'"
+                                autocomplete="off"
+                            />
+
+                            <label th:for="|optin-cb-${id}-${index}-desc|" class="form-optin__label js-tooltip">
+                                <span aria-hidden="true" class="base-btn__icon icon icon--down"></span>
+                                <span class="sr-only">[[#{sort.label.descendant}]]</span>
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <button
+                type="button"
+                th:unless="${index == 1}"
+                class="js-tooltip base-btn--autocomplete-delete base-btn base-btn--button base-btn--default base-btn--light base-btn--min base-btn--transparent"
+                th:id="|btn-remove-column-${index}|"
+                data-tippy-content="Retirer cette colonne du tri"
+                onclick="removeColumn(this)"
+            >
+                <span aria-hidden="true" class="icon icon--times-circle icon--big"></span>
+                <span class="sr-only">[[#{button.label.supprimer}]]</span>
+            </button>
+        </div>
+    </body>
+</html>

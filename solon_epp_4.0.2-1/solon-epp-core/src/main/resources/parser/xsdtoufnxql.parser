@@ -1,0 +1,149 @@
+#si : dans la CLE bien mettre \: et non simplement :, le \ est ignoré lors de la construction de la map
+
+#--------------------------
+# Attention : seul e., d., v. sont supporté pour le moment...
+#--------------------------
+
+#Message
+msg\:type_evenement=e.evt:typeEvenement
+msg\:id_dossier=m.cslk:idDossier
+msg\:objet=d.dos:objet
+msg\:id_evenement=m.cslk:idEvenement
+msg\:date_evenement=v.ver:horodatage
+msg\:emetteur_evenement=e.evt:emetteur
+msg\:destinataire_evenement=e.evt:destinataire
+msg\:copie_evenement=e.evt:destinataireCopie
+msg\:id_corbeille=m.cslk:corbeilleList
+msg\:visa_interne=m.cslk:visaInternes
+msg\:presence_piece_jointe=v.ver:pieceJointePresente
+msg\:etat_message=m.cslk:etatMessage
+msg\:date_traitement=m.cslk:dateTraitement
+
+#Message (champ complexe)
+msg\:niveau_lecture.niveau=v.ver:niveauLectureNumero
+msg\:niveau_lecture.code=v.ver:niveauLecture
+
+#Evenement
+evt\:id_evenement_precedent=e.evt:evenementParent
+evt\:id_evenement=e.evt:idEvenement
+evt\:id_dossier=e.evt:dossier
+evt\:emetteur=e.evt:emetteur
+evt\:destinataire=e.evt:destinataire
+evt\:horodatage=v.ver:horodatage
+evt\:commentaire=v.ver:commentaire
+evt\:etat=e.ecm:currentLifeCycleState
+evt\:objet=v.ver:objet
+evt\:identifiants_dossiers_legislatifs_concernes=v.ver:dossierLegislatif
+evt\:date_congres=v.ver:dateCongres
+evt\:rapport_parlement=v.ver:rapportParlement
+evt\:dossier_cible=v.ver:dossierCible
+evt\:date_caducite=v.ver:dateCaducite
+evt\:abstention=v.ver:abstention
+evt\:vote_contre=v.ver:voteContre
+evt\:vote_pour=v.ver:votePour
+evt\:date_vote=v.ver:dateVote
+evt\:demande_vote=v.ver:demandeVote
+evt\:date_declaration=v.ver:dateDeclaration
+evt\:date_presentation=v.ver:datePresentation
+evt\:date_lettre_pm=v.ver:dateLettrePm
+evt\:date_audition=v.ver:dateAudition
+evt\:personne=v.ver:personne
+evt\:fonction=v.ver:fonction
+
+
+
+
+
+evt\:bulletin_blanc=v.ver:bulletinBlanc
+evt\:nombre_suffrage=v.ver:suffrageExprime
+evt\:sens_avis=v.ver:sensAvis
+evt\:echeance=v.ver:echeance
+evt\:url_publication=v.ver:urlPublication
+evt\:numero_rubrique=v.ver:numeroRubrique
+evt\:date_jo=v.ver:dateJo
+evt\:annee_jo=v.ver:anneeJo
+evt\:page_jo=v.ver:pageJo
+evt\:numero_jo=v.ver:numeroJo
+evt\:date_designation=v.ver:dateDesignation
+evt\:date_convocation=v.ver:dateConvocation
+evt\:date_acte=v.ver:dateActe
+evt\:type_acte=v.ver:typeActe
+evt\:numero_loi=v.ver:typeActe
+evt\:date_publication=v.ver:datePublication
+evt\:date_promulgation=v.ver:datePromulgation
+evt\:base_legale=v.ver:baseLegale
+evt\:url_base_legale=v.ver:urlBaseLegale
+evt\:annee_rapport=v.ver:anneeRapport
+evt\:date=v.ver:date
+evt\:motif_irrecevabilite=v.ver:motifIrrecevabilite
+evt\:nature_rapport=v.ver:natureRapport
+evt\:redepot=v.ver:redepot
+evt\:position_alerte=v.ver:positionAlerte
+evt\:sort_adoption=v.ver:sortAdoption
+evt\:numero_texte_adopte=v.ver:numeroTexteAdopte
+evt\:date_adoption=v.ver:dateAdoption
+evt\:date_refus_senat=v.ver:dateRefusProcedureEngagementSenat
+evt\:date_refus_an=v.ver:dateRefusProcedureEngagementAn
+evt\:date_refus_engagement_procedure=v.ver:dateRefusEngagementProcedure
+evt\:date_engagement_procedure=v.ver:dateEngagementProcedure
+evt\:libelle_annexes=v.ver:libelleAnnexe
+evt\:date_refus=v.ver:dateRefus
+evt\:titre=v.ver:titre
+evt\:date_distribution=v.ver:dateDistributionElectronique
+evt\:date_retrait=v.ver:dateRetrait
+evt\:dateCMP=v.ver:dateCMP
+evt\:dateDemande=v.ver:dateDemande
+evt\:resultat_cmp=v.ver:resultatCMP
+evt\:co_signataire_collectif=v.ver:cosignataire
+evt\:url_dossier_senat=v.ver:urlDossierSenat
+evt\:url_dossier_an=v.ver:urlDossierAn
+evt\:commentaire=v.ver:commentaire
+evt\:intitule=v.ver:intitule
+evt\:nature_loi=v.ver:natureLoi
+evt\:type_loi=v.ver:typeLoi
+evt\:nor=v.ver:nor
+evt\:norLoi=v.ver:norLoi
+evt\:copie=e.evt:destinataireCopie
+evt\:horodatage=v.ver:horodatage
+evt\:date_ar=v.ver:dateAr
+evt\:identifiant_metier=v.ver:identifiantMetier
+evt\:rectificatif=v.ver:rectificatif
+evt\:sens_vote=v.ver:sensAvis
+evt\:date_refus_assemblee1=v.ver:dateRefusAssemblee1
+evt\:date_conference_assemblee2=v.ver:dateConferenceAssemblee2
+evt\:decision_proc_acc=v.ver:decisionProcAcc
+
+
+#Evenement/Mandat
+evt\:suppleant.nom=v.ver:parlementaireSuppleantList = man.man:identifiant AND man.man:identite = i.idt:identifiant AND i.idt:nom
+evt\:titulaires.nom=v.ver:parlementaireTitulaireList = man.man:identifiant AND man.man:identite = i.idt:identifiant AND i.idt:nom
+evt\:rapporteur.nom=v.ver:rapporteurList = man.man:identifiant AND man.man:identite = i.idt:identifiant AND i.idt:nom
+evt\:co_auteur.nom=v.ver:coauteur = man.man:identifiant AND man.man:identite = i.idt:identifiant AND i.idt:nom
+evt\:auteur.nom=v.ver:auteur = man.man:identifiant AND man.man:identite = i.idt:identifiant AND i.idt:nom
+
+#Evenement/Organisme
+evt\:commission.saisie_pour_avis.nom=v.ver:commissionSaisiePourAvis = o.org:identifiant AND o.org:nom
+evt\:commission.saisie_au_fond.nom=v.ver:commissionSaisieAuFond = o.org:identifiant AND o.org:nom
+evt\:commission.nom=v.ver:commissionSaisie = o.org:identifiant AND o.org:nom
+evt\:groupe_parlementaire.nom=v.ver:groupeParlementaire = o.org:identifiant AND o.org:nom
+evt\:organisme=v.ver:organisme = o.org:identifiant AND o.org:nom
+evt\:organisme.nom=v.ver:organisme = o.org:identifiant AND o.org:nom
+evt\:commissions=v.ver:commissions = o.org:identifiant AND o.org:nom
+evt\:commissions.nom=v.ver:commissions = o.org:identifiant AND o.org:nom
+
+#Evenement/Depot
+evt\:depot_rapport.numero=d.dos:numeroDepotRapport
+evt\:depot_rapport.date=d.dos:dateDepotRapport
+evt\:depot_texte.numero=d.dos:numeroDepotTexte
+evt\:depot_texte.date=d.dos:dateDepotTexte
+evt\:depot.numero=d.dos:numeroDepotTexte
+evt\:depot.date=d.dos:dateDepotTexte
+
+#Evenement/NiveauLecture
+evt\:niveau_lecture.niveau=v.ver:niveauLectureNumero
+evt\:niveau_lecture.code=v.ver:niveauLecture
+
+evt\:fichier_pj=p.ecm:parentId = v.ecm:uuid AND p.pj:pieceJointeFichierList = f.ecm:uuid AND f.file:filename
+evt\:contenu_pj=p.ecm:parentId = v.ecm:uuid AND p.pj:pieceJointeFichierList = f.ecm:uuid AND f.ecm:fulltext
+evt\:libelle_pj=p.ecm:parentId = v.ecm:uuid AND p.pj:nom
+evt\:url_pj=p.ecm:parentId = v.ecm:uuid AND p.pj:url

@@ -1,0 +1,3429 @@
+<?xml version="1.0" ?>
+<!-- Ce composant déclare les types d'événements de SOLON EPP. -->
+<component name="fr.dila.solonepp.core.service.evenementType.contrib">
+	<require>fr.dila.solonepp.core.service.EvenementTypeService</require>
+
+	<extension target="fr.dila.solonepp.core.service.EvenementTypeService" point="evenementType">
+		<evenementType
+            name="EVT01"
+            label="LEX-01 : Pjl - Dépôt"
+            createur="true"
+            successif="false"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" label="Texte" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="EXPOSE_DES_MOTIFS" obligatoire="true" multivalue="false" order="2" />
+			<pieceJointe type="ETUDE_IMPACT" obligatoire="false" multivalue="false" order="3" />
+			<pieceJointe type="DECRET_PRESENTATION" obligatoire="true" multivalue="false" order="4" />
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="5" />
+			<pieceJointe type="TRAITE" obligatoire="false" multivalue="false" order="6" />
+			<pieceJointe type="ACCORD_INTERNATIONAL" obligatoire="false" multivalue="false" order="7" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="8" />
+			<evtSuccessif>EVT03</evtSuccessif>
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT05</evtSuccessif>
+			<evtSuccessif>EVT06</evtSuccessif>
+			<evtSuccessif>EVT07</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT10</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT02"
+            label="LEX-02 : PPL - Information du Gouvernement du dépôt"
+            createur="true"
+            successif="false"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" obligatoire="false" multivalue="true" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT08BIS</evtSuccessif>
+			<evtSuccessif>EVT10</evtSuccessif>
+			<evtSuccessif>EVT14</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT24</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT52</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT03"
+            label="LEX-03 : Pjl - Enregistrement du dépôt"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT05</evtSuccessif>
+			<evtSuccessif>EVT06</evtSuccessif>
+			<evtSuccessif>EVT07</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT10</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT14</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT04BIS"
+            label="LEX-04 : Dépôt de rapport, avis et texte de commission"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="RAPPORT" obligatoire="false" multivalue="true" order="1" />
+			<pieceJointe type="AVIS" obligatoire="false" multivalue="true" order="2" />
+			<pieceJointe type="TEXTE" obligatoire="false" multivalue="true" order="3" />
+			<pieceJointe type="ANNEXE" obligatoire="false" multivalue="true" order="4" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="5" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT06</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT08BIS</evtSuccessif>
+			<evtSuccessif>EVT10</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT14</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT05"
+            label="LEX-05 : Pjl - Refus d'inscription à l'ordre du jour"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="LETTRE_SAISINE_CC" obligatoire="false" multivalue="false" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+			<evtSuccessif>EVT06</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT06"
+            label="LEX-06 : PLF/PLFSS - Dépôts des annexes"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="ANNEXE" obligatoire="false" multivalue="false" order="2" />
+			<pieceJointe type="LISTE_ANNEXES" obligatoire="false" multivalue="false" order="3" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="4" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT05</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT10</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT07"
+            label="LEX-07 : Pjl - Dépôt d'une lettre rectificative"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" label="Texte" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="EXPOSE_DES_MOTIFS" obligatoire="false" multivalue="false" order="2" />
+			<pieceJointe type="ETUDE_IMPACT" obligatoire="false" multivalue="false" order="3" />
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="4" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="5" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT05</evtSuccessif>
+			<evtSuccessif>EVT06</evtSuccessif>
+			<evtSuccessif>EVT07</evtSuccessif>
+			<evtSuccessif>EVT07BIS</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT10</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT07BIS"
+            label="LEX-08 : Pjl - Enregistrement du dépôt d'une lettre rectificative"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" label="Texte" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT05</evtSuccessif>
+			<evtSuccessif>EVT06</evtSuccessif>
+			<evtSuccessif>EVT07</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT10</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT08"
+            label="LEX-09 : Pjl - Retrait"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT08BIS_AB</evtSuccessif>
+			<evtSuccessif>EVT09</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT08BIS"
+            label="LEX-10 : PPL - Retrait"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="EVT08BIS_AB"
+            label="LEX-11 : Pjl - Enregistrement du retrait"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="EVT09"
+            label="LEX-12 : Pjl - Changement d'assemblée (hors table rase)"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" label="Texte" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="EXPOSE_DES_MOTIFS" obligatoire="true" multivalue="false" order="2" />
+			<pieceJointe type="ETUDE_IMPACT" obligatoire="false" multivalue="false" order="3" />
+			<pieceJointe type="DECRET_PRESENTATION" obligatoire="true" multivalue="false" order="4" />
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="5" />
+			<pieceJointe type="TRAITE" obligatoire="false" multivalue="false" order="6" />
+			<pieceJointe type="ACCORD_INTERNATIONAL" obligatoire="false" multivalue="false" order="7" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="8" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT05</evtSuccessif>
+			<evtSuccessif>EVT06</evtSuccessif>
+			<evtSuccessif>EVT07</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT09BIS</evtSuccessif>
+			<evtSuccessif>EVT10</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT09BIS"
+            label="LEX-13 : Pjl - Enregistrement du nouveau dépôt"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT05</evtSuccessif>
+			<evtSuccessif>EVT06</evtSuccessif>
+			<evtSuccessif>EVT07</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT10</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT10"
+            label="LEX-14 : Engagement de la procédure accélérée"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT05</evtSuccessif>
+			<evtSuccessif>EVT06</evtSuccessif>
+			<evtSuccessif>EVT07</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT11</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT14</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT11"
+            label="LEX-15 : Opposition à l'engagement de la procédure accélérée"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="LETTRE" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT05</evtSuccessif>
+			<evtSuccessif>EVT06</evtSuccessif>
+			<evtSuccessif>EVT07</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+			<evtSuccessif>LEX-40</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT12"
+            label="LEX-16 : Pjl - Transmission ou notification du rejet"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE_ADOPTE" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="TRAVAUX_PREPARATOIRES" obligatoire="false" multivalue="false" order="2" />
+			<pieceJointe type="COHERENT" obligatoire="false" multivalue="false" order="3" />
+			<pieceJointe type="PETITE_LOI" obligatoire="false" multivalue="false" order="4" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="5" />
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT13</evtSuccessif>
+			<evtSuccessif>EVT13TER</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT19</evtSuccessif>
+			<evtSuccessif>EVT23QUATER</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT13"
+            label="LEX-17 : Pjl - Navettes diverses"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="TEXTE_TRANSMIS" obligatoire="true" multivalue="false" order="2" />
+			<pieceJointe type="TRAVAUX_PREPARATOIRES" obligatoire="false" multivalue="false" order="3" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="4" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT13BIS</evtSuccessif>
+			<evtSuccessif>EVT13TER</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT19</evtSuccessif>
+			<evtSuccessif>EVT24</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT13BIS"
+            label="LEX-18 : Pjl - Enregistrement du dépôt en navette"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" label="Texte" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT13TER</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT19</evtSuccessif>
+			<evtSuccessif>EVT23QUATER</evtSuccessif>
+			<evtSuccessif>EVT24</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT13TER"
+            label="LEX-19 : Pjl - Confirmation de navette (suite à table rase)"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="TEXTE_TRANSMIS" obligatoire="true" multivalue="false" order="2" />
+			<pieceJointe type="TRAVAUX_PREPARATOIRES" obligatoire="false" multivalue="false" order="3" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="4" />
+			<evtSuccessif>EVT03</evtSuccessif>
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT13BIS</evtSuccessif>
+			<evtSuccessif>EVT13TER</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT19</evtSuccessif>
+			<evtSuccessif>EVT23QUATER</evtSuccessif>
+			<evtSuccessif>EVT24</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT14"
+            label="LEX-20 : PPL - Transmission ou notification du rejet"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE_ADOPTE" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="TRAVAUX_PREPARATOIRES" obligatoire="false" multivalue="false" order="2" />
+			<pieceJointe type="COHERENT" obligatoire="false" multivalue="false" order="3" />
+			<pieceJointe type="PETITE_LOI" obligatoire="false" multivalue="false" order="4" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="5" />
+			<evtSuccessif>EVT14</evtSuccessif>
+			<evtSuccessif>EVT14TER</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT19</evtSuccessif>
+			<evtSuccessif>EVT20</evtSuccessif>
+			<evtSuccessif>EVT23QUATER</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT14TER"
+            label="LEX-21 : PPL - Enregistrement du dépôt en navette"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT14</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT19</evtSuccessif>
+			<evtSuccessif>EVT20</evtSuccessif>
+			<evtSuccessif>EVT23QUATER</evtSuccessif>
+			<evtSuccessif>EVT24</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT15"
+            label="LEX-38 : Engagement de la responsabilité du Gouvernement"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT17BIS</evtSuccessif>
+			<evtSuccessif>EVT24</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT17"
+            label="CENS-01 - Motion de censure article 49 alinéa 2"
+            createur="true"
+            successif="false"
+            demandeAr="true"
+            procedure="PROCEDURE_CENSURE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE_MOTION" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT17BIS"
+            label="LEX-39 : Motion de censure consécutive à l'engagement de sa responsabilité par le Gouvernement"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE_MOTION" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT19"
+            label="LEX-22 : CMP - Demande de réunion par le Gouvernement"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe
+                type="LETTRE_PM_VERS_AN"
+                label="Lettre du Premier ministre à l'Assemblée nationale"
+                obligatoire="true"
+                multivalue="false"
+                order="1"
+            />
+			<pieceJointe
+                type="LETTRE_PM_VERS_SENAT"
+                label="Lettre du Premier ministre au Sénat"
+                obligatoire="true"
+                multivalue="false"
+                order="2"
+            />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT21</evtSuccessif>
+			<evtSuccessif>EVT22</evtSuccessif>
+			<evtSuccessif>EVT23</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT20"
+            label="LEX-23 : CMP - Demande de réunion par les présidents des assemblées"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_CONJOINTE_PRESIDENTS" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT21</evtSuccessif>
+			<evtSuccessif>EVT22</evtSuccessif>
+			<evtSuccessif>EVT23</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT21"
+            label="LEX-24 : CMP - Convocation"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="SENAT" />
+					<institution name="ASSEMBLEE_NATIONALE" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT22</evtSuccessif>
+			<evtSuccessif>EVT23</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT22"
+            label="LEX-25 : CMP - Notification du résultat et dépôt du rapport"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" label="Texte" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="RAPPORT" obligatoire="false" multivalue="true" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT21</evtSuccessif>
+			<evtSuccessif>EVT23</evtSuccessif>
+			<evtSuccessif>EVT23BIS</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT23"
+            label="LEX-26 : CMP - Demande de lecture des conclusions"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT14</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT23BIS</evtSuccessif>
+			<evtSuccessif>EVT24</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT23BIS"
+            label="LEX-27 : Demande de nouvelle lecture"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="SENAT" />
+					<institution name="ASSEMBLEE_NATIONALE" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" label="Texte" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="LETTRE_PM" label="Lettre Premier ministre" obligatoire="true" multivalue="false" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT14</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT23TER</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT23TER"
+            label="LEX-28 : Enregistrement de la demande de nouvelle lecture"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" label="Texte" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT14</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT24</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT23QUATER"
+            label="LEX-29 : Demande de lecture définitive à l'Assemblée nationale"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" label="Texte" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT14</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT23QUINQUIES</evtSuccessif>
+			<evtSuccessif>EVT24</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT23QUINQUIES"
+            label="LEX-30 : Enregistrement de la demande de lecture définitive"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" label="Texte" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT24</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT24"
+            label="LEX-31 : Adoption définitive / Adoption ou rejet en Congrès"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE_ADOPTE" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="TRAVAUX_PREPARATOIRES" obligatoire="false" multivalue="false" order="2" />
+			<pieceJointe type="COHERENT" obligatoire="false" multivalue="false" order="3" />
+			<pieceJointe type="COPIES_3_LETTRES_TRANSMISSION" obligatoire="false" multivalue="false" order="4" />
+			<pieceJointe type="PETITE_LOI" obligatoire="false" multivalue="false" order="5" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="6" />
+			<evtSuccessif>EVT24</evtSuccessif>
+			<evtSuccessif>EVT25</evtSuccessif>
+			<evtSuccessif>EVT28</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT25"
+            label="LEX-32 : Demande de nouvelle délibération"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" label="Texte" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="2" />
+			<pieceJointe type="DECRET_PRESIDENT_REPUBLIQUE" obligatoire="true" multivalue="false" order="3" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="4" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT05</evtSuccessif>
+			<evtSuccessif>EVT07</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT10</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT14</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT25BIS</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT25BIS"
+            label="LEX-33 : Enregistrement de la demande de nouvelle délibération"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE" label="Texte" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT05</evtSuccessif>
+			<evtSuccessif>EVT07</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT10</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT14</evtSuccessif>
+			<evtSuccessif>EVT15</evtSuccessif>
+			<evtSuccessif>EVT24</evtSuccessif>
+			<evtSuccessif>EVT26</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT26"
+            label="LEX-34 : Demande de renvoi à une commission spéciale"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT04BIS</evtSuccessif>
+			<evtSuccessif>EVT08</evtSuccessif>
+			<evtSuccessif>EVT10</evtSuccessif>
+			<evtSuccessif>EVT12</evtSuccessif>
+			<evtSuccessif>EVT14</evtSuccessif>
+			<evtSuccessif>EVT53-01</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT28"
+            label="LEX-35 : Publication"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="EVT29"
+            label="SE-01 : Décret portant convocation d'une session extraordinaire"
+            createur="true"
+            successif="false"
+            demandeAr="true"
+            procedure="ORGANISATION_SESSION_EXTRAORDINAIRE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AMPLIATION_DECRET" label="Ampliation du décret" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+			<evtSuccessif>EVT30</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT30"
+            label="SE-02 : Décret portant clôture d'une session extraordinaire"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="ORGANISATION_SESSION_EXTRAORDINAIRE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AMPLIATION_DECRET" label="Ampliation du décret" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+		</evenementType>
+
+		<evenementType
+            name="EVT31"
+            label="LEX-36 : Décret tendant à soumettre un (des) projet(s) de loi constitutionnelle au Congrès"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AMPLIATION_DECRET" label="Ampliation du décret" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="LETTRE_PM" label="Lettre Premier ministre" obligatoire="true" multivalue="false" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+		</evenementType>
+
+		<evenementType
+            name="EVT32"
+            label="NOM-01 : Communication d'une proposition de nomination"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="CONSULTATION_ASSEMBLEE_PROJET_NOMINATION"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" label="Lettre Premier ministre" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="CURRICULUM_VITAE" obligatoire="false" multivalue="false" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+			<evtSuccessif>EVT32</evtSuccessif>
+			<evtSuccessif>EVT34</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT34"
+            label="NOM-02 : Avis des assemblées sur une proposition de nomination"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="CONSULTATION_ASSEMBLEE_PROJET_NOMINATION"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" label="Lettre" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT34</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT35"
+            label="18C : Convocation du Congrès - Message du Président de la République"
+            createur="true"
+            successif="false"
+            demandeAr="true"
+            procedure="CONVOCATION_CONGRES"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="AMPLIATION_DECRET_PRESIDENT_REPUBLIQUE" obligatoire="true" multivalue="false" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+		</evenementType>
+
+		<evenementType
+            name="EVT36"
+            label="OPEX-01 : Demande de prolongation d'une intervention extérieure"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="DEMANDE_PROLONGATION_INTERVENTION_EXTERIEURE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="ANNEXE" obligatoire="false" multivalue="false" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+			<evtSuccessif>EVT38</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT38"
+            label="OPEX-02 : Résultat du vote sur la demande de prolongation d'une intervention extérieure"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="DEMANDE_PROLONGATION_INTERVENTION_EXTERIEURE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="EVT39"
+            label="PPR-01 : PPR 34-1C - Information du Gouvernement du dépôt"
+            createur="true"
+            successif="false"
+            demandeAr="true"
+            procedure="RESOLUTION_ARTICLE_34_1"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="TEXTE" label="Texte de la proposition" obligatoire="false" order="1" />
+			<pieceJointe type="LETTRE" obligatoire="false" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+			<evtSuccessif>EVT40</evtSuccessif>
+			<evtSuccessif>EVT41</evtSuccessif>
+			<evtSuccessif>EVT43</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT40"
+            label="PPR-02 : PPR 34-1C - Notification de la demande d'inscription à l'ordre du jour"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="RESOLUTION_ARTICLE_34_1"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="LETTRE" obligatoire="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT42</evtSuccessif>
+			<evtSuccessif>EVT43</evtSuccessif>
+			<evtSuccessif>EVT54</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT41"
+            label="PPR-03 : PPR 34-1C - Déclaration d'irrecevabilité"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="RESOLUTION_ARTICLE_34_1"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+		</evenementType>
+
+		<evenementType
+            name="EVT43"
+            label="PPR-04 : PPR 34-1C - Transmission ou notification du rejet"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="RESOLUTION_ARTICLE_34_1"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="PETITE_LOI" obligatoire="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+		</evenementType>
+
+		<evenementType
+            name="EVT43BIS"
+            label="PPRE : Transmission d'une résolution européenne"
+            createur="true"
+            successif="false"
+            demandeAr="true"
+            procedure="RESOLUTION_ARTICLE_34_1"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="TEXTE_ADOPTE" obligatoire="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+		</evenementType>
+
+		<evenementType
+            name="EVT44"
+            label="RAP-01 : Transmission de rapports au Parlement"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="DEPOT_RAPPORT_PARLEMENT"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" order="1" />
+			<pieceJointe type="RAPPORT" obligatoire="true" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+		</evenementType>
+
+		<evenementType
+            name="EVT44TER"
+            label="RAP-02 : Transmission d'échéancier d'application de loi"
+            createur="true"
+            successif="false"
+            demandeAr="true"
+            procedure="DEPOT_RAPPORT_PARLEMENT"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="ECHEANCIER" obligatoire="true" order="1" />
+			<pieceJointe type="LETTRE_TRANSMISSION" label="Lettre de transmission" obligatoire="false" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+		</evenementType>
+
+		<evenementType
+            name="EVT45"
+            label="JO-01 : Insertion d'informations parlementaires au JOLD"
+            createur="true"
+            successif="false"
+            demandeAr="true"
+            procedure="INSERTION_INFORMATION_PARLEMENTAIRE_JO"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="CMP" />
+					<institution name="OFFICES_DELEGATIONS" />
+					<institution name="CONGRES_PARLEMENT" />
+					<institution name="GRP_AN_SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="DILA" />
+				</destinataire>
+			</distribution>
+			<pieceJointe
+                type="INSERTION_JOLD"
+                obligatoire="true"
+                multivalue="false"
+                order="1"
+                displayUrl="false"
+                displayTitle="false"
+                multiPj="false"
+                initToOne="true"
+            >
+				<mimetype value="application/vnd.oasis.opendocument.text" label="odt" />
+				<mimetype value="application/msword" label="doc" />
+				<mimetype value="application/vnd.openxmlformats-officedocument.wordprocessingml.document" label="docx" />
+			</pieceJointe>
+			<evtSuccessif>EVT48</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT48"
+            label="JO-02 : Information de parution d'une insertion"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            procedure="INSERTION_INFORMATION_PARLEMENTAIRE_JO"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="DILA" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="GOUVERNEMENT" />
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="EVT49-0"
+            label="OEP-01 : Notification de la vacance d'un mandat au sein d'un organisme extraparlementaire"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="ORGANISME_EXTRA_PARLEMENTAIRE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+			<evtSuccessif>EVT49-0</evtSuccessif>
+			<evtSuccessif>EVT49</evtSuccessif>
+			<evtSuccessif>EVT51</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT49"
+            label="OEP-02 : Demande de désignation au sein d'un organisme extraparlementaire"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="ORGANISME_EXTRA_PARLEMENTAIRE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT49-0</evtSuccessif>
+			<evtSuccessif>EVT49</evtSuccessif>
+			<evtSuccessif>EVT51</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT51"
+            label="OEP-03 : Désignation au sein d'un organisme extraparlementaire"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="ORGANISME_EXTRA_PARLEMENTAIRE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="LETTRE" obligatoire="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>EVT49-0</evtSuccessif>
+			<evtSuccessif>EVT49</evtSuccessif>
+			<evtSuccessif>EVT51</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="EVT52"
+            label="LEX-37 : Caducité des propositions de loi sénatoriales"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="EVT53-01"
+            label="Fusion – Procédure législative"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="EVT53-02"
+            label="Fusion – Application de l’alinéa 2 de l’article 49 de la Constitution"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_CENSURE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="EVT53-03"
+            label="Fusion – Organisation des sessions extraordinaires"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="ORGANISATION_SESSION_EXTRAORDINAIRE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="EVT53-04"
+            label="Fusion – Projets de nomination"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="CONSULTATION_ASSEMBLEE_PROJET_NOMINATION"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="EVT53-05"
+            label="Fusion – Convocation du Congrès"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="CONVOCATION_CONGRES"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="EVT53-06"
+            label="Fusion – Intervention extérieure"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="DEMANDE_PROLONGATION_INTERVENTION_EXTERIEURE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="EVT53-07"
+            label="Fusion – Résolution de l’article 34-1 de la Constitution"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="RESOLUTION_ARTICLE_34_1"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="EVT53-08"
+            label="Fusion – Dépôt d’un rapport au Parlement"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="DEPOT_RAPPORT_PARLEMENT"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="EVT53-09"
+            label="Fusion – Insertions au JOLD"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="INSERTION_INFORMATION_PARLEMENTAIRE_JO"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+		<evenementType
+            name="EVT53-10"
+            label="Fusion – Organisme extra parlementaire"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="ORGANISME_EXTRA_PARLEMENTAIRE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<evenementType name="EVT54" label="Table rase" createur="false" successif="true" demandeAr="true" procedure="DIVERS">
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="GENERIQUE01"
+            label="Générique – Procédure législative"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="GENERIQUE02"
+            label="Générique – Application de l’alinéa 2 de l’article 49 de la Constitution"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="PROCEDURE_CENSURE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="GENERIQUE03"
+            label="Générique – Organisation des sessions extraordinaires"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="ORGANISATION_SESSION_EXTRAORDINAIRE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="GENERIQUE04"
+            label="Générique – Projets de nomination"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="CONSULTATION_ASSEMBLEE_PROJET_NOMINATION"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="GENERIQUE05"
+            label="Générique – Convocation du Congrès"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="CONVOCATION_CONGRES"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="GENERIQUE06"
+            label="Générique – Intervention extérieure"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="DEMANDE_PROLONGATION_INTERVENTION_EXTERIEURE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="GENERIQUE07"
+            label="Générique – Résolution de l’article 34-1 de la Constitution"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="RESOLUTION_ARTICLE_34_1"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="GENERIQUE08"
+            label="Générique – Dépôt d’un rapport au Parlement"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="DEPOT_RAPPORT_PARLEMENT"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="GENERIQUE09"
+            label="Générique – Insertions au JOLD"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="INSERTION_INFORMATION_PARLEMENTAIRE_JO"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="DILA" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="DILA" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="GENERIQUE10"
+            label="Générique – Organisme extra parlementaire"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="ORGANISME_EXTRA_PARLEMENTAIRE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+
+
+
+
+
+
+
+
+
+
+
+		<evenementType
+            name="ALERTE01"
+            label="Alerte – Procédure législative"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="PROCEDURE_LEGISLATIVE"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<evtSuccessif>ALERTE01</evtSuccessif>
+			<evtSuccessif>GENERIQUE01</evtSuccessif>
+		</evenementType>
+		<evenementType
+            name="ALERTE02"
+            label="Alerte – Application de l’alinéa 2 de l’article 49 de la Constitution"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="PROCEDURE_CENSURE"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<evtSuccessif>ALERTE02</evtSuccessif>
+			<evtSuccessif>GENERIQUE02</evtSuccessif>
+		</evenementType>
+		<evenementType
+            name="ALERTE03"
+            label="Alerte – Organisation des sessions extraordinaires"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="ORGANISATION_SESSION_EXTRAORDINAIRE"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<evtSuccessif>ALERTE03</evtSuccessif>
+			<evtSuccessif>GENERIQUE03</evtSuccessif>
+		</evenementType>
+		<evenementType
+            name="ALERTE04"
+            label="Alerte – Projets de nomination"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="CONSULTATION_ASSEMBLEE_PROJET_NOMINATION"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<evtSuccessif>ALERTE04</evtSuccessif>
+			<evtSuccessif>GENERIQUE04</evtSuccessif>
+		</evenementType>
+		<evenementType
+            name="ALERTE05"
+            label="Alerte - Convocation du Congrès"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="CONVOCATION_CONGRES"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<evtSuccessif>ALERTE05</evtSuccessif>
+			<evtSuccessif>GENERIQUE05</evtSuccessif>
+		</evenementType>
+		<evenementType
+            name="ALERTE06"
+            label="Alerte - Intervention extérieure"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="DEMANDE_PROLONGATION_INTERVENTION_EXTERIEURE"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<evtSuccessif>ALERTE06</evtSuccessif>
+			<evtSuccessif>GENERIQUE06</evtSuccessif>
+		</evenementType>
+		<evenementType
+            name="ALERTE07"
+            label="Alerte - Résolution de l’article 34-1 de la Constitution"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="RESOLUTION_ARTICLE_34_1"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<evtSuccessif>ALERTE07</evtSuccessif>
+			<evtSuccessif>GENERIQUE07</evtSuccessif>
+		</evenementType>
+		<evenementType
+            name="ALERTE08"
+            label="Alerte - Dépôt d’un rapport au Parlement"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="DEPOT_RAPPORT_PARLEMENT"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<evtSuccessif>ALERTE08</evtSuccessif>
+			<evtSuccessif>GENERIQUE08</evtSuccessif>
+		</evenementType>
+		<evenementType
+            name="ALERTE09"
+            label="Alerte - Insertions au JOLD"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="INSERTION_INFORMATION_PARLEMENTAIRE_JO"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<evtSuccessif>ALERTE09</evtSuccessif>
+			<evtSuccessif>GENERIQUE09</evtSuccessif>
+		</evenementType>
+		<evenementType
+            name="ALERTE10"
+            label="Alerte - Organisme extra parlementaire"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="ORGANISME_EXTRA_PARLEMENTAIRE"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<evtSuccessif>ALERTE10</evtSuccessif>
+			<evtSuccessif>GENERIQUE10</evtSuccessif>
+		</evenementType>
+
+
+
+
+
+
+
+
+
+
+
+		<evenementType
+            name="PG01"
+            label="PG-01 : Déclaration de politique générale du PM devant l’AN (49-1C)"
+            createur="true"
+            successif="false"
+            demandeAr="true"
+            procedure="DECLARATION_DE_POLITIQUE_GENERALE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>PG02</evtSuccessif>
+			<evtSuccessif>PG04</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="PG02"
+            label="PG-02 : Information sur la déclaration de politique générale du PM devant l’AN (49-1C)"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="DECLARATION_DE_POLITIQUE_GENERALE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+		</evenementType>
+
+		<evenementType
+            name="PG03"
+            label="PG-03 : Déclaration de politique générale du PM devant le Sénat avec demande d'approbation (49-4C)"
+            createur="true"
+            successif="false"
+            demandeAr="true"
+            procedure="DECLARATION_DE_POLITIQUE_GENERALE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>PG04</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="PG04"
+            label="PG-04 : Résultat du vote sur la déclaration de politique générale"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="DECLARATION_DE_POLITIQUE_GENERALE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+
+		<evenementType
+            name="SD01"
+            label="SD-01 : Déclaration sur un sujet déterminé (50-1C) - demande d’un groupe parlementaire"
+            createur="true"
+            successif="false"
+            demandeAr="true"
+            procedure="DECLARATION_SUR_UN_SUJET_DETERMINE_50_1C"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="DEMANDE_DECLARATION" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>SD02</evtSuccessif>
+		</evenementType>
+
+
+		<evenementType
+            name="SD02"
+            label="SD-02 : Déclaration sur un sujet déterminé (50-1C)"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="DECLARATION_SUR_UN_SUJET_DETERMINE_50_1C"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="SENAT" />
+					<institution name="ASSEMBLEE_NATIONALE" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+			<evtSuccessif>SD03</evtSuccessif>
+		</evenementType>
+
+
+		<evenementType
+            name="SD03"
+            label="SD-03 : Résultat du vote sur un sujet déterminé"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="DECLARATION_SUR_UN_SUJET_DETERMINE_50_1C"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+
+		<evenementType
+            name="JSS01"
+            label="JSS-01 : Demande de jours supplémentaires de séance"
+            createur="true"
+            successif="false"
+            demandeAr="true"
+            procedure="DEMANDE_DE_MISE_EN_OEUVRE_ARTICLE_28_3C"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+		</evenementType>
+
+		<evenementType
+            name="JSS02"
+            label="JSS-02 : Demande de jours supplémentaires de séance à l'initiative d'une assemblée"
+            createur="true"
+            successif="false"
+            demandeAr="false"
+            procedure="DEMANDE_DE_MISE_EN_OEUVRE_ARTICLE_28_3C"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="LETTRE" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+		</evenementType>
+
+
+		<evenementType
+            name="DOC01"
+            label="DOC-01 : Transmission de documents"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="AUTRES_DOCUMENTS_TRANSMIS_AUX_ASSEMBLEES"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="DOCUMENTS" obligatoire="false" multivalue="true" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+		</evenementType>
+
+		<evenementType
+            name="AUD01"
+            label="AUD-01 : Demande d'audition"
+            createur="true"
+            successif="false"
+            demandeAr="true"
+            procedure="DEMANDE_AUDITION_PERSONNES_EMPLOIS_ENVISAGEE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="LETTRE_PM" obligatoire="true" multivalue="false" order="1" />
+			<pieceJointe type="CURRICULUM_VITAE" obligatoire="false" multivalue="false" order="2" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="3" />
+			<evtSuccessif>AUD02</evtSuccessif>
+		</evenementType>
+
+
+		<evenementType
+            name="AUD02"
+            label="AUD-02 : Renseignements sur l'audition"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="DEMANDE_AUDITION_PERSONNES_EMPLOIS_ENVISAGEE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+			<evtSuccessif>AUD03</evtSuccessif>
+		</evenementType>
+
+
+
+		<evenementType
+            name="FUSION11"
+            label="Fusion de dossiers - Déclaration de politique générale"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="DECLARATION_DE_POLITIQUE_GENERALE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+
+		<evenementType
+            name="GENERIQUE11"
+            label="Generique - Déclaration de politique générale"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="DECLARATION_DE_POLITIQUE_GENERALE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+
+		<evenementType
+            name="ALERTE11"
+            label="Alerte - Déclaration de politique générale"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="DECLARATION_DE_POLITIQUE_GENERALE"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<evtSuccessif>ALERTE11</evtSuccessif>
+			<evtSuccessif>GENERIQUE11</evtSuccessif>
+		</evenementType>
+
+
+
+		<evenementType
+            name="FUSION12"
+            label="Fusion de dossiers - Déclaration sur un sujet déterminé"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="DECLARATION_SUR_UN_SUJET_DETERMINE_50_1C"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+
+		<evenementType
+            name="GENERIQUE12"
+            label="Generique - Déclaration sur un sujet déterminé"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="DECLARATION_SUR_UN_SUJET_DETERMINE_50_1C"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+
+		<evenementType
+            name="ALERTE12"
+            label="Alerte - Déclaration sur un sujet déterminé"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="DECLARATION_SUR_UN_SUJET_DETERMINE_50_1C"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<evtSuccessif>ALERTE12</evtSuccessif>
+			<evtSuccessif>GENERIQUE12</evtSuccessif>
+		</evenementType>
+
+
+		<evenementType
+            name="FUSION13"
+            label="Fusion de dossiers - Demande de jours supplémentaires de séance"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="DEMANDE_DE_MISE_EN_OEUVRE_ARTICLE_28_3C"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="GENERIQUE13"
+            label="Generique - Demande de jours supplémentaires de séance"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="DEMANDE_DE_MISE_EN_OEUVRE_ARTICLE_28_3C"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="ALERTE13"
+            label="Alerte - Demande de jours supplémentaires de séance"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="DEMANDE_DE_MISE_EN_OEUVRE_ARTICLE_28_3C"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+			</distribution>
+			<evtSuccessif>ALERTE13</evtSuccessif>
+			<evtSuccessif>GENERIQUE13</evtSuccessif>
+		</evenementType>
+
+
+		<evenementType
+            name="FUSION15"
+            label="Fusion de dossiers - Autres documents transmis aux assemblées"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="AUTRES_DOCUMENTS_TRANSMIS_AUX_ASSEMBLEES"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="GENERIQUE15"
+            label="Generique - Autres documents transmis aux assemblées"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="AUTRES_DOCUMENTS_TRANSMIS_AUX_ASSEMBLEES"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+		<evenementType
+            name="ALERTE15"
+            label="Alerte - Autres documents transmis aux assemblées"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="AUTRES_DOCUMENTS_TRANSMIS_AUX_ASSEMBLEES"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<evtSuccessif>ALERTE15</evtSuccessif>
+			<evtSuccessif>GENERIQUE15</evtSuccessif>
+		</evenementType>
+
+
+		<evenementType
+            name="FUSION14"
+            label="Fusion de dossiers - Demandes d'audition"
+            createur="false"
+            successif="true"
+            demandeAr="true"
+            procedure="DEMANDE_AUDITION_PERSONNES_EMPLOIS_ENVISAGEE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+
+		<evenementType
+            name="GENERIQUE14"
+            label="Generique - Demandes d'audition"
+            createur="true"
+            successif="true"
+            demandeAr="true"
+            procedure="DEMANDE_AUDITION_PERSONNES_EMPLOIS_ENVISAGEE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="true">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="1" />
+		</evenementType>
+
+
+		<evenementType
+            name="ALERTE14"
+            label="Alerte - Demandes d'audition"
+            createur="false"
+            successif="true"
+            demandeAr="false"
+            creerBrouillon="false"
+            completer="false"
+            rectifier="false"
+            annuler="false"
+            procedure="DEMANDE_AUDITION_PERSONNES_EMPLOIS_ENVISAGEE"
+            limiteSuccesseur="true"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</emetteur>
+				<destinataire>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</destinataire>
+				<copie obligatoire="false">
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+					<institution name="GOUVERNEMENT" />
+				</copie>
+			</distribution>
+			<evtSuccessif>ALERTE14</evtSuccessif>
+			<evtSuccessif>GENERIQUE14</evtSuccessif>
+		</evenementType>
+
+		<evenementType
+            name="LEX-40"
+            label="LEX-40 : Décision de la seconde assemblée sur l'opposition à la procédure accélérée"
+            createur="false"
+            successif="true"
+            demanderAr="true"
+            procedure="PROCEDURE_LEGISLATIVE"
+        >
+			<distribution>
+				<emetteur>
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</emetteur>
+				<destinataire>
+					<institution name="GOUVERNEMENT" />
+					<institution name="ASSEMBLEE_NATIONALE" />
+					<institution name="SENAT" />
+				</destinataire>
+			</distribution>
+			<pieceJointe type="LETTRE" obligatoire="false" multivalue="false" order="1" />
+			<pieceJointe type="AUTRE" obligatoire="false" multivalue="true" order="2" />
+		</evenementType>
+
+	</extension>
+</component>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="textArea(label, id, description, value, disabled, validation)">
+            <div class="form-input">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label
+                            th:for="${id}"
+                            th:id="|${id}-label|"
+                            class="form-label"
+                            th:classappend="${disabled ? 'form-label--disabled' : ''}"
+                            ><th:block th:text="${#messages.msg(label)}"></th:block>
+                            <span
+                                th:if="${validation == 'required'}"
+                                class="form-label__required-text"
+                                th:text="#{form.input.required}"
+                                >(requis)</span
+                            ></label
+                        >
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                    <div class="form-input__header-bottom">
+                        <p
+                            th:id="|label_header_bottom_${id}|"
+                            class="form-input__description form-input__description--default"
+                            th:text="${description}"
+                        ></p>
+                    </div>
+                </div>
+                <div class="form-input__container">
+                    <textarea
+                        th:name="${id}"
+                        th:id="${id}"
+                        cols="30"
+                        rows="3"
+                        th:text="${value}"
+                        th:aria-describedby="${description != null && description != ''} ? |label_header_bottom_${id}|"
+                        class="form-input__field"
+                        th:classappend="${disabled ? 'form-input__field--disabled' : ''}"
+                        th:disabled="${disabled}"
+                        th:data-validation="${validation}"
+                    ></textarea>
+                </div>
+                <div th:id="|${id}_description|" class="form-input__footer"></div>
+            </div>
+        </th:block>
+    </body>
+</html>

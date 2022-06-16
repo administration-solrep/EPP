@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="breadcrumbsLeft">
+            <ol class="breadcrumbs__list">
+                <th:block
+                    th:each="breadcrumb, status : ${lstBreadcrumbs}"
+                    th:with="text=${breadcrumb.key==null || #messages.msgOrNull(breadcrumb.key)== null ? breadcrumb.key : #messages.msg(breadcrumb.key)}"
+                >
+                    <li
+                        class="breadcrumbs__item breadcrumb-text"
+                        th:classappend="${status.last} ? 'breadcrumb-text--with-arrow' : 'breadcrumb-link'"
+                        th:attrappend="aria-current=${status.last} ? 'page' : ''"
+                    >
+                        <span
+                            th:remove="${status.first} ? all"
+                            aria-hidden="true"
+                            class="breadcrumb-text__arrow"
+                        ></span>
+                        <th:block th:if="${status.last or status.first or breadcrumbsLength <= 180}">
+                            <a
+                                th:remove="${status.last or breadcrumb.url == null} ? tag"
+                                th:href="@{${breadcrumb.url}}"
+                                class="breadcrumb-text__link link link--invert"
+                                th:id="|crumb-${breadcrumb.order}|"
+                            >
+                                <span
+                                    th:attr="data-tippy-content=${status.last and breadcrumb.mustBeShortened() ? text:''}"
+                                    th:attrappend="aria-hidden=${status.last and breadcrumb.mustBeShortened() ? 'true': ''}"
+                                    tabindex="0"
+                                    th:text="${status.last and breadcrumb.mustBeShortened()?
+                                    #strings.substring(text,0,30)+'...':text}"
+                                ></span>
+                                <span
+                                    class="sr-only"
+                                    th:remove="${not status.last or not breadcrumb.mustBeShortened()}?all"
+                                    th:text="${text}"
+                                ></span>
+                            </a>
+                        </th:block>
+                        <th:block th:if="${not status.last and  not status.first and breadcrumbsLength > 180}">
+                            <a
+                                th:remove="${breadcrumb.url == null} ? tag"
+                                th:href="@{${breadcrumb.url}}"
+                                class="breadcrumb-text__link link link--invert"
+                                th:data-tippy-content="${text}"
+                            >
+                                <span aria-hidden="true">...</span>
+                                <span class="sr-only" th:text="${text}"></span>
+                            </a>
+                        </th:block>
+                    </li>
+                </th:block>
+            </ol>
+        </th:block>
+    </body>
+</html>

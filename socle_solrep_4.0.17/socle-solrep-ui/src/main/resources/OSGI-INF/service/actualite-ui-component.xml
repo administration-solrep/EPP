@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.services.component.ActualiteComponent">
+
+  <implementation class="fr.dila.ss.ui.services.component.ActualiteComponent" />
+  
+  <service>
+    <provide interface="fr.dila.ss.ui.services.ActualiteUIService" />
+  </service>
+  
+
+</component>

@@ -1,0 +1,59 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page de la fiche actualité', title=${actualiteDto.objet})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <input
+            type="hidden"
+            id="urlPreviousPage"
+            name="urlPreviousPage"
+            th:value="@{|${urlPreviousPage}#main_content|}"
+        />
+        <div class="m-t-6 m-b-6">
+            <button
+                type="button"
+                onclick="goPreviousPage()"
+                class="m-r-3 base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+            >
+                [[#{button.label.back}]]
+            </button>
+        </div>
+
+        <h1 class="p-b-3 m-b-3 base-title base-title--lvl-1 base-title--is-underlined">
+            [[${actualiteDto.objet}]]
+        </h1>
+        <div class="m-b-6">
+            <p>
+                <strong>[[${#calendars.format(actualiteDto.dateEmission, 'dd/MM/yyyy')}]]</strong>
+            </p>
+            <div th:utext="${actualiteDto.contenu}" class="m-b-6"></div>
+        </div>
+
+        <h2
+            class="p-b-3 m-b-3 base-title base-title--lvl-2 base-title--is-underlined"
+            th:text="#{actualite.piecesJointes.label}"
+        >
+            Pièces jointes
+        </h2>
+        <div th:each="file,iterStat : ${actualiteDto.piecesJointes}">
+            <a class="link" th:href="@{|/${file.link}|}">
+                <span aria-hidden="true" class="icon icon--download link__icon link__icon--prepend"></span>
+                [[|${file.nom}${file.extension}|]]
+            </a>
+            <br th:if="${!iterStat.last}" />
+        </div>
+
+        <div class="m-t-6 m-b-6">
+            <button
+                type="button"
+                onclick="goPreviousPage()"
+                class="m-r-3 base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+            >
+                [[#{button.label.back}]]
+            </button>
+        </div>
+    </main>
+</html>

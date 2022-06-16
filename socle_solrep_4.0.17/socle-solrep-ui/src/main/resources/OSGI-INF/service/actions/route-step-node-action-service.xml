@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.services.actions.impl.RouteStepNoteActionServiceImpl">
+    
+    <implementation class="fr.dila.ss.ui.services.actions.component.RouteStepNoteActionComponent" />
+
+    <service>
+        <provide interface="fr.dila.ss.ui.services.actions.RouteStepNoteActionService" />
+    </service>
+
+</component>

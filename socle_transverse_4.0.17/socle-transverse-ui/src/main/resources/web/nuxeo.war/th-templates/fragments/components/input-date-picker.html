@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="inputDatePicker(spanId, inputName, inputId, required, value, disabled)"
+            data-monthpickermode="none"
+            th:with="additionalValidation=${additionalValidation} ?: '', hideFormat=${hideFormat}"
+            class="form-date-picker-input datepicker"
+        >
+            <span
+                th:id="${spanId}"
+                th:text="#{input.datepicker.format}"
+                th:classappend="${disabled ? 'form-label--disabled' : ''}"
+                th:unless="${hideFormat}"
+            ></span>
+            <input
+                type="text"
+                th:name="${inputName}"
+                th:id="${inputId}"
+                placeholder="JJ/MM/AAAA"
+                th:aria-describedby="${spanId}"
+                aria-autocomplete="none"
+                class="form-date-picker-input__form-input date"
+                th:data-validation="|${required ? 'required_date_unique_format(dd/mm/yyyy)' : 'date_unique_format(dd/mm/yyyy)'}${additionalValidation}|"
+                th:value="${value}"
+                th:disabled="${disabled}"
+            />
+            <button
+                type="button"
+                class="form-date-picker-input__open-calendar-button base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent"
+                aria-haspopup="dialog"
+                th:aria-label="#{input.datepicker.button.label}"
+                th:disabled="${disabled}"
+            >
+                <span aria-hidden="true" class="form-date-picker-input__icon icon icon--calendar icon--medium"></span>
+                <span class="sr-only" th:text="#{input.datepicker.button.label}">Choisir une date</span>
+            </button>
+            <div th:replace="fragments/components/date-picker :: datePicker(${inputId})"></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+<!-- surcharge des converters de Nuxeo afin d'utiliser LibreOffice pour convertir les images en pdf -->
+<component name="fr.dila.st.core.converter.contrib">
+  <require>org.nuxeo.ecm.platform.convert.plugins</require>
+
+  <extension target="org.nuxeo.ecm.core.convert.service.ConversionServiceImpl" point="converter">
+
+    <converter name="image2pdf" class="org.nuxeo.ecm.platform.convert.plugins.Image2PDFConverter" enabled="false">
+      <parameters>
+        <parameter name="CommandLineName">converter</parameter>
+      </parameters>
+    </converter>
+
+    <converter name="any2pdf" class="org.nuxeo.ecm.platform.convert.plugins.LibreOfficeConverter">
+      <destinationMimeType>application/pdf</destinationMimeType>
+
+      <sourceMimeType>image/jpeg</sourceMimeType>
+      <sourceMimeType>image/png</sourceMimeType>
+      <sourceMimeType>image/gif</sourceMimeType>
+
+      <sourceMimeType>text/xml</sourceMimeType>
+      <sourceMimeType>text/html</sourceMimeType>
+      <sourceMimeType>text/plain</sourceMimeType>
+      <sourceMimeType>text/partial</sourceMimeType>
+      <sourceMimeType>text/rtf</sourceMimeType>
+      <sourceMimeType>application/rtf</sourceMimeType>
+      <sourceMimeType>text/csv</sourceMimeType>
+      <sourceMimeType>text/tsv</sourceMimeType>
+
+      <!-- Microsoft office documents -->
+      <sourceMimeType>application/msword</sourceMimeType>
+      <sourceMimeType>application/vnd.ms-powerpoint</sourceMimeType>
+      <sourceMimeType>application/vnd.ms-excel</sourceMimeType>
+
+      <!-- Microsoft office 2007 documents -->
+      <sourceMimeType>
+        application/vnd.openxmlformats-officedocument.wordprocessingml.document
+      </sourceMimeType>
+      <sourceMimeType>
+        application/vnd.openxmlformats-officedocument.presentationml.presentation
+      </sourceMimeType>
+      <sourceMimeType>
+        application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+      </sourceMimeType>
+
+      <!-- OpenOffice.org 1.x documents -->
+      <sourceMimeType>application/vnd.sun.xml.writer</sourceMimeType>
+      <sourceMimeType>application/vnd.sun.xml.writer.template</sourceMimeType>
+      <sourceMimeType>application/vnd.sun.xml.impress</sourceMimeType>
+      <sourceMimeType>application/vnd.sun.xml.impress.template</sourceMimeType>
+      <sourceMimeType>application/vnd.sun.xml.calc</sourceMimeType>
+      <sourceMimeType>application/vnd.sun.xml.calc.template</sourceMimeType>
+      <sourceMimeType>application/vnd.sun.xml.draw</sourceMimeType>
+      <sourceMimeType>application/vnd.sun.xml.draw.template</sourceMimeType>
+
+      <!-- OpenOffice.org 2.x documents -->
+      <sourceMimeType>
+        application/vnd.oasis.opendocument.spreadsheet
+      </sourceMimeType>
+      <sourceMimeType>
+        application/vnd.oasis.opendocument.spreadsheet-template
+      </sourceMimeType>
+      <sourceMimeType>application/vnd.oasis.opendocument.text</sourceMimeType>
+      <sourceMimeType>
+        application/vnd.oasis.opendocument.text-template
+      </sourceMimeType>
+      <sourceMimeType>
+        application/vnd.oasis.opendocument.presentation
+      </sourceMimeType>
+      <sourceMimeType>
+        application/vnd.oasis.opendocument.presentation-template
+      </sourceMimeType>
+      <sourceMimeType>
+        application/vnd.oasis.opendocument.graphics
+      </sourceMimeType>
+      <sourceMimeType>
+        application/vnd.oasis.opendocument.graphics-template
+      </sourceMimeType>
+
+      <!-- WordPerfect -->
+      <sourceMimeType>application/wordperfect</sourceMimeType>
+
+      <parameters>
+        <parameter name="CommandLineName">soffice</parameter>
+        <parameter name="format">pdf</parameter>
+      </parameters>
+    </converter>
+
+  </extension>
+
+</component>

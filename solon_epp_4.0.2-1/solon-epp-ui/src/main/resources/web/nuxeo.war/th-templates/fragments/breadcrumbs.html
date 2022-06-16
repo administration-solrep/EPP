@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <nav aria-label="breadcrumbs" class="breadcrumbs" th:fragment="breadcrumbs" role="navigation">
+            <th:block th:if="${breadcrumbs_blocks != null}" th:each="block : ${breadcrumbs_blocks}">
+                <div th:replace="${block.filename} :: ${block.name}"></div>
+            </th:block>
+            <th:block th:if="${breadcrumbs_blocks == null }" th:each="block : ${_blocks}">
+                <div th:replace="${block.filename} :: ${block.name}"></div>
+            </th:block>
+            <th:block th:if="${isFromTravail == null or !isFromTravail}">
+                <a
+                    class="breadcrumbs__shortcut base-btn base-btn--button base-btn--default base-btn--center base-btn--sharp"
+                    style="flex-shrink: 0;"
+                    th:aria-label="#{command.user.return.to.repository}"
+                    th:href="@{/corbeille}"
+                >
+                    <span class="base-btn__icon base-btn__icon--left icon icon--right icon--v-align" aria-hidden="true">
+                    </span>
+                    [[#{command.user.return.to.repository}]]
+                </a>
+            </th:block>
+        </nav>
+    </body>
+</html>

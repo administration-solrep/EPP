@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service de gestion des schémas des evenements 
+	et des versions. -->
+<component name="fr.dila.solonepp.core.service.MetaDonneesService">
+	<implementation class="fr.dila.solonepp.core.service.MetaDonneesServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.solonepp.api.service.MetaDonneesService" />
+	</service>
+
+	<extension-point name="metadonnees">
+		<documentation>
+			Cette extension permet de déclarer les schemas des événements et des
+			versions.
+
+			Exemple de déclaration:
+
+			<code>
+				<metadonnees name="EVT01">
+					<evenementMetadonnees>
+						<property name="idEvt" obligatoire="true" type="int" modifiable="false" multiValue="false" />
+					</evenementMetadonnees>
+					<versionMetadonnees>
+						<property name="date" obligatoire="true" type="timestamp" modifiable="true" multiValue="false" />
+						<property name="info" type="text" multiValue="true" />
+					</versionMetadonnees>
+				</metadonnees>
+			</code>
+		</documentation>
+
+		<object class="fr.dila.solonepp.core.descriptor.metadonnees.MetaDonneesDescriptorImpl" />
+	</extension-point>
+</component>

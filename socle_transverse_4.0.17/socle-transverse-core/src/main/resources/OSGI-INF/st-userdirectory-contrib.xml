@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.core.default.users.config">
+
+	<require>org.nuxeo.ecm.directory.storage</require>
+
+	<extension point="directories" target="org.nuxeo.ecm.directory.sql.SQLDirectoryFactory">
+
+		<directory name="userDirectory" extends="template-directory">
+
+			<schema>user</schema>
+
+			<dataSource>jdbc/nxsqldirectory</dataSource>
+			<table>users</table>
+			<idField>username</idField>
+			<passwordField>password</passwordField>
+			<passwordHashAlgorithm>SSHA</passwordHashAlgorithm>
+			<autoincrementIdField>false</autoincrementIdField>
+            <dataFile>users.csv</dataFile>
+			<computeMultiTenantId>false</computeMultiTenantId>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<querySizeLimit>0</querySizeLimit>
+			<readOnly>false</readOnly>
+
+			<references>
+				 <reference
+                    field="groups"
+                    directory="groupDirectory"
+                    name="user2group"
+                    source="userId"
+                    target="groupId"
+                    dataFile="user2group.csv"
+                />
+			</references>
+		</directory>
+		<directory name="groupDirectory" extends="template-directory">
+
+			<schema>group</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<table>groups</table>
+			<idField>groupname</idField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<autoincrementIdField>false</autoincrementIdField>
+			<readOnly>false</readOnly>
+            <dataFile>groups.csv</dataFile>
+
+			<references>
+			  <inverseReference field="members" directory="userDirectory" dualReferenceField="groups" />
+
+			  <inverseReference field="parentGroups" directory="groupDirectory" dualReferenceField="functions" />
+              <reference
+                    field="functions"
+                    directory="fonctionsDirectory"
+                    name="group2group"
+                    source="parentGroupId"
+                    target="childGroupId"
+                />
+			</references>
+		</directory>
+
+		<directory name="fonctionsDirectory" extends="template-directory">
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<table>fonctions</table>
+
+			<schema>base_function</schema>
+			<idField>groupname</idField>
+			<readOnly>false</readOnly>
+			<autoincrementIdField>false</autoincrementIdField>
+			<computeMultiTenantId>false</computeMultiTenantId>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<querySizeLimit>0</querySizeLimit>
+
+			<references>
+				<inverseReference field="parentGroups" directory="groupDirectory" dualReferenceField="functions" />
+			</references>
+		</directory> 
+
+	</extension>
+</component>

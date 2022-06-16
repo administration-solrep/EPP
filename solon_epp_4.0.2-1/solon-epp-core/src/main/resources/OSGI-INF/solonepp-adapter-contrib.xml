@@ -1,0 +1,155 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue les fabriques d'adapteur de Document vers les 
+	objets métiers de l'application SOLON EPP. -->
+<component name="fr.dila.solonepp.core.adapterContrib">
+	<require>fr.dila.st.core.adapterContrib</require>
+
+	<extension target="org.nuxeo.ecm.core.api.DocumentAdapterService" point="adapters">
+
+		<!-- *********************************************************************** 
+			Adapteurs repris de CM (pas tous utilisés)... *********************************************************************** -->
+<!-- 		<adapter class="fr.dila.cm.caselink.CaseLink" facet="CaseLink" -->
+<!-- 			factory="fr.dila.cm.core.adapter.CaseLinkAdapterFactory" /> -->
+
+<!-- 		<adapter class="fr.dila.cm.cases.Case" facet="Distributable" -->
+<!-- 			factory="fr.dila.cm.core.adapter.CaseAdapterFactory" /> -->
+
+<!-- 		<adapter class="fr.dila.cm.cases.LockableAdapter" facet="CaseGroupable" -->
+<!-- 			factory="fr.dila.cm.core.adapter.LockableAdapterFactory" /> -->
+
+<!-- 		<adapter class="fr.dila.cm.cases.HasParticipants" -->
+<!-- 			factory="fr.dila.cm.core.adapter.HasParticipantsAdapterFactory" /> -->
+
+		<!-- *********************************************************************** 
+			Adapteurs pour les jetons. *********************************************************************** -->
+		<!-- Adapter des liaisons jeton / notification -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.jeton.JetonDoc"
+            factory="fr.dila.solonepp.core.adapter.jeton.JetonDocAdapterFactory"
+        />
+
+		<!-- *********************************************************************** 
+			Fabriques d'adapteurs pour les tables de référence. *********************************************************************** -->
+		<!-- Fabrique d'objet métier table de référence acteur -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.tablereference.Acteur"
+            factory="fr.dila.solonepp.core.adapter.tablereference.ActeurAdapterFactory"
+        />
+
+		<!-- Fabrique d'objet métier table de référence circonscription -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.tablereference.Circonscription"
+            factory="fr.dila.solonepp.core.adapter.tablereference.CirconscriptionAdapterFactory"
+        />
+
+		<!-- Fabrique d'objet métier table de référence gouvernement -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.tablereference.Gouvernement"
+            factory="fr.dila.solonepp.core.adapter.tablereference.GouvernementAdapterFactory"
+        />
+
+		<!-- Fabrique d'objet métier table de référence identité -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.tablereference.Identite"
+            factory="fr.dila.solonepp.core.adapter.tablereference.IdentiteAdapterFactory"
+        />
+
+		<!-- Fabrique d'objet métier table de référence mandat -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.tablereference.Mandat"
+            factory="fr.dila.solonepp.core.adapter.tablereference.MandatAdapterFactory"
+        />
+
+		<!-- Fabrique d'objet métier table de référence membre de groupe -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.tablereference.MembreGroupe"
+            factory="fr.dila.solonepp.core.adapter.tablereference.MembreGroupeAdapterFactory"
+        />
+
+		<!-- Fabrique d'objet métier table de référence ministère -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.tablereference.Ministere"
+            factory="fr.dila.solonepp.core.adapter.tablereference.MinistereAdapterFactory"
+        />
+
+		<!-- Fabrique d'objet métier table de référence organisme -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.tablereference.Organisme"
+            factory="fr.dila.solonepp.core.adapter.tablereference.OrganismeAdapterFactory"
+        />
+
+		<!-- Fabrique d'objet métier table de référence période -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.tablereference.Periode"
+            factory="fr.dila.solonepp.core.adapter.tablereference.PeriodeAdapterFactory"
+        />
+
+		<!-- *********************************************************************** 
+			Fabriques d'adapteurs pour les dossiers. *********************************************************************** -->
+		<!-- Fabrique d'objet métier dossier SOLON EPP -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.dossier.Dossier"
+            factory="fr.dila.solonepp.core.adapter.dossier.DossierAdapterFactory"
+        />
+
+		<!-- *********************************************************************** 
+			Fabriques d'adapteurs pour les événements. *********************************************************************** -->
+		<!-- Fabrique d'objet métier événement -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.evenement.Evenement"
+            factory="fr.dila.solonepp.core.adapter.evenement.EvenementAdapterFactory"
+        />
+
+		<!-- Fabrique d'objet métier version d'événement -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.evenement.Version"
+            factory="fr.dila.solonepp.core.adapter.evenement.VersionAdapterFactory"
+        />
+
+		<!-- Fabrique d'objet métier pièce jointe -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.evenement.PieceJointe"
+            factory="fr.dila.solonepp.core.adapter.evenement.PieceJointeAdapterFactory"
+        />
+
+		<!-- *********************************************************************** 
+			Fabriques d'adapteurs pour les Mailbox. *********************************************************************** -->
+		<!-- Fabrique d'objet métier Mailbox -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.mailbox.Mailbox"
+            factory="fr.dila.solonepp.core.adapter.mailbox.MailboxAdapterFactory"
+        />
+
+		<!-- Fabrique d'objet métier Mailbox -->
+		<adapter class="fr.dila.cm.mailbox.Mailbox" factory="fr.dila.solonepp.core.adapter.mailbox.MailboxAdapterFactory" />
+
+		<!-- *********************************************************************** 
+			Fabriques d'adapteurs pour les messages. *********************************************************************** -->
+		<!-- Fabrique d'objet métier Message -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.message.Message"
+            factory="fr.dila.solonepp.core.adapter.message.MessageAdapterFactory"
+        />
+
+		<!-- *********************************************************************** 
+			Fabriques d'adapteurs pour les pièces jointes. *********************************************************************** -->
+		<!-- Fabrique d'objet métier pièce jointe -->
+		<adapter
+            class="fr.dila.solonepp.api.domain.piecejointe.PieceJointeFichier"
+            factory="fr.dila.solonepp.core.adapter.piecejointe.PieceJointeFichierAdapterFactory"
+        />
+
+		<!-- *********************************************************************** 
+			Adapteurs pour les profils utilisateurs. *********************************************************************** -->
+		<adapter
+            class="fr.dila.st.api.user.STProfilUtilisateur"
+            factory="fr.dila.solonepp.core.adapter.profilutilisateur.ProfilUtilisateurAdapterFactory"
+        />
+		<adapter
+            class="fr.dila.solonepp.api.administration.ProfilUtilisateur"
+            factory="fr.dila.solonepp.core.adapter.profilutilisateur.ProfilUtilisateurAdapterFactory"
+        />
+
+	</extension>
+
+</component>

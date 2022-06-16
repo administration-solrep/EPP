@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component name="fr.dila.st.status.config" version="1.0.0">
+
+    <require>fr.sword.idl.naiad.nuxeo.addons.status.core.services.StatusService</require>
+
+    <extension target="fr.sword.idl.naiad.nuxeo.addons.status.core.services.StatusService" point="statusConfig">
+
+        <status enabled="true" name="kafka" clazz="fr.dila.st.core.status.KafkaStatus" />
+
+    </extension>
+
+</component>

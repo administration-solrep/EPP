@@ -1,0 +1,15 @@
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Manifest-Version: 1.0
+Bundle-Name: fr.sword.naiad.nuxeo.ufnxql.core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Nuxeo
+Bundle-Version: 1.0.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: fr.sword.naiad.nuxeo.ufnxql.core
+Nuxeo-Component: OSGI-INF/querymaker-contrib.xml,
+ OSGI-INF/operation-contrib.xml,
+ OSGI-INF/fnxqlconfig-contrib.xml,
+ OSGI-INF/fnxqlconfigservice-framework.xml
+
+

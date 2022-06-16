@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.api.service.SSProfilUtilisateurService">
+	<implementation class="fr.dila.ss.core.component.SSProfilUtilisateurComponent" />
+
+		<service>
+		<provide interface="fr.dila.ss.api.service.SSProfilUtilisateurService" />
+	</service>
+</component>

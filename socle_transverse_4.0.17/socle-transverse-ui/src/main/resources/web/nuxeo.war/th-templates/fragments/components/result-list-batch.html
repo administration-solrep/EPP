@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="resultListBatch">
+            <div class="m-t-6 m-b-3 p-b-2" id="resultList" style="position: relative; clear: both;">
+                <th:block th:if="${displayTable}">
+                    <div class="overlay" id="result_overlay" aria-live="polite">
+                        <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+                    </div>
+                    <h2
+                        class="search-result-form__title base-title base-title--lvl-2"
+                        th:text="#{batch.suivi.liste.label}"
+                    >
+                        Liste des batchs
+                    </h2>
+
+                    <div
+                        class="search-table"
+                        th:with="tableCaption=#{batch.suivi.liste.label}+' - '+${#messages.msg('batch.suivi.result.label', resultList.nbTotal)}"
+                    >
+                        <div class="search-table__heading m-b-6">
+                            <div class="heading-complex">
+                                <div class="heading-complex__main">
+                                    <p
+                                        class="base-title base-title--lvl-3"
+                                        th:text="${#messages.msg('batch.suivi.result.label', resultList.nbTotal)}"
+                                    >
+                                        50 batchs
+                                    </p>
+                                </div>
+                                <div class="heading-complex__options"></div>
+                            </div>
+                        </div>
+                        <div th:replace="fragments/table/tableBatchs :: searchResults"></div>
+                    </div>
+                </th:block>
+            </div>
+        </th:block>
+    </body>
+</html>

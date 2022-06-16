@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.ui.services.EtatApplicationUIService">
+	<implementation class="fr.dila.st.ui.services.component.EtatApplicationUIComponent" />
+
+	<service>
+		<provide interface="fr.dila.st.ui.services.EtatApplicationUIService" />
+	</service>
+
+</component>

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.business.days.management.checker.csv">
+
+  <documentation>
+
+    Used to configure the CSV Holidays Checker.
+
+    @author <a href="mailto:nulrich@nuxeo.com">Nicolas Ulrich</a>
+
+  </documentation>
+
+  <implementation
+    class="org.nuxeo.business.days.management.checker.CSVHolidaysChecker" />
+
+  <extension-point name="configuration">
+
+    <documentation>
+
+      You can specify the path of the CSV file, and if it is in
+      the bundle or on the file system. The CSV file must have the
+      following format:
+
+      dd/mm/yyyy
+      dd/mm/yyyy
+      dd/mm/yyyy
+      ...
+
+      Here is an example that configure a file system CSV file:
+
+      <code>
+
+        <csvFile>
+          <path>/tmp/holidays.csv</path>
+          <embedded>false</embedded>
+        </csvFile>
+
+      </code>
+
+    </documentation>
+
+    <object
+      class="org.nuxeo.business.days.management.checker.CSVConfigurationDescriptor" />
+
+  </extension-point>
+
+</component>

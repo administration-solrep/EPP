@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:creerDossierResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSepg"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solon/epg/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSepg ../../../../../../../../xsd/solon/epg/WSepg.xsd ">
+
+	<p:statut>OK</p:statut>
+	<p:dossier>
+		<p2:avis>
+			<p1:statut_acte>INITIE</p1:statut_acte>
+			<p1:type_acte>AVIS</p1:type_acte>
+			<p1:nor>FDJJ1514777V</p1:nor>
+			<p1:entite_responsable>Société d'économie mixte La Française des jeux</p1:entite_responsable>
+			<p1:direction_responsable>Direction juridique</p1:direction_responsable>
+			<p1:ministere_rattachement>Société d'économie mixte La Française des jeux</p1:ministere_rattachement>
+			<p1:direction_rattachement>Direction juridique</p1:direction_rattachement>
+			<p1:createur>system</p1:createur>
+			<p1:responsable>
+				<p1:nom_reponsable>Donnée manquante</p1:nom_reponsable>
+				<p1:qualite_responsable>Donnée manquante</p1:qualite_responsable>
+				<p1:telephone_responsable>Donnée manquante</p1:telephone_responsable>
+			</p1:responsable>
+			<p1:categorie_acte>REGLEMENTAIRE</p1:categorie_acte>
+			<p1:vecteur_de_publication>Journal Officiel</p1:vecteur_de_publication>
+			<p1:indexation>
+				<p1:rubriques>Donnée manquante</p1:rubriques>
+			</p1:indexation>
+			<p1:publication_integrale_ou_extrait>IN_EXTENSO</p1:publication_integrale_ou_extrait>
+		</p2:avis>
+	</p:dossier>
+
+</p:creerDossierResponse>

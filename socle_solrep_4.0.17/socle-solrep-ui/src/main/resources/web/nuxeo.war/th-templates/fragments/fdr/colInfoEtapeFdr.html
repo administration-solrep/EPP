@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:remove="tag">
+    <body th:remove="tag">
+        <th:block th:fragment="colInfoEtapeFdr(statusIndex)">
+            <td
+                class="table-line__cell table-line__cell--check edit-step-replace"
+                th:headers="${not #lists.isEmpty(line.parentsId)} ? ${#strings.listJoin(line.parentsId,' ')}"
+                th:unless="${isSquelette}"
+            >
+                <th:block th:unless="#{label.epg.feuilleRoute.etape.pour.initialisation} == ${line.action}">
+                    <div class="form-choice-input">
+                        <input
+                            type="checkbox"
+                            th:id="|table_line_checkbox_${statusIndex}|"
+                            name="table_line_checkbox"
+                            class="form-choice-input__input js-custom-table-line-check"
+                            onclick="selectTableCheckbox(this)"
+                            autocomplete="off"
+                        />
+                        <label
+                            th:for="|table_line_checkbox_${statusIndex}|"
+                            th:id="|table_line_checkbox_${statusIndex}_label|"
+                            th:title="#{fdr.line.label.select(${statusIndex + 1})}"
+                            th:data-select-label="#{fdr.line.label.select(${statusIndex + 1})}"
+                            th:data-deselect-label="#{fdr.line.label.deselect(${statusIndex + 1})}"
+                            class="form-label form-choice-input__label form-choice-input__label--checkbox form-choice-input__label--hidden-label"
+                        >
+                            <span th:text="#{fdr.line.label.select(${statusIndex + 1})}">Ligne numéro n</span>
+                        </label>
+                    </div>
+                </th:block>
+            </td>
+            <th:block th:each="colonne : ${dto.listeColonnes}">
+                <td
+                    th:if="${#strings.equals('fdr.etat.label', colonne.label)}"
+                    class="table-line__cell edit-step-replace"
+                    th:headers="${not #lists.isEmpty(line.parentsId)} ? ${#strings.listJoin(line.parentsId,' ')} +' fdr-table-header-0'"
+                >
+                    <div th:data-tippy-content="#{__${line.etat.label}__}" tabindex="0" class="base-tooltip js-tooltip">
+                        <span
+                            aria-hidden="true"
+                            class="table-line__icon icon"
+                            th:classappend="${line.etat.icon}"
+                        ></span>
+                        <span class="sr-only" th:text="#{__${line.etat.label}__}">Étape validée manuellement</span>
+                    </div>
+                </td>
+                <td
+                    th:if="${#strings.equals('fdr.note.header.label', colonne.label)}"
+                    class="table-line__cell edit-step-replace"
+                    th:headers="${not #lists.isEmpty(line.parentsId)} ? ${#strings.listJoin(line.parentsId,' ')}+' fdr-table-header-1'"
+                >
+                    <div
+                        th:if="${line.notes !=null and line.notes.size() &gt; 0}"
+                        th:data-tippy-content="#{fdr.note.label(${line.notes.size()},${statusIndex+1})}"
+                        tabindex="0"
+                        th:onclick="|toggleNoteVisibility('__${line.id}__', this)|"
+                        class="base-tooltip js-tooltip"
+                    >
+                        <span aria-hidden="true" class="table-line__icon icon icon--note">
+                            <span class="m-l-1" th:text="${line.notes.size()}">2</span>
+                        </span>
+                        <span class="sr-only" th:text="#{fdr.note.label(${line.notes.size()},${statusIndex + 1})}"
+                            >2 notes pour l’étape 10</span
+                        >
+                    </div>
+                </td>
+                <td
+                    th:if="${#strings.equals('fdr.action.label', colonne.label)}"
+                    class="table-line__cell edit-step-replace"
+                    th:headers="${not #lists.isEmpty(line.parentsId)} ? ${#strings.listJoin(line.parentsId,' ')}+' fdr-table-header-2'"
+                >
+                    <div
+                        class="ellipsed-content edit-step-replace"
+                        th:replace="fragments/components/longText :: ellipser(${#messages.msgOrNull(line.action) != null ? #messages.msg(line.action) : line.action}, ${statusIndex})"
+                    ></div>
+                </td>
+                <td
+                    th:if="${#strings.equals('fdr.typeDestinataire.label', colonne.label)}"
+                    class="table-line__cell edit-step-replace"
+                    th:headers="${not #lists.isEmpty(line.parentsId)} ? ${#strings.listJoin(line.parentsId,' ')}+' fdr-table-header-3'"
+                >
+                    <th:block th:if="${line.typeDestinataire != null}">
+                        <div
+                            class="ellipsed-content"
+                            th:replace="fragments/components/longText :: ellipser(${#messages.msg(line.typeDestinataire.getValue())}, ${statusIndex})"
+                        ></div>
+                    </th:block>
+                </td>
+                <td
+                    th:if="${#strings.equals('fdr.poste.label', colonne.label)}"
+                    class="table-line__cell edit-step-replace"
+                    th:headers="${not #lists.isEmpty(line.parentsId)} ? ${#strings.listJoin(line.parentsId,' ')}+' fdr-table-header-4'"
+                >
+                    <div
+                        class="ellipsed-content"
+                        th:replace="fragments/components/longText :: ellipser(${line.posteInMinistere}, ${statusIndex})"
+                    ></div>
+                </td>
+                <td
+                    th:if="${#strings.equals('fdr.typeEtape.label', colonne.label)}"
+                    class="table-line__cell edit-step-replace"
+                    th:headers="${not #lists.isEmpty(line.parentsId)} ? ${#strings.listJoin(line.parentsId,' ')}+' fdr-table-header-5'"
+                >
+                    <div
+                        class="ellipsed-content"
+                        th:replace="fragments/components/longText :: ellipser(${line.typeEtape}, ${statusIndex})"
+                    ></div>
+                </td>
+                <td
+                    th:if="${#strings.equals('fdr.utilisateur.label', colonne.label)}"
+                    class="table-line__cell edit-step-replace"
+                    th:headers="${not #lists.isEmpty(line.parentsId)} ? ${#strings.listJoin(line.parentsId,' ')} +' fdr-table-header-6'"
+                >
+                    <div
+                        class="ellipsed-content edit-step-replace"
+                        th:replace="fragments/components/longText :: ellipser(${line.utilisateur}, ${statusIndex})"
+                    ></div>
+                </td>
+                <td
+                    th:if="${#strings.equals('fdr.echeance.label', colonne.label)}"
+                    class="table-line__cell edit-step-replace"
+                    th:headers="${not #lists.isEmpty(line.parentsId)} ? ${#strings.listJoin(line.parentsId,' ')}+' fdr-table-header-7'"
+                    th:text="${#calendars.format(line.echeanceDate, 'dd/MM/yyyy')}"
+                ></td>
+                <td
+                    th:if="${#strings.equals('fdr.traite.label', colonne.label)}"
+                    class="table-line__cell edit-step-replace"
+                    th:text="${#calendars.format(line.traiteDate, 'dd/MM/yyyy')}"
+                    th:headers="${not #lists.isEmpty(line.parentsId)} ? ${#strings.listJoin(line.parentsId,' ')}+' fdr-table-header-8'"
+                ></td>
+                <td
+                    th:if="${#strings.equals('fdr.required.label', colonne.label)}"
+                    class="table-line__cell edit-step-replace"
+                    th:headers="${not #lists.isEmpty(line.parentsId)} ? ${#strings.listJoin(line.parentsId,' ')}+' fdr-table-header-9'"
+                >
+                    <div
+                        th:unless="${'non'.equals(line.getObligatoire())}"
+                        th:data-tippy-content="#{fdr.step.required}"
+                        tabindex="0"
+                        class="base-tooltip js-tooltip"
+                    >
+                        <span aria-hidden="true" class="table-line__icon icon icon--check-circle"></span>
+                        <span class="sr-only" th:text="#{fdr.step.required}">Est obligatoire</span>
+                    </div>
+                </td>
+                <td
+                    th:if="${#strings.equals('fdr.val.auto.label', colonne.label)}"
+                    class="table-line__cell edit-step-replace"
+                    th:headers="${not #lists.isEmpty(line.parentsId)} ? ${#strings.listJoin(line.parentsId,' ')}"
+                >
+                    <div
+                        th:if="${line.valAuto}"
+                        th:data-tippy-content="#{fdr.val.auto.label}"
+                        tabindex="0"
+                        class="base-tooltip js-tooltip"
+                    >
+                        <span aria-hidden="true" class="table-line__icon icon icon--check-circle"></span>
+                        <span class="sr-only" th:text="#{fdr.val.auto.label}">Validation auto</span>
+                    </div>
+                </td>
+                <td
+                    th:if="${#strings.equals('fdr.colonne.vide.label', colonne.label)}"
+                    class="table-line__cell edit-step-replace"
+                    th:headers="${not #lists.isEmpty(line.parentsId)} ? ${#strings.listJoin(line.parentsId,' ')}"
+                ></td>
+                <td
+                    th:if="${#strings.equals('header.label.actions', colonne.label)}"
+                    class="table-line__cell edit-step-replace"
+                    th:headers="${not #lists.isEmpty(line.parentsId)} ? ${#strings.listJoin(line.parentsId,' ')}"
+                >
+                    <th:block th:if="${not #lists.isEmpty(line.actions)}" th:with="dropdownRight=true">
+                        <div
+                            th:replace="fragments/components/dropdown-action :: dropdown-action(
+                                ${statusIndex}, 
+                                ${line.actions}, 
+                                'icon--ellipsis', 
+                                false, 
+                                'dossier.divers.dropdown.tooltip', 
+                                'base-btn--transparent base-btn--light base-btn--md-icon', 
+                                false, 
+                                'base-drop-down--light'
+                                )"
+                        ></div>
+                    </th:block>
+                </td>
+            </th:block>
+        </th:block>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<fragment version="1">
+
+ 	<require>fr.dila.st.core</require> 
+ 	<require>fr.dila.ss.api</require>
+
+	<extension target="application#MODULE">
+		<module>
+			<ejb>${bundle.fileName}</ejb>
+		</module>
+	</extension>
+	
+	<extension target="web#AUTH-FILTER" mode="replace">
+
+		<listener>
+			<listener-class>fr.dila.ss.core.listener.SSSessionListener</listener-class>
+		</listener>
+
+		<filter>
+			<display-name>Nuxeo Request Controller Filter</display-name>
+			<filter-name>NuxeoRequestController</filter-name>
+			<filter-class>
+			  org.nuxeo.ecm.platform.web.common.requestcontroller.filter.NuxeoRequestControllerFilter
+			</filter-class>
+		</filter>
+
+		<filter>
+			<display-name>Nuxeo Authentication Filter</display-name>
+			<filter-name>NuxeoAuthenticationFilter</filter-name>
+			<filter-class>
+			  fr.dila.ss.core.override.auth.SSAuthenticationFilter
+			</filter-class>
+		</filter>
+
+	</extension>
+  
+</fragment>

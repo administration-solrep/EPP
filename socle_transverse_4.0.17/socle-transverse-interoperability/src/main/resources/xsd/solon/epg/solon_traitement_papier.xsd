@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://dila.fr/solon/schemas/traitement_papier/"
+	xmlns="http://dila.fr/solon/schemas/traitement_papier/"
+	elementFormDefault="qualified"
+	xmlns:solco="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons">
+
+	<!-- ====================================== -->
+	<!-- Imports -->
+	<!-- ====================================== -->
+	<xs:import schemaLocation="solon-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"></xs:import>
+
+
+	<!-- *********************************************************************** 
+		Partie traitement papier. *********************************************************************** -->
+
+	<xs:element name="traitementPapier">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="NOR" type="xs:string" />
+				<xs:element name="dateArrivePapier" type="xs:date" />
+				<xs:element name="commentaireReference" type="xs:string" />
+				<xs:element name="texteAPublier" type="xs:boolean" />
+				<xs:element name="texteSoumisAValidation" type="xs:boolean" />
+				<xs:element name="signataire" type="VocType" />
+				<xs:element name="priorite" type="VocType" />
+				<xs:element name="personnesNommees" type="xs:string" />
+				<xs:element name="cabinetPmCommunication" type="tpDestinataireCommunication"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="chargeMissionCommunication" type="tpDestinataireCommunication"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="autrestpDestinatairesCommunication"
+					type="tpDestinataireCommunication" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="cabinetSgCommunication" type="tpDestinataireCommunication"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="nomsSignatairesCommunication" type="solco:Utilisateur" />
+				<xs:element name="signaturePm" type="tpDonneesSignataire" />
+				<xs:element name="signatureSgg" type="tpDonneesSignataire" />
+				<xs:element name="signaturePr" type="tpDonneesSignataire" />
+				<xs:element name="cheminCroix" type="xs:boolean" />
+				<xs:element name="signatureDestinataireSGG" type="solco:Utilisateur" />
+				<xs:element name="signatureDestinataireCPM" type="solco:Utilisateur" />
+				<xs:element name="numerosListeSignatureField" type="tpInfoNumeroListeSignature"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="retourA" type="xs:string" />
+				<xs:element name="dateRetour" type="xs:date" />
+				<xs:element name="motifRetour" type="xs:string" />
+				<xs:element name="nomsSignatairesRetour" type="xs:string" />
+				<xs:element name="epreuve" type="tpInfoEpreuve" />
+				<xs:element name="nouvelleDemandeEpreuves" type="tpInfoEpreuve" />
+				<xs:element name="retourDuBonaTitrerLe" type="xs:date" />
+				<xs:element name="publicationDateEnvoiJo" type="xs:date" />
+				<xs:element name="publicationNomPublication" type="VocType" />
+				<xs:element name="publicationModePublication" type="VocType" />
+				<xs:element name="publicationEpreuveEnRetour" type="xs:boolean" />
+				<xs:element name="publicationDelai" type="VocType" />
+				<xs:element name="publicationDateDemande" type="xs:date" />
+				<xs:element name="publicationNumeroListe" type="xs:string" />
+				<xs:element name="publicationDate" type="xs:date" />
+				<xs:element name="ampliationDestinataireMails" type="xs:string"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="ampliationHistorique" type="tpInfoHistoriqueAmpliation"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="papierArchive" type="xs:boolean" />
+
+			</xs:sequence>
+		</xs:complexType>
+
+	</xs:element>
+	<xs:complexType name="VocType">
+		<xs:attribute name="id" use="required" />
+		<xs:attribute name="valeur" use="required" />
+	</xs:complexType>
+
+	<!-- definition du Champ complexe : info Epreuve -->
+	<xs:complexType name="tpInfoEpreuve">
+		<xs:sequence>
+			<xs:element name="epreuveDemandeLe" type="xs:date" />
+			<xs:element name="epreuvePourLe" type="xs:date" />
+			<xs:element name="epreuveNumeroListe" type="xs:string" />
+			<xs:element name="epreuveEnvoiRelectureLe" type="xs:date" />
+			<xs:element name="epreuveDestinataireEntete" type="xs:string" />
+			<xs:element name="epreuveNomsSignataires" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<!-- definition du Champ complexe : info Historique Ampliation -->
+	<xs:complexType name="tpInfoHistoriqueAmpliation">
+		<xs:sequence>
+			<xs:element name="dateEnvoiAmpliation" type="xs:date" />
+			<xs:element name="ampliationDestinataireMails" type="xs:string"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- definition du Champ complexe : numero liste -->
+	<xs:complexType name="tpInfoNumeroListeSignature">
+		<xs:sequence>
+			<xs:element name="dateGenerationListeSignature" type="xs:date" />
+			<xs:element name="numeroListeSignature" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tpDonneesSignataire">
+		<xs:sequence>
+			<xs:element name="dateEnvoiSignature" type="xs:date" />
+			<xs:element name="dateRetourSignature" type="xs:date" />
+			<xs:element name="commentaireSignature" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<!-- definition du Champ complexe : destinataire Signature -->
+	<xs:complexType name="tpDestinataireCommunication">
+		<xs:sequence>
+			<xs:element name="nomDestinataireCommunication" type="solco:Utilisateur" />
+			<xs:element name="dateEnvoiCommunication" type="xs:date" />
+			<xs:element name="dateRetourCommunication" type="xs:date" />
+			<xs:element name="dateRelanceCommunication" type="xs:date" />
+			<xs:element name="sensAvisCommunication" type="VocType" />
+			<xs:element name="objetCommunication" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

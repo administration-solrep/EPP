@@ -1,0 +1,313 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='page de creation poste webservice', title=${posteWsForm.id == null} ? #{organigramme.posteWs.add} : #{organigramme.posteWs.edit})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <input
+            type="hidden"
+            id="urlPreviousPage"
+            name="urlPreviousPage"
+            th:value="@{/admin/organigramme/consult#main_content}"
+        />
+
+        <div>
+            <div class="m-b-6">
+                <button
+                    type="button"
+                    th:attr="onclick=|'${posteWsForm.id}' == 'null' ? goPreviousPage() : releaseLock('${posteWsForm.id}', 'PST')|"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                    th:text="#{organigramme.cancel}"
+                >
+                    cancel
+                </button>
+                <button
+                    type="button"
+                    name="submit_button"
+                    onclick="verifyDuplicateNameAndSavePosteWs()"
+                    class="base-btn base-btn--button base-btn--default"
+                    style="float: right;"
+                    th:text="#{button.label.save}"
+                >
+                    Enregistrer
+                </button>
+            </div>
+            <form
+                id="edit_poste_ws_form"
+                th:action="@{/admin/organigramme/posteWs/sauvegarde}"
+                th:object="${posteWsForm}"
+                method="POST"
+            >
+                <input type="hidden" name="csrf-token" th:value="${csrftoken}" />
+                <h1
+                    th:if="${posteWsForm.id == null}"
+                    class="base-title base-title--lvl-1 p-b-3 m-b-6 base-title--is-underlined"
+                    th:text="#{organigramme.posteWs.add}"
+                >
+                    Créer poste webservice
+                </h1>
+                <h1
+                    th:unless="${posteWsForm.id == null}"
+                    class="base-title base-title--lvl-1 p-b-3 m-b-6 base-title--is-underlined"
+                    th:text="#{organigramme.posteWs.edit}"
+                >
+                    Editer poste webservice
+                </h1>
+                <div class="form-input">
+                    <div class="form-input__container">
+                        <input type="hidden" name="id" id="id" th:value="${posteWsForm.id}" />
+                    </div>
+                </div>
+                <!--  Libéllé -->
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label aria-disabled="false" for="libelle" id="libelle_label" class="form-label">
+                                <span th:text="#{organigramme.posteWs.libelle}">Label</span>
+                                <span class="form-label__required-text" th:text="#{form.input.required}"
+                                    >(requis)</span
+                                ></label
+                            >
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                    </div>
+                    <div class="form-input__container">
+                        <input
+                            type="text"
+                            name="libelle"
+                            id="libelle"
+                            class="form-input__field form-input__field--type-text"
+                            data-validation="required"
+                            th:value="${posteWsForm.libelle}"
+                        />
+                    </div>
+                    <div id="appellation_description" class="form-input__footer"></div>
+                </div>
+
+                <br />
+                <!-- url ws -->
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label aria-disabled="false" for="urlWs" id="urlWs_label" class="form-label">
+                                <span th:text="#{organigramme.posteWs.urlWs}">Label</span>
+                                <span class="form-label__required-text" th:text="#{form.input.required}"
+                                    >(requis)</span
+                                ></label
+                            >
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                    </div>
+                    <div class="form-input__container">
+                        <input
+                            type="text"
+                            name="urlWs"
+                            id="urlWs"
+                            class="form-input__field form-input__field--type-text"
+                            data-validation="required"
+                            th:value="${posteWsForm.urlWs}"
+                        />
+                    </div>
+                    <div id="appellation_description" class="form-input__footer"></div>
+                </div>
+
+                <br />
+                <!-- utilisateur ws -->
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label
+                                aria-disabled="false"
+                                for="utilisateurWs"
+                                id="utilisateurWs_label"
+                                class="form-label"
+                                th:text="#{organigramme.posteWs.utilisateurWs}"
+                                >Label
+                            </label>
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                    </div>
+                    <div class="form-input__container">
+                        <input
+                            type="text"
+                            name="utilisateurWs"
+                            id="utilisateurWs"
+                            class="form-input__field form-input__field--type-text"
+                            th:value="${posteWsForm.utilisateurWs}"
+                        />
+                    </div>
+                    <div id="appellation_description" class="form-input__footer"></div>
+                </div>
+
+                <br />
+                <!-- mot de passe ws -->
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label
+                                aria-disabled="false"
+                                for="mdpWs"
+                                id="mdpWs_label"
+                                class="form-label"
+                                th:text="#{organigramme.posteWs.mdpWs}"
+                                >Label
+                            </label>
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                    </div>
+                    <div class="form-input__container">
+                        <input
+                            type="text"
+                            name="mdpWs"
+                            id="mdpWs"
+                            class="form-input__field form-input__field--type-text"
+                            th:value="${posteWsForm.mdpWs}"
+                        />
+                    </div>
+                    <div id="appellation_description" class="form-input__footer"></div>
+                </div>
+
+                <br />
+                <!-- Nom de la clé dans le keystore -->
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label
+                                aria-disabled="false"
+                                for="keystore"
+                                id="keystore_label"
+                                class="form-label"
+                                th:text="#{organigramme.posteWs.keystore}"
+                                >Label
+                            </label>
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                    </div>
+                    <div class="form-input__container">
+                        <input
+                            type="text"
+                            name="keystore"
+                            id="keystore"
+                            class="form-input__field form-input__field--type-text"
+                            th:value="${posteWsForm.keystore}"
+                        />
+                    </div>
+                    <div id="appellation_description" class="form-input__footer"></div>
+                </div>
+
+                <br />
+                <!-- Date de début -->
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label
+                                for="dateDebut"
+                                id="dateDebut_label"
+                                class="form-label"
+                                th:text="#{organigramme.posteWs.dateDebut}"
+                                >Label
+                            </label>
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                        <div class="form-input__header-bottom"></div>
+                    </div>
+                    <div class="form-input__container">
+                        <div
+                            th:replace="fragments/components/input-date-picker :: inputDatePicker('datepicker_description_form_input_date_debut', 'dateDebut', 'dateDebut', false, ${posteWsForm.dateDebut}, ${posteWsForm.dateDebut == null})"
+                        ></div>
+                    </div>
+                </div>
+
+                <br />
+                <!-- Date de fin -->
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label
+                                for="dateFin"
+                                id="dateFin_label"
+                                class="form-label"
+                                th:text="#{organigramme.posteWs.dateFin}"
+                                >Label
+                            </label>
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                        <div class="form-input__header-bottom"></div>
+                    </div>
+                    <div class="form-input__container">
+                        <div
+                            th:replace="fragments/components/input-date-picker :: inputDatePicker('datepicker_description_form_input_date_fin', 'dateFin', 'dateDeFin', false, ${posteWsForm.dateFin}, true)"
+                        ></div>
+                    </div>
+                </div>
+
+                <br />
+                <!-- Ministère(s) rattaché(s) -->
+                <div class="form-input">
+                    <th:block th:if="${hasInstitution==null || !hasInstitution}">
+                        <th:block
+                            th:replace="fragments/components/organigrammeSelectAutocomplete ::organigrammeSelectAutocomplete(
+            'organigramme.ministere.label',
+            true,
+            'ministeres',
+            'ministeres',
+            'MIN', 
+            'ministeres', 
+            false,
+            true,
+            ${posteWsForm.mapMinisteres},
+            false)"
+                        ></th:block>
+                    </th:block>
+                    <th:block th:unless="${hasInstitution==null || !hasInstitution}">
+                        <th:block
+                            th:replace="fragments/components/organigrammeSelectAutocomplete ::organigrammeSelectAutocomplete(
+            'organigramme.institution.rattachement.label',
+            true,
+            'institutions-rattachement',
+            'institutions',
+            'INS', 
+            'institutions', 
+            false,
+            true,
+            ${posteWsForm.mapInstitution},
+            false)"
+                        ></th:block>
+                    </th:block>
+                </div>
+            </form>
+            <!-- Modale de confirmation de duplication de nom -->
+            <input
+                type="hidden"
+                id="init-modal-duplicate-name"
+                th:data-title="${#messages.msg('organigramme.poste.modal.title.label')}"
+                th:data-message="${#messages.msg('organigramme.poste.modal.confirm.duplicate')}"
+                th:data-btn-confirm-label="${#messages.msg('button.confirmer')}"
+                data-function="savePosteWsForm()"
+                data-controls="validation-dialog-modal"
+            />
+            <div class="m-t-6">
+                <button
+                    type="button"
+                    th:attr="onclick=|'${posteWsForm.id}' == 'null' ? goPreviousPage() : releaseLock('${posteWsForm.id}', 'PST')|"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                    th:text="#{organigramme.cancel}"
+                >
+                    Annuler
+                </button>
+                <button
+                    type="button"
+                    name="submit_button"
+                    onclick="verifyDuplicateNameAndSavePosteWs()"
+                    class="base-btn base-btn--button base-btn--default"
+                    style="float: right;"
+                    th:text="#{button.label.save}"
+                >
+                    Enregistrer
+                </button>
+            </div>
+        </div>
+    </main>
+</html>

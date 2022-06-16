@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="columnRadios(label, id, options, value, description, disabled)">
+            <div
+                class="form-input-group form-input-group--column"
+                th:classappend="${disabled == 'true' ? 'form-input-group--disabled' : ''}"
+            >
+                <th:block th:replace="fragments/components/formblocks/radios :: radiosFieldset"></th:block>
+            </div>
+        </th:block>
+
+        <th:block th:fragment="radiosFieldset">
+            <fieldset>
+                <legend class="form-input-group__label" th:text="${#messages.msg(label)}"></legend>
+                <div aria-describedby="form-radio-button-column_description" class="form-input-group__icon-group"></div>
+                <span id="form-radio-button-column_description" class="sr-only" th:text="${description}"></span>
+                <div class="form-input-group__list">
+                    <div class="form-choice-input" th:each="option, status : ${options}">
+                        <input
+                            type="radio"
+                            th:id="|${id}-${option.key}|"
+                            th:value="${option.key}"
+                            th:name="${id}"
+                            class="form-choice-input__input"
+                            th:checked="${(value == option.key) || (!value and status.index == 0)}"
+                            autocomplete="off"
+                        />
+                        <label
+                            th:for="|${id}-${option.key}|"
+                            th:id="|${id}-${option.key}_label|"
+                            class="form-label form-choice-input__label form-choice-input__label--radio"
+                            th:classappend="${disabled == 'true' ? 'form-label--disabled' : ''}"
+                        >
+                            <span th:text="${option.value}"></span
+                        ></label>
+                    </div>
+                </div>
+            </fieldset>
+        </th:block>
+    </body>
+</html>

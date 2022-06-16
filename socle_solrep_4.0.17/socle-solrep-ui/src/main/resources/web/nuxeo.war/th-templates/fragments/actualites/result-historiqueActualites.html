@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="historiqueActualitesResults"
+            class="tableForm relative"
+            id="listeHistoriqueActualites"
+            th:data-url="@{${dataUrl}}"
+            th:data-ajaxurl="@{${dataAjaxUrl}}"
+            data-post="true"
+        >
+            <div class="overlay" th:id="result_overlay" aria-live="polite">
+                <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+            </div>
+            <th:block th:unless="${resultForm.defaultSize >= resultList.nbTotal}">
+                <div
+                    th:replace="fragments/components/nombre-document-page :: documentParPage(${resultForm}, 'historiqueActualites_haut')"
+                ></div>
+            </th:block>
+
+            <a
+                href="#skip_link_action-table_prev"
+                id="skip_link_action-table_next"
+                class="skip-link"
+                th:text="#{skip.link.table.prev(#{actualites.gestion.table.caption})}"
+            >
+                Aller après le tableau
+            </a>
+
+            <div class="table-action">
+                <div class="table-action__action-container"></div>
+
+                <th:block th:unless="${resultList.liste.size == resultList.nbTotal}">
+                    <div
+                        th:replace="fragments/table/pagination :: pagination (${resultForm}, ${resultForm.page}, 'historiqueActualites_haut', ${resultList.nbTotal})"
+                    ></div>
+                </th:block>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="custom-table custom-table--has-check">
+                    <caption class="sr-only" th:text="#{actualites.gestion.table.caption}">
+                        Historique des actualités
+                    </caption>
+                    <thead class="table-header custom-table__header">
+                        <tr class="table-header__line">
+                            <th:block th:each="colonne : ${lstColonnes}">
+                                <th:block th:if="${colonne.visible && colonne.sortable}">
+                                    <th scope="col" class="table-header__cell table-header__cell--with-filter-action">
+                                        <button
+                                            th:replace="fragments/table/sortableHeader :: sortableHeader (#{__${colonne.label}__},${colonne.sortValue},${colonne.sortName},${colonne.sortId},${colonne.inverseSort})"
+                                        ></button>
+                                    </th>
+                                </th:block>
+
+                                <th:block th:if="${colonne.visible && !colonne.sortable}">
+                                    <th scope="col" class="table-header__cell">
+                                        <span
+                                            th:if="${colonne.isLabelVisible}"
+                                            class="table-header__cell-inner"
+                                            th:text="${colonne.label !=null? #messages.msg(colonne.label) : ''}"
+                                        >
+                                            &nbsp;
+                                        </span>
+                                        <span
+                                            th:unless="${colonne.isLabelVisible}"
+                                            class="sr-only"
+                                            th:text="#{__${colonne.label}__}"
+                                        >
+                                            Label
+                                        </span>
+                                    </th>
+                                </th:block>
+                            </th:block>
+                        </tr>
+                    </thead>
+                    <tbody class="custom-table__body">
+                        <th:block th:unless="${#lists.isEmpty(resultList.liste)}">
+                            <tr class="table-line" th:each="item, nb : ${resultList.liste}" th:data-id="${item.id}">
+                                <td
+                                    class="table-line__cell"
+                                    th:text="${#calendars.format(item.dateEmission,'dd/MM/yyyy')}"
+                                >
+                                    Date émission
+                                </td>
+                                <td class="table-line__cell">
+                                    <a
+                                        th:href="@{|/historiqueActualites/consultation/${item.id}#main_content|}"
+                                        class="link"
+                                        th:text="${item.objet}"
+                                    >
+                                        Objet
+                                    </a>
+                                </td>
+                                <td class="table-line__cell">
+                                    <div
+                                        th:if="${not #lists.isEmpty(item.piecesJointes)}"
+                                        th:data-tippy-content="#{actualites.gestion.table.pieces.jointes}"
+                                        tabindex="0"
+                                        class="base-tooltip js-tooltip"
+                                    >
+                                        <span aria-hidden="true" class="table-line__icon icon icon--file"></span>
+                                        <span class="sr-only" th:text="#{actualites.gestion.table.pieces.jointes}"
+                                            >Pièces jointes</span
+                                        >
+                                    </div>
+                                </td>
+                            </tr>
+                        </th:block>
+                        <th:block th:if="${#lists.isEmpty(resultList.liste)}">
+                            <td colspan="5">[[#{label.actualites.nombre(0)}]]</td>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-action">
+                <div class="table-action__action-container"></div>
+                <th:block th:unless="${resultList.liste.size == resultList.nbTotal}">
+                    <div
+                        th:replace="fragments/table/pagination :: pagination (${resultForm}, ${resultForm.page}, 'historiqueActualites_bas', ${resultList.nbTotal})"
+                    ></div>
+                </th:block>
+            </div>
+
+            <a
+                href="#skip_link_action-table_next"
+                id="skip_link_action-table_prev"
+                class="skip-link"
+                th:text="#{skip.link.table.next(#{actualites.gestion.table.caption})}"
+            >
+                Aller avant le tableau
+            </a>
+        </div>
+    </body>
+</html>

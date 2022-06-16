@@ -1,0 +1,9 @@
+<component name="fr.dila.ss.ui.services.component.SSModeleFdrListUIComponent">
+
+	<implementation class="fr.dila.ss.ui.services.component.SSModeleFdrListUIComponent" />
+
+	<service>
+		<provide interface="fr.dila.ss.ui.services.SSModeleFdrListUIService" />
+	</service>
+
+</component>

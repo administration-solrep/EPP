@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.ui.services.actions.ProfileSelectionActionService">
+	<implementation class="fr.dila.st.ui.services.actions.component.ProfileSelectionActionComponent" />
+
+	<service>
+		<provide interface="fr.dila.st.ui.services.actions.ProfileSelectionActionService" />
+	</service>
+
+</component>

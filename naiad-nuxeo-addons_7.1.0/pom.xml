@@ -1,0 +1,311 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- ================================================== -->
+    <!-- Parent description -->
+    <!-- ================================================== -->
+    <parent>
+        <groupId>org.nuxeo</groupId>
+        <artifactId>nuxeo-addons-parent</artifactId>
+        <version>10.10</version>
+    </parent>
+
+    <!-- ================================================== -->
+    <!-- Project coordinates -->
+    <!-- ================================================== -->
+    <groupId>fr.sword.idl.naiad.nuxeo.addons</groupId>
+    <artifactId>naiad-nuxeo-parent</artifactId>
+    <version>7.1.0</version>
+    <packaging>pom</packaging>
+
+
+    <!-- ================================================== -->
+    <!-- More Project description -->
+    <!-- ================================================== -->
+    <name>naiad-nuxeo-parent</name>
+    <inceptionYear>2012</inceptionYear>
+    <url />
+
+    <description>
+		Projet NAIAD-NUXEO : Mutualisation de plugins NUXEO
+	</description>
+
+    <!-- ================================================== -->
+    <!-- Properties -->
+    <!-- ================================================== -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <javac.source>1.8</javac.source>
+        <javac.target>1.8</javac.target>
+        <naiad.nuxeo.addon.version>7.1.0</naiad.nuxeo.addon.version>
+    </properties>
+
+    <modules>
+        <module>naiad-nuxeo-commons</module>
+        <module>naiad-nuxeo-ufnxql</module>
+        <module>naiad-nuxeo-status</module>
+    </modules>
+
+    <!-- ================================================== -->
+    <!-- Dependency management -->
+    <!-- ================================================== -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>fr.sword.idl.naiad.nuxeo.addons</groupId>
+                <artifactId>naiad-nuxeo-commons-core</artifactId>
+                <version>${naiad.nuxeo.addon.version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>fr.sword.idl.naiad.nuxeo.addons</groupId>
+                <artifactId>naiad-nuxeo-commons-test</artifactId>
+                <version>${naiad.nuxeo.addon.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>fr.sword.idl.naiad.nuxeo.addons</groupId>
+                <artifactId>naiad-nuxeo-ufnxql-core</artifactId>
+                <version>${naiad.nuxeo.addon.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- ================================================== -->
+    <!-- Common dependencies -->
+    <!-- ================================================== -->
+    <dependencies>
+        <dependency>
+            <groupId>org.nuxeo.common</groupId>
+            <artifactId>nuxeo-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.nuxeo.runtime</groupId>
+            <artifactId>nuxeo-runtime</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.nuxeo.ecm.core</groupId>
+            <artifactId>nuxeo-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.nuxeo.ecm.core</groupId>
+            <artifactId>nuxeo-core-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.nuxeo.ecm.core</groupId>
+            <artifactId>nuxeo-core-query</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.nuxeo.ecm.core</groupId>
+            <artifactId>nuxeo-core-schema</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-rendering</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.core</groupId>
+            <artifactId>nuxeo-core-test</artifactId>
+            <version>${nuxeo.core.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-test</artifactId>
+            <version>${nuxeo.platform.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-features-test</artifactId>
+            <version>${nuxeo.features.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- ================================================== -->
+    <!-- Build specifications -->
+    <!-- ================================================== -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.3.2</version>
+                    <configuration>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <tagNameFormat>@{project.version}</tagNameFormat>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+
+        <plugins>
+
+            <!-- Set java compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${javac.source}</source>
+                    <target>${javac.target}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <!-- ================================================== -->
+    <!-- Organisation -->
+    <!-- ================================================== -->
+    <organization>
+        <name>SWORD - IDL</name>
+        <url>http://www.sword-group.com</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>fbs</id>
+            <name>Frédéric BARMES</name>
+            <email>frederic.barmes@sword-group.com</email>
+            <roles>
+                <role>architect</role>
+            </roles>
+        </developer>
+
+        <developer>
+            <id>spl</id>
+            <name>Sébastien PESNEL</name>
+            <email>sebastien.pesnel@sword-group.com</email>
+            <roles>
+                <role>technical leader</role>
+            </roles>
+        </developer>
+
+    </developers>
+
+  <distributionManagement>
+    <repository>
+      <id>releaseRepository</id>
+      <name>releaseRepository</name>
+      <url>${repository.release.url}</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshotRepository</id>
+      <name>snapshotRepository</name>
+      <url>${repository.snapshot.url}</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+    <profiles>
+        <profile>
+          <id>sonar</id>
+          <properties>
+            <failIfNoTests>false</failIfNoTests>
+            <maven.test.failure.ignore>true</maven.test.failure.ignore>
+            <coverage.jacoco.outputDirectory>${project.build.directory}/jacoco</coverage.jacoco.outputDirectory>
+            <sonar.coverage.jacoco.xmlReportPaths>${coverage.jacoco.outputDirectory}/report/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+            <!-- Jacoco -->
+            <itCoverageAgent></itCoverageAgent>
+          </properties>
+          <build>
+            <plugins>
+                <plugin>
+                  <groupId>org.sonarsource.scanner.maven</groupId>
+                  <artifactId>sonar-maven-plugin</artifactId>
+                </plugin>
+              <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+                <executions>
+                  <execution>
+                    <id>pre-unit-test</id>
+                    <goals>
+                      <goal>prepare-agent</goal>
+                    </goals>
+                    <configuration>
+                        <destFile>${coverage.jacoco.outputDirectory}/jacoco-ut.exec</destFile>
+                        <propertyName>surefireArgLine</propertyName>
+                    </configuration>
+                  </execution>
+                  <execution>
+                    <id>pre-integration-test</id>
+                    <phase>pre-integration-test</phase>
+                    <goals>
+                      <goal>prepare-agent</goal>
+                    </goals>
+                    <configuration>
+                      <!-- Sets the name of the property containing the settings for JaCoCo
+                        runtime agent. -->
+                        <destFile>${coverage.jacoco.outputDirectory}/jacoco-it.exec</destFile>
+                      <propertyName>itCoverageAgent</propertyName>
+                    </configuration>
+                  </execution>
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <dataFile>${coverage.jacoco.outputDirectory}/jacoco-ut.exec</dataFile>
+                            <outputDirectory>${coverage.jacoco.outputDirectory}/report</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+              </plugin>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                  <argLine>${surefireArgLine} -Xmx2G -XX:MaxPermSize=1024m -noverify  -Dfile.encoding=UTF-8</argLine>
+                </configuration>
+              </plugin>
+            </plugins>
+          </build>
+        </profile>
+    </profiles>
+
+</project>

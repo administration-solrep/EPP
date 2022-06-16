@@ -1,0 +1,8 @@
+<component name="fr.sword.idl.naiad.feuilleroute.core.test.operations" version="1.0">
+
+  <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" point="operations">
+    <operation class="fr.sword.idl.naiad.nuxeo.feuilleroute.core.operation.StepRunningOperation" />
+    <operation class="fr.sword.idl.naiad.nuxeo.feuilleroute.core.operation.StepUndoOperation" />
+  </extension>
+
+</component>

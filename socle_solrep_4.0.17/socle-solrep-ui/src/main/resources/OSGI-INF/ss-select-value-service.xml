@@ -1,0 +1,7 @@
+<component name="fr.dila.ss.ui.services.component.SSSelectValueUIComponent">
+	<implementation class="fr.dila.ss.ui.services.component.SSSelectValueUIComponent" />
+
+	<service>
+		<provide interface="fr.dila.ss.ui.services.SSSelectValueUIService" />
+	</service>
+</component>

@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://dila.fr/solon/schemas/etat_application"
+    xmlns:eta="http://dila.fr/solon/schemas/etat_application"
+>
+
+	<!-- restriction de l'accès aux admin -->
+	<xs:element name="restriction_acces" type="xs:boolean" default="false" />
+
+	<xs:element name="restriction_acces_technique" type="xs:boolean" default="false" />
+
+	<xs:element name="description_restriction" type="xs:string" />
+ 
+ 
+	<!-- Affichage ou non d'un message sur la page d'accueil -->
+	<xs:element name="affichage" type="xs:boolean" default="false" />
+			
+    <xs:simpleType name="clob">
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="999999999" />
+      </xs:restriction>
+    </xs:simpleType>
+	<xs:element name="message" type="eta:clob" />
+ 
+</xs:schema>

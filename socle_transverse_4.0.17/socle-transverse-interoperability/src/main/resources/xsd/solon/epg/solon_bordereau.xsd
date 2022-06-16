@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Mr Viruega (JOURNAUX 
+	OFFICIELS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon_bordereau"
+	xmlns:ac="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon_bordereau"
+	elementFormDefault="qualified">
+
+	<xs:import schemaLocation="actes.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes" />
+
+
+	<!-- ====================== -->
+	<!-- Dossier -->
+	<!-- ====================== -->
+	<xs:element name="BORDEREAU">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element name="amnistie" type="ac:Amnistie"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="arrete_ministeriel" type="ac:ArreteMinisteriel"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="arrete_interministeriel" type="ac:ArreteInterministeriel"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="arrete_pm" type="ac:ArretePM"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="arrete_pr" type="ac:ArretePR"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="arrete_ce" type="ac:ArreteCE"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="avenant" type="ac:Avenant" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="avis" type="ac:Avis" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="circulaire" type="ac:Circulaire"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="citation" type="ac:Citation"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="communique" type="ac:Communique"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="convention" type="ac:Convention"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decision" type="ac:Decision"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_ce" type="ac:DecretCE"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_ce_art_37" type="ac:DecretCEart37"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_ce_cm" type="ac:DecretCECM"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_cm" type="ac:DecretCM"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_pr" type="ac:DecretPR"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_publication_traite_ou_accord"
+						type="ac:DecretPublicationDeTraiteOuAccord" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="decret_simple" type="ac:DecretSimple"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_pr_ce" type="ac:DecretPRCE"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="deliberation" type="ac:Deliberation"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="demande_avis_ce" type="ac:DemandeAvisCE"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="divers" type="ac:Divers" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="exequatur" type="ac:Exequatur"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="instruction" type="ac:Instruction"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="liste" type="ac:Liste" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="loi" type="ac:Loi" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="loi_art_53_constitution" type="ac:LoiArt53Constitution"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="loi_constitutionnelle" type="ac:LoiConstitutionnelle"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="loi_organique" type="ac:LoiOrganique"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="note" type="ac:Note" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="ordonnance" type="ac:Ordonnance"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="rapport" type="ac:Rapport" minOccurs="1"
+						maxOccurs="1" />
+					<!-- xs:element name="rapport_au_parlement" type="ac:RapportAuParlement" 
+						minOccurs="1" maxOccurs="1" -->
+					<xs:element name="rectificatif" type="ac:Rectificatif"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="tableau" type="ac:Tableau" minOccurs="1"
+						maxOccurs="1" />
+					<xs:element name="arrete_ministeriel_ind" type="ac:ArreteMinisterielIndividuel"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="arrete_interministeriel_ind" type="ac:ArreteInterministerielIndividuel"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="arrete_pm_ind" type="ac:ArretePMIndividuel"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="arrete_pr_ind" type="ac:ArretePRIndividuel"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_ce_ind" type="ac:DecretCEIndividuel"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_ce_cm_ind" type="ac:DecretCECMIndividuel"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_cm_ind" type="ac:DecretCMIndividuel"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_pr_ind" type="ac:DecretPRIndividuel"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="decret_simple_ind" type="ac:DecretSimpleIndividuel"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="informations_parlementaires" type="ac:InformationsParlementaires"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="accord_collectif" type="ac:AccordCollectif"
+						minOccurs="1" maxOccurs="1" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

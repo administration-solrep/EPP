@@ -1,0 +1,8 @@
+username,password,firstName,lastName,company,email,deleted,employeeType
+"Administrator","Administrator",__NULL__,"","blabla","devnull@nuxeo.com",__NULL__,"plop"
+"user_1","pass_1","f","l","__NULL__","e@m","TRUE","pouet"
+"user_3","{SSHA}yxHMXSzRujkYZ7bX+BdHUXORDM+QPxr4I7z2gA==","f3","l3","__NULL__","e3@m","FALSE","toto"
+"user","pass","userf","userl","__NULL__","user@m","FALSE",""
+"user1","pass1","user1f","user1l","__NULL__","user1@m","FALSE",""
+"user2","pass2","user2f","user2l","__NULL__","user2@m","FALSE",""
+"user3","pass3","user3f","user3l","__NULL__","user3@m","FALSE",""

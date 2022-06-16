@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="organigramme-node-suppression"
+            id="modal-node-suppression"
+            class="interstitial-overlay__content"
+        >
+            <div
+                class="interstitial"
+                role="dialog"
+                aria-labelledby="dialogTitle-suppression"
+                style="position: relative;"
+            >
+                <div class="interstitial__header">
+                    <h1
+                        id="dialogTitle-suppression"
+                        class="interstitial__title"
+                        th:text="#{organigramme.manage.delete.node}"
+                    >
+                        Suppression d'un noeud
+                    </h1>
+                    <button
+                        type="button"
+                        class="interstitial__close base-btn base-btn--button base-btn--default base-btn--discret"
+                    >
+                        <span aria-hidden="true" class="icon icon--cross"></span
+                        ><span class="sr-only" th:text="#{validation.popup.close.label}"
+                            >Fermer la fenêtre de dialogue</span
+                        >
+                    </button>
+                </div>
+                <div class="interstitial__content">
+                    <div id="overlay_node-suppression" class="overlay" aria-live="polite">
+                        <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+                    </div>
+                    <p
+                        class="base-paragraph"
+                        id="remove-node-confirmation"
+                        th:text="#{label.organigrammeManager.confirmDelete}"
+                    />
+                    <p class="base-paragraph" id="download-excel-message" style="display: none;">
+                        <span th:text="#{label.organigrammeManager.downloadExcel}"></span>
+                        <button
+                            type="button"
+                            th:data-controls="@{/admin/organigramme/download}"
+                            onclick="downloadExcel(this)"
+                            id="download-excel-link"
+                        ></button>
+                    </p>
+                </div>
+                <div class="interstitial__footer">
+                    <button
+                        type="button"
+                        onclick="resetDeleteModal()"
+                        class="interstitial__button base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                    >
+                        [[#{button.label.cancel}]]
+                    </button>
+                    <button
+                        type="button"
+                        onclick="deleteNode()"
+                        id="btn-confirm-deletion"
+                        class="base-btn base-btn--button base-btn--default base-btn--center"
+                    >
+                        [[#{button.label.supprimer}]]
+                    </button>
+                </div>
+            </div>
+            <div tabindex="-1" class="interstitial-overlay__tabindex"></div>
+        </div>
+    </body>
+</html>

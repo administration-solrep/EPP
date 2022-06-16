@@ -1,0 +1,7 @@
+<component name="fr.sword.idl.naiad.feuilleroute.persister.contrib" version="1.0">
+
+  <extension target="fr.sword.idl.naiad.feuilleroute.service" point="persister">
+    <persister class="fr.sword.idl.naiad.nuxeo.feuilleroute.core.service.FeuilleRouteTreePersister" />
+  </extension>
+
+</component>

@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.services.component.SSUserManagerUIComponent">
+    <require>fr.dila.st.ui.services.component.STUserManagerUIComponent</require>
+
+    <implementation class="fr.dila.ss.ui.services.component.SSUserManagerUIComponent" />
+
+    <service>
+        <provide interface="fr.dila.st.ui.services.STUserManagerUIService" />
+    </service>
+
+</component>

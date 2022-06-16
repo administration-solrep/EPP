@@ -1,0 +1,10 @@
+<component name="fr.dila.epp.ui.EppCorbeilleMenuService">
+
+  <implementation class="fr.dila.epp.ui.services.impl.EppCorbeilleMenuServiceImpl" />
+  
+  <service>
+    <provide interface="fr.dila.epp.ui.services.EppCorbeilleMenuService" />
+  </service>
+  
+
+</component>

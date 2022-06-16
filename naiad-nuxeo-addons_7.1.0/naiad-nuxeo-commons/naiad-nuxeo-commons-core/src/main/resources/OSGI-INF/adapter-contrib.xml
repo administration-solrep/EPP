@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<component name="fr.sword.naiad.nuxeo.commons.core.adapter.contrib">
+
+  <extension target="org.nuxeo.ecm.core.api.DocumentAdapterService"
+    point="adapters">
+
+    <adapter class="fr.sword.naiad.nuxeo.commons.core.adapter.UserAdapter"
+      factory="fr.sword.naiad.nuxeo.commons.core.adapter.factory.UserAdapterFactory" />
+
+  </extension>
+
+</component>

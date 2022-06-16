@@ -1,0 +1,130 @@
+<!--
+(C) Copyright 2015 Nuxeo SA (http://nuxeo.com/) and contributors.
+
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the GNU Lesser General Public License
+(LGPL) version 2.1 which accompanies this distribution, and is available at
+http://www.gnu.org/licenses/lgpl.html
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser General Public License for more details.
+
+Contributors:
+  André Justo <ajusto@nuxeo.com>
+-->
+<dom-module id="nx-parallel-workflow-dashboard">
+
+  <link rel="import" type="css" href="nx-workflow-dashboard.css">
+
+  <template>
+
+    <nuxeo-workflow-data workflow="ParallelDocumentReview"
+                         event="afterWorkflowFinish"
+                         metrics="avg(timeSinceWfStarted)"
+                         start-date="[[startDate]]" end-date="[[endDate]]"
+                         data="{{avgWorkflowLength}}">
+    </nuxeo-workflow-data>
+
+    <paper-card heading="Average Workflow Duration" elevation="2">
+      <div class="card-content">
+        <iron-icon icon="image:timer"></iron-icon>
+        <span class="workflow-length-label">[[_asDuration(avgWorkflowLength)]]</span>
+      </div>
+    </paper-card>
+
+    <nuxeo-workflow-data workflow="ParallelDocumentReview"
+                         event="afterWorkflowStarted"
+                         grouped-by="workflowInitiator"
+                         start-date="[[startDate]]" end-date="[[endDate]]"
+                         data="{{initiators}}">
+    </nuxeo-workflow-data>
+
+    <paper-card heading="Workflow Initiators" elevation="2">
+      <div class="card-content">
+        <chart-pie values=[[_values(initiators)]]
+                   series=[[_series(initiators)]]
+                   options='{"responsive": true}'>
+        </chart-pie>
+      </div>
+    </paper-card>
+
+    <nuxeo-workflow-data workflow="ParallelDocumentReview"
+                         event="afterWorkflowTaskEnded"
+                         task="wf.parallelDocumentReview.give_opinion.title"
+                         grouped-by="taskActor, action"
+                         start-date="[[startDate]]" end-date="[[endDate]]"
+                         data="{{numberOfActionsPerUser}}">
+    </nuxeo-workflow-data>
+
+    <paper-card heading="Actions Per User" elevation="2">
+      <div class="card-content">
+        <chart-bar labels=[[_labels(numberOfActionsPerUser)]]
+                   series=[[_series(numberOfActionsPerUser)]]
+                   values=[[_values(numberOfActionsPerUser)]]
+                   options='{"responsive": true}'>
+        </chart-bar>
+      </div>
+    </paper-card>
+
+    <nuxeo-workflow-data workflow="ParallelDocumentReview"
+                         task="wf.parallelDocumentReview.give_opinion.title"
+                         grouped-by="taskActor"
+                         metrics="avg(timeSinceTaskStarted)"
+                         start-date="[[startDate]]" end-date="[[endDate]]"
+                         data="{{avgTaskDurationPerUser}}">
+    </nuxeo-workflow-data>
+
+    <paper-card heading="Average Task Duration Per User" elevation="2">
+      <div class="card-content">
+        <nuxeo-data-table columns='[{"key": "key", "title": "User"}, {"key": "value", "title": "Average duration"}]'
+                          data="[[_table(avgTaskDurationPerUser)]]">
+        </nuxeo-data-table>
+      </div>
+    </paper-card>
+
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'nx-parallel-workflow-dashboard',
+    behaviors: [Nuxeo.DataDrivenBehavior],
+    properties: {
+      startDate: String,
+      endDate: String
+    },
+    _table: function(data) {
+      return data.map(function (e) {
+        return {key: e.key, value: this._asDuration(e.value)};
+      }.bind(this));
+    },
+    _asDuration: function (duration) {
+      var seconds = Math.floor(duration/1000),
+          minutes = Math.floor(seconds/60),
+          hours = Math.floor(minutes/60),
+          days = Math.floor(hours/24),
+          hours = hours-(days*24),
+          minutes = minutes-(days*24*60)-(hours*60),
+          seconds = seconds-(days*24*60*60)-(hours*60*60)-(minutes*60),
+          result = "";
+      if (days > 0) {
+        result += days + " Days ";
+      }
+      if (hours > 0) {
+        result += hours + " h ";
+      }
+      if (minutes > 0) {
+        result += minutes + " m ";
+      }
+      if (seconds > 0) {
+        result += seconds + " s ";
+      }
+      return result;
+    }
+  });
+
+</script>

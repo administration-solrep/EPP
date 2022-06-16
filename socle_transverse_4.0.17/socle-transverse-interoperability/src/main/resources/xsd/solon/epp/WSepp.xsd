@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp"
+	xmlns:eppco="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:epptdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:evt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	elementFormDefault="qualified">
+
+
+	<xs:import schemaLocation="../../commons/commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons" />
+	<xs:import schemaLocation="epp-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons" />
+	<xs:import schemaLocation="epp-tableReference.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref" />
+	<xs:import schemaLocation="epp-evt.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt" />
+
+	<!-- chercherCorbeille -->
+	<xs:element name="chercherCorbeilleRequest">
+		<xs:annotation>
+			<xs:documentation>
+				ChercherCorbeilleRequest : demande la liste des corbeilles de l'institution de l'utilisateur
+				connecte
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="chercherCorbeilleResponse">
+		<xs:annotation>
+			<xs:documentation>
+				Renvoie la liste des corbeilles, organisé en section
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:sequence>
+						<xs:element name="section" type="eppco:Section"
+							minOccurs="0" maxOccurs="unbounded"></xs:element>
+						<xs:element name="corbeille" type="eppco:Corbeille"
+							minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- chercherDossier -->
+	<xs:element name="chercherDossierRequest">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id_dossier" type="eppco:IdDossier"
+					minOccurs="1" maxOccurs="unbounded"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="chercherDossierResponse">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="dossier" type="eppco:Dossier"
+						minOccurs="1" maxOccurs="unbounded"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- notifierTransition -->
+	<xs:element name="notifierTransitionRequest">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<!-- <xs:element name="id_message" type="eppco:IdMessage" minOccurs="1" 
+					maxOccurs="1"/> -->
+				<xs:element name="id_evenement" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="etat" type="evt:EtatMessage" minOccurs="1"
+					maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="notifierTransitionResponse">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<!-- <xs:element name="id_message" type="eppco:IdMessage" minOccurs="1" 
+					maxOccurs="1" /> -->
+				<xs:element name="id_evenement" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="message_erreur" type="xs:string"
+					minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- notifierVerrou -->
+	<xs:element name="notifierVerrouRequest">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<!-- <xs:element name="id_message" type="eppco:IdMessage" minOccurs="1" 
+					maxOccurs="1"/> -->
+				<xs:element name="id_evenement" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="action_verrou" type="eppco:EtatVerrou"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute name="forcer_verrou" type="xs:boolean"
+				default="false" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="notifierVerrouResponse">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<!-- <xs:element name="id_message" type="eppco:IdMessage" minOccurs="1" 
+					maxOccurs="1" /> -->
+				<xs:element name="id_evenement" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="message_erreur" type="xs:string"
+					minOccurs="0" maxOccurs="1" />
+				<xs:element name="utilisateur" type="xs:string"
+					minOccurs="1" maxOccurs="1"></xs:element>
+				<!-- renvoie utilisateur qui possède le verrou -->
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+
+	<!-- chercherTableDeReference -->
+	<xs:element name="chercherTableDeReferenceRequest">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="type_objet" type="epptdref:ObjetType"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:element name="id_objet" type="xs:string" minOccurs="1"
+						maxOccurs="unbounded" />
+					<xs:element name="actifs_uniquement" type="xs:boolean"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="parent_id" type="xs:string" minOccurs="0"
+						maxOccurs="1" />
+				</xs:choice>
+			</xs:sequence>
+
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="chercherTableDeReferenceResponse">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="objet_container" type="epptdref:ObjetContainer"
+						minOccurs="1" maxOccurs="1" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- chercherIdentite -->
+	<xs:element name="chercherIdentiteRequest">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="descriptif_requete" minOccurs="1"
+					maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="nom" type="xs:string" minOccurs="1"
+								maxOccurs="1" />
+							<xs:element name="prenom" type="xs:string" minOccurs="1"
+								maxOccurs="1" />
+							<xs:element name="date_naissance" type="xs:date"
+								minOccurs="1" maxOccurs="1" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="chercherIdentiteResponse">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="descriptif_resultat" minOccurs="1"
+						maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="identites" type="epptdref:Identite"
+									minOccurs="0" maxOccurs="unbounded" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- chercherMandatParNOR -->
+	<xs:element name="chercherMandatParNORRequest">
+		<xs:annotation>
+			<xs:documentation>
+				ChercherMandatParNORRequest : demande la liste des mandats associés à un nor spécifié
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="nor" type="xs:string" minOccurs="1"
+					maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="chercherMandatParNORResponse">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="objet_container" type="epptdref:ObjetContainer"
+						minOccurs="1" maxOccurs="1" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="majTableRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Traitement transactionnel sur l'ensemble des objets en entree
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="action" type="epptdref:ActionObjetReference"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="objet_container" type="epptdref:ObjetContainer"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="majTableResponse">
+		<xs:annotation>
+			<xs:documentation>
+				Traitement transactionnel sur l'ensemble des objets en entree
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="objet_container" type="epptdref:ObjetContainer"
+						minOccurs="1" maxOccurs="1" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="hasCommunicationNonTraiteesRequest">
+		<xs:annotation>
+			<xs:documentation>
+				requête récupération d'info de présence de communication non traités dans
+				les corbeilles
+				id_corbeille est facultatif, et dans ce cas là, le retour contient toutes les
+				corbeilles
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id_corbeilles" type="xs:string"
+					minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="hasCommunicationNonTraiteesResponse">
+		<xs:annotation>
+			<xs:documentation>
+				réponse d'info de présence de communication non traitées dans les
+				corbeilles
+				l
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="corbeille_infos" minOccurs="1"
+						maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="id_corbeille" type="xs:string"
+									minOccurs="1" maxOccurs="1" />
+								<xs:element name="has_non_traitees" type="xs:boolean"
+									minOccurs="1" maxOccurs="1" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- transmissionDatePublicationJO -->
+	<xs:element name="transmissionDatePublicationJORequest">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id_dossier" type="eppco:IdDossier"
+					minOccurs="1" maxOccurs="1"></xs:element>
+				<xs:element name="date_publication" type="xs:date"
+					minOccurs="1" maxOccurs="1"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="transmissionDatePublicationJOResponse">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="message_erreur" type="xs:string"
+						minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+</xs:schema>

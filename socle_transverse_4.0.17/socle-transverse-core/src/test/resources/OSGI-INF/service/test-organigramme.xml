@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service d'organigramme de Réponses. -->
+<component name="fr.dila.st.core.service.OrganigrammeService">
+
+	<service>
+		<provide interface="fr.dila.st.api.service.organigramme.OrganigrammeService" />
+	</service>
+	
+	<require>org.nuxeo.ecm.core.persistence.PersistenceComponent</require>
+
+	<extension target="org.nuxeo.ecm.core.persistence.PersistenceComponent" point="hibernate">
+		<hibernateConfiguration name="organigramme-provider">
+			<datasource>organigramme-provider</datasource>
+			<classes>
+				<class>fr.dila.st.core.organigramme.OrganigrammeNodeImpl</class>
+				<class>fr.dila.st.core.organigramme.EntiteNodeImpl</class>
+				<class>fr.dila.st.core.organigramme.GouvernementNodeImpl</class>
+				<class>fr.dila.st.core.organigramme.UniteStructurelleNodeImpl</class>
+				<class>fr.dila.st.core.organigramme.PosteNodeImpl</class>
+			</classes>
+		</hibernateConfiguration>
+	</extension>
+</component>

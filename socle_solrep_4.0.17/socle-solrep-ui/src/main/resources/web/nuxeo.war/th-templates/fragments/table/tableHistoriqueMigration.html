@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="historiqueMigrations(tableCaption)" class="tableForm" id="historique-list">
+            <a href="#skip_link_action-table_prev" id="skip_link_action-table_next" class="skip-link"
+                >[[#{skip.link.table.prev(${tableCaption})}]]</a
+            >
+            <div class="action-table table-wrapper">
+                <table class="page-migration-history__table-history custom-table">
+                    <caption class="sr-only" th:text="${tableCaption}">
+                        Tableau des migrations
+                    </caption>
+                    <thead class="table-header custom-table__header">
+                        <tr class="table-header__line">
+                            <th scope="col" class="table-header__cell" th:text="#{historique.migration}">
+                                Migration
+                            </th>
+                            <th scope="col" class="table-header__cell" th:text="#{historique.etat}">
+                                Etat
+                            </th>
+                            <th scope="col" class="table-header__cell" th:text="#{historique.element.fils}">
+                                Eléments fils
+                            </th>
+                            <th scope="col" class="table-header__cell" th:text="#{historique.modele.fdr}">
+                                Modèle de FdR
+                            </th>
+                            <th th:replace="fragments/components/migration/historique-header :: historiqueHeader"></th>
+                            <th scope="col" class="table-header__cell" th:text="#{historique.poste.createur}">
+                                Poste créateur
+                            </th>
+                            <th scope="col" class="table-header__cell" th:text="#{historique.date.debut}">
+                                Date de début
+                            </th>
+                            <th scope="col" class="table-header__cell" th:text="#{historique.date.fin}">
+                                Date de fin
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="custom-table__body">
+                        <tr class="table-line" th:each="migration : ${migrations}">
+                            <td class="table-line__cell">
+                                <a
+                                    th:href="@{|/admin/historique/consulter?id=${migration.id}#main_content|}"
+                                    class="link"
+                                    th:text="${migration.label}"
+                                    >Migration du Poste Agents BDC (Economie) vers Poste Agents Autorité de la
+                                    concurrence
+                                </a>
+                            </td>
+                            <td class="table-line__cell">
+                                <th:block th:if="${migration.status != null}">
+                                    <div
+                                        th:data-tippy-content="#{${migration.status.labelKey}}"
+                                        tabindex="0"
+                                        class="base-tooltip js-tooltip"
+                                        th:classappend="${migration.status.key == 'EN_COURS' ? 'historique-running' : ''}"
+                                    >
+                                        <span class="sr-only" th:text="#{${migration.status.labelKey}}"
+                                            >Migration en cours</span
+                                        ><span aria-hidden="true" th:class="${migration.status.icon}"></span>
+                                    </div>
+                                </th:block>
+                            </td>
+                            <td class="table-line__cell" th:text="${migration.elementFils}">
+                                11/15
+                            </td>
+                            <td class="table-line__cell" th:text="${migration.modeleFdr}">
+                                11/15
+                            </td>
+                            <td th:replace="fragments/components/migration/historique-line :: historiqueLine"></td>
+                            <td class="table-line__cell" th:text="${migration.posteCreateur}">
+                                11/15
+                            </td>
+                            <td
+                                class="table-line__cell"
+                                th:text="${#calendars.format(migration.dateDebut,'dd/MM/yyyy HH:mm')}"
+                            >
+                                28/09/2020 14:08
+                            </td>
+                            <td
+                                class="table-line__cell"
+                                th:text="${#calendars.format(migration.dateFin,'dd/MM/yyyy HH:mm')}"
+                            >
+                                10/10/2020 17:30
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a href="#skip_link_action-table_next" id="skip_link_action-table_prev" class="skip-link"
+                >[[#{skip.link.table.next(${tableCaption})}]]</a
+            >
+        </div>
+    </body>
+</html>

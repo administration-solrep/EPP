@@ -1,0 +1,124 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Consulter un paramètre', title=${parametre.titre})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <form id="parametre_form" th:object="${parametreForm}">
+            <input
+                type="hidden"
+                id="urlPreviousPage"
+                name="urlPreviousPage"
+                th:value="@{|${urlPreviousPage}#main_content|}"
+            />
+            <input type="hidden" id="id" name="id" th:value="${parametre.id}" />
+
+            <div class="flex justify-between m-t-6 m-b-6">
+                <button
+                    type="button"
+                    onclick="goPreviousPage()"
+                    class="m-r-3 base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                >
+                    [[#{admin.user.button.cancel}]]
+                </button>
+                <input
+                    type="button"
+                    th:onclick="|updateFormSubmit('parametre_form', '__${editUrl}__')|"
+                    th:value="#{label.casemanagement.save}"
+                    class="base-btn base-btn--button base-btn--default"
+                />
+            </div>
+
+            <h1
+                class="m-t-6 m-b-6 p-b-3 base-title base-title--lvl-1 base-title--is-underlined"
+                th:text="${parametre.titre}"
+            >
+                Modifier un paramètre
+            </h1>
+
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label aria-disabled="false" for="parametre_valeur" class="form-label">
+                                    <span th:text="#{label.parametre.valeur}">Valeur</span>
+                                    <span class="form-label__required-text" th:text="#{form.input.required}"
+                                        >(requis)</span
+                                    >
+                                </label>
+                                <div class="form-input__icon-group"></div>
+                            </div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="valeur"
+                                id="parametre_valeur"
+                                class="form-input__field form-input__field--type-text"
+                                data-validation="required"
+                                th:value="${parametre.valeur}"
+                                autofocus
+                            />
+                        </div>
+                        <div class="form-input__footer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input form-input--disabled">
+                        <label aria-disabled="false" for="parametre_unite" class="form-label form-label--disabled">
+                            <span th:text="#{label.parametre.unite}">Unité</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="parametre_unite"
+                            class="form-input__field form-input__field--type-text"
+                            th:value="${parametre.unite}"
+                            readonly
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div class="form-input form-input--disabled">
+                        <label
+                            aria-disabled="false"
+                            for="parametre_description"
+                            class="form-label form-label--disabled"
+                        >
+                            <span th:text="#{label.parametre.description}">Description</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="parametre_description"
+                            class="form-input__field form-input__field--type-text"
+                            th:value="${parametre.description}"
+                            readonly
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between m-t-6 m-b-6">
+                <button
+                    type="button"
+                    onClick="goPreviousPage()"
+                    class="m-r-3 base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                >
+                    [[#{admin.user.button.cancel}]]
+                </button>
+                <input
+                    type="button"
+                    th:onclick="|updateFormSubmit('parametre_form', '__${editUrl}__')|"
+                    th:value="#{label.casemanagement.save}"
+                    class="base-btn base-btn--button base-btn--default"
+                />
+            </div>
+        </form>
+    </main>
+</html>

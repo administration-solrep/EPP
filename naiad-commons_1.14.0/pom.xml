@@ -1,0 +1,301 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- ================================================== -->
+  <!-- Project coordinates -->
+  <!-- ================================================== -->
+  <groupId>fr.sword.idl.naiad.commons</groupId>
+  <artifactId>naiad-commons-parent</artifactId>
+  <version>1.14.0</version>
+  <packaging>pom</packaging>
+
+
+  <!-- ================================================== -->
+  <!-- More Project description -->
+  <!-- ================================================== -->
+  <name>naiad-commons-parent</name>
+  <inceptionYear>2012</inceptionYear>
+  <url />
+
+  <description>
+		Naiad Commons
+	</description>
+
+  <!-- ================================================== -->
+  <!-- Properties -->
+  <!-- ================================================== -->
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <javac.source>1.8</javac.source>
+    <javac.target>1.8</javac.target>
+
+    <junit.version>4.8.2</junit.version>
+    <log4j.version>1.2.16</log4j.version>
+    <slf4j.version>1.5.6</slf4j.version>
+
+    <jaxrs.version>1.1.1</jaxrs.version>
+    <jaxb.version>2.2.11</jaxb.version>
+    
+    <apache.commons-codec.version>1.8</apache.commons-codec.version>
+    <apache.commons-io.version>2.4</apache.commons-io.version>
+  </properties>
+
+
+  <!-- ================================================== -->
+  <!-- Modules -->
+  <!-- ================================================== -->
+  <modules>
+    <module>naiad-commons-core</module>
+    <module>naiad-commons-xml</module>  
+    <module>naiad-commons-net</module>
+  </modules>
+
+  <!-- ================================================== -->
+  <!-- Dependency management -->
+  <!-- ================================================== -->
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- project dependencies -->
+      <dependency>
+        <groupId>fr.sword.idl.naiad.commons</groupId>
+        <artifactId>naiad-commons-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>fr.sword.idl.naiad.commons</groupId>
+        <artifactId>naiad-commons-xml</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>fr.sword.idl.naiad.commons</groupId>
+        <artifactId>naiad-commons-net</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+
+      <!-- Junit -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+      </dependency>
+
+      <!-- Logging -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.6.4</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>1.6.4</version>
+      </dependency>
+
+      <!-- Apache commons  -->
+      <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>${apache.commons-codec.version}</version>
+      </dependency>
+
+
+      <dependency>
+      	<groupId>commons-io</groupId>
+      	<artifactId>commons-io</artifactId>
+      	<version>${apache.commons-io.version}</version>
+      </dependency>
+            
+	
+
+      <!-- Jaxb / Jax RS -->
+      <dependency>
+        <groupId>javax.ws.rs</groupId>
+        <artifactId>jsr311-api</artifactId>
+        <version>${jaxrs.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-impl</artifactId>
+        <version>${jaxb.version}</version>
+      </dependency>
+
+
+    </dependencies>
+  </dependencyManagement>
+
+  <!-- ================================================== -->
+  <!-- Common dependencies -->
+  <!-- ================================================== -->
+  <dependencies>
+
+  </dependencies>
+
+  <!-- ================================================== -->
+  <!-- Build specifications -->
+  <!-- ================================================== -->
+  <build>
+    <pluginManagement>
+     <plugins>
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-release-plugin</artifactId>
+         <version>2.3.2</version>
+         <configuration>
+           <autoVersionSubmodules>true</autoVersionSubmodules>
+           <tagNameFormat>@{project.version}</tagNameFormat>
+         </configuration>
+       </plugin>
+      </plugins>
+    </pluginManagement>
+
+
+    <plugins>
+      <!-- Set java compiler -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>${javac.source}</source>
+          <target>${javac.target}</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>sonar</id>
+      <properties>
+        <failIfNoTests>false</failIfNoTests>
+        <maven.test.failure.ignore>true</maven.test.failure.ignore>
+        <coverage.jacoco.outputDirectory>${project.build.directory}/jacoco</coverage.jacoco.outputDirectory>
+        <sonar.coverage.jacoco.xmlReportPaths>${coverage.jacoco.outputDirectory}/report/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <!-- Jacoco -->
+        <itCoverageAgent></itCoverageAgent>
+      </properties>
+      <build>
+        <plugins>
+            <plugin>
+              <groupId>org.sonarsource.scanner.maven</groupId>
+              <artifactId>sonar-maven-plugin</artifactId>
+            </plugin>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.5</version>
+            <executions>
+              <execution>
+                <id>pre-unit-test</id>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+                <configuration>
+                    <destFile>${coverage.jacoco.outputDirectory}/jacoco-ut.exec</destFile>
+                    <propertyName>surefireArgLine</propertyName>
+                </configuration>
+              </execution>
+              <execution>
+                <id>pre-integration-test</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+                <configuration>
+                  <!-- Sets the name of the property containing the settings for JaCoCo
+                    runtime agent. -->
+                    <destFile>${coverage.jacoco.outputDirectory}/jacoco-it.exec</destFile>
+                  <propertyName>itCoverageAgent</propertyName>
+                </configuration>
+              </execution>
+                <execution>
+                    <id>post-unit-test</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                    <configuration>
+                        <dataFile>${coverage.jacoco.outputDirectory}/jacoco-ut.exec</dataFile>
+                        <outputDirectory>${coverage.jacoco.outputDirectory}/report</outputDirectory>
+                    </configuration>
+                </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <argLine>${surefireArgLine} -Xmx2G -XX:MaxPermSize=1024m -noverify  -Dfile.encoding=UTF-8</argLine>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+  
+  <!-- ================================================== -->
+  <!-- Organisation -->
+  <!-- ================================================== -->
+  <organization>
+    <name>SWORD - IDL</name>
+    <url>http://www.sword-group.com</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <id>fbs</id>
+      <name>Frédéric BARMES</name>
+      <email>frederic.barmes@sword-group.com</email>
+      <roles>
+        <role>architect</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <distributionManagement>
+    <repository>
+      <id>releaseRepository</id>
+      <name>releaseRepository</name>
+      <url>${repository.release.url}</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshotRepository</id>
+      <name>snapshotRepository</name>
+      <url>${repository.snapshot.url}</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+</project>

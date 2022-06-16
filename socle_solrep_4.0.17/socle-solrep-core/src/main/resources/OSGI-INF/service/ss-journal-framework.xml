@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service journal du socle transverse. Le service 
+	de journal permet d'effectuer des requêtes sur le journal d'audit. -->
+<component name="fr.dila.ss.core.service.SSJournalService">
+	<require>fr.dila.st.core.service.JournalService</require>
+	<implementation class="fr.dila.ss.core.component.SSJournalComponent" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.JournalService" />
+        <provide interface="fr.dila.ss.api.service.SSJournalService" />
+	</service>
+</component>

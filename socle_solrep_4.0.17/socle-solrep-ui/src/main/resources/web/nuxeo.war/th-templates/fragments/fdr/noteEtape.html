@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:remove="tag">
+    <body th:remove="tag">
+        <ul th:remove="tag">
+            <li th:fragment="noteEtape(note)" class="note-detail" th:id="${note.id}" th:parent-id="${note.parentId}">
+                <div class="note-detail-container">
+                    <span aria-hidden="true" class="note-detail__icon icon icon--note"></span>
+                    <div class="note-detail__content">
+                        <div class="note-detail__title">
+                            <strong th:text="${note.auteur}">Auteur</strong>
+                            <i th:text="${#dates.format(note.date, 'dd/MM/yyyy HH:mm')}">05/11/18 17:27</i>
+                        </div>
+                        <div class="note-detail__text" style="white-space: pre-line;">[[${note.content}]]</div>
+                    </div>
+                    <div class="note-detail__actions" th:if="${not #lists.isEmpty(note.actions)}">
+                        <div class="note-action">
+                            <th:block th:each="action: ${note.actions}">
+                                <div
+                                    th:replace="fragments/components/action-link :: 
+	                            action-link(${action},'note-action\_\_link link','note-action\_\_link-icon icon')"
+                                ></div>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+                <ul th:if="${not #lists.isEmpty(note.reponses)}">
+                    <th:block th:each="rep : ${note.reponses}">
+                        <li th:replace="fragments/fdr/noteEtape :: noteEtape(${rep})"></li>
+                    </th:block>
+                </ul>
+            </li>
+        </ul>
+    </body>
+</html>

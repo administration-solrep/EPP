@@ -1,0 +1,9 @@
+<component name="fr.dila.st.ui.services.ConfigUIService">
+
+  <implementation class="fr.dila.st.ui.services.impl.ConfigUIServiceImpl" />
+
+  <service>
+    <provide interface="fr.dila.st.ui.services.ConfigUIService" />
+  </service>
+
+</component>

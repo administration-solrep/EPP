@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.media.publishing.MediaPublishingService">
+
+  <documentation>
+    Media Publishing Service
+  </documentation>
+
+  <implementation class="org.nuxeo.ecm.media.publishing.MediaPublishingServiceImpl" />
+
+  <service>
+    <provide interface="org.nuxeo.ecm.media.publishing.MediaPublishingService" />
+  </service>
+
+  <extension-point name="providers">
+    <documentation>
+      <code>
+        <provider id="MyMediaPublishingProvider"
+                  enabled="true"
+                  service="org.nuxeo.ecm.media.publishing.MyMediaPublishingProviderService">
+        </provider>
+      </code>
+    </documentation>
+    <object class="org.nuxeo.ecm.media.publishing.MediaPublishingProviderDescriptor" />
+  </extension-point>
+
+</component>

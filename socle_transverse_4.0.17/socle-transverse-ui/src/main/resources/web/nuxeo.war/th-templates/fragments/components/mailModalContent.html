@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="mailModalContent(lstSender, dto)">
+            <form id="mailForm" class="m-t-0-5em">
+                <div class="grid__row m-b-6">
+                    <div class="grid__col form-select form-select--simple">
+                        <div class="form-input">
+                            <div class="form-input__header">
+                                <div class="form-input__header-top">
+                                    <label for="expediteur" id="expediteur_label" class="form-label">
+                                        <span th:text="#{mail.adresse.emission}">Expéditeur</span>
+                                        <span class="form-label__required-text" th:text="#{form.input.required}"
+                                            >(requis)</span
+                                        >
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-input__container">
+                                <div class="form-select__field-wrapper">
+                                    <div class="form-select-input">
+                                        <select
+                                            name="expediteur"
+                                            id="expediteur"
+                                            class="form-select-input__field form-select-input__field--simple"
+                                            data-validation="required_select"
+                                        >
+                                            <th:block th:each="option : ${lstSender}">
+                                                <option
+                                                    th:value="${option.id}"
+                                                    th:text="${option.label}"
+                                                    th:selected="${'default'.equals(option.id)}"
+                                                    class="form-complex-selector__option"
+                                                >
+                                                </option>
+                                            </th:block>
+                                        </select>
+                                        <span aria-hidden="true" tabindex="-1">
+                                            <span
+                                                aria-hidden="true"
+                                                class="icon icon--arrow-bottom form-select-input__arrow"
+                                            >
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="expediteur_description" class="form-input__footer">
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid__row m-b-6">
+                    <div class="grid__col form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label for="objet" id="objet_label" class="form-label">
+                                    <span th:text="#{mail.objet}">Objet</span>
+                                    <span class="form-label__required-text" th:text="#{form.input.required}"
+                                        >(requis)</span
+                                    >
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="objet"
+                                id="objet"
+                                class="form-input__field form-input__field--type-text"
+                                data-validation="required"
+                                th:value="${dto != null ? dto.objet : ''}"
+                            />
+                        </div>
+                        <div id="objet_description" class="form-input__footer">
+                            <!--Div pour afficher le message d'erreur-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid__row m-b-6">
+                    <div class="grid__col">
+                        <label for="mce" id="mce_label" class="form-label">
+                            <span th:text="#{mail.message}">Message</span>
+                            <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                        </label>
+                        <div class="form-rich-text-field">
+                            <textarea
+                                name="contenu"
+                                id="mce"
+                                cols="30"
+                                rows="3"
+                                aria-describedby="label_header_bottom_form_textarea form_textarea_description"
+                                class="form-input__field form-rich-text-field__field textarea-tinymce"
+                                th:text="${dto != null ? dto.message : ''}"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid__row m-b-6">
+                    <div class="grid__col">
+                        <p class="form-label" th:text="#{mail.pieces.jointes}">Pièce(s) jointe(s)</p>
+                        <th:block th:if="${dto == null}">
+                            <div
+                                th:replace="fragments/components/formblocks/file-input:: 
+                                fileInput(null, 'documentFileAdd', 'documentFileAdd', true, null, false)"
+                            ></div>
+                        </th:block>
+                        <th:block th:if="${dto != null and dto.files != null}">
+                            <div
+                                th:replace="fragments/components/formblocks/file-input-content :: file-input-content(${dto.files})"
+                            ></div>
+                        </th:block>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

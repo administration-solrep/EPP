@@ -1,0 +1,1 @@
+DocumentTree.updateSelection(Context, "myTree");

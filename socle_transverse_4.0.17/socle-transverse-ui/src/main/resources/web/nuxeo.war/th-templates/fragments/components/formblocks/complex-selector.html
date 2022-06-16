@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <!--/* 
+        Sélecteur complexe permettant d'ajouter/enlever des éléments d'une liste à une autre
+        @param csLabel: label du select
+        @param csId: id du select
+        @param csOptions: options disponibles
+        @param csSelectedOptions: options sélectionnées
+        */-->
+        <div th:fragment="complexSelector(csLabel,csId, csOptions, csSelectedOptions)" class="form-complex-selector">
+            <div class="form-complex-selector__header">
+                <label th:for="${csId}" th:id="|${csId}-label|" th:text="${#messages.msg(csLabel)}" class="form-label">
+                    Titre du bloc select
+                </label>
+            </div>
+            <div class="form-complex-selector__field">
+                <select
+                    multiple="multiple"
+                    th:name="${csId}"
+                    aria-label="#{multiple.select.elements.non.selectionnes}"
+                    th:id="${csId}"
+                    class="form-complex-selector__select"
+                    style="display: none;"
+                >
+                    <th:block th:each="option : ${csOptions}">
+                        <option
+                            th:value="${option.id}"
+                            th:text="${option.label}"
+                            th:selected="${!#lists.contains(csSelectedOptions, option.id)}"
+                            class="form-complex-selector__option"
+                        >
+                        </option>
+                    </th:block>
+                </select>
+            </div>
+        </div>
+    </body>
+</html>

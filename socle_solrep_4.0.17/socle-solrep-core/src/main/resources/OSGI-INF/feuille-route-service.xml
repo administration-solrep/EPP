@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<component name="fr.sword.idl.naiad.feuilleroute.service">
+
+  <documentation>
+    The Document Routing Service allows to create and start new FeuilleRoute  instance.
+  </documentation>
+
+  <implementation class="fr.sword.idl.naiad.nuxeo.feuilleroute.core.service.FeuilleRouteComponent" />
+
+  <service>
+    <provide interface="fr.sword.idl.naiad.nuxeo.feuilleroute.api.service.FeuilleRouteService" />
+    <provide interface="fr.sword.idl.naiad.nuxeo.feuilleroute.api.service.FeuilleRouteDisplayService" />
+    <provide interface="fr.sword.idl.naiad.nuxeo.feuilleroute.api.service.FeuilleRouteStepProcessService" />
+  </service>
+
+  <extension-point name="stepProcess">
+    <documentation>
+      Associate a step process to step document type
+      <code>
+        <stepProcess
+                    documentType="The type of the document that extends DocumentRouteStep"
+                    clazz="fr.sword.idl.naiad.nuxeo.feuilleroute.core.stepprocess.ChainStepProcess"
+                >
+          <parameter name="chainId" value="the id of the chain" />
+          <parameter name="undoChainIdFromRunning" value="the id of chain for undo in running" /> 
+          <parameter name="undoChainIdFromDone" value="the id of chain for undo on done" />
+        </stepProcess>
+      </code>
+    </documentation>
+    <object class="fr.sword.idl.naiad.nuxeo.feuilleroute.core.service.StepProcessDescriptor" />
+  </extension-point>
+
+
+  <extension-point name="persister">
+    <documentation>
+      Use to provide a persister. A persister should implement
+      DocumentRoutingPersister. It is responsible to persist instances of route.
+      <code>
+        <persister class="org.my.implementation.of.Persister" />
+      </code>
+    </documentation>
+    <object class="fr.sword.idl.naiad.nuxeo.feuilleroute.core.service.PersisterDescriptor" />
+  </extension-point>
+</component>

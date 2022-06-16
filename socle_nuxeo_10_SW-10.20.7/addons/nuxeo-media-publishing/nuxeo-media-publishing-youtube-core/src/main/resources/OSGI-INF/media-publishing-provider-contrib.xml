@@ -1,0 +1,6 @@
+<component name="org.nuxeo.ecm.media.publishing.youtube.provider-contrib">
+  <extension target="org.nuxeo.ecm.media.publishing.MediaPublishingService"
+             point="providers" >
+    <provider id="YouTube" enabled="true" service="org.nuxeo.ecm.media.publishing.youtube.YouTubeService" />
+  </extension>
+</component>

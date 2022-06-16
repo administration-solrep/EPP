@@ -1,0 +1,29 @@
+{
+    "nbTotal": 2,
+    "liste": [
+        {
+            "description": "Adresse mèl de l'administrateur de l'application SGG",
+            "id": "1234"
+        },
+        {
+            "description": "Date départ statistique",
+            "id": "1235"
+        },
+        {
+            "description": "Délai avertissement utilisateur inactif",
+            "id": "1236"
+        },
+        {
+            "description": "Délai conservation données",
+            "id": "1237"
+        },
+        {
+            "description": "Délai conservation favoris",
+            "id": "1238"
+        },
+        {
+            "description": "Délai de conservation du journal",
+            "id": "1239"
+        }
+    ]
+}

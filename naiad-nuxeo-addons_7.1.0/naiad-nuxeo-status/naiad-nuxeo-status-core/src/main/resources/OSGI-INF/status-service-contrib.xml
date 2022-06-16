@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<component name="fr.sword.idl.naiad.nuxeo.addons.status.core.services.StatusService">
+
+  <implementation class="fr.sword.idl.naiad.nuxeo.addons.status.core.services.StatusServiceImpl" />
+
+  <service>
+    <provide interface="fr.sword.idl.naiad.nuxeo.addons.status.api.services.StatusService" />
+  </service>
+
+  <extension-point name="statusConfig">
+    <object class="fr.sword.idl.naiad.nuxeo.addons.status.core.descriptor.StatusDescriptor" />
+  </extension-point>
+  
+</component>

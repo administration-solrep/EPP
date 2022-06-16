@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	elementFormDefault="qualified">
+
+	<xs:import schemaLocation="../commons/commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons" />
+
+	<xs:simpleType name="AttributionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="REATTRIBUTION" />
+			<xs:enumeration value="REAFFECTATION" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="QuestionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="QE" />
+			<xs:enumeration value="QOSD" />
+			<xs:enumeration value="QOAD" />
+			<xs:enumeration value="QOAE" />
+			<xs:enumeration value="QG" />
+			<xs:enumeration value="QC" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="QuestionSource">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AN" />
+			<xs:enumeration value="SENAT" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="TraitementStatut">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OK" />
+			<xs:enumeration value="KO" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="Civilite">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="M." />
+			<xs:enumeration value="Mme" />
+			<xs:enumeration value="Mlle" />
+			<xs:enumeration value="NON_RENSEIGNE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="EtatQuestion">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EN_COURS" />
+			<xs:enumeration value="REPONDU" />
+			<xs:enumeration value="RETIRE" />
+			<xs:enumeration value="SIGNALE" />
+			<xs:enumeration value="CADUQUE" />
+			<xs:enumeration value="RENOUVELLE" />
+			<xs:enumeration value="CLOTURE_AUTRE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="EnFonction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ALL" />
+			<xs:enumeration value="TRUE" />
+			<xs:enumeration value="FALSE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- NONE|CREATE|UPDATE|DETACH|DELETE -->
+	<xs:simpleType name="ActionFile">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Aucun" />
+			<xs:enumeration value="CREATION" />
+			<xs:enumeration value="MISE_A_JOUR" />
+			<xs:enumeration value="DETACH" />
+			<xs:enumeration value="SUPPRIMER" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Visibilite">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ALL" />
+			<xs:enumeration value="MINISTERE" />
+			<xs:enumeration value="MINISTERE_SGG" />
+			<xs:enumeration value="PARLEMENT" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="ErratumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CORRECTION"></xs:enumeration>
+			<xs:enumeration value="ERRATUM"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<!-- ====================================== -->
+	<!-- Complex types -->
+	<!-- ====================================== -->
+	<xs:complexType name="QuestionId">
+		<xs:sequence>
+			<!-- IDENTIFICATION QUESTION -->
+			<xs:element name="numero_question" type="xs:int"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="type" type="QuestionType" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="source" type="QuestionSource" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="legislature" type="xs:int" minOccurs="1"
+				maxOccurs="1"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Ministre">
+		<xs:annotation>
+			<xs:documentation>
+				Description d'un ministre
+				@id : identifiant technique du ministere
+				- intitule_min : libelle long du ministere (nom du ministere
+				officiel)
+				- titre_jo : intitule ministere court dans le jo (uniquement reponse)
+				- titre_min : titre du ministre Mr le ....
+				- ordre_proto : ordre protocolaire
+				Pour chercherMembresGouvernement, titre_min et ordre_proto sont
+				obligatoires.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="titre_min" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="titre_jo" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="intitule_min" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="ordre_proto" type="xs:int" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:int" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Legislature">
+		<xs:sequence>
+			<xs:element name="date_debut" type="xs:date" minOccurs="1"
+				maxOccurs="1"></xs:element>
+			<xs:element name="date_fin" type="xs:date" minOccurs="0"
+				maxOccurs="1"></xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:int" use="required" />
+	</xs:complexType>
+
+
+	<xs:complexType name="ErratumQuestion">
+		<xs:sequence>
+			<xs:element name="id_question" type="QuestionId"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="date_publication_erratum" type="xs:date"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="page_jo_erratum" type="xs:int"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="texte_erratum" type="commons:CDataString"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="texte_consolide" type="commons:CDataString"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="type" type="ErratumType" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ErratumReponse">
+		<xs:sequence>
+			<xs:element name="id_question" type="QuestionId"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="texte_erratum" type="commons:CDataString"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="texte_consolide" type="commons:CDataString"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ChangementEtatQuestion">
+		<xs:sequence>
+			<xs:element name="id_question" type="QuestionId"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="type_modif" type="EtatQuestion"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="date_modif" type="xs:date" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Attributaire">
+		<xs:sequence>
+			<xs:element name="ministre" type="Ministre" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MembreGouvernement">
+		<xs:sequence>
+			<xs:element name="prenom" type="xs:string" minOccurs="1"
+				maxOccurs="1"></xs:element>
+			<xs:element name="nom" type="xs:string" minOccurs="1"
+				maxOccurs="1"></xs:element>
+			<xs:element name="civilite" type="Civilite" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="ministre" type="Ministre" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="en_fonction" type="xs:boolean" use="required" />
+		<xs:attribute name="date_debut" type="xs:date" use="optional" />
+		<xs:attribute name="date_fin" type="xs:date" use="optional" />
+	</xs:complexType>
+
+	<!-- <fichier has_content=true action=‘NONE|CREATE|UPDATE|DETACH|DELETE’> 
+		<id_interne>5843-7002-4839-3874</id_interne> <id_externe>mon_id_externe</id_externe> 
+		<nom>mon fichier word</nom> <mime-type>application/word</mime-type> <content-length>3095</content-length> 
+		<content> ZFKSIRESQKROS.3CN6FKL8ZE4PR4IS?XAPEORJFNQ.ROJWNZEMPGIHURHSNCNDSKSIXL 
+		PRO5QI3XKXM4AQJ6TFDI7TUSN3SLLL1JZE56UTG3ND4APXI== </content> </fichier> -->
+
+	<xs:complexType name="Fichier">
+		<xs:sequence>
+			<xs:element name="id_interne" type="xs:string" minOccurs="0"
+				maxOccurs="1"></xs:element>
+			<xs:element name="id_externe" type="xs:string" minOccurs="0"
+				maxOccurs="1"></xs:element>
+			<xs:element name="nom" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="mime_type" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="taille_fichier" type="xs:int" minOccurs="1"
+				maxOccurs="1"></xs:element>
+			<xs:element name="contenu" type="xs:base64Binary"
+				minOccurs="1" maxOccurs="1"></xs:element>
+			<xs:element name="visibilite" type="Visibilite" minOccurs="1"
+				maxOccurs="1"></xs:element>
+		</xs:sequence>
+		<xs:attribute name="a_du_contenu" type="xs:boolean" use="required" />
+		<xs:attribute name="action" type="ActionFile" use="required" />
+	</xs:complexType>
+
+
+
+	<xs:complexType name="ReferencePublication">
+		<xs:sequence>
+			<xs:element name="page_jo" type="xs:int" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="date_publication" type="xs:date"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="no_publication" type="xs:int" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="MinistrePublication">
+		<xs:sequence>
+			<xs:element name="titre_jo" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="intitule_min" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:int" use="optional" />
+	</xs:complexType>
+
+
+</xs:schema>

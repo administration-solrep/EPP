@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://case-management.nuxeo.com/schemas/caselink/"
+    xmlns:cmxs="http://case-management.nuxeo.com/schemas/caselink/"
+>
+
+	<xs:include schemaLocation="base.xsd" />
+
+	<!-- *********************************************************************** 
+		Reprise des données de Nuxeo. *********************************************************************** -->
+	<!-- CaseLink actionnable -->
+	<xs:element name="isActionable" type="xs:boolean" default="false" />
+
+	<xs:element name="comment" type="xs:string" />
+
+	<xs:element name="date" type="xs:date" />
+
+	<!-- UUID du document Evenement lié au message -->
+	<xs:element name="caseDocumentId" type="xs:string" />
+
+	<xs:element name="isRead" type="xs:boolean" default="false" />
+
+	<xs:element name="sender" type="xs:string" />
+
+	<xs:element name="senderMailboxId" type="xs:string" />
+
+
+	<!-- *********************************************************************** 
+		Données du message. *********************************************************************** -->
+	<!-- Type du message (EMETTEUR, DESTINATAIRE, COPIE) -->
+	<xs:element name="messageType" type="xs:string" />
+
+	<!-- UUID de la version active associée -->
+	<xs:element name="activeVersionId" type="xs:string" />
+
+	<!-- Liste des corbeilles de distribution du message -->
+	<xs:element name="corbeilleList" type="cmxs:stringList" />
+
+	<!-- Date de traitement -->
+	<xs:element name="dateTraitement" type="xs:date" />
+
+	<!-- Etat du message (correspond aux état WS) -->
+	<xs:element name="etatMessage" type="xs:string" />
+
+	<!-- *********************************************************************** 
+		Données du message de l'émetteur uniquement. *********************************************************************** -->
+	<!-- Vrai si les versions de cet événement nécessitent un accusé de réception -->
+	<xs:element name="arNecessaire" type="xs:boolean" default="false" />
+
+	<!-- Nombre de versions qui n'ont pas encore accusé réception par le destinataire -->
+	<xs:element name="arNonDonneCount" type="xs:int" default="0" />
+
+	<!-- Liste de id de visa interne -->
+	<xs:element name="visaInternes" type="cmxs:stringList" />
+
+	<!-- Identifiant dossier (d.dc:title) -->
+	<xs:element name="idDossier" type="xs:string" />
+
+	<!-- Identifiant evenement (e.dc:title) -->
+	<xs:element name="idEvenement" type="xs:string" />
+
+</xs:schema>

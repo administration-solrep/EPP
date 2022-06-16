@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="multipleInputText(widget)">
+            <div class="labellised-list__label" th:for="${widget.name}" th:text="#{${widget.label}}">
+                label
+                <span th:if="${widget.required}" class="form-label__required-text" th:text="#{form.required.label}"
+                    >requis</span
+                >
+            </div>
+
+            <div
+                class="form-input labellised-list__description"
+                th:classappend="${widget.modifiedInCurVersion ? 'labellised-list__description--warning' : ''}"
+            >
+                <div class="rightBlocWidget">
+                    <th:block th:if="${widget.getValueParamByName('autocomplete') == 'true'}">
+                        <p
+                            class="form-input__description form-input__description--default"
+                            th:text="#{form.description.nocharlimit}"
+                        >
+                            nombre minimal de caractères
+                        </p>
+                        <div class="form-select__field-wrapper form-select__field-wrapper--tags">
+                            <div class="form-select-input-autocomplete">
+                                <select
+                                    th:name="${widget.name}"
+                                    th:id="${widget.name}"
+                                    multiple="multiple"
+                                    class="form-select-input-autocomplete__field js-aria-autocomplete-select-tags aria-autocomplete--hide hide hidden js-aria-autocomplete-select-with-async"
+                                    aria-hidden="true"
+                                    hidden="hidden"
+                                    th:data-url="@{'/ajax/recherche/suggestions?typeSelection='+${widget.name}}"
+                                    th:data-dynamic-input="|inclure-${widget.name}|"
+                                    data-min-length="0"
+                                    data-query-param="input"
+                                    data-key-mapping="key"
+                                    data-label-mapping="label"
+                                    th:data-validation="${widget.required}? 'required'"
+                                    data-accepts-custom-tags="false"
+                                >
+                                    <th:block
+                                        th:if="${widget.getValueParamByNameOrNull('lstSuggestValues')!=null && not #lists.isEmpty(widget.getValueParamByName('lstSuggestValues'))}"
+                                    >
+                                        <th:block th:each="value : ${widget.getValueParamByName('lstSuggestValues')}">
+                                            <option
+                                                th:unless="${#strings.isEmpty(value.key)}"
+                                                th:value="${value.key}"
+                                                th:text="${value.label}"
+                                                selected="selected"
+                                            ></option>
+                                        </th:block>
+                                    </th:block>
+                                </select>
+                            </div>
+                        </div>
+                        <div th:id="|${widget.name}_description|" class="form-input__footer"></div>
+                        <div
+                            class="form-choice-input"
+                            th:unless="${widget.getValueParamByName('labelInclure') == 'labelInclure'}"
+                        >
+                            <input
+                                type="checkbox"
+                                th:id="|inclure-${widget.name}|"
+                                name="inclure"
+                                class="form-choice-input__input"
+                            /><label
+                                th:for="|inclure-${widget.name}|"
+                                th:id="|form_checkbox_inclure-${widget.name}|"
+                                class="form-label form-choice-input__label form-choice-input__label--checkbox"
+                                ><span th:text="#{${widget.getValueParamByName('labelInclure')}}">
+                                    label inclure
+                                </span></label
+                            >
+                        </div>
+                    </th:block>
+                    <th:block th:unless="${widget.getValueParamByName('autocomplete') == 'true'}">
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                aria-describedby="form_input_description label_header_bottom_form_input"
+                                class="form-input__field form-input__field--type-text"
+                                value=""
+                                th:attrappend="required=${widget.required} ?required"
+                            />
+                            <button
+                                type="button"
+                                class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent"
+                                th:attr="onclick=|addValeurToList(this, '${widget.name}')|"
+                            >
+                                <span class="icon icon--add" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div th:id="|${widget.name}_description|" class="form-input__footer"></div>
+                        <ul th:class="|list-value-input-${widget.name}|">
+                            <th:block
+                                th:if="${widget.getValueParamByNameOrNull('lstSuggestValues')!=null}"
+                                th:each="item : ${widget.getValueParamByName('lstSuggestValues')}"
+                            >
+                                <li>
+                                    <th:block th:text="${item.label}">item label</th:block>
+                                    <input type="hidden" th:name="${widget.name}" th:value="${item.key}" />
+                                    <span
+                                        class="icon icon--cross-bold link__icon link__icon--append"
+                                        onclick="$(this).closest('li').remove()"
+                                        aria-hidden="true"
+                                    ></span>
+                                </li>
+                            </th:block>
+                        </ul>
+                    </th:block>
+                </div>
+            </div>
+        </th:block>
+    </body>
+</html>

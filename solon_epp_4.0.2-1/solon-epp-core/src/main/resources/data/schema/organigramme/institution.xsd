@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<xs:schema
+    targetNamespace="http://dila.fr/solon/schemas/institution/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ins="http://dila.fr/solon/schemas/institution/"
+>
+
+	<xs:include schemaLocation="base.xsd" />
+
+	<xs:element name="groupName" type="xs:string" />
+
+	<xs:element name="label" type="xs:string" />
+
+	<xs:element name="description" type="xs:string" />
+
+	<xs:element name="fullPath" type="xs:string" />
+
+	<!-- Lock -->
+	<xs:element name="lockDate" type="xs:date" />
+	<xs:element name="lockUserName" type="xs:string" />
+
+	<!-- Liste des unités structurelles liés à l'institution -->
+	<xs:element name="subUnitesStructurelles" type="ins:stringList" />
+
+	<!-- Liste des postes liés à l'institution -->
+	<xs:element name="subPostes" type="ins:stringList" />
+
+</xs:schema>

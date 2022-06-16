@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherMandatParNORRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:p4="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:p5="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes"
+	xmlns:p6="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"
+	xmlns:p7="http://www.dila.premier-ministre.gouv.fr/solon/epg/spe-commons"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp WSepp.xsd ">
+	<p:nor>PRM</p:nor>
+</p:chercherMandatParNORRequest>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherModificationDossierResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSepg"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solon/epg/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSepg ../../../../../../../../xsd/solon/epg/WSepg.xsd ">
+
+	<p:statut>OK</p:statut>
+	<p:jeton>2</p:jeton>
+	<p:dernier_envoi>true</p:dernier_envoi>
+	<p:dossier_modification>
+		<p2:type_modification>SAISINE_RECTIFICATIVE</p2:type_modification>
+		<p2:numero_isa>123</p2:numero_isa>
+		<p2:fichier>
+			<p2:nom>lettre-pm-01.txt</p2:nom>
+			<p2:mime_type>text/plain</p2:mime_type>
+			<p2:taille_fichier>100</p2:taille_fichier>
+			<p2:contenu>UEsDBAoAAAAAACZf4T7cFbPIDQAAAA0AAAAJABUAdGV4dGUudHh0VVQJAAP4mQ1OTpoNTlV4BADoA2QASGVsbG8gV29ybGQgIVBLAQIXAwoAAAAAACZf4T7cFbPIDQAAAA0AAAAJAA0AAAAAAAEAAACkgQAAAAB0ZXh0ZS50eHRVVAUAA/iZDU5VeAAAUEsFBgAAAAABAAEARAAAAEkAAAAAAA==</p2:contenu>
+			<p2:cheminFichier>Parapheur/Acte intégral/lettre-pm-01.txt</p2:cheminFichier>
+		</p2:fichier>
+	</p:dossier_modification>
+	
+</p:chercherModificationDossierResponse>
+
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <nav class="header-menu header__menu" th:aria-label="#{menu.label}" th:fragment="topMenu" role="navigation">
+            <button
+                id="topmenubutton"
+                type="button"
+                class="header-menu__toggle base-btn base-btn--button base-btn--default base-btn--sharp base-btn--discret"
+            >
+                [[#{menu.label}]]
+            </button>
+            <ul th:aria-label="#{menu.list.label}" class="header-menu__menu-list">
+                <li
+                    class="header-menu-item"
+                    th:each="menuItem : ${menuList}"
+                    th:classappend="${menuItem.isCurrent ? 'header-menu-item\_\_label--current' : ''}"
+                    th:attrappend="aria-current=${menuItem.isCurrent ? 'page' : ''}"
+                >
+                    <a
+                        th:attrappend="aria-haspopup=${menuItem.childs != null ? 'menu' : ''}"
+                        th:aria-expanded="${menuItem.childs != null ? 'false' : ''}"
+                        th:href="@{${menuItem.url != null ? menuItem.url : '#'}}"
+                        class="header-menu-item__label"
+                        th:classappend="${menuItem.isCurrent ? 'header-menu-item\_\_label--current' : ''}"
+                    >
+                        <span
+                            th:if="${menuItem.childs != null}"
+                            aria-hidden="true"
+                            class="header-menu-item__back icon icon--left"
+                        ></span>
+                        [[#{__${menuItem.titleKey}__}]]
+                        <span
+                            th:if="${menuItem.childs != null}"
+                            aria-hidden="true"
+                            class="header-menu-item__next icon icon--plain-arrow-right"
+                        ></span>
+                    </a>
+                    <ul
+                        th:if="${menuItem.childs != null && menuItem.childs.length &gt; 0}"
+                        class="header-menu-item__subitem-list"
+                    >
+                        <li
+                            th:each="childItem : ${menuItem.childs}"
+                            class="header-menu-item__subitem"
+                            th:classappend="${ childItem.isCurrent ? 'header-menu-item\_\_subitem--current' : ''}"
+                        >
+                            <a
+                                th:href="@{${childItem.url != null ? childItem.url : '#'}}"
+                                class="header-menu-item__subitem__link"
+                            >
+                                [[#{__${childItem.titleKey}__}]]
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <span tabindex="0" class="header-menu__focustrap-last"></span>
+        </nav>
+    </body>
+</html>

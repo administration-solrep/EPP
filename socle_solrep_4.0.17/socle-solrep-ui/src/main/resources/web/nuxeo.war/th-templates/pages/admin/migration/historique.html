@@ -1,0 +1,22 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Historique des migrations de gouvernement', title=#{historique.migration.title})}"
+>
+    <main
+        role="main"
+        id="main_content"
+        class="page-layout__content"
+        th:with="tableCaption=|#{historique.migration.title} #{historique.nb.migrations(${#lists.size(migrations)})}|"
+    >
+        <h1 class="m-t-6 m-b-6 p-b-2 base-title base-title--lvl-1 base-title--is-underlined">
+            <th:block th:text="#{historique.migration.title}"></th:block>
+            <small class="info-text" th:text="#{historique.nb.migrations(${#lists.size(migrations)})}"></small>
+        </h1>
+        <th:block
+            th:replace="fragments/table/tableHistoriqueMigration :: historiqueMigrations(${tableCaption})"
+        ></th:block>
+    </main>
+</html>

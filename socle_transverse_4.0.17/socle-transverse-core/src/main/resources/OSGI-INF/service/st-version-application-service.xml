@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service de configuration globale de l'application. -->
+<component name="fr.dila.st.core.service.STVersionApplicationService">
+	<implementation class="fr.dila.st.core.component.STVersionApplicationComponent" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.STVersionApplicationService" />
+	</service>
+
+</component>

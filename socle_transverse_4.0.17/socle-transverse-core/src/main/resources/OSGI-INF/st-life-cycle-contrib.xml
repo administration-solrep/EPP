@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<!-- Cet composant contribue : - Les cycles de vie du socle transverse ; 
+	- Les associations type de document / cycle de vie. -->
+<component name="fr.dila.st.core.lifecycle">
+
+	<extension target="org.nuxeo.ecm.core.lifecycle.LifeCycleService" point="lifecycle">
+
+		<!-- Cycle de vie minimaliste -->
+		<lifecycle name="minimaliste" defaultInitial="running">
+			<transitions>
+				<transition name="delete" destinationState="deleted" />
+				<transition name="backToRunning" destinationState="running" />
+			</transitions>
+			<states>
+				<state name="running" description="En cours">
+					<transitions>
+						<transition>delete</transition>
+					</transitions>
+				</state>
+				<state name="deleted" description="Supprimé">
+					<transitions>
+						<transition>backToRunning</transition>
+					</transitions>
+				</state>
+			</states>
+		</lifecycle>
+
+		<lifecycle name="export" defaultInitial="done">
+			<transitions>
+				<transition name="toExporting" destinationState="exporting" />
+				<transition name="toDone" destinationState="done" />
+			</transitions>
+			<states>
+				<state name="exporting" description="En cours d'export" initial="true">
+					<transitions>
+						<transition>toDone</transition>
+					</transitions>
+				</state>
+				<state name="done" description="exporté" initial="true">
+					<transitions>
+						<transition>toExporting</transition>
+					</transitions>
+				</state>
+			</states>
+		</lifecycle>
+
+	</extension>
+</component>

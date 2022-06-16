@@ -1,0 +1,11 @@
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Manifest-Version: 1.0
+Bundle-Name: nuxeo-media-publishing-youtube-jsf
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-Vendor: Nuxeo
+Bundle-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: nuxeo-media-publishing-youtube-jsf
+Nuxeo-Component: OSGI-INF/layouts-contrib.xml,
+ OSGI-INF/actions-contrib.xml

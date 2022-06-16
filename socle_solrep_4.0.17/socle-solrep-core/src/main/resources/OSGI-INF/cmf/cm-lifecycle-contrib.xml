@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.cm.lifecycle.ss">
+
+  <extension target="org.nuxeo.ecm.core.lifecycle.LifeCycleService" point="types">
+    <types>
+      <type name="DistributionTask">feuilleRouteElement</type>
+      <type name="GenericDistributionTask">feuilleRouteElement</type>
+      <type name="PersonalDistributionTask">feuilleRouteElement</type>
+      <type name="DistributionStep">feuilleRouteElement</type>
+    </types>
+  </extension>
+
+</component>

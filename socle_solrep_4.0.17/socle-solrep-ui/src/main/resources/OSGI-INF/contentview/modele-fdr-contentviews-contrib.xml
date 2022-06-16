@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.contentviews.modele">
+
+	
+	<require>org.nuxeo.ecm.platform.query.api.PageProviderService</require>
+
+    <extension target="org.nuxeo.ecm.platform.query.api.PageProviderService" point="providers">
+
+		
+		<!-- Content View des résultats de recherche sur les modèles de feuille 
+			de route -->
+		<genericPageProvider class="fr.dila.ss.ui.contentview.ModeleFDRPageProvider" name="modeleFDRPageProvider">
+			<pattern quoteParameters="false" escapeParameters="false">
+				ufnxql: SELECT fdr.ecm:uuid as id FROM FeuilleRoute as fdr WHERE fdr.ecm:parentId = '?' AND ?
+			</pattern>
+			<sort column="fdr.dc:title" ascending="true" />
+			<pageSize>10</pageSize>
+		</genericPageProvider>
+
+		<!-- Content View des résultats de recherche sur les modèles de feuille
+			de route -->
+		<genericPageProvider class="fr.dila.ss.ui.contentview.ModeleFDRPageProvider" name="modeleFDRByIdPageProvider">
+			<pattern quoteParameters="false" escapeParameters="false">
+				ufnxql: SELECT fdr.ecm:uuid as id FROM FeuilleRoute as fdr WHERE fdr.ecm:uuid IN ('?')
+			</pattern>
+			<sort column="fdr.dc:title" ascending="true" />
+			<pageSize>10</pageSize>
+		</genericPageProvider>
+
+	</extension>
+</component>

@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<fragment version="1">
+
+	<require>org.nuxeo.ecm.webengine.core</require>
+ 	<require>fr.dila.st.webengine</require>
+ 	<require>fr.dila.ss.core</require>
+
+	<extension target="application#MODULE">
+		<module>
+			<java>${bundle.fileName}</java>
+		</module>
+	</extension>
+
+</fragment>

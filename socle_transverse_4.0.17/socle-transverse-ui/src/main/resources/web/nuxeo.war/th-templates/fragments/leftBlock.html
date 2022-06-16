@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div class="left-shortcuts" aria-hidden="false" th:fragment="leftBlock">
+            <aside id="sidebar" class="sidebar sidebar--is-opened" role="complementary">
+                <button
+                    type="button"
+                    class="base-btn base-btn--button base-btn--default base-btn--toggle-column--left js-toggle sidebar__toggle"
+                    id="sidebar__toggle"
+                    aria-controls="sidebar"
+                    aria-expanded="true"
+                    th:aria-label="#{navbar.label}"
+                    data-toggle="sidebar"
+                    data-icon-opened="arrow-left"
+                    data-icon-closed="arrow-right"
+                    onclick="toggleSidebar()"
+                >
+                    <span aria-hidden="true" class="sidebar__icon icon icon--arrow-left"></span>
+                </button>
+                <div id="sidebar__content" aria-hidden="false" class="sidebar__content">
+                    <th:block th:if="${left_blocks != null }" th:each="block : ${left_blocks}">
+                        <div th:replace="${block.filename} :: ${block.name}"></div>
+                    </th:block>
+                    <th:block th:if="${left_blocks == null }" th:each="block : ${_blocks}">
+                        <div th:replace="${block.filename} :: ${block.name}"></div>
+                    </th:block>
+                </div>
+            </aside>
+        </div>
+    </body>
+</html>

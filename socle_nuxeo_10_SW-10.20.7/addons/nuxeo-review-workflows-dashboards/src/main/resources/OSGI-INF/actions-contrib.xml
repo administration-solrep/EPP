@@ -1,0 +1,47 @@
+<component name="org.nuxeo.ecm.review.workflows.dashboards.actions.contrib">
+
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService"
+             point="actions">
+
+    <action id="TAB_PARALLEL_WF_ANALYTICS" link="/incl/tabs/parallel_workflow_analytics.xhtml"
+            order="5" label="Analytics" icon="/icons/file.gif" type="rest_document_link">
+      <category>VIEW_ACTION_LIST</category>
+      <filter-id>isRoute</filter-id>
+      <filter-id>isParallelWorkflow</filter-id>
+      <properties>
+        <!-- disable ajax support to avoid multiple calls to document.registerElement -->
+        <property name="ajaxSupport">false</property>
+      </properties>
+    </action>
+
+    <action id="TAB_SERIAL_WF_ANALYTICS" link="/incl/tabs/serial_workflow_analytics.xhtml"
+            order="5" label="Analytics" icon="/icons/file.gif" type="rest_document_link">
+      <category>VIEW_ACTION_LIST</category>
+      <filter-id>isRoute</filter-id>
+      <filter-id>isSerialWorkflow</filter-id>
+      <properties>
+        <!-- disable ajax support to avoid multiple calls to document.registerElement -->
+        <property name="ajaxSupport">false</property>
+      </properties>
+    </action>
+
+  </extension>
+
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService"
+             point="filters">
+
+    <filter id="isParallelWorkflow">
+      <rule grant="true">
+        <condition>#{currentDocument.getTitle() == 'wf.parallelDocumentReview.ParallelDocumentReview'}</condition>
+      </rule>
+    </filter>
+
+    <filter id="isSerialWorkflow">
+      <rule grant="true">
+        <condition>#{currentDocument.getTitle() == 'wf.serialDocumentReview.SerialDocumentReview'}</condition>
+      </rule>
+    </filter>
+
+  </extension>
+
+</component>

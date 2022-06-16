@@ -1,0 +1,95 @@
+<!--
+@license
+(C) Copyright Nuxeo Corp. (http://nuxeo.com/)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!--
+`nuxeo-diff-page`
+@group Nuxeo UI
+@element nuxeo-diff-page
+-->
+<dom-module id="nuxeo-diff-page">
+  <template>
+    <style include="nuxeo-styles">
+    a {
+      color: var(--nuxeo-link-hover_-_color);
+    }
+    </style>
+    <nuxeo-page>
+      <div class="header" slot="header">
+        <span>
+          [[i18n('app.title.diff')]]
+          <a href$="[[_buildPermalink(_left)]]">[[_left.title]]</a>
+          [[i18n('diffPage.versus')]]
+          <a href$="[[_buildPermalink(_right)]]">[[_right.title]]</a>
+        </span>
+      </div>
+      <div class="content">
+        <template is="dom-if" if="[[!docIds.length]]">
+          <span>[[i18n('diffPage.noDocuments')]]</span>
+        </template>
+        <template is="dom-if" if="[[docIds.length]]">
+          <nuxeo-diff doc-ids="[[docIds]]"
+            left-uid="{{_leftUid}}" right-uid="{{_rightUid}}"
+            left="{{_left}}" right="{{_right}}">
+          </nuxeo-diff>
+        </template>
+      </div>
+    </nuxeo-page>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nuxeo-diff-page',
+      behaviors: [Nuxeo.I18nBehavior, Nuxeo.RoutingBehavior],
+      properties: {
+        docIds: {
+          type: Array,
+          value: []
+        },
+        visible: Boolean,
+        _leftUid: String,
+        _rightUid: String
+      },
+
+      observers: ['_updateUrl(_leftUid, _rightUid)'],
+
+      /**
+       * Update url with the left and right documents' ids
+       */
+      _updateUrl: function(leftUid, rightUid) {
+        if (!leftUid || !rightUid || leftUid === rightUid) {
+          return;
+        }
+        var matches = window.location.href.match(/^.*\/#!\/diff/g);
+        if (matches.length) {
+          var needsReplace = !!window.location.href.match(/^.*\/#!\/diff$/g);
+          var newUrl = [matches[0], leftUid, rightUid].join('/');
+          if (needsReplace) {
+            history.replaceState(null, window.title, newUrl);
+          } else if (newUrl !== window.location.href) {
+            history.pushState(null, window.title, newUrl);
+          }
+        }
+      },
+
+      _buildPermalink: function(document) {
+        return document ? location.origin + location.pathname + '#!/doc/' + document.uid : '';
+      }
+    });
+  </script>
+
+</dom-module>

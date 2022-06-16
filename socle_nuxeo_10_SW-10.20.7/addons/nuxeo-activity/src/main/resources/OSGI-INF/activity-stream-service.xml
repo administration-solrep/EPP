@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.activity.ActivityStreamService">
+
+  <documentation>
+    Service storing and querying activities.
+
+    @author Thomas Roger (troger@nuxeo.com)
+  </documentation>
+
+  <implementation class="org.nuxeo.ecm.activity.ActivityStreamServiceImpl" />
+
+  <service>
+    <provide interface="org.nuxeo.ecm.activity.ActivityStreamService" />
+  </service>
+
+  <extension-point name="activityStreamFilters">
+    <documentation>
+      ActivityStreamFilters are used to store and filter activities for specific use cases.
+
+      The ActivityStreamService delegates to the contributed filters.
+    </documentation>
+    <object class="org.nuxeo.ecm.activity.ActivityStreamFilterDescriptor" />
+  </extension-point>
+
+  <extension-point name="activityVerbs">
+    <documentation>
+      An ActivityVerb stores the configuration for a given verb:
+      - a label key
+      - an icon path
+    </documentation>
+    <object class="org.nuxeo.ecm.activity.ActivityVerb" />
+  </extension-point>
+
+  <extension-point name="activityLinkBuilders">
+    <documentation>
+      An ActivityLinkBuilder is used to compute the different links and URLs
+      (for a document, an user, ...) that can be in an Activity message.
+    </documentation>
+    <object class="org.nuxeo.ecm.activity.ActivityLinkBuilderDescriptor" />
+  </extension-point>
+
+  <extension-point name="activityStreams">
+    <documentation>
+      An ActivityStream stores the information about a given stream (user
+      activity stream, a social workspace activity stream, etc).
+
+      It contains:
+      <ul>
+        <li>a name;</li>
+        <li>a list of Activity verbs related to the stream.</li>
+      </ul>
+
+      <code>
+        <activityStream name="userActivityStream">
+          <verbs append="true">
+            <verb>documentCreated</verb>
+            <verb>documentModified</verb>
+            <verb>circle</verb>
+          </verbs>
+        </activityStream>
+      </code>
+    </documentation>
+    <object class="org.nuxeo.ecm.activity.ActivityStream" />
+  </extension-point>
+
+  <extension-point name="activityUpgraders">
+    <documentation>
+      An ActivityUpgrader is launched after the repository initialization to
+      do some upgrades if needed on the already existing Activities.
+    </documentation>
+    <object class="org.nuxeo.ecm.activity.ActivityUpgraderDescriptor" />
+  </extension-point>
+
+  <require>org.nuxeo.ecm.core.persistence.PersistenceComponent</require>
+
+  <extension target="org.nuxeo.ecm.core.persistence.PersistenceComponent"
+	     point="hibernate">
+    <hibernateConfiguration name="nxactivities">
+      <datasource>nxactivities</datasource>
+      <properties>
+	     <property name="hibernate.hbm2ddl.auto">update</property>
+      </properties>
+    </hibernateConfiguration>
+  </extension>
+
+</component>

@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Version: 1.0.0
+Bundle-SymbolicName: org.nuxeo.ecm.content.showcase;singleton:=true
+Nuxeo-Component: OSGI-INF/content-template-contrib.xml,
+ OSGI-INF/listener-contrib.xml,
+ OSGI-INF/service-contrib.xml

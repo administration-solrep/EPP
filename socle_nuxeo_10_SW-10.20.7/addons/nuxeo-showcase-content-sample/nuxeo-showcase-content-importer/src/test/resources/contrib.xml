@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component name="org.nuxeo.test.showcase.content">
+    <extension target="org.nuxeo.ecm.showcase.content" point="contents">
+        <content name="mycontent">
+            <filename>export.zip</filename>
+        </content>
+
+        <content name="disabled" enable="false">
+            <filename>export.zip</filename>
+        </content>
+    </extension>
+</component>

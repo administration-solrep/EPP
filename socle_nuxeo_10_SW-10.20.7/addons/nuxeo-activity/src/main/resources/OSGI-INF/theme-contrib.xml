@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.activity.theme">
+
+  <extension target="org.nuxeo.ecm.platform.WebResources" point="resources">
+    <resource name="gadget-common-activity.css">
+      <uri>/css/opensocial/gadgets/gadget-common-activity.css</uri>
+    </resource>
+  </extension>
+
+</component>

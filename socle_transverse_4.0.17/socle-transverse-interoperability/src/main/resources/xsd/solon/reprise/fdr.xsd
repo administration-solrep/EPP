@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+	<xs:element name="FEUILLE_DE_ROUTE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="NOR" type="xs:NCName" />
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="ETAPE" />
+					<xs:element ref="ETAPES_PARALLELES" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="ETAPES_PARALLELES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="ETAPE" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ETAPE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="NUM_ETAPE" type="xs:integer" />
+				<xs:element minOccurs="0" ref="STRUCTURE" />
+				<xs:element minOccurs="0" name="ACTIVITE" type="xs:string" />
+				<xs:element minOccurs="0" name="STATUT" type="xs:string" />
+				<xs:element minOccurs="0" name="RESULTAT" type="xs:string" />
+				<xs:element minOccurs="0" ref="VALIDE_PAR" />
+				<xs:element minOccurs="0" name="DATE_VALIDE" type="xs:string" />
+				<xs:element minOccurs="0" name="PRIORITE" type="xs:integer" />
+				<xs:element minOccurs="0" name="ETAPE_PRECEDENTE" type="xs:integer" />
+				<xs:element minOccurs="0" name="ETAPE_SUIVANTE" type="xs:integer" />
+				<xs:element minOccurs="0" ref="NOTES" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="STRUCTURE">
+		<xs:complexType mixed="true">
+			<xs:attribute name="id" use="required" type="xs:NMTOKEN" />
+			<xs:attribute name="type" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="VALIDE_PAR">
+		<xs:complexType mixed="true">
+			<xs:attribute name="id" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NOTES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="NOTE_ETAPE" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NOTE_ETAPE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ENTETE" type="xs:string" />
+				<xs:element name="CONTENU" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

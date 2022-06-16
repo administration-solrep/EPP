@@ -1,0 +1,26 @@
+<th:block th:fragment="ajaxLayout">
+    <th:block th:if="${errorMessages != null && !errorMessages.isEmpty()}" th:each="message : ${errorMessages}">
+        <div
+            th:replace="fragments/components/alert-banner :: alert-banner (${message.alertMessage},${message.alertOrigin},${message.alertType})"
+        ></div>
+    </th:block>
+
+    <th:block th:if="${warnMessages != null  && !warnMessages.isEmpty()}" th:each="message : ${warnMessages}">
+        <div
+            th:replace="fragments/components/alert-banner :: alert-banner (${message.alertMessage},${message.alertOrigin},${message.alertType})"
+        ></div>
+    </th:block>
+
+    <th:block th:if="${successMessages != null  && !successMessages.isEmpty()}" th:each="message : ${successMessages}">
+        <div
+            th:replace="fragments/components/alert-banner :: alert-banner (${message.alertMessage},${message.alertOrigin},${message.alertType})"
+        ></div>
+    </th:block>
+
+    <th:block th:if="${infoMessages != null  && !infoMessages.isEmpty()}" th:each="message : ${infoMessages}">
+        <div
+            th:replace="fragments/components/alert-banner :: alert-banner (${message.alertMessage},${message.alertOrigin},${message.alertType})"
+        ></div>
+    </th:block>
+    <div th:replace="${fragmentFile}"></div>
+</th:block>

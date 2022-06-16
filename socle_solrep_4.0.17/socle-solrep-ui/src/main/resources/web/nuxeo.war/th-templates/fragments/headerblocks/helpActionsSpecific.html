@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <li th:fragment="helpActionsSpecific" class="base-drop-down-item">
+            <a
+                th:href="@{|/historiqueActualites#main_content|}"
+                class="base-drop-down__link link"
+                th:text="#{shortcut.help.actualites.label}"
+            >
+            </a>
+        </li>
+    </body>
+</html>

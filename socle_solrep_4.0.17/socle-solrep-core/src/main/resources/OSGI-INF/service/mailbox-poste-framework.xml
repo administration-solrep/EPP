@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service des Mailbox des postes du socle SOLREP. -->
+<component name="fr.dila.ss.core.service.MailboxPosteService">
+	<implementation class="fr.dila.ss.core.component.MailboxPosteComponent" />
+
+	<service>
+		<provide interface="fr.dila.ss.api.service.MailboxPosteService" />
+	</service>
+</component>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:donnerAvisCERequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSepg"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solon/epg/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSepg ../../../../../../../../xsd/solon/epg/WSepg.xsd ">
+
+	<p:nor>AZER1234567A</p:nor>
+
+	<p:type_validation_ce>AVIS_RENDU</p:type_validation_ce>
+
+	<p:section_ce>
+		<p1:section_ce>section CE</p1:section_ce>
+		<p1:rapporteur>rapporteur</p1:rapporteur>
+		<p1:date_transmission_section_ce>2011-01-01T09:00:00</p1:date_transmission_section_ce>
+		<p1:date_section_ce>2011-01-01T09:00:00</p1:date_section_ce>
+		<p1:date_ag_ce>2011-01-01T09:00:00</p1:date_ag_ce>
+		<p1:numero_isa>numeroISA</p1:numero_isa>
+	</p:section_ce>
+
+	<p:projet_decret>
+		<p2:nom>projet decret</p2:nom>
+		<p2:mime_type>text/plain</p2:mime_type>
+		<p2:taille_fichier>123</p2:taille_fichier>
+		<p2:contenu>SGVsbG8gV29ybGQ=</p2:contenu>
+	</p:projet_decret>
+
+	<p:note_gouvernement>
+		<p2:nom>note au gouvernement</p2:nom>
+		<p2:mime_type>text/plain</p2:mime_type>
+		<p2:taille_fichier>345</p2:taille_fichier>
+		<p2:contenu>SGVsbG8gV29ybGQ=</p2:contenu>
+	</p:note_gouvernement>
+
+</p:donnerAvisCERequest>

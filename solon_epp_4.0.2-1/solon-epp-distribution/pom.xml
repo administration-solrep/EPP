@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>fr.dila.solonepp</groupId>
+		<artifactId>solon-epp-parent</artifactId>
+		<version>4.0.2-1</version>
+	</parent>
+
+	<artifactId>solon-epp-distribution</artifactId>
+	<name>SOLON EPP distribution</name>
+	<packaging>pom</packaging>
+
+	<properties>
+		<target>build</target>
+
+		<liquibase.contexts>dev,solonepp</liquibase.contexts>
+		<!-- à surcharger dans les profils qui exploitent le déploiement automatisé -->
+		<deploy.ant.target>undefined</deploy.ant.target>
+		<deploy.ssh.host>undefined</deploy.ssh.host>
+		<deploy.ant.skip>true</deploy.ant.skip>
+		<deploy.script>undefined</deploy.script>
+		<deploy.install.confdir>undefined</deploy.install.confdir><!-- dans le cas d'utilisation de solrep-install.sh -->
+
+		<!-- configurations communes -->
+		<deploy.ssh.username>root</deploy.ssh.username>
+		<deploy.ssh.password>Admin123</deploy.ssh.password>
+		<deploy.ssh.keyfile>${user.home}/.ssh/id_rsa</deploy.ssh.keyfile>
+		<deploy.destdir>/opt/deploy</deploy.destdir>
+		<deploy.archive>${project.artifactId}-${project.version}-server.zip</deploy.archive>
+
+		<distrib.nuxeo.classifier />
+		<distrib.datapath>${project.build.directory}/distribsetup</distrib.datapath>
+		<distrib.app.keyname>solon-epp</distrib.app.keyname>
+		<distrib.app.contextpath>solon-epp</distrib.app.contextpath>
+		<distrib.nuxeo.useDefaultContextPath>false</distrib.nuxeo.useDefaultContextPath>
+	</properties>
+
+	<dependencies>
+		<!-- Dépendances à SOLON EPP -->
+		<dependency>
+			<groupId>fr.dila.st</groupId>
+			<artifactId>socle-transverse-ui</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.solonepp</groupId>
+			<artifactId>solon-epp-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.solonepp</groupId>
+			<artifactId>solon-epp-core</artifactId>
+		</dependency>
+
+ 		<dependency>
+			<groupId>fr.dila.solonepp</groupId>
+			<artifactId>solon-epp-ui</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.solonepp</groupId>
+			<artifactId>solon-epp-webengine</artifactId>
+		</dependency>
+
+        <!-- dependances Oracle -->
+		<dependency>
+		    <groupId>com.oracle.ojdbc</groupId>
+		    <artifactId>ojdbc8</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.nuxeo.build</groupId>
+				<artifactId>ant-assembly-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>antbuild</id>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+						<configuration>
+							<buildFiles>
+								<buildFile>${basedir}/src/main/assemble/assembly.xml</buildFile>
+							</buildFiles>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>ant</groupId>
+						<artifactId>ant-jsch</artifactId>
+						<version>1.6.5</version>
+					</dependency>
+					<dependency>
+						<groupId>com.jcraft</groupId>
+						<artifactId>jsch</artifactId>
+						<version>0.1.29</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>antrun-deploy</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<property name="deploy.srcdir" value="${project.build.directory}" />
+								<property name="deploy.destdir" value="${deploy.destdir}" />
+								<property name="deploy.archive" value="${deploy.archive}" />
+								<property name="ssh.host" value="${deploy.ssh.host}" />
+								<property name="ssh.username" value="${deploy.ssh.username}" />
+								<property name="ssh.password" value="${deploy.ssh.password}" />
+								<property name="user.keyfile" value="${deploy.ssh.keyfile}" />
+								<property name="deploy.script" value="${deploy.script}" />
+								<property name="deploy.install.confdir" value="${deploy.install.confdir}" />
+
+								<ant antfile="build.xml" target="${deploy.ant.target}" />
+								<chmod file="target/classes/" perm="755" />
+							</target>
+							<skip>${deploy.ant.skip}</skip>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<!-- Profil de développement -->
+		<profile>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<id>dev</id>
+			<properties>
+				<template>dev</template>
+			</properties>
+		</profile>
+
+		<!-- Profil d'intégration chez Sword -->
+		<profile>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<id>intesword</id>
+			<properties>
+				<template>intesword</template>
+			</properties>
+		</profile>
+
+		<!-- Profil d'intégration chez DILA -->
+		<profile>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<id>intedila</id>
+			<properties>
+				<template>intedila</template>
+			</properties>
+		</profile>
+
+		<!-- Profil d'assurance qualité -->
+		<profile>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<id>qa</id>
+			<properties>
+				<template>qaoracle</template>
+				<deploy.ant.target>autodeploy</deploy.ant.target>
+				<deploy.ant.skip>false</deploy.ant.skip>
+				<deploy.ssh.host>idlv-solrep-epp-qa.lyon-dev2.local</deploy.ssh.host>
+				<deploy.script>/opt/bin/solrep-auto-deploy.sh</deploy.script>
+			</properties>
+			<build>
+				<plugins>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- Profil d'assurance qualité Jenkins/MGPP -->
+		<profile>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<id>qamgpp</id>
+			<properties>
+				<template>qaoraclemgpp</template>
+				<deploy.ant.target>autodeploy</deploy.ant.target>
+				<deploy.ant.skip>false</deploy.ant.skip>
+				<deploy.ssh.host>idlv-solrep-mgpp-qa.lyon-dev2.local</deploy.ssh.host>
+				<deploy.script>/opt/bin/solrep-auto-deploy.sh</deploy.script>
+			</properties>
+		</profile>
+
+		<!-- Profil de livraison pour la production -->
+		<profile>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<id>prod</id>
+			<properties>
+				<template>prod</template>
+			</properties>
+		</profile>
+	</profiles>
+
+</project>

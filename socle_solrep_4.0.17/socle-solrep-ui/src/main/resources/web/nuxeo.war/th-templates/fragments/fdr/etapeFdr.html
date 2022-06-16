@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <fieldset
+            th:fragment="etapeFdr(uniqueId, btnDeleteVisible, profil)"
+            class="m-t-6 p-t-6"
+            th:id="|fieldset-${uniqueId}|"
+        >
+            <legend class="sr-only" th:text="#{dossier.fdr.ajout.etape.ligne}">Etape ligne</legend>
+            <div class="grid__row grid__row--full">
+                <div class="grid__col">
+                    <th:block
+                        th:replace="fragments/components/formblocks/simple-select :: simpleSelect('dossier.fdr.ajout.etape.type', 'typeEtape-' + ${uniqueId}, '', ${typeEtape}, ${line != null ? line.action : null}, ${isDemandeEpreuve != null ? #strings.toString(isDemandeEpreuve) : 'false'}, false)"
+                    >
+                    </th:block>
+                </div>
+                <div class="grid__col" th:if="${isSquelette}" th:with="simpleSelectClickFunction=enableDestinataire">
+                    <th:block
+                        th:replace="fragments/components/formblocks/simple-select :: simpleSelect('fdr.typeDestinataire.label', 'typeDestinataire-' + ${uniqueId}, '', ${typeDestinataire}, ${line != null ? line.typeDestinataire.name : null}, 'false', false)"
+                    >
+                    </th:block>
+                </div>
+                <div
+                    class="grid__col search-form__group"
+                    th:with="isDisabled=${isSquelette && line != null && line.typeDestinataire.name != 'ORGANIGRAMME' ? true : false}"
+                >
+                    <div
+                        th:replace="fragments/components/organigrammeSelectAutocompletePosteEtape :: organigrammeSelectAutocompletePosteEtape(
+	                     label='dossier.fdr.ajout.etape.destinataire', 
+	                     labelRequired=true, 
+	                     myID='destinataire-'+${uniqueId},
+	                     myName='destinataire', 
+	                     typeSelection='PST', 
+	                     idSelection=${line != null ? line.posteId : null},
+	                     activatePosteFilter=false, 
+	                     isMulti=false, 
+	                     listItems=${line != null ? line.mapPoste : null},
+	                     disabled=${isDisabled},
+	                     idTypeEtape='typeEtape-' + ${uniqueId})"
+                        class="select-icon-tree-wrapper"
+                    ></div>
+                </div>
+                <div class="grid__row">
+                    <div class="grid__col grid__col--auto">
+                        <div class="form-input">
+                            <div class="form-input__header">
+                                <div class="form-input__header-top">
+                                    <label
+                                        th:for="|echeance-${uniqueId}|"
+                                        th:id="|echeance-${uniqueId}_label|"
+                                        class="form-label"
+                                        th:text="#{dossier.fdr.ajout.etape.echeance.indicative}"
+                                    >
+                                    </label>
+                                </div>
+                                <div class="form-input__header-bottom"></div>
+                            </div>
+                            <div class="form-input__container">
+                                <input
+                                    type="number"
+                                    th:name="|echeance-${uniqueId}|"
+                                    th:id="|echeance-${uniqueId}|"
+                                    min="0"
+                                    max="100"
+                                    th:value="${line != null ? line.deadLine : ''}"
+                                    class="form-input__field form-input__field--type-number"
+                                />
+                            </div>
+                            <div th:id="|echeance-${uniqueId}_description|" class="form-input__footer"></div>
+                        </div>
+                    </div>
+                    <div class="grid__col grid__col--auto">
+                        <div class="form-input-group form-input-group--column">
+                            <fieldset class="form-input__fieldset">
+                                <legend
+                                    class="form-input-group__label"
+                                    th:text="#{dossier.fdr.ajout.etape.valeur.automatique}"
+                                >
+                                    Automatique
+                                </legend>
+                                <div
+                                    th:aria-describedby="|valAuto-${uniqueId}_description|"
+                                    class="form-input-group__icon-group"
+                                ></div>
+                                <span
+                                    th:id="|valAuto-${uniqueId}_description|"
+                                    class="sr-only"
+                                    th:text="#{input.group.description}"
+                                >
+                                    Description du group d'input
+                                </span>
+                                <div class="form-input-group__list">
+                                    <div
+                                        class="form-choice-input"
+                                        th:classappend="${isDemandeEpreuve ? 'form-optin--disabled' : ''}"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            th:id="|form_select_stage_val_auto_serie_${uniqueId}|"
+                                            th:name="|valAuto-${uniqueId}|"
+                                            th:class="form-choice-input__input"
+                                            th:checked="${line != null && line.valAuto}"
+                                            th:readonly="${isDemandeEpreuve != null ? isDemandeEpreuve : false}"
+                                            autocomplete="off"
+                                        />
+                                        <label
+                                            th:for="|form_select_stage_val_auto_serie_${uniqueId}|"
+                                            th:id="|form_select_stage_val_auto_serie_${uniqueId}_label|"
+                                            class="form-label form-choice-input__label form-choice-input__label--checkbox form-choice-input__label--hidden-label"
+                                        >
+                                            <span th:text="#{dossier.fdr.ajout.etape.valeur.automatique}"
+                                                >Automatique</span
+                                            >
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div th:class="${isSquelette ? 'm-t-6 grid\_\_row' : 'grid\_\_row'}">
+                    <div
+                        th:if="${profil.contains('Administrateur ministériel') || profil.contains('Administrateur fonctionnel')}"
+                        class="grid__col grid__col--auto"
+                    >
+                        <div class="form-optin">
+                            <fieldset class="form-optin__fieldset">
+                                <legend class="form-optin__legend" th:text="#{dossier.fdr.ajout.etape.obligatoire}">
+                                    Obligatoire
+                                </legend>
+                                <div
+                                    class="form-optin__optins"
+                                    th:classappend="${isDemandeEpreuve ? 'form-optin--disabled' : ''}"
+                                >
+                                    <div class="form-optin__container">
+                                        <input
+                                            type="radio"
+                                            value="non"
+                                            th:id="|obligatoire-${uniqueId}-0|"
+                                            th:name="|obligatoire-${uniqueId}|"
+                                            class="form-optin__checkbox default_check"
+                                            th:checked="${line == null || 'non'.equals(line.getObligatoire())}"
+                                            th:readonly="${isDemandeEpreuve != null ? isDemandeEpreuve : false}"
+                                            autocomplete="off"
+                                        />
+                                        <label
+                                            th:for="|obligatoire-${uniqueId}-0|"
+                                            class="form-optin__label"
+                                            th:text="#{dossier.fdr.ajout.etape.obligatoire.non}"
+                                        >
+                                        </label>
+                                    </div>
+                                    <div
+                                        th:if="${profil.contains('Administrateur fonctionnel')}"
+                                        class="form-optin__container"
+                                    >
+                                        <input
+                                            type="radio"
+                                            value="sgg"
+                                            th:id="|obligatoire-${uniqueId}-1|"
+                                            th:name="|obligatoire-${uniqueId}|"
+                                            class="form-optin__checkbox"
+                                            th:checked="${line != null && 'sgg'.equals(line.getObligatoire())}"
+                                            th:readonly="${isDemandeEpreuve != null ? isDemandeEpreuve : false}"
+                                            autocomplete="off"
+                                        />
+                                        <label
+                                            th:for="|obligatoire-${uniqueId}-1|"
+                                            class="form-optin__label"
+                                            th:text="#{dossier.fdr.ajout.etape.obligatoire.sgg}"
+                                        >
+                                        </label>
+                                    </div>
+                                    <div class="form-optin__container">
+                                        <input
+                                            type="radio"
+                                            value="ministere"
+                                            th:id="|obligatoire-${uniqueId}-2|"
+                                            th:name="|obligatoire-${uniqueId}|"
+                                            class="form-optin__checkbox"
+                                            th:checked="${line != null && 'ministere'.equals(line.getObligatoire())}"
+                                            th:readonly="${isDemandeEpreuve != null ? isDemandeEpreuve : false}"
+                                            autocomplete="off"
+                                        />
+                                        <label
+                                            th:for="|obligatoire-${uniqueId}-2|"
+                                            class="form-optin__label"
+                                            th:text="#{dossier.fdr.ajout.etape.obligatoire.ministere}"
+                                        >
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="grid__col grid__col--auto">
+                        <button
+                            type="button"
+                            class="p-a-0 base-btn base-btn--button base-btn--default base-btn--min base-btn--rounded base-btn--discret"
+                            th:id="|btnRemoveEtape-${uniqueId}|"
+                            th:classappend="${!btnDeleteVisible} ? 'invisible'"
+                            aria-hidden="true"
+                            data-tippy-content="Supprimer"
+                            onclick="removeEtape(this)"
+                        >
+                            <span aria-hidden="true" class="icon icon--times-circle icon--big"></span>
+                            <span class="sr-only" th:text="#{button.label.supprimer}">Supprimer</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </body>
+</html>

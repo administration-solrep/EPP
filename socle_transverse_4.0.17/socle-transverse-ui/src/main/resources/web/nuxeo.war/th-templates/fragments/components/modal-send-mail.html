@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="modal-send-mail" id="modal-send-mail" class="interstitial-overlay__content">
+            <div role="dialog" aria-labelledby="dialogTitle-sendMail" class="interstitial">
+                <div class="interstitial__header">
+                    <h1 id="dialogTitle-sendMail" class="interstitial__title">[[#{mail.dialog.title}]]</h1>
+                    <button
+                        type="button"
+                        class="interstitial__close base-btn base-btn--button base-btn--default base-btn--discret"
+                    >
+                        <span aria-hidden="true" class="icon icon--cross"></span>
+                        <span class="sr-only" th:text="#{validation.popup.close.label}">Fermer</span>
+                    </button>
+                </div>
+
+                <div class="interstitial__content" id="modal-mail-content">
+                    <!--/* Content load by Ajax */-->
+                </div>
+
+                <div class="interstitial__footer">
+                    <button
+                        type="button"
+                        class="interstitial__button base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                    >
+                        [[#{button.label.cancel}]]
+                    </button>
+                    <button
+                        type="button"
+                        class="base-btn base-btn--button base-btn--default base-btn--center"
+                        onclick="sendMail()"
+                    >
+                        [[#{button.confirmer}]]
+                    </button>
+                </div>
+            </div>
+
+            <div tabindex="-1" class="interstitial-overlay__tabindex"></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page des suivis des batchs', title=#{batch.suivi.label})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <h1 class="m-t-6 m-b-6 base-title base-title--lvl-1 base-title--is-underlined" th:text="#{batch.suivi.label}">
+            Suivi des batchs
+        </h1>
+        <form id="searchForm">
+            <input type="hidden" id="ajaxSearchEndpoint" value="/admin/batch/recherche" />
+            <div class="page-layout__content--dark m-y-6 p-a-5">
+                <th:block
+                    th:replace="fragments/components/formblocks/date-picker-range :: datepickerRange('batch.suivi.periode.label', 'dateBatch', ${resultForm.debut}, ${resultForm.fin}, 'false', 'false')"
+                ></th:block>
+            </div>
+            <div class="flex justify-between">
+                <button
+                    type="button"
+                    onclick="reinitSearch('/admin/batch/recherche/reinit', resetBatchDateInput)"
+                    class="m-r-3 base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                >
+                    [[#{batch.search.reinit.label}]]
+                </button>
+                <button
+                    id="button_batch_search"
+                    type="submit"
+                    class="base-btn base-btn--submit base-btn--default base-btn--center"
+                >
+                    [[#{batch.search.rechercher.label}]]
+                </button>
+            </div>
+        </form>
+
+        <div class="alert--container">
+            <div th:replace="fragments/components/result-list-batch :: resultListBatch"></div>
+        </div>
+    </main>
+</html>

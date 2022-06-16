@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            id="show-actualites_overlay"
+            class="interstitial-overlay__content interstitial-overlay__content--chained"
+            th:data-last-button-text="#{actualite.modal.close.label}"
+            th:classappend="|${not #lists.isEmpty(displayActualitesList) ? 'interstitial-overlay\_\_content--autoopen  interstitial-overlay\_\_content--visible' : ''}|"
+            th:fragment="accueilActualites"
+        >
+            <div role="dialog" aria-labelledby="modal_label" class="interstitial">
+                <div class="interstitial__chained">
+                    <span id="accueil_actualites_modal" class="sr-only">[[ #{actualite.modal.title} ]]</span>
+                    <th:block th:each="item, state : ${displayActualitesList}">
+                        <div
+                            th:id="|actualite_${item.id}|"
+                            th:aria-hidden="false"
+                            class="interstitial__chained__inner"
+                            th:classappend="${state.index > 0 ? 'hidden' : ''}"
+                        >
+                            <div class="interstitial__header" tabindex="0">
+                                <h1 class="interstitial__title">
+                                    [[ #{actualite.modal.title} ]]<span class="interstitial__title__step">
+                                        ([[ ${state.index + 1} ]]/[[ ${#lists.size(displayActualitesList)} ]])
+                                    </span>
+                                </h1>
+                                <div>
+                                    <strong>[[ ${item.getStatut()} ]]</strong>
+                                </div>
+                            </div>
+                            <div class="interstitial__content">
+                                <div class="m-b-8">
+                                    <div>
+                                        <input th:id="|reader_${item.id}|" type="hidden" th:value="${item.objet}" />
+                                        <h2
+                                            class="p-b-3 m-b-3 base-title base-title--lvl-1 base-title--is-underlined"
+                                            th:text="${item.objet}"
+                                        >
+                                            Objet
+                                        </h2>
+                                        <div class="m-b-6">
+                                            <p>
+                                                <strong th:text="${#calendars.format(item.dateEmission, 'dd/MM/yyyy')}"
+                                                    >Date émission</strong
+                                                >
+                                            </p>
+                                            <div th:utext="${item.contenu}" class="m-b-6"></div>
+                                        </div>
+                                        <th:block th:unless="${#lists.isEmpty(item.piecesJointes)}">
+                                            <h3
+                                                class="p-b-3 m-b-3 base-title base-title--lvl-2 base-title--is-underlined"
+                                                th:text="#{actualite.piecesJointes.label}"
+                                            >
+                                                Pièces jointes
+                                            </h3>
+                                            <th:block th:each="pj : ${item.piecesJointes}">
+                                                <a class="link" th:href="${pj.link}">
+                                                    <span
+                                                        aria-hidden="true"
+                                                        class="icon icon--download link__icon link__icon--prepend"
+                                                    ></span>
+                                                    [[ ${pj.nom} ]]
+                                                </a>
+                                                <br />
+                                            </th:block>
+                                        </th:block>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                    <div class="interstitial__footer">
+                        <div></div>
+                        <!-- Le label ne doit pas contenir de line break. -->
+                        <!-- prettier-ignore -->
+                        <button
+						onclick="readNews($('.interstitial__chained__inner:not(.hidden)').attr('id'))"
+						type="button"
+						class="interstitial__button-chained base-btn base-btn--button base-btn--default base-btn--center"
+						th:text="${displayActualitesList!=null and #lists.size(displayActualitesList) == 1} ? #{actualite.modal.close.label} : #{actualite.modal.next.label}" ></button>
+                    </div>
+                </div>
+            </div>
+            <div tabindex="0" class="interstitial-overlay__tabindex"></div>
+        </div>
+    </body>
+</html>

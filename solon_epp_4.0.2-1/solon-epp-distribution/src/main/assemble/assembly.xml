@@ -1,0 +1,284 @@
+<project name="solonepp-assembly" default="build" xmlns:nx="urn:nuxeo-build" xmlns:artifact="urn:nuxeo-artifact">
+
+	<taskdef resource="org/nuxeo/build/antlib.xml" uri="urn:nuxeo-build" />
+	<taskdef resource="org/nuxeo/build/artifact/antlib.xml" uri="urn:nuxeo-artifact" />
+	<exec executable="git" outputproperty="git.revision">
+	    <arg value="log" />
+	    <arg value="-1" />
+	    <arg value="--pretty=format:%H" />
+	</exec>
+
+	<filterset id="filter-resources">
+		<filter token="nuxeo.core.version" value="${nuxeo.core.version}" />
+	</filterset>
+
+	<tstamp>
+		<format property="TODAY" pattern="dd/MM/yyyy hh:mm" />
+	</tstamp>
+
+	<target name="init" unless="init.done">
+		<tstamp />
+
+		<property name="outdir" value="${maven.project.build.directory}" />
+		<property name="stagedir" value="${outdir}/" />
+		<property name="finaltarget" value="../target" />
+
+		<property name="nuxeodist-groupId" value="org.nuxeo.ecm.distribution" />
+		<property name="nuxeodist-artifactId" value="nuxeo-server-tomcat" />
+		<property name="nuxeodist-version" value="${distrib.nuxeodist.version}" />
+		<property name="nuxeodist-packaging" value="zip" />
+		<condition property="nuxeodist-classifier" value="${distrib.nuxeo.classifier}" else="full">
+			<isset property="distrib.nuxeo.classifier" />
+		</condition>
+		<property name="dir.target" value="${maven.project.build.directory}" />
+		<property name="app.version" value="${maven.project.version}" />
+		<property name="app.name" value="${distrib.app.keyname}-distribution-${app.version}" />
+		<property name="artifact.name" value="${app.name}.zip" />
+		<property name="app.path" value="${stagedir}/solonepp-server-${maven.project.version}" />
+
+		<echo>init</echo>
+		<echo>dir.target=${dir.target}</echo>
+		<echo>distrib.datapath=${distrib.datapath}</echo>
+		<echo>distrib.nuxeodist.version=${distrib.nuxeodist.version}</echo>
+		<echo>distrib.app.keyname=${distrib.app.keyname}</echo>
+		<echo>distrib.app.contextpath=${distrib.app.contextpath}</echo>
+		<echo>app.name=${app.name}</echo>
+		<echo>distrib.nuxeo.useDefaultContextPath=${distrib.nuxeo.useDefaultContextPath}</echo>
+
+		<condition property="app.context-path" value="nuxeo" else="${distrib.app.contextpath}">
+			<and>
+				<isset property="distrib.nuxeo.useDefaultContextPath" />
+				<equals arg1="${distrib.nuxeo.useDefaultContextPath}" arg2="true" />
+			</and>
+		</condition>
+
+		<artifact:expand depth="5" />
+		<property name="init.done" value="true" />
+	</target>
+
+	<target name="build">
+		<antcall target="cleanoutput" />
+		<antcall target="server" />
+	</target>
+
+	<target name="cleanoutput">
+		<delete dir="${finaltarget}" />
+	</target>
+
+	<target name="server" depends="init" description="Server packaging">
+		<echo>solonepp-distribution server build (Tomcat)...</echo>
+
+		<echo>unzip base distribution</echo>
+		<mkdir dir="${stagedir}" />
+		<unzip dest="${stagedir}">
+			<artifact:resolveFile
+                key="${nuxeodist-groupId}:${nuxeodist-artifactId}:${nuxeodist-version}:${nuxeodist-packaging}"
+                classifier="${nuxeodist-classifier}"
+            />
+		</unzip>
+
+		<nx:rename from="${stagedir}/nuxeo-*" to="${app.path}" />
+		<chmod dir="${app.path}" perm="750" includes="*.sh,bin/*.sh,bin/nuxeoctl" />
+
+		<!-- remove .rar present in bundles -->
+		<!-- example : nuxeo-core-storage-sql-ra-5.5.0-HF14.rar -->
+		<delete>
+			<fileset dir="${app.path}/nxserver/lib">
+				<include name="*.rar" />
+			</fileset>
+			<fileset dir="${app.path}/nxserver/bundles">
+				<include name="*.rar" />
+			</fileset>
+		</delete>
+
+		<!-- Add nuxeo bundle -->
+		<echo>add nuxeo bundles</echo>
+		<mkdir dir="${app.path}/nxserver/bundles" />
+		<copy todir="${app.path}/nxserver/bundles" overwrite="false" verbose="false">
+			<artifact:set>
+				<includes>
+					<artifact groupId="org.nuxeo*" scope="!test" type="!pom" />
+				</includes>
+				<excludes>
+					<artifact artifactId="nuxeo-apt-extensions" />
+					<artifact artifactId="nuxeo-webengine-apt" />
+					<artifact groupId="org.nuxeo.lib*" />
+				</excludes>
+			</artifact:set>
+		</copy>
+
+		<!-- Add custom plugins and studio bundles -->
+		<echo>include plugins</echo>
+
+		<!-- Déploiement des plugins Socle Transverse et EPP -->
+		<copy todir="${app.path}/nxserver/plugins">
+			<artifact:set>
+				<includes>
+					<artifact groupId="fr.dila.ecm.platform" type="jar" />
+					<artifact groupId="fr.dila.cm" type="jar" />
+					<artifact groupId="fr.dila.st" type="jar" />
+					<artifact groupId="fr.dila.solonepp" type="jar" />
+					<artifact groupId="fr.sword.*" type="!pom" scope="!test" />
+					<artifact groupId="nuxeo-studio*" type="jar" />
+				</includes>
+			</artifact:set>
+		</copy>
+
+		<!-- remove pom.xml in plugins-->
+		<delete>
+			<fileset dir="${app.path}/nxserver/plugins">
+				<include name="*pom.xml" />
+			</fileset>
+
+		</delete>
+
+		<antcall target="third-party-libraries" />
+
+		<!-- Déploiement des resources -->
+		<copy todir="${app.path}" overwrite="true">
+			<fileset dir="src/main/resources" includes="**/*" />
+		</copy>
+		
+		<!-- Deploy custom nuxeo.properties -->
+		<replace
+            file="${app.path}/templates/custom/nxserver/config/solonepp.properties"
+            token="%%SNAPSHOT%%"
+            value="${maven.project.version} ${TODAY}"
+        />
+		
+		<replace
+            file="${app.path}/templates/custom/nxserver/config/solonepp.properties"
+            token="%%BUILD%%"
+            value="${git.revision}"
+        />
+		
+		<antcall target="solrep-tools" />
+
+		<nx:rmdups dir="${app.path}/nxserver/bundles" />
+
+		<!-- Rename nuxeo.xml files to change context path -->
+		<antcall target="-rename-context-file">
+		</antcall>
+
+		<!-- -->
+		<delete dir="${app.path}/setupWizardDownloads" includeemptydirs="true" />
+
+		<!-- Construction du ZIP final -->
+		<antcall target="make-zip">
+			<param name="distribution" value="server" />
+		</antcall>
+		<symlink link="${outdir}/nuxeo" resource="${app.path}" />
+
+	</target>
+
+	<target name="solrep-tools" if="environment.sword">
+		<copy tofile="${app.path}/liquibase/solon-epp-init-jar-with-dependencies.jar">
+			<artifact:set groupId="fr.dila.solonepp" artifactId="solon-epp-init" classifier="jar-with-dependencies" type="jar" />
+		</copy>
+		<copy tofile="${app.path}/tools/solrep-tools.jar">
+			<artifact:file groupId="fr.dila.st" artifactId="socle-transverse-init" classifier="jar-with-dependencies" type="jar" />
+		</copy>
+	</target>
+
+	<target name="make-zip">
+		<zip
+            destfile="${outdir}/${maven.project.artifactId}-${maven.project.version}-${distribution}.zip"
+            basedir="${stagedir}"
+        />
+		<echo>Distribution built:
+			${outdir}/${maven.project.artifactId}-${maven.project.version}-${distribution}.zip</echo>
+		<artifact:attach
+            file="${outdir}/${maven.project.artifactId}-${maven.project.version}-${distribution}.zip"
+            classifier="${distribution}"
+            type="zip"
+            target="${maven.project.groupId}:${maven.project.artifactId}"
+        />
+	</target>
+
+	<target name="third-party-libraries">
+	    <copy todir="${app.path}/nxserver/lib" overwrite="true">
+	      <artifact:set>
+	        <excludes>
+	          <artifact groupId="*" type="pom" />
+			  <artifact groupId="*" scope="test" />
+              <artifact groupId="org.nuxeo*" type="!pom" scope="!test" />
+              <artifact groupId="fr.dila.*" type="!pom" scope="!test" />
+              <artifact groupId="fr.sword.*" type="!pom" scope="!test" />
+              <artifact groupId="nuxeo-studio*" type="jar" />
+	        </excludes>
+	      </artifact:set>
+	    </copy>
+	    <!-- Remove duplicates -->
+	    <nx:rmdups dir="${app.path}/nxserver/lib" />
+		
+		<!-- remove libraries already provided by Tomcat or unneeded -->
+		<delete>
+				<fileset dir="${app.path}/nxserver/lib">
+					<!-- jetty is needed by vcs remote -->
+					<!-- jetty-util is needed by jsp impl jar - which is referring jetty log classes -->
+					<!-- jetty-naming has jndi properties conflicting with Tomcat -->
+					<include name="jetty-naming*" />
+					<include name="el-api*" />
+					<include name="jsp-*" />
+					<include name="juel-api-*" />
+					<include name="servlet-api*" />
+					<include name="commons-logging*" />
+					<include name="xercesImpl*" />
+				</fileset>
+
+			</delete>
+
+			<!-- Move some libraries from nxserver to Tomcat default lib directory -->
+			<move todir="${app.path}/lib">
+				<fileset dir="${app.path}/nxserver/lib">
+					<include name="lucene-*" />
+					<include name="commons-lang-*" />
+					<include name="freemarker-*" />
+					<include name="mail-*" />
+
+					<include name="slf4j*" />
+					<include name="jcl-over-slf4j*" />
+					<include name="log4j-*" />
+                                        <include name="ojdbc8*" />
+				</fileset>
+				<fileset dir="${app.path}/nxserver/bundles">
+					<include name="nuxeo-core-storage-sql-extensions-*" />
+					<include name="nuxeo-runtime-tomcat-adapter*" />
+					<include name="nuxeo-runtime-launcher*" />
+					<!-- move WSS front filter as external lib since it must be referenced from root Web context-->
+					<include name="nuxeo-wss-front*" />
+				</fileset>
+			</move>
+			<nx:rmdups dir="${app.path}/lib" />
+
+
+			<!-- Move JAX libraries more recent that those from JDK6 into endorsed -->
+			<move todir="${app.path}/endorsed">
+				<fileset dir="${app.path}/nxserver/lib">
+					<include name="jaxb-api-*" />
+					<include name="jaxws-api-*" />
+				</fileset>
+			</move>
+
+			<echo>Removing security breach from log4j-core (JndiLookup.class)</echo>
+
+			<jar destfile="${app.path}/lib/log4j-core-2.11.1-secure-coexya.jar">
+	        		<zipfileset src="${app.path}/lib/log4j-core-2.11.1.jar" excludes="**/JndiLookup.class" />
+	    		</jar>
+
+	    		<delete file="${app.path}/lib/log4j-core-2.11.1.jar" />
+
+	  </target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+           target: -rename-context-file                      
+          - - - - - - - - - - - - - - - - - -->
+	<target name="-rename-context-file">
+		<move
+            file="${app.path}/templates/common-base/conf/Catalina/localhost/nuxeo.xml.nxftl"
+            tofile="${app.path}/templates/common-base/conf/Catalina/localhost/${app.context-path}.xml.nxftl"
+        >
+		</move>
+	</target>
+
+</project>

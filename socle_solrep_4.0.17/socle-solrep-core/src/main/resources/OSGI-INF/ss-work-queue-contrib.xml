@@ -1,0 +1,22 @@
+<component name="fr.dila.ss.core.birt.BirtWork">
+	<extension point="queues" target="org.nuxeo.ecm.core.work.service">
+		<queue id="BirtGeneration">
+			<name>Async Birt Generation Queue</name>
+			<maxThreads>2</maxThreads>
+			<category>BirtWork</category>
+		</queue>
+
+		<queue id="CleanDeletedStepBatchQueue">
+			<name>CleanDeletedStepBatchQueue</name>
+            <!-- au maximum 1 seul thread pour éviter la suppression en parralèle d'un même document -->
+			<maxThreads>1</maxThreads>
+			<category>CleanDeletedStepBatchListener</category>
+		</queue>
+
+        <queue id="LogoutListenerQueue">
+            <name>LogoutListenerQueue</name>
+            <maxThreads>2</maxThreads>
+            <category>ssLogoutListener</category>
+        </queue>
+	</extension>
+</component>

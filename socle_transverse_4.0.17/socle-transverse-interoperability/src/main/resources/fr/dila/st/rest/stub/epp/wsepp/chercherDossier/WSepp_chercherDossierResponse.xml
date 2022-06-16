@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherDossierResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSepp ../../../../../../../../xsd/solon/epp/WSepp.xsd ">
+
+
+	<p:id_dossier>DOS_0000</p:id_dossier>
+	<p:statut>OK</p:statut>
+	<p:dossier>
+		<p1:fiche_dossier>
+			<p1:meta1>toto</p1:meta1>
+		</p1:fiche_dossier>
+		<p1:evenement type="EVT05">
+			<!-- Reçu par le gouvernement -->
+			<p2:evt05 etat="PUBLIE" has_contenu_pj="false">
+				<p2:id_evenement>EVTID_0000346</p2:id_evenement>
+				<p2:id_evenement_precedent></p2:id_evenement_precedent>
+				<p2:id_dossier>DOS_00045</p2:id_dossier>
+				<p2:emetteur>ASSEMBLEE_NATIONALE</p2:emetteur>
+				<p2:destinataire>GOUVERNEMENT</p2:destinataire>
+				<p2:copie>SENAT</p2:copie>
+				<p2:horodatage>2010-08-17T10:07:45</p2:horodatage>
+				<p2:id_senat></p2:id_senat>
+				<p2:niveau_lecture code="AN" niveau="1" />
+				<p2:objet>Sujet du texte de loi</p2:objet>
+
+				<p2:version_courante majeur="2" mineur="0" etat="PUBLIE" />
+				<p2:version_disponible majeur="1" mineur="0"
+					etat="OBSOLETE" />
+				<p2:version_disponible majeur="1" mineur="1"
+					etat="REJETE" />
+				<p2:action_suivante>ACCUSER_RECEPTION</p2:action_suivante>
+				<p2:action_suivante>TRANSMETTRE_MEL</p2:action_suivante>
+				<p2:action_suivante>MARQUAGE_MESSAGE_TRAITE</p2:action_suivante>
+				<p2:action_suivante>PASSAGE_MESSAGE_EN_COURS_DE_TRAITEMENT</p2:action_suivante>
+				<p2:action_suivante>VISUALISER_VERSION</p2:action_suivante>
+				<p2:action_suivante>CREER_ALERTE</p2:action_suivante>
+
+				<p2:date_refus>2011-06-06</p2:date_refus>
+			</p2:evt05>
+		</p1:evenement>
+		<p1:evenement type="EVT05">
+			<!-- Reçu par le gouvernement -->
+			<p2:evt05 etat="PUBLIE" has_contenu_pj="false">
+				<p2:id_evenement>EVTID_0000347</p2:id_evenement>
+				<p2:id_evenement_precedent>EVTID_0000346</p2:id_evenement_precedent>
+				<p2:id_dossier>DOS_00045</p2:id_dossier>
+				<p2:emetteur>ASSEMBLEE_NATIONALE</p2:emetteur>
+				<p2:destinataire>GOUVERNEMENT</p2:destinataire>
+				<p2:copie>SENAT</p2:copie>
+				<p2:horodatage>2010-08-17T10:07:45</p2:horodatage>
+				<p2:id_senat></p2:id_senat>
+				<p2:niveau_lecture code="AN" niveau="1" />
+				<p2:objet>Sujet du texte de loi</p2:objet>
+
+				<p2:version_courante majeur="2" mineur="0" etat="PUBLIE" />
+				<p2:version_disponible majeur="1" mineur="0"
+					etat="OBSOLETE" />
+				<p2:version_disponible majeur="1" mineur="1"
+					etat="REJETE" />
+				<p2:action_suivante>ACCUSER_RECEPTION</p2:action_suivante>
+				<p2:action_suivante>TRANSMETTRE_MEL</p2:action_suivante>
+				<p2:action_suivante>MARQUAGE_MESSAGE_TRAITE</p2:action_suivante>
+				<p2:action_suivante>PASSAGE_MESSAGE_EN_COURS_DE_TRAITEMENT</p2:action_suivante>
+				<p2:action_suivante>VISUALISER_VERSION</p2:action_suivante>
+				<p2:action_suivante>CREER_ALERTE</p2:action_suivante>
+
+				<p2:date_refus>2011-06-06</p2:date_refus>
+			</p2:evt05>
+		</p1:evenement>
+		<p1:evenement type="EVT05">
+			<!-- Reçu par le gouvernement -->
+			<p2:evt05 etat="PUBLIE" has_contenu_pj="false">
+				<p2:id_evenement>EVTID_0000348</p2:id_evenement>
+				<p2:id_evenement_precedent>EVTID_0000347</p2:id_evenement_precedent>
+				<p2:id_dossier>DOS_00045</p2:id_dossier>
+				<p2:emetteur>ASSEMBLEE_NATIONALE</p2:emetteur>
+				<p2:destinataire>GOUVERNEMENT</p2:destinataire>
+				<p2:copie>SENAT</p2:copie>
+				<p2:horodatage>2010-08-17T10:07:45</p2:horodatage>
+				<p2:id_senat></p2:id_senat>
+				<p2:niveau_lecture code="AN" niveau="1" />
+				<p2:objet>Sujet du texte de loi</p2:objet>
+
+				<p2:version_courante majeur="2" mineur="0" etat="PUBLIE" />
+				<p2:version_disponible majeur="1" mineur="0"
+					etat="OBSOLETE" />
+				<p2:version_disponible majeur="1" mineur="1"
+					etat="REJETE" />
+				<p2:action_suivante>ACCUSER_RECEPTION</p2:action_suivante>
+				<p2:action_suivante>TRANSMETTRE_MEL</p2:action_suivante>
+				<p2:action_suivante>MARQUAGE_MESSAGE_TRAITE</p2:action_suivante>
+				<p2:action_suivante>PASSAGE_MESSAGE_EN_COURS_DE_TRAITEMENT</p2:action_suivante>
+				<p2:action_suivante>VISUALISER_VERSION</p2:action_suivante>
+				<p2:action_suivante>CREER_ALERTE</p2:action_suivante>
+
+				<p2:date_refus>2011-06-06</p2:date_refus>
+			</p2:evt05>
+		</p1:evenement>
+
+	</p:dossier>
+
+</p:chercherDossierResponse>

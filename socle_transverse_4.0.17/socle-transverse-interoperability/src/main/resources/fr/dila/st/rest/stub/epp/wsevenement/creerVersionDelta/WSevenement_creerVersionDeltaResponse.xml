@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:creerVersionDeltaResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:epptdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd ">
+
+	<p:statut>OK</p:statut>
+
+	<p:evenement type="EVT04BIS">
+		<p2:evt04bis etat="PUBLIE" has_contenu_pj="false">
+			<p2:id_evenement>EVTID_001</p2:id_evenement>
+			<p2:id_evenement_precedent>EVT001</p2:id_evenement_precedent>
+			<p2:id_dossier>DOSID_001</p2:id_dossier>
+			<p2:emetteur>GOUVERNEMENT</p2:emetteur>
+			<p2:destinataire>ASSEMBLEE_NATIONALE</p2:destinataire>
+			<p2:copie>SENAT</p2:copie>
+			<p2:horodatage>2011-07-01T09:00:00</p2:horodatage>
+			<p2:id_senat>IDSENAT_001</p2:id_senat>
+			<p2:niveau_lecture niveau="1" code="AN" />
+			<p2:date_ar>2011-07-07</p2:date_ar>
+			<p2:objet>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam libero quis sapien pharetra nec porta lorem scelerisque.</p2:objet>
+			<p2:commentaire><![CDATA[
+			integer et orci felis. 
+			Proin sodales consequat ante nec sagittis. 
+			Aenean sed tortor et dui auctor egestas. Praesent a lacus quis nisi pellentesque egestas lacinia a felis. Morbi quis felis eget neque posuere vehicula. Phasellus venenatis nisi porta leo vehicula sit amet iaculis purus dapibus. Integer aliquam iaculis porta. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In hac habitasse platea dictumst. Pellentesque dapibus tellus sit amet tellus tempor ac aliquet lorem facilisis. Phasellus nibh mi, commodo vel dictum et, tempor eu quam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi augue ipsum, feugiat non blandit id, iaculis eu libero. Cras quis facilisis enim. Cras vehicula lacus nec velit pretium cursus. Curabitur volutpat nisi non tellus lobortis semper. Praesent interdum, dui eu vulputate egestas, sapien ipsum ullamcorper tellus, aliquet faucibus dolor arcu et odio.
+			]]></p2:commentaire>
+
+			<p2:version_courante majeur="1" mineur="0" etat="PUBLIE" />
+
+			<p2:date_distribution>2011-07-01</p2:date_distribution>
+			<p2:nature_rapport>RAPPORT</p2:nature_rapport>
+			<p2:rapporteur>
+				<epptdref:type>DEPUTE</epptdref:type>
+				<epptdref:proprietaire>ASSEMBLEE_NATIONALE</epptdref:proprietaire>
+				<epptdref:id>6</epptdref:id>
+				<epptdref:date_debut>2010-09-04</epptdref:date_debut>
+				<epptdref:id_identite>4</epptdref:id_identite>
+				<epptdref:id_circonscription>65</epptdref:id_circonscription>
+			</p2:rapporteur>
+			<p2:titre>Projet de loi relatif à l'action extérieure de l'État</p2:titre>
+			<p2:intitule>Lorem ipsum</p2:intitule>
+			<p2:depot_rapport>
+				<p1:date>2011-07-01</p1:date>
+				<p1:numero>233</p1:numero>
+			</p2:depot_rapport>
+			<p2:depot_texte>
+				<p1:date>2011-06-01</p1:date>
+				<p1:numero>345</p1:numero>
+			</p2:depot_texte>
+			<p2:commission>
+				<p1:id>873</p1:id>
+				<p1:type>GROUPE_AN</p1:type>
+				<p1:nom>Commission de la défense</p1:nom>
+				<p1:date_debut>2018-04-14</p1:date_debut>
+				<p1:proprietaire>ASSEMBLEE_NATIONALE</p1:proprietaire>
+			</p2:commission>
+			<p2:attribution>AU_FOND</p2:attribution>
+		</p2:evt04bis>
+	</p:evenement>
+
+
+</p:creerVersionDeltaResponse>

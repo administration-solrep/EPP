@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://dila.fr/solonepp/schema/identite/"
+    xmlns:idt="http://dila.fr/solonepp/schema/identite/"
+>
+
+	<!-- Identifiant technique de l'enregistrement -->
+	<xs:element name="identifiant" type="xs:string" />
+
+	<!-- Nom -->
+	<xs:element name="nom" type="xs:string" />
+
+	<!-- Prénom -->
+	<xs:element name="prenom" type="xs:string" />
+
+	<!-- identifiant de l'acteur -->
+	<xs:element name="acteur" type="xs:string" />
+
+	<!-- Civilité -->
+	<xs:element name="civilite" type="xs:string" />
+
+	<!-- Date de début -->
+	<xs:element name="dateDebut" type="xs:date" />
+
+	<!-- Date de fin -->
+	<xs:element name="dateFin" type="xs:date" />
+
+	<!-- Date de naissance -->
+	<xs:element name="dateNaissance" type="xs:date" />
+
+	<!-- Lieu de naissance -->
+	<xs:element name="lieuNaissance" type="xs:string" />
+
+	<!-- Département de naissance -->
+	<xs:element name="departementNaissance" type="xs:string" />
+
+	<!-- Pays de naissance -->
+	<xs:element name="paysNaissance" type="xs:string" />
+
+	<!-- Proprietaire de l'identité (GOUVERNEMENT, AN, SENAT) -->
+	<xs:element name="proprietaire" type="xs:string" />
+
+</xs:schema>

@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.core.transient.store.contrib">
+<extension target="org.nuxeo.ecm.core.transientstore.TransientStorageComponent" point="store">
+  <store name="mailblobs">
+    <targetMaxSizeMB>${#mail.transient.store.max.size.target}</targetMaxSizeMB>
+    <absoluteMaxSizeMB>${#mail.transient.store.max.size.absolute}</absoluteMaxSizeMB>
+    <firstLevelTTL>${#mail.transient.store.max.time.unreleased}</firstLevelTTL>
+    <secondLevelTTL>${#mail.transient.store.max.time.released}</secondLevelTTL>
+  </store>
+</extension>
+</component>

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service de génération externe de rapports birt. -->
+<component name="fr.dila.ss.core.birt.BirtAppCommand">
+
+  <require>org.nuxeo.ecm.platform.commandline.executor.service.defaultContrib</require>
+
+  <!-- LIGNE DE COMMANDE -->
+  <extension target="org.nuxeo.ecm.platform.commandline.executor.service.CommandLineExecutorComponent" point="command">
+    <command name="birtapp" enabled="true">
+      <commandLine>java</commandLine>
+      <parameterString
+            >-Dlog4j.configurationFile=#{logConfigFile} -cp #{classPath} #{mainClass} #{solonBirtParam} #{configFile}</parameterString>
+      <testParameterString>-cp #{classPath} #{mainClass} version</testParameterString>
+      <installationDirective>You need to install solon-birt-generator</installationDirective>
+    </command>
+  </extension>
+</component>

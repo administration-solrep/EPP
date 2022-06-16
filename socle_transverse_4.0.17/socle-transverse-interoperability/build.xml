@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+	31 oct. 2010 15:51:09 maven-helper fbarmes ====================================================================== -->
+<project name="socle-transverse-interoperability-maven-helper">
+
+	<property environment="env" />
+
+	<property name="dir.project.root" value="${basedir}" />
+
+	<property name="dir.project.resources" value="${dir.project.root}/src/main/resources" />
+	<property name="dir.project.xsd" value="${dir.project.resources}/xsd" />
+	<property name="dir.project.xjb" value="${dir.project.resources}/xjb" />
+	<property name="dir.project.excel" value="${dir.project.resources}/excel" />
+	<property name="dir.project.target" value="${dir.project.root}/target" />
+
+	<property name="file.spi.basename" value="socle-transverse-interoperability-spi" />
+	<property name="file.example.basename" value="socle-transverse-interoperability-examples" />
+
+	<!-- Pour eclipse, on permet de switcher la jvm utilisée pour la génération de manière à pouvoir forcer une 1.6 -->
+	<condition property="JAVA_HOME" value="${xmlbindings.java.path}" else="${env.JAVA_HOME}">
+		<isset property="xmlbindings.java.path" />
+	</condition>
+	<condition property="JRE_HOME" value="${xmlbindings.java.path}" else="${env.JRE_HOME}">
+		<isset property="xmlbindings.java.path" />
+	</condition>
+	<condition property="JDK_HOME" value="${xmlbindings.java.path}" else="${env.JDK_HOME}">
+		<isset property="xmlbindings.java.path" />
+	</condition>
+
+	<property name="xjc.dir.bin" value="${JAVA_HOME}/bin" />
+	<property name="xjc.exec" value="${xjc.dir.bin}/xjc" />
+
+	<property name="wsimport.dir.bin" value="${JDK_HOME}/bin" />
+	<property name="wsimport.exec" value="${xjc.dir.bin}/wsimport" />
+
+	<echo message="JAVA_HOME = ${JAVA_HOME}" />
+	<echo message="JDK_HOME = ${JDK_HOME}" />
+	<echo message="JRE_HOME = ${JRE_HOME}" />
+	<echo message="xjc.dir.bin = ${xjc.dir.bin}" />
+
+	<fail unless="JAVA_HOME"
+		message="La variable d'environnement JAVA_HOME doit être définie." />
+
+
+	<!-- ================================= target: generate-sources ================================= -->
+	<target name="generate-sources" depends="" description="">
+
+		<mkdir dir="${dir.project.root}/target/src/main/generated" />
+
+		<antcall target="generate-sources-reponses" />
+		<antcall target="generate-sources-solon-epg" />
+		<antcall target="generate-sources-solon-epg-reprise" />
+		<antcall target="generate-sources-client-dictao" />
+		<antcall target="generate-sources-client-eurlex" />
+		<antcall target="generate-sources-solon-epp" />
+		<antcall target="generate-sources-solex" />
+
+	</target>
+
+
+	<!-- ================================= target: generate-sources-reponses 
+		================================= -->
+	<target name="generate-sources-reponses" depends="" description="">
+
+		<antcall target="-xjc2">
+			<param name="bindings"
+				value="
+    			${dir.project.resources}/xjb/global.xjb
+    			${dir.project.resources}/xjb/commons.xjb
+    			${dir.project.resources}/xjb/reponses.xjb" />
+
+			<param name="file"
+				value="
+    			${dir.project.resources}/xsd/commons/commons.xsd
+    			${dir.project.resources}/xsd/reponses/ar.xsd
+    			${dir.project.resources}/xsd/reponses/notification.xsd
+    			${dir.project.resources}/xsd/reponses/questions.xsd
+    			${dir.project.resources}/xsd/reponses/reponses-commons.xsd
+    			${dir.project.resources}/xsd/reponses/reponses.xsd
+				${dir.project.resources}/xsd/reponses/WSreponse.xsd 
+				${dir.project.resources}/xsd/reponses/WSattribution.xsd
+				${dir.project.resources}/xsd/reponses/WScontrole.xsd
+				${dir.project.resources}/xsd/reponses/WSquestion.xsd
+				${dir.project.resources}/xsd/reponses/WSnotification.xsd
+				${dir.project.resources}/xsd/reponses/WSrecherche.xsd
+    			" />
+		</antcall>
+
+
+	</target>
+
+
+	<!-- ================================= target: generate-sources-solon-epg 
+		================================= -->
+	<target name="generate-sources-solon-epg" depends=""
+		description="">
+
+		<antcall target="-xjc2">
+			<param name="bindings"
+				value="
+    			${dir.project.resources}/xjb/global.xjb
+    			${dir.project.resources}/xjb/commons.xjb
+    			${dir.project.resources}/xjb/solon-epg.xjb
+    			${dir.project.resources}/xjb/spe.xjb"/>
+
+			<param name="file"
+				value="
+    			${dir.project.resources}/xsd/commons/commons.xsd
+    			${dir.project.resources}/xsd/solon/epg/actes.xsd
+    			${dir.project.resources}/xsd/solon/epg/solon_bordereau.xsd
+    			${dir.project.resources}/xsd/solon/epg/solon_fdr.xsd
+    			${dir.project.resources}/xsd/solon/epg/solon_journal.xsd
+    			${dir.project.resources}/xsd/solon/epg/solon_traitement_papier.xsd
+    			${dir.project.resources}/xsd/solon/epg/ar.xsd
+    			${dir.project.resources}/xsd/solon/epg/solon-commons.xsd
+    			${dir.project.resources}/xsd/solon/epg/WSepg.xsd
+    			${dir.project.resources}/xsd/solon/epg/WSspe.xsd
+    			" />
+		</antcall>
+	</target>
+
+
+
+	<!-- ================================= target: generate-sources-solon-epp 
+		================================= -->
+	<target name="generate-sources-solon-epp" depends=""
+		description="">
+
+		<antcall target="-xjc2">
+			<param name="bindings"
+				value="
+    			${dir.project.resources}/xjb/global.xjb
+    			${dir.project.resources}/xjb/commons.xjb
+    			${dir.project.resources}/xjb/solon-epp.xjb" />
+
+			<param name="file"
+				value="
+    			${dir.project.resources}/xsd/commons/commons.xsd
+    			${dir.project.resources}/xsd/solon/epp/epp-commons.xsd
+    			${dir.project.resources}/xsd/solon/epp/epp-tableReference.xsd
+    			${dir.project.resources}/xsd/solon/epp/epp-evt.xsd
+    			${dir.project.resources}/xsd/solon/epp/WSepp.xsd
+    			${dir.project.resources}/xsd/solon/epp/WSevenement.xsd
+    			${dir.project.resources}/xsd/solon/epp/WSnotification.xsd
+    			" />
+		</antcall>
+	</target>
+
+
+	<!-- ================================= target: generate-sources-solex ================================= -->
+	<target name="generate-sources-solex" depends="" description="">
+
+		<antcall target="-xjc2">
+			<param name="bindings"
+				value="
+            ${dir.project.resources}/xjb/global.xjb
+            ${dir.project.resources}/xjb/commons.xjb
+            ${dir.project.resources}/xjb/solex.xjb" />
+
+			<param name="file"
+				value="
+            ${dir.project.resources}/xsd/commons/commons.xsd
+            ${dir.project.resources}/xsd/solon/epp/epp-tableReference.xsd
+            ${dir.project.resources}/xsd/solex/WSsolex.xsd
+          	${dir.project.resources}/xsd/solon/epp/WSnotification.xsd          	
+            " />
+		</antcall>
+	</target>
+
+
+	<!-- ================================= target: generate-sources-solon-epg-reprise 
+		================================= -->
+	<target name="generate-sources-solon-epg-reprise" depends=""
+		description="">
+
+		<antcall target="-xjc">
+			<param name="package" value="fr.sword.xsd.solon.epg.reprise" />
+			<param name="file"
+				value="
+						${dir.project.resources}/xsd/solon/reprise/acte.xsd
+						${dir.project.resources}/xsd/solon/reprise/fdr.xsd
+						${dir.project.resources}/xsd/solon/reprise/journal.xsd" />
+		</antcall>
+
+	</target>
+
+		<!-- ================================= target: -generate-sources-reponses 
+		================================= -->
+	<target name="-generate-sources-reponses-old" depends=""
+		description="">
+
+		<!-- SPL : group all xsd in one pass generation since the result go in 
+			the same package. Avoid to recreate a new ObjectFactory at each xjc call 
+			and so lose the method create during the previous call. -->
+		<antcall target="-xjc">
+			<param name="package" value="fr.sword.xsd.reponses" />
+			<param name="file"
+				value="
+				${dir.project.resources}/xsd/reponses/version.xsd
+				${dir.project.resources}/xsd/reponses/WSreponse.xsd 
+				${dir.project.resources}/xsd/reponses/WSattribution.xsd
+				${dir.project.resources}/xsd/reponses/WScontrole.xsd
+				${dir.project.resources}/xsd/reponses/WSquestion.xsd
+				${dir.project.resources}/xsd/reponses/WSnotification.xsd
+				${dir.project.resources}/xsd/reponses/WSrecherche.xsd" />
+		</antcall>
+	</target>
+
+
+
+	<!-- ================================= target: generate-sources-client-dictao 
+		================================= -->
+	<target name="generate-sources-client-dictao" depends=""
+		description="">
+
+		<!-- <antcall target="-wsimport"> <param name="package" value="fr.sword.wsdl.dictao"/> 
+			<param name="file" value="${dir.project.resources}/wsdl/dictao/d2siInterface.wsdl" 
+			/> </antcall> -->
+
+		<antcall target="-wsimport">
+			<param name="package" value="fr.sword.wsdl.dictao.d2s" />
+			<param name="file"
+				value="${dir.project.resources}/wsdl/dictao/d2s/D2SInterfaceFrontEnd.wsdl" />
+		</antcall>
+
+		<antcall target="-wsimport">
+			<param name="package" value="fr.sword.wsdl.dictao.dvs" />
+			<param name="file"
+				value="${dir.project.resources}/wsdl/dictao/dvs/DVSInterfaceFrontEnd.wsdl" />
+		</antcall>
+
+	</target>
+	
+	<target name="generate-sources-client-eurlex">
+		<antcall target="-wsimporteurlex">
+			<param name="package" value="fr.sword.wsdl.solon.eurlex" />
+			<param name="file" value="${dir.project.resources}/xsd/solon/eurlex/eurlex-ws.wsdl" />
+		</antcall>
+	</target>
+
+
+	<!-- ================================= target: export-spi ================================= -->
+	<target name="export-spi" depends="" description="">
+
+		<delete file="${dir.project.target}/${file.spi.basename}.zip"></delete>
+		<delete file="${dir.project.target}/${file.example.basename}.zip"></delete>
+
+		<!-- Export SPI -->
+		<zip destfile="${dir.project.target}/${file.spi.basename}-${build.project.version}.zip">
+			<zipfileset dir="${dir.project.excel}" prefix="${file.spi.basename}/excel">
+				<include name="**/*.*" />
+			</zipfileset>
+
+			<zipfileset dir="${dir.project.xsd}" prefix="${file.spi.basename}/xsd">
+				<include name="**/*.*" />
+			</zipfileset>
+
+			<zipfileset dir="${dir.project.xjb}" prefix="${file.spi.basename}/xjb">
+				<include name="**/*.*" />
+			</zipfileset>
+		</zip>
+
+		<!-- Export examples -->
+		<zip destfile="${dir.project.target}/${file.example.basename}-${build.project.version}.zip">
+			<zipfileset dir="${dir.project.resources}/fr/dila/st/rest/stub"
+				prefix="${file.example.basename}">
+				<include name="**/*" />
+			</zipfileset>
+
+		</zip>
+
+	</target>
+
+
+	<!-- - - - - - - - - - - - - - - - - - target: -xjc - - - - - - - - - - 
+		- - - - - - - -->
+	<target name="-xjc">
+		<fail unless="file" />
+		<fail unless="package" />
+
+		<mkdir dir="${dir.project.root}/src/main/java/fr" />
+		<exec executable="${xjc.exec}">
+			<arg line="-encoding &quot;UTF-8&quot;" />
+			<arg line="-d &quot;${dir.project.root}/target/src/main/generated&quot;" />
+			<arg line="-extension" />
+			<arg line="-p ${package}" />
+			<arg line="${file}" />
+			<arg line="-nv" />
+			<arg line="-npa" />
+		</exec>
+
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - target: -xjc2 - - - - - - - - - - 
+		- - - - - - - -->
+	<target name="-xjc2">
+		<fail unless="file" />
+		<fail unless="bindings" />
+
+		<mkdir dir="${dir.project.root}/src/main/java/fr" />
+		<exec executable="${xjc.exec}">
+			<arg line="-encoding &quot;UTF-8&quot;" />
+			<arg line="-d &quot;${dir.project.root}/target/src/main/generated&quot;" />
+			<arg line="-extension" />
+			<arg line="-b ${bindings}" />
+			<arg line="${file}" />
+			<arg line="-nv" />
+			<arg line="-npa" />
+		</exec>
+
+	</target>
+
+
+	<!-- - - - - - - - - - - - - - - - - - target: -wsimport - - - - - - - - 
+		- - - - - - - - - -->
+	<target name="-wsimport">
+
+		<exec executable="${wsimport.exec}">
+			<arg line="-encoding &quot;UTF-8&quot;" />
+			<arg line="-p ${package}" />
+			<arg line="-s &quot;${dir.project.root}/target/src/main/generated&quot;" />
+			<arg line="-b ${dir.project.resources}/wsdl/bindings.xml" />
+			<arg line="-Xnocompile" />
+			<arg line="${file}" />
+		</exec>
+
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - target: -wsimport eurlex - - - - - - - - 
+		- - - - - - - - - -->
+	<target name="-wsimporteurlex">
+
+		<exec executable="${wsimport.exec}">
+			<arg line="-encoding &quot;UTF-8&quot;" />
+			<arg line="-p ${package}" />
+			<arg line="-s &quot;${dir.project.root}/target/src/main/generated&quot;" />
+			<arg line="-b ${dir.project.resources}/wsdl/bindings.xml" />
+			<arg line="-Xnocompile" />
+			<arg line="-extension" />
+			<arg line="${file}" />
+		</exec>
+
+	</target>
+
+
+</project>

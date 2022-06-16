@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<component name="fr.sword.naiad.nuxeo.commons.core.core.operation-contrib">
+
+  <extension point="operations" target="org.nuxeo.ecm.core.operation.OperationServiceComponent">
+    
+    <operation class="fr.sword.naiad.nuxeo.commons.core.operation.UnrestrictedUnlockOperation"/>
+    
+  </extension>
+
+</component>

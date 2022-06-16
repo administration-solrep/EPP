@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            data-drop-group
+            class="base-drop-down base-drop-down--has-indicator base-drop-down--light"
+            th:fragment="dropdown( label, id, lstDropDownItems)"
+        >
+            <button
+                class="link base-drop-down__button"
+                th:aria-controls="${id}+'_drop'"
+                th:aria-labelledby="${id}+'_label'"
+            >
+                <span class="sr-only" th:id="${id}+'_label'" th:text="#{dropdown.element.srhelp}">Elément d'aide</span>
+                <th:block th:if="${jscopyPrefix != null}">
+                    <span
+                        th:id="|${jscopyPrefix}${#strings.replace(label, ' ', '_')}_${id}|"
+                        class="base-drop-down__button-label"
+                        th:text="${label}"
+                    >
+                        label
+                    </span>
+                </th:block>
+                <th:block th:unless="${jscopyPrefix != null}">
+                    <span class="base-drop-down__button-label" th:text="${label}"> label </span>
+                </th:block>
+            </button>
+            <div
+                aria-expanded="false"
+                th:id="${id}+'_drop'"
+                th:aria-labelledby="${id}+'_list'"
+                class="base-drop-down__drop"
+            >
+                <span th:id="${id}+'_list'" class="sr-only" th:text="#{dropdown.liste.srhelp}">Liste d'aide</span>
+                <ul class="base-drop-down__drop-list" th:each="item : ${lstDropDownItems}">
+                    <li
+                        class="base-drop-down-item"
+                        th:with="label=${item.label != null ? item.label : 'label.non.renseigne'}"
+                    >
+                        <a th:href="@{${item.url}}" class="base-drop-down__link link">
+                            <th:block th:if="${item.icon!=null}">
+                                <span
+                                    aria-hidden="true"
+                                    class="base-drop-down__link-icon icon"
+                                    th:attrappend="class=${' ' + item.icon}"
+                                ></span>
+                            </th:block>
+                            <th:block th:text="${#messages.msgOrNull(label) != null ? #messages.msg(label) : label}"
+                                >item label</th:block
+                            >
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

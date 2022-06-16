@@ -1,0 +1,55 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page de la supervision', title=#{supervision.title})}"
+>
+    <main id="main_content" class="page-layout__content">
+        <h1 class="m-t-6 m-b-6 p-b-3 base-title base-title--lvl-1 base-title--is-underlined">
+            [[#{supervision.title}]]
+        </h1>
+
+        <div class="tabulation">
+            <div role="tablist" class="tabulation__header">
+                <button
+                    th:each="onglet, status : ${myTabs.onglets}"
+                    type="button"
+                    role="tab"
+                    class="tabulation__item js-tabulation base-btn base-btn--button base-btn--default base-btn--transparent"
+                    th:classappend="${onglet.isActif ? 'tabulation\_\_item--active' : ''}"
+                    th:aria-selected="${onglet.isActif ? 'true' : 'false'}"
+                    th:aria-controls="'d_tab_content-'+${status.index}"
+                    th:id="'d_tab_link-'+${status.index}"
+                    th:data-script="${onglet.script}"
+                    th:data-name="${onglet.id}"
+                    onclick="javascript:eval(this.getAttribute('data-script'))"
+                    th:tabindex="${!onglet.isActif ? '-1' : null}"
+                    th:text="#{__${onglet.label}__}"
+                    name="tab-up"
+                ></button>
+            </div>
+
+            <div class="tabulation__body">
+                <div
+                    th:each="onglet, status : ${myTabs.onglets}"
+                    role="tabpanel"
+                    tabindex="0"
+                    class="tabulation__content"
+                    th:id="'d_tab_content-'+${status.index}"
+                    th:aria-hidden="${onglet.isActif ? 'false' : 'true'}"
+                    th:aria-labelledby="'d_tab_link-'+${status.index}"
+                    th:classappend="${onglet.isActif ? 'tabulation\_\_content--active' : ''}"
+                >
+                    <th:block th:if="${onglet.isActif}">
+                        <div th:replace="${onglet.fragmentFile} :: ${onglet.fragmentName}"></div>
+                    </th:block>
+                    <div th:unless="${onglet.isActif}" th:id="'d_'+${onglet.id}+'_content'">Chargement</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modale d'envoi de mail -->
+        <div th:replace="fragments/components/modal-send-mail :: modal-send-mail"></div>
+    </main>
+</html>

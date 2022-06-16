@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://dila.fr/solonepp/schema/membre_groupe/"
+    xmlns:mgr="http://dila.fr/solonepp/schema/membre_groupe/"
+>
+
+	<!-- Identifiant technique de l'enregistrement -->
+	<xs:element name="identifiant" type="xs:string" />
+
+	<!-- Identifiant technique de l'organisme -->
+	<xs:element name="organisme" type="xs:string" />
+
+	<!-- Identifiant technique du mandat -->
+	<xs:element name="mandat" type="xs:string" />
+
+	<!-- Date de début de l'adhésion au groupe -->
+	<xs:element name="dateDebut" type="xs:date" />
+
+	<!-- Date de fin de l'adhésion au groupe -->
+	<xs:element name="dateFin" type="xs:date" />
+
+</xs:schema>

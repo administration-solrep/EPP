@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="inputNumber(label, id, name, value, required)">
+            <div class="m-b-6 grid__col--middle form-input">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label th:for="${id}" th:id="|${id}_label|" class="form-label">
+                            [[#{${label}}]]
+                            <span
+                                th:if="${required}"
+                                class="form-label__required-text"
+                                th:text="#{form.input.required}"
+                            ></span>
+                        </label>
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                </div>
+                <div class="form-input__container">
+                    <input
+                        type="number"
+                        th:name="${name}"
+                        th:id="${id}"
+                        th:data-validation="${required} ? 'required'  : ''"
+                        th:value="${value}"
+                        class="form-input__field form-input__field--type-number"
+                    />
+                </div>
+                <div th:id="|${id}_description|" class="form-input__footer"></div>
+            </div>
+        </th:block>
+    </body>
+</html>

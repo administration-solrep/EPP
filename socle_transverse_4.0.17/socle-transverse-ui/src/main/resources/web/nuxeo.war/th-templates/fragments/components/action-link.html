@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="action-link(action, btnClass, iconClass)" th:remove="tag">
+            <th:block
+                th:if="${action.properties.actionType == 'modal' || action.properties.actionType == 'callbackModal'} "
+            >
+                <a
+                    href="#"
+                    th:with="jsFunction=${action.properties.actionType == 'modal' ? 'doInitModal(this)' : action.link}"
+                    th:attr="onclick=|${jsFunction}|"
+                    th:data-controls="${action.properties.dataControls}"
+                    th:data-title="${not #strings.isEmpty(action.properties.title )? #messages.msg(action.properties.title) : #messages.msg('validation.popup.title')}"
+                    th:data-message="${not #strings.isEmpty(action.properties.message)? #messages.msgWithParams(action.properties.message, action.properties.messageParam) : #messages.msg('validation.popup.default.message') }"
+                    th:data-function="${action.properties.function}"
+                    th:data-init-js="__${action.properties.initJs}__"
+                    th:data-param-init-js="__${action.properties.paramInitJs}__"
+                    th:data-parameters="__${action.properties.parameters}__"
+                    th:data-default-values="__${action.properties.defaultValues}__"
+                    th:class="|${btnClass} js-interstitial-trigger|"
+                    th:data-btn-confirm-label="${not #strings.isEmpty(action.properties.btnConfirmLabel) ? #messages.msg(action.properties.btnConfirmLabel) : null}"
+                    aria-haspopup="dialog"
+                >
+                    <span aria-hidden="true" th:classappend="|${iconClass} ${action.icon}|"></span>
+                    [[#{__${action.label}__}]]
+                </a>
+            </th:block>
+            <th:block
+                th:unless="${action.properties.actionType == 'modal' || action.properties.actionType == 'callbackModal'}"
+            >
+                <a
+                    th:if="${#strings.startsWith(action.link,'javascript:')}"
+                    href="javascript:void(0)"
+                    th:attr="onclick=|__${action.link}__|"
+                    th:class="${btnClass}"
+                >
+                    <span aria-hidden="true" th:classappend="|${iconClass} ${action.icon}|"></span>
+                    [[#{__${action.label}__}]]
+                </a>
+                <a
+                    th:unless="${#strings.startsWith(action.link,'javascript:')}"
+                    th:href="@{__${action.link}__}"
+                    th:classappend="${btnClass}"
+                >
+                    <span aria-hidden="true" th:classappend="|${iconClass} ${action.icon}|"></span>
+                    [[#{__${action.label}__}]]
+                </a>
+            </th:block>
+        </div>
+    </body>
+</html>

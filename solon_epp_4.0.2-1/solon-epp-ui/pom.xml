@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>fr.dila.solonepp</groupId>
+		<artifactId>solon-epp-parent</artifactId>
+		<version>4.0.2-1</version>
+	</parent>
+
+	<artifactId>solon-epp-ui</artifactId>
+	<name>solon-epp-ui</name>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<!-- Dépendances au socle transverse -->
+		<dependency>
+			<groupId>fr.dila.st</groupId>
+			<artifactId>socle-transverse-ui</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.st</groupId>
+			<artifactId>socle-transverse-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.solonepp</groupId>
+			<artifactId>solon-epp-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.nuxeo.ecm.webengine</groupId>
+			<artifactId>nuxeo-webengine-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.nuxeo.ecm.webengine</groupId>
+			<artifactId>nuxeo-webengine-base</artifactId>
+		</dependency>
+
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4-rule-agent</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>fr.dila.st</groupId>
+			<artifactId>socle-transverse-core</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>fr.dila.st</groupId>
+			<artifactId>socle-transverse-ui</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>fr.dila.solonepp</groupId>
+			<artifactId>solon-epp-core</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.nuxeo.ecm.platform</groupId>
+			<artifactId>nuxeo-platform-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.nuxeo.ecm.automation</groupId>
+			<artifactId>nuxeo-automation-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<minify.skip>true</minify.skip>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<minify.skip>false</minify.skip>
+			</properties>
+		</profile>
+	</profiles>
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources/</directory>
+				<excludes>
+					<exclude>**/css/*-*.css</exclude>
+					<exclude>**/scripts/001-storybook.js</exclude>
+					<exclude>**/scripts/002-appli.js</exclude>
+					<exclude>**/scripts/003-communication.js</exclude>
+					<exclude>**/scripts/004-recherche.js</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>com.samaxes.maven</groupId>
+				<artifactId>minify-maven-plugin</artifactId>
+				<version>1.7.6</version>
+				<executions>
+					<execution>
+						<id>default-minify</id>
+						<configuration>
+							<webappSourceDir>${basedir}/src/main/resources/web/nuxeo.war</webappSourceDir>
+							<webappTargetDir>${project.build.directory}/classes/web/nuxeo.war</webappTargetDir>
+							<cssSourceDir>css</cssSourceDir>
+							<cssSourceIncludes>
+								<cssSourceInclude>001-storybook.css</cssSourceInclude>
+								<cssSourceInclude>002-appli.css</cssSourceInclude>
+								<cssSourceInclude>003-widget.css</cssSourceInclude>
+							</cssSourceIncludes>
+							<cssFinalFile>specific.css</cssFinalFile>
+							<jsSourceDir>scripts</jsSourceDir>
+							<jsSourceIncludes>
+								<jsSourceInclude>001-storybook.js</jsSourceInclude>
+								<jsSourceInclude>002-appli.js</jsSourceInclude>
+								<jsSourceInclude>003-communication.js</jsSourceInclude>
+								<jsSourceInclude>004-recherche.js</jsSourceInclude>
+							</jsSourceIncludes>
+							<jsFinalFile>specific.js</jsFinalFile>
+							<nosuffix>true</nosuffix>
+							<skipMinify>${minify.skip}</skipMinify>
+							<jsEngine>CLOSURE</jsEngine>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<!-- Sets the VM argument line used when unit tests are run. -->
+					<argLine
+                    >${surefireArgLine} -da:org.apache.lucene.analysis... -noverify -javaagent:${settings.localRepository}/org/powermock/powermock-module-javaagent/1.6.1/powermock-module-javaagent-1.6.1.jar</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.api.service.STUserSearchService">
+	<implementation class="fr.dila.st.core.component.STUserSearchComponent" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.STUserSearchService" />
+	</service>
+</component>

@@ -1,0 +1,14 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='page administration', title=#{admin.title})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <h1 class="base-title base-title--lvl-1" th:text="#{admin.title}">Administration</h1>
+        <p th:text="#{admin.description}">
+            Utilisez les liens de navigation dans la colonne de gauche pour naviguer dans l'administration.
+        </p>
+    </main>
+</html>

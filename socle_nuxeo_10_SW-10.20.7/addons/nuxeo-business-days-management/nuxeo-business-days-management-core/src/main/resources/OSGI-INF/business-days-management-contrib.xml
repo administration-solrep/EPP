@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<component name="org.nuxeo.business.days.management.Service">
+
+  <extension target="org.nuxeo.business.days.management.BusinessDaysService"
+    point="holidaysChecker">
+
+    <holidaysChecker
+      class="org.nuxeo.business.days.management.checker.CSVHolidaysChecker" />
+
+  </extension>
+
+</component>

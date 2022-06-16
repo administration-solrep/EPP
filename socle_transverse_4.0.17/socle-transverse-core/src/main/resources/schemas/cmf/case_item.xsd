@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://cm.nuxeo.com/schemas/case-item/"
+    xmlns:cmxs="http://cm.nuxeo.com/schemas/case-item/"
+    xmlns:nxs="http://cm.nuxeo.com/schemas/base/"
+>
+
+  <xs:include schemaLocation="base.xsd" />
+  
+  <xs:element name="defaultCaseId" type="xs:string" />
+
+</xs:schema>

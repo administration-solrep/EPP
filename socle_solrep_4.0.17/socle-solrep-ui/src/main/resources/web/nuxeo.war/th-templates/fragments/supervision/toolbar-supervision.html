@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="toolbar-supervision">
+            <div class="actions-bar page-userlogged__actions-bar m-t-6 m-b-6">
+                <div class="actions-bar__group">
+                    <div class="interstitial-overlay actions-bar__item actions-bar__button btn-email js-tooltip">
+                        <th:block th:each="action : ${mailAction}">
+                            <div
+                                th:replace="fragments/components/action-button :: action-button(${action}, false, '')"
+                            ></div>
+                        </th:block>
+                    </div>
+                </div>
+
+                <th:block th:if="${printActions != null}">
+                    <div class="actions-bar__group">
+                        <div
+                            th:replace="fragments/components/dropdown-action :: dropdown-action(
+                                'dossier-print',
+                                ${printActions},
+                                'icon--print',
+                                true,
+                                'supervision.print.dropdown.tooltip',
+                                'base-btn--transparent base-btn--light base-btn--md-icon', 
+                                false, 
+                                'base-drop-down--light')"
+                        ></div>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </body>
+</html>

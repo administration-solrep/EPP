@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="file(widget)">
+            <div class="labellised-list__label">[[${widget.label}]]</div>
+
+            <div class="labellised-list__description">
+                <ul class="labellised-list__sublist">
+                    <li class="labellised-list__subitem">
+                        <a th:href="@{${piece.pieceJointeUrl}}" class="link" target="_blank"
+                            ><span aria-hidden="true" class="icon icon--download link__icon link__icon--prepend"></span>
+                            [[${piece.pieceJointeTitre}]]
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </th:block>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <nav th:aria-label="#{breadcrumb.title}" class="breadcrumbs" th:fragment="breadcrumbs" role="navigation">
+            <th:block th:if="${breadcrumbs_blocks != null}" th:each="block : ${breadcrumbs_blocks}">
+                <div th:replace="${block.filename} :: ${block.name}"></div>
+            </th:block>
+            <th:block th:if="${breadcrumbs_blocks == null }" th:each="block : ${_blocks}">
+                <div th:replace="${block.filename} :: ${block.name}"></div>
+            </th:block>
+            <th:block th:unless="${isHome}">
+                <a
+                    th:unless="${breadcrumbHideReturnButton}"
+                    th:aria-label="#{command.user.return.to.repository}"
+                    style="flex-shrink: 0;"
+                    th:href="@{/travail}"
+                    class="breadcrumbs__shortcut base-btn base-btn--button base-btn--default base-btn--center base-btn--sharp"
+                >
+                    <span aria-hidden="true" class="base-btn__icon base-btn__icon--left icon icon--right icon--v-align">
+                    </span>
+                    [[#{command.user.return.to.repository}]]
+                </a>
+            </th:block>
+        </nav>
+    </body>
+</html>

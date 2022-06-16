@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="ouiNon(label, id, value, disabled)" th:with="name=${name} ?: ''">
+            <div class="form-optin" th:classappend="${disabled ? 'form-optin--disabled' : ''}">
+                <fieldset class="form-optin__fieldset">
+                    <legend
+                        class="form-optin__legend"
+                        th:text="|${#messages.msg(label)} ${(required != null && required) ? '(requis)' : ''}|"
+                    ></legend>
+                    <div class="form-optin__optins" th:with="myName=${name != '' ? name : id}">
+                        <div class="form-optin__container">
+                            <input
+                                type="radio"
+                                th:value="${switchValues} ? false : true"
+                                th:id="|optin-${id}-oui|"
+                                th:name="${myName}"
+                                th:checked="${(value!=null and #strings.toString(value) == 'true')}"
+                                th:disabled="${disabled}"
+                                class="form-optin__checkbox"
+                                th:attrappend="onclick=${onClick != null} ? ${onClick}"
+                                autocomplete="off"
+                            />
+                            <label th:for="|optin-${id}-oui|" th:id="|optin-${id}-oui-label|" class="form-optin__label">
+                                Oui
+                            </label>
+                        </div>
+                        <div class="form-optin__container">
+                            <input
+                                type="radio"
+                                th:value="${switchValues} ? true : false"
+                                th:id="|optin-${id}-non|"
+                                th:name="${myName}"
+                                th:checked="${value!=null and #strings.toString(value) == 'false'}"
+                                th:disabled="${disabled}"
+                                class="form-optin__checkbox"
+                                th:attrappend="onclick=${onClick != null} ? ${onClick}"
+                                autocomplete="off"
+                            /><label
+                                th:for="|optin-${id}-non|"
+                                th:id="|optin-${id}-non-label|"
+                                class="form-optin__label"
+                            >
+                                Non
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </th:block>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <thead th:fragment="headerFdr" class="table-header custom-table__header">
+            <tr class="table-header__line">
+                <th
+                    th:if="${dto.table.totalNbLevel &gt; 0}"
+                    th:each="i: ${#numbers.sequence(0, dto.table.totalNbLevel - 1)}"
+                    scope="col"
+                    role="presentation"
+                    class="table-header__cell"
+                ></th>
+                <th scope="col" class="table-header__cell table-header__cell--check" th:unless="${isSquelette}">
+                    <div class="form-choice-input">
+                        <input
+                            type="checkbox"
+                            id="table_header_checkbox"
+                            name="table_header_checkbox"
+                            class="form-choice-input__input js-custom-table-header-check"
+                            onclick="selectAllCheckBox(this);"
+                            autocomplete="off"
+                        />
+                        <label
+                            for="table_header_checkbox"
+                            id="table_header_checkbox_label"
+                            th:title="#{fdr.checkbox.label}"
+                            th:data-select-label="#{fdr.checkbox.label}"
+                            th:data-deselect-label="#{fdr.checkbox.label.deselect}"
+                            class="form-label form-choice-input__label form-choice-input__label--checkbox form-choice-input__label--hidden-label"
+                        >
+                            <span th:text="#{fdr.checkbox.label}">Label</span>
+                        </label>
+                    </div>
+                </th>
+                <th:block th:each="colonne, status : ${dto.listeColonnes}">
+                    <th:block th:if="${colonne.visible && !'fdr.poste.label'.equals(colonne.label)}">
+                        <th scope="col" class="table-header__cell" th:id="|fdr-table-header-${status.index}|">
+                            <span
+                                th:if="${colonne.isLabelVisible}"
+                                class="table-header__cell-inner"
+                                th:text="${colonne.label !=null? #messages.msg(colonne.label) : ''}"
+                            >
+                                Label
+                            </span>
+                            <span
+                                th:unless="${colonne.isLabelVisible}"
+                                class="sr-only"
+                                th:text="#{__${colonne.label}__}"
+                                >Label</span
+                            >
+                        </th>
+                    </th:block>
+                    <th:block th:if="${'fdr.poste.label'.equals(colonne.label)}">
+                        <th scope="col" class="table-header__cell" th:id="|fdr-table-header-${status.index}|">
+                            [[#{fdr.ministere.label}]] <br aria-hidden="true" /> [[#{fdr.poste.label}]]
+                        </th>
+                    </th:block>
+                </th:block>
+            </tr>
+        </thead>
+    </body>
+</html>

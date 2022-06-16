@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="action-button-fixed(action, isDisabled, appendedClass)"
+            th:remove="tag"
+            th:with="spacedIconClasses=${action.properties.buttonType == 'nospace' ? '' : 'icon--big table-action\_\_icon'}"
+        >
+            <th:block th:with="actionLabel=#{__${action.label}__}, buttonTitle=__${action.properties.buttonTitle}__">
+                <th:block
+                    th:if="${action.properties.actionType == 'modal' || action.properties.actionType == 'callbackModal'} "
+                >
+                    <button
+                        type="button"
+                        class="js-interstitial-trigger js-tooltip base-btn base-btn--button base-btn--default"
+                        th:classappend="|ACTION_${action.id} ${appendedClass == null ? '' : appendedClass} ${not #strings.isEmpty(action.properties.specificClass)? action.properties.specificClass : ''} ${action.properties.buttonType != 'nospace' ? ' base-btn--min table-action\_\_button table-action\_\_item' : ''}|"
+                        th:disabled="${ isDisabled or ((not #strings.isEmpty(action.properties.specificClass)) and (action.properties.specificClass == 'action-table-selection'))}? 'disabled'"
+                        th:with="jsFunction=${action.properties.actionType == 'modal' ? 'doInitModal(this)' : action.link}, modalTitle=__${action.properties.title}__, message=__${action.properties.message}__"
+                        th:attr="onclick=|${jsFunction}|"
+                        th:data-tippy-content="${actionLabel}"
+                        th:data-placement="${(tooltipPlacement != null) ? tooltipPlacement : 'top'}"
+                        th:data-controls="${action.properties.dataControls}"
+                        th:data-message="${not #strings.isEmpty(action.properties.message)? #messages.msgWithParams(message, action.properties.messageParam) : #messages.msg('validation.popup.default.message') }"
+                        th:data-function="${action.properties.function}"
+                        th:data-parameters="__${action.properties.parameters}__"
+                        th:data-init-js="__${action.properties.initJs}__"
+                        th:data-param-init-js="__${action.properties.paramInitJs}__"
+                        th:data-title="${not #strings.isEmpty(action.properties.title )? #messages.msg(modalTitle, __${action.properties.titleParam}__) : #messages.msg('validation.popup.title')}"
+                        th:title="${not #strings.isEmpty(action.properties.buttonTitle )? #messages.msg(buttonTitle, __${action.properties.titleParam}__) : actionLabel}"
+                        th:data-btn-confirm-label="${not #strings.isEmpty(action.properties.btnConfirmLabel) ? #messages.msg(action.properties.btnConfirmLabel) : null}"
+                    >
+                        <span
+                            aria-hidden="true"
+                            th:class="|icon ${spacedIconClasses}|"
+                            th:classappend="${action.icon}"
+                        ></span>
+                        <span class="sr-only" th:text="${actionLabel}"></span>
+                    </button>
+                </th:block>
+                <th:block
+                    th:unless="${action.properties.actionType == 'modal' || action.properties.actionType == 'callbackModal'} "
+                >
+                    <button
+                        th:if="${#strings.startsWith(action.link, 'javascript:')}"
+                        type="button"
+                        class="js-tooltip base-btn base-btn--button base-btn--default"
+                        th:classappend="|ACTION_${action.id} ${appendedClass == null ? '' : appendedClass} ${not #strings.isEmpty(action.properties.specificClass)? action.properties.specificClass : ''} ${action.properties.buttonType != 'nospace' ? ' base-btn--min table-action\_\_button table-action\_\_item' : ''}|"
+                        th:disabled="${ isDisabled or ((not #strings.isEmpty(action.properties.specificClass)) and (action.properties.specificClass == 'action-table-selection'))}? 'disabled'"
+                        th:attr="onclick=|${action.link}|"
+                        th:data-tippy-content="${actionLabel}"
+                        th:data-placement="${(tooltipPlacement != null) ? tooltipPlacement : 'top'}"
+                        th:title="${not #strings.isEmpty(action.properties.buttonTitle )? #messages.msg(buttonTitle, __${action.properties.titleParam}__) : actionLabel}"
+                    >
+                        <span
+                            aria-hidden="true"
+                            th:class="|icon ${spacedIconClasses}|"
+                            th:classappend="${action.icon}"
+                        ></span>
+                        <span class="sr-only" th:text="${actionLabel}"></span>
+                    </button>
+                    <a
+                        th:unless="${#strings.startsWith(action.link, 'javascript:')}"
+                        class="js-tooltip base-btn base-btn--button base-btn--default"
+                        th:classappend="|ACTION_${action.id} ${appendedClass == null ? '' : appendedClass} ${not #strings.isEmpty(action.properties.specificClass)? action.properties.specificClass : ''} ${action.properties.buttonType != 'nospace' ? ' base-btn--min table-action\_\_button table-action\_\_item' : ''}|"
+                        th:disabled="${ isDisabled or ((not #strings.isEmpty(action.properties.specificClass)) and (action.properties.specificClass == 'action-table-selection'))}? 'disabled'"
+                        th:href="@{__${action.link}__}"
+                        th:data-tippy-content="${actionLabel}"
+                        th:data-placement="${(tooltipPlacement != null) ? tooltipPlacement : 'top'}"
+                        th:title="${not #strings.isEmpty(action.properties.buttonTitle )? #messages.msg(buttonTitle, __${action.properties.titleParam}__) : actionLabel}"
+                    >
+                        <span
+                            aria-hidden="true"
+                            th:class="|icon ${spacedIconClasses}|"
+                            th:classappend="${action.icon}"
+                        ></span>
+                        <span class="sr-only" th:text="${actionLabel}"></span>
+                    </a>
+                </th:block>
+            </th:block>
+        </div>
+    </body>
+</html>

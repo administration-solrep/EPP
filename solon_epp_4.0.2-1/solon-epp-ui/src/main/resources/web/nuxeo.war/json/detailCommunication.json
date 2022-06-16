@@ -1,0 +1,115 @@
+{
+	"lstWidgets": [
+		{
+			"label": "Identifiant communication",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "OEP_0000098P_00006"
+				}
+			]
+		},
+		{
+			"label": "Identifiant communication précédente",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "OEP_0000098P_00002"
+				}
+			]
+		},
+		{
+			"label": "Identifiant dossier",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "OEP_0000098P"
+				}
+			]
+		},
+		{
+			"label": "Emetteur",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "Assemblée nationale"
+				}
+			]
+		},
+		{
+			"label": "Destinataire",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "Gouvernement"
+				}
+			]
+		},
+		{
+			"label": "Copie",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "Sénat"
+				}
+			]
+		},
+		{
+			"label": "Horodatage",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "27/07/2018 17:25:02"
+				}
+			]
+		},
+		{
+			"label": "Date accusé de réception",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "27/07/2018 17:25"
+				}
+			]
+		},
+		{
+			"label": "Date adoption",
+			"typeChamp": "text",
+			"parametres": [
+				{
+					"name": "valeur",
+					"value": "28/09/2016"
+				}
+			],
+			"modifiedInCurVersion": true
+		},
+		{
+			"label": "Text adopté",
+			"typeChamp": "file",
+			"pjTitle": "Texte adopté provisoire 186 (doc 840)",
+			"singleFileName": "fichier.docx"
+		},
+		{
+			"label": "URL Dossier (Sénat)",
+			"typeChamp": "url",
+			"url": "http://www.senat.fr/dossier-legislatif/ppl16-368.html"
+		},
+		{
+			"label": "Petite loi",
+			"typeChamp": "file-multi",
+			"pjTitle": "Petite loi BAT TA 186",
+			"lstFileNames": [
+				"TA_186-PJL_JUSTICE_XXI.docx",
+				"TA_186-PJL_JUSTICE_XXI.pdf"
+			]
+		}
+	]
+}

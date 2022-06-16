@@ -1,0 +1,42 @@
+{
+    "name": "socle_transverse",
+    "version": "1.0.0",
+    "description": "socle transverse solon",
+    "main": "index.js",
+    "dependencies": {},
+    "devDependencies": {
+        "@prettier/plugin-xml": "^0.10.0",
+        "eslint": "^7.6.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-html": "^6.0.2",
+        "eslint-plugin-jquery": "^1.5.1",
+        "git-format-staged": "^2.1.0",
+        "husky": "^4.2.5",
+        "jest": "^26.2.2",
+        "lint-staged": "^10.2.11",
+        "prettier": "^2.0.5",
+        "prettier-plugin-java": "^0.8.0"
+    },
+    "scripts": {
+        "test": "jest",
+        "pretty": "prettier --write",
+        "lint": "eslint --fix"
+    },
+    "lint-staged": {
+        "_comment": "\"*.(js|html)\": [\"npm run lint\"],",
+        "*.(js|html|css|java|xml|xsd)": [
+            "npm run pretty"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@lyovgitlabidl.lyon-dev2.local:SOLON/socle_transverse.git"
+    },
+    "author": "",
+    "license": "ISC"
+}

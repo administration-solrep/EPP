@@ -1,0 +1,12 @@
+Bundle-ClassPath: .
+Manifest-Version: 1.0
+Bundle-Name: nuxeo-media-publishing-core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-Vendor: Nuxeo
+Bundle-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: nuxeo-media-publishing-core
+Nuxeo-Component: OSGI-INF/core-types-contrib.xml,
+ OSGI-INF/doc-adapters-contrib.xml,
+ OSGI-INF/workmanager-contrib.xml,
+ OSGI-INF/media-publishing-service.xml

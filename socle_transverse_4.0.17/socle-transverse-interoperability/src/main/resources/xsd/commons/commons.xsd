@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+	<xs:complexType name="ReponsesVersionConstants">
+		<xs:attribute name="ar" type="xs:string" use="required"
+			fixed="3.4" />
+		<xs:attribute name="notification" type="xs:string" use="required"
+			fixed="3.4" />
+		<xs:attribute name="questions" type="xs:string" use="required"
+			fixed="3.4" />
+		<xs:attribute name="reponses-commons" type="xs:string"
+			use="required" fixed="3.4" />
+		<xs:attribute name="reponses" type="xs:string" use="required"
+			fixed="3.4" />
+		<xs:attribute name="wsAttribution" type="xs:string" use="required"
+			fixed="3.4" />
+		<xs:attribute name="wsControle" type="xs:string" use="required"
+			fixed="3.4" />
+		<xs:attribute name="wsNotification" type="xs:string" use="required"
+			fixed="3.4" />
+		<xs:attribute name="wsQuestion" type="xs:string" use="required"
+			fixed="3.4" />
+		<xs:attribute name="wsReponse" type="xs:string" use="required"
+			fixed="3.4" />
+	</xs:complexType>
+
+	<xs:complexType name="SolonEppVersionConstants">
+		<xs:attribute name="epp-commons" type="xs:string" use="required"
+			fixed="3.10" />
+		<xs:attribute name="epp-evt" type="xs:string" use="required"
+			fixed="3.10" />
+		<xs:attribute name="epp-evt-delta" type="xs:string" use="required"
+			fixed="3.10" />
+		<xs:attribute name="epp-tableReference" type="xs:string"
+			use="required" fixed="3.10" />
+		<xs:attribute name="WSepp" type="xs:string" use="required"
+			fixed="3.10" />
+		<xs:attribute name="WSevenement" type="xs:string" use="required"
+			fixed="3.10" />
+	</xs:complexType>
+
+	<xs:complexType name="SpeVersionConstants">
+		<xs:attribute name="spe-commons" type="xs:string" use="required"
+			fixed="2.0" />
+		<xs:attribute name="wsSpe" type="xs:string" use="required"
+			fixed="2.0" />
+	</xs:complexType>
+
+
+
+
+	<xs:complexType name="ReponseVersion">
+		<xs:sequence>
+			<xs:element name="ar" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="notification" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="questions" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="reponses" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="reponses-commons" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="wsAttribution" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="wsControle" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="wsNotification" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="wsQuestion" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="wsReponse" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="SolonEpgVersion">
+		<xs:sequence>
+			<xs:element name="solon-commons" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="actes" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="ar" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="wsSolonEpg" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="SolonEppVersion">
+		<xs:sequence>
+			<xs:element name="epp-commons" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="epp-evt" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="epp-evt-delta" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="epp-tableReference" type="xs:string"
+				minOccurs="0" maxOccurs="1" />
+			<xs:element name="WSepp" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="WSevenement" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="SpeVersion">
+		<xs:sequence>
+			<xs:element name="spe-commons" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="wsSPE" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:element name="versionResponse">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="versionReponse" type="ReponseVersion" />
+				<xs:element name="versionSolonEpg" type="SolonEpgVersion" />
+				<xs:element name="versionSolonEpp" type="SolonEppVersion" />
+				<xs:element name="versionSpe" type="SpeVersion" />
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:simpleType name="CDataString">
+		<xs:restriction base="xs:string"></xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="TraitementStatut">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OK" />
+			<xs:enumeration value="KO" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+</xs:schema>

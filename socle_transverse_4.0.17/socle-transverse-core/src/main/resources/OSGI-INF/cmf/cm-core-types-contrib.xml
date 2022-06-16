@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.cm.schemas">
+
+  <require>org.nuxeo.ecm.core.CoreExtensions</require>
+
+  <extension target="org.nuxeo.ecm.core.schema.TypeService" point="schema">
+
+    <schema name="distribution" src="schemas/cmf/distribution.xsd" prefix="cmdist" />
+
+    <schema name="case_item" src="schemas/cmf/case_item.xsd" prefix="cmdoc" />
+
+    <schema name="case" src="schemas/cmf/case.xsd" prefix="case" />
+
+    <schema name="case_link" src="schemas/cmf/case_link.xsd" prefix="cslk" />
+
+    <schema name="actionnable_case_link" src="schemas/cmf/actionnable_case_link.xsd" prefix="acslk" />
+
+    <schema name="mailbox" src="schemas/cmf/mailbox.xsd" prefix="mlbx" />
+
+    <schema name="routing_task" src="schemas/cmf/routing_task.xsd" prefix="rtsk" />
+
+  </extension>
+
+  <extension target="org.nuxeo.ecm.core.schema.TypeService" point="doctype">
+
+    <facet name="Distributable">
+      <schema name="distribution" />
+    </facet>
+
+    <facet name="CaseGroupable">
+      <schema name="case_item" />
+    </facet>
+    
+    <facet name="CaseLink">
+    </facet>
+    
+    <facet name="Mailbox">
+    </facet>
+    
+    <facet name="Classifiable " />
+    
+    
+
+    <doctype name="MailboxRoot" extends="Document">
+      <schema name="common" />
+      <schema name="dublincore" />
+      <facet name="Folderish" />
+      <facet name="SuperSpace" />
+    </doctype>
+
+    <doctype name="CaseRoot" extends="Document">
+      <schema name="common" />
+      <schema name="dublincore" />
+      <facet name="Folderish" />
+      <facet name="SuperSpace" />
+    </doctype>
+
+    <doctype name="CaseItem" extends="Document">
+      <schema name="common" />
+      <schema name="dublincore" />
+      <schema name="uid" />
+      <schema name="file" />
+      <schema name="files" />
+      <facet name="Distributable" />
+      <facet name="CaseGroupable" />
+      <facet name="Commentable" />
+      <facet name="Classifiable" />
+    </doctype>
+
+    <doctype name="Mailbox" extends="Document">
+      <schema name="common" />
+      <schema name="dublincore" />
+      <schema name="distribution" />
+      <schema name="mailbox" />
+      <!-- Mailbox are requested when the user in loggin in but its principal 
+        is not set yet. If not prefetch, then this will thrown an exception when 
+        the check is done to get the propery. -->
+      <prefetch>mlbx:mailbox_id</prefetch>
+      <facet name="Folderish" />
+      <facet name="Mailbox" />
+    </doctype>
+
+    <doctype name="CaseLink" extends="Document">
+      <schema name="common" />
+      <schema name="dublincore" />
+      <schema name="uid" />
+      <schema name="distribution" />
+      <schema name="case_link" />
+      <schema name="actionnable_case_link" />
+      <facet name="CaseLink" />
+    </doctype>
+
+
+
+  </extension>
+</component>

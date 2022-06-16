@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<fragment version="1">
+
+  <install>
+    <!-- Unzip the contents of our web application into the server -->
+    <unzip from="${bundle.fileName}" to="/" prefix="web">
+      <include>web/nuxeo.war/**</include>
+    </unzip>
+
+    <!-- Add fallback to two-letter locales -->
+    <copy from="nuxeo.war/ui/i18n/messages-es-ES.json"
+          to="nuxeo.war/ui/i18n/messages-es.json" />
+    <copy from="nuxeo.war/ui/i18n/messages-pt-PT.json"
+          to="nuxeo.war/ui/i18n/messages-pt.json" />
+    <!-- Add fallback to four-letter locales -->
+    <copy from="nuxeo.war/ui/i18n/messages-fr.json"
+          to="nuxeo.war/ui/i18n/messages-fr-FR.json" />
+  </install>
+
+  <extension target="web#STD-AUTH-FILTER">
+    <filter-mapping>
+      <filter-name>NuxeoAuthenticationFilter</filter-name>
+      <url-pattern>/ui/*</url-pattern>
+      <dispatcher>REQUEST</dispatcher>
+      <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+  </extension>
+
+</fragment>

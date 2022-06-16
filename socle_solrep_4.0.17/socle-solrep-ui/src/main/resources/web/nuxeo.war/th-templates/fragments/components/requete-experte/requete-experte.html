@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="requete-experte(requeteExperteDTO)">
+            <div class="page-layout__content--dark m-y-6 p-a-5" th:with="champs=${requeteExperteDTO.champs}">
+                <form id="requeteExperteChamp">
+                    <div class="grid__row" th:unless="${isFirstChamp}">
+                        <div class="grid__col grid__col--middle">
+                            <div class="form-select form-select--simple">
+                                <div class="form-input">
+                                    <div class="form-input__header">
+                                        <div class="form-input__header-top">
+                                            <label for="select-and-or" class="form-label">
+                                                <th:block th:text="#{requete.experte.et.ou.label}"
+                                                    >label et ou</th:block
+                                                >
+                                                <span class="form-label__required-text" th:text="#{form.input.required}"
+                                                    >(requis)</span
+                                                >
+                                            </label>
+                                        </div>
+                                        <div class="form-input__header-bottom"></div>
+                                    </div>
+                                    <div class="form-input__container">
+                                        <div class="form-select__field-wrapper">
+                                            <div class="form-select-input">
+                                                <select
+                                                    name="andOr"
+                                                    id="select-and-or"
+                                                    data-validation="required"
+                                                    class="form-select-input__field form-select-input__field--simple"
+                                                >
+                                                    <option value="ET" th:text="#{suivi.requete.et.label}">ET</option>
+                                                    <option value="OU" th:text="#{suivi.requete.ou.label}">OU</option>
+                                                </select>
+                                                <span
+                                                    aria-hidden="true"
+                                                    class="form-select-input__arrow icon icon--arrow-bottom"
+                                                >
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="select-champ_description" class="form-input__footer">
+                                        <!---->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid__row aligned" th:classappend="${!isFirstChamp ? 'm-t-6' : ''}">
+                        <div class="grid__col grid__col--middle" th:unless="${#lists.isEmpty(categories)}">
+                            <div class="form-select form-select--simple">
+                                <div class="form-input">
+                                    <div class="form-input__header">
+                                        <div class="form-input__header-top">
+                                            <label
+                                                for="select-categorie"
+                                                class="form-label"
+                                                th:text="#{requete.experte.categorie.label}"
+                                            >
+                                            </label>
+                                            <div class="form-input__icon-group"></div>
+                                        </div>
+                                        <div class="form-input__header-bottom"></div>
+                                    </div>
+                                    <div class="form-input__container">
+                                        <div class="form-select__field-wrapper">
+                                            <div class="form-select-input">
+                                                <select
+                                                    id="select-categorie"
+                                                    onchange="selectCategorieRequete(this.value)"
+                                                    class="form-select-input__field form-select-input__field--simple"
+                                                >
+                                                    <option
+                                                        value=""
+                                                        th:text="${#messages.msg('recherche.empty.select.input.label')}"
+                                                    ></option>
+                                                    <th:block th:each="categorie : ${categories}">
+                                                        <option
+                                                            th:value="${categorie}"
+                                                            th:text="#{'label.requete.experte.categorie.' + ${categorie}}"
+                                                        ></option>
+                                                    </th:block>
+                                                </select>
+                                                <span
+                                                    aria-hidden="true"
+                                                    class="form-select-input__arrow icon icon--arrow-bottom"
+                                                ></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="select-categorie_description" class="form-input__footer">
+                                        <!---->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid__col grid__col--middle">
+                            <div class="form-select form-select--simple">
+                                <div class="form-input">
+                                    <div class="form-input__header">
+                                        <div class="form-input__header-top">
+                                            <label for="select-champ" class="form-label">
+                                                <th:block th:text="#{requete.experte.champ.label}"
+                                                    >label champ</th:block
+                                                >
+                                                <span class="form-label__required-text" th:text="#{form.input.required}"
+                                                    >(requis)</span
+                                                >
+                                            </label>
+                                            <div class="form-input__icon-group"></div>
+                                        </div>
+                                        <div class="form-input__header-bottom"></div>
+                                    </div>
+                                    <div class="form-input__container">
+                                        <div class="form-select__field-wrapper">
+                                            <div class="form-select-input">
+                                                <select
+                                                    name="champ"
+                                                    id="select-champ"
+                                                    onchange="selectChampRequete(this.value)"
+                                                    data-validation="required_select"
+                                                    class="form-select-input__field form-select-input__field--simple"
+                                                    autocomplete="off"
+                                                >
+                                                    <option
+                                                        value=""
+                                                        th:text="${#messages.msg('recherche.empty.select.input.label')}"
+                                                    ></option>
+                                                    <th:block th:each="champ : ${champs}">
+                                                        <option
+                                                            th:value="${champ.name}"
+                                                            th:text="#{${champ.label}}"
+                                                            th:data-categorie="${champ.categorie}"
+                                                        ></option>
+                                                    </th:block>
+                                                </select>
+                                                <span
+                                                    aria-hidden="true"
+                                                    class="form-select-input__arrow icon icon--arrow-bottom"
+                                                ></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="select-champ_description" class="form-input__footer">
+                                        <!---->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="requeteField"></div>
+                </form>
+            </div>
+
+            <div class="page-reponses-search__buttons m-t-6">
+                <button
+                    type="button"
+                    id="add-champ-button"
+                    class="base-btn base-btn--button base-btn--default base-btn--center flex-button-right"
+                    onclick="addElementToRequete()"
+                    th:text="#{button.label.ajouter}"
+                >
+                    Ajouter
+                </button>
+            </div>
+
+            <hr class="page-reponses__separator m-t-6" />
+
+            <div class="position-relative">
+                <th:block
+                    th:replace="fragments/components/requeteExperteTable :: requeteExperteTable(${requeteExperteDTO.requetes})"
+                ></th:block>
+            </div>
+        </th:block>
+    </body>
+</html>

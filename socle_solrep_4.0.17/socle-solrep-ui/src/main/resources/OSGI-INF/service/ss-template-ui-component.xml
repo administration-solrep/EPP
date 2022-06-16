@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.services.component.SSTemplateUIComponent">
+
+  <implementation class="fr.dila.ss.ui.services.component.SSTemplateUIComponent" />
+  
+  <service>
+    <provide interface="fr.dila.ss.ui.services.SSTemplateUIService" />
+  </service>
+  
+</component>

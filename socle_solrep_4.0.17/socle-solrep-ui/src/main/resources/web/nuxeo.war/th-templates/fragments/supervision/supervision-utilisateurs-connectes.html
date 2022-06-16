@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="supervisionUtilisateursConnectes"
+            id="d_supervisionUtilisateursConnectes_content"
+            th:with="title=#{supervision.table.nb.utilisateurs.connectes(${#lists.size(resultList)})}"
+        >
+            <div
+                th:replace="fragments/supervision/table-supervision-utilisateurs :: tableSupervisionUtilisateurs(${title}, 'supConnectesResults')"
+            ></div>
+        </div>
+    </body>
+</html>

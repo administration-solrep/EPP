@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="pagination(resultForm, page,idPrefix,nbTotal)"
+            aria-label="pagination"
+            id="pagination-nav"
+            th:with="nbTotalPage = ${resultForm.getNbPage(nbTotal)}"
+            class="table-action__pagination-table"
+            th:data-totalPage="${nbTotalPage}"
+        >
+            <input type="hidden" data-isform="true" name="nbTotal" th:value="${nbTotal}" />
+            <ul class="pagination-table">
+                <li class="pagination-table__item pagination-table__item--first-page">
+                    <button
+                        type="button"
+                        th:disabled="${page <= 1}"
+                        class="pagination-table__button base-btn base-btn--button base-btn--default base-btn--nav-medium base-btn--center base-btn--rounded"
+                        onclick="goToPage(this,1)"
+                    >
+                        <span th:id="|${idPrefix}_button_first_page|" class="sr-only">[[#{label.page.first}]]</span>
+                        <span aria-hidden="true" class="icon icon--back"></span>
+                    </button>
+                </li>
+                <li class="pagination-table__item pagination-table__item--previous-page">
+                    <button
+                        type="button"
+                        th:disabled="${page <= 1}"
+                        class="pagination-table__button base-btn base-btn--button base-btn--default base-btn--nav-medium base-btn--center base-btn--rounded"
+                        onclick="previousPage(this)"
+                    >
+                        <span th:id="|${idPrefix}_button_previous_page|" class="sr-only"
+                            >[[#{label.page.previous}]]</span
+                        >
+                        <span aria-hidden="true" class="icon icon--plain-arrow-left"></span>
+                    </button>
+                </li>
+                <li class="pagination-table__item pagination-table__item--input">
+                    <div class="form-input pagination-table__input">
+                        <div class="form-input__header sr-only">
+                            <div class="form-input__header-top">
+                                <label
+                                    th:for="|${idPrefix}_page_number|"
+                                    th:id="|${idPrefix}_page_number_label|"
+                                    class="form-label sr-only"
+                                >
+                                    [[#{label.page.goto}]]
+                                </label>
+                            </div>
+                            <div class="form-input__header-bottom"></div>
+                        </div>
+                        <div class="form-input__container">
+                            <input
+                                type="text"
+                                name="page"
+                                th:id="|${idPrefix}_page_number|"
+                                th:title="#{label.page.goto}"
+                                class="form-input__field form-input__field--type-text"
+                                data-isForm="true"
+                                th:value="${#strings.isEmpty(page) ? 1 : page}"
+                                onkeyup="onEnterPageNumber(event, $(this))"
+                                autocomplete="off"
+                            />
+                        </div>
+                        <div id="page_number_simple_description" class="form-input__footer"></div>
+                    </div>
+                    <span th:aria-label="| sur ${nbTotalPage}|" class="pagination-table__page-count"
+                        >/[[${nbTotalPage}]]</span
+                    >
+                </li>
+                <li class="pagination-table__item pagination-table__item--refresh">
+                    <button
+                        type="button"
+                        class="pagination-table__button base-btn base-btn--button base-btn--default base-btn--icon-action-blue base-btn--center base-btn--transparent base-btn--rounded"
+                        onclick="goToPage(this, $(this).closest('ul').find('input[name=\'page\']').val())"
+                    >
+                        <span th:id="|${idPrefix}_button_refresh|" class="sr-only">[[#{label.page.goto}]]</span>
+                        <span aria-hidden="true" class="icon icon--refresh"></span>
+                    </button>
+                </li>
+                <li class="pagination-table__item pagination-table__item--next-page">
+                    <button
+                        type="button"
+                        class="pagination-table__button base-btn base-btn--button base-btn--default base-btn--nav-medium base-btn--center base-btn--rounded"
+                        onclick="nextPage(this)"
+                        th:disabled="${page >= nbTotalPage}"
+                    >
+                        <span th:id="|${idPrefix}_button_next_page|" class="sr-only">[[#{label.page.next}]]</span>
+                        <span aria-hidden="true" class="icon icon--plain-arrow-right"></span>
+                    </button>
+                </li>
+                <li class="pagination-table__item pagination-table__item--last-page">
+                    <button
+                        type="button"
+                        class="pagination-table__button base-btn base-btn--button base-btn--default base-btn--nav-medium base-btn--center base-btn--rounded"
+                        th:disabled="${page >= nbTotalPage}"
+                        th:onclick="'goToPage(this,'+${nbTotalPage}+')'"
+                    >
+                        <span th:id="|${idPrefix}_button_last_page|" class="sr-only">[[#{label.page.last}]]</span>
+                        <span aria-hidden="true" class="icon icon--next"></span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

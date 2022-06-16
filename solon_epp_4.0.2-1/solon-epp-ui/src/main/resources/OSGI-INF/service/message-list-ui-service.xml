@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.epp.ui.services.component.MessageListUIComponent">
+	<implementation class="fr.dila.epp.ui.services.component.MessageListUIComponent" />
+
+	<service>
+		<provide interface="fr.dila.epp.ui.services.MessageListUIService" />
+	</service>
+
+</component>

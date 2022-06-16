@@ -1,0 +1,38 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+        <modelVersion>4.0.0</modelVersion>
+
+        <!-- ================================================== -->
+        <!-- Parent description                                 -->
+        <!-- ================================================== -->
+        <parent>
+                <groupId>fr.sword.idl.naiad.nuxeo.addons</groupId>
+                <artifactId>naiad-nuxeo-parent</artifactId>
+                <version>7.1.0</version>
+                <relativePath>../pom.xml</relativePath>
+        </parent>
+
+        <!-- ================================================== -->
+        <!-- Project coordinates                                -->
+        <!-- ================================================== -->
+        <artifactId>naiad-nuxeo-commons-parent</artifactId>
+        <packaging>pom</packaging>
+
+
+        <!-- ================================================== -->
+        <!-- More Project description                           -->
+        <!-- ================================================== -->
+        <name>naiad-nuxeo-commons-parent</name>
+
+        <!-- ================================================== -->
+        <!-- Modules                                            -->
+        <!-- ================================================== -->
+        <modules>
+		<module>naiad-nuxeo-commons-core</module>
+		<module>naiad-nuxeo-commons-test</module>
+        </modules>
+
+ 
+</project>
+
+

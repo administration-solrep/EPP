@@ -1,0 +1,10 @@
+<component name="fr.dila.ss.ui.SSDerniersElementsService">
+
+  <implementation class="fr.dila.ss.ui.services.component.SSDerniersElementsComponent" />
+  
+  <service>
+    <provide interface="fr.dila.ss.ui.services.SSDerniersElementsComponentService" />
+  </service>
+  
+
+</component>

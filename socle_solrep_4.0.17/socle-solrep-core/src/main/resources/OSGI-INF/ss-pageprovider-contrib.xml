@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.core.pageprovider">
+
+    <extension target="org.nuxeo.ecm.platform.query.api.PageProviderService" point="providers">
+
+        <coreQueryPageProvider name="actualite">
+            <whereClause>
+                <predicate parameter="act:dateEmission" operator=">=">
+                    <field schema="actualiteRequete" name="dateEmissionDebut" />
+                </predicate>
+                <predicate parameter="act:dateEmission" operator="&lt;=">
+                    <field schema="actualiteRequete" name="dateEmissionFin" />
+                </predicate>
+                <predicate parameter="act:dateValidite" operator=">=">
+                    <field schema="actualiteRequete" name="dateValiditeDebut" />
+                </predicate>
+                <predicate parameter="act:dateValidite" operator="&lt;=">
+                    <field schema="actualiteRequete" name="dateValiditeFin" />
+                </predicate>
+                <predicate parameter="act:hasPj" operator="=">
+                    <field schema="actualiteRequete" name="hasPj" />
+                </predicate>
+                <predicate parameter="act:dansHistorique" operator="=">
+                    <field schema="actualiteRequete" name="dansHistorique" />
+                </predicate>
+                <predicate parameter="ecm:fulltext_actualiteObjet" operator="=">
+                    <field schema="actualiteRequete" name="objet" />
+                </predicate>
+
+                <fixedPart>
+                    ecm:primaryType = 'Actualite'
+                </fixedPart>
+            </whereClause>
+        </coreQueryPageProvider>
+    </extension>
+
+</component>

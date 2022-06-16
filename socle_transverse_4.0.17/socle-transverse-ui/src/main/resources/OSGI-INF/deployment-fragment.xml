@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<fragment version="1">
+	<require>org.nuxeo.ecm.platform.web.common</require>
+	<install>
+
+		<delete path="${bundle.fileName}.tmp" />
+		<unzip from="${bundle.fileName}" to="${bundle.fileName}.tmp" />
+		<copy from="${bundle.fileName}.tmp/web/nuxeo.war" to="/" />
+		<delete path="${bundle.fileName}.tmp" />
+
+	</install>
+	
+	
+	
+  <extension target="web#SECURITY-CONSTRAINT" mode="replace"> 
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Secure area</web-resource-name>
+            <description>Desactivation des methodes OPTIONS, CONNECT, TRACE et PATCH</description>
+            <url-pattern>/*</url-pattern>
+ 		    <http-method>OPTIONS</http-method>
+		    <http-method>TRACE</http-method>
+		    <http-method>PATCH</http-method>
+		    <http-method>CONNECT</http-method>
+        </web-resource-collection>
+	    <auth-constraint>
+	    	<description>Only the regular users can see this</description>
+	   		<role-name>regular</role-name>
+	    </auth-constraint>
+    </security-constraint>
+  </extension>
+
+</fragment>

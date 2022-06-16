@@ -1,0 +1,70 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Fiche dun profil', title=${profil.label})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <input
+            type="hidden"
+            id="urlPreviousPage"
+            name="urlPreviousPage"
+            th:value="@{|${urlPreviousPage}#main_content|}"
+        />
+        <input type="hidden" id="idProfil" name="idProfil" th:value="${profil.id}" />
+
+        <div class="flex-row-actions">
+            <div class="flex-row-actions__left">
+                <button
+                    type="button"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                    onclick="goPreviousPage()"
+                >
+                    [[#{button.label.back}]]
+                </button>
+            </div>
+            <div class="flex-row-actions__right">
+                <th:block th:if="${deleteAction}">
+                    <div
+                        th:replace="fragments/components/label-action-button :: label-action-button(${deleteAction}, false, 'base-btn--default base-btn--secondary')"
+                    ></div>
+                </th:block>
+                <th:block th:if="${editAction}">
+                    <div
+                        th:replace="fragments/components/label-action-button :: label-action-button(${editAction}, false, 'base-btn base-btn--button base-btn--default')"
+                    ></div>
+                </th:block>
+            </div>
+        </div>
+        <h1 class="m-t-6 m-b-6 base-title base-title--lvl-1" th:text="${profil.label}">titre</h1>
+
+        <div
+            th:replace="fragments/components/profil/fonctionsAttribueesList :: fonctionsAttribueesList(${profil}, ${fonctions}, ${lstColonnes}, true, null)"
+        ></div>
+
+        <div class="flex-row-actions">
+            <div class="flex-row-actions__left">
+                <button
+                    type="button"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                    onclick="goPreviousPage()"
+                >
+                    [[#{button.label.back}]]
+                </button>
+            </div>
+            <div class="flex-row-actions__right">
+                <th:block th:if="${deleteAction}">
+                    <div
+                        th:replace="fragments/components/label-action-button :: label-action-button(${deleteAction}, false, 'base-btn--default base-btn--secondary')"
+                    ></div>
+                </th:block>
+                <th:block th:if="${editAction}">
+                    <div
+                        th:replace="fragments/components/label-action-button :: label-action-button(${editAction}, false, 'base-btn base-btn--button base-btn--default')"
+                    ></div>
+                </th:block>
+            </div>
+        </div>
+    </main>
+</html>

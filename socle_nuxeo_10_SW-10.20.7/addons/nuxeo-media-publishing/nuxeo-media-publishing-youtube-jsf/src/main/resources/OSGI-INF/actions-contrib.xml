@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.media.publishing.youtube.actions">
+
+  <require>org.nuxeo.ecm.media.publishing.web.actions</require>
+
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService" point="actions">
+
+    <action id="youtube_options" type="widget" order="10">
+      <category>MEDIA_PUBLISHING_OPTIONS_CATEGORY</category>
+      <properties>
+        <property name="widgetName">youtube_options_widget</property>
+      </properties>
+      <filter id="isYouTube">
+        <rule grant="true">
+          <condition>#{provider == "YouTube"}</condition>
+        </rule>
+      </filter>
+    </action>
+
+  </extension>
+
+</component>

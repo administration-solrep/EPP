@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="datePickerRequete(champ)">
+            <div class="grid__col grid__col--middle">
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label for="dateDebut" id="dateDebut_label" class="form-label">
+                                <span th:text="#{requete.experte.valeur.debut.label}">Label</span>
+                                <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                                <!---->
+                            </label>
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                        <div class="form-input__header-bottom"></div>
+                    </div>
+                    <div class="form-input__container">
+                        <div
+                            th:replace="fragments/components/input-date-picker :: inputDatePicker('date_debut', 'value', 'dateDebut', 'true', '',  'false')"
+                        ></div>
+                    </div>
+                    <div id="dateDebut_description" class="form-input__footer">
+                        <!---->
+                    </div>
+                </div>
+            </div>
+            <div class="grid__col grid__col--middle second-date">
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label for="dateFin" id="dateFin_label" class="form-label">
+                                <span th:text="#{requete.experte.valeur.fin.label}">Label</span>
+                                <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                                <!---->
+                            </label>
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                        <div class="form-input__header-bottom"></div>
+                    </div>
+                    <div class="form-input__container">
+                        <div
+                            th:replace="fragments/components/input-date-picker :: inputDatePicker('date_fin', 'value', 'dateFin', 'true', '',  'false')"
+                        ></div>
+                    </div>
+                    <div id="dateFin_description" class="form-input__footer">
+                        <!---->
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </body>
+</html>

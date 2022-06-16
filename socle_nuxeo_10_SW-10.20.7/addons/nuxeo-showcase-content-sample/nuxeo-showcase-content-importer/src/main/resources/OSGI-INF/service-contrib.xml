@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.ecm.showcase.content" version="1.0">
+
+    <implementation class="org.nuxeo.ecm.showcase.content.service.ShowcaseContentServiceImpl"/>
+
+    <service>
+        <provide interface="org.nuxeo.ecm.showcase.content.service.ShowcaseContentService"/>
+    </service>
+
+    <extension-point name="contents">
+        <documentation>
+            This extension can be used to add some zip tree export to be imported once.
+        </documentation>
+        <object class="org.nuxeo.ecm.showcase.content.service.ShowcaseContentDescriptor"/>
+    </extension-point>
+</component>

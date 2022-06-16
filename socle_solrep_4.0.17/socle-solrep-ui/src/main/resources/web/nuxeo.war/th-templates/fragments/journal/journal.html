@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="journal" id="d_journal_content">
+            <th:block th:each="action : ${tabActions}">
+                <div
+                    th:replace="fragments/components/action-button :: action-button(${action}, false, 'base-btn--transparent base-btn--light')"
+                ></div>
+            </th:block>
+            <div
+                th:replace="fragments/journal/dossier-journal-recherche ::dossier-journal-recherche(${categories})"
+            ></div>
+            <div id="resultList">
+                <div th:replace="fragments/table/dossierJournalTable :: searchResults"></div>
+            </div>
+        </div>
+    </body>
+</html>

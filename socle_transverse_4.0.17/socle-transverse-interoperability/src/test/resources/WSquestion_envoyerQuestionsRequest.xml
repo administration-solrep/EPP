@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<envoyerQuestionsRequest
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion"
+	xmlns:qn="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:repco="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:ar="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:rep="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion WSquestion.xsd">
+	<questionReponse>
+		<qn:question>
+			<qn:id_question>
+				<repco:numero_question>25</repco:numero_question>
+				<repco:type>QE</repco:type>
+				<repco:source>SENAT</repco:source>
+				<repco:legislature>13</repco:legislature>
+			</qn:id_question>
+			<qn:date_publication_jo>2007-06-28</qn:date_publication_jo>
+			<qn:page_jo>1103</qn:page_jo>
+			<qn:ministre_depot id="367">
+				<repco:titre_jo>Économie, finances et emploi</repco:titre_jo>
+				<repco:intitule_min>Économie</repco:intitule_min>
+			</qn:ministre_depot>
+			<qn:ministre_attributaire id="359">
+				<repco:titre_jo>Budget, comptes publics et fonction publique</repco:titre_jo>
+				<repco:intitule_min>Budget</repco:intitule_min>
+			</qn:ministre_attributaire>
+			<qn:auteur id_mandat="98046">
+				<qn:civilite>M.</qn:civilite>
+				<qn:prenom>François</qn:prenom>
+				<qn:nom>Marc</qn:nom>
+				<qn:grp_pol>Groupe Socialiste</qn:grp_pol>
+				<qn:circonscription>29 - Finistère</qn:circonscription>
+			</qn:auteur>
+			<qn:texte><![CDATA[M. François Marc attire l'attention de Mme la ministre de l'économie, des finances et de l'emploi sur les effets induits du passage du dispositif des abattements dits « de Robien offensifs » au système des abattements dits « Fillon ». En contrepartie de la signature des accords type « de Robien » mis en place par le passé et créant de fait des emplois pérennes, des entreprises ont bénéficié durant un certain nombre d'années de réduction de charges sociales.
+En juillet 2005, ces abattements de charges incitatifs ont été entièrement remis à plat par l'entrée en vigueur des abattements dits « Fillon ». La nouvelle réduction unique des cotisations patronales de sécurité sociale accessible à tous les employeurs n'exigeant alors aucune condition de durée du temps de travail mise en place.
+Profitable aux entreprises qui n'avaient pas encore aménagé leur temps de travail et recruté, ces nouveaux accords ont introduit au sein des entreprises d'un même secteur une distorsion de concurrence. Les entreprises bénéficiaires du dispositif « de Robien » s'interrogent sur les possibilités de continuer à bénéficier des abattements de type « de Robien » pour être en mesure de se développer et conserver leur compétitivité.
+Il lui demande par conséquent ce qu'elle entend mettre en place pour établir une véritable égalité de traitement de l'ensemble des entreprises.
+]]></qn:texte>
+			<qn:etat_question>REPONDU</qn:etat_question>
+			<qn:titre_senat>Distorsion de concurrence liée aux dispositifs
+				d'abattements de charges successifs</qn:titre_senat>
+			<qn:indexation_senat>
+				<qn:theme>Questions sociales et santé</qn:theme>
+				<qn:rubrique>Charges sociales</qn:rubrique>
+				<qn:renvois>
+					<qn:renvoi>Entreprises</qn:renvoi>
+					<qn:renvoi>Emploi</qn:renvoi>
+				</qn:renvois>
+			</qn:indexation_senat>
+		</qn:question>
+		<qn:reponse>
+			<rep:ministre_reponse id="359">
+				<repco:titre_jo>Budget, comptes publics et fonction publique</repco:titre_jo>
+				<repco:intitule_min>Budget</repco:intitule_min>
+			</rep:ministre_reponse>
+			<rep:texte_reponse><![CDATA[Le ministre du budget, des comptes publics et de la fonction publique a pris connaissance avec intérêt de la question relative à la distorsion de concurrence liée aux dispositifs d'abattements de charges successifs. La mesure d'allégement de cotisations patronales dite allégement de Robien, qui avait été instituée en 1996 dans un contexte d'incitation à l'aménagement et à la réduction conventionnels du temps de travail, a été abrogée le 16 juin 1998, sauf pour les entreprises qui avaient conclu une convention avant cette date et qui ont pu continuer d'en bénéficier jusqu'à sa clôture définitive le 16 juin 2005. Contrairement à l'allégement de Robien, la réduction générale des cotisations patronales dite Fillon, qui a été mise en place le 1er juillet 2003, est effectivement déconnectée de la durée du travail applicable dans les entreprises, son objectif étant de concentrer davantage l'effet des allégements sur les bas et moyens salaires. Sans remettre en cause le principe même de la durée du travail fixée à 35 heures hebdomadaires, les réaménagements apportés aux dispositifs d'allégements généraux des cotisations sociales répondaient à la nécessité d'assouplir et de simplifier, notamment par la voie de la négociation collective, les conditions dans lesquelles la réduction du temps de travail est mise en oeuvre dans les entreprises. Néanmoins, afin de tenir compte de la situation particulière des entreprises qui appliquaient déjà un horaire collectif de 35 heures et qui, à ce titre, bénéficiaient de mesures d'aides et d'allégement, la réduction Fillon est entrée progressivement en vigueur, en distinguant les entreprises selon qu'elles avaient ou non réduit leur durée du travail. C'est ainsi que, pendant une période transitoire de deux années, les entreprises ayant conclu un accord de réduction du temps de travail à 35 heures ont pu bénéficier d'un montant maximal d'exonération égal à 26 % du salaire alors que, pour celles restées à 39 heures, le montant d'exonération au niveau du SMIC n'était que de 20,8 % la première année, puis de 23,4 % la deuxième année. En outre, pendant cette phase de transition et jusqu'à l'extinction de l'allégement de Robien, il a été admis que les entreprises qui ouvraient droit à cet allégement puissent en cumuler le bénéfice avec celui de la nouvelle réduction générale. Il est à noter d'ailleurs que la mise en place de cette réforme n'a pas entraîné de remise en cause massive des accords 35 heures qui avaient été conclus avant le 30 juin 2003. La réduction générale qui est appliquée dans sa forme définitive depuis le 1er juillet 2005 présente l'avantage de la simplicité et de l'universalité. Il n'est pas envisagé de revenir à un dispositif fondé sur une logique d'abaissement de la durée du travail qui serait contraire aux orientations de la politique du Gouvernement en matière de pouvoir d'achat et d'assouplissement de la législation sur la durée du travail.]]></rep:texte_reponse>
+			<rep:date_jo>2008-05-08</rep:date_jo>
+			<rep:page_jo>916</rep:page_jo>
+		</qn:reponse>
+	</questionReponse>
+</envoyerQuestionsRequest>

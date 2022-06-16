@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://dila.fr/solonepp/schema/ministere/"
+    xmlns:min="http://dila.fr/solonepp/schema/ministere/"
+>
+
+	<!-- Identifiant technique de l'enregistrement -->
+	<xs:element name="identifiant" type="xs:string" />
+
+	<!-- Nom -->
+	<xs:element name="nom" type="xs:string" />
+
+	<!-- Libellé ministre -->
+	<xs:element name="libelleMinistre" type="xs:string" />
+
+	<!-- Édition -->
+	<xs:element name="edition" type="xs:string" />
+
+	<!-- Gouvernement -->
+	<xs:element name="gouvernement" type="xs:string" />
+
+	<!-- Appellation -->
+	<xs:element name="appellation" type="xs:string" />
+
+	<!-- Date de début -->
+	<xs:element name="dateDebut" type="xs:date" />
+
+	<!-- Date de fin -->
+	<xs:element name="dateFin" type="xs:date" />
+
+</xs:schema>

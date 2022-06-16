@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="formRechercheDynamique(categorie, lstWidgets)" id="formRechercheDynamique">
+            <input type="hidden" id="categorie" name="categorie" th:value="${categorie}" />
+            <fieldset>
+                <legend class="sr-only" th:text="#{label.recherche.legend}">Légende</legend>
+                <th:block th:each="widget : ${lstWidgets}">
+                    <th:block th:if="${widget.typeChamp == 'multiple-input-text'}">
+                        <div class="grid__row m-t-6">
+                            <div class="grid__col grid__col--middle">
+                                <div
+                                    th:replace="fragments/components/formblocks/autocomplete-select :: autocompleteSelect(${widget.label}, ${widget.name}, ${widget.name}, 'form.description.nocharlimit', ${widget.getValueParamByName('lstValues')}, ${ {} }, false, null, '0', '', '', '', false, true, false)"
+                                ></div>
+                            </div>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${widget.typeChamp == 'input-text'}">
+                        <div class="grid__row m-t-6">
+                            <div class="grid__col grid__col--middle">
+                                <th:block th:if="${widget.getValueParamByName('autocomplete') == 'true'}">
+                                    <div class="form-input">
+                                        <div
+                                            th:replace="fragments/components/widgets/input-text :: inputText(${widget})"
+                                        ></div>
+                                    </div>
+                                </th:block>
+                                <th:block th:unless="${widget.getValueParamByName('autocomplete') == 'true'}">
+                                    <div
+                                        th:replace="fragments/components/formblocks/simple-input :: simpleInput(#{${widget.label}}, false, '', ${widget.name}, ${widget.name}, '', false)"
+                                    ></div>
+                                </th:block>
+                            </div>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${widget.typeChamp == 'date'}">
+                        <div class="grid__row m-t-6">
+                            <div class="grid__col grid__col--middle">
+                                <div
+                                    th:replace="fragments/components/formblocks/date-picker-range :: datepickerRange(${widget.label}, ${widget.name}, null, null, false, false)"
+                                ></div>
+                            </div>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${widget.typeChamp} == 'select'">
+                        <div class="grid__row m-t-6">
+                            <div class="grid__col grid__col--middle">
+                                <div
+                                    th:replace="fragments/components/formblocks/simple-select :: simpleSelect(${widget.label}, ${widget.name}, '', ${widget.getValueParamByName('lstValues')}, null, 'false', 'communicationSuccessive.select.default')"
+                                ></div>
+                            </div>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${widget.typeChamp} == 'niveau-lecture'">
+                        <div class="grid__row m-t-6">
+                            <div class="grid__col grid__col--middle">
+                                <th:block
+                                    th:replace="fragments/components/widgets/niveau-lecture :: niveauLecture(${widget})"
+                                ></th:block>
+                            </div>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${widget.typeChamp} == 'radio'">
+                        <div class="grid__row m-t-6">
+                            <div class="grid__col grid__col--middle">
+                                <th:block
+                                    th:replace="fragments/components/widgets/optin-radio :: optinRadio(${widget})"
+                                ></th:block>
+                            </div>
+                        </div>
+                    </th:block>
+                </th:block>
+            </fieldset>
+        </div>
+    </body>
+</html>

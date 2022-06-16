@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.core.test.datasourceContrib">
+
+  <extension target="org.nuxeo.runtime.datasource" point="datasources">
+  
+    <datasource name="jdbc/nxaudit-logs" driverClassName="${nuxeo.test.vcs.driver}" maxPoolSize="20" minPoolSize="5">
+      <property name="url">${nuxeo.test.vcs.url}</property>
+      <property name="username">${nuxeo.test.vcs.user}</property>
+      <property name="password">${nuxeo.test.vcs.password}</property>
+    </datasource>
+    
+    <datasource
+            name="jdbc/organigramme-provider"
+            driverClassName="${nuxeo.test.vcs.driver}"
+            maxPoolSize="20"
+            minPoolSize="5"
+        >
+      <property name="url">${nuxeo.test.vcs.url}</property>
+      <property name="username">${nuxeo.test.vcs.user}</property>
+      <property name="password">${nuxeo.test.vcs.password}</property>
+    </datasource>
+    
+  </extension>
+
+</component>

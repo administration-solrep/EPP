@@ -1,0 +1,7 @@
+<component name="fr.dila.st.ui.STPosteUIService">
+	<implementation class="fr.dila.st.ui.services.component.STPosteUIComponent" />
+
+	<service>
+		<provide interface="fr.dila.st.ui.services.STPosteUIService" />
+	</service>
+</component>

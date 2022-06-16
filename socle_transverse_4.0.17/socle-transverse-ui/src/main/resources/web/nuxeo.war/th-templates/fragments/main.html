@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <main role="main" id="main_content" th:fragment="main">
+            <th:block th:if="${main_blocks != null }" th:each="block : ${main_blocks}">
+                <div th:replace="${block.filename} :: ${block.name}"></div>
+            </th:block>
+            <th:block th:if="${main_blocks == null }" th:each="block : ${_blocks}">
+                <div th:replace="${block.filename} :: ${block.name}"></div>
+            </th:block>
+        </main>
+    </body>
+</html>

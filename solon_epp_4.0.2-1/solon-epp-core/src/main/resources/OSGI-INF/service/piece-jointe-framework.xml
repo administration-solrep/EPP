@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service de gestion des pièces jointes. -->
+<component name="fr.dila.solonepp.core.service.PieceJointeService">
+	<implementation class="fr.dila.solonepp.core.service.PieceJointeServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.solonepp.api.service.PieceJointeService" />
+	</service>
+
+</component>

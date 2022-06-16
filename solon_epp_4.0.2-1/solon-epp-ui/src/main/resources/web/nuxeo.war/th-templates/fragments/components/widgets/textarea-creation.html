@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="textarea(widget)">
+            <div
+                class="form-input"
+                th:classappend="${widget.modifiedInCurVersion ? 'labellised-list__description--warning' : ''}"
+            >
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label th:for="${widget.name}" th:id="|${widget.name}_label|" class="form-label"
+                            ><th:block th:text="#{${widget.label}}"></th:block>
+                            <span
+                                th:if="${widget.required}"
+                                class="form-label__required-text"
+                                th:text="#{form.input.required}"
+                            >
+                                (Requis)</span
+                            >
+                        </label>
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                    <div class="form-input__header-bottom">
+                        <p
+                            id="label_header_bottom_form_input-dateAr"
+                            class="form-input__description form-input__description--default"
+                        ></p>
+                    </div>
+                </div>
+                <div class="form-input__container">
+                    <textarea
+                        th:name="${widget.name}"
+                        th:id="|form_textarea-${widget.name}|"
+                        cols="30"
+                        rows="3"
+                        aria-describedby="label_header_bottom_form_textarea form_textarea_description "
+                        class="form-input__field"
+                        th:value="${widget.getValueParamByName('valeur')}"
+                        th:text="${widget.getValueParamByName('valeur')}"
+                        th:data-validation="${widget.required}? 'required'"
+                    ></textarea>
+                </div>
+                <div th:id="|${widget.name}_description|" class="form-input__footer"></div>
+            </div>
+        </th:block>
+    </body>
+</html>

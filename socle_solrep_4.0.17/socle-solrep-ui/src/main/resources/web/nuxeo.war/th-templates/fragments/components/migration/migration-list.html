@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="migrationList(migration, isRunning, index)">
+            <th:block th:each="migration, status : ${migrationDto.details}" th:with="index=${status.index}">
+                <th:block
+                    th:replace="fragments/components/migration/migration-detail :: migrationDetail(${migration}, ${isRunning}, ${index})"
+                ></th:block>
+            </th:block>
+        </th:block>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="migrationStructure(migration, isRunning, index)">
+            <div
+                th:replace="fragments/components/migration/migration-specifique :: migrationSpecifique(${migration}, ${isRunning}, ${index})"
+            ></div>
+            <div class="grid__row m-t-6">
+                <p class="base-subtitle" th:text="#{migration.progression}">Progression de la migration</p>
+            </div>
+            <div class="grid__row">
+                <ul class="base-list base-list--unordered" th:unless="${isRunning}">
+                    <li
+                        class="list-item list-item--unordered p-l-3"
+                        th:each="action : ${actions[migration.migrationType]}"
+                        th:text="#{${action}}"
+                    >
+                        Action
+                    </li>
+                </ul>
+                <ul class="base-list base-list--unordered" th:if="${isRunning}">
+                    <li class="list-item list-item--unordered p-l-3" th:each="action : ${migration.actionProgress}">
+                        <th:block
+                            th:replace="fragments/components/migration/migration-progress :: migrationProgress(${action.key}, ${action.value})"
+                        ></th:block>
+                    </li>
+                </ul>
+            </div>
+        </th:block>
+    </body>
+</html>

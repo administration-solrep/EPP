@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <footer role="contentinfo" th:fragment="footer">
+            <th:block th:if="${footer_blocks != null }" th:each="block : ${footer_blocks}">
+                <div th:replace="${block.filename} :: ${block.name}"></div>
+            </th:block>
+            <th:block th:if="${footer_blocks == null }" th:each="block : ${_blocks}">
+                <div th:replace="${block.filename} :: ${block.name}"></div>
+            </th:block>
+        </footer>
+    </body>
+</html>

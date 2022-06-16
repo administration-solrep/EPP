@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.epp.ui.services.actions.component.MetadonneesActionComponent">
+	<implementation class="fr.dila.epp.ui.services.actions.component.MetadonneesActionComponent" />
+
+	<service>
+		<provide interface="fr.dila.epp.ui.services.actions.MetadonneesActionService" />
+	</service>
+
+</component>

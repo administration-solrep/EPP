@@ -1,0 +1,112 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout :: layout (template=~{::main},templateClass='', description='page de sauvegarde d\'une alerte', title=#{${id == null ? 'suivi.creer.alerte.label' : 'suivi.gerer.alerte.label'}})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <h1 class="base-title base-title--lvl-1" th:if="${id == null}">[[#{suivi.creer.alerte.label}]]</h1>
+        <h1 class="base-title base-title--lvl-1" th:unless="${id == null}">[[#{suivi.gerer.alerte.label}]]</h1>
+
+        <input
+            type="hidden"
+            id="urlPreviousPage"
+            name="urlPreviousPage"
+            th:value="@{|${urlPreviousPage}#main_content|}"
+        />
+        <form id="alerte-form">
+            <input type="hidden" name="id" th:value="${id}" th:unless="${id == null}" />
+            <input type="hidden" name="idRequete" th:value="${form.idRequete}" />
+            <input type="hidden" name="isActivated" th:value="${form.isActivated}" />
+
+            <th:block th:if="${alertDatasFragment != null}">
+                <th:block th:replace="${alertDatasFragment}" />
+            </th:block>
+
+            <div class="form-input m-t-6">
+                <div
+                    th:replace="fragments/components/formblocks/simple-input :: simpleInput(#{suivi.alerte.titre.label}, true, null, 'titre', 'titre', ${form.titre}, false)"
+                ></div>
+            </div>
+            <div class="form-input m-t-6">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label for="datePremiereExecution" id="datePremiereExecution_label" class="form-label">
+                            <span th:text="#{suivi.date.premiere.execution.label}">Date de première exécution</span>
+                            <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                        </label>
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                    <div class="form-input__header-bottom"></div>
+                </div>
+                <div class="form-input__container">
+                    <div
+                        th:replace="fragments/components/input-date-picker :: inputDatePicker('date_premiere_execution', 'datePremiereExecution', 'datePremiereExecution', true, ${#calendars.format(form.datePremiereExecution,'dd/MM/yyyy')}, false)"
+                    ></div>
+                </div>
+                <div id="datePremiereExecution_description" class="form-input__footer">
+                    <!---->
+                </div>
+            </div>
+            <div class="form-input m-t-6">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label for="dateFin" id="dateFin_label" class="form-label">
+                            <span th:text="#{suivi.date.fin.validite.label}">Date de fin de validité</span>
+                            <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                        </label>
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                    <div class="form-input__header-bottom"></div>
+                </div>
+                <div class="form-input__container">
+                    <div
+                        th:replace="fragments/components/input-date-picker :: inputDatePicker('date_fin', 'dateFin', 'dateFin', true, ${#calendars.format(form.dateFin,'dd/MM/yyyy')}, false)"
+                    ></div>
+                </div>
+                <div id="dateFin_description" class="form-input__footer">
+                    <!---->
+                </div>
+            </div>
+            <div class="form-input m-t-6">
+                <div
+                    th:replace="fragments/components/formblocks/simple-input :: simpleInput(#{suivi.alerte.frequence.label}, true, null, 'frequence', 'frequence', ${form.frequence}, false)"
+                ></div>
+            </div>
+            <div class="form-input m-t-6">
+                <th:block
+                    th:replace="fragments/components/organigrammeSelectAutocomplete ::organigrammeSelectAutocomplete(
+	            'suivi.destinataires.label',
+	            true,
+	            'destinataires',
+	            'destinataires',
+	            'USR', 
+	            'destinataires', 
+	            true,
+	            true,
+	            ${form.mapDestinataires},
+	            false)"
+                ></th:block>
+            </div>
+
+            <div class="flex justify-between m-t-6 m-b-3">
+                <a
+                    th:href="@{/suivi#suivi_menu_alerte}"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                    th:text="#{button.label.cancel}"
+                >
+                    Annuler
+                </a>
+                <button
+                    type="button"
+                    class="base-btn base-btn--submit base-btn--default base-btn--center"
+                    id="alerte-save-button"
+                    onclick="saveAlerte()"
+                >
+                    [[${id == null} ? #{button.label.creer} : #{label.casemanagement.save}]]
+                </button>
+            </div>
+        </form>
+    </main>
+</html>

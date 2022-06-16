@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherPieceJointeResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd ">
+
+	<p:statut>OK</p:statut>
+	<p:id_dossier>DOS_00025</p:id_dossier>
+	<p:id_evt>
+		<p2:id>EVT_1564327</p2:id>
+	</p:id_evt>
+
+	<p:piece_jointe a_du_contenu="true">
+		<p1:id_interne_epp>1534579</p1:id_interne_epp>
+		<p1:type>LETTRE_PM</p1:type>
+		<p1:url>http://www.example.com/example/texte.txt</p1:url>
+		<p1:libelle>UnTexte</p1:libelle>
+		<p1:fichier>
+			<p1:nom_fichier>lettre-pm-01.doc</p1:nom_fichier>
+			<p1:sha512>b9be3ef4018be19f248f6f8e63b9e006</p1:sha512>
+			<p1:mime_type>text/plain</p1:mime_type>
+			<p1:compression>ZIP</p1:compression>
+			<p1:contenu>UEsDBAoAAAAAACZf4T7cFbPIDQAAAA0AAAAJABUAdGV4dGUudHh0VVQJAAP4mQ1OTpoNTlV4BADoA2QASGVsbG8gV29ybGQgIVBLAQIXAwoAAAAAACZf4T7cFbPIDQAAAA0AAAAJAA0AAAAAAAEAAACkgQAAAAB0ZXh0ZS50eHRVVAUAA/iZDU5VeAAAUEsFBgAAAAABAAEARAAAAEkAAAAAAA==</p1:contenu>
+		</p1:fichier>
+	</p:piece_jointe>
+
+
+</p:chercherPieceJointeResponse>

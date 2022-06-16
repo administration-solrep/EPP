@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.contentviews.recherche">
+
+	
+	<require>org.nuxeo.ecm.platform.query.api.PageProviderService</require>
+
+    <extension target="org.nuxeo.ecm.platform.query.api.PageProviderService" point="providers">
+
+		
+		<!-- Content View des résultats de recherche sur les modèles de feuille 
+			de route -->
+			<genericPageProvider class="fr.dila.st.ui.contentview.UfnxqlPageDocumentProvider" name="recherche_fdr_resultats">
+				<sort column="r.dc:title" ascending="true" />
+				<pageSize>30</pageSize>
+			</genericPageProvider>
+
+	</extension>
+</component>

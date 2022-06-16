@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="textUrl(widget)">
+            <div class="labellised-list__label">
+                <th:block th:text="#{${widget.label}}">label widget</th:block>
+                <span th:if="${widget.required}" class="form-label__required-text">(requis)</span>
+            </div>
+            <div
+                class="labellised-list__description"
+                th:classappend="${widget.modifiedInCurVersion ? 'labellised-list__description--warning' : ''}"
+            >
+                <th:block th:unless="${#strings.isEmpty(widget.getValueParamByName('valeur'))}">
+                    <a
+                        th:href="@{${widget.getValueParamByName('valeur')}}"
+                        class="link"
+                        target="_blank"
+                        th:text="${widget.getValueParamByName('valeur')}"
+                        >url</a
+                    >
+                </th:block>
+            </div>
+        </th:block>
+    </body>
+</html>

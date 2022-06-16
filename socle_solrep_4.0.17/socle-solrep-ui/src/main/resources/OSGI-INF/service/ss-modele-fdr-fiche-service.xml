@@ -1,0 +1,9 @@
+<component name="fr.dila.ss.ui.services.component.SSModeleFdrFicheUIComponent">
+
+	<implementation class="fr.dila.ss.ui.services.component.SSModeleFdrFicheUIComponent" />
+
+	<service>
+		<provide interface="fr.dila.ss.ui.services.SSModeleFdrFicheUIService" />
+	</service>
+
+</component>

@@ -1,0 +1,131 @@
+<?xml version="1.0" ?>
+<!-- Cet composant contribue : - Les cycles de vie du socle solrep ; - Les 
+	associations type de document / cycle de vie. -->
+<component name="fr.dila.ss.core.lifecycle">
+
+	<required>fr.dila.st.core.lifecycle</required>
+
+	<extension target="org.nuxeo.ecm.core.lifecycle.LifeCycleService" point="lifecycle">
+		<!-- Cycle de vie du dossier REPONSES / SOLON -->
+		<lifecycle name="dossier" defaultInitial="init">
+			<transitions>
+				<transition name="toRunning" destinationState="running" />
+				<transition name="toDone" destinationState="done" />
+				<transition name="backToRunning" destinationState="running" />
+			</transitions>
+			<states>
+				<state name="init" description="Initialisation" initial="true">
+					<transitions>
+						<transition>toRunning</transition>
+						<transition>toDone</transition>
+					</transitions>
+				</state>
+				<state name="running" description="En cours">
+					<transitions>
+						<transition>toDone</transition>
+					</transitions>
+				</state>
+				<state name="done" description="Terminé">
+					<transitions>
+						<transition>backToRunning</transition>
+					</transitions>
+				</state>
+			</states>
+		</lifecycle>
+
+		<!-- Cycle de vie des feuilles de routes -->
+		<lifecycle name="feuilleRouteElement" defaultInitial="draft">
+			<transitions>
+				<transition name="toValidated" destinationState="validated">
+					<description>Le modèle est validé</description>
+				</transition>
+				<transition name="toReady" destinationState="ready">
+					<description>L'élément est prêt à être exécuté</description>
+				</transition>
+				<transition name="toRunning" destinationState="running">
+					<description>L'élément démarre</description>
+				</transition>
+				<transition name="toDone" destinationState="done">
+					<description>L'élément se finit</description>
+				</transition>
+				<transition name="backToReady" destinationState="ready">
+					<description>the element finishes</description>
+				</transition>
+				<transition name="toCanceled" destinationState="canceled">
+					<description>Annule l'élément</description>
+				</transition>
+				<transition name="toDraft" destinationState="draft">
+					<description>Retour à l'état brouillon, lorsqu'on dé-valide un
+						modèle ou qu'on crée une nouvelle instance à partir d'un modèle</description>
+				</transition>
+				<transition name="toDraftByCopy" destinationState="draft">
+					<description>Retourne à l'état brouillon par duplication d'une
+						étape</description>
+				</transition>
+				<transition name="toReadyByCopy" destinationState="ready">
+					<description>Retourne à l'état prêt par duplication d'une étape</description>
+				</transition>
+				<transition name="delete" destinationState="deleted">
+					<description>Marque l'élément comme supprimé</description>
+				</transition>
+			</transitions>
+			<states>
+				<state name="draft" description="Brouillon" initial="true">
+					<transitions>
+						<transition>toValidated</transition>
+						<transition>toReadyByCopy</transition>
+						<transition>delete</transition>
+					</transitions>
+				</state>
+				<state name="validated" description="L'élément est validée">
+					<transitions>
+						<transition>toReady</transition>
+						<transition>toDraft</transition>
+						<transition>toDraftByCopy</transition>
+						<transition>toReadyByCopy</transition>
+						<transition>delete</transition>
+					</transitions>
+				</state>
+				<state name="ready" description="L'élément est prêt" initial="true">
+					<transitions>
+						<transition>toRunning</transition>
+						<transition>toCanceled</transition>
+						<transition>toDraft</transition>
+						<transition>toDraftByCopy</transition>
+						<transition>delete</transition>
+					</transitions>
+				</state>
+				<state name="running" description="L'élément est en cours">
+					<transitions>
+						<transition>toDone</transition>
+						<transition>backToReady</transition>
+						<transition>toCanceled</transition>
+						<transition>toDraft</transition>
+						<transition>toDraftByCopy</transition>
+						<transition>toReadyByCopy</transition>
+						<transition>delete</transition>
+					</transitions>
+				</state>
+				<state name="done" description="L'élément est terminé">
+					<transitions>
+						<transition>backToReady</transition>
+						<transition>toCanceled</transition>
+						<transition>toDraft</transition>
+						<transition>toDraftByCopy</transition>
+						<transition>toReadyByCopy</transition>
+						<transition>delete</transition>
+					</transitions>
+				</state>
+				<state name="canceled" description="L'élement est annulé">
+					<transitions>
+						<transition>backToReady</transition>
+						<transition>delete</transition>
+					</transitions>
+				</state>
+				<state name="deleted" description="L'élément est supprimé">
+				</state>
+			</states>
+		</lifecycle>
+
+	</extension>
+</component>

@@ -1,0 +1,7 @@
+<component name="fr.dila.st.ui.STUtilisateursUIService">
+	<implementation class="fr.dila.st.ui.services.component.STUtilisateursUIServiceComponent" />
+
+	<service>
+		<provide interface="fr.dila.st.ui.services.STUtilisateursUIService" />
+	</service>
+</component>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>fr.dila.solonepp</groupId>
+		<artifactId>solon-epp-parent</artifactId>
+		<version>4.0.2-1</version>
+	</parent>
+
+	<artifactId>solon-epp-webengine</artifactId>
+	<name>SOLON EPP WebEngine</name>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>fr.dila.st</groupId>
+			<artifactId>socle-transverse-interoperability</artifactId>
+		</dependency>
+
+		<!-- Dépendances à SOLON EPP -->
+		<dependency>
+			<groupId>fr.dila.solonepp</groupId>
+			<artifactId>solon-epp-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.solonepp</groupId>
+			<artifactId>solon-epp-api</artifactId>
+		</dependency>
+
+		<!-- Dépendances à Nuxeo -->
+		<dependency>
+			<groupId>org.nuxeo.ecm.webengine</groupId>
+			<artifactId>nuxeo-webengine-base</artifactId>
+		</dependency>
+
+		<!-- Dépendances externes -->
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>osgi-core</artifactId>
+			<version>4.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>jboss</groupId>
+			<artifactId>jboss-annotations-ejb3</artifactId>
+			<version>3.0-RC8</version>
+		</dependency>
+
+		<!-- Dépendances de test -->
+		<dependency>
+			<groupId>fr.dila.st</groupId>
+			<artifactId>socle-transverse-core</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.dila.solonepp</groupId>
+			<artifactId>solon-epp-core</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.nuxeo.ecm.automation</groupId>
+			<artifactId>nuxeo-automation-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.restlet</groupId>
+			<artifactId>org.restlet</artifactId>
+			<version>1.0.7</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.noelios.restlet</groupId>
+			<artifactId>com.noelios.restlet.ext.httpclient</artifactId>
+			<version>1.0.7</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.noelios.restlet</groupId>
+			<artifactId>com.noelios.restlet</artifactId>
+			<version>1.0.7</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+					</archive>
+				</configuration>
+			</plugin>
+			<!-- APT plugin for annotation preprocessing -->
+<!--
+			<plugin>
+				<groupId>org.apache.myfaces.tobago</groupId>
+				<artifactId>maven-apt-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-bindings</id>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+-->
+			<!-- end APT plugin -->
+		</plugins>
+<!--
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.myfaces.tobago</groupId>
+										<artifactId>maven-apt-plugin</artifactId>
+										<versionRange>[1.0.25,)</versionRange>
+										<goals>
+											<goal>execute</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute>
+											<runOnIncremental>false</runOnIncremental>
+										</execute>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+-->
+	</build>
+
+
+</project>

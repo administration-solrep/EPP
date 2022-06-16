@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- Script Ant permettant de d�ployer la distribution et de lancer les tests
+	fonctionnels sur l'environnement d'assurance qualit�. Les t�ches de ce script
+	doivent �tre ex�cut�es apr�s la construction de la distribution. Taches assurance
+	qualit� :
+    - deployqa : d�ploiement sur le serveur QA et lancement des tests
+	  fonctionnels automatis�s; -->
+<project name="QA">
+	<target name="autodeploy" description="D�ploiement de l'application sur le serveur QA">
+		<echo>
+		    ===========================================================
+		    . D�ploiement sur le serveur de QA
+		    .
+		    . Serveur de d�ploiement :
+		    ${ssh.username}@${ssh.host}"
+		    ===========================================================
+		</echo>
+		<scp
+            file="${deploy.srcdir}/${deploy.archive}"
+            todir="${ssh.username}@${ssh.host}:${deploy.destdir}"
+            password="${ssh.password}"
+            trust="true"
+        />
+
+		<!-- D�ploiement de la distribution -->
+		<sshexec
+            host="${ssh.host}"
+            username="${ssh.username}"
+            password="${ssh.password}"
+            command="${deploy.script} -r db,ldap,ldapdb /opt/solonepp-server-SNAPSHOT ${deploy.destdir}/${deploy.archive}"
+            trust="true"
+        />
+	</target>
+</project>

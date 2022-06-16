@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service de gestion d'arborescence du socle SOLREP. -->
+<component name="fr.dila.ss.core.service.SSTreeService">
+  <implementation class="fr.dila.ss.core.component.SSTreeComponent" />
+
+  <service>
+    <provide interface="fr.dila.ss.api.service.SSTreeService" />
+  </service>
+</component>

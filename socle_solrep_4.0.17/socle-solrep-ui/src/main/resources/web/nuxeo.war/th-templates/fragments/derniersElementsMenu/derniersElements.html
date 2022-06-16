@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <!--/* fragment relatif au bloc '10 derniers éléménts'
+    bloc présent dans Reponses sous le titre 'Dernières questions consultées'
+     - présent dans l'espace de travail, plan de classement, de recherche, de requêtes
+    bloc présent dans Epg sous le titre 'Derniers dossiers consultés'
+     - présent dans l'espace de travail, admin, recherche, suivi */-->
+    <body>
+        <div th:fragment="derniersElements">
+            <div class="accordion accordion--aside">
+                <div class="accordion__header js-toggle accordion__header--aside">
+                    <h2 class="accordion-title-lvl-2">[[ #{__${titleLabel}__} ]]</h2>
+                    <button
+                        aria-controls="accordion__content__last_10_elements"
+                        aria-expanded="true"
+                        id="accordion__header__last_10_elements"
+                        data-toggle="accordion__content"
+                        data-icon-opened="substract-without-background"
+                        data-icon-closed="add-without-background"
+                        class="js-toggle accordion__header__button"
+                        th:aria-label="#{__${titleLabel}__}"
+                    >
+                        <span
+                            aria-hidden="true"
+                            class="icon icon--substract-without-background bubble-icon bubble-icon--neutral accordion__icon accordion__icon--aside"
+                        ></span>
+                    </button>
+                </div>
+                <div
+                    aria-hidden="false"
+                    id="accordion__content__last_10_elements"
+                    class="accordion__content accordion__content--aside accordion__content--is-opened"
+                >
+                    <div class="last-folders">
+                        <div class="last-folders__folder-list" role="list">
+                            <div
+                                class="folder-selected last-folders__folder-selected"
+                                th:each="item, iter : ${derniersElementsMap.derniersElementsList}"
+                                th:if="${iter.index} < 5"
+                                role="listitem"
+                            >
+                                <div
+                                    th:replace="fragments/derniersElementsMenu/dernierElement :: dernierElement(${item.label}, ${item.id}, ${item.categorie}, ${item.caseLinkIdsLabels}, ${item.exposant})"
+                                ></div>
+                            </div>
+
+                            <div class="see-more last-folders__see-more">
+                                <div class="see-more__content" aria-hidden="true">
+                                    <div
+                                        class="folder-selected last-folders__folder-selected"
+                                        th:each="item, iter : ${derniersElementsMap.derniersElementsList}"
+                                        th:if="${iter.index} >= 5 and ${iter.index} < 10"
+                                        role="listitem"
+                                    >
+                                        <div
+                                            th:replace="fragments/derniersElementsMenu/dernierElement :: dernierElement(${item.label}, ${item.id}, ${item.categorie}, ${item.caseLinkIdsLabels}, ${item.exposant})"
+                                        ></div>
+                                    </div>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="see-more__toggler base-btn base-btn--button base-btn--default base-btn--discret"
+                                    th:aria-label="#{label.see.more}"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    th:data-label-more="#{label.see.more}"
+                                    th:data-label-less="#{label.see.less}"
+                                    th:text="#{label.see.more}"
+                                >
+                                    Voir plus...
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

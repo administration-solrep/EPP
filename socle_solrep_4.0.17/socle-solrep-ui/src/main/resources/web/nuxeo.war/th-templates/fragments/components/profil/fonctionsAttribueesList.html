@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="fonctionsAttribueesList(profil, fonctions, lstColonnes, allChecked, fonctionsOfProfil)"
+            class="tableForm"
+            th:data-url="@{${dataUrl}}"
+            th:data-ajaxurl="@{${dataAjaxUrl}}"
+            id="listeFonctions"
+        >
+            <div class="overlay" th:id="result_overlay">[[#{layout.loading}]]</div>
+            <input name="id" th:value="${profil.id}" type="hidden" aria-hidden="true" data-isform="true" />
+            <a
+                href="#skip_link_action-table_prev"
+                id="skip_link_action-table_next"
+                class="skip-link"
+                th:text="#{skip.link.table.prev(#{profil.fonctionsAttribuees.table.caption})}"
+            >
+                Aller après le tableau
+            </a>
+            <div class="table-wrapper">
+                <table class="custom-table">
+                    <caption class="sr-only" th:text="#{profil.fonctionsAttribuees.table.caption}">
+                        Tableau des fonctions attribuées au profil
+                    </caption>
+                    <thead class="table-header custom-table__header">
+                        <tr class="table-header__line">
+                            <th scope="col" class="table-header__cell table-header__cell--check">
+                                <div class="form-choice-input">
+                                    <input
+                                        type="checkbox"
+                                        name="checkbox"
+                                        onclick="selectAllCheckBox(this);"
+                                        th:checked="${allChecked} ? 'checked'"
+                                        th:disabled="${allChecked} ? 'disabled'"
+                                        class="form-choice-input__input js-custom-table-header-check"
+                                        id="selectAllFonctions"
+                                        autocomplete="off"
+                                    />
+                                    <label
+                                        for="selectAllFonctions"
+                                        th:title="#{profil.liste.selectAll}"
+                                        th:data-select-label="#{profil.liste.selectAll}"
+                                        th:data-deselect-label="#{profil.liste.deselectAll}"
+                                        class="form-label form-choice-input__label form-choice-input__label--checkbox form-choice-input__label--hidden-label"
+                                    >
+                                        <span th:text="#{profil.liste.selectAll}">Tout sélectionner</span>
+                                    </label>
+                                </div>
+                            </th>
+
+                            <th:block th:each="colonne : ${lstColonnes}">
+                                <th:block th:if="${colonne.visible && colonne.sortable}">
+                                    <th scope="col" class="table-header__cell table-header__cell--with-filter-action">
+                                        <button
+                                            th:replace="fragments/table/sortableHeader :: sortableHeader (#{__${colonne.label}__},${colonne.sortValue},${colonne.sortName},${colonne.sortId},${colonne.inverseSort})"
+                                        ></button>
+                                    </th>
+                                </th:block>
+
+                                <th:block th:if="${colonne.visible && !colonne.sortable}">
+                                    <th scope="col" class="table-header__cell">
+                                        <span
+                                            th:if="${colonne.isLabelVisible}"
+                                            class="table-header__cell-inner"
+                                            th:text="${colonne.label !=null? #messages.msg(colonne.label) : ''}"
+                                        >
+                                            &nbsp;
+                                        </span>
+                                        <span th:unless="${colonne.isLabelVisible}" class="table-header__cell-inner">
+                                            <span class="sr-only" th:text="#{__${colonne.label}__}">Label</span>
+                                        </span>
+                                    </th>
+                                </th:block>
+                            </th:block>
+                        </tr>
+                    </thead>
+                    <tbody class="custom-table__body">
+                        <tr
+                            th:each="item, nb : ${fonctions}"
+                            class="custom-table__table-line table-line table-line--with-check table-line--with-action-column table-line--complex-line"
+                        >
+                            <td class="table-line__cell table-line__cell--check">
+                                <div class="form-choice-input">
+                                    <input
+                                        th:id="|fonctionAttribuee-${item.id}|"
+                                        type="checkbox"
+                                        th:name="${'checkbox-'+nb.count}"
+                                        th:checked="${allChecked || #lists.contains(fonctionsOfProfil, '' + item.id) } ? 'checked'"
+                                        th:disabled="${allChecked} ? 'disabled'"
+                                        class="form-choice-input__input js-custom-table-line-check"
+                                        autocomplete="off"
+                                    />
+                                    <label
+                                        th:for="|fonctionAttribuee-${item.id}|"
+                                        th:title="#{profil.liste.selectOne(${item.label})}"
+                                        th:data-select-label="#{profil.liste.selectOne(${item.label})}"
+                                        th:data-deselect-label="#{profil.liste.deselectOne(${item.label})}"
+                                        class="form-label form-choice-input__label form-choice-input__label--checkbox form-choice-input__label--hidden-label"
+                                    >
+                                        <span th:text="#{profil.liste.selectOne(${item.label})}">Sélectionner</span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td class="table-line__cell" th:text="${item.label}">Label</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a
+                href="#skip_link_action-table_next"
+                id="skip_link_action-table_prev"
+                class="skip-link"
+                th:text="#{skip.link.table.next(#{profil.fonctionsAttribuees.table.caption})}"
+                >Aller avant le tableau</a
+            >
+        </div>
+    </body>
+</html>

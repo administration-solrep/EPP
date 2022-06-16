@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="detailDossier" id="d_dossier_content">
+            <ul class="labellised-list">
+                <th:block th:each="widget : ${lstWidgets}">
+                    <li class="labellised-list__item">
+                        <th:block th:if="${widget.typeChamp} == 'text'">
+                            <th:block th:replace="fragments/components/widgets/text :: text(${widget})"></th:block>
+                        </th:block>
+                        <th:block th:if="${widget.typeChamp} == 'url'">
+                            <th:block
+                                th:replace="fragments/components/widgets/text-url :: textUrl(${widget})"
+                            ></th:block>
+                        </th:block>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+    </body>
+</html>

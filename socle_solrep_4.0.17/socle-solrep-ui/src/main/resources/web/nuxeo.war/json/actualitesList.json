@@ -1,0 +1,33 @@
+{
+    "liste": [
+        {
+            "id": "1",
+            "dateEmission": "",
+            "dateValidite": "",
+            "objet": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "contenu": "mon contenu test",
+            "isInHistorique": "false"
+        },
+        {
+            "id": "2",
+            "dateEmission": "",
+            "dateValidite": "",
+            "objet": "Lorem ipsum dolor sit amet",
+            "contenu": "mon contenu test",
+            "isInHistorique": "true",
+            "piecesJointes": [{
+                "nom": "pièce_jointe.dummy",
+                "link": "#piece_jointe.dummy"
+            }]
+        },
+        {
+            "id": "3",
+            "dateEmission": "",
+            "dateValidite": "",
+            "objet": "Lorem ipsum dolor sit amet",
+            "contenu": "mon contenu test",
+            "isInHistorique": "true"
+        }
+    ],
+    "nbTotal": "5"
+}

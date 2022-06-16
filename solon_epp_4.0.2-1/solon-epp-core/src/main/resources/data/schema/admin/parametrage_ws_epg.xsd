@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://nuxeo.org/schemas/parametrage_ws_epg/"
+    xmlns:pa="http://nuxeo.org/schemas/parametrage_ws_epg/"
+>
+
+	<!-- on inclut le schema contenant la definition de stringList -->
+	<xs:include schemaLocation="base.xsd" />
+
+	<xs:element name="norEntite" type="xs:string" />
+
+	<xs:element name="norDirectionAN" type="xs:string" />
+
+	<xs:element name="norDirectionSenat" type="xs:string" />
+
+	<xs:element name="norDirectionAutres" type="xs:string" />
+
+</xs:schema>

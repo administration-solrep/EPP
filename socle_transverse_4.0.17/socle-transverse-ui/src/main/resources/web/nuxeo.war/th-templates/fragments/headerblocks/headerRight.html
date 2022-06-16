@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div class="header__right" th:fragment="headerRight">
+            <div
+                class="rapid-search header__search"
+                th:replace="fragments/headerblocks/rapidSearch :: rapidSearch"
+            ></div>
+            <div th:replace="fragments/headerblocks/userActionsGroup :: userActionsGroup"></div>
+            <div th:replace="fragments/headerblocks/helpActionsGroup :: helpActionsGroup"></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:envoyerMelResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:evt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:epptdref="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-tdref"
+	xmlns:eppco="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement ../../../../../../../../xsd/solon/epp/WSevenement.xsd ">
+
+	<p:statut>OK</p:statut>
+	<p:evenement type="EVT01">
+		<evt:evt01 has_contenu_pj="true" etat="BROUILLON">
+			<evt:id_evenement>EVTID_001</evt:id_evenement>
+			<evt:id_evenement_precedent></evt:id_evenement_precedent>
+			<evt:id_dossier>DOSID_001</evt:id_dossier>
+			<evt:emetteur>GOUVERNEMENT</evt:emetteur>
+			<evt:destinataire>ASSEMBLEE_NATIONALE</evt:destinataire>
+			<evt:copie>SENAT</evt:copie>
+			<evt:horodatage>2011-07-01T09:00:00</evt:horodatage>
+			<evt:id_senat>IDSENAT_001</evt:id_senat>
+			<evt:niveau_lecture niveau="1" code="AN" />
+			<evt:date_ar>2011-07-07</evt:date_ar>
+			<evt:objet>action extérieure de l'État</evt:objet>
+			<evt:commentaire><![CDATA[
+			integer et orci felis. 
+			Proin sodales consequat ante nec sagittis. 
+			Aenean sed tortor et dui auctor egestas. Praesent a lacus quis nisi pellentesque egestas lacinia a felis. Morbi quis felis eget neque posuere vehicula. Phasellus venenatis nisi porta leo vehicula sit amet iaculis purus dapibus. Integer aliquam iaculis porta. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In hac habitasse platea dictumst. Pellentesque dapibus tellus sit amet tellus tempor ac aliquet lorem facilisis. Phasellus nibh mi, commodo vel dictum et, tempor eu quam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi augue ipsum, feugiat non blandit id, iaculis eu libero. Cras quis facilisis enim. Cras vehicula lacus nec velit pretium cursus. Curabitur volutpat nisi non tellus lobortis semper. Praesent interdum, dui eu vulputate egestas, sapien ipsum ullamcorper tellus, aliquet faucibus dolor arcu et odio.
+			]]></evt:commentaire>
+
+			<evt:version_courante majeur="1" mineur="0"
+				etat="PUBLIE" />
+
+			<evt:nor>AZER1234567A</evt:nor>
+			<evt:nature_loi>PROJET</evt:nature_loi>
+			<evt:type_loi>LOI</evt:type_loi>
+			<evt:auteur>
+				<epptdref:type>PRESIDENCE_REPUBLIQUE</epptdref:type>
+				<epptdref:proprietaire>GOUVERNEMENT</epptdref:proprietaire>
+				<epptdref:id>ID0021</epptdref:id>
+				<epptdref:date_debut>2011-01-01</epptdref:date_debut>
+				<epptdref:ordre_protocolaire>1</epptdref:ordre_protocolaire>
+				<epptdref:titre>M. le président de la république</epptdref:titre>
+				<epptdref:id_identite>5</epptdref:id_identite>
+				<epptdref:id_acteur>3</epptdref:id_acteur>
+			</evt:auteur>
+
+			<evt:co_auteur>
+				<epptdref:type>MINISTERE</epptdref:type>
+				<epptdref:proprietaire>GOUVERNEMENT</epptdref:proprietaire>
+				<epptdref:id>ID002</epptdref:id>
+				<epptdref:date_debut>2011-01-01</epptdref:date_debut>
+				<epptdref:ordre_protocolaire>2</epptdref:ordre_protocolaire>
+				<epptdref:titre>M. le premier ministre</epptdref:titre>
+				<epptdref:id_identite>7</epptdref:id_identite>
+				<epptdref:id_acteur>9</epptdref:id_acteur>
+			</evt:co_auteur>
+
+			<evt:intitule><![CDATA[Projet de loi relatif à l'action extérieure de l'État]]></evt:intitule>
+
+			<evt:texte a_du_contenu="false">
+				<eppco:id_interne_epp>1578</eppco:id_interne_epp>
+				<eppco:type>TEXTE</eppco:type>
+				<eppco:libelle>Ceci est un epièce jointe</eppco:libelle>
+				<eppco:fichier>
+					<eppco:nom_fichier>texte_loi.doc</eppco:nom_fichier>
+					<eppco:sha512></eppco:sha512>
+					<eppco:mime_type></eppco:mime_type>
+					<eppco:compression>AUCUNE</eppco:compression>
+					<eppco:contenu></eppco:contenu>
+				</eppco:fichier>
+			</evt:texte>
+			<evt:expose_des_motifs a_du_contenu="true">
+				<eppco:id_interne_epp></eppco:id_interne_epp>
+				<eppco:type>EXPOSE_DES_MOTIFS</eppco:type>
+				<eppco:libelle></eppco:libelle>
+				<eppco:fichier>
+					<eppco:nom_fichier></eppco:nom_fichier>
+					<eppco:sha512></eppco:sha512>
+					<eppco:mime_type></eppco:mime_type>
+					<eppco:compression>AUCUNE</eppco:compression>
+					<eppco:contenu></eppco:contenu>
+				</eppco:fichier>
+			</evt:expose_des_motifs>
+			<evt:decret_presentation a_du_contenu="true">
+				<eppco:id_interne_epp></eppco:id_interne_epp>
+				<eppco:type>DECRET_PRESENTATION</eppco:type>
+				<eppco:libelle></eppco:libelle>
+				<eppco:fichier>
+					<eppco:nom_fichier></eppco:nom_fichier>
+					<eppco:sha512></eppco:sha512>
+					<eppco:mime_type></eppco:mime_type>
+					<eppco:compression>AUCUNE</eppco:compression>
+					<eppco:contenu></eppco:contenu>
+				</eppco:fichier>
+			</evt:decret_presentation>
+			<evt:lettre_pm a_du_contenu="true">
+				<eppco:id_interne_epp></eppco:id_interne_epp>
+				<eppco:type>LETTRE_PM</eppco:type>
+				<eppco:libelle></eppco:libelle>
+				<eppco:fichier>
+					<eppco:nom_fichier></eppco:nom_fichier>
+					<eppco:sha512></eppco:sha512>
+					<eppco:mime_type></eppco:mime_type>
+					<eppco:compression>AUCUNE</eppco:compression>
+					<eppco:contenu></eppco:contenu>
+				</eppco:fichier>
+			</evt:lettre_pm>
+		</evt:evt01>
+	</p:evenement>
+
+</p:envoyerMelResponse>

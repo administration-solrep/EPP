@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="profilUtilisateurModalContent">
+            <form id="profilUtilisateurForm" class="p-b-6">
+                <div
+                    th:replace="fragments/components/formblocks/complex-selector :: complexSelector('multiple.select.label','metadatas', ${metadataValues}, ${profilValues})"
+                ></div>
+
+                <div class="m-t-6 form-input-group form-input-group--col">
+                    <fieldset class="form-input__fieldset">
+                        <legend class="form-input-group__label" th:text="#{param.profil.utilisateur.adresse.mel}">
+                            Adresse email
+                        </legend>
+                        <div aria-describedby="user_emails_description" class="form-input-group__icon-group">
+                            <!---->
+                            <!---->
+                            <!---->
+                            <!---->
+                        </div>
+                        <span
+                            id="user_emails_description"
+                            class="sr-only"
+                            th:text="#{param.profil.utilisateur.adresse.mel.choix}"
+                            >Choix</span
+                        >
+                        <div class="form-input-group__list">
+                            <div class="form-choice-input">
+                                <input
+                                    type="radio"
+                                    id="user_emails_auto"
+                                    name="userEmail"
+                                    value="AUTO"
+                                    th:checked="${'AUTO'.equals(userMailParam)}"
+                                    class="form-choice-input__input"
+                                    autocomplete="off"
+                                />
+                                <label
+                                    for="user_emails_auto"
+                                    id="user_emails_auto_label"
+                                    class="form-label form-choice-input__label form-choice-input__label--radio"
+                                    th:text="#{param.profil.utilisateur.adresse.mel.automatique}"
+                                >
+                                    Automatique
+                                </label>
+                            </div>
+                            <div class="form-choice-input">
+                                <input
+                                    type="radio"
+                                    id="user_emails_daily"
+                                    name="userEmail"
+                                    value="JOURNALIER"
+                                    th:checked="${'JOURNALIER'.equals(userMailParam)}"
+                                    class="form-choice-input__input"
+                                    autocomplete="off"
+                                />
+                                <label
+                                    for="user_emails_daily"
+                                    id="user_emails_daily_label"
+                                    class="form-label form-choice-input__label form-choice-input__label--radio"
+                                    th:text="#{param.profil.utilisateur.adresse.mel.journalier}"
+                                >
+                                    Journalier
+                                </label>
+                            </div>
+                            <div class="form-choice-input">
+                                <input
+                                    type="radio"
+                                    id="user_emails_never"
+                                    name="userEmail"
+                                    value="AUCUN"
+                                    th:checked="${'AUCUN'.equals(userMailParam)}"
+                                    class="form-choice-input__input"
+                                    autocomplete="off"
+                                />
+                                <label
+                                    for="user_emails_never"
+                                    id="user_emails_never_label"
+                                    class="form-label form-choice-input__label form-choice-input__label--radio"
+                                    th:text="#{param.profil.utilisateur.adresse.mel.jamais}"
+                                >
+                                    Jamais
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

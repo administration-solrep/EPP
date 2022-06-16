@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<component name="fr.dila.epp.ui.services.component.VersionUIComponent">
+	<implementation class="fr.dila.epp.ui.services.component.VersionUIComponent" />
+
+	<service>
+		<provide interface="fr.dila.epp.ui.services.VersionUIService" />
+	</service>
+
+</component>

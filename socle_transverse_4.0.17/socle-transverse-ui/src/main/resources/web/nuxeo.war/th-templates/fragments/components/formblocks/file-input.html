@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block
+            th:fragment="fileInput(label, id, name, isMulti, acceptedFileTypes, required)"
+            th:with="type=(${isMulti} ? 'multiple' : 'single'),labelDefault=(${isMulti} ? 'file.upload.multiple.label' : 'file.upload.single.label')"
+        >
+            <div class="form-file">
+                <div class="form-input__header-top form-label">
+                    <label th:for="|form_input_file_drag_and_drop_${type}_with_text_label_${id}|">
+                        [[${(label != null and label != '') ? #messages.msg(label) : #messages.msg(labelDefault)}]]
+                        <span th:if="${required}" class="form-label__required-text" th:text="#{form.input.required}"
+                            >(requis)</span
+                        >
+                    </label>
+                    <div class="form-input__icon-group"></div>
+                </div>
+                <div
+                    th:attr="data-multiple=${isMulti}?true"
+                    data-dropzone="true"
+                    class="form-file__container fileInput"
+                    th:id="${id}"
+                >
+                    <div
+                        class="form-file-drag-and-drop-input"
+                        th:with="acceptedFiles=${acceptedFileTypes != null} ? ${#strings.listJoin(acceptedFileTypes, ',.')} : '*'"
+                    >
+                        <input
+                            type="file"
+                            th:accept="|.${acceptedFiles}|"
+                            th:name="|form_input_file_drag_and_drop_${type}_with_text|"
+                            th:attr="multiple=${isMulti} ? 'multiple'"
+                            th:id="|form_input_file_drag_and_drop_${type}_with_text_label_${id}|"
+                            class="form-file__input form-file__input--dropzone"
+                        />
+                        <p
+                            th:for="|form_input_file_drag_and_drop_${type}_with_text_label_${id}|"
+                            th:id="|form_input_file_drag_and_drop_${type}_with_text_label_${id}|"
+                            class="form-file__label form-label form-file-drag-and-drop-input__label"
+                        >
+                            <span aria-hidden="true" class="form-file__drop-icon icon icon--download"></span> [[
+                            #{file.upload.glisser.deposer.ouvrir.explorateur} ]]
+                        </p>
+                    </div>
+                    <div th:id="|${id}_description|" class="form-file-input__footer"></div>
+                    <ul class="form-file__file-label-list" hidden="hidden">
+                        <li class="form-file__file-label-item" hidden="hidden">
+                            <div class="file-label">
+                                <p class="file-label__content file-label__content--sm">
+                                    <input
+                                        type="file"
+                                        th:id="|form_input_file_drag_and_drop_${type}_with_text_${id}|"
+                                        th:data-name="|${name}|"
+                                        class="sr-only js-file-label-input"
+                                    /><input
+                                        type="text"
+                                        th:id="|form_input_file_drag_and_drop_${type}_with_text_newname_${id}|"
+                                        th:data-name="|${name}_nom|"
+                                        class="form-input__field form-input__field--type-text js-file-label-input-text"
+                                    /><span class="file-label__content-inner js-file-label-file-infos"></span>
+                                    <button
+                                        type="button"
+                                        class="file-label__button js-tooltip base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent"
+                                        th:data-tippy-content="#{file.upload.supprimer.label}"
+                                    >
+                                        <span
+                                            aria-hidden="true"
+                                            class="icon icon--times-circle icon--v-align icon--big"
+                                        ></span
+                                        ><span class="sr-only" th:text="#{file.upload.supprimer.label}"
+                                            >Retirer le fichier</span
+                                        >
+                                    </button>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </th:block>
+    </body>
+</html>

@@ -1,0 +1,119 @@
+<!--
+@license
+(C) Copyright Nuxeo Corp. (http://nuxeo.com/)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!--
+`nuxeo-xvocabulary-edit-layout`
+@group Nuxeo UI
+@element nuxeo-xvocabulary-edit-layout
+-->
+<dom-module id="nuxeo-xvocabulary-edit-layout">
+  <template>
+
+    <nuxeo-resource id="directory"
+                    path="/directory/[[parentDirectory]]"
+                    params='{"pageSize": 0}'
+                    response="{{parentResponse}}">
+    </nuxeo-resource>
+
+    <nuxeo-select role="widget"
+                  label="[[i18n('vocabularyManagement.edit.parent')]]"
+                  placeholder="[[i18n('vocabularyManagement.selectParent')]]"
+                  selected="{{entry.properties.parent}}"
+                  attr-for-selected="name"
+                  required$="[[_isParentRequired(parentDirectory, directory)]]">
+      <template is="dom-repeat" items="[[parentResponse.entries]]">
+        <paper-item name="[[item.properties.id]]">[[item.properties.id]]</paper-item>
+      </template>
+    </nuxeo-select>
+
+    <nuxeo-input role="widget"
+                 label="[[i18n('vocabularyManagement.edit.id')]]"
+                 name="id"
+                 value="{{entry.properties.id::change}}"
+                 readonly$="[[!new]]"
+                 required>
+    </nuxeo-input>
+
+    <nuxeo-input role="widget"
+                 label="[[i18n('vocabularyManagement.edit.label')]]"
+                 name="label"
+                 value="{{entry.properties.label::change}}">
+    </nuxeo-input>
+
+    <div role="widget">
+      <label>[[i18n('vocabularyManagement.edit.obsolete')]]</label>
+      <paper-toggle-button checked$="[[_isObsolete(entry.properties.obsolete)]]"
+                           on-change="_obsoleteChanged"
+                           noink>
+      </paper-toggle-button>
+    </div>
+
+    <nuxeo-input role="widget"
+                 label="[[i18n('vocabularyManagement.edit.ordering')]]"
+                 name="ordering"
+                 type="number"
+                 value="{{entry.properties.ordering::change}}">
+    </nuxeo-input>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nuxeo-xvocabulary-edit-layout',
+      behaviors: [Nuxeo.I18nBehavior],
+      properties: {
+        entry: {
+          type: Object
+        },
+
+        new: {
+          type: Boolean,
+          value: false
+        },
+
+        parentDirectory: {
+          type: String,
+          observer: '_observeParent'
+        },
+
+        directory: Object,
+      },
+
+      _isObsolete: function(obsolete) {
+        return obsolete === 1;
+      },
+
+      _obsoleteChanged: function() {
+        if (this.entry.properties.obsolete > 0) {
+          this.entry.properties.obsolete = 0;
+        } else {
+          this.entry.properties.obsolete = 1;
+        }
+      },
+
+      _observeParent: function() {
+        if (this.parentDirectory && this.parentDirectory.length > 0) {
+          this.$.directory.get();
+        }
+      },
+
+      _isParentRequired: function() {
+        return this.directory && this.parentDirectory && this.directory !== this.parentDirectory
+      }
+
+    });
+  </script>
+</dom-module>

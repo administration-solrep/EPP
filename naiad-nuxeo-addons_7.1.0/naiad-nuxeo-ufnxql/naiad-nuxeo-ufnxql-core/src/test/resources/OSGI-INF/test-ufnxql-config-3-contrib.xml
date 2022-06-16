@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<component name="fr.sword.naiad.nuxeo.ufnxql.core.service.test-ufnxql-config-3-contrib">
+
+  <require>fr.sword.naiad.nuxeo.ufnxql.core.service.test-ufnxql-config-2-contrib</require>
+
+ 
+  
+  <extension target="fr.sword.naiad.nuxeo.ufnxql.core.service.fnxqlconfigservice.contrib"
+       point="functions">
+       
+       <function class="fr.sword.unexisting" />
+  </extension>
+
+</component>

@@ -1,0 +1,93 @@
+{
+    "lstVersions": [
+        {
+            "communicationId": "1",
+            "communicationLabel": "LEX-01 : Pjl - Dépôt",
+            "communicationType": "LEX-01",
+            "lstChilds": [
+                {
+                    "communicationId": "1-1",
+                    "communicationLabel": "LEX-06 : PLF/PLFSS - Dépôts des annexes",
+                    "communicationType": "LEX-06",
+                    "lstChilds": []
+                },
+                {
+                    "communicationId": "1-2",
+                    "communicationLabel": "LEX-03 : Pjl - Enregistrement du dépôt",
+                    "communicationType": "LEX-03",
+                    "lstChilds": []
+                },
+                {
+                    "communicationId": "1-3",
+                    "communicationLabel": "LEX-03 : Pjl - Enregistrement du dépôt",
+                    "communicationType": "LEX-03",
+                    "lstChilds": [
+                        {
+                            "communicationId": "1-3-1",
+                            "communicationLabel": "LEX-04 : Dépôt de rapport, avis et texte de commission",
+                            "communicationType": "LEX-04",
+                            "lstChilds": []
+                        },
+                        {
+                            "communicationId": "1-3-2",
+                            "communicationLabel": "LEX-04 : Dépôt de rapport, avis et texte de commission",
+                            "communicationType": "LEX-04",
+                            "lstChilds": [
+                                {
+                                    "communicationId": "1-3-2-1",
+                                    "communicationLabel": "LEX-16 : Pjl - Transmission ou notification du rejet",
+                                    "communicationType": "LEX-16",
+                                    "lstChilds": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "communicationId": "2",
+            "communicationLabel": "LEX-17 : Pjl - Navettes diverses",
+            "communicationType": "LEX-17",
+            "lstChilds": [
+                {
+                    "communicationId": "2-1",
+                    "communicationLabel": "LEX-17 : Pjl - Navettes diverses",
+                    "communicationType": "LEX-17",
+                    "lstChilds": []
+                },
+                {
+                    "communicationId": "2-2",
+                    "communicationLabel": "LEX-17 : Pjl - Navettes diverses",
+                    "communicationType": "LEX-17",
+                    "lstChilds": []
+                }
+            ]
+        },
+        {
+            "communicationId": "3",
+            "communicationLabel": "LEX-04 : Dépôt de rapport, avis et texte de commission",
+            "communicationType": "LEX-04",
+            "lstChilds": []
+        },
+        {
+            "communicationId": "4",
+            "communicationLabel": "LEX-22 : CMP - Demande de réunion par le Gouvernement",
+            "communicationType": "LEX-22",
+            "lstChilds": [
+                {
+                    "communicationId": "4-1",
+                    "communicationLabel": "LEX-17 : Pjl - Navettes diverses",
+                    "communicationType": "LEX-17",
+                    "lstChilds": []
+                },
+                {
+                    "communicationId": "4-2",
+                    "communicationLabel": "LEX-17 : Pjl - Navettes diverses",
+                    "communicationType": "LEX-17",
+                    "lstChilds": []
+                }
+            ]
+        }
+    ]
+}

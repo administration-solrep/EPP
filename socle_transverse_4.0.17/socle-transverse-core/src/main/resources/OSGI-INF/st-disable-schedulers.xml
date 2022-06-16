@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.core.disable.schedulers">
+
+    <require>org.nuxeo.ecm.core.schedulers</require>
+    <require>org.nuxeo.ecm.core.storage.sql.softdelete</require>
+    <require>org.nuxeo.ecm.platform.rendition.scheduler</require>
+    <require>org.nuxeo.ecm.platform.mail.scheduler.config</require>
+
+    <extension target="org.nuxeo.ecm.platform.scheduler.core.service.SchedulerRegistryService" point="schedule">
+
+        <!-- désactivation des batchs inutiles -->
+        <schedule id="aceScheduler" enabled="false" />
+        <schedule id="softDeleteCleanup" enabled="false" />
+        <schedule id="storedRenditionsCleanup" enabled="false" />
+        <schedule id="mailReceivedSchedule" enabled="false" />
+
+    </extension>
+
+</component>

@@ -1,0 +1,7 @@
+<component name="fr.dila.ss.ui.services.component.ProfilUIServiceComponent">
+	<implementation class="fr.dila.ss.ui.services.component.ProfilUIServiceComponent" />
+
+	<service>
+		<provide interface="fr.dila.ss.ui.services.ProfilUIService" />
+	</service>
+</component>

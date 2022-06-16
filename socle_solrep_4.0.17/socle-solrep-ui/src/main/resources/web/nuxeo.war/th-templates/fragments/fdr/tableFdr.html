@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div class="table-wrapper">
+            <table th:fragment="tableFdr(dto)" class="custom-table custom-table--has-check m-t-1-1155" id="table-fdr">
+                <caption class="sr-only" th:text="#{roadmap.caption(${dto.table.lines.size()})}">
+                    Tableau de n étapes regroupées par branches en série ou en parallèle
+                </caption>
+                <thead th:replace="fragments/fdr/headerFdr :: headerFdr"></thead>
+                <tbody class="custom-table__body">
+                    <th:block th:each="line,status : ${dto.table.lines}">
+                        <th:block th:replace="fragments/fdr/ligneTableFdr :: ligneTableFdr(${status.index})"></th:block>
+                    </th:block>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

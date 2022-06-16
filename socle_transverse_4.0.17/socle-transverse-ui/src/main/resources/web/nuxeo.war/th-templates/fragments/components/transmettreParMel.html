@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='transmettre par mél',title=#{action.button.label.transmettreMail})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <input type="hidden" id="urlPreviousPage" name="urlPreviousPage" th:value="@{${urlPreviousPage}}" />
+
+        <div class="row-actions">
+            <div class="row-actions__left" th:if="${not #lists.isEmpty(baseActions)}">
+                <th:block th:each="action : ${baseActions}">
+                    <button
+                        th:replace="fragments/components/label-action-button :: label-action-button(${action}, false, ${action.type == 'secondary' ? 'base-btn--secondary' : action.type == 'tertiary' ? 'base-btn--light base-btn--transparent base-btn--bordered' : ''})"
+                    ></button>
+                </th:block>
+            </div>
+            <div class="row-actions__right" th:if="${not #lists.isEmpty(mainActions)}">
+                <th:block th:each="action : ${mainActions}">
+                    <button
+                        th:replace="fragments/components/label-action-button :: label-action-button(${action}, false, ${action.type == 'secondary' ? 'base-btn--secondary' : action.type == 'tertiary' ? 'base-btn--light base-btn--transparent base-btn--bordered' : ''})"
+                    ></button>
+                </th:block>
+            </div>
+        </div>
+
+        <div class="page-reponses__table-heading" style="display: flex; justify-content: space-between;">
+            <h1
+                class="base-title base-title--lvl-1"
+                id="main_content"
+                th:text="#{action.button.label.transmettreMail}"
+            ></h1>
+        </div>
+
+        <form id="transmettre_par_mel_form" th:object="${transmettreParMelForm}">
+            <input type="hidden" id="idMessage" name="idMessage" th:value="${transmettreParMelForm.idMessage}" />
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div
+                        th:replace="fragments/components/formblocks/simple-input :: simpleInput(#{transmettreMel.label.objet}, true, '', 'objet', 'objet', ${transmettreParMelForm.objet}, false)"
+                    ></div>
+                </div>
+            </div>
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div
+                        th:replace="fragments/components/formblocks/autocomplete-select :: autocompleteSelect('transmettreMel.label.destinataires', 'destinataires', 'destinataires', 'form.description.charlimit', ${ {} }, null, false, @{/ajax/organigramme/suggestions?typeSelection=USR}, '0', 'input', 'key', 'label', false, true, false)"
+                    ></div>
+                </div>
+            </div>
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div
+                        th:replace="fragments/components/formblocks/simple-input :: simpleInput(#{transmettreMel.label.destinataire.externe}, false, '', 'destinataires-externes', 'destinataires-externes', null, false)"
+                    ></div>
+                </div>
+            </div>
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div
+                        th:replace="fragments/components/formblocks/textarea-input :: textArea('transmettreMel.label.message', 'message', '', ${transmettreParMelForm.message}, false, 'required')"
+                    ></div>
+                </div>
+            </div>
+        </form>
+
+        <div class="row-actions">
+            <div class="row-actions__left" th:if="${not #lists.isEmpty(baseActions)}">
+                <th:block th:each="action : ${baseActions}">
+                    <button
+                        th:replace="fragments/components/label-action-button :: label-action-button(${action}, false, ${action.type == 'secondary' ? 'base-btn--secondary' : action.type == 'tertiary' ? 'base-btn--light base-btn--transparent base-btn--bordered' : ''})"
+                    ></button>
+                </th:block>
+            </div>
+            <div class="row-actions__right" th:if="${not #lists.isEmpty(mainActions)}">
+                <th:block th:each="action : ${mainActions}">
+                    <button
+                        th:replace="fragments/components/label-action-button :: label-action-button(${action}, false, ${action.type == 'secondary' ? 'base-btn--secondary' : action.type == 'tertiary' ? 'base-btn--light base-btn--transparent base-btn--bordered' : ''})"
+                    ></button>
+                </th:block>
+            </div>
+        </div>
+    </main>
+</html>

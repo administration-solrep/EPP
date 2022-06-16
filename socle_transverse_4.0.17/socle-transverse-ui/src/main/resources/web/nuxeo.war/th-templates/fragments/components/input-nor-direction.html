@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="input-nor-direction(norDir,mapEntiteLabel)">
+            <div class="form-input m-b-6" th:id="|container-nor-${norDir.id}|">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <label
+                            aria-disabled="false"
+                            th:for="|nor-${norDir.id}|"
+                            th:id="|nor-label-${norDir.id}|"
+                            class="form-label"
+                        >
+                            <span th:text="#{organigramme.direction.nor(${mapEntiteLabel.get(norDir.id)})}">Label</span>
+                            <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                        </label>
+                        <div class="form-input__icon-group"></div>
+                    </div>
+                </div>
+                <div class="form-input__container">
+                    <input
+                        type="text"
+                        name="dir-nors"
+                        th:id="|nor-${norDir.id}|"
+                        class="form-input__field form-input__field--type-text"
+                        data-validation="required, alpha, maxlength(1), minlength(1)"
+                        maxlength="1"
+                        th:value="${norDir.nor}"
+                        onblur="updateNorKeys()"
+                    />
+                </div>
+                <div id="nor_description" class="form-input__footer"></div>
+            </div>
+        </th:block>
+    </body>
+</html>

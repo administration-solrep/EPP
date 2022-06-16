@@ -1,0 +1,60 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Recherche de modèles de feuilles de route', title=#{admin.modele.recherche.title})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <th:block th:if="${action != null}">
+            <div class="flex justify-end m-t-6">
+                <button
+                    th:replace="fragments/components/label-action-button :: label-action-button(${action}, false, 'base-btn base-btn--button base-btn--default base-btn-row__right')"
+                ></button>
+            </div>
+        </th:block>
+        <h1 class="m-y-6 base-title base-title--lvl-1" th:text="#{admin.modele.recherche.title}">
+            Recherche de modèles de feuilles de route
+        </h1>
+        <form id="searchModeleForm" onsubmit="doRechercheModeleFdr()" th:with="treeIconClass=routesearch">
+            <div th:replace="fragments/fdr/recherche/criteres-sur-le-modele :: criteresModele"></div>
+            <div th:replace="fragments/fdr/recherche/criteres-sur-les-etapes :: criteresEtapes"></div>
+            <div class="m-t-6 flex flex-row justify-between">
+                <div>
+                    <button
+                        type="button"
+                        id="btn-reinit-search-Mfdr"
+                        class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                        onclick="reinitSearch('/fdr/reinit/search', hardReloadPage)"
+                        th:text="#{admin.modele.recherche.reinitialiser}"
+                    ></button>
+                </div>
+                <div class="flex-row-actions__right">
+                    <th:block th:if="${addFavoriRechercheAction}">
+                        <button
+                            th:replace="fragments/components/label-action-button :: label-action-button(${addFavoriRechercheAction}, false, '')"
+                        ></button>
+                    </th:block>
+                    <button
+                        type="submit"
+                        class="base-btn base-btn--submit base-btn--default base-btn--center"
+                        id="btn-searchMfdr"
+                        th:text="#{admin.modele.rechercher}"
+                    ></button>
+                </div>
+            </div>
+        </form>
+        <div id="resultList">
+            <th:block th:if="${resultList}">
+                <div th:replace="fragments/fdr/recherche/listeModeleFDR :: listeModeleFdr"></div>
+            </th:block>
+        </div>
+        <th:block th:if="${action != null}">
+            <div class="flex justify-end m-t-6">
+                <button
+                    th:replace="fragments/components/label-action-button :: label-action-button(${action}, false, 'base-btn base-btn--button base-btn--default base-btn-row__right')"
+                ></button>
+            </div>
+        </th:block>
+    </main>
+</html>

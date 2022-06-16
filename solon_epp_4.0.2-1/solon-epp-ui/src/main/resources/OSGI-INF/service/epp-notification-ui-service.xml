@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.ui.services.NotificationUIService">
+    <implementation class="fr.dila.epp.ui.services.component.EppNotificationUIComponent" />
+
+    <service>
+        <provide interface="fr.dila.st.ui.services.NotificationUIService" />
+    </service>
+
+</component>

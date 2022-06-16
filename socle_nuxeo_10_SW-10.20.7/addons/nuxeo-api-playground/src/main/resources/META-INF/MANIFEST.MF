@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-Vendor: Nuxeo
+Nuxeo-RequiredBy: org.nuxeo.ecm.war
+Bundle-Version: 1.0
+Bundle-Name: Nuxeo API Playground
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.nuxeo.api.playground;singleton:=true

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="footerInfo">
+            <div class="base-footer">
+                <div class="base-footer__version"><p th:utext="${footerConfig.version}"></p></div>
+                <p
+                    th:if="${!footerConfig.production}"
+                    class="badge-sword"
+                    th:style="'color:#' + ${footerConfig.color} + '; background-color:#' + ${footerConfig.backgroundColor}"
+                    th:utext="${footerConfig.environmentName}"
+                ></p>
+            </div>
+        </th:block>
+    </body>
+</html>

@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solon/epp/WSevenement"
+	elementFormDefault="qualified"
+
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:eppco="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons"
+	xmlns:evt="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt"
+	xmlns:delta="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt-delta">
+
+
+	<xs:import schemaLocation="../../commons/commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons" />
+	<xs:import schemaLocation="epp-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-commons" />
+	<xs:import schemaLocation="epp-evt.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt" />
+	<xs:import schemaLocation="epp-evt-delta.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solon/epp/epp-evt-delta" />
+
+
+
+	<xs:element name="evtTest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="evtContainer" type="evt:EppEvtContainer"
+					minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="test_update_string" type="evt:updatableString"
+					minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- chercherEvenement -->
+
+	<xs:element name="chercherEvenementRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element name="jeton_evenement" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:element name="id_evenement" type="evt:EvtId"
+						minOccurs="1" maxOccurs="unbounded" />
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="contenu_PJ" type="xs:boolean"
+				default="false" use="optional" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="chercherEvenementResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="jeton_evenement_suivant" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="dernier_renvoi" type="xs:boolean"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:sequence>
+						<xs:element name="evenement" type="evt:EppEvtContainer"
+							minOccurs="1" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- chercherPieceJointe -->
+	<xs:element name="chercherPieceJointeRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id_dossier" type="xs:string" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="id_evt" type="evt:EvtId" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="type_piece_jointe" type="eppco:PieceJointeType"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="nom_fichier" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="compression" type="eppco:CompressionFichier"
+					minOccurs="1" maxOccurs="1" default="AUCUNE" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="chercherPieceJointeResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1"></xs:element>
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:sequence>
+						<xs:element name="id_dossier" type="xs:string"
+							minOccurs="1" maxOccurs="1" />
+						<xs:element name="id_evt" type="evt:EvtId" minOccurs="1"
+							maxOccurs="1" />
+
+						<!-- sans compression par défaut -->
+						<xs:element name="piece_jointe" type="eppco:PieceJointe"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- creerVersion -->
+	<xs:simpleType name="CreationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CREER_BROUILLON" />
+			<xs:enumeration value="PUBLIER" />
+			<xs:enumeration value="RECTIFIER_BROUILLON" />
+			<xs:enumeration value="RECTIFIER_PUBLIER" />
+			<xs:enumeration value="COMPLETER_BROUILLON" /> <!-- compléter et créer la version brouillon si inexistante -->
+			<xs:enumeration value="COMPLETER_PUBLIER" /> <!-- compléter et publier la nouvelle version ou modifier et publier la version 
+				brouillon -->
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="creerVersionRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="evenement" type="evt:EppEvtContainer"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute name="modeCreation" type="CreationType"
+				use="required" />
+			<!-- BROUILLON | PUBLIER | COMPLETER_BROUILLON | COMPLETER_PUBLIER | RECTIFIER_BROUILLON 
+				| RECTIFIER_PUBLIER -->
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="creerVersionResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:sequence>
+						<xs:element name="evenement" type="evt:EppEvtContainer"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="creerVersionDeltaRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="evenement" type="delta:EppEvtDelta"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute name="modeCreation" type="CreationType"
+				use="required" />
+			<!-- COMPLETER_PUBLIER | RECTIFIER_PUBLIER -->
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="creerVersionDeltaResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:sequence>
+						<xs:element name="evenement" type="evt:EppEvtContainer"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- validerVersion -->
+	<xs:simpleType name="ValidationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ACCEPTER" />
+			<xs:enumeration value="REJETER" />
+			<xs:enumeration value="ABANDONNER" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="validerVersionRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id_evenement" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute name="modeValidation" type="ValidationType"
+				use="required" />
+			<!-- ACCEPTER | REJETER | ABANDONNER -->
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="validerVersionResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:sequence>
+						<!-- renvoi l'évènement dans sa version courante/active/à l'état PUBLIE -->
+						<xs:element name="evenement" type="evt:EppEvtContainer"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- annulerEvenement -->
+	<xs:element name="annulerEvenementRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id_evenement" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="annulerEvenementResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:sequence>
+						<xs:element name="evenement" type="evt:EppEvtContainer"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- supprimerVersion -->
+	<xs:element name="supprimerVersionRequest"> <!-- brouillon uniquement -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id_evenement" type="evt:EvtId"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="supprimerVersionResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="message_erreur" type="xs:string"
+					minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- accuserReception -->
+	<xs:element name="accuserReceptionRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id_evenement" type="evt:EvtId"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="accuserReceptionResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:sequence>
+						<xs:element name="evenement" type="evt:EppEvtContainer"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- initialiserEvenement -->
+	<xs:element name="initialiserEvenementRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- la balise est vide pour initialiser un evenement createur -->
+				<xs:element name="id_evenement_precedent" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="type_evenement" type="evt:EvenementType"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute name="all_meta" type="xs:boolean" use="optional" />
+			<!-- par défaut, true, on transmet la totalité des métadonnées (y compris 
+				vide) -->
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="initialiserEvenementResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:sequence>
+						<xs:element name="evenement" type="evt:EppEvtContainer"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- envoyerMel -->
+	<xs:element name="envoyerMelRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id_evenement" type="evt:EvtId"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="destinataire_mel" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="copie_mel" type="xs:string" minOccurs="0"
+					maxOccurs="1" />
+				<xs:element name="objet_mel" type="xs:string" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="contenu_mel" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="inclus_piece_jointe" type="xs:boolean"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="envoyerMelResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:sequence>
+						<xs:element name="evenement" type="evt:EppEvtContainer"
+							minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- rechercherEvenement -->
+	<xs:element name="rechercherEvenementRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<!-- recherche simple ou par corbeille -->
+					<xs:element name="par_critere" type="evt:CritereRechercheEvenement"
+						minOccurs="1" maxOccurs="1" />
+
+					<!-- recherche complexe -->
+					<xs:element name="par_requete" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+
+					<!-- recherche via les champs des xsd -->
+					<xs:element name="par_requete_xsd" type="evt:QueryRechercheEvenement"
+						minOccurs="1" maxOccurs="1" />
+
+				</xs:choice>
+				<xs:element name="pagination" type="eppco:Pagination"
+					minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="rechercherEvenementResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:choice>
+					<xs:element name="message_erreur" type="xs:string"
+						minOccurs="1" maxOccurs="1" />
+					<xs:sequence>
+						<xs:element name="message" type="evt:Message"
+							minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- maj du champ Interne -->
+	<xs:element name="majInterneRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id_evenement" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="interne" type="xs:string" minOccurs="0"
+					maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="majInterneResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="statut" type="commons:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="message_erreur" type="xs:string"
+					minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

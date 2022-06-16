@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.services.SSArchiveUIComponent">
+
+  <implementation class="fr.dila.ss.ui.services.component.SSArchiveUIComponent" />
+  
+  <service>
+    <provide interface="fr.dila.ss.ui.services.SSArchiveUIService" />
+  </service>
+  
+</component>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherMembresGouvernementRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSattribution"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSattribution WSattribution.xsd ">
+	<p:en_fonction>ALL</p:en_fonction>
+</p:chercherMembresGouvernementRequest>

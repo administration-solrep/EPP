@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="fdr" id="d_fdr_content" th:fdr-id="${dto.id}">
+            <div class="roadmap-table tableForm">
+                <a
+                    href="#skip_link_roadmap-table_prev"
+                    id="skip_link_roadmap-table_next"
+                    class="skip-link"
+                    th:text="#{roadmap.skip.link.before}"
+                    >Passer le tableau 'roadmap' pour arriver après</a
+                >
+                <div th:replace="fragments/dossier/onglets/fdrActions :: fdrActions ('fdr_actions_before')"></div>
+
+                <div class="table-wrapper">
+                    <table th:replace="fragments/fdr/tableFdr :: tableFdr(${dto})"></table>
+                </div>
+
+                <div th:replace="fragments/dossier/onglets/fdrActions :: fdrActions ('fdr_actions_after')"></div>
+
+                <a
+                    href="#skip_link_roadmap-table_next"
+                    id="skip_link_roadmap-table_prev"
+                    class="skip-link"
+                    th:text="#{roadmap.skip.link.after}"
+                    >Passer le tableau 'roadmap' pour arriver avant</a
+                >
+            </div>
+
+            <!-- Modale ajout étape -->
+            <div th:replace="fragments/fdr/ajoutEtapeFdr :: ajoutEtapeFdr"></div>
+            <!-- Modale ajout Branch -->
+            <div th:replace="fragments/fdr/ajoutBranchFdr :: ajoutBranchFdr"></div>
+            <!-- Modale edition étape -->
+            <div th:replace="fragments/fdr/editEtape :: editEtape"></div>
+        </div>
+    </body>
+</html>

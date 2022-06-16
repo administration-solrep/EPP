@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.nuxeo.org/ecm/schemas/publishable_media"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:nxs="http://www.nuxeo.org/ecm/schemas/publishable_media">
+
+    <xs:element name="providers" type="nxs:providers" />
+
+    <xs:complexType name="providers">
+        <xs:sequence>
+            <xs:element name="provider" type="nxs:provider" minOccurs="0"
+                        maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="provider">
+        <xs:sequence>
+            <xs:element name="externalId" type="xs:string"/>
+            <xs:element name="provider" type="xs:string"/>
+            <xs:element name="account" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

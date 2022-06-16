@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://dila.fr/solonepp/schema/circonscription/"
+    xmlns:cir="http://dila.fr/solonepp/schema/circonscription/"
+>
+
+	<!-- Identifiant technique de l'enregistrement -->
+	<xs:element name="identifiant" type="xs:string" />
+
+	<!-- Propriétaire de la circonscription (GOUVERNEMENT, AN, SENAT) -->
+	<xs:element name="proprietaire" type="xs:string" />
+
+	<!-- Nom de la circonscription -->
+	<xs:element name="nom" type="xs:string" />
+
+	<!-- Date de début -->
+	<xs:element name="dateDebut" type="xs:date" />
+
+	<!-- Date de fin -->
+	<xs:element name="dateFin" type="xs:date" />
+
+</xs:schema>

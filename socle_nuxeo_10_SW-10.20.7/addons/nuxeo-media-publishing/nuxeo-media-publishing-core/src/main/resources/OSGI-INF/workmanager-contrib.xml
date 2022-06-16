@@ -1,0 +1,11 @@
+<component name="org.nuxeo.ecm.media.publishing.workmanager">
+
+  <extension target="org.nuxeo.ecm.core.work.service" point="queues">
+    <queue id="mediaPublishingUpload">
+      <maxThreads>5</maxThreads>
+      <category>mediaPublishingUpload</category>
+    </queue>
+
+  </extension>
+
+</component>

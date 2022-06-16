@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Nuxeo Business Days Management Core
+Bundle-SymbolicName: org.nuxeo.business.days.management.core;singleton=true
+Bundle-Vendor: Nuxeo
+Require-Bundle: org.nuxeo.business.days.management.api
+Nuxeo-Component: OSGI-INF/business-days-management-service.xml,
+  OSGI-INF/business-days-management-csvchecker-service.xml,
+  OSGI-INF/business-days-management-contrib.xml

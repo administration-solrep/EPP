@@ -1,0 +1,20 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://xmlns.jcp.org/jsf/core"
+     xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+  <h:outputLabel style="margin: 5px 0; display: block">
+    #{messages['label.mediaPublishing.youtube.privacy']}:
+  </h:outputLabel>
+  <h:selectOneMenu value="#{value['privacyStatus']}">
+    <f:selectItem itemValue="unlisted" itemLabel="#{messages['label.mediaPublishing.youtube.privacy.unlisted']}"/>
+    <f:selectItem itemValue="private" itemLabel="#{messages['label.mediaPublishing.youtube.privacy.private']}"/>
+    <f:selectItem itemValue="public" itemLabel="#{messages['label.mediaPublishing.youtube.privacy.public']}"/>
+  </h:selectOneMenu>
+
+  <h:outputLabel style="margin: 5px 0; display: block">
+    #{messages['label.mediaPublishing.youtube.tags']}:
+  </h:outputLabel>
+  <h:inputText value="#{value['tags']}" a:placeholder="#{messages['label.mediaPublishing.youtube.tags.placeholder']}">
+
+  </h:inputText>
+</div>

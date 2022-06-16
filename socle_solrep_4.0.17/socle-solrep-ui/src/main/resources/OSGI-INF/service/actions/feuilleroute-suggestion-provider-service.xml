@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.services.actions.suggestion.feuilleroute.FeuilleRouteSuggestionProviderService">    
+    <implementation
+        class="fr.dila.ss.ui.services.actions.suggestion.feuilleroute.FeuilleRouteSuggestionProviderComponent"
+    />
+
+    <service>
+        <provide
+            interface="fr.dila.ss.ui.services.actions.suggestion.feuilleroute.FeuilleRouteSuggestionProviderService"
+        />
+    </service>
+
+</component>

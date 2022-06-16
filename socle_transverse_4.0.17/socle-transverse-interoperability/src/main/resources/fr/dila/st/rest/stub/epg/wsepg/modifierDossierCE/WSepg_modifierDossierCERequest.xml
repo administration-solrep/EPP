@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:modifierDossierCERequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSepg"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solon/epg/actes"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solon/epg/solon-commons"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+	xmlns:p4="http://www.dila.premier-ministre.gouv.fr/solon/epg/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solon/epg/WSepg ../../../../../../../../xsd/solon/epg/WSepg.xsd ">
+
+	<p:nor>AZER1234567T</p:nor>
+
+	<p:section_ce>
+		<p1:section_ce>p1:section_ce</p1:section_ce>
+		<p1:rapporteur>rapporteur1</p1:rapporteur>
+		<p1:rapporteur>rapporteur2</p1:rapporteur>
+		<p1:date_transmission_section_ce>2001-01-01T12:00:00</p1:date_transmission_section_ce>
+		<p1:date_section_ce>2001-12-31T12:00:00</p1:date_section_ce>
+		<p1:date_ag_ce>2001-12-31T12:00:00</p1:date_ag_ce>
+		<p1:numero_isa>p1:numero_isa</p1:numero_isa>
+	</p:section_ce>
+
+</p:modifierDossierCERequest>

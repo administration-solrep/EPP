@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<component name="fr.sword.naiad.nuxeo.ufnxql.core.query.contrib" version="1.0.0">
+
+  <extension target="org.nuxeo.ecm.core.storage.sql.jdbc.QueryMakerService"
+    point="queryMaker">
+    <queryMaker name="FNXQL">fr.sword.naiad.nuxeo.ufnxql.core.query.FlexibleQueryMaker</queryMaker>
+  </extension>
+
+</component>
+

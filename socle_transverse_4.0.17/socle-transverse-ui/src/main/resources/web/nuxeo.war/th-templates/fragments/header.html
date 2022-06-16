@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <header class="header" role="banner" th:fragment="header">
+            <th:block th:if="${header_blocks != null }" th:each="block : ${header_blocks}">
+                <div th:replace="${block.filename} :: ${block.name}"></div>
+            </th:block>
+            <th:block th:if="${header_blocks == null }" th:each="block : ${_blocks}">
+                <div th:replace="${block.filename} :: ${block.name}"></div>
+            </th:block>
+        </header>
+    </body>
+</html>

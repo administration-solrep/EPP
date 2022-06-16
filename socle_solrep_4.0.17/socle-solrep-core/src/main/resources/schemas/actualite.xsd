@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<xs:schema
+    targetNamespace="http://www.nuxeo.org/ecm/schemas/actualite/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:nxs="http://www.nuxeo.org/ecm/schemas/actualite/"
+>
+
+  <xs:include schemaLocation="base.xsd" />
+  <xs:element name="dateEmission" type="xs:date" />
+  <xs:element name="dateValidite" type="xs:date" />
+  <xs:element name="dansHistorique" type="xs:boolean" />
+  <xs:element name="objet" type="xs:string" />
+  <xs:element name="hasPj" type="xs:boolean" default="0" />
+  <xs:element name="contenu" type="xs:string" />
+  <xs:element name="lecteurs" type="nxs:stringList" />
+
+</xs:schema>

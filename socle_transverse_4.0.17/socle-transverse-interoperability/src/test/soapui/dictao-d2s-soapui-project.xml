@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="dictao.d2s" soapui-version="3.6.1"
+	xmlns:con="http://eviware.com/soapui/config">
+	<con:settings />
+	<con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE"
+		name="D2SSoapBinding" type="wsdl"
+		bindingName="{http://www.dictao.com/D2S/Interface}D2SSoapBinding"
+		soapVersion="1_1" anonymous="optional"
+		definition="http://localhost:8080/solrep-ws-server/ws/soap/D2S?wsdl"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		<con:settings />
+		<con:definitionCache type="TEXT"
+			rootPart="http://localhost:8080/solrep-ws-server/ws/soap/D2S?wsdl">
+			<con:part>
+				<con:url>http://localhost:8080/solrep-ws-server/ws/soap/D2S?wsdl</con:url>
+				<con:content><![CDATA[<wsdl:definitions name="D2S" targetNamespace="http://www.dictao.com/D2S/Interface" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.dictao.com/D2S/Interface" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://www.dictao.com/D2S/Interface" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="signatureEx">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="requestId" type="xs:string"/>
+            <xs:element name="transactionId" type="xs:string"/>
+            <xs:element name="tag" type="xs:string"/>
+            <xs:element name="dataToSign" type="tns:dataType"/>
+            <xs:element minOccurs="0" name="detachedSignature" type="tns:dataType"/>
+            <xs:element name="signatureFormat" type="xs:string"/>
+            <xs:element name="signatureType" type="xs:string"/>
+            <xs:element minOccurs="0" name="signatureParameter" type="xs:string"/>
+            <xs:element minOccurs="0" name="pluginParameter" type="tns:ArrayOfPluginParameterStruct"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="signatureExResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="signatureExResult" type="tns:D2SResponseEx"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="dataType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="value" type="tns:dataString"/>
+          <xs:element minOccurs="0" name="binaryValue" type="tns:dataBinary"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="dataString">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute name="dataFormat" type="tns:dataEncoding"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+      <xs:complexType name="dataBinary">
+        <xs:simpleContent>
+          <xs:extension base="xs:base64Binary">
+            <xs:attribute name="dataFormat" type="tns:dataEncoding"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfPluginParameterStruct">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="PluginParameterStruct" nillable="true" type="tns:PluginParameterStruct"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PluginParameterStruct">
+        <xs:sequence>
+          <xs:element name="Label" type="xs:string"/>
+          <xs:element name="Data" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="D2SResponseEx">
+        <xs:sequence>
+          <xs:element name="opStatus" type="xs:int"/>
+          <xs:element name="D2SStatus" type="xs:int"/>
+          <xs:element name="requestId" type="xs:string"/>
+          <xs:element minOccurs="0" name="D2SArchiveId" type="xs:string"/>
+          <xs:element minOccurs="0" name="D2SSignature" type="tns:dataType"/>
+          <xs:element minOccurs="0" name="pluginResponse" type="tns:ArrayOfPluginResponseStruct"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfPluginResponseStruct">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="PluginResponseStruct" nillable="true" type="tns:PluginResponseStruct"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PluginResponseStruct">
+        <xs:sequence>
+          <xs:element name="Label" type="xs:string"/>
+          <xs:element name="Response" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="dataEncoding">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="gzEnc"/>
+          <xs:enumeration value="b64Enc"/>
+          <xs:enumeration value="gzb64Enc"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="signatureEx">
+    <wsdl:part element="tns:signatureEx" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="signatureExResponse">
+    <wsdl:part element="tns:signatureExResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="D2SSoap">
+    <wsdl:operation name="signatureEx">
+      <wsdl:input message="tns:signatureEx" name="signatureEx"></wsdl:input>
+      <wsdl:output message="tns:signatureExResponse" name="signatureExResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="D2SSoapBinding" type="tns:D2SSoap">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="signatureEx">
+      <soap:operation soapAction="http://www.dictao.com/D2S/Interface/signatureEx" style="document"/>
+      <wsdl:input name="signatureEx">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="signatureExResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="D2S">
+    <wsdl:port binding="tns:D2SSoapBinding" name="D2SSoap">
+      <soap:address location="http://localhost:8080/solrep-ws-server/ws/soap/D2S"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content>
+				<con:type>http://schemas.xmlsoap.org/wsdl/</con:type>
+			</con:part>
+		</con:definitionCache>
+		<con:endpoints>
+			<con:endpoint>http://localhost:8080/solrep-ws-server/ws/soap/D2S</con:endpoint>
+		</con:endpoints>
+		<con:operation isOneWay="false"
+			action="http://www.dictao.com/D2S/Interface/signatureEx" name="signatureEx"
+			bindingOperationName="signatureEx" type="Request-Response"
+			outputName="signatureExResponse" inputName="signatureEx"
+			receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+			<con:settings />
+			<con:call name="Request 1">
+				<con:settings>
+					<con:setting
+						id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+				</con:settings>
+				<con:encoding>UTF-8</con:encoding>
+				<con:endpoint>http://localhost:8080/solrep-ws-server/ws/soap/D2S</con:endpoint>
+				<con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://www.dictao.com/D2S/Interface">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:signatureEx>
+         <int:requestId>?</int:requestId>
+         <int:transactionId>?</int:transactionId>
+         <int:tag>?</int:tag>
+         <int:dataToSign>
+            <!--Optional:-->
+            <int:value dataFormat="?">?</int:value>
+            <!--Optional:-->
+            <int:binaryValue dataFormat="?">cid:272571079185</int:binaryValue>
+         </int:dataToSign>
+         <!--Optional:-->
+         <int:detachedSignature>
+            <!--Optional:-->
+            <int:value dataFormat="?">?</int:value>
+            <!--Optional:-->
+            <int:binaryValue dataFormat="?">cid:306903437708</int:binaryValue>
+         </int:detachedSignature>
+         <int:signatureFormat>?</int:signatureFormat>
+         <int:signatureType>?</int:signatureType>
+         <!--Optional:-->
+         <int:signatureParameter>?</int:signatureParameter>
+         <!--Optional:-->
+         <int:pluginParameter>
+            <!--Zero or more repetitions:-->
+            <int:PluginParameterStruct>
+               <int:Label>?</int:Label>
+               <int:Data>?</int:Data>
+            </int:PluginParameterStruct>
+         </int:pluginParameter>
+      </int:signatureEx>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+				<con:jmsConfig JMSDeliveryMode="PERSISTENT" />
+				<con:jmsPropertyConfig />
+				<con:wsaConfig mustUnderstand="NONE" version="200508"
+					action="http://www.dictao.com/D2S/Interface/signatureEx" />
+				<con:wsrmConfig version="1.2" />
+			</con:call>
+		</con:operation>
+	</con:interface>
+	<con:properties />
+	<con:wssContainer />
+</con:soapui-project>

@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.cm.usermanager.operation.contrib">
+
+  <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" point="operations">
+<!--     <operation class="fr.dila.cm.operation.StepToCaseLinkMappingOperation" /> -->
+<!--     <operation class="fr.dila.cm.operation.CreateCaseLinkOperation" /> -->
+    <operation class="fr.dila.cm.operation.DistributionOperation" />
+<!--     <operation class="fr.dila.cm.operation.RemoveCaseLinkOperation" /> -->
+<!--     <operation class="fr.dila.cm.operation.ApproveCaseLinkOperation" /> -->
+  </extension>
+
+</component>

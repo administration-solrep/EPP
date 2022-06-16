@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="tableFdrWithAction(actions, dto)" class="roadmap-table tableForm">
+            <a
+                href="#skip_link_roadmap-table_prev"
+                id="skip_link_roadmap-table_next"
+                class="skip-link"
+                th:text="#{roadmap.skip.link.before}"
+                >Passer le tableau 'roadmap' pour arriver après</a
+            >
+            <div class="table-action">
+                <div class="table-action__action-container">
+                    <div class="table-action__group">
+                        <th:block th:each="action : ${actions}">
+                            <div
+                                th:replace="fragments/components/action-button :: action-button(${action}, false, '')"
+                            ></div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+            <table
+                th:unless="${#lists.isEmpty(dto.table.lines)}"
+                th:replace="fragments/fdr/tableFdr :: tableFdr(${dto})"
+            ></table>
+            <div class="table-action">
+                <div class="table-action__action-container">
+                    <div class="table-action__group">
+                        <th:block th:each="action : ${actions}">
+                            <div
+                                th:replace="fragments/components/action-button :: action-button(${action}, false, '')"
+                            ></div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+            <a
+                href="#skip_link_roadmap-table_next"
+                id="skip_link_roadmap-table_prev"
+                class="skip-link"
+                th:text="#{roadmap.skip.link.after}"
+                >Passer le tableau 'roadmap' pour arriver avant</a
+            >
+        </div>
+    </body>
+</html>

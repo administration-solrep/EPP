@@ -1,0 +1,10 @@
+<component name="fr.dila.ss.ui.services.SSFdrUIService">
+
+  <implementation class="fr.dila.ss.ui.services.component.SSFdrUIComponent" />
+  
+  <service>
+    <provide interface="fr.dila.ss.ui.services.SSFdrUIService" />
+  </service>
+  
+
+</component>

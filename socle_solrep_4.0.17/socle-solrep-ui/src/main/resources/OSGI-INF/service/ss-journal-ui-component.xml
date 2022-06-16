@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.services.SSJournalUIService">
+
+  <implementation class="fr.dila.ss.ui.services.component.SSJournalUIComponent" />
+  
+  <service>
+    <provide interface="fr.dila.ss.ui.services.SSJournalUIService" />
+  </service>
+  
+
+</component>

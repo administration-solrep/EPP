@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service jeton de SOLON EPP. -->
+<component name="fr.dila.solonepp.core.service.JetonService">
+	<implementation class="fr.dila.solonepp.core.service.JetonServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.st.api.service.JetonService" />
+		<provide interface="fr.dila.solonepp.api.service.JetonService" />
+	</service>
+</component>

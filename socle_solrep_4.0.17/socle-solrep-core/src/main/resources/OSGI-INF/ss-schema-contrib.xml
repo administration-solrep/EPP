@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component name="fr.dila.ss.schema.contrib">
+
+    <extension target="org.nuxeo.ecm.core.schema.TypeService" point="schema">
+        <schema name="actualite" prefix="act" src="schemas/actualite.xsd" />
+        <schema name="actualiteRequete" src="schemas/actualiteRequete.xsd" prefix="act_rq" />
+        <schema name="info_utilisateur_connection" src="schemas/info_utilisateur_connection.xsd" prefix="infouc" />
+    </extension>
+
+</component>

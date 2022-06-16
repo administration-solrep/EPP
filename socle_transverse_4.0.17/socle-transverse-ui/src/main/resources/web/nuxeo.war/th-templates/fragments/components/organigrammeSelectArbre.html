@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block
+            th:fragment="organigrammeSelectArbre(treeList, level, currentID, isOpen, typeSelection, selectID, activatePosteFilter, isMulti, dtoAttribute, filterCE)"
+        >
+            <div th:id="|overlay-${selectID}|" class="overlay" th:if="${level == 1}" aria-live="polite">
+                <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+            </div>
+            <ul
+                class="tree-navigation__list"
+                th:id="|toggled-${currentID}|"
+                th:classappend="${(level &gt; 1 ? ' tree-navigation\_\_list--subtree ' : '') + (isOpen ? ' tree-navigation\_\_list--is-opened ' : ' tree-navigation\_\_list--is-closed ') }"
+            >
+                <li
+                    th:each="item, status : ${treeList}"
+                    class="tree-navigation__item tree-navigation__item--has-toggler"
+                    th:classappend="${(item.isOpen ? 'tree-navigation\_\_item--is-opened' : ' tree-navigation\_\_item--is-closed ') + (' tree-navigation\_\_item--lvl-'+level)}"
+                >
+                    <th:block th:if="${!item.isLastLevel}">
+                        <div class="tree-navigation__toggle-wrapper">
+                            <button
+                                th:aria-controls="|toggled-${currentID}-${status.index}|"
+                                th:aria-expanded="${item.isOpen ? 'true' : 'false'}"
+                                th:id="|toggler-${currentID}-${status.index}|"
+                                data-toggle="tree-navigation__list"
+                                class="tree-navigation__toggle js-toggle"
+                                th:attrappend="onclick=|onOpenOrganigrammeSelectNode('${selectID}','${typeSelection}',${activatePosteFilter},'${item.completeKey}', ${isMulti}, '${dtoAttribute}', ${filterCE})|"
+                                data-icon-opened="minus"
+                                data-icon-closed="plus"
+                            >
+                                <span
+                                    aria-hidden="true"
+                                    class="tree-navigation__icon tree-navigation__icon--toggler icon bubble-icon bubble-icon--squared bubble-icon--small"
+                                    th:classappend="${(item.isOpen ? 'tree-navigation\_\_icon--opened icon--minus' : 'tree-navigation\_\_icon--closed icon--plus')}"
+                                    th:aria-describedby="|button\_\_toggler-${currentID}-${status.index}|"
+                                ></span>
+                                <span th:id="|button\_\_toggler-${currentID}-${status.index}|" class="sr-only"></span>
+                                <span class="tree-navigation__text" th:text="${item.label}">Niveau</span>
+                            </button>
+                            <button
+                                th:if="${(typeSelection.contains(item.type)) && (activatePosteFilter ? item.allowAdd : true) && isMulti}"
+                                type="button"
+                                class="tree-navigation__button-add base-btn base-btn--button base-btn--default base-btn--icon-action-primary base-btn--transparent"
+                                th:with="messageKey='organigramme.select.add.'+${item.type}"
+                                th:data-tippy-content="#{${messageKey}}"
+                                th:data-selectid="${selectID}"
+                                th:data-key="${item.key}"
+                                th:data-label="${item.label}"
+                                th:data-dto-attribute="${dtoAttribute}"
+                                onclick="addFromOrganigramme(this.getAttribute('data-selectid'),this.getAttribute('data-key'),this.getAttribute('data-label'))"
+                            >
+                                <span class="sr-only" th:text="#{${messageKey}}">Clé</span>
+                                <span aria-hidden="true" class="icon icon--add icon--v-align icon--big"></span>
+                            </button>
+                            <button
+                                th:if="${(typeSelection.contains(item.type)) && (activatePosteFilter ? item.allowAdd : true) && !isMulti}"
+                                type="button"
+                                class="tree-navigation__button-add base-btn base-btn--button base-btn--default base-btn--icon-action-primary base-btn--transparent"
+                                th:with="messageKey='organigramme.select.add.'+${item.type}"
+                                th:data-tippy-content="#{${messageKey}}"
+                                th:data-selectid="${selectID}"
+                                th:data-key="${item.key}"
+                                th:data-label="${item.label}"
+                                onclick="addFromOrganigramme(this.getAttribute('data-selectid'),this.getAttribute('data-key'),this.getAttribute('data-label'))"
+                            >
+                                <span class="sr-only" th:text="#{${messageKey}}">Clé</span>
+                                <span aria-hidden="true" class="icon icon--add icon--v-align icon--big"></span>
+                            </button>
+                        </div>
+                        <ul
+                            th:replace="fragments/components/organigrammeSelectArbre :: organigrammeSelectArbre(${item.childs}, ${level+1}, |${currentID}-${status.index}| , ${item.isOpen}, ${typeSelection}, ${selectID}, ${activatePosteFilter}, ${isMulti}, ${dtoAttribute}, ${filterCE})"
+                        ></ul>
+                    </th:block>
+                    <th:block th:unless="${!item.isLastLevel}">
+                        <span class="tree-navigation__label" th:text="${item.label}">Niveau</span>
+                        <button
+                            th:if="${(typeSelection.contains(item.type)) && (typeSelection.contains('PST') && activatePosteFilter ? item.allowAdd : true) && isMulti}"
+                            type="button"
+                            class="tree-navigation__button-add base-btn base-btn--button base-btn--default base-btn--icon-action-primary base-btn--transparent"
+                            th:with="messageKey='organigramme.select.add.'+${item.type}"
+                            th:data-tippy-content="#{${messageKey}}"
+                            th:data-selectid="${selectID}"
+                            th:data-key="${item.key}"
+                            th:data-label="${item.label}"
+                            th:data-dto-attribute="${dtoAttribute}"
+                            onclick="addFromOrganigramme(this.getAttribute('data-selectid'),this.getAttribute('data-key'),this.getAttribute('data-label'))"
+                        >
+                            <span class="sr-only" th:text="#{${messageKey}}">Clé</span>
+                            <span aria-hidden="true" class="icon icon--add icon--v-align icon--big"></span>
+                        </button>
+                        <th:block th:if="${item.isPosteCE != null}">
+                            <!-- Cas EPG : isPosteCE jamais null -->
+                            <button
+                                th:if="${(filterCE && item.isPosteCE) && (typeSelection.contains(item.type)) && (typeSelection.contains('PST') && activatePosteFilter ? item.allowAdd : true) && !isMulti}"
+                                type="button"
+                                class="tree-navigation__button-add base-btn base-btn--button base-btn--default base-btn--icon-action-primary base-btn--transparent"
+                                th:with="messageKey='organigramme.select.add.'+${item.type}"
+                                th:data-tippy-content="#{${messageKey}}"
+                                th:data-selectid="${selectID}"
+                                th:data-key="${item.key}"
+                                th:data-label="${item.label}"
+                                onclick="addFromOrganigramme(this.getAttribute('data-selectid'),this.getAttribute('data-key'),this.getAttribute('data-label'))"
+                            >
+                                <span class="sr-only" th:text="#{${messageKey}}">Clé</span>
+                                <span aria-hidden="true" class="icon icon--add icon--v-align icon--big"></span>
+                            </button>
+                            <button
+                                th:if="${(!filterCE && !item.isPosteCE) && (typeSelection.contains(item.type)) && (typeSelection.contains('PST') && activatePosteFilter ? item.allowAdd : true) && !isMulti}"
+                                type="button"
+                                class="tree-navigation__button-add base-btn base-btn--button base-btn--default base-btn--icon-action-primary base-btn--transparent"
+                                th:with="messageKey='organigramme.select.add.'+${item.type}"
+                                th:data-tippy-content="#{${messageKey}}"
+                                th:data-selectid="${selectID}"
+                                th:data-key="${item.key}"
+                                th:data-label="${item.label}"
+                                onclick="addFromOrganigramme(this.getAttribute('data-selectid'),this.getAttribute('data-key'),this.getAttribute('data-label'))"
+                            >
+                                <span class="sr-only" th:text="#{${messageKey}}">Clé</span>
+                                <span aria-hidden="true" class="icon icon--add icon--v-align icon--big"></span>
+                            </button>
+                        </th:block>
+                        <th:block th:if="${item.isPosteCE == null}">
+                            <!-- Cas Reponses : isPosteCE toujours null -->
+                            <button
+                                th:if="${typeSelection.contains(item.type) && (typeSelection.contains('PST') && activatePosteFilter ? item.allowAdd : true) && !isMulti}"
+                                type="button"
+                                class="tree-navigation__button-add base-btn base-btn--button base-btn--default base-btn--icon-action-primary base-btn--transparent"
+                                th:with="messageKey='organigramme.select.add.'+${item.type}"
+                                th:data-tippy-content="#{${messageKey}}"
+                                th:data-selectid="${selectID}"
+                                th:data-key="${item.key}"
+                                th:data-label="${item.label}"
+                                onclick="addFromOrganigramme(this.getAttribute('data-selectid'),this.getAttribute('data-key'),this.getAttribute('data-label'))"
+                            >
+                                <span class="sr-only" th:text="#{${messageKey}}">Clé</span>
+                                <span aria-hidden="true" class="icon icon--add icon--v-align icon--big"></span>
+                            </button>
+                        </th:block>
+                    </th:block>
+                </li>
+            </ul>
+        </th:block>
+    </body>
+</html>

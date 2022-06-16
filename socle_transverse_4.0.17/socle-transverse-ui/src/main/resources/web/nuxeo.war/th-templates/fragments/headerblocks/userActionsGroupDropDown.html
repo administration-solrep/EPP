@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            data-drop-group="header-right"
+            th:fragment="userActionsGroupDropDown"
+            class="header__right-item base-drop-down base-drop-down--has-indicator base-drop-down--bordered base-drop-down--light-inverted"
+        >
+            <button
+                type="button"
+                th:title="#{user.home.menu.title(${user.name})}"
+                aria-controls="drop-down-header_drop"
+                class="base-btn base-btn--button base-btn--default base-btn--light-inverted base-btn--center base-btn--transparent base-btn--bordered base-drop-down__button"
+            >
+                <span class="base-drop-down__button-label" th:text="${user.name}"> </span>
+                <span aria-hidden="true" class="base-drop-down__indicator icon icon--arrow-bottom"></span>
+            </button>
+
+            <div id="drop-down-header_drop" class="base-drop-down__drop" aria-labelledby="drop-down-header_drop-list">
+                <div id="drop-down-header_drop-list" class="sr-only" th:text="#{user.home.menu.elements}">
+                    Menu utilisateur
+                </div>
+                <ul class="base-drop-down__drop-list">
+                    <li class="base-drop-down-item">
+                        <button
+                            onclick="doInitModal(this)"
+                            th:data-controls="modal-user-profile"
+                            th:data-title="${#messages.msg('user.home.title')}"
+                            data-function="applyProfilParameters()"
+                            data-init-js="loadMetadatas"
+                            class="base-drop-down__link link js-interstitial-trigger"
+                            aria-haspopup="dialog"
+                        >
+                            <span aria-hidden="true" class="base-drop-down__link-icon icon icon--user"></span>
+                            [[#{user.home.label}]]
+                        </button>
+                    </li>
+                    <li class="base-drop-down-item" th:if="${extraDropDownUrl != null}">
+                        <a th:href="${extraDropDownUrl}" class="base-drop-down__link link"
+                            ><span
+                                aria-hidden="true"
+                                class="base-drop-down__link-icon icon"
+                                th:classappend="${extraDropDownIcon}"
+                            ></span>
+                            [[${extraDropDownMessage}]]
+                        </a>
+                    </li>
+                    <li class="base-drop-down-item">
+                        <a th:href="@{/logout}" class="base-drop-down__link link"
+                            ><span aria-hidden="true" class="base-drop-down__link-icon icon icon--logout"></span>
+                            [[#{logout.label}]]
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

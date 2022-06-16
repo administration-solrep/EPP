@@ -1,0 +1,112 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue les listeners du socle transverse. -->
+<component name="fr.dila.st.core.listener">
+	<require>com.nuxeo.case-management.eventContrib</require>
+	<require>DublinCoreStorageService</require>
+
+	<extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener">
+
+		<!-- Batch de déverrouillage des documents -->
+		<listener
+            name="DossierUnlockBatchListener"
+            async="false"
+            postCommit="false"
+            priority="180"
+            class="fr.dila.st.core.event.batch.DossierUnlockBatchListener"
+        >
+			<event>unlockBatchEvent</event>
+		</listener>
+		
+		<!-- override du listener dublincore de Nuxeo -->
+		<listener name="dclistener" enabled="false">
+		</listener>
+
+		<listener
+            name="stdclistener"
+            async="false"
+            postCommit="false"
+            class="fr.dila.st.core.override.listener.DublinCoreListener"
+            priority="120"
+        >
+			<event>aboutToCreate</event>
+			<event>beforeDocumentModification</event>
+			<event>documentPublished</event>
+			<event>lifecycle_transition_event</event>
+			<event>documentCreatedByCopy</event>
+		</listener>
+		
+		<listener
+            name="InvalidationListener"
+            async="false"
+            postCommit="false"
+            priority="200"
+            class="fr.dila.st.core.event.InvalidationCacheListener"
+        >
+			<event>invalidationCacheEvent</event>
+		</listener>
+		
+		<!-- Batch journalier de dévérouillage de l'organigramme -->
+		<listener
+            name="unlockOrganigrammeListener"
+            async="false"
+            postCommit="false"
+            priority="190"
+            class="fr.dila.st.core.event.batch.OrganigrammeUnlockBatchListener"
+        >
+			<event>unlockOrganigrammeBatchEvent</event>
+		</listener>
+
+        <listener
+            name="removeFileListener"
+            async="false"
+            postCommit="false"
+            priority="249"
+            class="fr.dila.st.core.event.RemoveFileListener"
+        >
+            <event>aboutToRemove</event>
+        </listener>
+		<!-- Listener de nettoyage du repository -->
+        <listener
+            name="cleanBinaryStoreListener"
+            async="true"
+            enabled="false"
+            postCommit="true"
+            priority="250"
+            class="fr.dila.st.core.event.CleanBinaryStoreListener"
+        >
+            <event>removeBinariesEvent</event>
+        </listener>
+
+        <listener
+            name="UserListener"
+            async="true"
+            postCommit="true"
+            priority="260"
+            class="fr.dila.st.core.event.UserListener"
+        >
+            <event>user_created</event>
+            <event>user_modified</event>
+        </listener>
+
+        <listener
+            name="GroupListener"
+            async="true"
+            postCommit="true"
+            priority="261"
+            class="fr.dila.st.core.event.GroupListener"
+        >
+            <event>group_modified</event>
+        </listener>
+
+        <!-- Listener pour envoyer le résultat d'une recherche utilisateur par mail -->
+        <listener
+            name="SendSearchResultsUsersListener"
+            async="true"
+            postCommit="true"
+            priority="200"
+            class="fr.dila.st.core.event.STSendSearchUsersResultsListener"
+        >
+            <event>sendSearchUsersResults</event>
+        </listener>
+	</extension>
+</component>

@@ -1,0 +1,220 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='page de creation poste', title=#{organigramme.poste.add})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <input
+            type="hidden"
+            id="urlPreviousPage"
+            name="urlPreviousPage"
+            th:value="@{/admin/organigramme/consult#main_content}"
+        />
+
+        <div>
+            <div class="m-b-6">
+                <button
+                    type="button"
+                    th:attr="onclick=|'${posteForm.id}' == 'null' ? goPreviousPage() : releaseLock('${posteForm.id}', 'PST')|"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                    th:text="#{organigramme.cancel}"
+                >
+                    Annuler
+                </button>
+                <button
+                    type="button"
+                    name="submit_button"
+                    th:value="#{button.label.save}"
+                    onclick="verifyDuplicateNameAndSavePoste()"
+                    class="base-btn base-btn--button base-btn--default"
+                    style="float: right;"
+                    th:text="#{button.label.save}"
+                >
+                    Enregistrer
+                </button>
+            </div>
+            <h1
+                th:if="${posteForm.id == null}"
+                class="base-title base-title--lvl-1 p-b-3 m-b-6 base-title--is-underlined"
+                th:text="#{organigramme.poste.add}"
+            >
+                Créer poste
+            </h1>
+            <h1
+                th:unless="${posteForm.id == null}"
+                class="base-title base-title--lvl-1 p-b-3 m-b-6 base-title--is-underlined"
+                th:text="#{organigramme.poste.edit}"
+            >
+                Editer poste
+            </h1>
+            <form
+                id="edit_poste_form"
+                th:action="@{/admin/organigramme/poste/sauvegarde}"
+                th:object="${posteForm}"
+                method="POST"
+            >
+                <input type="hidden" name="curMin" th:value="${curMin}" />
+                <input type="hidden" name="csrf-token" th:value="${csrftoken}" />
+                <div class="form-input">
+                    <div class="form-input__container">
+                        <input type="hidden" name="id" id="id" th:value="${posteForm.id}" />
+                    </div>
+                </div>
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label aria-disabled="false" for="libelle" id="libelle_label" class="form-label">
+                                <span th:text="#{organigramme.poste.libelle}">Label</span>
+                                <span class="form-label__required-text" th:text="#{form.input.required}"
+                                    >(requis)</span
+                                ></label
+                            >
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                    </div>
+                    <div class="form-input__container">
+                        <input
+                            type="text"
+                            name="libelle"
+                            id="libelle"
+                            class="form-input__field form-input__field--type-text"
+                            data-validation="required, maxlength(254)"
+                            th:value="${posteForm.libelle}"
+                        />
+                    </div>
+                    <div id="appellation_description" class="form-input__footer"></div>
+                </div>
+
+                <br />
+
+                <th:block th:if="${hasSuperviseur!=null && hasSuperviseur }" th:with="name='superviseur'">
+                    <div
+                        th:replace="fragments/components/formblocks/input-oui-non :: ouiNon('organigramme.poste.superviseurSGG', 'superviseur', ${posteForm.superviseur}, false)"
+                    ></div>
+                    <!-- optin superviseur SGG  -->
+                    <br />
+                </th:block>
+
+                <th:block th:if="${hasCharge!=null && hasCharge }" th:with="name='chargeMission'">
+                    <!-- optin chargé mission  -->
+                    <div
+                        th:replace="fragments/components/formblocks/input-oui-non :: ouiNon('organigramme.poste.chargeMissionSGG', 'chargeMisson', ${posteForm.chargeMission}, false)"
+                    ></div>
+                    <br />
+                </th:block>
+
+                <th:block th:if="${hasConseiller!=null && hasConseiller }" th:with="name='conseiller'">
+                    <!-- optin conseiller  -->
+                    <div
+                        th:replace="fragments/components/formblocks/input-oui-non :: ouiNon('organigramme.poste.conseillerPM', 'conseiller', ${posteForm.conseiller}, false)"
+                    ></div>
+                    <br />
+                </th:block>
+
+                <th:block th:if="${hasPosteBDC !=null && hasPosteBDC }" th:with="name='posteBDC'">
+                    <!-- optin posteBDC -->
+                    <div
+                        th:replace="fragments/components/formblocks/input-oui-non :: ouiNon('organigramme.poste.posteBDC', 'posteBDC', ${posteForm.posteBDC}, false)"
+                    ></div>
+                    <br />
+                </th:block>
+
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label
+                                for="dateDebut"
+                                id="dateDebut_label"
+                                class="form-label"
+                                th:text="#{organigramme.poste.dateDebut}"
+                                >Label
+                            </label>
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                        <div class="form-input__header-bottom"></div>
+                    </div>
+                    <div class="form-input__container">
+                        <div
+                            th:replace="fragments/components/input-date-picker :: inputDatePicker('datepicker_description_form_input_date_debut', 'dateDebut', 'dateDebut', false, ${posteForm.dateDebut}, true)"
+                        ></div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label
+                                for="dateFin"
+                                id="dateFin_label"
+                                class="form-label"
+                                th:text="#{organigramme.poste.dateFin}"
+                                >Label
+                            </label>
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                        <div class="form-input__header-bottom"></div>
+                    </div>
+                    <div class="form-input__container">
+                        <div
+                            th:replace="fragments/components/input-date-picker :: inputDatePicker('datepicker_description_form_input_date_fin', 'dateFin', 'dateFin', false, ${posteForm.dateFin}, true)"
+                        ></div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-input">
+                    <th:block
+                        th:replace="fragments/components/organigrammeSelectAutocomplete ::organigrammeSelectAutocomplete(
+            'organigramme.unite.structurelle.us.rattachement.label',
+            true,
+            'unite-structurelle-rattachement',
+            'unitesStructurelles',
+            'DIR_UST', 
+            'unitesStructurelles', 
+            false,
+            true,
+            ${posteForm.mapUnitesStructurellesRattachement},
+            false)"
+                    ></th:block>
+                </div>
+
+                <!-- Modale de confirmation de duplication de nom -->
+                <input
+                    type="hidden"
+                    id="init-modal-duplicate-name"
+                    th:data-title="${#messages.msg('organigramme.poste.modal.title.label')}"
+                    th:data-message="${#messages.msg('organigramme.poste.modal.confirm.duplicate')}"
+                    th:data-btn-confirm-label="${#messages.msg('button.confirmer')}"
+                    data-function="savePosteForm()"
+                    data-controls="validation-dialog-modal"
+                />
+            </form>
+            <div class="m-t-6">
+                <button
+                    type="button"
+                    th:attr="onclick=|'${posteForm.id}' == 'null' ? goPreviousPage() : releaseLock('${posteForm.id}', 'PST')|"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--bordered"
+                    th:text="#{organigramme.cancel}"
+                >
+                    Annuler
+                </button>
+                <button
+                    type="button"
+                    name="submit_button"
+                    th:value="#{button.label.save}"
+                    onclick="verifyDuplicateNameAndSavePoste()"
+                    class="base-btn base-btn--button base-btn--default"
+                    style="float: right;"
+                    th:text="#{button.label.save}"
+                >
+                    Enregistrer
+                </button>
+            </div>
+        </div>
+    </main>
+</html>

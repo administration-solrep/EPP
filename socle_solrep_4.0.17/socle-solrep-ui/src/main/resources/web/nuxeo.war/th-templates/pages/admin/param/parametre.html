@@ -1,0 +1,74 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Consulter un paramètre', title=${parametre.titre})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <div th:replace="fragments/components/edit-buttons :: edit-buttons('parametre-detail')"></div>
+
+        <h1
+            class="m-t-6 m-b-6 p-b-3 base-title base-title--lvl-1 base-title--is-underlined"
+            th:text="${parametre.titre} "
+        >
+            Paramètre Description
+        </h1>
+
+        <a href="#skip_link_action-table_prev" id="skip_link_action-table_next" class="skip-link"
+            >[[ #{skip.link.table.prev(#{command.admin.param})} ]]</a
+        >
+        <div class="table-wrapper">
+            <table class="folder-detail__table" role="presentation">
+                <tbody>
+                    <tr class="folder-detail__table-line">
+                        <td
+                            class="folder-detail__table-cell folder-detail__table-cell--label"
+                            th:text="#{label.parametre.valeur}"
+                        >
+                            Valeur
+                        </td>
+                        <td
+                            class="folder-detail__table-cell folder-detail__table-cell--value"
+                            th:text="${parametre.valeur}"
+                        >
+                            Valeur
+                        </td>
+                    </tr>
+                    <tr class="folder-detail__table-line">
+                        <td
+                            class="folder-detail__table-cell folder-detail__table-cell--label"
+                            th:text="#{label.parametre.unite}"
+                        >
+                            Unité
+                        </td>
+                        <td
+                            class="folder-detail__table-cell folder-detail__table-cell--value"
+                            th:text="${parametre.unite}"
+                        >
+                            Unité
+                        </td>
+                    </tr>
+                    <tr class="folder-detail__table-line">
+                        <td
+                            class="folder-detail__table-cell folder-detail__table-cell--label"
+                            th:text="#{label.parametre.description}"
+                        >
+                            Description
+                        </td>
+                        <td
+                            class="folder-detail__table-cell folder-detail__table-cell--value"
+                            th:text="${parametre.description}"
+                        >
+                            Description
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <a href="#skip_link_action-table_next" id="skip_link_action-table_prev" class="skip-link"
+            >[[ #{skip.link.table.next(#{command.admin.param})} ]]</a
+        >
+        <div th:replace="fragments/components/edit-buttons :: edit-buttons('parametre-detail')"></div>
+    </main>
+</html>

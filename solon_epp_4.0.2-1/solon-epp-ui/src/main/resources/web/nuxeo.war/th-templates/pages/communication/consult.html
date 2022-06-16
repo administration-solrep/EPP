@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='consultation communication',title=${titre})}"
+>
+    <main role="main" id="main_content" class="page-layout__content notif-evenement">
+        <input type="hidden" id="dossierId" name="dossierId" th:value="${dossierId}" />
+        <input type="hidden" id="urlPreviousPage" name="urlPreviousPage" th:value="@{${urlPreviousPage}}" />
+
+        <button
+            type="button"
+            style="margin-bottom: 1.7857em; padding-left: 2em; padding-right: 2em;"
+            class="base-btn base-btn--button base-btn--default base-btn--light base-btn--bordered"
+            onclick="goPreviousPage()"
+            th:text="#{dossier.button.retour}"
+            th:if="${not #strings.isEmpty(urlPreviousPage)}"
+        ></button>
+        <div class="page-reponses__table">
+            <div class="page-reponses__table-heading" style="display: flex; justify-content: space-between;">
+                <h1 class="base-title base-title--lvl-1" id="main_title" th:text="${titre}"></h1>
+                <div class="p-l-9 p-t-1 whitespace-no-wrap">
+                    <div
+                        tabindex="0"
+                        class="base-tooltip js-tooltip m-l-4"
+                        th:data-tippy-content="#{'label.message.etat.'+${etatMessage}}"
+                        th:switch="${etatMessage}"
+                    >
+                        <span
+                            th:case="'NON_TRAITE'"
+                            aria-hidden="true"
+                            class="icon icon--stop-circle text-blue icon--big"
+                        ></span>
+                        <span
+                            th:case="'EN_COURS_TRAITEMENT'"
+                            aria-hidden="true"
+                            class="icon icon--arrow-triangle-right-circle text-blue icon--big"
+                        ></span>
+                        <span
+                            th:case="'TRAITE'"
+                            aria-hidden="true"
+                            class="icon icon--check-circle text-blue icon--big"
+                        ></span>
+                        <span
+                            th:case="'EN_COURS_REDACTION'"
+                            aria-hidden="true"
+                            class="icon icon--pen-circle text-blue icon--big"
+                        ></span>
+                        <span
+                            th:case="'EN_ATTENTE_AR'"
+                            aria-hidden="true"
+                            class="icon icon--pause-circle text-blue icon--big"
+                        ></span>
+                        <span
+                            th:case="'EMIS'"
+                            aria-hidden="true"
+                            class="icon icon--arrow-right-circle text-blue icon--big"
+                        ></span>
+                        <span th:case="'AR_RECU'" aria-hidden="true" class="icon icon--mail text-blue icon--big"></span>
+                        <span
+                            th:case="'AR_RECU_VERSION_REJETE'"
+                            aria-hidden="true"
+                            class="icon icon--mail text-blue icon--big"
+                        ></span>
+                        <span class="sr-only" th:text="#{'label.message.etat.'+${etatMessage}}"></span>
+                    </div>
+                    <div
+                        tabindex="0"
+                        class="base-tooltip js-tooltip m-l-4"
+                        th:data-tippy-content="#{'label.evenement.etat.'+${etatEvenement}}"
+                        th:switch="${etatEvenement}"
+                    >
+                        <span
+                            th:case="'BROUILLON'"
+                            aria-hidden="true"
+                            class="icon icon--paper text-blue icon--big"
+                        ></span>
+                        <span
+                            th:case="'PUBLIE'"
+                            aria-hidden="true"
+                            class="icon icon--paper-bubble-triangle-right text-blue icon--big"
+                        ></span>
+                        <span
+                            th:case="'EN_INSTANCE'"
+                            aria-hidden="true"
+                            class="icon icon--paper-bubble-check text-blue icon--big"
+                        ></span>
+                        <span
+                            th:case="'EN_ATTENTE_VALIDATION'"
+                            aria-hidden="true"
+                            class="icon icon--paper-bubble-clock text-blue icon--big"
+                        ></span>
+                        <span
+                            th:case="'EN_ATTENTE_VALIDATION_ANNULATION'"
+                            aria-hidden="true"
+                            class="icon icon--paper-bubble-clock text-blue icon--big"
+                        ></span>
+                        <span
+                            th:case="'ANNULER'"
+                            aria-hidden="true"
+                            class="icon icon--paper-bubble-times text-blue icon--big"
+                        ></span>
+                        <span class="sr-only" th:text="#{'label.evenement.etat.'+${etatEvenement}}"></span>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="page-reponses__table-content">
+                <div th:if="${myTabs!=null}" class="tabulation">
+                    <div role="tablist" class="tabulation__header">
+                        <button
+                            th:each="onglet, status : ${myTabs.onglets}"
+                            type="button"
+                            role="tab"
+                            class="tabulation__item js-tabulation base-btn base-btn--button base-btn--default base-btn--transparent dossier-onglet"
+                            th:classappend="${onglet.isActif ? 'tabulation\_\_item--active' : ''}"
+                            th:aria-selected="${onglet.isActif ? 'true' : 'false'}"
+                            th:aria-controls="'d_tab_content-'+${status.index}"
+                            th:id="'d_tab_link-'+${status.index}"
+                            th:data-script="${onglet.script}"
+                            th:data-name="${onglet.id}"
+                            onclick="javascript:eval(this.getAttribute('data-script'))"
+                            th:tabindex="${!onglet.isActif ? '-1' : null}"
+                            th:text="#{__${onglet.label}__}"
+                        ></button>
+                    </div>
+                    <div class="tabulation__body">
+                        <div
+                            th:each="onglet, status : ${myTabs.onglets}"
+                            role="tabpanel"
+                            tabindex="0"
+                            class="tabulation__content"
+                            th:id="'d_tab_content-'+${status.index}"
+                            th:aria-hidden="${onglet.isActif ? 'false' : 'true'}"
+                            th:aria-labelledby="'d_tab_link-'+${status.index}"
+                            th:classappend="${onglet.isActif ? 'tabulation\_\_content--active' : ''}"
+                        >
+                            <th:block th:if="${onglet.isActif}">
+                                <div th:replace="${onglet.fragmentFile} :: ${onglet.fragmentName}"></div>
+                            </th:block>
+                            <div th:unless="${onglet.isActif}" th:id="'d_'+${onglet.id}+'_content'">Chargement</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button
+            type="button"
+            style="margin-top: 1.7857em; padding-left: 2em; padding-right: 2em;"
+            class="base-btn base-btn--button base-btn--default base-btn--light base-btn--bordered"
+            onclick="goPreviousPage()"
+            th:text="#{dossier.button.retour}"
+        ></button>
+
+        <th:block th:replace="fragments/modal-communication-verrou :: modal-communication-verrou"></th:block>
+    </main>
+</html>

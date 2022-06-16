@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="statDetail">
+            <div
+                class="page-reponses-report-birt-open__actions js-actions"
+                th:if="${downloadActions !=null && !downloadActions.isEmpty()}"
+                th:classappend="${displayReport ? '' : 'birt-hide-report'}"
+                th:data-stat="${not #strings.isEmpty(idStat) ? idStat : birtReport.id}"
+                th:data-organigramme="${organigrammeId}"
+            >
+                <div
+                    th:replace="fragments/components/dropdown-action :: dropdown-action(
+                        'stat-download',
+                        ${downloadActions}, 
+                        'icon--download', 
+                        true, 
+                        'label.stats.download.dropdown.tooltip', 
+                        'base-btn--md-icon', 
+                        false, 
+                        ''
+                        )"
+                ></div>
+            </div>
+            <div
+                class="page-reponses-report-birt-open__iframe-wrapper"
+                th:classappend="${displayReport ? '' : 'birt-hide-report'}"
+            >
+                <iframe
+                    th:src="@{ ${generatedReportPath} }"
+                    id="birtReport-iframe"
+                    th:title="|Document ${birtReport.title}|"
+                ></iframe>
+            </div>
+            <div
+                class="page-reponses-report-birt-open__actions js-actions"
+                th:if="${downloadActions !=null && !downloadActions.isEmpty()}"
+                th:classappend="${displayReport ? '' : 'birt-hide-report'}"
+                th:data-stat="${not #strings.isEmpty(idStat) ? idStat : birtReport.id}"
+                th:data-organigramme="${organigrammeId}"
+            >
+                <div
+                    th:replace="fragments/components/dropdown-action :: dropdown-action(
+                        'stat-download', 
+                        ${downloadActions}, 
+                        'icon--download', 
+                        true, 
+                        'label.stats.download.dropdown.tooltip', 
+                        'base-btn--md-icon', 
+                        false, 
+                        ''
+                        )"
+                ></div>
+            </div>
+
+            <div class="page-layout__content-nav is-bellow" th:classappend="${displayReport ? '' : 'birt-hide-report'}">
+                <button
+                    type="button"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--bordered"
+                    onclick="goPreviousPage()"
+                    th:text="#{button.label.back}"
+                >
+                    Retour
+                </button>
+            </div>
+        </th:block>
+    </body>
+</html>

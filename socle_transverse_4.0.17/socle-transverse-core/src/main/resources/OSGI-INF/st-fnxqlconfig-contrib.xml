@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.core.fnxqlconfig.contrib">
+
+    <require>fr.sword.naiad.nuxeo.ufnxql.core.service.fnxqlconfig.contrib</require>
+
+    <extension target="fr.sword.naiad.nuxeo.ufnxql.core.service.fnxqlconfigservice.contrib" point="functions">
+
+        <function class="fr.dila.st.core.ufnxql.functions.SolonTestAclFunction" />
+        <function class="fr.dila.st.core.ufnxql.functions.RegexpFunction" />
+
+    </extension>
+
+    <extension target="fr.sword.naiad.nuxeo.ufnxql.core.service.fnxqlconfigservice.contrib" point="schemaTypes">
+
+        <typeSchema type="EtatApplication" schema="etat_application" />
+
+    </extension>
+
+</component>

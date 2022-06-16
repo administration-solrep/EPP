@@ -1,0 +1,10 @@
+<component name="fr.dila.st.ui.services.batch.SuiviBatchUIService">
+
+  <implementation class="fr.dila.st.ui.services.batch.SuiviBatchUIComponent" />
+  
+  <service>
+    <provide interface="fr.dila.st.ui.services.batch.SuiviBatchUIService" />
+  </service>
+  
+
+</component>

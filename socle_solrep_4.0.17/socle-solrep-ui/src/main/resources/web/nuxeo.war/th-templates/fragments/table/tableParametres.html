@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="tableParametres(resultForm, resultList, paramContext)"
+            class="tableForm"
+            th:data-url="@{${dataUrl}}"
+            th:data-ajaxurl="@{${dataAjaxUrl}}"
+            id="tableauParametres"
+        >
+            <div class="overlay" id="result_overlay" aria-live="polite">
+                <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+            </div>
+            <th:block th:unless="${resultForm.defaultSize >= resultList.nbTotal}">
+                <div
+                    th:replace="fragments/components/nombre-document-page :: documentParPage(${resultForm}, 'parametres_haut')"
+                ></div>
+            </th:block>
+            <a href="#skip_link_action-table_prev" id="skip_link_action-table_next" class="skip-link"
+                >[[ #{skip.link.table.prev(#{parametres.table.caption}+' -
+                '+#{parametres.table.nombre(${resultList.nbTotal})})} ]]</a
+            >
+            <div class="table-action">
+                <div class="table-action__action-container table-action__action-container--right">
+                    <th:block th:unless="${resultList.liste.size == resultList.nbTotal}">
+                        <div
+                            th:replace="fragments/table/pagination :: pagination (${resultForm}, ${resultForm.page},'parametres_haut',${resultList.nbTotal})"
+                        ></div>
+                    </th:block>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="custom-table" aria-labelledby="table-label">
+                    <caption
+                        class="sr-only"
+                        th:text="#{parametres.table.caption}+' - '+#{parametres.table.nombre(${resultList.nbTotal})}"
+                    >
+                        Tableau des paramètres
+                    </caption>
+                    <thead class="table-header custom-table__header">
+                        <tr class="table-header__line">
+                            <th scope="col" class="table-header__cell">
+                                <span
+                                    class="table-header__cell-inner"
+                                    th:text="${#messages.msg(resultList.colonneParametres.label)}"
+                                >
+                                    &nbsp;
+                                </span>
+                            </th>
+                            <th scope="col" class="table-header__cell">
+                                <span class="sr-only table-header__cell-inner" th:text="#{parametres.action.editer}"
+                                    >Actions</span
+                                >
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="custom-table__body">
+                        <tr th:each="parametre : ${resultList.liste}" class="custom-table__table-line table-line">
+                            <td class="table-line__cell">
+                                <a
+                                    class="link"
+                                    th:href="@{|/admin/param/${paramContext}/${parametre.name}#main_content|}"
+                                    th:text="${parametre.titre}"
+                                    >paramètre</a
+                                >
+                            </td>
+                            <td class="table-line__cell table-line__action-column">
+                                <div class="table-line__action-column-container">
+                                    <a
+                                        class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--with-icon table-line__action-button"
+                                        aria-hidden="false"
+                                        th:data-tippy-content="#{label.parametres.edit}"
+                                        th:href="@{|/admin/param/${paramContext}/${parametre.name}/editer#main_content|}"
+                                    >
+                                        <span class="sr-only" th:text="#{label.parametres.edit}"
+                                            >Modifier la ligne 1</span
+                                        ><span aria-hidden="true" class="base-btn__icon icon icon--edit"></span>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-action">
+                <div class="table-action__action-container table-action__action-container--right">
+                    <th:block th:unless="${resultList.liste.size == resultList.nbTotal}">
+                        <div
+                            th:replace="fragments/table/pagination :: pagination (${resultForm}, ${resultForm.page},'parametres_bas',${resultList.nbTotal})"
+                        ></div>
+                    </th:block>
+                </div>
+            </div>
+            <a href="#skip_link_action-table_next" id="skip_link_action-table_prev" class="skip-link"
+                >[[ #{skip.link.table.next(#{parametres.table.caption}+' -
+                '+#{parametres.table.nombre(${resultList.nbTotal})})} ]]</a
+            >
+        </div>
+    </body>
+</html>

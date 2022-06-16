@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: API
+Bundle-SymbolicName: fr.dila.st.webengine;singleton:=true
+Bundle-Version: 1.0.0

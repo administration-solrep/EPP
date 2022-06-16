@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="folderDetailLine(label, value)" th:aria-label="${label}">
+            <tr class="folder-detail__table-line">
+                <td class="folder-detail__table-cell folder-detail__table-cell--label" th:text="${label}"></td>
+                <td class="folder-detail__table-cell folder-detail__table-cell--value" th:text="${value}"></td>
+            </tr>
+        </div>
+    </body>
+</html>

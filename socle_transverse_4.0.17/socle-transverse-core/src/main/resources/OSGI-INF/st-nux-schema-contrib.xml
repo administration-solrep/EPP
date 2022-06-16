@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Surcharge des schémas par defaut de Nuxeo -->
+<component name="fr.dila.st.nux.core.schema">
+	<require>org.nuxeo.ecm.core.CoreExtensions</require>
+
+	<extension target="org.nuxeo.ecm.core.schema.TypeService" point="schema">
+
+		<!-- Redefinition du schema dublincore pour supprimer les champs ne servant 
+			a rien -->
+		<schema name="dublincore" src="schemas/st_dublincore.xsd" prefix="dc" override="true" />
+	</extension>
+
+</component>

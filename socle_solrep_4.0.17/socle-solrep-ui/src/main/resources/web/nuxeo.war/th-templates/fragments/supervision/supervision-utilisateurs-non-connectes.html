@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="supervisionUtilisateursNonConnectes"
+            id="d_supervisionUtilisateursNonConnectes_content"
+            th:with="title=#{supervision.table.nb.utilisateurs.trouves(${#lists.size(resultList)})}"
+        >
+            <form class="grid__row m-t-3 m-b-6" id="dateForm">
+                <div class="grid__col grid__col--middle form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label for="dateConnexion" id="dateConnexion_label" class="form-label">
+                                <span th:text="#{supervision.date.connexion}">Label</span>
+                                <span class="form-label__required-text" th:text="#{form.input.required}">(requis)</span>
+                            </label>
+                            <div class="form-input__icon-group"></div>
+                        </div>
+                        <div class="form-input__header-bottom"></div>
+                    </div>
+                    <div class="form-input__container">
+                        <div
+                            th:replace="fragments/components/input-date-picker :: inputDatePicker(
+                                'datepicker_description_form_input_date_connexion',
+                                'dateConnexion',
+                                'dateConnexion',
+                                true,
+                                ${dateConnexion},
+                                false)"
+                        ></div>
+                    </div>
+                    <div id="form_input_datepicker_description" class="form-input__footer"></div>
+                </div>
+                <div class="grid__col grid__col--middle">
+                    <button
+                        type="button"
+                        id="searchButton"
+                        class="base-btn base-btn--submit base-btn--default"
+                        onclick="getUsersNotConnected()"
+                        th:text="#{supervision.btn.rechercher}"
+                    >
+                        Rechercher
+                    </button>
+                    <button
+                        id="btn-reset-sup"
+                        class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent base-btn--uppercased"
+                        type="button"
+                        onclick="reinitSearchSupervision()"
+                    >
+                        <span aria-hidden="true" class="icon icon--cross-bold"></span>
+                        <span class="search-bar__reset-button-text" th:text="#{command.supervision.clear}"
+                            >Réinitialiser</span
+                        >
+                    </button>
+                </div>
+            </form>
+
+            <div id="result-list">
+                <th:block th:if="${not #strings.isEmpty(dateConnexion)}">
+                    <div
+                        th:replace="fragments/supervision/table-supervision-utilisateurs :: tableSupervisionUtilisateurs(${title}, ${idTable})"
+                    ></div>
+                </th:block>
+            </div>
+        </div>
+    </body>
+</html>

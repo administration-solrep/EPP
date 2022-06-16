@@ -1,0 +1,112 @@
+<c:if test="true"
+  xmlns:nxu="http://nuxeo.org/nxweb/util"
+  xmlns:a4j="http://richfaces.org/a4j"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:c="http://java.sun.com/jstl/core"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+<c:if test="#{webActions.checkFilter('only_for_manager')}">
+
+  <nxu:set var="logFiles" value="#{logsViewerActions.logFiles}" cache="true">
+    <c:if test="#{logFiles.size > 1}">
+      <div class="tabsBar subtabsBar">
+        <h:form>
+          <ul>
+            <c:forEach var="logFile" items="#{logFiles}">
+              <nxu:set var="selectedClass" value="#{nxu:test(logFile == logsViewerActions.selectedLogFile, 'selected', '')}">
+                <li class="#{selectedClass}">
+                  <h:commandLink
+                    action="#{logsViewerActions.setSelectedLogFile(logFile)}"
+                    immediate="true">
+                    <h:outputText value="#{logsViewerActions.getFileName(logFile)}" />
+                  </h:commandLink>
+                </li>
+              </nxu:set>
+            </c:forEach>
+          </ul>
+        </h:form>
+      </div>
+    </c:if>
+  </nxu:set>
+
+  <div class="globalActions">
+    <div class="globalActionBar">
+      <div class="contextActions">
+        <h:form>
+          <h:commandButton styleClass="button"
+            value="#{messages['command.logs.viewer.DownloadLogFile']} #{logsViewerActions.getFileName(logsViewerActions.selectedLogFile)}"
+            action="#{logsViewerActions.downloadLogFile()}"/>
+        </h:form>
+      </div>
+    </div>
+  </div>
+
+  <div class="clear"></div>
+
+  <!-- do not format the spans as we are in a pre-wrap div -->
+  <div class="textBlock codeBlock">
+    <span>...</span>
+    <div class="jsLogsViewer">
+      <c:forEach var="logLine" items="#{logsViewerActions.initialLogLines}">
+        <c:if test="#{empty logLine.line}">
+<span><f:verbatim>&amp;nbsp;</f:verbatim></span>
+        </c:if>
+        <c:if test="#{!empty logLine.line}">
+          <nxu:set var="styleClass"
+            value="#{nxu:test(logLine.status == 'DEBUG', 'debug', nxu:test(logLine.status == 'WARN', 'warning', nxu:test(logLine.status == 'ERROR', 'error', '')))}">
+<span class="#{styleClass}">#{logLine.line}</span>
+          </nxu:set>
+        </c:if>
+      </c:forEach>
+    </div>
+    <span><h:graphicImage value="/img/standart_waiter.gif" /></span>
+  </div>
+
+  <a4j:outputPanel id="hiddenLogsViewerPanel"
+    styleClass="displayN"
+    layout="block">
+    <h:form id="logsViewerHiddenLogsForm">
+      <a4j:poll interval="3000"
+        render="hiddenLogsViewerPanel" >
+        <a4j:attachQueue ignoreDupResponses="true"/>
+      </a4j:poll>
+    </h:form>
+
+    <div class="jsHiddenLogsViewer">
+      <c:forEach var="logLine" items="#{newLogLines}">
+        <c:if test="#{empty logLine.line}">
+<span><f:verbatim>&amp;nbsp;</f:verbatim></span>
+        </c:if>
+        <c:if test="#{!empty logLine.line}">
+          <nxu:set var="styleClass"
+            value="#{nxu:test(logLine.status == 'DEBUG', 'debug', nxu:test(logLine.status == 'WARN', 'warning', nxu:test(logLine.status == 'ERROR', 'error', '')))}">
+<span class="#{styleClass}">#{logLine.line}</span>
+          </nxu:set>
+        </c:if>
+      </c:forEach>
+    </div>
+
+    <script type="text/javascript">
+      var newChildren = jQuery('.jsHiddenLogsViewer span');
+      if (newChildren.length > 0) {
+        var shouldScroll = jQuery(window).scrollTop() + jQuery(window).height() === jQuery(document).height();
+
+        var existingChildren = jQuery('.jsLogsViewer span');
+        var totalLength = existingChildren.length + newChildren.length;
+        var exceedingChildren = totalLength - #{logsViewerActions.getLogMaxLinesCount()};
+        if (exceedingChildren > 0) {
+          jQuery('.jsLogsViewer span:lt(' + exceedingChildren + ')').remove();
+        }
+
+        jQuery(".jsLogsViewer").append(jQuery(".jsHiddenLogsViewer").contents());
+
+        if(shouldScroll) {
+          jQuery(window).scrollTop(jQuery(document).height());
+        }
+      }
+    </script>
+  </a4j:outputPanel>
+
+</c:if>
+
+</c:if>

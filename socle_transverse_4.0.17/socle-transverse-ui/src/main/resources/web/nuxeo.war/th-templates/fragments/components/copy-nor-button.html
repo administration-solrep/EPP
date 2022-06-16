@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="copy-nor-button(elemId, type, isModale)">
+            <button
+                type="button"
+                class="js-copy link-copy__button js-tooltip base-btn base-btn--button base-btn--default base-btn--icon-action-blue base-btn--center base-btn--transparent"
+                th:data-copy="${elemId}"
+                th:data-tippy-content="#{idcomponent.element.help(${type})}"
+                th:data-tippy-default-content="#{idcomponent.element.help(${type})}"
+                data-tippy-trigger="mouseenter focus click"
+                th:attr="onclick=${isModale} ? |copyText(this)|"
+            >
+                <span class="sr-only" th:text="#{idcomponent.element.help(${type})}">Aide</span>
+                <span aria-hidden="true" class="link-copy__icon icon icon--copy"></span>
+            </button>
+            <span aria-live="assertive" class="link-copy__live sr-only"></span>
+        </th:block>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div class="leftmenu" th:fragment="rechercheMenu">
+            <div class="accordion accordion--aside accordion--is-opened">
+                <div class="accordion__header accordion__header--action accordion__header--aside">
+                    <h2 class="accordion-title-lvl-2">[[#{leftBLocks.recherche.menu.title}]]</h2>
+                    <button
+                        class="js-toggle accordion__header__button"
+                        id="accordion__header__trash"
+                        aria-expanded="true"
+                        aria-controls="recherche_menu"
+                        th:aria-label="#{leftBLocks.recherche.menu.title}"
+                        type="button"
+                        data-icon-closed="add-without-background"
+                        data-icon-opened="substract-without-background"
+                        data-toggle="accordion__content"
+                    >
+                        <span
+                            class="icon bubble-icon bubble-icon--neutral accordion__icon accordion__icon--aside icon--substract-without-background"
+                            aria-hidden="true"
+                        ></span>
+                    </button>
+                </div>
+                <div
+                    aria-hidden="false"
+                    id="recherche_menu"
+                    class="accordion__content accordion__content--aside accordion__content--is-opened accordion__content--has-background"
+                >
+                    <nav aria-label="Accès rapides" class="quick-access">
+                        <ul class="quick-access__list">
+                            <th:block th:each="menu, nb : ${leftMenuList}">
+                                <li class="quick-access__item">
+                                    <a th:href="@{${menu.url}}" class="quick-access__link link"
+                                        ><span
+                                            aria-hidden="true"
+                                            class="icon icon--arrow-right link__icon link__icon--prepend link__icon--small"
+                                        ></span>
+                                        <span class="menuTitle" th:text="${menu.titleKey}">Titre</span>
+                                    </a>
+                                </li>
+                            </th:block>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

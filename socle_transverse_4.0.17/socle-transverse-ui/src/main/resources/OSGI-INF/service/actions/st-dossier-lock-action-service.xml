@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.ui.services.actions.DossierLockActionService">
+	<implementation class="fr.dila.st.ui.services.actions.component.DossierLockActionComponent" />
+
+	<service>
+		<provide interface="fr.dila.st.ui.services.actions.DossierLockActionService" />
+	</service>
+
+</component>

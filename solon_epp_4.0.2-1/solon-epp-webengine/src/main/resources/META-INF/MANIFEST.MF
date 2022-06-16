@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: SOLON EPP WebEngine
+Bundle-SymbolicName: fr.dila.solonepp.webengine;singleton:=true
+Bundle-Version: 1.0.0
+Nuxeo-WebModule: org.nuxeo.ecm.webengine.app.WebEngineModule
+Nuxeo-Component: OSGI-INF/automation-contrib.xml

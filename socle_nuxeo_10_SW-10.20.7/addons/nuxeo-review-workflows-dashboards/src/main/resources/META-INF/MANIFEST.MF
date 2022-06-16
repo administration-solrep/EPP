@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: Nuxeo Review Workflows Dashboards
+Bundle-SymbolicName: org.nuxeo.ecm.review.workflows.dashboards;singleton:=true
+Bundle-Vendor: Nuxeo
+Bundle-Version: 1.0.0
+Nuxeo-Component: OSGI-INF/actions-contrib.xml

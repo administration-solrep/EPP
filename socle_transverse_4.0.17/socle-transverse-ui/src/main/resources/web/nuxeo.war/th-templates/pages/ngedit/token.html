@@ -1,0 +1,14 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout :: layout (template=~{::main},templateClass='', description=#{solon.edit.page.description}, title=#{solon.edit.title})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <h1 class="base-title base-title--lvl-1" th:text="#{solon.edit.title}">Reconnexion SOLON EDIT</h1>
+        <p th:text="#{solon.edit.reconnect.text}"></p>
+        <a id="nglink" href="#" th:text="#{solon.edit.reconnect.link}">Reconnecter SOLON Edit</a>
+        <input type="hidden" id="editToken" th:value="${token}" />
+    </main>
+</html>

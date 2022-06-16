@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://dila.fr/solon/schemas/jeton_doc"
+    xmlns:jtd="http://dila.fr/solon/schemas/jeton_doc"
+>
+
+	<xs:include schemaLocation="base.xsd" />
+
+	<!-- *********************************************************************** 
+		Reprise des données du socle transverse. *********************************************************************** -->
+	<!-- Document associé -->
+	<xs:element name="id_doc" type="xs:string" />
+
+	<!-- UUID du jeton maitre -->
+	<xs:element name="id_jeton" type="xs:long" />
+
+	<!-- Type de webservice pour lequel ce jeton est dédié -->
+	<xs:element name="type_webservice" type="xs:string" />
+
+	<!-- Identifiant du proprietaire pour lequel ce jeton est dédié (ID d'un 
+		noeud de l'organigramme) -->
+	<xs:element name="id_owner" type="xs:string" />
+
+	<!-- Type de modification pour lequel ce jeton est dédié -->
+	<xs:element name="type_modification" type="xs:string" />
+	
+	<!-- Id complementaire lié au jeton. Permet par exemple de renseigner un id de fichier pour la transmission de saisine rectificative-->
+	<xs:element name="ids_complementaires" type="jtd:stringList" />
+	<!-- *********************************************************************** 
+		Données spécifiques à SOLON EPP. *********************************************************************** -->
+
+	<!-- Type de notification (OBJET_REF_UPDATE, OBJET_REF_RESET, VERSION_CREATE, 
+		...) -->
+	<xs:element name="notificationType" type="xs:string" />
+
+	<!-- Date de création de la notification -->
+	<xs:element name="created" type="xs:date" />
+
+	<!-- Nombre d'essais restants de notifications WS ( > 0 si il faut réessayer) -->
+	<xs:element name="wsRetryLeft" type="xs:int" default="0" />
+
+	<!-- Identifiant technique de l'objet de référence mis à jour -->
+	<xs:element name="objetRefId" type="xs:string" />
+
+	<!-- Type de l'objet de référence mis à jour (Acteur)... -->
+	<xs:element name="objetRefType" type="xs:string" />
+
+	<!-- Identifiant technique de l'événement -->
+	<xs:element name="evenementId" type="xs:string" />
+
+	<!-- Type d'événement -->
+	<xs:element name="evenementType" type="xs:string" />
+
+	<!-- État du cycle de vie de l'événement -->
+	<xs:element name="evenementLifeCycleState" type="xs:string" />
+
+	<!-- Identifiant technique de l'émetteur (annuaire LDAP) -->
+	<xs:element name="evenementEmetteur" type="xs:string" />
+
+	<!-- Identifiant technique du destinataire (annuaire LDAP) -->
+	<xs:element name="evenementDestinataire" type="xs:string" />
+
+	<!-- Identifiant technique des destinataires en copie (annuaire LDAP) -->
+	<xs:element name="evenementDestinataireCopie" type="jtd:stringList" />
+
+	<!-- Présence de pièce jointes -->
+	<xs:element name="versionPresencePieceJointe" type="xs:boolean" />
+
+	<!-- État du cycle de vie de la version -->
+	<xs:element name="versionLifeCycleState" type="xs:string" />
+
+	<!-- Objet de la version -->
+	<xs:element name="versionObjet" type="xs:string" />
+
+	<!-- Date d'horodatage de la version -->
+	<xs:element name="versionHorodatage" type="xs:date" />
+
+	<!-- Niveau de lecture -->
+	<xs:element name="versionNiveauLecture" type="xs:string" />
+
+	<!-- Niveau de lecture numéro -->
+	<xs:element name="versionNiveauLectureNumero" type="xs:int" />
+
+	<!-- Numéro de version majeur -->
+	<xs:element name="versionMajorVersion" type="xs:int" />
+
+	<!-- Numéro de version mineur -->
+	<xs:element name="versionMinorVersion" type="xs:int" />
+
+	<!-- Identifiant sénat (chaîne libre renseignable uniquement par le sénat) -->
+	<xs:element name="versionSenat" type="xs:string" />
+
+	<!-- Identifiant technique du dossier -->
+	<xs:element name="dossierId" type="xs:string" />
+
+	<!-- Nombre d'alertes posées sur le dossier, si supérieur à 0 le dossier 
+		est "en alerte" -->
+	<xs:element name="dossierAlerteCount" type="xs:int" />
+
+	<!-- Liste des corbeilles de distribution du message -->
+	<xs:element name="messageCorbeilleList" type="jtd:stringList" />
+
+	<!-- Etat du cycle de vie du message -->
+	<xs:element name="messageLifeCycleState" type="xs:string" />
+
+	<!-- Type du message (EMETTEUR, DESTINATAIRE, COPIE) -->
+	<xs:element name="messageType" type="xs:string" />
+
+	<!-- Vrai si les versions de cet événement nécessitent un accusé de réception -->
+	<xs:element name="messageArNecessaire" type="xs:boolean" default="false" />
+
+	<!-- Nombre de versions qui n'ont pas encore accusé réception par le destinataire -->
+	<xs:element name="messageArNonDonneCount" type="xs:int" default="0" />
+
+</xs:schema>

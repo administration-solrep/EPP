@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="searchResults(caption)"
+            class="tableForm relative"
+            th:data-url="@{${dataUrl}}"
+            th:data-ajaxurl="@{${dataAjaxUrl}}"
+            id="listeModeles"
+        >
+            <div class="overlay" th:id="result_overlay" aria-live="polite">
+                <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+            </div>
+            <th:block th:each="parameter : ${otherParameter}">
+                <input
+                    th:unless="${parameter.value ==null}"
+                    th:name="${parameter.key}"
+                    th:value="${parameter.value}"
+                    type="hidden"
+                    aria-hidden="true"
+                    data-isForm="true"
+                />
+            </th:block>
+            <input
+                th:if="${resultForm != null && resultForm.searchIntitule != null}"
+                name="searchIntitule"
+                th:value="${resultForm.searchIntitule}"
+                type="hidden"
+                aria-hidden="true"
+                data-isForm="true"
+            />
+
+            <th:block th:if="${#lists.isEmpty(resultList.liste) && !resultList.isSubstitutionTable}">
+                <br />
+                <h1 class="search-result-form__title base-title base-title--lvl-2">[[#{recherche.result.title}]]</h1>
+                <h2 class="search-result-form__subtitle base-title base-title--lvl-3">
+                    [[#{recherche.result.fdr.aucun}]]
+                </h2>
+            </th:block>
+            <th:block th:if="${#lists.isEmpty(resultList.liste) && resultList.isSubstitutionTable}">
+                <h2 class="search-result-form__subtitle base-title base-title--lvl-3">
+                    [[#{fdr.substituer.list.result.empty}]]
+                </h2>
+            </th:block>
+
+            <th:block th:unless="${!resultList.hasPagination || resultForm.defaultSize >= resultList.nbTotal}">
+                <div
+                    th:replace="fragments/components/nombre-document-page :: documentParPage(${resultForm}, 'modele_haut')"
+                ></div>
+            </th:block>
+
+            <th:block th:unless="${#lists.isEmpty(resultList.liste)}">
+                <a href="#skip_link_action-table_prev" id="skip_link_action-table_next" class="skip-link"
+                    >[[ #{skip.link.table.prev(#{modeleFDR.table.caption})} ]]</a
+                >
+                <div class="table-action">
+                    <div class="table-action__action-container table-action__action-container--left">
+                        <div class="table-action">
+                            <div class="table-action__action-container">
+                                <div class="table-action__group">
+                                    <th:block th:each="action : ${generaleActions}">
+                                        <button
+                                            th:replace="fragments/components/action-button :: action-button(${action}, true, '')"
+                                        ></button>
+                                    </th:block>
+                                </div>
+                                <div
+                                    class="actions-bar__group"
+                                    th:if="${massActions != null && !massActions.isEmpty()}"
+                                >
+                                    <th:block th:each="action : ${massActions}">
+                                        <button
+                                            th:replace="fragments/components/action-button-fixed :: action-button-fixed(${action}, true, '')"
+                                        ></button>
+                                    </th:block>
+                                </div>
+                                <div
+                                    class="actions-bar__group"
+                                    th:if="${selectionToolDossierActions !=null && !selectionToolDossierActions.isEmpty()}"
+                                >
+                                    <th:block th:each="action : ${selectionToolDossierActions}">
+                                        <button
+                                            th:replace="fragments/components/action-button-fixed  :: action-button-fixed(${action}, false, '')"
+                                        ></button>
+                                    </th:block>
+                                </div>
+                                <div
+                                    class="actions-bar__group"
+                                    th:if="${favorisRechercheFDRActions !=null && !favorisRechercheFDRActions.isEmpty()}"
+                                >
+                                    <th:block th:each="action : ${favorisRechercheFDRActions}">
+                                        <button
+                                            th:replace="fragments/components/action-button-fixed  :: action-button-fixed(${action}, false, '')"
+                                        ></button>
+                                    </th:block>
+                                </div>
+                                <div
+                                    class="actions-bar__group"
+                                    th:if="${favorisDossierActions !=null && !favorisDossierActions.isEmpty()}"
+                                >
+                                    <th:block th:each="action : ${favorisDossierActions}">
+                                        <button
+                                            th:replace="fragments/components/action-button-fixed  :: action-button-fixed(${action}, false, '')"
+                                        ></button>
+                                    </th:block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-action__action-container table-action__action-container--right">
+                        <th:block
+                            th:unless="${!resultList.hasPagination || resultList.liste.size == resultList.nbTotal}"
+                        >
+                            <div
+                                th:replace="fragments/table/pagination :: pagination (${resultForm}, ${resultForm.page}, 'modele_haut', ${resultList.nbTotal})"
+                            ></div>
+                        </th:block>
+                        <th:block th:unless="${#lists.isEmpty(lstSortableColonnes)}">
+                            <div th:replace="fragments/table/multipleSortIcon :: multipleSortIcon()"></div>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table class="custom-table">
+                        <caption class="sr-only" th:text="${caption}">
+                            Tablau des modèles de feuilles de route
+                        </caption>
+                        <thead class="table-header custom-table__header">
+                            <tr class="table-header__line">
+                                <th
+                                    th:if="${resultList.hasSelect}"
+                                    scope="col"
+                                    class="table-header__cell table-header__cell--check"
+                                >
+                                    <div class="form-choice-input">
+                                        <input
+                                            type="checkbox"
+                                            name="selectAllModele"
+                                            onclick="selectAllCheckBox(this);"
+                                            class="form-choice-input__input js-custom-table-header-check"
+                                            id="selectAllModele"
+                                            autocomplete="off"
+                                        />
+                                        <label
+                                            for="selectAllModele"
+                                            th:title="#{modeleFDR.liste.selectAll}"
+                                            th:data-select-label="#{modeleFDR.liste.selectAll}"
+                                            th:data-deselect-label="#{modeleFDR.liste.deselectAll}"
+                                            class="form-label form-choice-input__label form-choice-input__label--checkbox form-choice-input__label--hidden-label"
+                                        >
+                                            <span th:text="#{modeleFDR.liste.selectAll}">Sélectionner tout</span>
+                                        </label>
+                                    </div>
+                                </th>
+                                <th:block th:each="colonne : ${lstColonnes}">
+                                    <th:block th:if="${colonne.visible && colonne.sortable}">
+                                        <th
+                                            scope="col"
+                                            class="table-header__cell table-header__cell--with-filter-action"
+                                            th:aria-sort="${colonne.sortValue == 'asc' ? 'ascending' : (colonne.sortValue== 'desc' ? 'descending' : '')}"
+                                            th:with="order=${colonne.sortOrder}"
+                                        >
+                                            <button
+                                                th:replace="fragments/table/sortableHeader :: sortableHeader (#{__${colonne.label}__},${colonne.sortValue},${colonne.sortName},${colonne.sortId},${colonne.inverseSort})"
+                                            ></button>
+                                        </th>
+                                    </th:block>
+
+                                    <th:block th:if="${colonne.visible && !colonne.sortable}">
+                                        <th
+                                            scope="col"
+                                            class="table-header__cell"
+                                            th:if="${colonne.isLabelVisible}"
+                                            th:text="${colonne.label !=null? #messages.msg(colonne.label) : ''}"
+                                        >
+                                            Label
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="table-header__cell"
+                                            th:unless="${colonne.isLabelVisible}"
+                                        >
+                                            <span class="sr-only" th:text="#{__${colonne.label}__}">Label</span>
+                                        </th>
+                                    </th:block>
+                                </th:block>
+                            </tr>
+                        </thead>
+                        <tbody class="custom-table__body">
+                            <th:block th:unless="${#lists.isEmpty(resultList.liste)}">
+                                <tr
+                                    class="custom-table__table-line table-line table-line--with-check table-line--with-action-column table-line--complex-line"
+                                    th:each="item, nb : ${resultList.liste}"
+                                    th:data-id="${item.id}"
+                                >
+                                    <td
+                                        th:if="${resultList.hasSelect}"
+                                        class="table-line__cell table-line__cell--check"
+                                    >
+                                        <div class="form-choice-input">
+                                            <input
+                                                th:id="|select-${item.id}|"
+                                                type="checkbox"
+                                                th:name="${'checkbox-'+nb.count}"
+                                                onclick="selectTableCheckbox(this)"
+                                                class="form-choice-input__input js-custom-table-line-check"
+                                                autocomplete="off"
+                                            />
+                                            <label
+                                                th:for="|select-${item.id}|"
+                                                th:title="#{modeleFDR.liste.selectOne(${item.intitule})}"
+                                                th:data-select-label="#{modeleFDR.liste.selectOne(${item.intitule})}"
+                                                th:data-deselect-label="#{modeleFDR.liste.deselectOne(${item.intitule})}"
+                                                class="form-label form-choice-input__label form-choice-input__label--checkbox form-choice-input__label--hidden-label"
+                                            >
+                                                <span th:text="#{modeleFDR.liste.selectOne(${item.intitule})}"
+                                                    >Sélectionner</span
+                                                >
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <th:block th:each="colonne : ${lstColonnes}">
+                                        <td
+                                            th:if="${'modeleFDR.content.header.etat'.equals(colonne.label)}"
+                                            class="table-line__cell"
+                                        >
+                                            <th:block th:each="statut : ${statutModeleFDR}">
+                                                <div
+                                                    th:if="${item.etat eq statut.name}"
+                                                    th:data-tippy-content="#{${statut.value}}"
+                                                    tabindex="0"
+                                                    class="base-tooltip js-tooltip"
+                                                >
+                                                    <span
+                                                        aria-hidden="true"
+                                                        class="table-line__icon icon icon--v-align base-btn--icon-action-blue"
+                                                        th:classappend="${statut.icon}"
+                                                    ></span>
+                                                    <span class="sr-only" th:text="#{${statut.value}}">Statut</span>
+                                                </div>
+                                            </th:block>
+                                        </td>
+                                        <td
+                                            th:if="${'modeleFDR.content.header.intitule'.equals(colonne.label)}"
+                                            class="table-line__cell"
+                                        >
+                                            <th:block th:unless="${resultList.isSubstitutionTable}">
+                                                <a
+                                                    th:href="@{|${baseUrl}/modele/modification?id=${item.id}|} + '#main_content'"
+                                                    th:target="${#strings.equals('/ajax/recherche/derniers/resultats/consultes', dataAjaxUrl)} ? '_blank' : '_self'"
+                                                    class="link"
+                                                    th:text="${item.intitule}"
+                                                >
+                                                    intitule
+                                                </a>
+                                            </th:block>
+
+                                            <th:block th:if="${resultList.isSubstitutionTable}">
+                                                <a
+                                                    th:unless="${isMassSubstitution != null && isMassSubstitution}"
+                                                    th:href="@{|/dossier/${idDossier}/substitution/consult?idModele=${item.id}|} + '#main_content'"
+                                                    class="link"
+                                                    th:text="${item.intitule}"
+                                                    >intitule</a
+                                                >
+                                                <a
+                                                    th:if="${isMassSubstitution != null && isMassSubstitution}"
+                                                    th:href="@{|/selection/substitution/consult?idModele=${item.id}|} + '#main_content'"
+                                                    class="link"
+                                                    th:text="${item.intitule}"
+                                                    >intitule</a
+                                                >
+                                            </th:block>
+                                        </td>
+                                        <td
+                                            class="table-line__cell"
+                                            th:if="${'modeleFDR.content.header.numero'.equals(colonne.label)}"
+                                            th:text="${item.numero}"
+                                        ></td>
+                                        <td
+                                            class="table-line__cell"
+                                            th:if="${'modeleFDR.content.header.ministere'.equals(colonne.label)}"
+                                            th:text="${item.ministere}"
+                                        ></td>
+                                        <td
+                                            th:if="${'modeleFDR.content.header.auteur'.equals(colonne.label)}"
+                                            class="table-line__cell"
+                                            th:text="${item.auteur}"
+                                        ></td>
+                                        <td
+                                            th:if="${'modeleFDR.content.header.derniereModif'.equals(colonne.label)}"
+                                            class="table-line__cell"
+                                            th:text="${item.derniereModif}"
+                                        ></td>
+                                        <td
+                                            th:if="${'header.label.lock'.equals(colonne.label)}"
+                                            class="table-line__cell"
+                                        >
+                                            <div class="table-line__action-column-container">
+                                                <th:block th:if="${item.lock}">
+                                                    <div
+                                                        th:data-tippy-content="#{modeleFDR.lock(${item.lockOwner})}"
+                                                        tabindex="0"
+                                                        class="base-tooltip js-tooltip"
+                                                    >
+                                                        <span
+                                                            aria-hidden="true"
+                                                            class="table-line__action-button base-btn__icon icon icon--lock base-btn--icon-action-blue"
+                                                        ></span>
+                                                        <span
+                                                            class="sr-only"
+                                                            th:text="#{modeleFDR.lock(${item.lockOwner})}"
+                                                            >Verrouiller</span
+                                                        >
+                                                    </div>
+                                                </th:block>
+                                            </div>
+                                        </td>
+                                        <td
+                                            th:if="${'header.label.actions'.equals(colonne.label)}"
+                                            class="table-line__cell"
+                                        >
+                                            <div class="table-line__action-column-container">
+                                                <th:block
+                                                    th:if="${not #lists.isEmpty(item.actions)}"
+                                                    th:with="dropdownRight=true"
+                                                >
+                                                    <div
+                                                        th:replace="fragments/components/dropdown-action :: dropdown-action(
+                                                            'modele-action', 
+                                                            ${item.actions}, 
+                                                            'icon--ellipsis', 
+                                                            false, 
+                                                            'dossier.divers.dropdown.tooltip', 
+                                                            'base-btn--transparent base-btn--light base-btn--md-icon', 
+                                                            false, 
+                                                            'base-drop-down--light'
+                                                            )"
+                                                    ></div>
+                                                </th:block>
+                                            </div>
+                                        </td>
+                                    </th:block>
+                                </tr>
+                            </th:block>
+                            <th:block th:if="${#lists.isEmpty(resultList.liste)}">
+                                <td colspan="5" th:text="#{label.fdr.nombre(0)}">Aucun résultat</td>
+                            </th:block>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-action">
+                    <div class="table-action__action-container table-action__action-container--left">
+                        <div class="table-action">
+                            <div class="table-action__action-container">
+                                <div class="table-action__group">
+                                    <th:block th:each="action : ${generaleActions}">
+                                        <button
+                                            th:replace="fragments/components/action-button :: action-button(${action}, true, '')"
+                                        ></button>
+                                    </th:block>
+                                </div>
+                                <div
+                                    class="actions-bar__group"
+                                    th:if="${massActions != null && !massActions.isEmpty()}"
+                                >
+                                    <th:block th:each="action : ${massActions}">
+                                        <button
+                                            th:replace="fragments/components/action-button-fixed :: action-button-fixed(${action}, true, '')"
+                                        ></button>
+                                    </th:block>
+                                </div>
+                                <div
+                                    class="actions-bar__group"
+                                    th:if="${selectionToolDossierActions !=null && !selectionToolDossierActions.isEmpty()}"
+                                >
+                                    <th:block th:each="action : ${selectionToolDossierActions}">
+                                        <button
+                                            th:replace="fragments/components/action-button-fixed  :: action-button-fixed(${action}, false, '')"
+                                        ></button>
+                                    </th:block>
+                                </div>
+                                <div
+                                    class="actions-bar__group"
+                                    th:if="${favorisRechercheFDRActions !=null && !favorisRechercheFDRActions.isEmpty()}"
+                                >
+                                    <th:block th:each="action : ${favorisRechercheFDRActions}">
+                                        <button
+                                            th:replace="fragments/components/action-button-fixed  :: action-button-fixed(${action}, false, '')"
+                                        ></button>
+                                    </th:block>
+                                </div>
+                                <div
+                                    class="actions-bar__group"
+                                    th:if="${favorisDossierActions !=null && !favorisDossierActions.isEmpty()}"
+                                >
+                                    <th:block th:each="action : ${favorisDossierActions}">
+                                        <button
+                                            th:replace="fragments/components/action-button-fixed  :: action-button-fixed(${action}, false, '')"
+                                        ></button>
+                                    </th:block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-action__action-container table-action__action-container--right">
+                        <th:block
+                            th:unless="${!resultList.hasPagination || resultList.liste.size == resultList.nbTotal}"
+                        >
+                            <div
+                                th:replace="fragments/table/pagination :: pagination (${resultForm}, ${resultForm.page}, 'modele_bas', ${resultList.nbTotal})"
+                            ></div>
+                        </th:block>
+                        <th:block th:unless="${#lists.isEmpty(lstSortableColonnes)}">
+                            <div th:replace="fragments/table/multipleSortIcon :: multipleSortIcon()"></div>
+                        </th:block>
+                    </div>
+                </div>
+                <a href="#skip_link_action-table_next" id="skip_link_action-table_prev" class="skip-link"
+                    >[[ #{skip.link.table.next(#{modeleFDR.table.caption})} ]]</a
+                >
+            </th:block>
+
+            <!-- Modale tri multiple-->
+            <div
+                th:replace="fragments/table/multipleSort :: multipleSort(${lstSortedColonnes}, ${lstSortableColonnes})"
+            ></div>
+        </div>
+    </body>
+</html>

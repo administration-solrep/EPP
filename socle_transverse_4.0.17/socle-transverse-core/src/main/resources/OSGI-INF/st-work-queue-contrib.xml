@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.st.core.work.queue.contrib">
+    <extension point="queues" target="org.nuxeo.ecm.core.work.service">
+        <queue id="SendMailWorkQueue">
+            <name>SendMailWorkQueue</name>
+            <maxThreads>2</maxThreads>
+            <category>SendMailWork</category>
+        </queue>
+
+        <queue id="SendSearchResultsUsersQueue">
+            <name>SendSearchResultsUsersQueue</name>
+            <maxThreads>2</maxThreads>
+            <category>SendSearchResultsUsersListener</category>
+        </queue>
+
+        <queue id="ScrollingCallProcedureQueue">
+            <name>ScrollingCallProcedureQueue</name>
+            <maxThreads>2</maxThreads>
+            <category>ScrollingCallProcedure</category>
+        </queue>
+
+        <queue id="CallProcedureQueue">
+            <name>CallProcedureQueue</name>
+            <maxThreads>2</maxThreads>
+            <category>CallProcedure</category>
+        </queue>
+
+        <queue id="RemoveDuplicateCaseLinksForCaseQueue">
+            <name>"RemoveDuplicateCaseLinksForCaseQueue"</name>
+            <maxThreads>2</maxThreads>
+            <category>RemoveDuplicateCaseLinksForCaseWork</category>
+        </queue>
+    </extension>
+</component>

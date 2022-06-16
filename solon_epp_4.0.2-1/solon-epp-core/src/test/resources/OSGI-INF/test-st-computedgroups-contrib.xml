@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<!-- Cet composant contribue le calculateur de groupes de l'application SolonEpp. 
+	Le calculateur permet d'injecter les groupes correspondant aux fonctions 
+	unitaires de l'utilisateur dans son Principal. -->
+<component name="fr.dila.solonepp.core.computedgroups.contrib">
+	<!-- Calculateurs de groupes -->
+	<extension target="org.nuxeo.ecm.platform.computedgroups.ComputedGroupsServiceImpl" point="computer">
+		<!-- Injection des groupes correspondant aux fonctions unitaires -->
+		<groupComputer name="baseFunctionGroupComputer">
+			<computer>fr.dila.st.core.groupcomputer.BaseFunctionGroupComputer</computer>
+		</groupComputer>
+	</extension>
+</component>

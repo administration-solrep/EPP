@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<component name="com.nuxeo.case-management.eventContrib">
+
+  <extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener">
+
+    <listener
+            name="createMailboxd"
+            async="false"
+            postCommit="false"
+            class="fr.dila.cm.core.event.CreateMailboxIdListener"
+            priority="160"
+        >
+      <event>aboutToCreate</event>
+    </listener>
+
+    <listener
+            name="updateMailboxRights"
+            async="false"
+            postCommit="false"
+            class="fr.dila.cm.core.event.UpdateMailboxRightsListener"
+            priority="170"
+        >
+      <event>documentCreated</event>
+      <event>documentModified</event>
+    </listener>
+
+  </extension>
+
+</component>

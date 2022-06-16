@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div class="header-lt" th:fragment="appPresentation">
+            <img
+                width="76"
+                height="83"
+                th:src="@{/img/header-logo-mini.png}"
+                th:alt="#{application.logo.label}"
+                class="header-lt__logo"
+            />
+            <p class="header-lt__title base-title base-title--lvl-1" th:utext="${config.name}"></p>
+            <div class="header-lt__subtitle">
+                <p
+                    th:if="${!config.production}"
+                    class="badge-sword"
+                    th:style="'color:#' + ${config.color} + '; background-color:#' + ${config.backgroundColor}"
+                    th:utext="${config.environmentName}"
+                ></p>
+            </div>
+        </div>
+    </body>
+</html>

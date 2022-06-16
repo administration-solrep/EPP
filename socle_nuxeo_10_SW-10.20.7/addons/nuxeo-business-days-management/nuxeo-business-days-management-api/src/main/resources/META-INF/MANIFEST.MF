@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Nuxeo Business Days Management API
+Bundle-SymbolicName: org.nuxeo.business.days.management.api;singleton=true
+Bundle-Vendor: Nuxeo

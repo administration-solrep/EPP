@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            class="tableForm"
+            th:data-url="@{${dataUrl}}"
+            th:fragment="searchResults"
+            th:data-ajaxurl="@{${dataAjaxUrl}}"
+            id="listeBatch"
+            style="position: relative; clear: both;"
+            th:with="tableCaption=${tableCaption} ?: #{batch.suivi.result.caption}"
+        >
+            <div class="overlay" id="result_overlay" aria-live="polite">
+                <img width="29" height="29" th:src="@{/img/loader.svg}" alt="" />
+            </div>
+            <a href="#skip_link_action-table_prev" id="skip_link_action-table_next" class="skip-link"
+                >[[ #{skip.link.table.prev(${tableCaption})} ]]</a
+            >
+            <th:block th:unless="${resultForm.defaultSize >= resultList.nbTotal}">
+                <div
+                    th:replace="fragments/components/nombre-document-page :: documentParPage(${resultForm}, 'batch_haut')"
+                ></div>
+            </th:block>
+            <div class="table-action">
+                <div class="table-action__action-container table-action__action-container--right">
+                    <th:block th:unless="${resultList.liste.size == resultList.nbTotal}">
+                        <div
+                            th:replace="fragments/table/pagination :: pagination (${resultForm}, ${resultForm.page},'batch_haut',${resultList.nbTotal})"
+                        ></div>
+                    </th:block>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="custom-table">
+                    <caption class="sr-only" th:text="${tableCaption}">
+                        Tableau de la liste des batchs trouvés
+                    </caption>
+                    <thead class="table-header custom-table__header">
+                        <tr class="table-header__line">
+                            <th
+                                scope="col"
+                                class="table-header__cell"
+                                th:each="colonne : ${resultList.listeColonnes}"
+                                th:text="${#messages.msg(colonne.label)}"
+                            >
+                                Début
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body custom-table__body">
+                        <tr class="custom-table__table-line table-line" th:each="batch : ${resultList.liste}">
+                            <td class="table-line__cell">
+                                <p
+                                    class="table-line__cell-content"
+                                    th:text="${#dates.format(batch.debut, 'dd/MM/yyy HH:mm')}"
+                                >
+                                    15/10/2020 22:00
+                                </p>
+                            </td>
+                            <td class="table-line__cell">
+                                <p
+                                    class="table-line__cell-content"
+                                    th:text="${#dates.format(batch.fin, 'dd/MM/yyy HH:mm')}"
+                                >
+                                    15/10/2020 22:15
+                                </p>
+                            </td>
+                            <td class="table-line__cell">
+                                <p class="table-line__cell-content">
+                                    <a
+                                        th:href="@{|/admin/batch/suivi/${batch.id}#main_content|}"
+                                        class="link"
+                                        th:text="${batch.nom}"
+                                        >UpdateQuestionConnexeBatch</a
+                                    >
+                                </p>
+                            </td>
+                            <td class="table-line__cell">
+                                <p class="table-line__cell-content" th:text="${batch.serveur}">
+                                    idlv-solrep-rep-inte-01
+                                </p>
+                            </td>
+                            <td class="table-line__cell">
+                                <p class="table-line__cell-content" th:text="${batch.tomcat}">1</p>
+                            </td>
+                            <td class="table-line__cell">
+                                <p class="table-line__cell-content" th:text="${batch.erreurs}">1</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-action">
+                <div class="table-action__action-container table-action__action-container--right">
+                    <th:block th:unless="${resultList.liste.size == resultList.nbTotal}">
+                        <div
+                            th:replace="fragments/table/pagination :: pagination (${resultForm}, ${resultForm.page}, 'batch_haut', ${resultList.nbTotal})"
+                        ></div>
+                    </th:block>
+                </div>
+            </div>
+            <a href="#skip_link_action-table_next" id="skip_link_action-table_prev" class="skip-link"
+                >[[ #{skip.link.table.next(${tableCaption})} ]]</a
+            >
+        </div>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page recherche', title=|Recherche ${titre}|)}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <form
+            th:unless="${#strings.isEmpty(categorie)}"
+            onsubmit="doGlobalSearch()"
+            class="formDynamique"
+            id="formDynamique"
+        >
+            <div class="m-y-6 page-reponses-search__buttons">
+                <button
+                    type="button"
+                    onclick="reinitialiserSearch()"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--bordered"
+                    th:text="#{rapidSearch.label.button.reinitialiser}"
+                >
+                    Reinitialiser
+                </button>
+                <button
+                    type="submit"
+                    class="base-btn base-btn--submit base-btn--default"
+                    id="rechercheCommunicationSubmit"
+                    th:text="#{rapidSearch.label.button.rechercher}"
+                >
+                    Rechercher
+                </button>
+            </div>
+
+            <h1 class="base-title base-title--lvl-1" th:text="|Recherche ${titre}|">Titre recherche</h1>
+            <th:block
+                th:replace="fragments/recherche/rechercheDynamiqueForm :: formRechercheDynamique(${categorie}, ${lstWidgets})"
+            ></th:block>
+
+            <div class="m-y-6 page-reponses-search__buttons">
+                <button
+                    type="button"
+                    onclick="reinitialiserSearch()"
+                    class="base-btn base-btn--button base-btn--default base-btn--light base-btn--bordered"
+                    th:text="#{rapidSearch.label.button.reinitialiser}"
+                >
+                    Reinitialiser
+                </button>
+                <button
+                    type="submit"
+                    class="base-btn base-btn--submit base-btn--default"
+                    id="rechercheCommunicationSubmit"
+                    th:text="#{rapidSearch.label.button.rechercher}"
+                >
+                    Rechercher
+                </button>
+            </div>
+        </form>
+
+        <div class="m-t-6" id="resultList">
+            <div th:replace="fragments/recherche/resultatsRecherche :: resultList"></div>
+        </div>
+    </main>
+</html>

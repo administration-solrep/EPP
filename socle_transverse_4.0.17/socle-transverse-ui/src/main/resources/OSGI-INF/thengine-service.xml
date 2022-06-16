@@ -1,0 +1,10 @@
+<component name="fr.dila.st.ui.thengineservice">
+
+  <implementation class="fr.dila.st.ui.th.impl.ThEngineComponent" />
+  
+  <service>
+    <provide interface="fr.dila.st.ui.th.ThEngineService" />
+  </service>
+  
+
+</component>

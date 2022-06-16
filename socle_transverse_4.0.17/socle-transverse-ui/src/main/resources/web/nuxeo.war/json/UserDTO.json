@@ -1,0 +1,17 @@
+{
+    "id": 2,
+    "nom": "ANDRÉ",
+    "prenom": "Nicolas",
+    "utilisateur": "anicolas",
+    "mel": "nicolas.andre@sword-group.com",
+    "dateDebut": "01/01/2020",
+    "civilite": "Monsieur",
+    "temporaire": "Non",
+    "dateFin": "31/12/2030",
+    "adresse": "1 rue de la Republique",
+    "codePostal": "75001",
+    "ville": "PARIS",
+    "telephone": "0624953678",
+    "profils": ["Documentaliste", "Contributeur Ministériel"],
+    "postes": ["Contributeur_DPMA_MT", "Validateur_DPMA_MT"]
+}

@@ -1,0 +1,33 @@
+<widget name="NAME" type="incremental_smart_query_condition">
+	<labels>
+		<label mode="any">LABEL</label>
+	</labels>
+	<translated>true</translated>
+	<properties widgetMode="edit">
+		<property name="searchField">SEARCH_FIELD</property>
+		<property name="category">CATEGORY</property>
+		<propertyList name="availableOperators">
+			<value>=</value>
+			<value>IS NULL</value>
+			<value>IS NOT NULL</value>
+		</propertyList>
+	</properties>
+	<subWidgets>
+		<widget name="posteorgaWidget" type="template">
+			<translated>true</translated>
+			<fields>
+				<field>posteValue</field>
+			</fields>
+			<properties widgetMode="any">
+				<property name="template">/widgets/organigramme_select_node_widget.xhtml</property>
+				<property name="organigrammeSelectionType">POSTE_TYPE</property>
+				<property name="organigrammeSelectionMode">SINGLE</property>
+			</properties>
+			<widgetModes>
+				<mode value="any">
+             <![CDATA[#{(not empty value.conditionalOperator and value.operatorArity == 0) ? 'hidden' : mode}]]>
+				</mode>
+			</widgetModes>
+		</widget>
+	</subWidgets>
+</widget>

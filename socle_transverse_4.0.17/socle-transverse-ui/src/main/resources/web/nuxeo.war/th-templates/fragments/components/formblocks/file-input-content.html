@@ -1,0 +1,17 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="file-input-content(noms)">
+            <ul class="form-file__file-label-list" th:each="nom,nb : ${noms}">
+                <li class="form-file__file-label-item" th:id="|${nb.index}-file|">
+                    <div class="file-label">
+                        <p class="file-label__content file-label__content--sm">
+                            <span class="file-label__content-inner" th:text="${nom}"></span>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

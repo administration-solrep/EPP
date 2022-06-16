@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.epp.ui.services.actions.component.EvenementTypeActionComponent">
+	<implementation class="fr.dila.epp.ui.services.actions.component.EvenementTypeActionComponent" />
+
+	<service>
+		<provide interface="fr.dila.epp.ui.services.actions.EvenementTypeActionService" />
+	</service>
+
+</component>

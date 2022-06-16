@@ -1,0 +1,140 @@
+{
+	"id": "715b370a-06df-4633-a9a9-81750481b77d",
+	"intitule": "SE Europe et affaires étrangères (modèle SGG) (COPIE)",
+	"idMinistere": "",
+	"libelleMinistere": "Ministère",
+	"modeleParDefaut": true,
+	"titreQuestion": "Titre question",
+	"description": "",
+	"idDirection": "",
+	"libelleDirection": "Direction pilote",
+	"anRubriqueComp": [],
+	"anAnalyseComp": [],
+	"anTAnalyseComp": [],
+	"seThemeComp": [],
+	"seRubriqueComp": [],
+	"motsClesMinisteres": [],
+	"etat": "BROUILLON",
+	"indexationDTO": {
+		"indexationAN": [],
+		"indexationSENAT": [],
+		"indexationMinistere": [],
+		"directoriesAN": [],
+		"directoriesSENAT": [],
+		"directoriesMinistere": []
+	},
+	"isLock": false,
+	"isLockByCurrentUser": true,
+	"fdrDto": {
+		"table": {
+			"lines": [
+				{
+					"etat": {
+						"label": "etape.etat.valide.manuel",
+						"icon": "icon--arrow-triangle-right-circle"
+					},
+					"notes": [
+						{
+							"auteur": "moi",
+							"date": 3600000,
+							"content": "contenu note",
+							"actions": []
+						}
+					]
+				},
+				{
+					"etat": {
+						"label": "etape.etat.encours",
+						"icon": "icon--arrow-triangle-right-circle"
+					},
+					"notes": []
+				},
+				{
+					"etat": {
+						"label": "etape.etat.encours",
+						"icon": "icon--arrow-triangle-right-circle"
+					},
+					"notes": []
+				},
+				{
+					"etat": {
+						"label": "etape.etat.encours",
+						"icon": "icon--arrow-triangle-right-circle"
+					},
+					"notes": [
+						{
+							"auteur": "moi",
+							"date": 3600000,
+							"content": "contenu note",
+							"actions": []
+						}
+					]
+				},
+				{
+					"etat": {
+						"label": "etape.etat.encours",
+						"icon": "icon--arrow-triangle-right-circle"
+					},
+					"notes": [
+						{
+							"auteur": "moi",
+							"date": 3600000,
+							"content": "contenu note",
+							"actions": []
+						}
+					]
+				},
+				{
+					"etat": {
+						"label": "etape.etat.encours",
+						"icon": "icon--arrow-triangle-right-circle"
+					},
+					"notes": [
+						{
+							"auteur": "moi",
+							"date": 3600000,
+							"content": "contenu note",
+							"actions": []
+						},
+						{
+							"auteur": "moi",
+							"date": 3600000,
+							"content": "contenu note",
+							"actions": []
+						}
+					]
+				},
+				{
+					"etat": {
+						"label": "etape.etat.encours",
+						"icon": "icon--arrow-triangle-right-circle"
+					},
+					"notes": []
+				},
+				{
+					"etat": {
+						"label": "etape.etat.encours",
+						"icon": "icon--arrow-triangle-right-circle"
+					},
+					"notes": []
+				},
+				{
+					"etat": {
+						"label": "etape.etat.encours",
+						"icon": "icon--arrow-triangle-right-circle"
+					},
+					"notes": []
+				},
+				{
+					"etat": {
+						"label": "etape.etat.encours",
+						"icon": "icon--arrow-triangle-right-circle"
+					},
+					"notes": []
+				}
+			],
+			"totalNbLevel": 3
+		},
+		"tabActions": []
+	}
+}

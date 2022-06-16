@@ -1,0 +1,44 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout :: layout (template=~{::main},templateClass='', description='page administration',title='Résultats')}"
+>
+    <main role="main" id="main" class="main">
+        <h2>Votre recherche</h2>
+        <table role="presentation">
+	        <tbody>
+	            <tr>
+	                <td th:text="#{entete.recherche.legislature}">Législature :</td>
+	                <td th:text="${myForm.legislature != null ? myForm.legislature : ''}"></td>
+	            </tr>
+	            <tr>
+	                <td th:text="#{entete.recherche.questions}">Questions :</td>
+	                <td th:text="${myForm.questions != null ? myForm.questions : ''}"></td>
+	            </tr>
+	            <tr>
+	                <td th:text="#{entete.recherche.assemblees}">Assemblées :</td>
+	                <td th:text="${myForm.assemblee != null ? myForm.assemblee : ''}"></td>
+	            </tr>
+	            <tr>
+	                <td th:text="#{entete.recherche.reponses.avec}">Avec réponses :</td>
+	                <td th:text="${myForm.isRep == 'AvecReponse' ? 'oui': 'non'}"></td>
+	            </tr>
+	            <tr>
+	                <td th:text="#{entete.recherche.reponses.sans}">En attente de réponse :</td>
+	                <td th:text="${myForm.isAttente == 'SansReponse' ? 'oui' : 'non'}"></td>
+	            </tr>
+	            <tr>
+	                <td th:text="#{entete.recherche.numeros}">Numéros :</td>
+	                <td th:text="${myForm.numeros != null ? myForm.numeros : ''}"></td>
+	            </tr>
+            </tbody>
+        </table>
+
+        <h2 th:text="#{recherche.title}">Résultat de votre recherche</h2>
+        <div th:replace="fragments/table/searchResults"></div>
+
+        <div id="monDossier" th:replace="fragments/dossier/consult"></div>
+    </main>
+</html>

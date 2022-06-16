@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<th:block
+		th:fragment="text(label,isRequired,isModified,mode,name,value,validator)">
+		<li class="labellised-list__item">
+			<div class="labellised-list__label">[[${label}]]</div> 
+			<th:block
+				th:if="${mode.name() == 'DISPLAY'}">
+				<div class="labellised-list__description" th:classappend="${isModified}?'labellised-list\_\_description--warning'">[[${value}]]</div>
+			</th:block>			
+			<th:block
+				th:if="${mode.name() == 'CREATE' or mode.name() == 'EDIT'}">
+				<input th:value="${value}"/>
+				
+			</th:block>
+		</li>
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service utlisateur du socle transverse. -->
+<component name="fr.dila.st.core.service.STDefaultMailboxCreator">
+	
+	<implementation class="fr.dila.st.core.component.MailboxCreatorComponent" />
+
+	<service>
+		<provide interface="fr.dila.cm.service.MailboxCreator" />
+	</service>
+</component>

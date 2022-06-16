@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSreponse"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSreponse"
+	elementFormDefault="qualified"
+	xmlns:ar="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:rep="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:repco="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:qn="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions">
+
+	<!-- ====================================== -->
+	<!-- Imports -->
+	<!-- ====================================== -->
+	<xs:import schemaLocation="reponses-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons" />
+	<xs:import schemaLocation="reponses.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses" />
+	<xs:import schemaLocation="ar.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar" />
+	<xs:import schemaLocation="questions.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions" />
+
+	<!-- ====================================== -->
+	<!-- Method chercherReponses - Assemblees -->
+	<!-- ====================================== -->
+	<xs:element name="chercherReponsesRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Cherche les réponses émises par les ministères
+			</xs:documentation>
+		</xs:annotation>
+		<!-- ====================================== -->
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="jeton" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="id_questions" type="repco:QuestionId"
+						minOccurs="1" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+
+	</xs:element>
+
+	<xs:element name="chercherReponsesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="jeton_reponses" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="dernier_renvoi" type="xs:boolean"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="statut" type="repco:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="message_erreur" type="xs:string"
+					minOccurs="0" maxOccurs="1" />
+				<xs:element name="reponses" type="rep:ReponseQuestion"
+					minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- ====================================== -->
+	<!-- Method chercherErrataReponses - Assemblees -->
+	<!-- ====================================== -->
+	<xs:element name="chercherErrataReponsesRequest">
+		<xs:annotation>
+			<xs:documentation>
+				Cherche les errata de réponse émises par les ministères
+			</xs:documentation>
+		</xs:annotation>
+		<!-- ====================================== -->
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="jeton" type="xs:string" minOccurs="1"
+						maxOccurs="1" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="id_questions" type="repco:QuestionId"
+						minOccurs="1" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+
+	</xs:element>
+
+	<xs:element name="chercherErrataReponsesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="jeton_errata" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="dernier_renvoi" type="xs:boolean"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="statut" type="repco:TraitementStatut"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="message_erreur" type="xs:string"
+					minOccurs="0" maxOccurs="1" />
+				<xs:element name="errata_reponses" type="repco:ErratumReponse"
+					minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- ====================================== -->
+	<!-- Method envoyerReponses - Ministères -->
+	<!-- ====================================== -->
+	<xs:element name="envoyerReponsesRequest">
+		<xs:annotation>
+			<xs:documentation>
+				envoyer des réponses aux assemblées
+			</xs:documentation>
+		</xs:annotation>
+		<!-- ====================================== -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="reponseQuestion" type="rep:ReponseQuestion"
+					minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="envoyerReponsesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="resultat_traitement" type="ar:ResultatTraitement"
+					minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ====================================== -->
+	<!-- Method envoyerReponseErrata - Ministères -->
+	<!-- ====================================== -->
+	<xs:element name="envoyerReponseErrataRequest">
+		<xs:annotation>
+			<xs:documentation>
+				envoyer des erratas de reponses aux assemblées
+			</xs:documentation>
+		</xs:annotation>
+		<!-- ====================================== -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="erratum" type="repco:ErratumReponse"
+					minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="envoyerReponseErrataResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="resultat_traitement" type="ar:ResultatTraitement"
+					minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

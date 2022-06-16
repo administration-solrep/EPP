@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="fdrActions(id)" th:id="${id}">
+            <div class="table-action">
+                <div class="table-action__action-container">
+                    <div class="table-action__group">
+                        <th:block th:each="action : ${dto.tabActions}">
+                            <div
+                                th:replace="fragments/components/action-button :: action-button(${action}, false, '')"
+                            ></div>
+                        </th:block>
+                    </div>
+                    <div class="table-action__group">
+                        <th:block th:each="action : ${dto.secondTabActions}">
+                            <div
+                                th:replace="fragments/components/action-button-fixed :: action-button-fixed(${action}, false, '')"
+                            ></div>
+                        </th:block>
+                    </div>
+                    <th:block th:if="${dto.substitutionAction != null}">
+                        <div class="table-action__group">
+                            <div
+                                th:replace="fragments/components/action-button :: action-button(${dto.substitutionAction}, false, '')"
+                            ></div>
+                        </div>
+                    </th:block>
+                </div>
+                <th:block th:if="${dto.substitutionAction != null}">
+                    <div th:replace="fragments/fdr/copieFdrFromNor :: copieFdrFromNor()"></div>
+                </th:block>
+            </div>
+        </div>
+    </body>
+</html>

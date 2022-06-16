@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Cet composant contribue les types de documents du socle transverse. -->
+<component name="fr.dila.st.core.type">
+	<require>fr.dila.cm.schemas</require>
+	<require>fr.dila.st.core.schema</require>
+
+	<extension target="org.nuxeo.ecm.core.schema.TypeService" point="doctype">
+
+		<!-- *********************************************************************** 
+			Types de documents des jetons *********************************************************************** -->
+		<doctype name="JetonMaitreFolder" extends="Folder" coreType="JetonMaitreFolder" />
+		<doctype name="JetonDocFolder" extends="Folder" />
+		<doctype name="LockJetonMaitreFolder" extends="Folder" />
+		<doctype name="JetonMaitre">
+			<schema name="jeton_maitre" />
+		</doctype>
+		<doctype name="JetonDoc">
+			<schema name="jeton_doc" />
+			<schema name="uid" />
+			<prefetch />
+		</doctype>
+		<doctype name="LockJetonMaitre">
+			<schema name="lock_jeton_maitre" />
+		</doctype>
+
+		<!-- *********************************************************************** 
+			Types de documents des paramètres applicatifs *********************************************************************** -->
+		<doctype name="ParametreFolder" extends="OrderedFolder" coreType="ParametreFolder" />
+
+		<doctype name="Parametre" extends="Document" coreType="Parametre">
+			<schema name="dublincore" />
+			<schema name="parametre" />
+			<prefetch>
+				parametre.value
+			</prefetch>
+		</doctype>
+
+		<!-- *********************************************************************** 
+			Types de documents des alertes *********************************************************************** -->
+		<doctype name="Alert" extends="Document">
+			<schema name="dublincore" />
+			<schema name="alert" />
+			<prefetch>dc:title, dc:creator, dc:modified</prefetch>
+		</doctype>
+
+		<!-- *********************************************************************** 
+			Types de documents des commentaires *********************************************************************** -->
+		<doctype name="Comment" coreType="Comment" extends="Document">
+			<schema name="dublincore" />
+			<schema name="comment" />
+			<prefetch>dc:title, dc:creator, dc:modified</prefetch>
+		</doctype>
+
+		<!-- *********************************************************************** 
+			Types de documents de l'etat de l'application *********************************************************************** -->
+		<doctype name="EtatApplication" extends="Document" coreType="EtatApplication">
+			<schema name="dublincore" />
+			<schema name="etat_application" />
+			<prefetch>dc:title, dc:creator, dc:modified</prefetch>
+		</doctype>
+
+		<!-- *********************************************************************** 
+			Types de documents de notifications de suivi des batchs *********************************************************************** -->
+		<doctype name="NotificationsSuiviBatchs" extends="Document" coreType="NotificationsSuiviBatchs">
+			<schema name="dublincore" />
+			<schema name="notifications_suivi_batchs" />
+			<prefetch>dc:title, dc:creator, dc:modified</prefetch>
+		</doctype>
+
+		<!-- *********************************************************************** 
+			Types de documents de requete (Pas vraiment utilisé - voir aussi SmartFolder) 
+			*********************************************************************** -->
+		<doctype name="RequeteExperte" extends="Document">
+			<schema name="common" />
+			<schema name="dublincore" />
+			<schema name="smart_folder" />
+		</doctype>
+
+		<!-- *********************************************************************** 
+			Types de documents d'export *********************************************************************** -->
+		<doctype name="ExportFolderRoot" extends="Folder" />
+
+		<doctype name="ExportDocument" extends="Document">
+			<schema name="export_document" />
+			<prefetch />
+		</doctype>
+
+		<doctype name="AdminWorkspace" extends="Workspace" />
+
+	</extension>
+
+</component>

@@ -1,0 +1,22 @@
+<component name="fr.sword.idl.naiad.feuilleroute.core.test.chainsToType.contrib" version="1.0">
+  
+  <require>fr.sword.idl.naiad.feuilleroute.chainsToType.contrib</require>
+  
+<!--   <extension target="fr.sword.idl.naiad.feuilleroute.service" -->
+<!--     point="chainsToType"> -->
+<!--     <mapping documentType="FeuilleRouteStep" chainId="setWaiting" -->
+<!--       undoChainIdFromRunning="setUndo" undoChainIdFromDone="setUndo" /> -->
+<!--   </extension> -->
+  
+  <extension target="fr.sword.idl.naiad.feuilleroute.service" point="stepProcess">
+    <stepProcess
+            documentType="FeuilleRouteStep"
+            clazz="fr.sword.idl.naiad.nuxeo.feuilleroute.core.stepprocess.ChainStepProcess"
+        >
+      <parameter name="chainId" value="setWaiting" />
+      <parameter name="undoChainIdFromRunning" value="setUndo" />
+      <parameter name="undoChainIdFromDone" value="setUndo" />
+    </stepProcess>
+  </extension>
+
+</component>

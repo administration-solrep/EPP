@@ -1,0 +1,75 @@
+<link rel="import" href="../../../packages/polymer/polymer.html">
+<polymer-element name="nx-connection">
+  <template>
+    <link rel="stylesheet"  href="../semantic/elements/button.min.css" no-shim>
+    <link rel="stylesheet"  href="../semantic/elements/icon.min.css" no-shim>
+    <link rel="stylesheet"  href="../semantic/elements/image.min.css" no-shim>
+    <link rel="stylesheet"  href="../semantic/elements/label.min.css" no-shim>
+    <link rel="stylesheet"  href="../semantic/elements/segment.min.css" no-shim>
+
+    <link rel="stylesheet"  href="../semantic/collections/form.min.css" no-shim>
+    <link rel="stylesheet"  href="../semantic/collections/grid.min.css" no-shim>
+    <link rel="stylesheet"  href="../semantic/collections/message.min.css" no-shim>
+
+    <link rel="stylesheet"  href="../css/style.css" no-shim>
+
+    <div class="connection">
+      <div class="ui page grid">
+
+        <!-- TODO - Make this the same size as the sidebar button  -->
+        <div class="column connectblock">
+
+          <!-- Not connected -->
+          <template if="{{!isConnected}}">
+            <h1>Discover Nuxeo Platform API</h1>
+
+            <p>Connect the playground with a Nuxeo Platform server and browse the repository, the data structures, as well as the resources and command endpoints. Understand which attributes are expected, as well as which headers can be used by performing real tests.</p>
+
+            <div class="ui form attached segment">
+              <div class="ui grid">
+                <div class="row">
+                <div class="seven wide column">
+                  <input placeholder="http://localhost:8080/nuxeo" type="text" value="{{nuxeoUrl}}">
+                </div>
+                <div class="three wide column">
+                  <input placeholder="Login" type="text" value="{{username}}">
+                </div>
+                <div class="three wide column">
+                  <input placeholder="Password" type="password" value="{{password}}">
+                </div>
+                <div class="three wide column">
+                  <div class="ui fluid blue button" on-click="{{connect}}">Connect</div>
+                </div>
+                </div>
+              </div>
+            </div>
+
+            <template if="{{alerts.isNotEmpty}}">
+              <div class="ui bottom attached warning message">
+                 <div class="ui top right attached small label" style="font-size:.6rem;">
+                  make sure you activated the <a href="http://doc.nuxeo.com/nxdoc/cross-origin-resource-sharing-cors" target="_blank">CORS config</a> on your Nuxeo server
+                </div>
+                <template repeat="{{alert in alerts}}">
+                  <i class="icon warning"></i>{{alert.message}}<br/>
+                </template>
+              </div>
+            </template>
+
+          </template>
+
+          <!-- Connected -->
+          <template if="{{isConnected}}">
+
+            <div style="float:right">
+             {{username}}, connected to <a _href="{{nuxeoUrl}}" target="alt">{{nuxeoUrl}}</a>
+              <div class="ui blue button" on-click="{{disconnect}}">Sign out</div>
+
+            </div>
+          </template>
+
+        </div>
+      </div>
+    </div>
+  </template>
+  <script type="application/dart" src="nx_connection.dart"></script>
+</polymer-element>

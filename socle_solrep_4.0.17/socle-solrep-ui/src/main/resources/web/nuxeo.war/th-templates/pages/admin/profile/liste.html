@@ -1,0 +1,27 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{layouts/layout  :: layout (template=~{::main},templateClass='', description='Page des profils', title=#{menu.admin.user.profils.title})}"
+>
+    <main role="main" id="main_content" class="page-layout__content">
+        <div class="flex-row-actions align-right">
+            <th:block th:if="${createAction}">
+                <div
+                    th:replace="fragments/components/label-action-button :: label-action-button(${createAction}, false, '')"
+                ></div>
+            </th:block>
+        </div>
+        <h1 class="m-t-6 m-b-6 base-title base-title--lvl-1">[[#{menu.admin.user.profils.title}]]</h1>
+
+        <div th:replace="fragments/components/profileListe :: profileListe(${profils}, ${lstColonnes})"></div>
+        <div class="flex-row-actions align-right">
+            <th:block th:if="${createAction}">
+                <div
+                    th:replace="fragments/components/label-action-button :: label-action-button(${createAction}, false, '')"
+                ></div>
+            </th:block>
+        </div>
+    </main>
+</html>

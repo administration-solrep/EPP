@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="text(widget)">
+            <div
+                th:replace="fragments/components/formblocks/simple-input :: simpleInput(#{${widget.label}}, ${widget.required}, '', ${widget.name}, ${widget.name}, ${widget.getValueParamByName('valeur')}, true)"
+            ></div>
+            <th:block
+                th:if="${widget.name == 'emetteur'}"
+                th:each="option :${widget.getValueParamByName('lstValues')}"
+                th:with="institution=${widget.getValueParamByName('institution')}"
+            >
+                <input
+                    th:if="${institution != null && option.value == institution}"
+                    th:id="|${widget.name}-id|"
+                    th:name="|${widget.name}-id|"
+                    type="hidden"
+                    th:value="${option.key}"
+                />
+            </th:block>
+        </th:block>
+    </body>
+</html>

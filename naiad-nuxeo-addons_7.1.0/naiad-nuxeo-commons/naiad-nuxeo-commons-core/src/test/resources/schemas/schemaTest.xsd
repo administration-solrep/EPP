@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://www.nuxeo.org/ecm/schemas/schemaTest"
+  xmlns:st="http://www.nuxeo.org/ecm/schemas/schemaTest">
+
+  <xs:include schemaLocation="base.xsd" />
+
+  <xs:element name="a_string" type="xs:string" />
+  
+  <xs:element name="a_long" type="xs:long" />
+  
+  <xs:element name="a_date" type="xs:date" />
+  
+  <xs:element name="a_bool" type="xs:boolean" />
+  
+  <xs:element name="a_int" type="xs:integer" />
+  
+  <xs:element name="a_stringlist" type="st:stringList" />
+
+  <!-- Type complexe -->
+  <xs:element name="a_typeComplexe" type="st:typeComplexe" />
+  
+  <xs:element name="a_typeComplexeList" type="st:typeComplexeList" />
+  
+  <xs:complexType name="typeComplexeList">
+    <xs:sequence>
+      <xs:element name="typeComplexe" type="st:typeComplexe" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="typeComplexe">
+    <xs:sequence>
+      <xs:element name="a_string" type="xs:string" />
+      <xs:element name="a_date" type="xs:date" />      
+    </xs:sequence>
+  </xs:complexType>
+
+
+</xs:schema>

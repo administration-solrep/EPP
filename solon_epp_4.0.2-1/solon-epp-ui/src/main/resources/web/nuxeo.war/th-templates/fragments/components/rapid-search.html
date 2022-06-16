@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <!--/* bloc ajout piece joint en mode modification */-->
+        <th:block th:fragment="rapidSearch">
+            <div class="accordion">
+                <button
+                    aria-controls="accordion__content__accordion-general"
+                    aria-expanded="false"
+                    id="accordion__header__accordion-general"
+                    data-toggle="accordion__content"
+                    data-icon-opened="substract"
+                    data-icon-closed="add"
+                    class="accordion__header js-toggle accordion__header--default"
+                >
+                    [[#{rapidSearch.label}]]
+                    <span aria-hidden="true" class="icon accordion__icon accordion__icon--default icon--add"></span>
+                </button>
+                <div
+                    aria-hidden="true"
+                    id="accordion__content__accordion-general"
+                    class="accordion__content accordion__content--accordion--default accordion__content--has-background accordion__content--is-closed"
+                >
+                    <form class="search-form" id="searchForm">
+                        <fieldset>
+                            <legend class="sr-only">[[#{rapidSearch.label}]]</legend>
+                            <input
+                                name="idCorbeille"
+                                id="idCorbeille"
+                                th:value="${corbeille}"
+                                type="hidden"
+                                aria-hidden="true"
+                                data-isform="true"
+                            />
+                            <div class="grid__row">
+                                <div class="grid__col grid__col--middle">
+                                    <div
+                                        th:replace="fragments/components/formblocks/autocomplete-select :: autocompleteSelect('rapidSearch.label.typeCommunication', 'typeCommunication', 'typeCommunication', 'form.description.charlimit', ${rapidSearch.lstTypeCommunication}, ${ {} } , false, null, '3', '', '', '', false, true, false)"
+                                    ></div>
+                                </div>
+                            </div>
+
+                            <div class="grid__row m-t-6">
+                                <div class="grid__col grid__col--middle">
+                                    <div
+                                        th:replace="fragments/components/formblocks/simple-input :: simpleInput(#{rapidSearch.label.idDossier}, false, '', 'idDossier', 'idDossier', '', false)"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="grid__row m-t-6">
+                                <div class="grid__col grid__col--middle">
+                                    <div
+                                        th:replace="fragments/components/formblocks/simple-input :: simpleInput(#{rapidSearch.label.objetDossier}, false, '', 'objetDossier', 'objetDossier', '', false)"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="grid__row m-t-6">
+                                <div class="grid__col grid__col--middle">
+                                    <div
+                                        th:replace="fragments/components/formblocks/simple-input :: simpleInput(#{rapidSearch.label.idCommunication}, false, '', 'idCommunication', 'idCommunication', '', false)"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="grid__row m-t-6">
+                                <div class="grid__col grid__col--middle">
+                                    <div
+                                        th:replace="fragments/components/formblocks/date-picker-range :: datepickerRange('rapidSearch.label.dateCommunication', 'dateCommunication', null, null, false, false)"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="grid__row m-t-6">
+                                <div class="grid__col grid__col--middle">
+                                    <div
+                                        th:replace="fragments/components/formblocks/autocomplete-select :: autocompleteSelect('rapidSearch.label.emetteur', 'emetteur', 'emetteur', 'form.description.charlimit', ${rapidSearch.lstInstitution}, ${ {} } , false, null, '3', '', '', '', false, true, false)"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="grid__row m-t-6">
+                                <div class="grid__col grid__col--middle">
+                                    <div
+                                        th:replace="fragments/components/formblocks/autocomplete-select :: autocompleteSelect('rapidSearch.label.destinataire', 'destinataire', 'destinataire', 'form.description.charlimit', ${rapidSearch.lstInstitution}, ${ {} } , false, null, '3', '', '', '', false, true, false)"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="grid__row m-t-6">
+                                <div class="grid__col grid__col--middle">
+                                    <div
+                                        th:replace="fragments/components/formblocks/autocomplete-select :: autocompleteSelect('rapidSearch.label.copie', 'copie', 'copie', 'form.description.charlimit', ${rapidSearch.lstInstitution}, ${ {} } , false, null, '3', '', '', '', false, true, false)"
+                                    ></div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="page-reponses-search__buttons m-t-6">
+                            <button
+                                type="button"
+                                onclick="reinitialiserSearch()"
+                                class="base-btn base-btn--button base-btn--default base-btn--light base-btn--bordered"
+                            >
+                                [[#{rapidSearch.label.button.reinitialiser}]]
+                            </button>
+                            <button
+                                type="button"
+                                onclick="doSearch()"
+                                id="btnRecherche"
+                                class="base-btn base-btn--submit base-btn--default"
+                            >
+                                [[#{rapidSearch.label.button.rechercher}]]
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </th:block>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="requeteExperteChamp(champ)">
+            <div class="grid__row m-t-6">
+                <div class="grid__col grid__col--middle">
+                    <div class="form-select form-select--simple">
+                        <div class="form-input">
+                            <div class="form-input__header">
+                                <div class="form-input__header-top">
+                                    <label for="selectOperator" class="form-label">
+                                        <th:block th:text="#{requete.experte.operateur.label}"
+                                            >label operateur</th:block
+                                        >
+                                        <span class="form-label__required-text" th:text="#{form.input.required}"
+                                            >(requis)</span
+                                        >
+                                    </label>
+                                </div>
+                                <div class="form-input__header-bottom"></div>
+                            </div>
+                            <div class="form-input__container">
+                                <div class="form-select__field-wrapper">
+                                    <div class="form-select-input">
+                                        <select
+                                            name="operator"
+                                            id="selectOperator"
+                                            onchange="onSelectOperator()"
+                                            class="form-select-input__field form-select-input__field--simple"
+                                        >
+                                            <th:block th:each="op : ${typeChamp.availableOperators}">
+                                                <option
+                                                    th:value="${op.operator}"
+                                                    th:text="${#messages.msg(op.label)}"
+                                                    th:data-display="${op.display}"
+                                                ></option>
+                                            </th:block>
+                                        </select>
+                                        <span
+                                            aria-hidden="true"
+                                            class="form-select-input__arrow icon icon--arrow-bottom"
+                                        >
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="select-champ_description" class="form-input__footer">
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid__row m-t-6 value-fields aligned">
+                <div class="grid__col grid__col--middle" th:if="${typeChamp.label} == 'text_autocomplete'">
+                    <th:block
+                        th:replace="${typeChamp.pathToFragment} :: autocompleteSelect('requete.experte.valeur.label', 'value', 'value', ${parameters['description']}?:'form.description.nocharlimit', ${ {} }, ${ {} }, false, @{|/ajax/${parameters['isMgpp']?'mgpp/':''}recherche/suggestions?typeSelection=${parameters['autocomplete']}|}, ${parameters['charLimit']}?:'0', 'input', ${parameters['isMgpp']?'key':''}, ${parameters['isMgpp']?'label':''}, true, false, false)"
+                    ></th:block>
+                </div>
+                <div class="grid__col grid__col--middle" th:if="${typeChamp.label} == 'text'">
+                    <th:block
+                        th:replace="${typeChamp.pathToFragment} :: simpleInput(#{'requete.experte.valeur.label'}, false, ${parameters['description']}, 'value', 'value', '', false)"
+                    ></th:block>
+                </div>
+                <th:block th:if="${typeChamp.label} == 'dates'">
+                    <th:block th:replace="${typeChamp.pathToFragment} :: datePickerRequete(${champ})"></th:block>
+                </th:block>
+                <div class="grid__col grid__col--middle" th:if="${typeChamp.label} == 'multiple_select'">
+                    <th:block
+                        th:replace="${typeChamp.pathToFragment} :: autocompleteSelect('requete.experte.valeur.label', 'value', 'value', ${parameters['description']}?:'form.description.nocharlimit', ${parameters['options']}, ${ {} }, 'false', '', ${parameters['charLimit']}?:'0', '', '', '', false, true, false)"
+                    ></th:block>
+                </div>
+                <div class="grid__col grid__col--middle" th:if="${typeChamp.label} == 'organigramme'">
+                    <th:block
+                        th:replace="${typeChamp.pathToFragment} :: organigrammeSelectAutocomplete('requete.experte.valeur.label',false, 'value', 'value',${parameters['typeSelection']},'value',false,false,null, false)"
+                    ></th:block>
+                </div>
+                <div
+                    class="grid__col grid__col--middle"
+                    th:if="${typeChamp.label == 'simple_select' || typeChamp.label == 'simple_select_boolean'}"
+                    th:with="selectDataValidation=required, selectIsRequired=true"
+                >
+                    <th:block
+                        th:replace="${typeChamp.pathToFragment} :: simpleSelect('requete.experte.valeur.label', 'value', '',${parameters['options']}, '', 'false', 'recherche.empty.select.input.label')"
+                    ></th:block>
+                </div>
+            </div>
+        </th:block>
+    </body>
+</html>

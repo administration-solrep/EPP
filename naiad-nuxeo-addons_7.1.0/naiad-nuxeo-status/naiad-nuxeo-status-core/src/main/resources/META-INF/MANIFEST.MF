@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-Vendor: Nuxeo
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: naiad-nuxeo-status-core
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: naiad-nuxeo-status-core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Nuxeo-Component: OSGI-INF/status-service-contrib.xml,
+ OSGI-INF/status-config-contrib.xml
+

@@ -1,0 +1,10 @@
+<component name="fr.dila.epp.ui.RechercheMenuService">
+
+  <implementation class="fr.dila.epp.ui.services.impl.RechercheMenuServiceImpl" />
+  
+  <service>
+    <provide interface="fr.dila.epp.ui.services.RechercheMenuService" />
+  </service>
+  
+
+</component>

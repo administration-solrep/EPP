@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block
+            th:fragment="datepickerRange(label, id, valuebeginning, valueending, required, disabled)"
+            th:with="disableStartDatePickerRange=${disableStartDatePickerRange} ?: ${disabled},disableEndDatePickerRange=${disableEndDatePickerRange} ?: ${disabled}, name=${name} ?: ${id}"
+        >
+            <div class="form-input form-date-interval">
+                <div class="form-input__header">
+                    <div class="form-input__header-top">
+                        <p class="form-label">
+                            [[ ${label != '' ? #messages.msg(label) : ''} ]]
+                            <span
+                                th:if="${required}"
+                                class="form-label__required-text"
+                                th:text="#{form.input.required}"
+                            ></span>
+                        </p>
+                        <div class="form-input__icon-group">
+                            <span class="date-interval__icons--left"></span>
+                            <span class="date-interval__icons--right"></span>
+                        </div>
+                    </div>
+                    <div class="form-input__header-bottom"></div>
+                </div>
+                <div class="form-input__container">
+                    <fieldset class="form-date-interval__fieldset">
+                        <legend class="sr-only" th:text="${#messages.msg(label)}"></legend>
+                        <div class="form-date-interval__container">
+                            <div
+                                data-monthpickermode="first"
+                                class="form-date-picker-input datepicker form-date-interval__beginning"
+                                th:data-nextfield="|${id}Fin|"
+                            >
+                                <label th:text="#{input.datepicker.debut.label}" th:for="|${id}-debut-input|"></label>
+                                <br />
+                                <span th:id="|${id}-debut-description|" th:text="#{input.datepicker.format}"></span>
+                                <span
+                                    class="sr-only"
+                                    th:id="|${id}-debut-label|"
+                                    th:text="#{input.datepicker.debut.label}"
+                                    >Date de début</span
+                                >
+                                <input
+                                    type="text"
+                                    th:name="|${name}Debut|"
+                                    th:id="|${id}-debut-input|"
+                                    th:aria-describedby="|${id}-debut-description|"
+                                    placeholder="JJ/MM/AAAA"
+                                    aria-autocomplete="none"
+                                    class="form-date-picker-input__form-input date date-picker-range"
+                                    th:data-validation="|${required ? 'required_date_unique_format(dd/mm/yyyy)' : 'date_unique_format(dd/mm/yyyy)'}, date_superior_or_equal_to(${id}-fin-input)|"
+                                    th:value="${valuebeginning}"
+                                    th:disabled="${disableStartDatePickerRange}"
+                                    autocomplete="off"
+                                />
+                                <button
+                                    type="button"
+                                    class="form-date-picker-input__open-calendar-button base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent"
+                                    aria-haspopup="dialog"
+                                    th:disabled="${disableStartDatePickerRange}"
+                                >
+                                    <span
+                                        aria-hidden="true"
+                                        class="form-date-picker-input__icon icon icon--calendar icon--medium"
+                                    ></span>
+                                    <span class="sr-only" th:text="#{input.datepicker.button.label}"
+                                        >Ouvrir le calendrier</span
+                                    >
+                                </button>
+                                <div
+                                    th:replace="fragments/components/date-picker :: datePicker(|${id}-beginning|)"
+                                ></div>
+                            </div>
+
+                            <div
+                                data-monthpickermode="last"
+                                class="form-date-picker-input datepicker form-date-interval__ending"
+                                th:data-prevfield="|${id}Debut|"
+                            >
+                                <label th:text="#{input.datepicker.fin.label}" th:for="|${id}-fin-input|"></label>
+                                <br />
+                                <span th:id="|${id}-fin-description|" th:text="#{input.datepicker.format}"></span>
+                                <span class="sr-only" th:id="|${id}-fin-label|" th:text="#{input.datepicker.fin.label}"
+                                    >Date de fin</span
+                                >
+                                <input
+                                    type="text"
+                                    th:name="|${name}Fin|"
+                                    th:id="|${id}-fin-input|"
+                                    placeholder="JJ/MM/AAAA"
+                                    th:aria-describedby="|${id}-fin-description|"
+                                    aria-autocomplete="none"
+                                    class="form-date-picker-input__form-input date date-picker-range"
+                                    th:data-validation="|${required ? 'required_date_unique_format(dd/mm/yyyy)' : 'date_unique_format(dd/mm/yyyy)'}, date_inferior_or_equal_to(${id}-debut-input)|"
+                                    th:value="${valueending}"
+                                    th:disabled="${disableEndDatePickerRange}"
+                                    autocomplete="off"
+                                />
+                                <button
+                                    type="button"
+                                    class="form-date-picker-input__open-calendar-button base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent"
+                                    aria-haspopup="dialog"
+                                    th:disabled="${disableEndDatePickerRange}"
+                                >
+                                    <span
+                                        aria-hidden="true"
+                                        class="form-date-picker-input__icon icon icon--calendar icon--medium"
+                                    ></span>
+                                    <span class="sr-only" th:text="#{input.datepicker.button.label}"
+                                        >Ouvrir le calendrier</span
+                                    >
+                                </button>
+                                <div th:replace="fragments/components/date-picker :: datePicker(|${id}-ending|)"></div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="form-input__footer form-input-range__footer">
+                    <div
+                        th:id="|form_input_interval-date_description-${id}-beginning|"
+                        class="date-interval__description--left"
+                    ></div>
+                    <div
+                        th:id="|form_input_interval-date_description-${id}-ending|"
+                        class="date-interval__description--right"
+                    ></div>
+                </div>
+            </div>
+        </th:block>
+    </body>
+</html>

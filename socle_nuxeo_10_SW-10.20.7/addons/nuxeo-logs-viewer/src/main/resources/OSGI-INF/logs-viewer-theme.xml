@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.logs.viewer.theme">
+
+  <require>org.nuxeo.theme.nuxeo.webapp</require>
+
+  <extension target="org.nuxeo.ecm.platform.WebResources" point="bundles">
+
+    <bundle name="nuxeo_includes">
+      <resources append="true">
+        <resource>logs_viewer_tab.css</resource>
+      </resources>
+    </bundle>
+
+  </extension>
+
+  <extension target="org.nuxeo.ecm.platform.WebResources" point="resources">
+
+    <resource name="logs_viewer_tab.css">
+      <path>themes/css/logs_viewer_tab.css</path>
+    </resource>
+
+  </extension>
+
+</component>

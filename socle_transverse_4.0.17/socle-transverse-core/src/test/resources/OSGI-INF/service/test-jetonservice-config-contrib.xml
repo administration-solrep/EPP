@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<!-- Ce composant permet de contribuer des valeurs par défaut au service 
+	de configuration de l'application, afin d'effectuer les tests unitaires. -->
+<component name="fr.dila.st.core.test.service">
+	<extension target="fr.dila.st.core.service.ConfigService" point="configParameter">
+		<parameter>
+			<name>jeton.result.size</name>
+			<value>10</value>
+		</parameter>
+	</extension>
+</component>

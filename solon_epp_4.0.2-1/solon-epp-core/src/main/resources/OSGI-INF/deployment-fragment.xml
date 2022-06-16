@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<fragment version="1">
+
+	<require>fr.dila.st.core</require>
+	<require>fr.dila.solonepp.api</require>
+
+	<extension target="application#MODULE">
+		<module>
+			<ejb>${bundle.fileName}</ejb>
+		</module>
+	</extension>
+</fragment>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            class="link-copy"
+            th:fragment="id(context,textId, type, url, isModale, isUpperCased)"
+            th:with="elemId=${context + '_' + textId}"
+        >
+            <a
+                th:if="${url!=null}"
+                th:href="${url}"
+                class="link-copy__link link"
+                th:id="${elemId}"
+                th:text="${isUpperCased ? #strings.toUpperCase(textId) : textId}"
+            >
+                ID
+            </a>
+            <span
+                th:if="${url==null}"
+                th:id="${elemId}"
+                th:text="${isUpperCased ? #strings.toUpperCase(textId) : textId}"
+            >
+                ID
+            </span>
+            <th:block
+                th:replace="fragments/components/copy-nor-button :: copy-nor-button(${elemId}, ${type}, ${isModale})"
+            ></th:block>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:envoyerNotificationRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSnotification"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/notification"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSnotification ../../../../../../xsd/reponses/WSnotification.xsd ">
+
+	<p:type_notification>REPONSES_QUESTIONS</p:type_notification>
+
+	<p:id_questions>
+		<p2:numero_question>101</p2:numero_question>
+		<p2:type>QE</p2:type>
+		<p2:source>AN</p2:source>
+		<p2:legislature>13</p2:legislature>
+	</p:id_questions>
+
+	<p:id_questions>
+		<p2:numero_question>102</p2:numero_question>
+		<p2:type>QE</p2:type>
+		<p2:source>AN</p2:source>
+		<p2:legislature>13</p2:legislature>
+	</p:id_questions>
+
+	<p:id_questions>
+		<p2:numero_question>103</p2:numero_question>
+		<p2:type>QE</p2:type>
+		<p2:source>AN</p2:source>
+		<p2:legislature>13</p2:legislature>
+	</p:id_questions>
+
+	<p:id_questions>
+		<p2:numero_question>104</p2:numero_question>
+		<p2:type>QE</p2:type>
+		<p2:source>AN</p2:source>
+		<p2:legislature>13</p2:legislature>
+	</p:id_questions>
+
+
+</p:envoyerNotificationRequest>

@@ -1,0 +1,14 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+  <h:outputLabel style="margin: 5px 0; display: block">
+    #{messages['label.mediaPublishing.wistia.project']}:
+  </h:outputLabel>
+
+  <h:selectOneMenu value="#{value['project_id']}">
+    <f:selectItems value="#{wistiaPublishingActions.getProjects(mediaPublishing.selectedAccount)}"
+                   var="project"
+                   itemValue="#{project.hashedId}"
+                   itemLabel="#{project.name}"/>
+  </h:selectOneMenu>
+</div>

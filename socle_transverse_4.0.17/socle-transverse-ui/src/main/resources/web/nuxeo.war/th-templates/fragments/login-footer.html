@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <footer class="base-footer" th:fragment="login-footer">
+            <p class="base-footer__version" th:utext="|${config.name} version : ${config.version}|">Version</p>
+            <div class="text-center">
+                <a
+                    class="link"
+                    th:href="${conditionsAccessUrl}"
+                    target="_blank"
+                    th:title="#{link.new.window(#{footer.link.conditions.acces})}"
+                >
+                    <th:block th:text="#{footer.link.conditions.acces}">condition acces</th:block>
+                    <span aria-hidden="true" class="icon icon--external link__icon link__icon--append"></span>
+                </a>
+                <th:block th:if="${hasInfoAccessibilite}">
+                    <p>
+                        <span class="m-b-6" th:text="${messageAccessibiliteLogin}"></span><br />
+                        <a
+                            class="link"
+                            th:href="${urlDila}"
+                            target="_blank"
+                            th:title="#{link.new.window(#{login.link.accessibility.title})}"
+                        >
+                            <th:block th:text="#{login.link.accessibility}">accessibility link</th:block>
+                            <span aria-hidden="true" class="icon icon--external link__icon link__icon--append"></span>
+                        </a>
+                    </p>
+                </th:block>
+            </div>
+            <div class="environment">
+                <p
+                    th:if="${!config.production}"
+                    class="badge-sword"
+                    th:style="'color:#' + ${config.color} + '; background-color:#' + ${config.backgroundColor}"
+                    th:utext="${config.environmentName}"
+                ></p>
+            </div>
+        </footer>
+    </body>
+</html>

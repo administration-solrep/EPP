@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="organigrammeSelectAutocompletePosteEtape(label, labelRequired, myID, myName, typeSelection, idSelection, activatePosteFilter, isMulti, listItems, disabled, idTypeEtape)"
+            class="page-usersearch__autocomplete-wrap"
+            th:with="treeIconClass=${treeIconClass}?:'reponses', nbCharLimit=${nbCharLimit}?:'0', nbCharLimitDesc=${nbCharLimitDesc}?:'form.description.nocharlimit'"
+        >
+            <div th:class="|interstitial-overlay page-${treeIconClass}__tree-icon|">
+                <th:block
+                    th:replace="fragments/components/btn-load-organigramme-poste-etape :: btn-load-organigramme-poste-etape(${myID}, ${typeSelection}, ${activatePosteFilter}, ${idSelection}, ${isMulti}, ${disabled})"
+                >
+                </th:block>
+                <div th:id="'modal-'+${myID}" class="interstitial-overlay__content">
+                    <div
+                        class="interstitial"
+                        role="dialog"
+                        th:aria-labelledby="'dialogTitle-'+${myID}"
+                        style="position: relative;"
+                    >
+                        <div class="interstitial__header">
+                            <h1 th:id="'dialogTitle-'+${myID}" class="interstitial__title">
+                                [[#{organigramme.name.__${typeSelection}__}]]
+                            </h1>
+                            <button
+                                type="button"
+                                th:aria-describedby="|modal-${myID}|"
+                                class="interstitial__close base-btn base-btn--button base-btn--default base-btn--discret"
+                            >
+                                <span aria-hidden="true" class="icon icon--cross"></span
+                                ><span class="sr-only" th:text="#{organigramme.popup.close}">Fermer</span>
+                            </button>
+                        </div>
+                        <div class="interstitial__content">
+                            <div
+                                th:id="'orga-'+${myID}"
+                                class="tree-navigation"
+                                th:aria-label="|#{tree.title} #{organigramme.name}|"
+                                aria-live="polite"
+                            >
+                                <img
+                                    width="29"
+                                    height="29"
+                                    class="overlay"
+                                    th:id="|overlay-${myID}|"
+                                    th:src="@{/img/loader.svg}"
+                                    alt=""
+                                    style="background: grey;"
+                                />
+                            </div>
+                        </div>
+                        <div class="interstitial__footer">
+                            <button
+                                type="button"
+                                th:aria-describedby="|modal-${myID}|"
+                                class="interstitial__button base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                                th:text="#{button.label.cancel}"
+                            >
+                                label cancel
+                            </button>
+                        </div>
+                        <div tabindex="-1" class="interstitial-overlay__tabindex"></div>
+                    </div>
+                </div>
+            </div>
+            <th:block
+                th:replace="fragments/components/formblocks/autocomplete-select :: autocompleteSelect(${label}, ${myID}, ${myName}, ${nbCharLimitDesc}, ${ {} }, ${listItems}, ${disabled},
+                     @{|/ajax/organigramme/suggestions?typeSelection=${typeSelection}&activatePosteFilter=${activatePosteFilter}|},
+                    ${nbCharLimit},
+                    'input',
+                    'key',
+                    'label',
+                     ${labelRequired},
+                     ${isMulti},
+                     false)"
+            ></th:block>
+        </div>
+    </body>
+</html>

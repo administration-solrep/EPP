@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="datePicker(dateId)"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="form_input_datepicker_dlabel"
+            class="datepickerDialog date-picker-dialog"
+        >
+            <div class="header">
+                <button
+                    type="button"
+                    class="date-picker-dialog__header-button prevYear base-btn base-btn--button base-btn--default base-btn--transparent"
+                >
+                    <span class="sr-only">Année précédente</span
+                    ><span aria-hidden="true" class="icon icon--back bubble-icon"></span>
+                </button>
+                <button
+                    type="button"
+                    class="date-picker-dialog__header-button prevMonth base-btn base-btn--button base-btn--default base-btn--transparent"
+                >
+                    <span class="sr-only">Mois précédent</span
+                    ><span aria-hidden="true" class="icon icon--plain-arrow-left bubble-icon"></span>
+                </button>
+                <h2 th:id="|form_input_default_dlabel-${dateId}|" aria-live="polite" class="monthYear">Juillet 2020</h2>
+                <button
+                    type="button"
+                    class="date-picker-dialog__header-button nextMonth base-btn base-btn--button base-btn--default base-btn--transparent"
+                >
+                    <span class="sr-only">Mois suivant</span
+                    ><span aria-hidden="true" class="icon icon--plain-arrow-right bubble-icon"></span>
+                </button>
+                <button
+                    type="button"
+                    class="date-picker-dialog__header-button nextYear base-btn base-btn--button base-btn--default base-btn--transparent"
+                >
+                    <span class="sr-only">Année suivante</span
+                    ><span aria-hidden="true" class="icon icon--next bubble-icon"></span>
+                </button>
+            </div>
+            <table
+                th:id="|form_input_default_dp-grid-${dateId}|"
+                role="grid"
+                th:aria-labelledby="|form_input_default_dlabel-${dateId}|"
+                class="date-picker-dialog__dates dates"
+            >
+                <thead>
+                    <tr>
+                        <th scope="col" abbr="Lundi">Lu</th>
+                        <th scope="col" abbr="Mardi">Ma</th>
+                        <th scope="col" abbr="Mercredi">Me</th>
+                        <th scope="col" abbr="Jeudi">Je</th>
+                        <th scope="col" abbr="Vendredi">Ve</th>
+                        <th scope="col" abbr="Samedi">Sa</th>
+                        <th scope="col" abbr="Dimanche">Di</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="date-picker-dialog__dialog-button-group dialogButtonGroup">
+                <button
+                    type="button"
+                    class="dialogButton date-picker-dialog__dialog-button date-picker-dialog__dialog-button--cancel base-btn base-btn--button base-btn--default base-btn--center"
+                    value="cancel"
+                >
+                    Annuler
+                </button>
+                <button
+                    type="button"
+                    class="dialogButton date-picker-dialog__dialog-button date-picker-dialog__dialog-button--close base-btn base-btn--button base-btn--default base-btn--center"
+                    value="ok"
+                >
+                    Fermer
+                </button>
+            </div>
+            <div aria-live="polite" class="message date-picker-dialog__polite-message"></div>
+        </div>
+    </body>
+</html>

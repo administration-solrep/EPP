@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block
+            th:fragment="optin(label, id, name, options, value, disabled, onchange)"
+            th:with="noFormInputClass=${noFormInputClass} ?: false"
+        >
+            <div
+                class="form-optin"
+                th:classappend="${(disabled ? 'form-optin--disabled' : '') + (noFormInputClass ? '' : 'form-input')}"
+                th:with="labelPlainOptin=${labelPlainOptin} ?: false"
+            >
+                <fieldset class="form-optin__fieldset">
+                    <legend class="form-label">
+                        [[${#messages.msgOrNull(label) == null? label: #messages.msgOrNull(label)}]]
+                        <span th:if="${required}" class="form-label__required-text" th:text="#{form.input.required}"
+                            >(requis)</span
+                        >
+                    </legend>
+                    <div class="form-optin__optins">
+                        <div class="form-optin__container" th:each="option, status : ${options}">
+                            <input
+                                type="radio"
+                                th:id="|${id}-${option.key}|"
+                                th:value="${option.key}"
+                                th:name="${name}"
+                                th:attr="onchange=${onchange != null} ? @{${onchange}}"
+                                th:attrappend="onclick=${onClickOptin != null} ? ${onClickOptin}"
+                                class="form-optin__checkbox"
+                                th:checked="${(value == option.key)}"
+                                th:disabled="${disabled}"
+                                autocomplete="off"
+                            /><label
+                                th:for="|${id}-${option.key}|"
+                                th:id="|${id}-${option.key}_label|"
+                                th:text="${labelPlainOptin} ? ${option.value} : #{${option.value}}"
+                                class="form-optin__label"
+                            >
+                                Libellé
+                            </label>
+                        </div>
+                    </div>
+                    <div th:id="|${id}_description|" class="form-input__footer"></div>
+                </fieldset>
+            </div>
+        </th:block>
+    </body>
+</html>

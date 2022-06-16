@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="fileMulti(widget)">
+            <div class="labellised-list__label">[[${widget.label}]]</div>
+
+            <div class="labellised-list__description">
+                <th:block th:each="piece : ${widget.lstPieces}">
+                    <div th:classappend="${piece != null && piece.isNew ? 'labellised-list__subitem--warning' : ''}">
+                        <div
+                            class="labellised-list__subitem"
+                            th:classappend="${#lists.contains(piece.modifiedMetaList,'nom') ? 'labellised-list__subitem--warning' : ''}"
+                        >
+                            [[${piece.pieceJointeTitre}]]
+                        </div>
+                        <ul class="labellised-list__sublist">
+                            <li
+                                th:unless="${#strings.isEmpty(piece.pieceJointeUrl)}"
+                                class="labellised-list__subitem"
+                                th:classappend="${#lists.contains(piece.modifiedMetaList,'url') ? 'labellised-list__subitem--warning' : ''}"
+                            >
+                                <th:block th:if="${#strings.startsWith(piece.pieceJointeUrl,'http')}">
+                                    <a th:href="${piece.pieceJointeUrl}" class="link" target="_blank"
+                                        ><span
+                                            aria-hidden="true"
+                                            class="icon icon--link link__icon link__icon--prepend"
+                                        ></span>
+                                        [[${piece.pieceJointeUrl}]]
+                                    </a>
+                                </th:block>
+                                <th:block th:unless="${#strings.startsWith(piece.pieceJointeUrl, 'http')}">
+                                    <span
+                                        aria-hidden="true"
+                                        class="icon icon--link link__icon link__icon--prepend"
+                                    ></span>
+                                    [[${piece.pieceJointeUrl}]]
+                                </th:block>
+                            </li>
+                            <li
+                                th:each="fichier : ${piece.listPieceJointeFichier}"
+                                class="labellised-list__subitem"
+                                th:classappend="${#lists.contains(piece.modifiedFileList,fichier.nom) ? 'labellised-list__subitem--warning' : ''}"
+                                th:with="message=|Fichier ${fichier.nom} non trouvé sur le serveur|"
+                                th:attrappend="data-tippy-content=${fichier.link == null ? message : null},sr-only=${fichier.link == null ? message : null}"
+                            >
+                                <th:block th:if="${fichier.link == null}">
+                                    <span
+                                        aria-hidden="true"
+                                        class="icon icon--danger link__icon link__icon--prepend"
+                                    ></span>
+                                    [[${fichier.nom}]]
+                                </th:block>
+                                <th:block th:unless="${fichier.link == null}">
+                                    <a th:href="@{|/${fichier.link}|}" class="link" target="_blank"
+                                        ><span
+                                            aria-hidden="true"
+                                            class="icon icon--download link__icon link__icon--prepend"
+                                        ></span>
+                                        [[${fichier.nom}]]
+                                    </a>
+                                </th:block>
+                            </li>
+                            <li
+                                th:each="fichier : ${piece.deletedFileList}"
+                                class="labellised-list__subitem labellised-list__subitem--deleted"
+                            >
+                                [[${fichier}]] (supprimé)
+                            </li>
+                        </ul>
+                    </div>
+                </th:block>
+            </div>
+        </th:block>
+    </body>
+</html>

@@ -1,0 +1,1086 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component name="fr.dila.ss.ui.actions">
+
+    <require>fr.dila.st.ui.actions</require>
+
+    <extension point="actions" target="org.nuxeo.ecm.platform.actions.ActionService">
+        <!-- complete le menu principal -->
+        <action id="MAIN_TRAVAIL" label="menu.travail.title" order="10" type="link" link="/travail#sidebar">
+            <category>MAIN_MENU</category>
+        </action>
+
+        <action id="MAIN_SUIVI" label="menu.suivi.title" order="13" type="link" link="/suivi#sidebar">
+            <category>MAIN_MENU</category>
+        </action>
+        <action id="MAIN_STATS" label="menu.stats.title" order="14" type="link" link="/stats#main_content">
+            <category>MAIN_MENU</category>
+        </action>
+
+        <!-- complete le menu d'administration -->
+        <action id="ADMIN_MIGRATION" label="menu.admin.migration.title" order="30" type="menuSection">
+            <category>ADMIN_MENU</category>
+            <filter-id>accessAdminMigration</filter-id>
+            <properties>
+                <property name="submenu">ADMIN_MENU_MIGRATION</property>
+            </properties>
+        </action>
+        <action id="ADMIN_PARAM" label="menu.admin.param.title" order="40" type="menuSection">
+            <category>ADMIN_MENU</category>
+            <filter-id>accessAdminParam</filter-id>
+            <properties>
+                <property name="submenu">ADMIN_MENU_PARAM</property>
+            </properties>
+        </action>
+        <action id="ADMIN_JOURNAL" label="menu.admin.journal.title" order="50" type="menuSection">
+            <category>ADMIN_MENU</category>
+            <filter-id>accessAdminJournal</filter-id>
+            <properties>
+                <property name="submenu">ADMIN_MENU_JOURNAL</property>
+            </properties>
+        </action>
+
+        <!-- complete le menu d'administration feuille de route -->
+        <action
+            id="ADMIN_MENU_MODELE_RECHERCHE"
+            label="admin.modele.recherche.title"
+            order="20"
+            link="/admin/fdr/rechercher#main_content"
+            type="link"
+        >
+            <category>ADMIN_MENU_MODELE</category>
+            <filter-id>isAdminFonctionnelOrMinisteriel</filter-id>
+            <filter-id>accessAdminFdrRecherche</filter-id>
+        </action>
+
+        <!-- complete le menu d'administration des profils -->
+        <action
+            id="ADMIN_USER_PROFILS"
+            label="menu.admin.user.profils.title"
+            order="40"
+            link="/admin/profile/liste#main_content"
+            type="link"
+        >
+            <category>ADMIN_MENU_USER</category>
+            <filter-id>accessAdminUserProfil</filter-id>
+        </action>
+
+        <!-- complete le menu d'administration des actualités -->
+        <action
+            id="ADMIN_USER_ACTUALITES"
+            label="menu.admin.user.actualites.title"
+            order="60"
+            link="/admin/actualites#main_content"
+            type="link"
+        >
+            <category>ADMIN_MENU_USER</category>
+            <filter-id>accessAdminUserActualites</filter-id>
+        </action>
+
+        <!-- complete le menu d'administration de la supervision -->
+        <action
+            id="ADMIN_USER_SUPERVISION"
+            label="menu.admin.user.supervision.title"
+            order="80"
+            link="/admin/supervision#main_content"
+            type="link"
+        >
+            <category>ADMIN_MENU_USER</category>
+            <filter-id>accessAdminUserSupervision</filter-id>
+        </action>
+
+        <!-- complete le menu d'administration -->
+        <action id="ADMIN_MENU_MODELE" label="menu.admin.fdr.title" order="20" type="menuSection">
+            <category>ADMIN_MENU</category>
+            <filter-id>isAdminFonctionnelOrMinisteriel</filter-id>
+            <properties>
+                <property name="submenu">ADMIN_MENU_MODELE</property>
+            </properties>
+        </action>
+
+        <!-- complete le menu d'administration des migrations -->
+        <action
+            id="ADMIN_MIGRATION_MIGRATIONS"
+            label="menu.admin.migration.migrations.title"
+            order="10"
+            link="/admin/migration/migrations#main_content"
+            type="link"
+        >
+            <category>ADMIN_MENU_MIGRATION</category>
+            <filter-id>accessAdminMigration</filter-id>
+            <filter-id>accessAdminMigrationMigration</filter-id>
+        </action>
+        <action
+            id="ADMIN_MIGRATION_HISTORIQUE"
+            label="menu.admin.migration.historique.title"
+            order="20"
+            link="/admin/historique/migrations#main_content"
+            type="link"
+        >
+            <category>ADMIN_MENU_MIGRATION</category>
+            <filter-id>accessAdminMigration</filter-id>
+            <filter-id>accessAdminMigrationHistorique</filter-id>
+        </action>
+
+        <!-- complete le menu d'administration Paramètres -->
+        <action
+            id="ADMIN_PARAM_TECHNIQUE"
+            label="menu.admin.param.technique.title"
+            order="10"
+            link="/admin/param/technique#main_content"
+            type="link"
+        >
+            <category>ADMIN_MENU_PARAM</category>
+            <filter-id>accessAdminParamTechnique</filter-id>
+        </action>
+
+        <!-- complete le menu d'administration Journal Technique -->
+        <action
+            id="ADMIN_JOURNAL_TECHNIQUE"
+            label="menu.admin.journal.technique.title"
+            order="10"
+            link="/admin/journal/technique#main_content"
+            type="link"
+        >
+            <category>ADMIN_MENU_JOURNAL</category>
+            <filter-id>accessAdminJournal</filter-id>
+        </action>
+
+        <!-- Actions de gestion des profils -->
+
+        <action id="ADMIN_PROFIL_DELETE" label="admin.profil.supprimer" link="javascript:void(0)">
+            <properties>
+                <property name="classes">base-btn--secondary
+                </property>
+                <property name="actionType">modal</property>
+                <property name="dataControls">validation-dialog-modal</property>
+                <property name="title">admin.profil.supprimer.modal.title</property>
+                <property name="message">admin.profil.supprimer.modal.message</property>
+                <property name="function">doDeleteProfil()</property>
+                <property name="parameters">idProfil=##{PROFILE_ID}</property>
+            </properties>
+            <category>ADMIN_PROFIL_EDIT</category>
+            <filter-id>isProfilDeletable</filter-id>
+        </action>
+
+        <action id="ADMIN_PROFIL_EDIT" label="button.label.modifier" type="primary" link="javascript:goToEditProfil()">
+            <category>ADMIN_PROFIL_EDIT</category>
+            <filter-id>isProfilEdittable</filter-id>
+        </action>
+
+        <action
+            id="ADMIN_PROFIL_CREATE"
+            label="admin.profil.ajouter"
+            type="primary"
+            icon="icon--add"
+            link="/admin/profile/ajout#main_content"
+        >
+            <category>ADMIN_LIST_PROFIL</category>
+            <filter-id>isProfilCreatable</filter-id>
+        </action>
+       <!-- Action concernant un profil en modification / création-->      
+        <action
+            id="ADMIN_EDIT_PROFIL_CREATE"
+            label="button.label.creer"
+            type="primary"
+            link="javascript:createProfilFormSubmit()"
+        >
+            <category>PROFIL_CREATION_ACTIONS</category>
+            <filter-id>isProfilCreatable</filter-id>
+        </action>
+        <action
+            id="ADMIN_EDIT_PROFIL_MODIFY"
+            label="label.casemanagement.save"
+            type="primary"
+            link="javascript:updateProfilFormSubmit()"
+        >
+            <category>PROFIL_MODIFICATION_ACTIONS</category>
+            <filter-id>isProfilEdittable</filter-id>
+        </action>
+        
+
+        <!-- Actions générales pour la gestion des paramètres techniques -->
+        <!-- Edition d'un paramètre technique -->
+        <action
+            id="ADMIN_EDIT_PARAMETER_ACTION"
+            enabled="true"
+            order="1"
+            label="admin.parametres.action.modifier"
+            icon=" "
+            link="|/admin/param/${paramContext}/${parametre.name}/editer#main_content|"
+            type="link"
+        >
+            <category>ADMIN_EDIT_PARAMETER</category>
+            <filter-id>isAdminFonctionnel</filter-id>
+            <properties>
+                <property name="classes">base-btn--padded-lr
+                </property>
+            </properties>
+        </action>
+
+        <action
+            id="UTILISATEUR_ANNUAIRE"
+            label="menu.utilisateur.annuaire"
+            order="40"
+            link="/admin/users/liste#main_content"
+            type="link"
+        >
+            <category>UTILISATEUR_MENU</category>
+            <filter-id>accessUtilisateurAnnuaire</filter-id>
+        </action>
+
+        <!-- Actions sur les noeuds de l'organigramme -->
+        <!-- Création d'une entité -->
+        <action
+            id="CREATE_ENTITE"
+            link="|/admin/organigramme/ministere/creation?idParent=${nodeId}&amp;curMin=${curMin}#main_content|"
+            enabled="true"
+            order="1"
+            label="organigramme.manage.menu.create.entite"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isGouvernement</filter-id>
+            <properties>
+                <property name="actionType">alert</property>
+            </properties>
+        </action>
+
+        <!-- Création d'une unité structurelle -->
+        <action
+            id="CREATE_UNITE_STRUCTURELLE"
+            link="|/admin/organigramme/unitestructurelle/creation?idParent=${nodeId}&amp;curMin=${curMin}#main_content|"
+            enabled="true"
+            order="1"
+            label="organigramme.manage.menu.create.uniteStructurelle"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isMinistereOrUniteStructurelle</filter-id>
+            <properties>
+                <property name="actionType">alert</property>
+            </properties>
+        </action>
+
+        <!-- Création d'un poste -->
+        <action
+            id="CREATE_POSTE"
+            link="|/admin/organigramme/poste/creation?idParent=${nodeId}&amp;curMin=${curMin}#main_content|"
+            enabled="true"
+            order="2"
+            label="organigramme.manage.menu.create.poste"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isUniteStructurelle</filter-id>
+            <properties>
+                <property name="actionType">alert</property>
+            </properties>
+        </action>
+
+        <!-- Modification de gouvernement -->
+        <action
+            id="MODIFY_GOUVERNEMENT"
+            link="|/admin/organigramme/gouvernement/modification?idGvt=${nodeId}#main_content|"
+            enabled="true"
+            order="3"
+            label="organigramme.manage.menu.modify"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isGouvernement</filter-id>
+            <properties>
+                <property name="actionType">alert</property>
+            </properties>
+        </action>
+
+        <!-- Modification du ministere -->
+        <action
+            id="MODIFY_ENTITE"
+            link="|/admin/organigramme/ministere/modification?idMinistere=${nodeId}#main_content|"
+            enabled="true"
+            order="3"
+            label="organigramme.manage.menu.modify"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isMinistere</filter-id>
+            <filter-id>isAdminFonctionnel</filter-id>
+            <properties>
+                <property name="actionType">alert</property>
+            </properties>
+        </action>
+
+        <!-- Modification d'une unité structurelle -->
+        <action
+            id="MODIFY_UNITE_STRUCTURELLE"
+            link="|/admin/organigramme/unitestructurelle/modification?idUniteStructurelle=${nodeId}&amp;curMin=${curMin}#main_content|"
+            enabled="true"
+            order="3"
+            label="organigramme.manage.menu.modify"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isUniteStructurelle</filter-id>
+            <properties>
+                <property name="actionType">alert</property>
+            </properties>
+        </action>
+
+        <!-- Modification d'un poste -->
+        <action
+            id="MODIFY_POSTE"
+            link="|/admin/organigramme/poste/modification?id=${nodeId}&amp;curMin=${curMin}#main_content|"
+            enabled="true"
+            order="3"
+            label="organigramme.manage.menu.modify"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isPoste</filter-id>
+            <properties>
+                <property name="actionType">alert</property>
+            </properties>
+        </action>
+
+        <!-- Modification d'un poste WS -->
+        <action
+            id="MODIFY_POSTE_WS"
+            link="|/admin/organigramme/posteWs/modification?id=${nodeId}#main_content|"
+            enabled="true"
+            order="3"
+            label="organigramme.manage.menu.modify.posteWs"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isPosteWs</filter-id>
+            <properties>
+                <property name="actionType">alert</property>
+            </properties>
+        </action>
+
+        <!-- Suppression du noeud courant (sauf pour un ministère) -->
+        <action
+            id="REMOVE_NODE"
+            link="javascript:removeNode(this);"
+            enabled="true"
+            order="4"
+            label="organigramme.manage.menu.delete"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isNotGouvernement</filter-id>
+            <filter-id>isNotMinistere</filter-id>
+            <properties>
+                <property name="actionType">modalOrganigramme</property>
+                <property name="dataControls">modal-node-suppression</property>
+                <property name="dataId">suppression</property>
+            </properties>
+        </action>
+
+        <!-- Suppression d'un ministère -->
+        <action
+            id="REMOVE_MINISTERE"
+            link="javascript:removeNode(this);"
+            enabled="true"
+            order="4"
+            label="organigramme.manage.menu.delete"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isNotGouvernement</filter-id>
+            <filter-id>isMinistere</filter-id>
+            <filter-id>isAdminFonctionnel</filter-id>
+            <properties>
+                <property name="actionType">modalOrganigramme</property>
+                <property name="dataControls">modal-node-suppression</property>
+                <property name="dataId">suppression</property>
+            </properties>
+        </action>
+
+        <!-- Copie du poste courant -->
+        <action
+            id="COPY_NODE"
+            link="javascript:organigrammeCopyNode(this);"
+            enabled="true"
+            order="6"
+            label="organigramme.manage.menu.copy"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isPoste</filter-id>
+        </action>
+
+        <!-- Duplication du poste copié sans utilisateurs -->
+        <action
+            id="PASTE_NODE_WITHOUT_USER"
+            link="javascript:organigrammePasteNode(this,false);"
+            enabled="true"
+            order="6"
+            label="organigramme.manage.menu.pasteWithoutUser"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isMinistereOrUniteStructurelle</filter-id>
+            <filter-id>isNodeSelectedForCopy</filter-id>
+        </action>
+
+        <!-- Duplication du poste copié avec utilisateurs -->
+        <action
+            id="PASTE_NODE_WITH_USERS"
+            link="javascript:organigrammePasteNode(this,true);"
+            enabled="true"
+            order="7"
+            label="organigramme.manage.menu.pasteWithUsers"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isMinistereOrUniteStructurelle</filter-id>
+            <filter-id>isNodeSelectedForCopy</filter-id>
+        </action>
+
+        <!-- Export du gouvernement -->
+        <action
+            id="EXPORT_GOUVERNEMENT"
+            link="javascript:exportOrganigramme()"
+            enabled="true"
+            order="1"
+            label="ss.organigramme.injection.export"
+            icon=""
+        >
+            <category>ORGANIGRAMME_BASE_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+        </action>
+
+        <!-- Import du gouvernement -->
+        <action
+            id="IMPORT_GOUVERNEMENT"
+            link="javascript:openModalImportGouvernement('modal-import-gouvernement')"
+            enabled="true"
+            order="2"
+            label="ss.organigramme.injection.import"
+            icon=""
+        >
+            <category>ORGANIGRAMME_BASE_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <properties>
+                <property name="specificClass">js-interstitial-trigger</property>
+            </properties>
+        </action>
+
+        <!-- Activation du noeud courant (sauf pour un ministère) -->
+        <action
+            id="ENABLE_NODE"
+            link="javascript:onActivation(this)"
+            enabled="true"
+            order="5"
+            label="organigramme.manage.menu.activate"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isNotGouvernement</filter-id>
+            <filter-id>isDisabledNode</filter-id>
+            <filter-id>isNotMinistere</filter-id>
+            <properties>
+                <property name="actionType">alert</property>
+            </properties>
+        </action>
+
+        <!-- Activation d'un ministère -->
+        <action
+            id="ENABLE_MINISTERE"
+            link="javascript:onActivation(this)"
+            enabled="true"
+            order="5"
+            label="organigramme.manage.menu.activate"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isNotGouvernement</filter-id>
+            <filter-id>isDisabledNode</filter-id>
+            <filter-id>isMinistere</filter-id>
+            <filter-id>isAdminFonctionnel</filter-id>
+            <properties>
+                <property name="actionType">alert</property>
+            </properties>
+        </action>
+
+        <!-- Désactivation du noeud courant (sauf pour un ministère) -->
+        <action
+            id="DISABLE_NODE"
+            link="javascript:onDeActivation(this)"
+            enabled="true"
+            order="5"
+            label="organigramme.manage.menu.deactivate"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isNotGouvernement</filter-id>
+            <filter-id>isEnabledNode</filter-id>
+            <filter-id>isNotMinistere</filter-id>
+            <properties>
+                <property name="actionType">alert</property>
+            </properties>
+        </action>
+
+        <!-- Désactivation d'un ministère -->
+        <action
+            id="DISABLE_MINISTERE"
+            link="javascript:onDeActivation(this)"
+            enabled="true"
+            order="5"
+            label="organigramme.manage.menu.deactivate"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isNotGouvernement</filter-id>
+            <filter-id>isEnabledNode</filter-id>
+            <filter-id>isMinistere</filter-id>
+            <filter-id>isAdminFonctionnel</filter-id>
+            <properties>
+                <property name="actionType">alert</property>
+            </properties>
+		</action>
+
+        <!-- Suppression du noeud courant (sauf pour un ministère) -->
+        <action
+            id="REMOVE_NODE"
+            link="javascript:removeNode(this);"
+            enabled="true"
+            order="4"
+            label="organigramme.manage.menu.delete"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isNotGouvernement</filter-id>
+            <filter-id>isNotMinistere</filter-id>
+            <properties>
+                <property name="actionType">modalOrganigramme</property>
+                <property name="dataControls">modal-node-suppression</property>
+                <property name="dataId">suppression</property>
+            </properties>
+        </action>
+
+        <!-- Suppression d'un ministère -->
+        <action
+            id="REMOVE_MINISTERE"
+            link="javascript:removeNode(this);"
+            enabled="true"
+            order="4"
+            label="organigramme.manage.menu.delete"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isNotGouvernement</filter-id>
+            <filter-id>isMinistere</filter-id>
+            <filter-id>isAdminFonctionnel</filter-id>
+            <properties>
+                <property name="actionType">modalOrganigramme</property>
+                <property name="dataControls">modal-node-suppression</property>
+                <property name="dataId">suppression</property>
+            </properties>
+        </action>
+
+        <!-- Copie du poste courant -->
+        <action
+            id="COPY_NODE"
+            link="javascript:organigrammeCopyNode(this);"
+            enabled="true"
+            order="6"
+            label="organigramme.manage.menu.copy"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isPoste</filter-id>
+        </action>
+
+        <!-- Duplication du poste copié sans utilisateurs -->
+        <action
+            id="PASTE_NODE_WITHOUT_USER"
+            link="javascript:organigrammePasteNode(this,false);"
+            enabled="true"
+            order="6"
+            label="organigramme.manage.menu.pasteWithoutUser"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isMinistereOrUniteStructurelle</filter-id>
+            <filter-id>isNodeSelectedForCopy</filter-id>
+        </action>
+
+        <!-- Duplication du poste copié avec utilisateurs -->
+        <action
+            id="PASTE_NODE_WITH_USERS"
+            link="javascript:organigrammePasteNode(this,true);"
+            enabled="true"
+            order="7"
+            label="organigramme.manage.menu.pasteWithUsers"
+            icon=""
+        >
+            <category>ORGANIGRAMME_ACTIONS</category>
+            <filter-id>allowUpdateOrganigramme</filter-id>
+            <filter-id>isMinistereOrUniteStructurelle</filter-id>
+            <filter-id>isNodeSelectedForCopy</filter-id>
+        </action>
+
+
+        <!-- ***********************************************************************
+            Supervision : Liste des onglets *********************************************************************** -->
+        <!-- Onglet utilisateurs connectés -->
+        <action
+            id="TAB_SUPERVISION_UTILISATEURS_CONNECTES"
+            enabled="true"
+            order="1"
+            label="supervision.onglet.utilisateurs.connectes"
+        >
+            <category>SUPERVISION_ACTION_LIST</category>
+            <properties>
+                <property name="fragmentFile">fragments/supervision/supervision-utilisateurs-connectes
+                </property>
+                <property name="fragmentName">supervisionUtilisateursConnectes</property>
+                <property name="name">actif</property>
+                <property name="script">chargeOngletSupervisionActif(this)</property>
+            </properties>
+        </action>
+
+        <!-- Onglet utilisateurs non connectés -->
+        <action
+            id="TAB_SUPERVISION_UTILISATEURS_NON_CONNECTES"
+            enabled="true"
+            order="2"
+            label="supervision.onglet.utilisateurs.non.connectes"
+        >
+            <category>SUPERVISION_ACTION_LIST</category>
+            <properties>
+                <property name="fragmentFile">fragments/supervision/supervision-utilisateurs-non-connectes
+                </property>
+                <property name="fragmentName">supervisionUtilisateursNonConnectes</property>
+                <property name="name">inactif</property>
+                <property name="script">chargeOngletSupervision(this)</property>
+            </properties>
+        </action>
+
+        <!-- Envoi email -->
+        <action id="SUPERVISION_MAIL" label="supervision.action.mail" icon="icon--envelope">
+            <category>SUPERVISION_ACTION_MAIL</category>
+            <properties>
+                <property name="actionType">modal</property>
+                <property name="dataControls">modal-send-mail</property>
+                <property name="initJs">loadMailContent</property>
+            </properties>
+        </action>
+
+        <!-- Impression -->
+        <action
+            id="SUPERVISION_GENERER_PDF"
+            link="javascript:exportConnectedUsersPdf()"
+            enabled="true"
+            order="1"
+            label="supervision.action.pdf"
+        >
+            <category>SUPERVISION_ACTION_PRINT</category>
+        </action>
+
+        <action
+            id="SUPERVISION_GENERER_XLS"
+            link="javascript:exportConnectedUsersXls()"
+            enabled="true"
+            order="2"
+            label="supervision.action.xls"
+        >
+            <category>SUPERVISION_ACTION_PRINT</category>
+        </action>
+
+        <action
+            id="SUPERVISION_GENERER_PDF_NOT_CONNECTED"
+            link="javascript:exportNotConnectedUsersPdf()"
+            enabled="true"
+            order="1"
+            label="supervision.action.pdf"
+        >
+            <category>SUPERVISION_ACTION_PRINT_NOT_CONNECTED</category>
+        </action>
+
+        <action
+            id="SUPERVISION_GENERER_XLS_NOT_CONNECTED"
+            link="javascript:exportNotConnectedUsersXls()"
+            enabled="true"
+            order="2"
+            label="supervision.action.xls"
+        >
+            <category>SUPERVISION_ACTION_PRINT_NOT_CONNECTED</category>
+        </action>
+        
+         <action
+            id="DELETE_ALERTE"
+            link="javascript:deleteAlert(this)"
+            enabled="true"
+            order="1"
+            label="suivi.supprimer.alerte"
+            icon=""
+        >
+	        <category>ALERTE_ACTIONS</category>
+	    </action>
+	
+	    <action
+            id="ACTIVATE_ALERT"
+            link="javascript:activateAlert(this)"
+            enabled="true"
+            order="2"
+            label="suivi.activer.alerte"
+            icon=""
+        >
+	        <category>ALERTE_ACTIONS</category>
+	        <filter-id>isNotActive</filter-id>
+	    </action>
+	
+	    <action
+            id="SUSPEND_ALERT"
+            link="javascript:suspendAlert(this)"
+            enabled="true"
+            order="3"
+            label="suivi.susprendre.alerte"
+            icon=""
+        >
+	        <category>ALERTE_ACTIONS</category>
+	        <filter-id>isActive</filter-id>
+	    </action>
+	     <action
+            id="EXPORT_ZIP_STATS"
+            link="javascript:exportStatsZip(this)"
+            enabled="true"
+            order="1"
+            label="label.stats.export.zip"
+            icon="icon icon--download icon--big"
+        >
+            <filter-id>hasRightToExport</filter-id>
+        </action>
+         <action
+            id="REMOVE_ZIP_STATS"
+            enabled="true"
+            order="2"
+            label="stats.zip.confirm.delete.title"
+            icon="icon--cross-bold"
+        >
+           <properties>
+                <property name="actionType">modal</property>
+                <property name="dataControls">validation-dialog-modal</property>
+                <property name="title">stats.zip.confirm.delete.title
+                </property>
+                <property name="message">stats.zip.confirm.delete.message
+                </property>
+                <property name="function">removeZipStats()</property>
+                <property name="parameters">fileName=##{zipFilename}</property>
+                <property name="btnConfirmLabel">suivi.supprimer.requete</property>
+            </properties>
+        </action>
+        
+         <!-- Actions de téléchargement sur les statistiques -->
+
+        <action
+            id="DOWNLOAD_PDF_STAT"
+            link="javascript:downloadStatPDF(this)"
+            enabled="true"
+            order="10"
+            label="label.stats.download.pdf"
+            icon=""
+        >
+            <category>STAT_ACTIONS_DOWNLOAD</category>
+        </action>
+
+        <action
+            id="DOWNLOAD_PDF_STAT_ALL"
+            link="javascript:sendStatPdfsByMail(this)"
+            enabled="true"
+            order="20"
+            label="label.stats.download.pdf.all"
+            icon=""
+        >
+            <category>STAT_ACTIONS_DOWNLOAD</category>
+            <filter-id>hasRightToExport</filter-id>
+            <filter-id>isStatistiqueMulti</filter-id>
+        </action>
+
+        <action
+            id="DOWNLOAD_EXCEL_STAT"
+            link="javascript:downloadStatExcel(this)"
+            enabled="true"
+            order="30"
+            label="label.stats.download.excel"
+            icon=""
+        >
+            <category>STAT_ACTIONS_DOWNLOAD</category>
+            <filter-id>isNotStatistiqueGraphique</filter-id>
+        </action>
+
+        <action
+            id="DOWNLOAD_EXCEL_STAT_ALL"
+            link="javascript:sendStatExcelsByMail(this)"
+            enabled="true"
+            order="40"
+            label="label.stats.download.excel.all"
+            icon=""
+        >
+            <category>STAT_ACTIONS_DOWNLOAD</category>
+            <filter-id>hasRightToExport</filter-id>
+            <filter-id>isStatistiqueMulti</filter-id>
+        </action>
+
+        <!-- Action export du résultat de recherche journal technique-->
+         <action
+            id="RECHERCHE_ADMIN_ACTION_EXPORT"
+            link="javascript:exportJournalTechniqueSearchResult()"
+            enabled="true"
+            order="1"
+            label="|${labelExport}|"
+            icon="icon icon--download icon--big"
+        >
+        </action>
+
+    </extension>
+
+	<extension target="org.nuxeo.ecm.platform.actions.ActionService" point="filters">
+	<!-- ***********************************************************************
+			Filtres sur les utilisateurs / groupes
+
+			Les filtres vides doivent obligatoirement être surchargés dans les projets enfants
+			*********************************************************************** -->
+
+		<filter id="accessAdminFdrRecherche">
+		</filter>
+
+		<filter id="accessAdminMigration">
+		</filter>
+		
+		<filter id="accessAdminMigrationMigration">
+		</filter>
+
+		<filter id="accessAdminMigrationHistorique">
+		</filter>
+
+		<filter id="accessAdminParam">
+		</filter>
+
+		<filter id="accessAdminParamTechnique">
+		</filter>
+
+		<filter id="accessAdminJournal">
+			<rule grant="true">
+				<group>AdministrationJournalReader</group>
+			</rule>
+		</filter>
+
+		<filter id="accessAdminUserProfil">
+			<rule grant="true">
+				<group>ProfilReader</group>
+			</rule>
+		</filter>
+
+		<filter id="accessAdminUserActualites">
+   			<rule grant="true">
+    			<group>EspaceActualitesReader</group>
+   			</rule>
+  		</filter>
+
+		<filter id="accessAdminUserSupervision">
+		</filter>
+
+        <filter id="accessAdminUserRecherche">
+        </filter>
+
+        <filter id="accessMenuUtilisateur">
+            <rule grant="false">
+                <group>EspaceAdministrationReader</group>
+            </rule>
+        </filter>
+
+        <filter id="accessUtilisateurAnnuaire">
+            <rule grant="true">
+                <group>UtilisateurReader</group>
+            </rule>
+        </filter>
+
+        <!-- ***********************************************************************
+            Filtres sur les actions de gestion de profil *********************************************************************** -->
+        <filter id="isProfilDeletable">
+            <rule grant="true">
+                <condition>#{profilActions.isDeleteAllowed}</condition>
+            </rule>
+        </filter>
+
+        <filter id="isProfilEdittable">
+            <rule grant="true">
+                <condition>#{profilActions.isEditAllowed}</condition>
+            </rule>
+        </filter>
+
+        <filter id="isProfilCreatable">
+            <rule grant="true">
+                <condition>#{listProfilActions.isCreateAllowed}</condition>
+            </rule>
+        </filter>
+
+        <filter id="accessAdminUserProfil">
+            <rule grant="true">
+                <group>ProfilReader</group>
+            </rule>
+        </filter>
+
+        <!-- Autorisation de modifier l'organigramme/cette portion de l'organigrammme
+            ? -->
+        <filter id="allowUpdateOrganigramme">
+            <rule grant="true">
+                <condition>#{allowUpdateOrganigramme}</condition>
+            </rule>
+        </filter>
+
+        <!-- Pas un gouvernement ? -->
+        <filter id="isNotGouvernement">
+            <rule grant="false">
+                <condition>#{node.type eq 'GVT'}</condition>
+            </rule>
+        </filter>
+
+        <!-- Noeud désactivé ? -->
+        <filter id="isDisabledNode">
+            <rule grant="false">
+                <condition>#{node.isActive}</condition>
+            </rule>
+        </filter>
+
+        <!-- Noeud activé ? -->
+        <filter id="isEnabledNode">
+            <rule grant="true">
+                <condition>#{node.isActive}</condition>
+            </rule>
+        </filter>
+
+        <!-- Ministère ? -->
+        <filter id="isMinistere">
+            <rule grant="true">
+                <condition>#{node.type eq 'MIN'}</condition>
+            </rule>
+        </filter>
+
+        <!-- Ministère ? -->
+        <filter id="isNotMinistere">
+            <rule grant="false">
+                <condition>#{node.type eq 'MIN'}</condition>
+            </rule>
+        </filter>
+        <!-- Filtres sur les noeuds de l'organigramme -->
+
+        <!-- Un gouvernement ? -->
+        <filter id="isGouvernement">
+            <rule grant="true">
+                <condition>#{node.type eq 'GVT'}</condition>
+            </rule>
+        </filter>
+
+        <!-- Ministère ou unité structurelle -->
+        <filter id="isMinistereOrUniteStructurelle">
+            <rule grant="true">
+                <condition>#{node.type eq 'MIN' or node.type eq 'UST' or node.type
+                    eq 'DIR'}
+                </condition>
+            </rule>
+        </filter>
+
+        <!-- Unité structurelle/direction ? -->
+        <filter id="isUniteStructurelle">
+            <rule grant="true">
+                <condition>#{node.type eq 'UST' or node.type eq 'DIR'}</condition>
+            </rule>
+        </filter>
+
+        <!-- Poste ? -->
+        <filter id="isPoste">
+            <rule grant="true">
+                <condition>#{isPoste}</condition>
+            </rule>
+        </filter>
+
+        <!-- Filtres sur les noeuds de l'organigramme -->
+        <!-- Poste WS ? -->
+        <filter id="isPosteWs">
+            <rule grant="true">
+                <condition>#{isPosteWebservice}</condition>
+            </rule>
+        </filter>
+
+        <!-- Noeud sélectionné pour être copié ? -->
+        <filter id="isNodeSelectedForCopy">
+            <rule grant="true">
+                <condition>#{isNodeSelectedForCopy}</condition>
+            </rule>
+        </filter>
+
+        <!-- Vrai si la page en cours est l'espace de travail -->
+        <filter id="isPreviousPageTravail">
+            <rule grant="true">
+                <condition>#{navigationActions.isFromEspaceTravail}</condition>
+            </rule>
+        </filter>
+        
+        <filter id="isActive">
+            <rule grant="true">
+                <condition>#{isAlertActivated}</condition>
+            </rule>
+        </filter>
+
+        <filter id="isNotActive">
+            <rule grant="false">
+                <condition>#{isAlertActivated}</condition>
+            </rule>
+        </filter>
+        <!-- Vrai uniquement si l'utilisateur a le droit d'exporter des statistiques
+            en masse -->
+        <filter id="hasRightToExport">
+            <rule grant="true">
+            <condition>#{hasRightToExport}</condition>
+            </rule>
+        </filter>
+        <!-- Vrai uniquement si la statistique affichée est par ministère, direction
+            ou poste et peux être téléchargée en masse -->
+        <filter id="isStatistiqueMulti">
+            <rule grant="true">
+            <condition>#{isMulti}</condition>
+            </rule>
+        </filter>
+
+        <!-- Vrai si le document n'est pas verrouillé ou que le verrou est actionnable
+            par l'utilisateur -->
+        <filter id="currentDocIsLockActionnableByCurrentUser">
+            <rule grant="true">
+                <condition>#{stLockActions.currentDocIsLockActionnableByCurrentUser}
+                </condition>
+            </rule>
+        </filter>
+
+        <!-- Vrai si la statistique affichée génère un graphique -->
+        <!-- Overridé ... -->
+        <filter id="isNotStatistiqueGraphique">
+            <rule grant="true" />
+        </filter>
+    </extension>
+</component>

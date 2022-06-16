@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.ss.ui.pageprovider">
+
+    <extension target="org.nuxeo.ecm.platform.query.api.PageProviderService" point="providers">
+
+        <genericPageProvider name="JOURNAL_DOSSIER" class="fr.dila.ss.ui.query.pageprovider.SSJournalPageProvider">
+            <pageSize>20</pageSize>
+            <sort column="eventDate" ascending="false" />
+        </genericPageProvider>
+
+    </extension>
+
+</component>

@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service des types d'étape de feuille de route du socle solrep -->
+<component name="fr.dila.ss.api.service.vocabulary.RoutingTaskTypeService">
+	<implementation class="fr.dila.ss.core.service.vocabulary.RoutingTaskTypeComponent" />
+
+	<service>
+		<provide interface="fr.dila.ss.api.service.vocabulary.RoutingTaskTypeService" />
+	</service>
+</component>

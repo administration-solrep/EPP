@@ -1,0 +1,3 @@
+username,password,firstName,lastName,company,email,deleted,employeeType
+"Administrator","Administrator",__NULL__,"","blabla","devnull@nuxeo.com",__NULL__,"plop"
+"adminsgg","pass","admin","sgg","__NULL__","adminsgg@m","FALSE",""

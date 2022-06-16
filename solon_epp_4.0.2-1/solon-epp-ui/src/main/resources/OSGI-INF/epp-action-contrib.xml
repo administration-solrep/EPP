@@ -1,0 +1,475 @@
+<component name="fr.dila.epp.ui.action-contrib">
+	<require>fr.dila.st.ui.actions</require>
+	<extension point="actions" target="org.nuxeo.ecm.platform.actions.ActionService">
+
+		<!-- MAIN MENU -->
+		<action id="main_corbeille" label="menu.corbeille.title" order="10" link="/corbeille#main_content" type="link">
+			<category>MAIN_MENU</category>
+		</action>
+		<action
+            id="MAIN_RECHERCHE"
+            label="menu.recherche.title"
+            order="20"
+            link="/recherche/PROCEDURE_LEGISLATIVE#main_content"
+            type="link"
+        >
+			<category>MAIN_MENU</category>
+		</action>
+
+		<action
+            id="admin_user_acces"
+            label="menu.admin.user.acces"
+            order="70"
+            link="/admin/user/acces#main_content"
+            type="link"
+        >
+			<category>ADMIN_MENU_USER</category>
+			<filter-id>accessAdminUserUnrestricted</filter-id>
+		</action>
+
+		<!-- Actions page edit communication -->
+		<action
+            id="publier_communication"
+            label="action.button.label.publier"
+            order="20"
+            link="javascript:doCheckLock('saveCommunication(true, \'communication/enregistrement\')', true, true)"
+            type="secondary"
+        >
+			<category>MAIN_COMMUNICATION_EDIT</category>
+			<category>MAIN_COMMUNICATION_CREER</category>
+			<category>MAIN_COMMUNICATION_CREER_ALERTE</category>
+		</action>
+		<action
+            id="enregistrer_communication"
+            label="action.button.label.enregistrer"
+            order="30"
+            link="javascript:doCheckLock('saveCommunication(false, \'communication/enregistrement\')', true, true)"
+            type="primary"
+        >
+			<category>MAIN_COMMUNICATION_EDIT</category>
+		</action>
+		<action
+            id="enregistrer_communication_brouillon"
+            label="action.button.label.creerBrouillon"
+            order="30"
+            link="javascript:doCheckLock('saveCommunication(false, \'communication/enregistrement\')', true, true)"
+            type="primary"
+        >
+			<category>MAIN_COMMUNICATION_CREER</category>
+		</action>
+		<action
+            id="envoyer_mel"
+            label="action.button.label.envoyer"
+            order="30"
+            link="javascript:envoyerMel('/communication/envoyerMel')"
+            type="primary"
+        >
+			<category>MAIN_TRANSMETTRE_PAR_MEL</category>
+		</action>
+
+		<action id="communication_ btn_annuler" label="action.button.label.annuler" order="60" type="tertiary">
+			<category>BASE_COMMUNICATION_EDIT</category>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">validation-dialog-modal</property>
+				<property name="title">validation.popup.title
+				</property>
+				<property name="message">label.evenement.confim.cancel
+				</property>
+				<property name="function">unlockThenGoPreviousPage()</property>
+			</properties>
+		</action>
+
+		<!-- Actions détail communication in display -->
+		<action
+            id="CREER_ALERTE"
+            label="action.button.label.creerAlert"
+            order="10"
+            link="javascript:doCheckLock('/communication/creerAlerte?idMessagePrecedent=', false)"
+            type="tertiary"
+        >
+			<category>BASE_COMMUNICATION_DISPLAY</category>
+		</action>
+
+		<action
+            id="TRANSMETTRE_MEL_TERTIAIRE"
+            label="action.button.label.transmettreMail"
+            order="20"
+            link="|/communication/transmettreParMel?id=${id}#main_content|"
+            type="tertiary"
+        >
+			<category>BASE_COMMUNICATION_DISPLAY</category>
+		</action>
+
+		<action id="PUBLIER" label="action.button.label.publier" order="10" link="javascript:doPublier()" type="secondary">
+			<category>MAIN_COMMUNICATION_DISPLAY</category>
+		</action>
+
+		<action id="SUPPRIMER" label="action.button.label.supprimer" order="20" type="secondary">
+			<category>MAIN_COMMUNICATION_DISPLAY</category>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">validation-dialog-modal</property>
+				<property name="title">action.button.label.supprimer</property>
+				<property name="message">communication.action.supprimer.confirm.message
+				</property>
+				<property name="function">doDeleteCommunication()</property>
+			</properties>
+		</action>
+
+		<action id="ANNULER" label="action.button.label.annulerCommunication" order="30" type="secondary">
+			<category>MAIN_COMMUNICATION_DISPLAY</category>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">validation-dialog-modal</property>
+				<property name="title">action.button.label.annulerCommunication
+				</property>
+				<property name="message">communication.action.annuler.confirm.message
+				</property>
+				<property name="function">doAnnulerCommunication()</property>
+			</properties>
+		</action>
+
+		<action
+            id="RECTIFIER"
+            label="action.button.label.rectifier"
+            order="40"
+            link="javascript:doCheckLock('/communication/rectifier?id=', false)"
+            type="secondary"
+        >
+			<category>MAIN_COMMUNICATION_DISPLAY</category>
+		</action>
+
+		<action
+            id="COMPLETER"
+            label="action.button.label.completer"
+            order="50"
+            link="javascript:doCheckLock('/communication/completer?id=', false)"
+            type="secondary"
+        >
+			<category>MAIN_COMMUNICATION_DISPLAY</category>
+		</action>
+
+		<action
+            id="PASSER_MESSAGE_TRAITE"
+            label="action.button.label.traiter"
+            order="60"
+            link="javascript:doCheckLock('doTraiter()', true, false, true)"
+            type="secondary"
+        >
+			<category>MAIN_COMMUNICATION_DISPLAY</category>
+		</action>
+
+		<action
+            id="PASSER_MESSAGE_EN_COURS_DE_TRAITEMENT_SECONDAIRE"
+            label="action.button.label.enCoursTraitement"
+            order="70"
+            link="javascript:doCheckLock('doEnCoursDeTraitement()', true, false, true)"
+            type="secondary"
+        >
+			<category>MAIN_COMMUNICATION_DISPLAY</category>
+		</action>
+
+		<action id="ACCEPTER" label="action.button.label.accepter" order="80" type="secondary">
+			<category>MAIN_COMMUNICATION_DISPLAY</category>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">validation-dialog-modal</property>
+				<property name="title">action.button.label.accepter</property>
+				<property name="message">communication.action.accepter.confirm.message
+				</property>
+				<property name="function">doAccepter()</property>
+			</properties>
+		</action>
+
+		<action id="REJETER" label="action.button.label.rejeter" order="90" type="secondary">
+			<category>MAIN_COMMUNICATION_DISPLAY</category>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">validation-dialog-modal</property>
+				<property name="title">action.button.label.rejeter</property>
+				<property name="message">communication.action.rejeter.confirm.message
+				</property>
+				<property name="function">doRejeter()</property>
+			</properties>
+		</action>
+
+		<action
+            id="LEVER_ALERTE"
+            label="action.button.label.leverAlerte"
+            order="100"
+            link="javascript:doCheckLock('/communication/creerAlerte?idMessagePrecedent=', false)"
+            type="secondary"
+        >
+			<category>MAIN_COMMUNICATION_DISPLAY</category>
+		</action>
+
+		<action
+            id="TRANSMETTRE_MEL_SECONDAIRE"
+            label="action.button.label.transmettreMail"
+            order="110"
+            link="|/communication/transmettreParMel?id=${id}#main_content|"
+            type="tertiary"
+        >
+			<category>BASE_COMMUNICATION_DISPLAY</category>
+		</action>
+
+		<action
+            id="MODIFIER"
+            label="action.button.label.modifier"
+            order="210"
+            link="javascript:doCheckLock('/communication/modification?id=', false)"
+            type="primary"
+        >
+			<category>MAIN_COMMUNICATION_DISPLAY</category>
+		</action>
+
+		<action id="ABANDONNER" label="action.button.label.abandonner" order="220" type="primary">
+			<category>MAIN_COMMUNICATION_DISPLAY</category>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">validation-dialog-modal</property>
+				<property name="title">action.button.label.abandonner</property>
+				<property name="message">communication.action.abandonner.confirm.message
+				</property>
+				<property name="function">doAbandonner()</property>
+			</properties>
+		</action>
+
+		<action id="ACCUSER_RECEPTION" label="action.button.label.accuserReception" order="230" type="primary">
+			<category>MAIN_COMMUNICATION_DISPLAY</category>
+			<properties>
+				<property name="actionType">modal</property>
+				<property name="dataControls">validation-dialog-modal</property>
+				<property name="title">action.button.label.accuserReception
+				</property>
+				<property name="message">communication.action.accuserReception.confirm.message
+				</property>
+				<property name="function">doAccuserReception()</property>
+			</properties>
+		</action>
+
+		<action
+            id="PASSER_MESSAGE_EN_COURS_DE_TRAITEMENT"
+            label="action.button.label.enCoursTraitement"
+            order="240"
+            link="javascript:doCheckLock('doEnCoursDeTraitement()', true, false, true)"
+            type="primary"
+        >
+			<category>MAIN_COMMUNICATION_DISPLAY</category>
+		</action>
+
+		<action
+            id="TRANSMETTRE_MEL"
+            label="action.button.label.transmettreMail"
+            order="250"
+            link="|/communication/transmettreParMel?id=${id}#main_content|"
+            type="tertiary"
+        >
+			<category>BASE_COMMUNICATION_DISPLAY</category>
+		</action>
+
+		<!-- *********************************************************************** 
+			Dossier EPP : Liste des onglets ************************************* -->
+		<!-- Onglet details communication -->
+		<action id="TAB_DOSSIER_DETAIL_COMMUNICATION" enabled="true" order="30" label="dossier.onglet.communication">
+			<category>VIEW_ACTION_LIST</category>
+			<filter-id>isDossier</filter-id>
+			<properties>
+				<property name="fragmentFile">fragments/dossier/onglets/detailCommunication
+				</property>
+				<property name="fragmentName">detailCommunication</property>
+				<property name="script">loadOngletDossier('detailCommunication',this)
+				</property>
+				<property name="name">detailCommunication</property>
+			</properties>
+		</action>
+
+		<!-- Onglet details dossier -->
+		<action id="TAB_DOSSIER_DETAIL_DOSSIER" enabled="true" order="40" label="dossier.onglet.dossier">
+			<category>VIEW_ACTION_LIST</category>
+			<filter-id>isDossier</filter-id>
+			<properties>
+				<property name="fragmentFile">/fragments/dossier/onglets/detailDossier
+				</property>
+				<property name="fragmentName">detailDossier</property>
+				<property name="script">loadOngletDossier('detailDossier',this)
+				</property>
+				<property name="name">detailDossier</property>
+			</properties>
+		</action>
+
+		<!-- Onglet historique dossier -->
+		<action id="TAB_DOSSIER_HISTORIQUE" enabled="true" order="50" label="dossier.onglet.historique">
+			<category>VIEW_ACTION_LIST</category>
+			<filter-id>isDossier</filter-id>
+			<properties>
+				<property name="fragmentFile">/fragments/dossier/onglets/historique
+				</property>
+				<property name="fragmentName">historique</property>
+				<property name="script">loadOngletDossier('historique',this)
+				</property>
+				<property name="name">historique</property>
+			</properties>
+		</action>
+		<action
+            id="CREATE_POSTE_WS"
+            link="|/admin/organigramme/posteWs/creation?idParent=${nodeId}#main_content|"
+            enabled="true"
+            order="2"
+            label="organigramme.manage.menu.create.posteWs"
+            icon=""
+        >
+			<category>ORGANIGRAMME_ACTIONS</category>
+			<filter-id>allowUpdateOrganigramme</filter-id>
+			<filter-id>isInstitution</filter-id>
+			<properties>
+				<property name="actionType">alert</property>
+			</properties>
+		</action>
+		<action
+            id="CREATE_UNITE_STRUCTURELLE"
+            link="|/admin/organigramme/unitestructurelle/creation?idParent=${nodeId}#main_content|"
+            enabled="true"
+            order="1"
+            label="organigramme.manage.menu.create.uniteStructurelle"
+            icon=""
+        >
+			<category>ORGANIGRAMME_ACTIONS</category>
+			<filter-id>allowUpdateOrganigramme</filter-id>
+			<filter-id>isInstitutionOrUnite</filter-id>
+			<properties>
+				<property name="actionType">alert</property>
+			</properties>
+		</action>
+		<action
+            id="CREATE_POSTE"
+            link="|/admin/organigramme/poste/creation?idParent=${nodeId}#main_content|"
+            enabled="true"
+            order="2"
+            label="organigramme.manage.menu.create.poste"
+            icon=""
+        >
+			<category>ORGANIGRAMME_ACTIONS</category>
+			<filter-id>allowUpdateOrganigramme</filter-id>
+			<filter-id>isUniteStructurelle</filter-id>
+			<properties>
+				<property name="actionType">alert</property>
+			</properties>
+		</action>
+		<action
+            id="MODIFY_UNITE_STRUCTURELLE"
+            link="|/admin/organigramme/unitestructurelle/modification?idUniteStructurelle=${nodeId}#main_content|"
+            enabled="true"
+            order="3"
+            label="organigramme.manage.menu.modify"
+            icon=""
+        >
+			<category>ORGANIGRAMME_ACTIONS</category>
+			<filter-id>allowUpdateOrganigramme</filter-id>
+			<filter-id>isUniteStructurelle</filter-id>
+			<properties>
+				<property name="actionType">alert</property>
+			</properties>
+		</action>
+
+		<!-- Modification d'un poste WS -->
+		<action
+            id="MODIFY_POSTE_WS"
+            link="|/admin/organigramme/posteWs/modification?id=${nodeId}#main_content|"
+            enabled="true"
+            order="3"
+            label="organigramme.manage.menu.modify.posteWs"
+            icon=""
+        >
+			<category>ORGANIGRAMME_ACTIONS</category>
+			<filter-id>allowUpdateOrganigramme</filter-id>
+			<filter-id>isPosteWs</filter-id>
+			<properties>
+				<property name="actionType">alert</property>
+			</properties>
+		</action>
+
+		<!-- Modification d'un poste -->
+		<action
+            id="MODIFY_POSTE"
+            link="|/admin/organigramme/poste/modification?id=${nodeId}#main_content|"
+            enabled="true"
+            order="3"
+            label="organigramme.manage.menu.modify"
+            icon=""
+        >
+			<category>ORGANIGRAMME_ACTIONS</category>
+			<filter-id>allowUpdateOrganigramme</filter-id>
+			<filter-id>isPoste</filter-id>
+			<properties>
+				<property name="actionType">alert</property>
+			</properties>
+		</action>
+
+		<!-- Suppression du noeud courant -->
+		<action
+            id="REMOVE_NODE"
+            link="javascript:removeNode(this);"
+            enabled="true"
+            order="4"
+            label="organigramme.manage.menu.delete"
+            icon=""
+        >
+			<category>ORGANIGRAMME_ACTIONS</category>
+			<filter-id>allowUpdateOrganigramme</filter-id>
+			<filter-id>isNotInstitution</filter-id>
+			<properties>
+				<property name="actionType">modalOrganigramme</property>
+				<property name="dataControls">modal-node-suppression</property>
+				<property name="dataId">suppression</property>
+			</properties>
+		</action>
+
+	</extension>
+	<extension target="org.nuxeo.ecm.platform.actions.ActionService" point="filters">
+		<!-- Pas une institution -->
+		<filter id="isNotInstitution">
+			<rule grant="false">
+				<condition>#{node.type eq 'INS'}</condition>
+			</rule>
+		</filter>
+
+		<!-- Institution -->
+		<filter id="isInstitution">
+			<rule grant="true">
+				<condition>#{node.type eq 'INS'}</condition>
+			</rule>
+		</filter>
+		<filter id="isPoste">
+			<rule grant="true">
+				<condition>#{isPoste}</condition>
+			</rule>
+		</filter>
+		<!-- Unité structurelle/direction ? -->
+		<filter id="isUniteStructurelle">
+			<rule grant="true">
+				<condition>#{node.type eq 'UST' or node.type eq 'DIR'}</condition>
+			</rule>
+		</filter>
+		<filter id="isInstitutionOrUnite">
+			<rule grant="true">
+				<condition>#{node.type eq 'INS'}</condition>
+				<condition>#{node.type eq 'UST' or node.type eq 'DIR'}</condition>
+			</rule>
+		</filter>
+		<!-- Poste WS ? -->
+		<filter id="isPosteWs">
+			<rule grant="true">
+				<condition>#{isPosteWS}</condition>
+			</rule>
+		</filter>
+		<filter id="allowUpdateOrganigramme">
+			<rule grant="true">
+				<condition>#{allowUpdateOrganigramme}</condition>
+			</rule>
+		</filter>
+	</extension>
+
+
+</component>

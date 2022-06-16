@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherErrataQuestionsResponse
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:p4="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion ../../../../../../xsd/reponses/WSquestion.xsd ">
+
+
+	<p:jeton_errata>1</p:jeton_errata>
+	<p:statut>OK</p:statut>
+	<p:errata>
+		<p1:id_question>
+			<p1:numero_question>1234</p1:numero_question>
+			<p1:type>QE</p1:type>
+			<p1:source>AN</p1:source>
+			<p1:legislature>13</p1:legislature>
+		</p1:id_question>
+
+		<p1:date_publication_erratum>2011-12-12</p1:date_publication_erratum>
+		<p1:page_jo_erratum>1</p1:page_jo_erratum>
+		<p1:texte_erratum>Lorem Ipsum Dolor Sit Amet</p1:texte_erratum>
+		<p1:texte_consolide>Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p1:texte_consolide>
+	</p:errata>
+
+</p:chercherErrataQuestionsResponse>

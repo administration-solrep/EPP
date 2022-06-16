@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="multipleSort(lstSortedColonnes, lstSortableColumn)"
+            th:with="id=${id} ?: 'modal-multiple-sort'"
+            th:id="${id}"
+            class="interstitial-overlay__content"
+        >
+            <div role="dialog" aria-labelledby="dialogTitle" class="interstitial">
+                <div class="interstitial__header">
+                    <h1 id="dialogTitle" class="interstitial__title" th:text="#{multipleSort.title}">
+                        Configuration des tris sur le tableau
+                    </h1>
+                    <button
+                        type="button"
+                        class="interstitial__close base-btn base-btn--button base-btn--default base-btn--discret"
+                    >
+                        <span aria-hidden="true" class="icon icon--cross"></span>
+                        <span class="sr-only">[[#{validation.popup.close.label}]]</span>
+                    </button>
+                </div>
+                <div class="interstitial__content">
+                    <form id="modal-multiple-sort-columns-container">
+                        <th:block th:each="column, status : ${lstSortedColonnes}">
+                            <div
+                                th:replace="fragments/table/multipleSortColumn :: multipleSortColumn(${lstSortableColumn}, ${column.sortName}, ${column.sortValue}, ${id}, ${status.index + 1}, 'sortName', true)"
+                            ></div>
+                        </th:block>
+
+                        <button
+                            type="button"
+                            th:id="|btn-add-column-${id}|"
+                            class="m-t-6 base-btn base-btn--button base-btn--default base-btn--light base-btn--with-icon base-btn--prepend-icon base-btn--uppercased"
+                            onclick="doAddSortedColumn(this)"
+                        >
+                            <span
+                                aria-hidden="true"
+                                class="base-btn__icon base-btn__icon--vertical-center base-btn__icon--left icon icon--plus"
+                            ></span>
+                            [[#{multipleSort.button.add}]]
+                        </button>
+                    </form>
+                </div>
+                <div class="interstitial__footer">
+                    <button
+                        class="interstitial__button base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--bordered"
+                        type="button"
+                    >
+                        [[#{organigramme.edit.cancel}]]
+                    </button>
+                    <button
+                        th:id="|btn-confirm-${id}|"
+                        th:attr="onclick=|doMultipleSort('${id}')|"
+                        type="button"
+                        class="base-btn base-btn--button base-btn--default base-btn--center"
+                    >
+                        [[#{button.confirmer}]]
+                    </button>
+                </div>
+            </div>
+            <div tabindex="-1" class="interstitial-overlay__tabindex"></div>
+        </div>
+    </body>
+</html>

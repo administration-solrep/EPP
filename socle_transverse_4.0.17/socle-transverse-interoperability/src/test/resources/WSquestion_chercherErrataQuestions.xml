@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:chercherErrataQuestionsRequest
+	xmlns:p="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion"
+	xmlns:p1="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:p2="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	xmlns:p3="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/reponses"
+	xmlns:p4="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/ar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/WSquestion WSquestion.xsd ">
+	<p:jeton_errata>2</p:jeton_errata>
+	<p:login_ministere>50000507</p:login_ministere>
+</p:chercherErrataQuestionsRequest>

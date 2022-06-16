@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <th:block th:fragment="migrationPoste(migration, isRunning, index)">
+            <div class="grid__row m-b-6">
+                <div class="grid__col grid__col--middle align-flex-start">
+                    <th:block
+                        th:replace="fragments/components/organigrammeSelectAutocomplete ::organigrammeSelectAutocomplete(
+                        label='migration.ancien.poste',
+                        labelRequired=true,
+                        myID=|old-element-${index}|,
+                        myName='oldElement-key',
+                        typeSelection='PST', 
+                        idSelection=${migration.oldElementId}, 
+                        activatePosteFilter=false,
+                        isMulti=false,
+                        listItems=${migration.mapOldElement},
+                        disabled=${isRunning})"
+                    ></th:block>
+                </div>
+                <div class="grid__col grid__col--middle align-flex-start">
+                    <th:block
+                        th:replace="fragments/components/organigrammeSelectAutocomplete ::organigrammeSelectAutocomplete(
+                        label='migration.nouveau.poste',
+                        labelRequired=true,
+                        myID=|new-element-${index}|,
+                        myName='newElement-key',
+                        typeSelection='PST', 
+                        idSelection=${migration.newElementId}, 
+                        activatePosteFilter=false,
+                        isMulti=false,
+                        listItems=${migration.mapNewElement},
+                        disabled=${isRunning})"
+                    ></th:block>
+                </div>
+            </div>
+        </th:block>
+    </body>
+</html>

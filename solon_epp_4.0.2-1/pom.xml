@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+  	<groupId>fr.dila.st</groupId>
+	  <artifactId>socle-transverse-parent</artifactId>
+    <version>4.0.17</version>
+  </parent>
+
+  <groupId>fr.dila.solonepp</groupId>
+  <artifactId>solon-epp-parent</artifactId>
+  <name>SOLON EPP parent</name>
+  <version>4.0.2-1</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <fr.dila.solonepp.version>4.0.2-1</fr.dila.solonepp.version>
+    <fr.dila.st.version>4.0.17</fr.dila.st.version>
+    <!-- sonar properties -->
+    <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+    <sonar.surefire.reportsPath>${basedir}/target/surefire-reports</sonar.surefire.reportsPath>
+    <sonar.java.coveragePlugin>cobertura</sonar.java.coveragePlugin>
+    <sonar.cobertura.reportsPath>${basedir}/target/site/cobertura/coverage.xml</sonar.cobertura.reportsPath>
+  </properties>
+
+  <modules>
+    <module>solon-epp-api</module>
+    <module>solon-epp-core</module>
+    <module>solon-epp-ui</module>
+    <module>solon-epp-webengine</module>
+    <module>solon-epp-distribution</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- Dépendances à SOLON EPP -->
+      <dependency>
+        <groupId>fr.dila.solonepp</groupId>
+        <artifactId>solon-epp-api</artifactId>
+        <version>${fr.dila.solonepp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>fr.dila.solonepp</groupId>
+        <artifactId>solon-epp-core</artifactId>
+        <version>${fr.dila.solonepp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>fr.dila.solonepp</groupId>
+        <artifactId>solon-epp-core</artifactId>
+        <type>test-jar</type>
+        <version>${fr.dila.solonepp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>fr.dila.solonepp</groupId>
+        <artifactId>solon-epp-ui</artifactId>
+        <version>${fr.dila.solonepp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>fr.dila.solonepp</groupId>
+        <artifactId>solon-epp-webengine</artifactId>
+        <version>${fr.dila.solonepp.version}</version>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.nuxeo.build</groupId>
+          <artifactId>ant-assembly-maven-plugin</artifactId>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <!-- configuration dans plugins socle_transverse -->
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.5</version>
+        <executions>
+          <execution>
+            <id>pre-unit-test</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <configuration>
+              <!-- Sets the path to the file which contains the execution data. -->
+              <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+              <!-- Sets the name of the property containing the settings CoCo execution
+                  due to missing execution data file. for JaCoCo runtime agent. -->
+              <propertyName>surefireArgLine</propertyName>
+            </configuration>
+          </execution>
+          <execution>
+            <id>post-unit-test</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <!-- Sets the path to the file which contains the execution data. -->
+              <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+              <!-- Sets the output directory for the code coverage report. -->
+              <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+               <id>pre-integration-test</id>
+               <phase>pre-integration-test</phase>
+               <goals>
+                   <goal>prepare-agent</goal>
+               </goals>
+               <configuration>
+                   <!-- Sets the path to the file which contains the execution data. -->
+                   <destFile>${project.build.directory}/coverage-reports/jacoco-it.exec</destFile>
+                   <!-- Sets the name of the property containing the settings for JaCoCo
+                       runtime agent. -->
+                   <propertyName>failsafeArgLine</propertyName>
+               </configuration>
+           </execution>
+           <!-- Ensures that the code coverage report for integration tests after
+               integration tests have been run. -->
+           <execution>
+               <id>post-integration-test</id>
+               <phase>post-integration-test</phase>
+               <goals>
+                   <goal>report</goal>
+               </goals>
+               <configuration>
+                   <!-- Sets the path to the file which contains the execution data. -->
+                   <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
+                   <!-- Sets the output directory for the code coverage report. -->
+                   <outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
+               </configuration>
+           </execution>
+           <execution>
+               <id>create-merged-report</id>
+               <phase>verify</phase>
+               <goals>
+                   <goal>report-aggregate</goal>
+               </goals>
+            </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <!-- Sets the VM argument line used when unit tests are run. -->
+          <argLine>${surefireArgLine} -noverify </argLine>
+          <excludes>
+              <exclude>**/*IntegrationTest.java</exclude>
+              <exclude>**/*IT.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+      <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-failsafe-plugin</artifactId>
+           <executions>
+               <!-- Ensures that both integration-test and verify goals of the Failsafe
+                   Maven plugin are executed. -->
+               <execution>
+                   <id>integration-tests</id>
+                   <goals>
+                       <goal>integration-test</goal>
+                       <goal>verify</goal>
+                   </goals>
+                   <configuration>
+                       <!-- Sets the VM argument line used when integration tests are run. -->
+                       <argLine>${failsafeArgLine} -noverify </argLine>
+                       <!-- Skips integration tests if the value of skip.integration.tests
+                           property is true -->
+                       <skipTests>${skip.integration.tests}</skipTests>
+                   </configuration>
+               </execution>
+           </executions>
+       </plugin>
+    </plugins>
+  </build>
+
+  <distributionManagement>
+    <repository>
+      <id>releaseRepository</id>
+      <name>releaseRepository</name>
+      <url>${repository.release.url}</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshotRepository</id>
+      <name>snapshotRepository</name>
+      <url>${repository.snapshot.url}</url>
+    </snapshotRepository>
+  </distributionManagement>
+</project>

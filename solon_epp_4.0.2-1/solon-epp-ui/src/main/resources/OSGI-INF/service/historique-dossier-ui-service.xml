@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<component name="fr.dila.epp.ui.services.component.HistoriqueDossierUIComponent">
+	<implementation class="fr.dila.epp.ui.services.component.HistoriqueDossierUIComponent" />
+
+	<service>
+		<provide interface="fr.dila.epp.ui.services.HistoriqueDossierUIService" />
+	</service>
+
+</component>

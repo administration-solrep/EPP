@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="birtReports(caption)"
+            class="tableForm"
+            th:data-url="@{${dataUrl}}"
+            th:data-ajaxurl="@{${dataAjaxUrl}}"
+            id="listeStats"
+        >
+            <div class="overlay" th:id="result_overlay" aria-live="polite">[[#{layout.loading}]]</div>
+            <th:block th:each="parameter : ${otherParameter}">
+                <input
+                    th:unless="${parameter.value ==null}"
+                    th:name="${parameter.key}"
+                    th:value="${parameter.value}"
+                    type="hidden"
+                    aria-hidden="true"
+                    data-isForm="true"
+                />
+            </th:block>
+            <a href="#skip_link_action-table_prev" id="skip_link_action-table_next" class="skip-link"
+                >[[ #{skip.link.table.prev(#{statslist.table.caption})} ]]</a
+            >
+            <div class="table-action">
+                <div class="table-action__action-container table-action__action-container--disabled"></div>
+                <div class="table-action__action-container table-action__action-container--right">
+                    <th:block th:unless="${resultList.liste.size == resultList.nbTotal}">
+                        <div
+                            th:replace="fragments/table/pagination :: pagination (${resultForm}, ${resultForm.page},'birtReportsTop',${resultList.nbTotal})"
+                        ></div>
+                    </th:block>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="custom-table">
+                    <caption class="sr-only" th:text="${caption}">
+                        Tableau des statistiques
+                    </caption>
+                    <thead class="table-header custom-table__header">
+                        <tr class="table-header__line">
+                            <th scope="col" class="table-header__cell table-header__cell--check">
+                                <div class="form-choice-input">
+                                    <input
+                                        type="checkbox"
+                                        name="checkbox"
+                                        onclick="selectAllCheckBox(this);"
+                                        class="form-choice-input__input js-custom-table-header-check"
+                                        id="selectAllStats"
+                                        autocomplete="off"
+                                    />
+                                    <label
+                                        for="selectAllStats"
+                                        th:title="#{liste.stats.selectAll}"
+                                        th:data-select-label="#{liste.stats.selectAll}"
+                                        th:data-deselect-label="#{liste.stats.deselectAll}"
+                                        class="form-label form-choice-input__label form-choice-input__label--checkbox form-choice-input__label--hidden-label"
+                                    >
+                                        <span th:text="#{liste.stats.selectAll}">Tout sélectionner</span>
+                                    </label>
+                                </div>
+                            </th>
+                            <th:block th:each="colonne : ${resultList.listeColonnes}">
+                                <th:block th:if="${colonne.visible && colonne.sortable}">
+                                    <th scope="col" class="table-header__cell table-header__cell--with-filter-action">
+                                        <button
+                                            th:replace="fragments/table/sortableHeader :: sortableHeader (#{__${colonne.label}__},${colonne.sortValue},${colonne.sortName},${colonne.sortId},${colonne.inverseSort})"
+                                        ></button>
+                                    </th>
+                                </th:block>
+                                <th:block th:if="${colonne.visible && !colonne.sortable}">
+                                    <th
+                                        scope="col"
+                                        class="table-header__cell"
+                                        th:text="${colonne.label !=null? #messages.msg(colonne.label) : ''}"
+                                    >
+                                        Label
+                                    </th>
+                                </th:block>
+                            </th:block>
+                        </tr>
+                    </thead>
+                    <tbody class="custom-table__body">
+                        <th:block th:if="${not #lists.isEmpty(resultList.liste)}">
+                            <tr
+                                class="custom-table__table-line table-line table-line--with-check table-line--with-action-column table-line--complex-line"
+                                th:each="item, nb : ${resultList.liste}"
+                                th:data-id="${item.id}"
+                            >
+                                <td class="table-line__cell table-line__cell--check">
+                                    <div class="form-choice-input">
+                                        <input
+                                            th:id="|select-${item.id}|"
+                                            type="checkbox"
+                                            th:name="${'checkbox-'+nb.count}"
+                                            onclick="selectTableCheckbox(this)"
+                                            class="form-choice-input__input js-custom-table-line-check"
+                                            th:data-id="${item.id}"
+                                            autocomplete="off"
+                                        />
+                                        <label
+                                            th:for="|select-${item.id}|"
+                                            th:title="#{liste.stats.selectOne(${item.title})}"
+                                            th:data-select-label="#{liste.stats.selectOne(${item.title})}"
+                                            th:data-deselect-label="#{liste.stats.deselectOne(${item.title})}"
+                                            class="form-label form-choice-input__label form-choice-input__label--checkbox form-choice-input__label--hidden-label"
+                                        >
+                                            <span th:text="#{liste.stats.selectOne(${item.title})}">Sélectionner</span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td class="table-line__cell">
+                                    <a th:href="@{|${dataUrl}/${item.id}#main_content|}" class="link"
+                                        >[(${item.title})]</a
+                                    >
+                                </td>
+                            </tr>
+                        </th:block>
+                        <th:block th:unless="${not #lists.isEmpty(resultList.liste)}">
+                            <td colspan="5" th:text="#{label.stats.nombre(0)}">Aucun résultat</td>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-action">
+                <div class="table-action__action-container table-action__action-container--disabled"></div>
+                <div class="table-action__action-container table-action__action-container--right">
+                    <th:block th:unless="${resultList.liste.size == resultList.nbTotal}">
+                        <div
+                            th:replace="fragments/table/pagination :: pagination (${resultForm}, ${resultForm.page},'birtReportsBottom',${resultList.nbTotal})"
+                        ></div>
+                    </th:block>
+                </div>
+            </div>
+            <a href="#skip_link_action-table_next" id="skip_link_action-table_prev" class="skip-link"
+                >[[ #{skip.link.table.next(#{statslist.table.caption})} ]]</a
+            >
+        </div>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<xs:schema
+    targetNamespace="http://www.nuxeo.org/ecm/schemas/user"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:nxs="http://www.nuxeo.org/ecm/schemas/user"
+>
+
+	<xs:include schemaLocation="base.xsd" />
+
+	<xs:element name="username" type="xs:string" />
+	<xs:element name="password" type="xs:string" />
+	<xs:element name="salt" type="xs:string" />
+	<xs:element name="firstName" type="xs:string" />
+	<xs:element name="lastName" type="xs:string" />
+	<xs:element name="company" type="xs:string" />
+	<xs:element name="title" type="xs:string" />
+	<xs:element name="postalAddress" type="xs:string" />
+	<xs:element name="postalCode" type="xs:string" />
+	<xs:element name="locality" type="xs:string" />
+	<xs:element name="telephoneNumber" type="xs:string" />
+
+	<xs:element name="email" type="xs:string" />
+    <xs:element name="employeeType" type="xs:string" />
+
+	
+	<xs:element name="dateDebut" type="xs:date" />
+	<xs:element name="dateFin" type="xs:date" />
+
+	<!-- Boolean Attributes the string must be TRUE or FALSE -->
+	<!-- boolean seems not to be handled by nuxeo -->
+	<!-- is temporary user -->
+	<xs:element name="temporary" type="xs:string" default="FALSE" />
+	<!-- is occasional user -->
+	<xs:element name="occasional" type="xs:string" default="FALSE" />
+	<!-- User must change his password -->
+	<xs:element name="pwdReset" type="xs:string" />
+	<!-- User is deleted -->
+	<xs:element name="deleted" type="xs:string" default="FALSE" />
+	<!-- end Boolean Attributes -->
+	
+	<xs:element name="dateDerniereConnexion" type="xs:date" />
+	<xs:element name="logout" type="xs:boolean" default="true" />
+
+	
+	<!-- inverse references -->
+	<xs:element name="groups" type="nxs:stringList" />
+
+	<!-- tenant id for the user -->
+    <xs:element name="tenantId" type="xs:string" />
+
+</xs:schema>

@@ -1,0 +1,368 @@
+<?xml version="1.0" ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://dila.fr/solonepp/schema/version/"
+    xmlns:ver="http://dila.fr/solonepp/schema/version/"
+>
+
+	<xs:include schemaLocation="base.xsd" />
+
+	<xs:simpleType name="dateListType">
+		<xs:list itemType="xs:dateTime" />
+	</xs:simpleType>
+
+	<!-- *********************************************************************** 
+		Données techniques de la version. *********************************************************************** -->
+	<!-- Liste séparés par ";" des champs modifiés par rapport à la dernière 
+		version publié, obsolète ou en attente de validation -->
+	<xs:element name="modifiedMetaList" type="xs:string" />
+
+	<!-- *********************************************************************** 
+		Données communes de la version. *********************************************************************** -->
+	<!-- Nom de l'événement (dc:title) -->
+	<xs:element name="evenement" type="xs:string" />
+
+	<!-- Numéro du niveau de lecture -->
+	<xs:element name="niveauLectureNumero" type="xs:int" />
+
+	<!-- Identifiant technique du niveau de lecture (vocabulaire) -->
+	<xs:element name="niveauLecture" type="xs:string" />
+
+	<!-- Horodatage de la publication de la version -->
+	<xs:element name="horodatage" type="xs:dateTime" />
+
+	<!-- Date de l'accusé de réception -->
+	<xs:element name="dateAr" type="xs:dateTime" />
+
+	<!-- Objet de l'événement -->
+	<xs:element name="objet" type="xs:string" />
+
+	<!-- identifiant métier -->
+	<xs:element name="identifiantMetier" type="xs:string" />
+
+	<!-- Numéro de version majeur -->
+	<xs:element name="majorVersion" type="xs:int" />
+
+	<!-- Numéro de version mineur -->
+	<xs:element name="minorVersion" type="xs:int" />
+
+	<!-- Identifiant sénat (chaîne libre renseignable uniquement par le sénat) -->
+	<xs:element name="senat" type="xs:string" />
+
+	<!-- Mode de création de la version -->
+	<xs:element name="modeCreation" type="xs:string" />
+
+	<!-- Indique la présence de pièces jointes -->
+	<xs:element name="pieceJointePresente" type="xs:boolean" default="false" />
+
+	<!-- Nature de la version -->
+	<xs:element name="nature" type="xs:string" />
+
+	<!-- Version Courante -->
+	<xs:element name="versionCourante" type="xs:boolean" />
+
+	<!-- *********************************************************************** 
+		Données de la catégorie d'événement "procédure législative". *********************************************************************** -->
+	<!-- Numéro de NOR -->
+	<xs:element name="nor" type="xs:string" />
+
+	<!-- Numéro de NOR Loi -->
+	<xs:element name="norLoi" type="xs:string" />
+
+	<!-- Nature de loi (vocabulaire) -->
+	<xs:element name="natureLoi" type="xs:string" />
+
+	<!-- Type de loi (vocabulaire) -->
+	<xs:element name="typeLoi" type="xs:string" />
+
+	<!-- Identifiant technique de l'auteur (table de référence) -->
+	<xs:element name="auteur" type="xs:string" />
+
+	<!-- Identifiant technique du coauteur (table de référence) -->
+	<xs:element name="coauteur" type="ver:stringList" />
+
+	<!-- Intitulé -->
+	<xs:element name="intitule" type="xs:string" />
+
+	<!-- URL du dossier AN -->
+	<xs:element name="urlDossierAn" type="xs:string" />
+
+	<!-- URL du dossier SENAT -->
+	<xs:element name="urlDossierSenat" type="xs:string" />
+
+	<!-- Cosignataire collectif -->
+	<xs:element name="cosignataire" type="xs:string" />
+
+	<!-- Date de dépôt du texte -->
+	<xs:element name="dateDepotTexte" type="xs:date" />
+
+	<!-- N° de dépôt du texte -->
+	<xs:element name="numeroDepotTexte" type="xs:string" />
+
+	<!-- Identifiant technique de la commission de saisie au fond (table de 
+		référence) -->
+	<xs:element name="commissionSaisieAuFond" type="xs:string" />
+
+	<!-- Identifiant technique de la commission de saisie pour avis (table de 
+		référence) -->
+	<xs:element name="commissionSaisiePourAvis" type="ver:stringList" />
+
+	<!-- Date (générique) -->
+	<xs:element name="date" type="xs:date" />
+
+	<!-- Date de saisine -->
+	<xs:element name="dateSaisine" type="xs:date" />
+
+	<!-- Date de retrait -->
+	<xs:element name="dateRetrait" type="xs:date" />
+
+	<!-- Date de distribution électronique -->
+	<xs:element name="dateDistributionElectronique" type="xs:date" />
+
+	<!-- Identifiant technique de la nature de rapport (vocabulaire) -->
+	<xs:element name="natureRapport" type="xs:string" />
+
+	<!-- Identifiant technique du (des) rapporteur (s) (table de référence) -->
+	<xs:element name="rapporteurList" type="ver:stringList" />
+
+	<!-- Titre (intitulé) -->
+	<xs:element name="titre" type="xs:string" />
+
+	<!-- Date de dépot du rapport -->
+	<xs:element name="dateDepotRapport" type="xs:date" />
+
+	<!-- Numéro de dépot du rapport -->
+	<xs:element name="numeroDepotRapport" type="xs:string" />
+
+	<!-- Nom de la commission saisie (table de référence) -->
+	<xs:element name="commissionSaisie" type="xs:string" />
+
+	<!-- Identifiant technique de l'attribution commission (table de référence) -->
+	<xs:element name="attributionCommission" type="xs:string" />
+
+	<!-- Date de refus -->
+	<xs:element name="dateRefus" type="xs:date" />
+
+	<!-- Libellé des annexes -->
+	<xs:element name="libelleAnnexe" type="ver:stringList" />
+
+	<!-- Date de l'engagement de la procédure -->
+	<xs:element name="dateEngagementProcedure" type="xs:date" />
+
+	<!-- Date de refus de la procédure d'engagement par l'Assemblée Nationale -->
+	<xs:element name="dateRefusProcedureEngagementAn" type="xs:date" />
+
+	<!-- Date de refus de la procédure d'engagement par le sénat -->
+	<xs:element name="dateRefusProcedureEngagementSenat" type="xs:date" />
+
+	<!-- Date de refus de la procédure d'engagement par une des deux assemblées -->
+	<xs:element name="dateRefusEngagementProcedure" type="xs:date" />
+
+	<!-- N° du texte adopté -->
+	<xs:element name="numeroTexteAdopte" type="xs:string" />
+
+	<!-- Date d'adoption -->
+	<xs:element name="dateAdoption" type="xs:date" />
+
+	<!-- Identifiant technique du sort d'adoption (vocabulaire) -->
+	<xs:element name="sortAdoption" type="xs:string" />
+
+	<!-- Redépot -->
+	<xs:element name="redepot" type="xs:boolean" default="false" />
+
+	<!-- Date de promulgation -->
+	<xs:element name="datePromulgation" type="xs:date" />
+
+	<!-- Date de publication -->
+	<xs:element name="datePublication" type="xs:date" />
+
+	<!-- Numéro de la loi -->
+	<xs:element name="numeroLoi" type="xs:string" />
+
+	<!-- Numéro du JO -->
+	<xs:element name="numeroJo" type="xs:int" />
+
+	<!-- Page du JO -->
+	<xs:element name="pageJo" type="xs:int" />
+
+	<!-- Date de la réunion CMP -->
+	<xs:element name="dateCMP" type="xs:date" />
+
+	<!-- Identifiant technique du Resultat CMP (vocabulaire) -->
+	<xs:element name="resultatCMP" type="xs:string" />
+
+	<!-- Rectificatif -->
+	<xs:element name="rectificatif" type="xs:boolean" default="false" />
+
+	<!-- Identifiant technique de la décision sur l'engagement de la procédure 
+		accélérée -->
+	<xs:element name="decisionProcAcc" type="xs:string" />
+
+	<xs:element name="dateRefusAssemblee1" type="xs:date" />
+
+	<xs:element name="dateConferenceAssemblee2" type="xs:date" />
+
+	<!-- *********************************************************************** 
+		Données de la catégorie d'événement "organisation des sessions extraordinaires". 
+		*********************************************************************** -->
+	<!-- Identifiant technique du type d'acte (vocabulaire) -->
+	<xs:element name="typeActe" type="xs:string" />
+
+	<!-- Date de l'acte -->
+	<xs:element name="dateActe" type="xs:date" />
+
+	<!-- N° de publication du décret ou N° acte -->
+	<xs:element name="numeroPublication" type="xs:string" />
+
+	<!-- *********************************************************************** 
+		Données de la catégorie d'événement "Révision de la constitution". *********************************************************************** -->
+
+	<!-- Identifiant dossiers législatifs concernés -->
+	<xs:element name="dossierLegislatif" type="ver:stringList" />
+
+	<!-- Date de convocation -->
+	<xs:element name="dateConvocation" type="xs:date" />
+
+	<!-- Année du JO -->
+	<xs:element name="anneeJo" type="xs:int" />
+
+	<!-- Date JO -->
+	<xs:element name="dateJo" type="xs:date" />
+
+	<!-- *********************************************************************** 
+		Données de la catégorie d'événement "Consultation des assemblées sur les 
+		projets de nomination". *********************************************************************** -->
+	<!-- Échéance -->
+	<xs:element name="echeance" type="xs:string" />
+
+	<!-- Date de constultation -->
+	<xs:element name="dateConsultation" type="xs:date" />
+
+	<!-- Date de vote -->
+	<xs:element name="dateVote" type="xs:date" />
+
+	<!-- Demande de vote -->
+	<xs:element name="demandeVote" type="xs:boolean" default="false" />
+
+	<!-- Date de la déclaration -->
+	<xs:element name="dateDeclaration" type="xs:date" />
+
+	<!-- Date de la présentation -->
+	<xs:element name="datePresentation" type="xs:date" />
+
+	<!-- Date prévue pour l'audition -->
+	<xs:element name="dateAudition" type="xs:date" />
+
+	<!-- Personne à éditionner -->
+	<xs:element name="personne" type="xs:string" />
+
+	<!-- Fonction -->
+	<xs:element name="fonction" type="xs:string" />
+
+	<!-- Fonction -->
+	<xs:element name="dateLettrePm" type="xs:date" />
+
+
+
+	<!-- Identifiant technique du sens de l'avis (vocabulaire) -->
+	<xs:element name="sensAvis" type="xs:string" />
+
+	<!-- Nombre de suffrages exprimés -->
+	<xs:element name="suffrageExprime" type="xs:int" />
+
+	<!-- Nombre de bulettin blanc ou nul -->
+	<xs:element name="bulletinBlanc" type="xs:int" />
+
+	<!-- Nombre de votes pour -->
+	<xs:element name="votePour" type="xs:int" />
+
+	<!-- Nombre de votes contre -->
+	<xs:element name="voteContre" type="xs:int" />
+
+	<!-- Nombre d'abstentions -->
+	<xs:element name="abstention" type="xs:int" />
+
+	<!-- Identifiant technique des commissions -->
+	<xs:element name="commissions" type="ver:stringList" />
+
+	<!-- Groupe Parlementaire -->
+	<xs:element name="groupeParlementaire" type="ver:stringList" />
+
+
+	<!-- *********************************************************************** 
+		Données de la catégorie d'événement "Convocation du congres au titre de l'article 
+		18 de la constitution". *********************************************************************** -->
+	<!-- Date du congrès -->
+	<xs:element name="dateCongres" type="xs:date" />
+
+	<!-- *********************************************************************** 
+		Données de la catégorie d'événement "Demande de prolongation d'une intervention 
+		extérieure". *********************************************************************** -->
+
+	<!-- *********************************************************************** 
+		Données de la catégorie d'événement "Résolution de l'article 34-1 de la constitution". 
+		*********************************************************************** -->
+	<!-- Date de la demande -->
+	<xs:element name="dateDemande" type="xs:date" />
+
+	<!-- Identifiant technique du motif d'irrecevabilité (vocabulaire) -->
+	<xs:element name="motifIrrecevabilite" type="xs:string" />
+
+	<!-- *********************************************************************** 
+		Données de la catégorie d'événement "Dépôt de rapports au parlement". *********************************************************************** -->
+	<!-- Identifiant technique du rapport du parlement (vocabulaire) -->
+	<xs:element name="rapportParlement" type="xs:string" />
+
+	<!-- Année du rapport -->
+	<xs:element name="anneeRapport" type="xs:int" />
+
+	<!-- URL de la base légale -->
+	<xs:element name="urlBaseLegale" type="xs:string" />
+
+	<!-- Base légale -->
+	<xs:element name="baseLegale" type="xs:string" />
+
+	<!-- *********************************************************************** 
+		Données de la catégorie d'événement "Insertion d'information parlementaires 
+		au JO lois et décrets". *********************************************************************** -->
+	<!-- Numéro de la rubrique -->
+	<xs:element name="numeroRubrique" type="xs:int" />
+
+	<!-- URL de publication -->
+	<xs:element name="urlPublication" type="xs:string" />
+	
+	<xs:element name="rubrique" type="xs:string" />
+
+	<!-- *********************************************************************** 
+		Données de la catégorie d'événement "Organismes extra-parlementaires". *********************************************************************** -->
+	<!-- Identifiants techniques des parlementaires titulaires (table de référence) -->
+	<xs:element name="parlementaireTitulaireList" type="ver:stringList" />
+
+	<!-- Identifiants techniques des parlementaires suppléants (table de référence) -->
+	<xs:element name="parlementaireSuppleantList" type="ver:stringList" />
+
+	<!-- Date de désignation -->
+	<xs:element name="dateDesignation" type="xs:date" />
+
+	<!-- *********************************************************************** 
+		Données de la catégorie d'événement "Autres". *********************************************************************** -->
+	<!-- Position de l'alerte (vrai : posée, faux : levée) -->
+	<xs:element name="positionAlerte" type="xs:boolean" />
+
+	<!-- Date de caducité -->
+	<xs:element name="dateCaducite" type="xs:date" />
+
+	<!-- Dossier cible -->
+	<xs:element name="dossierCible" type="xs:string" />
+
+	<!-- Liste de date -->
+	<xs:element name="dateList" type="ver:dateListType" />
+
+	<!-- Commentaire (v.dc:description) -->
+	<xs:element name="commentaire" type="xs:string" />
+
+	<!-- Identifiant technique de l'Organisme (table de référence) -->
+	<xs:element name="organisme" type="xs:string" />
+
+
+</xs:schema>

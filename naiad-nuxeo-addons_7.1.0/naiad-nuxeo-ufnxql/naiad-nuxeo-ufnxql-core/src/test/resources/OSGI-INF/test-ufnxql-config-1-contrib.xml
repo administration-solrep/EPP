@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<component name="fr.sword.naiad.nuxeo.ufnxql.core.service.test-ufnxql-config-1-contrib">
+
+  <extension target="fr.sword.naiad.nuxeo.ufnxql.core.service.fnxqlconfigservice.contrib"
+         point="globalMixinTypes">
+	<mixinType name="doc_facet_1"/>
+  </extension>
+        
+  <extension target="fr.sword.naiad.nuxeo.ufnxql.core.service.fnxqlconfigservice.contrib"
+       point="schemaTypes">
+    <typeSchema type="doc_type_1" schema="doc_schema_1"/>
+    <typeSchema type="doc_type_2" schema="doc_schema_2"/>
+  </extension>
+  
+  
+   <extension target="org.nuxeo.ecm.core.schema.TypeService" point="doctype">
+        <doctype name="DocType1" extends="Document">
+            <schema name="dublincore" />
+        </doctype>
+        
+        <doctype name="DocType2" extends="DocType1">
+            <schema name="dublincore" />
+        </doctype>
+        
+        <doctype name="MaNote" extends="Note">
+            
+        </doctype>
+        
+    </extension>
+</component>

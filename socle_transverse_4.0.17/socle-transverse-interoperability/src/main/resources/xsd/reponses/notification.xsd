@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/notification"
+	xmlns="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/notification"
+	xmlns:repco="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons"
+	xmlns:qn="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions"
+	elementFormDefault="qualified">
+
+
+	<xs:import schemaLocation="reponses-commons.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/commons" />
+	<xs:import schemaLocation="questions.xsd"
+		namespace="http://www.dila.premier-ministre.gouv.fr/solrep/reponses/questions" />
+
+
+	<xs:simpleType name="NotificationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="REPONSES_QUESTIONS" />
+			<xs:enumeration value="REPONSES_QUESTIONS_ERRATA" />
+			<xs:enumeration value="REPONSES_CHANGEMENT_ETAT" />
+			<xs:enumeration value="REPONSES_ATTRIBUTIONS" />
+			<xs:enumeration value="REPONSES_RETOUR_PUBLICATION" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+
+
+
+</xs:schema>

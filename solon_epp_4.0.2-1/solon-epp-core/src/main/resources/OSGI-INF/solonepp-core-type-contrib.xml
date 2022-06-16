@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Cet composant contribue les types de documents de l'application SOLON 
+	EPP. -->
+<component name="fr.dila.solonepp.core.type">
+	<require>org.nuxeo.ecm.core.CoreExtensions</require>
+	<!-- <require>org.nuxeo.ecm.platform.userworkspace.coreTypes</require> -->
+	<require>fr.dila.solonepp.core.schema</require>
+
+	<extension target="org.nuxeo.ecm.core.schema.TypeService" point="doctype">
+
+		<!-- *********************************************************************** 
+			Types de documents des tables de références. *********************************************************************** -->
+		<!-- Répertoire racine des événements -->
+		<doctype name="TableReferenceRoot" extends="Folder" coretype="TableReferenceRoot" />
+
+		<!-- Répertoire racine des acteurs -->
+		<doctype name="ActeurRoot" extends="Folder" coretype="ActeurRoot" />
+
+		<!-- Acteur -->
+		<doctype name="Acteur" extends="Document" coretype="Acteur">
+			<schema name="acteur" />
+			<prefetch />
+		</doctype>
+
+		<!-- Répertoire racine des circonscriptions -->
+		<doctype name="CirconscriptionRoot" extends="Folder" coretype="CirconscriptionRoot" />
+
+		<!-- Circonscription -->
+		<doctype name="Circonscription" extends="Document" coretype="Circonscription">
+			<schema name="circonscription" />
+			<prefetch />
+		</doctype>
+
+		<!-- Répertoire racine des gouvernements -->
+		<doctype name="GouvernementRoot" extends="Folder" coretype="GouvernementRoot" />
+
+		<!-- Gouvernement -->
+		<doctype name="Gouvernement" extends="Document" coretype="Gouvernement">
+			<schema name="gouvernement_schema" />
+			<prefetch />
+		</doctype>
+
+		<!-- Répertoire racine des identités -->
+		<doctype name="IdentiteRoot" extends="Folder" coretype="IdentiteRoot" />
+
+		<!-- Identité -->
+		<doctype name="Identite" extends="Document" coretype="Identite">
+			<schema name="identite" />
+			<prefetch />
+		</doctype>
+
+		<!-- Répertoire racine des mandats -->
+		<doctype name="MandatRoot" extends="Folder" coretype="MandatRoot" />
+
+		<!-- Mandat -->
+		<doctype name="Mandat" extends="Document" coretype="Mandat">
+			<schema name="mandat" />
+			<prefetch />
+		</doctype>
+
+		<!-- Répertoire racine des membres de groupes -->
+		<doctype name="MembreGroupeRoot" extends="Folder" coretype="MembreGroupeRoot" />
+
+		<!-- Circonscription -->
+		<doctype name="MembreGroupe" extends="Document" coretype="MembreGroupe">
+			<schema name="membre_groupe" />
+			<prefetch />
+		</doctype>
+
+		<!-- Répertoire racine des ministères -->
+		<doctype name="MinistereRoot" extends="Folder" coretype="MinistereRoot" />
+
+		<!-- Ministère -->
+		<doctype name="Ministere" extends="Document" coretype="Ministere">
+			<schema name="ministere" />
+			<prefetch />
+		</doctype>
+
+		<!-- Répertoire racine des organismes -->
+		<doctype name="OrganismeRoot" extends="Folder" coretype="OrganismeRoot" />
+
+		<!-- Organisme -->
+		<doctype name="Organisme" extends="Document" coretype="Organisme">
+			<schema name="organisme" />
+			<prefetch />
+		</doctype>
+
+		<!-- Répertoire racine des périodes -->
+		<doctype name="PeriodeRoot" extends="Folder" coretype="PeriodeRoot" />
+
+		<!-- Période -->
+		<doctype name="Periode" extends="Document" coretype="Periode">
+			<schema name="periode" />
+			<prefetch />
+		</doctype>
+
+		<!-- *********************************************************************** 
+			Types de documents du dossier. *********************************************************************** -->
+		<!-- Répertoire racine des dossiers -->
+		<doctype name="DossierRoot" extends="Folder" coretype="DossierRoot" />
+
+		<!-- Dossier SOLON EPP -->
+		<doctype name="Dossier" extends="Document" coretype="Dossier">
+			<schema name="dublincore" />
+			<schema name="dossier" />
+			<facet name="Folderish" />
+			<prefetch>dc:title, dos:alerteCount, dos:dateDepotTexte,
+				dos:numeroDepotTexte</prefetch>
+		</doctype>
+
+		<!-- *********************************************************************** 
+			Types de documents des événements. *********************************************************************** -->
+		<!-- Événement -->
+		<doctype name="Evenement" extends="Document" coretype="Evenement">
+			<schema name="dublincore" />
+			<schema name="evenement" />
+			<facet name="Distributable" />
+			<facet name="Folderish" />
+			<prefetch>dc:title, evt:typeEvenement, evt:emetteur,
+				evt:destinataire, evt:destinataireCopie</prefetch>
+		</doctype>
+
+		<!-- Version d'un événement -->
+		<doctype name="Version" extends="Document" coretype="Version">
+			<schema name="dublincore" />
+			<schema name="version" />
+			<facet name="Folderish" />
+			<prefetch>dc:title, ver:horodatage, ver:senat, ver:objet,
+				ver:pieceJointePresente, ver:niveauLectureNumero, ver:niveauLecture</prefetch>
+		</doctype>
+
+		<!-- Pièce jointe -->
+		<doctype name="PieceJointe" extends="Document">
+			<schema name="dublincore" />
+			<schema name="piece_jointe" />
+			<prefetch>dc:title, dc:creator, dc:modified</prefetch>
+		</doctype>
+
+		<!-- *********************************************************************** 
+			Types de documents des pièces jointes. *********************************************************************** -->
+		<!-- Répertoire racine des pièces jointes -->
+		<doctype name="PieceJointeFichierRoot" extends="Folder" coretype="PieceJointeFichierRoot" />
+
+		<!-- Pièce jointe -->
+		<doctype name="PieceJointeFichier" extends="Document" coretype="PieceJointe">
+			<schema name="dublincore" />
+			<schema name="file" />
+			<schema name="stfile" />
+			<facet name="Downloadable" />
+			<schema name="uid" />
+			<prefetch>dc:title, dc:creator, dc:modified</prefetch>
+		</doctype>
+
+		<!-- *********************************************************************** 
+			Types de documents des messages. *********************************************************************** -->
+		<!-- Message -->
+		<doctype name="Message" extends="Document" coretype="Message">
+			<schema name="dublincore" />
+			<schema name="case_link" />
+			<facet name="CaseLink" />
+			<prefetch>dc:title, cslk:caseDocumentId, cslk:activeVersionId,
+				cslk:idDossier, cslk:messageType, cslk:arNecessaire,
+				cslk:arNonDonneCount, cslk:visaInternes, cslk:corbeilleList</prefetch>
+		</doctype>
+
+		<!-- *********************************************************************** 
+			Types de documents des espaces de travail personnels. *********************************************************************** -->
+		<!-- répertoire contenant les informations de l'espace collabortif d'un 
+			utilisateur -->
+		<doctype name="UserWorkspace" extends="Folder" />
+
+		<!-- *********************************************************************** 
+			Types de documents des Mailbox. *********************************************************************** -->
+		<!-- Mailbox Solon EPP -->
+		<doctype name="Mailbox" extends="Document">
+			<schema name="dublincore" />
+			<schema name="distribution" />
+			<schema name="mailbox" />
+			<facet name="Folderish" />
+			<facet name="Mailbox" />
+			<prefetch>dc:title, mlbx:mailbox_id</prefetch>
+		</doctype>
+
+		<!-- Profil utilisateur -->
+		<doctype name="ProfilUtilisateur" extends="Document">
+			<schema name="dublincore" />
+			<schema name="profil_utilisateur_solon_epp" />
+			<prefetch>dc:title, dc:creator, dc:modified</prefetch>
+		</doctype>
+		
+		<doctype name="ParametrageWsEpg" extends="Document">
+			<schema name="parametrage_ws_epg" />
+			<prefetch />
+		</doctype>
+
+	</extension>
+</component>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance"
+	xmlns:commons="http://www.dila.premier-ministre.gouv.fr/solrep/commons/commons"
+
+	xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
+	version="2.1">
+
+	<globalBindings fixedAttributeAsConstantProperty="true">
+		<serializable uid="1" />
+
+		<javaType name="java.lang.String" xmlType="commons:CDataString"
+			parseMethod="fr.dila.st.rest.client.helper.CDataAdapter.parse"
+			printMethod="fr.dila.st.rest.client.helper.CDataAdapter.print" />
+
+	</globalBindings>
+
+
+</bindings>

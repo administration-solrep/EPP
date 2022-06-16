@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div
+            th:fragment="multipleDatePicker(label, spanId, inputName, inputId, required, values)"
+            class="grid__col grid__col--full-width"
+        >
+            <div class="flex justify-start items-start">
+                <div class="flex flex-col">
+                    <div class="form-input">
+                        <div class="form-input__header">
+                            <div class="form-input__header-top">
+                                <label
+                                    for="form_index_date_effect"
+                                    id="form_index_date_effect_label"
+                                    class="form-label"
+                                    th:text="#{${label}}"
+                                ></label>
+                            </div>
+                        </div>
+                        <div
+                            th:replace="fragments/components/input-date-picker :: inputDatePicker(${spanId}, |${inputId}-picker|, ${inputId}, ${required}, '', false)"
+                        ></div>
+                        <div th:id="|${inputId}_description|" class="form-input__footer">
+                            <!---->
+                        </div>
+                    </div>
+                    <div aria-live="assertive" aria-relevant="additions removals" class="multiple-dates">
+                        <div
+                            class="flex justify-between items-center m-t-2 multiple-date"
+                            th:each="value : ${values}"
+                            th:with="date=${#calendars.format(value, 'dd/MM/yyyy')}"
+                        >
+                            <span th:text="${date}"></span>
+                            <button
+                                type="button"
+                                class="js-tooltip base-btn--autocomplete-delete base-btn base-btn--button base-btn--default base-btn--light base-btn--min base-btn--transparent"
+                                th:data-tippy-content="#{multiple.date.delete(${date})}"
+                                onclick="deleteMultipleDate(this)"
+                            >
+                                <span aria-hidden="true" class="icon icon--times-circle icon--big"></span
+                                ><span class="sr-only" th:text="#{multiple.date.delete(${date})}"
+                                    >Supprimer dd/MM/yyyy</span
+                                >
+                            </button>
+                            <input type="hidden" th:name="${inputName}" th:value="${date}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="p-t-5">
+                    <button
+                        type="button"
+                        class="base-btn base-btn--button base-btn--default base-btn--light base-btn--center base-btn--transparent base-btn--uppercased"
+                        th:attr="onclick=|addMultipleDate('${inputId}','${inputName}')|"
+                    >
+                        <span
+                            aria-hidden="true"
+                            class="base-btn__icon base-btn__icon--vertical-center base-btn__icon--left icon icon--plus"
+                        ></span>
+                        [[#{multiple.date.add}]]
+                    </button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

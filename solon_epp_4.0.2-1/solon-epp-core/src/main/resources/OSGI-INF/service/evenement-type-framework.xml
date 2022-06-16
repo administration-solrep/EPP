@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<!-- Ce composant contribue le service de gestion des types événements. -->
+<component name="fr.dila.solonepp.core.service.EvenementTypeService">
+	<implementation class="fr.dila.solonepp.core.service.EvenementTypeServiceImpl" />
+
+	<service>
+		<provide interface="fr.dila.solonepp.api.service.EvenementTypeService" />
+	</service>
+
+	<extension-point name="evenementType">
+		<documentation>
+			Cette extension permet de déclarer les types d'événements.
+
+			Exemple de déclaration:
+
+			<code>
+				<evenementType name="EVT01" createur="true" successif="false" demandeAr="true">
+					<distribution>
+						<emetteur>
+							<institution name="GOUVERNEMENT" />
+						</emetteur>
+						<destinataire>
+							<institution name="ASSEMBLEE_NATIONALE" />
+							<institution name="SENAT" />
+						</destinataire>
+						<copie>
+							<institution name="ASSEMBLEE_NATIONALE" />
+							<institution name="SENAT" />
+						</copie>
+					</distribution>
+					<pieceJointe type="TEXTE" obligatoire="true" />
+					<pieceJointe type="AUTRE" obligatoire="false" />
+				</evenementType>
+			</code>
+		</documentation>
+
+		<object class="fr.dila.solonepp.api.descriptor.evenementtype.EvenementTypeDescriptor" />
+	</extension-point>
+</component>

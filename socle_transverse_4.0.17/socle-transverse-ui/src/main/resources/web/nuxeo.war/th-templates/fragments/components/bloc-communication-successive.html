@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="bloc-communication-successive(comSuccessiveSelect)" class="flex items-end m-t-12">
+            <div class="form-select form-select--simple">
+                <div class="form-input">
+                    <div class="form-input__header">
+                        <div class="form-input__header-top">
+                            <label for="communication-select" class="form-label"
+                                >[[#{communicationSuccessive.label}]]</label
+                            >
+                        </div>
+                        <div class="form-input__header-bottom"></div>
+                    </div>
+                    <div class="form-input__container">
+                        <div class="form-select__field-wrapper">
+                            <div class="form-select-input">
+                                <select
+                                    name="communication-select"
+                                    id="communication-select"
+                                    aria-describedby="communication-select_field_description communication-select_description"
+                                    class="form-select-input__field form-select-input__field--simple"
+                                >
+                                    <option value="" disabled selected
+                                        >[[#{communicationSuccessive.select.default}]]</option
+                                    >
+                                    <th:block th:each="grp : ${comSuccessiveSelect}">
+                                        <optgroup th:label="${grp.label}">
+                                            <th:block th:each="evt : ${grp.selectValues}">
+                                                <option
+                                                    th:value="${evt.id}"
+                                                    th:text="${evt.label}"
+                                                    th:data-display="${evt.label}"
+                                                ></option>
+                                            </th:block>
+                                        </optgroup>
+                                    </th:block> </select
+                                ><span aria-hidden="true" tabindex="-1"
+                                    ><span
+                                        aria-hidden="true"
+                                        class="form-select-input__arrow icon icon--arrow-bottom"
+                                    ></span
+                                ></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="communication-select_description" class="form-input__footer"></div>
+                </div>
+            </div>
+            <button
+                type="button"
+                onclick="goToCreationCommunicationSuccessive()"
+                class="m-l-3 base-btn base-btn--button base-btn--default"
+            >
+                [[#{communicationSuccessive.button.create}]]
+            </button>
+        </div>
+    </body>
+</html>

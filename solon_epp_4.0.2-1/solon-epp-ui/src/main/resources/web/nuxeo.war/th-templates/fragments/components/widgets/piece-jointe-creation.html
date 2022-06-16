@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <!--/* composant multi file en mode modification */-->
+        <th:block th:fragment="pieceJointe(widget)">
+            <div class="form-input__header">
+                <div class="form-input__header-top">
+                    <label th:for="${widget.name}" th:id="|${widget.name}_label|" class="form-label"
+                        ><th:block th:text="${widget.label}"></th:block>
+                        <span
+                            th:if="${widget.required}"
+                            class="form-label__required-text"
+                            th:text="#{form.input.required}"
+                        >
+                            (Requis)</span
+                        >
+                    </label>
+                    <div class="form-input__icon-group"></div>
+                </div>
+            </div>
+            <div>
+                <th:block th:if="${not #lists.isEmpty(widget.lstPieces)}">
+                    <button
+                        type="button"
+                        th:id="${widget.name + 'BtnAdd'}"
+                        th:data-label="${widget.label}"
+                        th:onclick="|addBLocAddPieceJointe(this, ${widget.pjMultiValue}, '__${widget.name}__', true)|"
+                        class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent btnAddPieceJointe hide"
+                        th:classappend="${widget.pjMultiValue ? '' : ' hide-element'}"
+                    >
+                        <th:block th:text="#{pieceJointe.label.add}"></th:block>
+                        <span aria-hidden="true" class="icon icon--add link__icon link__icon--append"></span>
+                    </button>
+                    <div th:id="|${widget.name}PjContainer|">
+                        <th:block th:each="piece : ${widget.lstPieces}">
+                            <th:block
+                                th:replace="fragments/components/bloc-ajout-piece-jointe :: bloc-piece-jointe(${piece}, ${widget.pjMultiValue}, false)"
+                            ></th:block>
+                        </th:block>
+                    </div>
+                </th:block>
+
+                <th:block th:unless="${not #lists.isEmpty(widget.lstPieces)}">
+                    <button
+                        type="button"
+                        th:id="${widget.name + 'BtnAdd'}"
+                        th:data-label="${widget.label}"
+                        th:onclick="|addBLocAddPieceJointe(this, ${widget.pjMultiValue}, '__${widget.name}__', true)|"
+                        class="base-btn base-btn--button base-btn--default base-btn--light base-btn--transparent btnAddPieceJointe"
+                    >
+                        <th:block th:text="#{pieceJointe.label.add}"></th:block>
+                        <span aria-hidden="true" class="icon icon--add link__icon link__icon--append"></span>
+                    </button>
+                    <div th:id="|${widget.name}PjContainer|"></div>
+                </th:block>
+            </div>
+        </th:block>
+    </body>
+</html>
